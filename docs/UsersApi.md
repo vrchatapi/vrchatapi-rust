@@ -1,0 +1,170 @@
+# \UsersApi
+
+All URIs are relative to *https://api.vrchat.cloud/api/1*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**get_user**](UsersApi.md#get_user) | **GET** /users/{userId} | Get User by ID
+[**get_user_by_name**](UsersApi.md#get_user_by_name) | **GET** /users/{username}/name | Get User by Username
+[**search_active_users**](UsersApi.md#search_active_users) | **GET** /users/active | Search Active Users
+[**search_users**](UsersApi.md#search_users) | **GET** /users | Search All Users
+[**update_user**](UsersApi.md#update_user) | **PUT** /users/{userId} | Update User Info
+
+
+
+## get_user
+
+> crate::models::User get_user(user_id)
+Get User by ID
+
+Get public user information about a specific user using their ID.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** |  | [required] |
+
+### Return type
+
+[**crate::models::User**](User.md)
+
+### Authorization
+
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_by_name
+
+> crate::models::User get_user_by_name(username)
+Get User by Username
+
+Get public user information about a specific user using their name.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**username** | **String** |  | [required] |
+
+### Return type
+
+[**crate::models::User**](User.md)
+
+### Authorization
+
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## search_active_users
+
+> Vec<crate::models::LimitedUser> search_active_users(search, developer_type, offset, n)
+Search Active Users
+
+Search and list any Active users by text query.  **Has been locked down and now always respond with \"Invalid Admin Credentials\".**
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**search** | **String** | Username to search for | [required] |
+**developer_type** | Option<**String**> | Active user by developer type, none for normal users and internal for moderators |  |
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+
+### Return type
+
+[**Vec<crate::models::LimitedUser>**](LimitedUser.md)
+
+### Authorization
+
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## search_users
+
+> Vec<crate::models::LimitedUser> search_users(search, developer_type, n, offset)
+Search All Users
+
+Search and list any users by text query
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**search** | Option<**String**> | Searches by `displayName`. Will return empty array if search query is empty or missing. |  |
+**developer_type** | Option<**String**> | Active user by developer type, none for normal users and internal for moderators |  |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+
+### Return type
+
+[**Vec<crate::models::LimitedUser>**](LimitedUser.md)
+
+### Authorization
+
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_user
+
+> crate::models::CurrentUser update_user(user_id, inline_object2)
+Update User Info
+
+Update a users information such as the email and birthday.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** |  | [required] |
+**inline_object2** | Option<[**InlineObject2**](InlineObject2.md)> |  |  |
+
+### Return type
+
+[**crate::models::CurrentUser**](CurrentUser.md)
+
+### Authorization
+
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
