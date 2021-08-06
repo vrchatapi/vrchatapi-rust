@@ -3,6 +3,8 @@ name = "vrchatapi"
 version = "1.0.0"
 authors = ["OpenAPI Generator team and contributors"]
 edition = "2018"
+description = "VRChat API Library for Rust"
+license = "MIT"
 
 [dependencies]
 serde = "^1.0"
