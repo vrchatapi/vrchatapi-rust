@@ -12,8 +12,6 @@ openapi-generator-cli generate \
 -i ../specification/openapi.yaml \
 --http-user-agent="vrchatapi-rust"
 
-rm docs -rf
-
 sed -i '/^edition = "2018"/i license = "MIT"' Cargo.toml
 sed -i '/^edition = "2018"/a description="VRChat API Library for Rust"' Cargo.toml
 
