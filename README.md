@@ -20,10 +20,10 @@ As stated, this documentation was not created with the help of the official VRCh
 
 Put the package under your project folder and add the following to `Cargo.toml` under `[dependencies]`:
 ```
-    vrchatapi = { path = "./generated" }
+    vrchatapi = "^1.0"
 ```
 
-See the [example.js](https://github.com/vrchatapi/vrchatapi-rust/blob/master/example.js) for getting started.
+See the [example.js](https://github.com/vrchatapi/vrchatapi-rust/blob/master/examples/online.js) for getting started.
 
 ## Contributing
 
