@@ -88,7 +88,7 @@ pub struct CurrentUser {
     #[serde(rename = "last_login")]
     pub last_login: String,
     #[serde(rename = "last_platform")]
-    pub last_platform: String,
+    pub last_platform: crate::models::Platform,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
     #[serde(rename = "status")]
@@ -108,7 +108,7 @@ pub struct CurrentUser {
 }
 
 impl CurrentUser {
-    pub fn new(id: String, username: String, display_name: String, user_icon: String, bio: String, bio_links: Vec<String>, profile_pic_override: String, status_description: String, past_display_names: Vec<String>, has_email: bool, has_pending_email: bool, obfuscated_email: String, obfuscated_pending_email: String, email_verified: bool, has_birthday: bool, unsubscribe: bool, status_history: Vec<String>, status_first_time: bool, friends: Vec<String>, friend_group_names: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, fallback_avatar: String, current_avatar: String, current_avatar_asset_url: String, accepted_tos_version: f32, steam_id: String, steam_details: serde_json::Value, oculus_id: String, has_logged_in_from_client: bool, home_location: String, two_factor_auth_enabled: bool, state: crate::models::UserState, tags: Vec<String>, developer_type: crate::models::DeveloperType, last_login: String, last_platform: String, allow_avatar_copying: bool, status: crate::models::UserStatus, date_joined: String, is_friend: bool, friend_key: String, online_friends: Vec<String>, active_friends: Vec<String>, offline_friends: Vec<String>) -> CurrentUser {
+    pub fn new(id: String, username: String, display_name: String, user_icon: String, bio: String, bio_links: Vec<String>, profile_pic_override: String, status_description: String, past_display_names: Vec<String>, has_email: bool, has_pending_email: bool, obfuscated_email: String, obfuscated_pending_email: String, email_verified: bool, has_birthday: bool, unsubscribe: bool, status_history: Vec<String>, status_first_time: bool, friends: Vec<String>, friend_group_names: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, fallback_avatar: String, current_avatar: String, current_avatar_asset_url: String, accepted_tos_version: f32, steam_id: String, steam_details: serde_json::Value, oculus_id: String, has_logged_in_from_client: bool, home_location: String, two_factor_auth_enabled: bool, state: crate::models::UserState, tags: Vec<String>, developer_type: crate::models::DeveloperType, last_login: String, last_platform: crate::models::Platform, allow_avatar_copying: bool, status: crate::models::UserStatus, date_joined: String, is_friend: bool, friend_key: String, online_friends: Vec<String>, active_friends: Vec<String>, offline_friends: Vec<String>) -> CurrentUser {
         CurrentUser {
             id,
             username,

@@ -58,7 +58,7 @@ pub enum MarkNotificationAsReadError {
 
 
 /// Accept a friend request by notification `frq_` ID. Friend requests can be found using the NotificationsAPI `getNotifications` by filtering of type `friendRequest`.
-pub async fn accept_friend_request(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Success, Error<AcceptFriendRequestError>> {
+pub fn accept_friend_request(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Success, Error<AcceptFriendRequestError>> {
 
     let local_var_client = &configuration.client;
 
@@ -70,10 +70,10 @@ pub async fn accept_friend_request(configuration: &configuration::Configuration,
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -85,7 +85,7 @@ pub async fn accept_friend_request(configuration: &configuration::Configuration,
 }
 
 /// Clear **all** notifications.
-pub async fn clear_notifications(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<ClearNotificationsError>> {
+pub fn clear_notifications(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<ClearNotificationsError>> {
 
     let local_var_client = &configuration.client;
 
@@ -97,10 +97,10 @@ pub async fn clear_notifications(configuration: &configuration::Configuration, )
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -112,7 +112,7 @@ pub async fn clear_notifications(configuration: &configuration::Configuration, )
 }
 
 /// Delete a notification.
-pub async fn delete_notification(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Notification, Error<DeleteNotificationError>> {
+pub fn delete_notification(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Notification, Error<DeleteNotificationError>> {
 
     let local_var_client = &configuration.client;
 
@@ -124,10 +124,10 @@ pub async fn delete_notification(configuration: &configuration::Configuration, n
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -139,7 +139,7 @@ pub async fn delete_notification(configuration: &configuration::Configuration, n
 }
 
 /// Retrieve all of the current user's notifications.
-pub async fn get_notifications(configuration: &configuration::Configuration, _type: Option<&str>, sent: Option<bool>, hidden: Option<bool>, after: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::Notification>, Error<GetNotificationsError>> {
+pub fn get_notifications(configuration: &configuration::Configuration, _type: Option<&str>, sent: Option<bool>, hidden: Option<bool>, after: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::Notification>, Error<GetNotificationsError>> {
 
     let local_var_client = &configuration.client;
 
@@ -169,10 +169,10 @@ pub async fn get_notifications(configuration: &configuration::Configuration, _ty
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -184,7 +184,7 @@ pub async fn get_notifications(configuration: &configuration::Configuration, _ty
 }
 
 /// Mark a notification as seen.
-pub async fn mark_notification_as_read(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Notification, Error<MarkNotificationAsReadError>> {
+pub fn mark_notification_as_read(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Notification, Error<MarkNotificationAsReadError>> {
 
     let local_var_client = &configuration.client;
 
@@ -196,10 +196,10 @@ pub async fn mark_notification_as_read(configuration: &configuration::Configurat
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)

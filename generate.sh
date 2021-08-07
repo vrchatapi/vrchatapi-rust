@@ -2,14 +2,20 @@
 
 # Generate Client
 rm src/apis src/models docs -rf
+
 openapi-generator-cli generate \
 -g rust \
---additional-properties=packageName=vrchatapi \
+--additional-properties=packageName=vrchatapi,supportAsync=false \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
 -i ../specification/openapi.yaml \
 --http-user-agent="vrchatapi-rust"
+
+rm docs -rf
+
+#description = "VRChat API Library for Rust"
+#license = "MIT"
 
 # Remove unwanted lines from README
 #sed -i '/Uncomment the following line to set a prefix/d' ./README.md

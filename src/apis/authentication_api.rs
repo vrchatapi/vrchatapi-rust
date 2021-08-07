@@ -65,7 +65,7 @@ pub enum VerifyRecoveryCodeError {
 
 
 /// Deletes the account with given ID. Normal users only have permission to delete their own account. Account deletion is 14 days from this request, and will be cancelled if you do an authenticated request with the account afterwards.  **VRC+ NOTE:** Despite the 14-days cooldown, any VRC+ subscription will be cancelled **immediately**.  **METHOD NOTE:** Despite this being a Delete action, the method type required is PUT.
-pub async fn delete_user_by_id(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::CurrentUser, Error<DeleteUserByIdError>> {
+pub fn delete_user_by_id(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::CurrentUser, Error<DeleteUserByIdError>> {
 
     let local_var_client = &configuration.client;
 
@@ -77,10 +77,10 @@ pub async fn delete_user_by_id(configuration: &configuration::Configuration, use
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -92,7 +92,7 @@ pub async fn delete_user_by_id(configuration: &configuration::Configuration, use
 }
 
 /// Login and/or Get user data from your VRChat account.  If `Authorization` header is present then a new login session will be generated, and a new `auth` cookie is returned.  **WARNING: Session Limit:** Each authentication with login credentials counts as a separate session, out of which you have a limited amount. Make sure to save and reuse the `auth` cookie whenever you can, and avoid sending the Authorization header unless strictly neccesary. While the exact number of simultaneous open sessions is secret, expect to **very fast** run into the rate-limit and be temporarily blocked from making new sessions until the old ones expire.
-pub async fn get_current_user(configuration: &configuration::Configuration, ) -> Result<crate::models::CurrentUser, Error<GetCurrentUserError>> {
+pub fn get_current_user(configuration: &configuration::Configuration, ) -> Result<crate::models::CurrentUser, Error<GetCurrentUserError>> {
 
     let local_var_client = &configuration.client;
 
@@ -107,10 +107,10 @@ pub async fn get_current_user(configuration: &configuration::Configuration, ) ->
     };
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -122,7 +122,7 @@ pub async fn get_current_user(configuration: &configuration::Configuration, ) ->
 }
 
 /// Invalidates the auth cookie.
-pub async fn logout(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<LogoutError>> {
+pub fn logout(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<LogoutError>> {
 
     let local_var_client = &configuration.client;
 
@@ -134,10 +134,10 @@ pub async fn logout(configuration: &configuration::Configuration, ) -> Result<cr
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -149,7 +149,7 @@ pub async fn logout(configuration: &configuration::Configuration, ) -> Result<cr
 }
 
 /// Finishes the login sequence with a normal 2FA-generated code for accounts with 2FA-protection enabled.
-pub async fn verify2_fa(configuration: &configuration::Configuration, inline_object: Option<crate::models::InlineObject>) -> Result<crate::models::InlineResponse2001, Error<Verify2FaError>> {
+pub fn verify2_fa(configuration: &configuration::Configuration, inline_object: Option<crate::models::InlineObject>) -> Result<crate::models::InlineResponse2001, Error<Verify2FaError>> {
 
     let local_var_client = &configuration.client;
 
@@ -162,10 +162,10 @@ pub async fn verify2_fa(configuration: &configuration::Configuration, inline_obj
     local_var_req_builder = local_var_req_builder.json(&inline_object);
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -177,7 +177,7 @@ pub async fn verify2_fa(configuration: &configuration::Configuration, inline_obj
 }
 
 /// Verify whether the currently provided Auth Token is valid.
-pub async fn verify_auth_token(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse200, Error<VerifyAuthTokenError>> {
+pub fn verify_auth_token(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse200, Error<VerifyAuthTokenError>> {
 
     let local_var_client = &configuration.client;
 
@@ -189,10 +189,10 @@ pub async fn verify_auth_token(configuration: &configuration::Configuration, ) -
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -204,7 +204,7 @@ pub async fn verify_auth_token(configuration: &configuration::Configuration, ) -
 }
 
 /// Finishes the login sequence with an OTP (One Time Password) recovery code for accounts with 2FA-protection enabled.
-pub async fn verify_recovery_code(configuration: &configuration::Configuration, inline_object1: Option<crate::models::InlineObject1>) -> Result<crate::models::InlineResponse2001, Error<VerifyRecoveryCodeError>> {
+pub fn verify_recovery_code(configuration: &configuration::Configuration, inline_object1: Option<crate::models::InlineObject1>) -> Result<crate::models::InlineResponse2001, Error<VerifyRecoveryCodeError>> {
 
     let local_var_client = &configuration.client;
 
@@ -217,10 +217,10 @@ pub async fn verify_recovery_code(configuration: &configuration::Configuration, 
     local_var_req_builder = local_var_req_builder.json(&inline_object1);
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)

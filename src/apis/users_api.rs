@@ -56,7 +56,7 @@ pub enum UpdateUserError {
 
 
 /// Get public user information about a specific user using their ID.
-pub async fn get_user(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::User, Error<GetUserError>> {
+pub fn get_user(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::User, Error<GetUserError>> {
 
     let local_var_client = &configuration.client;
 
@@ -68,10 +68,10 @@ pub async fn get_user(configuration: &configuration::Configuration, user_id: &st
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -83,7 +83,7 @@ pub async fn get_user(configuration: &configuration::Configuration, user_id: &st
 }
 
 /// Get public user information about a specific user using their name.
-pub async fn get_user_by_name(configuration: &configuration::Configuration, username: &str) -> Result<crate::models::User, Error<GetUserByNameError>> {
+pub fn get_user_by_name(configuration: &configuration::Configuration, username: &str) -> Result<crate::models::User, Error<GetUserByNameError>> {
 
     let local_var_client = &configuration.client;
 
@@ -95,10 +95,10 @@ pub async fn get_user_by_name(configuration: &configuration::Configuration, user
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -110,7 +110,7 @@ pub async fn get_user_by_name(configuration: &configuration::Configuration, user
 }
 
 /// Search and list any Active users by text query.  **Has been locked down and now always respond with \"Invalid Admin Credentials\".**
-pub async fn search_active_users(configuration: &configuration::Configuration, search: &str, developer_type: Option<&str>, offset: Option<i32>, n: Option<i32>) -> Result<Vec<crate::models::LimitedUser>, Error<SearchActiveUsersError>> {
+pub fn search_active_users(configuration: &configuration::Configuration, search: &str, developer_type: Option<&str>, offset: Option<i32>, n: Option<i32>) -> Result<Vec<crate::models::LimitedUser>, Error<SearchActiveUsersError>> {
 
     let local_var_client = &configuration.client;
 
@@ -132,10 +132,10 @@ pub async fn search_active_users(configuration: &configuration::Configuration, s
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -147,7 +147,7 @@ pub async fn search_active_users(configuration: &configuration::Configuration, s
 }
 
 /// Search and list any users by text query
-pub async fn search_users(configuration: &configuration::Configuration, search: Option<&str>, developer_type: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::LimitedUser>, Error<SearchUsersError>> {
+pub fn search_users(configuration: &configuration::Configuration, search: Option<&str>, developer_type: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::LimitedUser>, Error<SearchUsersError>> {
 
     let local_var_client = &configuration.client;
 
@@ -171,10 +171,10 @@ pub async fn search_users(configuration: &configuration::Configuration, search: 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -186,7 +186,7 @@ pub async fn search_users(configuration: &configuration::Configuration, search: 
 }
 
 /// Update a users information such as the email and birthday.
-pub async fn update_user(configuration: &configuration::Configuration, user_id: &str, inline_object2: Option<crate::models::InlineObject2>) -> Result<crate::models::CurrentUser, Error<UpdateUserError>> {
+pub fn update_user(configuration: &configuration::Configuration, user_id: &str, inline_object2: Option<crate::models::InlineObject2>) -> Result<crate::models::CurrentUser, Error<UpdateUserError>> {
 
     let local_var_client = &configuration.client;
 
@@ -199,10 +199,10 @@ pub async fn update_user(configuration: &configuration::Configuration, user_id: 
     local_var_req_builder = local_var_req_builder.json(&inline_object2);
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)

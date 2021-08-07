@@ -60,7 +60,7 @@ pub enum UnfriendError {
 
 
 /// Deletes an outgoing pending friend request to another user. To delete an incoming friend request, use the `deleteNotification` endpoint instead.
-pub async fn delete_friend_request(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Success, Error<DeleteFriendRequestError>> {
+pub fn delete_friend_request(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Success, Error<DeleteFriendRequestError>> {
 
     let local_var_client = &configuration.client;
 
@@ -72,10 +72,10 @@ pub async fn delete_friend_request(configuration: &configuration::Configuration,
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -87,7 +87,7 @@ pub async fn delete_friend_request(configuration: &configuration::Configuration,
 }
 
 /// Send a friend request to another user.
-pub async fn friend(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Notification, Error<FriendError>> {
+pub fn friend(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Notification, Error<FriendError>> {
 
     let local_var_client = &configuration.client;
 
@@ -99,10 +99,10 @@ pub async fn friend(configuration: &configuration::Configuration, user_id: &str)
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -114,7 +114,7 @@ pub async fn friend(configuration: &configuration::Configuration, user_id: &str)
 }
 
 /// Retrieve if the user is currently a friend with a given user, if they have an outgoing friend request, and if they have an incoming friend request. The proper way to receive and accept friend request is by checking if the user has an incoming `Notification` of type `friendRequest`, and then accepting that notification.
-pub async fn get_friend_status(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::InlineResponse2003, Error<GetFriendStatusError>> {
+pub fn get_friend_status(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::InlineResponse2003, Error<GetFriendStatusError>> {
 
     let local_var_client = &configuration.client;
 
@@ -126,10 +126,10 @@ pub async fn get_friend_status(configuration: &configuration::Configuration, use
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -141,7 +141,7 @@ pub async fn get_friend_status(configuration: &configuration::Configuration, use
 }
 
 /// List information about friends.
-pub async fn get_friends(configuration: &configuration::Configuration, offset: Option<i32>, n: Option<i32>, offline: Option<bool>) -> Result<Vec<crate::models::LimitedUser>, Error<GetFriendsError>> {
+pub fn get_friends(configuration: &configuration::Configuration, offset: Option<i32>, n: Option<i32>, offline: Option<bool>) -> Result<Vec<crate::models::LimitedUser>, Error<GetFriendsError>> {
 
     let local_var_client = &configuration.client;
 
@@ -162,10 +162,10 @@ pub async fn get_friends(configuration: &configuration::Configuration, offset: O
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -177,7 +177,7 @@ pub async fn get_friends(configuration: &configuration::Configuration, offset: O
 }
 
 /// Unfriend a user by ID.
-pub async fn unfriend(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Success, Error<UnfriendError>> {
+pub fn unfriend(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Success, Error<UnfriendError>> {
 
     let local_var_client = &configuration.client;
 
@@ -189,10 +189,10 @@ pub async fn unfriend(configuration: &configuration::Configuration, user_id: &st
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)

@@ -36,7 +36,7 @@ pub struct LimitedUser {
     #[serde(rename = "developerType")]
     pub developer_type: crate::models::DeveloperType,
     #[serde(rename = "last_platform")]
-    pub last_platform: String,
+    pub last_platform: crate::models::Platform,
     #[serde(rename = "status")]
     pub status: crate::models::UserStatus,
     #[serde(rename = "isFriend")]
@@ -49,7 +49,7 @@ pub struct LimitedUser {
 }
 
 impl LimitedUser {
-    pub fn new(id: String, username: String, display_name: String, user_icon: String, profile_pic_override: String, status_description: String, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, fallback_avatar: String, developer_type: crate::models::DeveloperType, last_platform: String, status: crate::models::UserStatus, is_friend: bool, location: String, tags: Vec<String>) -> LimitedUser {
+    pub fn new(id: String, username: String, display_name: String, user_icon: String, profile_pic_override: String, status_description: String, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, fallback_avatar: String, developer_type: crate::models::DeveloperType, last_platform: crate::models::Platform, status: crate::models::UserStatus, is_friend: bool, location: String, tags: Vec<String>) -> LimitedUser {
         LimitedUser {
             id,
             username,

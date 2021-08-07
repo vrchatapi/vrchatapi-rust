@@ -44,7 +44,7 @@ pub struct User {
     #[serde(rename = "last_login")]
     pub last_login: String,
     #[serde(rename = "last_platform")]
-    pub last_platform: String,
+    pub last_platform: crate::models::Platform,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
     #[serde(rename = "status")]
@@ -64,7 +64,7 @@ pub struct User {
 }
 
 impl User {
-    pub fn new(id: String, username: String, display_name: String, user_icon: String, bio: String, bio_links: Vec<String>, profile_pic_override: String, status_description: String, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, fallback_avatar: String, state: crate::models::UserState, tags: Vec<String>, developer_type: crate::models::DeveloperType, last_login: String, last_platform: String, allow_avatar_copying: bool, status: crate::models::UserStatus, date_joined: String, is_friend: bool, friend_key: String) -> User {
+    pub fn new(id: String, username: String, display_name: String, user_icon: String, bio: String, bio_links: Vec<String>, profile_pic_override: String, status_description: String, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, fallback_avatar: String, state: crate::models::UserState, tags: Vec<String>, developer_type: crate::models::DeveloperType, last_login: String, last_platform: crate::models::Platform, allow_avatar_copying: bool, status: crate::models::UserStatus, date_joined: String, is_friend: bool, friend_key: String) -> User {
         User {
             id,
             username,

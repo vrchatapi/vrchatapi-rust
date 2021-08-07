@@ -45,7 +45,7 @@ pub enum GetSystemTimeError {
 
 
 /// API config contains configuration that the clients needs to work properly.  Currently the most important value here is `clientApiKey` which is used for all other API endpoints.
-pub async fn get_config(configuration: &configuration::Configuration, ) -> Result<crate::models::Config, Error<GetConfigError>> {
+pub fn get_config(configuration: &configuration::Configuration, ) -> Result<crate::models::Config, Error<GetConfigError>> {
 
     let local_var_client = &configuration.client;
 
@@ -57,10 +57,10 @@ pub async fn get_config(configuration: &configuration::Configuration, ) -> Resul
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -72,7 +72,7 @@ pub async fn get_config(configuration: &configuration::Configuration, ) -> Resul
 }
 
 /// Returns in plain format the number of currently online users.  **NOTE:** The response type is not of JSON, but is an integer in plain ASCII format.
-pub async fn get_current_online_users(configuration: &configuration::Configuration, ) -> Result<i32, Error<GetCurrentOnlineUsersError>> {
+pub fn get_current_online_users(configuration: &configuration::Configuration, ) -> Result<i32, Error<GetCurrentOnlineUsersError>> {
 
     let local_var_client = &configuration.client;
 
@@ -84,10 +84,10 @@ pub async fn get_current_online_users(configuration: &configuration::Configurati
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -99,7 +99,7 @@ pub async fn get_current_online_users(configuration: &configuration::Configurati
 }
 
 /// Gets the overall health status, the server name, and the current build version tag of the API.
-pub async fn get_health(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse2002, Error<GetHealthError>> {
+pub fn get_health(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse2002, Error<GetHealthError>> {
 
     let local_var_client = &configuration.client;
 
@@ -111,10 +111,10 @@ pub async fn get_health(configuration: &configuration::Configuration, ) -> Resul
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -126,7 +126,7 @@ pub async fn get_health(configuration: &configuration::Configuration, ) -> Resul
 }
 
 /// Returns in plain format the current time of the API server.  **NOTE:** The response type is not of JSON, but is a string in plain ASCII format.
-pub async fn get_system_time(configuration: &configuration::Configuration, ) -> Result<String, Error<GetSystemTimeError>> {
+pub fn get_system_time(configuration: &configuration::Configuration, ) -> Result<String, Error<GetSystemTimeError>> {
 
     let local_var_client = &configuration.client;
 
@@ -138,10 +138,10 @@ pub async fn get_system_time(configuration: &configuration::Configuration, ) -> 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
+    let local_var_content = local_var_resp.text()?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
