@@ -14,8 +14,8 @@ openapi-generator-cli generate \
 
 rm docs -rf
 
-#description = "VRChat API Library for Rust"
-#license = "MIT"
+sed -i '/^edition = "2018"/i license = "MIT"' Cargo.toml
+sed -i '/^edition = "2018"/a description="VRChat API Library for Rust"' Cargo.toml
 
 # Remove unwanted lines from README
 #sed -i '/Uncomment the following line to set a prefix/d' ./README.md
