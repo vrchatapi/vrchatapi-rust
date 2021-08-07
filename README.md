@@ -1,8 +1,8 @@
 ![](https://github.com/vrchatapi/vrchatapi.github.io/blob/master/assets/img/lang/lang_rust_banner_1500x300.png?raw=true)
 
-# vrchat-node
+# VRChat API Library for Rust
 
-A NodeJS client to interact with the unofficial VRChat API. Supports all REST calls specified in https://github.com/vrchatapi/specification.
+A Rust client to interact with the unofficial VRChat API. Supports all REST calls specified in https://github.com/vrchatapi/specification.
 
 ## Disclaimer
 
@@ -23,7 +23,7 @@ Put the package under your project folder and add the following to `Cargo.toml` 
     vrchatapi = "^1.0"
 ```
 
-See the [example.js](https://github.com/vrchatapi/vrchatapi-rust/blob/master/examples/online.js) for getting started.
+See the [examples/online.rs](https://github.com/vrchatapi/vrchatapi-rust/blob/master/examples/online.rs) for getting started.
 
 ## Contributing
 
