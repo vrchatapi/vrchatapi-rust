@@ -23,7 +23,7 @@ Put the package under your project folder and add the following to `Cargo.toml` 
     vrchatapi = "^1.0"
 ```
 
-See the [examples/online.rs](https://github.com/vrchatapi/vrchatapi-rust/blob/master/examples/online.rs) for getting started.
+See the [examples/online.rs](https://github.com/vrchatapi/vrchatapi-rust/blob/main/examples/online.rs) for getting started.
 
 ## Contributing
 
