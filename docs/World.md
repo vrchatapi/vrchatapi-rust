@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **heat** | **f32** |  | [readonly][default to 0]
 **id** | **String** |  | 
 **image_url** | **String** |  | 
-**instances** | Option<[**Vec<serde_json::Value>**](serde_json::Value.md)> |  | [optional]
+**instances** | Option<[**Vec<Vec<serde_json::Value>>**](array.md)> |  | [optional]
 **labs_publication_date** | **String** |  | 
 **name** | **String** |  | 
 **namespace** | **String** |  | 

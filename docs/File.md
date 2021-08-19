@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | 
+**id** | **String** |  | [readonly]
 **name** | **String** |  | 
 **owner_id** | **String** |  | [readonly]
 **mime_type** | [**crate::models::MimeType**](MIMEType.md) |  | 

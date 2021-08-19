@@ -1,6 +1,6 @@
 [package]
 name = "vrchatapi"
-version = "1.0.2"
+version = "1.0.3"
 authors = ["OpenAPI Generator team and contributors"]
 license = "MIT"
 edition = "2018"

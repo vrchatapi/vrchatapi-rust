@@ -25,9 +25,9 @@ Name | Type | Description | Notes
 **date_joined** | [**String**](string.md) |  | [readonly]
 **is_friend** | **bool** |  | 
 **friend_key** | **String** |  | 
-**world_id** | Option<**String**> |  | [optional]
-**instance_id** | Option<**String**> |  | [optional]
-**location** | Option<**String**> |  | [optional]
+**world_id** | **String** |  | 
+**instance_id** | **String** |  | 
+**location** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

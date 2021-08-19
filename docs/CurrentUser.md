@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **status_history** | **Vec<String>** |  | 
 **status_first_time** | **bool** |  | 
 **friends** | **Vec<String>** |  | 
-**friend_group_names** | **Vec<String>** |  | 
+**friend_group_names** | **Vec<String>** | Always empty array. | 
 **current_avatar_image_url** | **String** |  | 
 **current_avatar_thumbnail_image_url** | **String** |  | 
 **fallback_avatar** | **String** |  | 
@@ -47,9 +47,9 @@ Name | Type | Description | Notes
 **date_joined** | [**String**](string.md) |  | [readonly]
 **is_friend** | **bool** |  | [default to false]
 **friend_key** | **String** |  | 
-**online_friends** | **Vec<String>** |  | 
-**active_friends** | **Vec<String>** |  | 
-**offline_friends** | **Vec<String>** |  | 
+**online_friends** | Option<**Vec<String>**> |  | [optional]
+**active_friends** | Option<**Vec<String>**> |  | [optional]
+**offline_friends** | Option<**Vec<String>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

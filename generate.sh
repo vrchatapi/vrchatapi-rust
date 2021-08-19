@@ -9,7 +9,7 @@ openapi-generator-cli generate \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
--i ../specification/openapi.yaml \
+-i https://vrchatapi.github.io/specification/openapi.yaml \
 --http-user-agent="vrchatapi-rust"
 
 sed -i '/^edition = "2018"/i license = "MIT"' Cargo.toml

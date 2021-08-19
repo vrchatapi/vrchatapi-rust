@@ -10,11 +10,12 @@ Method | HTTP request | Description
 [**get_favorited_worlds**](WorldsApi.md#get_favorited_worlds) | **GET** /worlds/favorites | List Favorited Worlds
 [**get_recent_worlds**](WorldsApi.md#get_recent_worlds) | **GET** /worlds/recent | List Recent Worlds
 [**get_world**](WorldsApi.md#get_world) | **GET** /worlds/{worldId} | Get World by ID
+[**get_world_instance**](WorldsApi.md#get_world_instance) | **GET** /worlds/{worldId}/{instanceId} | Get World Instance
 [**get_world_metadata**](WorldsApi.md#get_world_metadata) | **GET** /worlds/{worldId}/metadata | Get World Metadata
-[**get_world_publish**](WorldsApi.md#get_world_publish) | **GET** /worlds/{worldId}/publish | Get World Publish Status
-[**publish_world**](WorldsApi.md#publish_world) | **PUT** /worlds/{worldId}/publish | 
+[**get_world_publish_status**](WorldsApi.md#get_world_publish_status) | **GET** /worlds/{worldId}/publish | Get World Publish Status
+[**publish_world**](WorldsApi.md#publish_world) | **PUT** /worlds/{worldId}/publish | Publish World
 [**search_worlds**](WorldsApi.md#search_worlds) | **GET** /worlds | Search All Worlds
-[**unpublish_world**](WorldsApi.md#unpublish_world) | **DELETE** /worlds/{worldId}/publish | 
+[**unpublish_world**](WorldsApi.md#unpublish_world) | **DELETE** /worlds/{worldId}/publish | Unpublish World
 [**update_world**](WorldsApi.md#update_world) | **PUT** /worlds/{worldId} | Update World
 
 
@@ -69,7 +70,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
@@ -234,12 +235,43 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_world_instance
+
+> crate::models::Instance get_world_instance(world_id, instance_id)
+Get World Instance
+
+Returns a worlds instance.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**world_id** | **String** |  | [required] |
+**instance_id** | **String** |  | [required] |
+
+### Return type
+
+[**crate::models::Instance**](Instance.md)
+
+### Authorization
+
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_world_metadata
 
 > crate::models::InlineResponse2006 get_world_metadata(world_id)
 Get World Metadata
 
-Returns a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
+Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
 
 ### Parameters
 
@@ -254,7 +286,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
@@ -264,12 +296,12 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_world_publish
+## get_world_publish_status
 
-> crate::models::InlineResponse2007 get_world_publish(world_id)
+> crate::models::InlineResponse2007 get_world_publish_status(world_id)
 Get World Publish Status
 
-Returns a worlds publish status. This is currently believed to be unused.
+Returns a worlds publish status.
 
 ### Parameters
 
@@ -284,7 +316,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
@@ -297,9 +329,9 @@ No authorization required
 ## publish_world
 
 > publish_world(world_id)
+Publish World
 
-
-Publishes a world. You can only publish one world per week.
+Publish a world. You can only publish one world per week.
 
 ### Parameters
 
@@ -314,7 +346,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
@@ -370,9 +402,9 @@ Name | Type | Description  | Required | Notes
 ## unpublish_world
 
 > unpublish_world(world_id)
+Unpublish World
 
-
-Unpublishes a world.
+Unpublish a world.
 
 ### Parameters
 
@@ -387,7 +419,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
@@ -418,7 +450,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 

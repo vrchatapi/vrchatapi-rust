@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **address** | **String** | VRChat's office address | [readonly]
-**announcements** | [**Vec<crate::models::ConfigAnnouncements>**](Config_announcements.md) | PSA, Public Announcements | [readonly]
+**announcements** | [**Vec<crate::models::ConfigAnnouncements>**](Config_announcements.md) | Public Announcements | [readonly]
 **api_key** | **String** | apiKey to be used for all other requests | [readonly]
 **app_name** | **String** | Game name | [readonly][default to VrChat]
 **build_version_tag** | **String** | Build tag of the API server | [readonly]

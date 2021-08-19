@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
 **is_friend** | **bool** |  | 
 **location** | **String** |  | 
-**tags** | **Vec<String>** | Always empty | 
+**tags** | **Vec<String>** | <- Always empty. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

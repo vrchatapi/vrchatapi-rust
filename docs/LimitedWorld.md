@@ -13,11 +13,11 @@ Name | Type | Description | Notes
 **thumbnail_image_url** | **String** |  | 
 **release_status** | **String** |  | 
 **organization** | **String** |  | 
-**tags** | [**Vec<serde_json::Value>**](serde_json::Value.md) |  | 
+**tags** | **Vec<String>** |  | 
 **favorites** | **f32** |  | 
 **created_at** | **String** |  | 
 **updated_at** | **String** |  | 
-**publication_date** | **String** |  | 
+**publication_date** | **String** |  | [readonly]
 **labs_publication_date** | **String** |  | 
 **unity_packages** | [**Vec<crate::models::LimitedUnityPackage>**](LimitedUnityPackage.md) |  | 
 **popularity** | **f32** |  | 
