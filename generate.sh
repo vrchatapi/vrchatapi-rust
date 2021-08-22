@@ -5,7 +5,7 @@ rm src/apis src/models docs -rf
 
 openapi-generator-cli generate \
 -g rust \
---additional-properties=packageName=vrchatapi,supportAsync=false \
+--additional-properties=packageName=vrchatapi,packageVersion=1.0.4,supportAsync=false \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
