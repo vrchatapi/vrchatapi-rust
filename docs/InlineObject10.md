@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asset_url** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
-**name** | Option<**String**> |  | [optional]
+**name** | **String** |  | 
 **description** | Option<**String**> |  | [optional]
 **tags** | Option<**Vec<String>**> |  | [optional]
-**image_url** | Option<**String**> |  | [optional]
+**image_url** | **String** |  | 
 **release_status** | Option<[**crate::models::ReleaseStatus**](ReleaseStatus.md)> |  | [optional]
 **version** | Option<**f32**> |  | [optional][default to 1]
 **unity_package_url** | Option<**String**> |  | [optional]

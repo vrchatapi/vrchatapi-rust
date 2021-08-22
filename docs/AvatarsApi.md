@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## create_avatar
 
-> crate::models::Avatar create_avatar(inline_object9)
+> crate::models::Avatar create_avatar(inline_object10)
 Create Avatar
 
 Create an avatar. It's possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
@@ -26,7 +26,7 @@ Create an avatar. It's possible to optionally specify a ID if you want a custom 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inline_object9** | Option<[**InlineObject9**](InlineObject9.md)> |  |  |
+**inline_object10** | Option<[**InlineObject10**](InlineObject10.md)> |  |  |
 
 ### Return type
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_avatar
 
-> crate::models::Avatar update_avatar(avatar_id, inline_object10)
+> crate::models::Avatar update_avatar(avatar_id, inline_object11)
 Update Avatar
 
 Update information about a specific avatar.
@@ -231,7 +231,7 @@ Update information about a specific avatar.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **avatar_id** | **String** |  | [required] |
-**inline_object10** | Option<[**InlineObject10**](InlineObject10.md)> |  |  |
+**inline_object11** | Option<[**InlineObject11**](InlineObject11.md)> |  |  |
 
 ### Return type
 

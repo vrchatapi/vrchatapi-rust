@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## add_favorite
 
-> crate::models::Favorite add_favorite(inline_object7)
+> crate::models::Favorite add_favorite(inline_object8)
 Add Favorite
 
 Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar and World groups are named `avatars1` to `avatar4` and `worlds1` to `worlds4`.  You cannot add people whom you are not friends with to your friends list. Destroying a friendship removes the person as favorite on both sides.
@@ -27,7 +27,7 @@ Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inline_object7** | Option<[**InlineObject7**](InlineObject7.md)> |  |  |
+**inline_object8** | Option<[**InlineObject8**](InlineObject8.md)> |  |  |
 
 ### Return type
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_favorite_group
 
-> update_favorite_group(favorite_group_type, favorite_group_name, user_id, inline_object8)
+> update_favorite_group(favorite_group_type, favorite_group_name, user_id, inline_object9)
 Update Favorite Group
 
 Update information about a specific favorite group.
@@ -249,7 +249,7 @@ Name | Type | Description  | Required | Notes
 **favorite_group_type** | **String** | The type of group to fetch, must be a valid FavoriteType. | [required] |
 **favorite_group_name** | **String** |  | [required] |
 **user_id** | **String** |  | [required] |
-**inline_object8** | Option<[**InlineObject8**](InlineObject8.md)> |  |  |
+**inline_object9** | Option<[**InlineObject9**](InlineObject9.md)> |  |  |
 
 ### Return type
 

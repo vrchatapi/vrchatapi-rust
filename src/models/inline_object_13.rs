@@ -12,42 +12,18 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct UnityPackage {
-    #[serde(rename = "id")]
-    pub id: String,
-    #[serde(rename = "assetUrl", skip_serializing_if = "Option::is_none")]
-    pub asset_url: Option<String>,
-    #[serde(rename = "assetUrlObject", skip_serializing_if = "Option::is_none")]
-    pub asset_url_object: Option<serde_json::Value>,
-    #[serde(rename = "pluginUrl", skip_serializing_if = "Option::is_none")]
-    pub plugin_url: Option<String>,
-    #[serde(rename = "pluginUrlObject", skip_serializing_if = "Option::is_none")]
-    pub plugin_url_object: Option<serde_json::Value>,
-    #[serde(rename = "unityVersion")]
-    pub unity_version: String,
-    #[serde(rename = "unitySortNumber", skip_serializing_if = "Option::is_none")]
-    pub unity_sort_number: Option<f32>,
-    #[serde(rename = "assetVersion")]
-    pub asset_version: f32,
-    #[serde(rename = "platform")]
-    pub platform: crate::models::Platform,
-    #[serde(rename = "created_at")]
-    pub created_at: String,
+pub struct InlineObject13 {
+    #[serde(rename = "moderated", skip_serializing_if = "Option::is_none")]
+    pub moderated: Option<String>,
+    #[serde(rename = "type")]
+    pub _type: crate::models::PlayerModerationType,
 }
 
-impl UnityPackage {
-    pub fn new(id: String, unity_version: String, asset_version: f32, platform: crate::models::Platform, created_at: String) -> UnityPackage {
-        UnityPackage {
-            id,
-            asset_url: None,
-            asset_url_object: None,
-            plugin_url: None,
-            plugin_url_object: None,
-            unity_version,
-            unity_sort_number: None,
-            asset_version,
-            platform,
-            created_at,
+impl InlineObject13 {
+    pub fn new(_type: crate::models::PlayerModerationType) -> InlineObject13 {
+        InlineObject13 {
+            moderated: None,
+            _type,
         }
     }
 }

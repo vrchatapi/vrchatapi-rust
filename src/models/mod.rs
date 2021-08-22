@@ -46,6 +46,8 @@ pub mod inline_object_11;
 pub use self::inline_object_11::InlineObject11;
 pub mod inline_object_12;
 pub use self::inline_object_12::InlineObject12;
+pub mod inline_object_13;
+pub use self::inline_object_13::InlineObject13;
 pub mod inline_object_2;
 pub use self::inline_object_2::InlineObject2;
 pub mod inline_object_3;

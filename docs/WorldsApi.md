@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## create_world
 
-> crate::models::World create_world(inline_object5)
+> crate::models::World create_world(inline_object6)
 Create World
 
 Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
@@ -32,7 +32,7 @@ Create a new world. This endpoint requires `assetUrl` to be a valid File object 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inline_object5** | Option<[**InlineObject5**](InlineObject5.md)> |  |  |
+**inline_object6** | Option<[**InlineObject6**](InlineObject6.md)> |  |  |
 
 ### Return type
 
@@ -431,7 +431,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_world
 
-> crate::models::World update_world(world_id, inline_object6)
+> crate::models::World update_world(world_id, inline_object7)
 Update World
 
 Update information about a specific World.
@@ -442,7 +442,7 @@ Update information about a specific World.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **world_id** | **String** |  | [required] |
-**inline_object6** | Option<[**InlineObject6**](InlineObject6.md)> |  |  |
+**inline_object7** | Option<[**InlineObject7**](InlineObject7.md)> |  |  |
 
 ### Return type
 

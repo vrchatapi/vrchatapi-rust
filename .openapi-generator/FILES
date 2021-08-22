@@ -30,6 +30,7 @@ docs/InlineObject1.md
 docs/InlineObject10.md
 docs/InlineObject11.md
 docs/InlineObject12.md
+docs/InlineObject13.md
 docs/InlineObject2.md
 docs/InlineObject3.md
 docs/InlineObject4.md
@@ -109,6 +110,7 @@ src/models/inline_object_1.rs
 src/models/inline_object_10.rs
 src/models/inline_object_11.rs
 src/models/inline_object_12.rs
+src/models/inline_object_13.rs
 src/models/inline_object_2.rs
 src/models/inline_object_3.rs
 src/models/inline_object_4.rs

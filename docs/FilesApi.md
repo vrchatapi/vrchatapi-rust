@@ -49,7 +49,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_file_version
 
-> crate::models::File create_file_version(file_id)
+> crate::models::File create_file_version(file_id, inline_object4)
 Create File Version
 
 Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
@@ -60,6 +60,7 @@ Creates a new FileVersion. Once a Version has been created, proceed to the `/fil
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file_id** | **String** |  | [required] |
+**inline_object4** | Option<[**InlineObject4**](InlineObject4.md)> |  |  |
 
 ### Return type
 
@@ -71,7 +72,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -171,7 +172,7 @@ Name | Type | Description  | Required | Notes
 
 ## finish_file_data_upload
 
-> crate::models::File finish_file_data_upload(file_id, version_id, file_type, inline_object4)
+> crate::models::File finish_file_data_upload(file_id, version_id, file_type, inline_object5)
 Finish FileData Upload
 
 Finish an upload of a FileData. This will mark it as \"complete\". After uploading the `file` for Avatars and Worlds you then have to upload a `signature` file.
@@ -184,7 +185,7 @@ Name | Type | Description  | Required | Notes
 **file_id** | **String** |  | [required] |
 **version_id** | **i32** |  | [required] |
 **file_type** | **String** |  | [required] |
-**inline_object4** | Option<[**InlineObject4**](InlineObject4.md)> |  |  |
+**inline_object5** | Option<[**InlineObject5**](InlineObject5.md)> |  |  |
 
 ### Return type
 
