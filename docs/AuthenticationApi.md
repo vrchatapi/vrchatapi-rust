@@ -4,7 +4,7 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_user_by_id**](AuthenticationApi.md#delete_user_by_id) | **PUT** /user/{userId}/delete | Delete User
+[**delete_user**](AuthenticationApi.md#delete_user) | **PUT** /user/{userId}/delete | Delete User
 [**get_current_user**](AuthenticationApi.md#get_current_user) | **GET** /auth/user | Login and/or Get Current User Info
 [**logout**](AuthenticationApi.md#logout) | **PUT** /logout | Logout
 [**verify2_fa**](AuthenticationApi.md#verify2_fa) | **POST** /auth/twofactorauth/totp/verify | Verify 2FA code
@@ -13,9 +13,9 @@ Method | HTTP request | Description
 
 
 
-## delete_user_by_id
+## delete_user
 
-> crate::models::CurrentUser delete_user_by_id(user_id)
+> crate::models::CurrentUser delete_user(user_id)
 Delete User
 
 Deletes the account with given ID. Normal users only have permission to delete their own account. Account deletion is 14 days from this request, and will be cancelled if you do an authenticated request with the account afterwards.  **VRC+ NOTE:** Despite the 14-days cooldown, any VRC+ subscription will be cancelled **immediately**.  **METHOD NOTE:** Despite this being a Delete action, the method type required is PUT.
