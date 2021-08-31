@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **bio_links** | **Vec<String>** |  | 
 **profile_pic_override** | **String** |  | 
 **status_description** | **String** |  | 
-**past_display_names** | **Vec<String>** |  | 
+**past_display_names** | [**Vec<crate::models::PastDisplayName>**](PastDisplayName.md) |  | 
 **has_email** | **bool** |  | 
 **has_pending_email** | **bool** |  | 
 **obfuscated_email** | **String** |  | 

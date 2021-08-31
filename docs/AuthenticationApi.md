@@ -75,7 +75,7 @@ This endpoint does not need any parameter.
 > crate::models::Success logout()
 Logout
 
-Invalidates the auth cookie.
+Invalidates the login session.
 
 ### Parameters
 
@@ -87,7 +87,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+[authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
@@ -144,7 +144,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+[authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
