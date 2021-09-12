@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
 **_type** | [**crate::models::PlayerModerationType**](PlayerModerationType.md) |  | 
-**source_user_id** | **String** |  | [readonly]
+**source_user_id** | **String** |  | 
 **source_display_name** | **String** |  | 
-**target_user_id** | **String** |  | [readonly]
+**target_user_id** | **String** |  | 
 **target_display_name** | **String** |  | 
 **created** | **String** |  | 
 

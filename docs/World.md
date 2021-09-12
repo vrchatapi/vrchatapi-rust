@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asset_url** | **String** |  | 
 **asset_url_object** | [**serde_json::Value**](.md) |  | 
-**author_id** | **String** |  | [readonly]
+**author_id** | **String** |  | 
 **author_name** | **String** |  | [readonly]
 **capacity** | **f32** |  | [readonly]
 **created_at** | **String** |  | [readonly]

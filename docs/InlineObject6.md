@@ -6,14 +6,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asset_url** | **String** |  | 
 **asset_version** | Option<**String**> |  | [optional]
-**author_id** | Option<**String**> |  | [optional][readonly]
+**author_id** | Option<**String**> |  | [optional]
 **author_name** | Option<**String**> |  | [optional]
 **capacity** | Option<**i32**> |  | [optional][default to 16]
 **description** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
 **image_url** | **String** |  | 
 **name** | **String** |  | 
-**platform** | Option<[**crate::models::Platform**](Platform.md)> |  | [optional]
+**platform** | Option<**String**> | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | [optional]
 **release_status** | Option<[**crate::models::ReleaseStatus**](ReleaseStatus.md)> |  | [optional]
 **tags** | Option<**Vec<String>**> |  | [optional]
 **unity_package_url** | Option<**String**> |  | [optional]

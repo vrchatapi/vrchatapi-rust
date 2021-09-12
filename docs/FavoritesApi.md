@@ -47,7 +47,7 @@ Name | Type | Description  | Required | Notes
 
 ## clear_favorite_group
 
-> crate::models::Error clear_favorite_group(favorite_group_type, favorite_group_name, user_id)
+> crate::models::Success clear_favorite_group(favorite_group_type, favorite_group_name, user_id)
 Clear Favorite Group
 
 Clear ALL contents of a specific favorite group.
@@ -63,7 +63,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Error**](Error.md)
+[**crate::models::Success**](Success.md)
 
 ### Authorization
 
@@ -206,7 +206,7 @@ Name | Type | Description  | Required | Notes
 
 ## remove_favorite
 
-> crate::models::Error remove_favorite(favorite_id)
+> crate::models::Success remove_favorite(favorite_id)
 Remove Favorite
 
 Remove a favorite from your favorites list.
@@ -220,7 +220,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Error**](Error.md)
+[**crate::models::Success**](Success.md)
 
 ### Authorization
 

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [readonly]
-**owner_id** | **String** |  | [readonly]
+**id** | **String** |  | 
+**owner_id** | **String** |  | 
 **owner_display_name** | **String** |  | 
 **name** | **String** |  | 
 **display_name** | **String** |  | 

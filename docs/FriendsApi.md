@@ -74,7 +74,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_friend_status
 
-> crate::models::InlineResponse2003 get_friend_status(user_id)
+> crate::models::FriendStatus get_friend_status(user_id)
 Check Friend Status
 
 Retrieve if the user is currently a friend with a given user, if they have an outgoing friend request, and if they have an incoming friend request. The proper way to receive and accept friend request is by checking if the user has an incoming `Notification` of type `friendRequest`, and then accepting that notification.
@@ -88,7 +88,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2003**](inline_response_200_3.md)
+[**crate::models::FriendStatus**](FriendStatus.md)
 
 ### Authorization
 

@@ -24,6 +24,7 @@ docs/FileData.md
 docs/FileStatus.md
 docs/FileVersion.md
 docs/FilesApi.md
+docs/FriendStatus.md
 docs/FriendsApi.md
 docs/InlineObject.md
 docs/InlineObject1.md
@@ -46,10 +47,12 @@ docs/InlineResponse2003.md
 docs/InlineResponse2004.md
 docs/InlineResponse2005.md
 docs/InlineResponse2006.md
-docs/InlineResponse2007.md
-docs/InlineResponse403.md
+docs/InlineResponse400.md
 docs/Instance.md
 docs/InstancePlatforms.md
+docs/InviteApi.md
+docs/InviteMessage.md
+docs/InviteMessageType.md
 docs/LimitedUnityPackage.md
 docs/LimitedUser.md
 docs/LimitedWorld.md
@@ -60,7 +63,6 @@ docs/NotificationsApi.md
 docs/PastDisplayName.md
 docs/Permission.md
 docs/PermissionsApi.md
-docs/Platform.md
 docs/PlayerModeration.md
 docs/PlayerModerationType.md
 docs/PlayermoderationApi.md
@@ -82,6 +84,7 @@ src/apis/configuration.rs
 src/apis/favorites_api.rs
 src/apis/files_api.rs
 src/apis/friends_api.rs
+src/apis/invite_api.rs
 src/apis/mod.rs
 src/apis/notifications_api.rs
 src/apis/permissions_api.rs
@@ -109,6 +112,7 @@ src/models/file.rs
 src/models/file_data.rs
 src/models/file_status.rs
 src/models/file_version.rs
+src/models/friend_status.rs
 src/models/inline_object.rs
 src/models/inline_object_1.rs
 src/models/inline_object_10.rs
@@ -130,10 +134,11 @@ src/models/inline_response_200_3.rs
 src/models/inline_response_200_4.rs
 src/models/inline_response_200_5.rs
 src/models/inline_response_200_6.rs
-src/models/inline_response_200_7.rs
-src/models/inline_response_403.rs
+src/models/inline_response_400.rs
 src/models/instance.rs
 src/models/instance_platforms.rs
+src/models/invite_message.rs
+src/models/invite_message_type.rs
 src/models/limited_unity_package.rs
 src/models/limited_user.rs
 src/models/limited_world.rs
@@ -143,7 +148,6 @@ src/models/notification.rs
 src/models/notification_type.rs
 src/models/past_display_name.rs
 src/models/permission.rs
-src/models/platform.rs
 src/models/player_moderation.rs
 src/models/player_moderation_type.rs
 src/models/release_status.rs

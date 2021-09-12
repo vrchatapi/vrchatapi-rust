@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **unity_version** | **String** |  | [default to 5.3.4p1]
 **unity_sort_number** | Option<**f32**> |  | [optional]
 **asset_version** | **f32** |  | 
-**platform** | [**crate::models::Platform**](Platform.md) |  | 
+**platform** | **String** | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **created_at** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

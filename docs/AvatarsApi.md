@@ -106,7 +106,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_favorited_avatars
 
-> get_favorited_avatars(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, user_id)
+> Vec<crate::models::Avatar> get_favorited_avatars(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, user_id)
 List Favorited Avatars
 
 Search and list favorited avatars by query filters.
@@ -132,7 +132,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**Vec<crate::models::Avatar>**](Avatar.md)
 
 ### Authorization
 

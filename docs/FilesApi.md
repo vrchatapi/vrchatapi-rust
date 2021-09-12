@@ -235,7 +235,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_file_data_upload_status
 
-> crate::models::InlineResponse2004 get_file_data_upload_status(file_id, version_id, file_type)
+> crate::models::InlineResponse2003 get_file_data_upload_status(file_id, version_id, file_type)
 Check FileData Upload Status
 
 Retrieves the upload status for file upload. Can currently only be accessed when `status` is `waiting`. Trying to access it on a file version already uploaded currently times out.
@@ -251,7 +251,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2004**](inline_response_200_4.md)
+[**crate::models::InlineResponse2003**](inline_response_200_3.md)
 
 ### Authorization
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Required | Notes
 
 ## start_file_data_upload
 
-> crate::models::InlineResponse2005 start_file_data_upload(file_id, version_id, file_type, part_number)
+> crate::models::InlineResponse2004 start_file_data_upload(file_id, version_id, file_type, part_number)
 Start FileData Upload
 
 Starts an upload of a specific FilePart. This endpoint will return an AWS URL which you can PUT data to. You need to call this and receive a new AWS API URL for each `partNumber`. Please see AWS's REST documentation on \"PUT Object to S3\" on how to upload. Once all parts has been uploaded, proceed to `/finish` endpoint.  **Note:** `nextPartNumber` seems like it is always ignored. Despite it returning 0, first partNumber is always 1.
@@ -317,7 +317,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2005**](inline_response_200_5.md)
+[**crate::models::InlineResponse2004**](inline_response_200_4.md)
 
 ### Authorization
 

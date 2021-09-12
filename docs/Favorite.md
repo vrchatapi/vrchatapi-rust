@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [readonly]
+**id** | **String** |  | 
 **_type** | [**crate::models::FavoriteType**](FavoriteType.md) |  | 
 **favorite_id** | **String** | MUST be either AvatarID, UserID or WorldID. | 
 **tags** | **Vec<String>** |  | 

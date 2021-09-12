@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_user**](UsersApi.md#get_user) | **GET** /users/{userId} | Get User by ID
 [**get_user_by_name**](UsersApi.md#get_user_by_name) | **GET** /users/{username}/name | Get User by Username
-[**search_active_users**](UsersApi.md#search_active_users) | **GET** /users/active | Search Active Users
 [**search_users**](UsersApi.md#search_users) | **GET** /users | Search All Users
 [**update_user**](UsersApi.md#update_user) | **PUT** /users/{userId} | Update User Info
 
@@ -59,39 +58,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::User**](User.md)
-
-### Authorization
-
-[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## search_active_users
-
-> Vec<crate::models::LimitedUser> search_active_users(search, developer_type, offset, n)
-Search Active Users
-
-Search and list any Active users by text query.  **Has been locked down and now always respond with \"Invalid Admin Credentials\".**
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**search** | **String** | Username to search for | [required] |
-**developer_type** | Option<**String**> | Active user by developer type, none for normal users and internal for moderators |  |
-**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
-**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
-
-### Return type
-
-[**Vec<crate::models::LimitedUser>**](LimitedUser.md)
 
 ### Authorization
 

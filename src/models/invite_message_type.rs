@@ -10,22 +10,16 @@
 
 /// 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum FavoriteType {
-    #[serde(rename = "world")]
-    World,
-    #[serde(rename = "friend")]
-    Friend,
-    #[serde(rename = "avatar")]
-    Avatar,
+pub enum InviteMessageType {
+    #[serde(rename = "message")]
+    Message,
 
 }
 
-impl ToString for FavoriteType {
+impl ToString for InviteMessageType {
     fn to_string(&self) -> String {
         match self {
-            Self::World => String::from("world"),
-            Self::Friend => String::from("friend"),
-            Self::Avatar => String::from("avatar"),
+            Self::Message => String::from("message"),
         }
     }
 }

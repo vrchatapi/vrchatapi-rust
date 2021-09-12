@@ -42,7 +42,7 @@ This endpoint does not need any parameter.
 
 ## delete_player_moderation
 
-> crate::models::Error delete_player_moderation(player_moderation_id)
+> crate::models::Success delete_player_moderation(player_moderation_id)
 Delete Player Moderation
 
 Deletes a specific player moderation based on it's `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
@@ -56,7 +56,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Error**](Error.md)
+[**crate::models::Success**](Success.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Required | Notes
 
 ## unmoderate_user
 
-> crate::models::Error unmoderate_user(inline_object13)
+> crate::models::Success unmoderate_user(inline_object13)
 Unmoderate User
 
 Removes a player moderation previously added through `moderateUser`. E.g if you previuosly have shown their avatar, but now want to reset it to default.
@@ -177,7 +177,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Error**](Error.md)
+[**crate::models::Success**](Success.md)
 
 ### Authorization
 

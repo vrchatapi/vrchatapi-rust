@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [readonly]
+**id** | **String** |  | 
 **name** | **String** |  | 
-**owner_id** | **String** |  | [readonly]
+**owner_id** | **String** |  | 
 **mime_type** | [**crate::models::MimeType**](MIMEType.md) |  | 
 **extension** | **String** |  | 
 **tags** | **Vec<String>** |  | 

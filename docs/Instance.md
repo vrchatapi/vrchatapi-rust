@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **n_users** | **f32** |  | 
 **name** | **String** |  | 
 **nonce** | Option<**String**> |  | [optional]
-**owner_id** | **String** |  | [readonly]
+**owner_id** | **String** |  | 
 **permanent** | **bool** |  | [default to false]
 **photon_region** | **String** |  | 
 **platforms** | [**crate::models::InstancePlatforms**](Instance_platforms.md) |  | 

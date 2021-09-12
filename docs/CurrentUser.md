@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | [readonly]
+**id** | **String** |  | 
 **username** | **String** |  | 
 **display_name** | **String** |  | 
 **user_icon** | **String** |  | 
@@ -41,7 +41,7 @@ Name | Type | Description | Notes
 **tags** | **Vec<String>** |  | 
 **developer_type** | [**crate::models::DeveloperType**](DeveloperType.md) |  | 
 **last_login** | **String** |  | 
-**last_platform** | [**crate::models::Platform**](Platform.md) |  | 
+**last_platform** | **String** | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **allow_avatar_copying** | **bool** |  | 
 **status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
 **date_joined** | [**String**](string.md) |  | [readonly]

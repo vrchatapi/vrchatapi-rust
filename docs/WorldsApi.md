@@ -268,7 +268,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_world_metadata
 
-> crate::models::InlineResponse2006 get_world_metadata(world_id)
+> crate::models::InlineResponse2005 get_world_metadata(world_id)
 Get World Metadata
 
 Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
@@ -282,7 +282,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2006**](inline_response_200_6.md)
+[**crate::models::InlineResponse2005**](inline_response_200_5.md)
 
 ### Authorization
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_world_publish_status
 
-> crate::models::InlineResponse2007 get_world_publish_status(world_id)
+> crate::models::InlineResponse2006 get_world_publish_status(world_id)
 Get World Publish Status
 
 Returns a worlds publish status.
@@ -312,7 +312,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2007**](inline_response_200_7.md)
+[**crate::models::InlineResponse2006**](inline_response_200_6.md)
 
 ### Authorization
 

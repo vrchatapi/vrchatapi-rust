@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asset_url** | Option<**String**> | Not present from general serach `/avatars`, only on specific requests `/avatars/{avatarId}`. | [optional]
 **asset_url_object** | Option<[**serde_json::Value**](.md)> | Not present from general serach `/avatars`, only on specific requests `/avatars/{avatarId}`. **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead. | [optional]
-**author_id** | **String** |  | [readonly]
+**author_id** | **String** |  | 
 **author_name** | **String** |  | [readonly]
 **created_at** | **String** |  | [readonly]
 **description** | **String** |  | 

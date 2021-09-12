@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
-**owner_id** | **String** |  | [readonly]
+**owner_id** | **String** |  | 
 **name** | **String** |  | 
 **data** | Option<[**serde_json::Value**](.md)> |  | [optional]
 
