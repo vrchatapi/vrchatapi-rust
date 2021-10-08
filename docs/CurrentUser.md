@@ -4,52 +4,52 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | 
-**username** | **String** |  | 
-**display_name** | **String** |  | 
-**user_icon** | **String** |  | 
+**accepted_tos_version** | **i32** |  | 
+**account_deletion_date** | Option<[**String**](string.md)> |  | [optional]
+**active_friends** | Option<**Vec<String>**> |  | [optional]
+**allow_avatar_copying** | **bool** |  | 
 **bio** | **String** |  | 
 **bio_links** | **Vec<String>** |  | 
-**profile_pic_override** | **String** |  | 
-**status_description** | **String** |  | 
-**past_display_names** | [**Vec<crate::models::PastDisplayName>**](PastDisplayName.md) |  | 
-**has_email** | **bool** |  | 
-**has_pending_email** | **bool** |  | 
-**obfuscated_email** | **String** |  | 
-**obfuscated_pending_email** | **String** |  | 
-**email_verified** | **bool** |  | 
-**has_birthday** | **bool** |  | 
-**unsubscribe** | **bool** |  | 
-**status_history** | **Vec<String>** |  | 
-**status_first_time** | **bool** |  | 
-**friends** | **Vec<String>** |  | 
-**friend_group_names** | **Vec<String>** | Always empty array. | 
-**current_avatar_image_url** | **String** |  | 
-**current_avatar_thumbnail_image_url** | **String** |  | 
-**fallback_avatar** | **String** |  | 
 **current_avatar** | **String** |  | 
 **current_avatar_asset_url** | **String** |  | 
-**account_deletion_date** | Option<[**String**](string.md)> |  | [optional]
-**accepted_tos_version** | **f32** |  | 
-**steam_id** | **String** |  | 
-**steam_details** | [**serde_json::Value**](.md) |  | 
-**oculus_id** | **String** |  | 
-**has_logged_in_from_client** | **bool** |  | 
-**home_location** | **String** |  | 
-**two_factor_auth_enabled** | **bool** |  | 
-**state** | [**crate::models::UserState**](UserState.md) |  | 
-**tags** | **Vec<String>** |  | 
+**current_avatar_image_url** | **String** |  | 
+**current_avatar_thumbnail_image_url** | **String** |  | 
+**date_joined** | [**String**](string.md) |  | 
 **developer_type** | [**crate::models::DeveloperType**](DeveloperType.md) |  | 
+**display_name** | **String** |  | 
+**email_verified** | **bool** |  | 
+**fallback_avatar** | Option<**String**> |  | [optional]
+**friend_group_names** | **Vec<String>** | Always empty array. | 
+**friend_key** | **String** |  | 
+**friends** | **Vec<String>** |  | 
+**has_birthday** | **bool** |  | 
+**has_email** | **bool** |  | 
+**has_logged_in_from_client** | **bool** |  | 
+**has_pending_email** | **bool** |  | 
+**home_location** | **String** |  | 
+**id** | **String** |  | 
+**is_friend** | **bool** |  | [default to false]
 **last_login** | **String** |  | 
 **last_platform** | **String** | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
-**allow_avatar_copying** | **bool** |  | 
-**status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
-**date_joined** | [**String**](string.md) |  | [readonly]
-**is_friend** | **bool** |  | [default to false]
-**friend_key** | **String** |  | 
-**online_friends** | Option<**Vec<String>**> |  | [optional]
-**active_friends** | Option<**Vec<String>**> |  | [optional]
+**obfuscated_email** | **String** |  | 
+**obfuscated_pending_email** | **String** |  | 
+**oculus_id** | **String** |  | 
 **offline_friends** | Option<**Vec<String>**> |  | [optional]
+**online_friends** | Option<**Vec<String>**> |  | [optional]
+**past_display_names** | [**Vec<crate::models::PastDisplayName>**](PastDisplayName.md) |  | 
+**profile_pic_override** | **String** |  | 
+**state** | [**crate::models::UserState**](UserState.md) |  | 
+**status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
+**status_description** | **String** |  | 
+**status_first_time** | **bool** |  | 
+**status_history** | **Vec<String>** |  | 
+**steam_details** | [**serde_json::Value**](.md) |  | 
+**steam_id** | **String** |  | 
+**tags** | **Vec<String>** |  | 
+**two_factor_auth_enabled** | **bool** |  | 
+**unsubscribe** | **bool** |  | 
+**user_icon** | **String** |  | 
+**username** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

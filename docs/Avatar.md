@@ -17,11 +17,11 @@ Name | Type | Description | Notes
 **release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **tags** | **Vec<String>** |  | 
 **thumbnail_image_url** | **String** |  | 
-**unity_packages** | [**Vec<crate::models::UnityPackage>**](UnityPackage.md) |  | 
 **unity_package_url** | **String** |  | 
 **unity_package_url_object** | [**crate::models::AvatarUnityPackageUrlObject**](Avatar_unityPackageUrlObject.md) |  | 
+**unity_packages** | [**Vec<crate::models::UnityPackage>**](UnityPackage.md) |  | 
 **updated_at** | **String** |  | 
-**version** | **f32** |  | [readonly][default to 0]
+**version** | **i32** |  | [readonly][default to 0]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

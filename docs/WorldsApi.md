@@ -100,7 +100,7 @@ Name | Type | Description  | Required | Notes
 **search** | Option<**String**> | Filters by world name. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to hidden]
+**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
@@ -141,7 +141,7 @@ Name | Type | Description  | Required | Notes
 **search** | Option<**String**> | Filters by world name. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to hidden]
+**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
@@ -183,7 +183,7 @@ Name | Type | Description  | Required | Notes
 **search** | Option<**String**> | Filters by world name. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to hidden]
+**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
@@ -225,7 +225,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[apiKeyCookie](../README.md#apiKeyCookie)
 
 ### HTTP request headers
 
@@ -371,14 +371,14 @@ Name | Type | Description  | Required | Notes
 **featured** | Option<**String**> | Filters on featured results. |  |
 **sort** | Option<**String**> |  |  |[default to popularity]
 **user** | Option<**String**> | Set to `me` for searching own worlds. |  |
-**user_id** | Option<**String**> | Filter by author UserID |  |
+**user_id** | Option<**String**> | Filter by UserID. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **order** | Option<**String**> |  |  |[default to descending]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to hidden]
+**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |

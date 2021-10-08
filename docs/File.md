@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**extension** | **String** |  | 
 **id** | **String** |  | 
+**mime_type** | [**crate::models::MimeType**](MIMEType.md) |  | 
 **name** | **String** |  | 
 **owner_id** | **String** |  | 
-**mime_type** | [**crate::models::MimeType**](MIMEType.md) |  | 
-**extension** | **String** |  | 
 **tags** | **Vec<String>** |  | 
 **versions** | [**Vec<crate::models::FileVersion>**](FileVersion.md) |  | 
 

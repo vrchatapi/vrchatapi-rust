@@ -4,25 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** |  | 
-**name** | **String** |  | 
 **author_id** | **String** |  | 
 **author_name** | **String** |  | 
-**capacity** | **f32** |  | 
-**image_url** | **String** |  | 
-**thumbnail_image_url** | **String** |  | 
-**release_status** | **String** |  | 
-**organization** | **String** |  | 
-**tags** | **Vec<String>** |  | 
-**favorites** | **f32** |  | 
+**capacity** | **i32** |  | 
 **created_at** | **String** |  | 
-**updated_at** | **String** |  | 
-**publication_date** | **String** |  | [readonly]
+**favorites** | **i32** |  | [default to 0]
+**heat** | **i32** |  | [default to 0]
+**id** | **String** |  | 
+**image_url** | **String** |  | 
 **labs_publication_date** | **String** |  | 
+**name** | **String** |  | 
+**occupants** | **i32** |  | [default to 0]
+**organization** | **String** |  | [default to vrchat]
+**popularity** | **i32** |  | [default to 0]
+**publication_date** | **String** |  | 
+**release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
+**tags** | **Vec<String>** |  | 
+**thumbnail_image_url** | **String** |  | 
 **unity_packages** | [**Vec<crate::models::LimitedUnityPackage>**](LimitedUnityPackage.md) |  | 
-**popularity** | **f32** |  | 
-**heat** | **f32** |  | 
-**occupants** | **f32** |  | 
+**updated_at** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

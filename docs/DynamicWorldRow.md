@@ -1,13 +1,16 @@
-# Permission
+# DynamicWorldRow
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | Option<[**serde_json::Value**](.md)> |  | [optional]
-**id** | **String** |  | 
+**index** | **i32** |  | 
 **name** | **String** |  | 
-**owner_id** | **String** |  | 
+**platform** | **String** |  | 
+**sort_heading** | **String** |  | 
+**sort_order** | **String** |  | 
+**sort_ownership** | **String** |  | 
+**tag** | Option<**String**> | Tag to filter worlds for this row. Not always present. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

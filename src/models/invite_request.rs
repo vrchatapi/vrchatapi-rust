@@ -11,15 +11,15 @@
 
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
-pub struct Error {
-    #[serde(rename = "error", skip_serializing_if = "Option::is_none")]
-    pub error: Option<Box<crate::models::Response>>,
+pub struct InviteRequest {
+    #[serde(rename = "instanceId")]
+    pub instance_id: String,
 }
 
-impl Error {
-    pub fn new() -> Error {
-        Error {
-            error: None,
+impl InviteRequest {
+    pub fn new(instance_id: String) -> InviteRequest {
+        InviteRequest {
+            instance_id,
         }
     }
 }

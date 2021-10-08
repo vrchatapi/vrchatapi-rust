@@ -6,13 +6,13 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** |  | [default to true]
 **can_request_invite** | **bool** |  | [default to true]
-**capacity** | **f32** |  | 
-**client_number** | **String** |  | 
+**capacity** | **i32** |  | 
+**client_number** | **i32** |  | 
 **full** | **bool** |  | [default to false]
 **id** | **String** |  | 
 **instance_id** | **String** |  | 
 **location** | **String** |  | 
-**n_users** | **f32** |  | 
+**n_users** | **i32** |  | 
 **name** | **String** |  | 
 **nonce** | Option<**String**> |  | [optional]
 **owner_id** | **String** |  | 

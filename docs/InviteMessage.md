@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**can_be_updated** | **bool** |  | [default to true]
 **id** | **String** |  | 
-**slot** | **i32** |  | 
 **message** | **String** |  | 
 **message_type** | [**crate::models::InviteMessageType**](InviteMessageType.md) |  | 
-**updated_at** | **String** |  | 
 **remaining_cooldown_minutes** | **i32** | Changes to 60 when updated, although probably server-side configurable. | [default to 0]
-**can_be_updated** | **bool** |  | [default to true]
+**slot** | **i32** |  | 
+**updated_at** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
