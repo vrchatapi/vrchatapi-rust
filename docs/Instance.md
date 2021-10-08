@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **active** | **bool** |  | [default to true]
 **can_request_invite** | **bool** |  | [default to true]
 **capacity** | **i32** |  | 
-**client_number** | **i32** |  | 
+**client_number** | **String** |  | 
 **full** | **bool** |  | [default to false]
 **id** | **String** |  | 
 **instance_id** | **String** |  | 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **n_users** | **i32** |  | 
 **name** | **String** |  | 
 **nonce** | Option<**String**> |  | [optional]
-**owner_id** | **String** |  | 
+**owner_id** | Option<**String**> |  | [optional]
 **permanent** | **bool** |  | [default to false]
 **photon_region** | **String** |  | 
 **platforms** | [**crate::models::InstancePlatforms**](Instance_platforms.md) |  | 
