@@ -19,4 +19,7 @@ sed -i '/^edition = "2018"/a description="VRChat API Library for Rust"' Cargo.to
 # Remove messily pasted markdown at top of every file
 find src -type f -exec sed -i '/VRChat API Banner/d' {} \;
 
+# Cookie storage
+sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
+
 cargo build
