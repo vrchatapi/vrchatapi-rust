@@ -3,7 +3,7 @@
 # Generate Client
 rm src/apis src/models docs -rf
 
-java -jar ../foo-openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar generate \
+./node_modules/\@openapitools/openapi-generator-cli/main.js generate \
 -g rust \
 --additional-properties=packageName=vrchatapi,supportAsync=false \
 --git-user-id=vrchatapi \
