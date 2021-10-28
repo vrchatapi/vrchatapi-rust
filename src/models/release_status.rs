@@ -29,6 +29,12 @@ impl ToString for ReleaseStatus {
     }
 }
 
+impl Default for ReleaseStatus {
+    fn default() -> ReleaseStatus {
+        Self::Public
+    }
+}
+
 
 
 

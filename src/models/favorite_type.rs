@@ -29,6 +29,12 @@ impl ToString for FavoriteType {
     }
 }
 
+impl Default for FavoriteType {
+    fn default() -> FavoriteType {
+        Self::World
+    }
+}
+
 
 
 

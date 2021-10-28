@@ -62,6 +62,12 @@ impl ToString for MimeType {
     }
 }
 
+impl Default for MimeType {
+    fn default() -> MimeType {
+        Self::ImageJpeg
+    }
+}
+
 
 
 

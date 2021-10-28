@@ -30,6 +30,12 @@ impl ToString for UserState {
     }
 }
 
+impl Default for UserState {
+    fn default() -> UserState {
+        Self::Offline
+    }
+}
+
 
 
 

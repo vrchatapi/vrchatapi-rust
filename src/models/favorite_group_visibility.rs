@@ -29,6 +29,12 @@ impl ToString for FavoriteGroupVisibility {
     }
 }
 
+impl Default for FavoriteGroupVisibility {
+    fn default() -> FavoriteGroupVisibility {
+        Self::Private
+    }
+}
+
 
 
 

@@ -38,6 +38,12 @@ impl ToString for PlayerModerationType {
     }
 }
 
+impl Default for PlayerModerationType {
+    fn default() -> PlayerModerationType {
+        Self::Mute
+    }
+}
+
 
 
 

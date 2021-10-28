@@ -38,6 +38,12 @@ impl ToString for NotificationType {
     }
 }
 
+impl Default for NotificationType {
+    fn default() -> NotificationType {
+        Self::FriendRequest
+    }
+}
+
 
 
 

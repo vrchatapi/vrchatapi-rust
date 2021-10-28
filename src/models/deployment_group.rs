@@ -33,6 +33,12 @@ impl ToString for DeploymentGroup {
     }
 }
 
+impl Default for DeploymentGroup {
+    fn default() -> DeploymentGroup {
+        Self::Blue
+    }
+}
+
 
 
 

@@ -36,6 +36,12 @@ impl ToString for UserStatus {
     }
 }
 
+impl Default for UserStatus {
+    fn default() -> UserStatus {
+        Self::Active
+    }
+}
+
 
 
 

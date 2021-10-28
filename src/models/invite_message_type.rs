@@ -23,6 +23,12 @@ impl ToString for InviteMessageType {
     }
 }
 
+impl Default for InviteMessageType {
+    fn default() -> InviteMessageType {
+        Self::Message
+    }
+}
+
 
 
 

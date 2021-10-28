@@ -1,4 +1,3 @@
-.gitignore
 .travis.yml
 Cargo.toml
 docs/ApiConfig.md

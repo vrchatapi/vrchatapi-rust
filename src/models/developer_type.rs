@@ -33,6 +33,12 @@ impl ToString for DeveloperType {
     }
 }
 
+impl Default for DeveloperType {
+    fn default() -> DeveloperType {
+        Self::None
+    }
+}
+
 
 
 

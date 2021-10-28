@@ -29,6 +29,12 @@ impl ToString for FileStatus {
     }
 }
 
+impl Default for FileStatus {
+    fn default() -> FileStatus {
+        Self::Waiting
+    }
+}
+
 
 
 
