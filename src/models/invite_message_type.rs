@@ -12,6 +12,12 @@
 pub enum InviteMessageType {
     #[serde(rename = "message")]
     Message,
+    #[serde(rename = "response")]
+    Response,
+    #[serde(rename = "request")]
+    Request,
+    #[serde(rename = "requestResponse")]
+    RequestResponse,
 
 }
 
@@ -19,6 +25,9 @@ impl ToString for InviteMessageType {
     fn to_string(&self) -> String {
         match self {
             Self::Message => String::from("message"),
+            Self::Response => String::from("response"),
+            Self::Request => String::from("request"),
+            Self::RequestResponse => String::from("requestResponse"),
         }
     }
 }

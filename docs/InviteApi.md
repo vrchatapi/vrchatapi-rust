@@ -90,7 +90,7 @@ Sends an invite to a user. Returns the Notification of type `invite` that was se
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** |  | [required] |
-**invite_request** | Option<[**InviteRequest**](InviteRequest.md)> | Instance ID when inviting a user. |  |
+**invite_request** | Option<[**InviteRequest**](InviteRequest.md)> | Slot number of the Invite Message to use when inviting a user. |  |
 
 ### Return type
 
@@ -175,7 +175,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::Notification respond_invite(notification_id, invite_response)
 Respond Invite
 
-Sends a world invite to a user.
+Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
 
 ### Parameters
 

@@ -11,23 +11,23 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Permission {
-    #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
-    pub data: Option<serde_json::Value>,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "ownerId")]
     pub owner_id: String,
+    #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
+    pub data: Option<serde_json::Value>,
 }
 
 impl Permission {
     pub fn new(id: String, name: String, owner_id: String) -> Permission {
         Permission {
-            data: None,
             id,
             name,
             owner_id,
+            data: None,
         }
     }
 }

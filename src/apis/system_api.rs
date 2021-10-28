@@ -24,7 +24,7 @@ pub enum GetConfigError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCssError {
-    Status400(crate::models::InlineResponse400),
+    Status400(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -46,7 +46,7 @@ pub enum GetHealthError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetJavaScriptError {
-    Status400(crate::models::InlineResponse400),
+    Status400(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -149,7 +149,7 @@ pub fn get_current_online_users(configuration: &configuration::Configuration, ) 
 }
 
 /// ~~Gets the overall health status, the server name, and the current build version tag of the API.~~  **DEPRECATED:** VRChat has suddenly restricted this endpoint for unknown reasons, and now always return 401 Unauthorized.
-pub fn get_health(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse2002, Error<GetHealthError>> {
+pub fn get_health(configuration: &configuration::Configuration, ) -> Result<crate::models::ApiHealth, Error<GetHealthError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

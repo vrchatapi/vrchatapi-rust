@@ -4,7 +4,7 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_assigned_permissions**](PermissionsApi.md#get_assigned_permissions) | **GET** /auth/permissions | Get Assigned Permission
+[**get_assigned_permissions**](PermissionsApi.md#get_assigned_permissions) | **GET** /auth/permissions | Get Assigned Permissions
 [**get_permission**](PermissionsApi.md#get_permission) | **GET** /permissions/{permissionId} | Get Permission
 
 
@@ -12,7 +12,7 @@ Method | HTTP request | Description
 ## get_assigned_permissions
 
 > Vec<crate::models::Permission> get_assigned_permissions()
-Get Assigned Permission
+Get Assigned Permissions
 
 Returns a list of all permissions currently granted by the user. Permissions are assigned e.g. by subscribing to VRC+.
 

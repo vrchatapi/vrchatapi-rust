@@ -133,7 +133,7 @@ Name | Type | Description  | Required | Notes
 
 ## moderate_user
 
-> crate::models::PlayerModeration moderate_user(inline_object12)
+> crate::models::PlayerModeration moderate_user(moderate_user_request)
 Moderate User
 
 Moderate a user, e.g. unmute them or show their avatar.
@@ -143,7 +143,7 @@ Moderate a user, e.g. unmute them or show their avatar.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inline_object12** | Option<[**InlineObject12**](InlineObject12.md)> |  |  |
+**moderate_user_request** | Option<[**ModerateUserRequest**](ModerateUserRequest.md)> |  |  |
 
 ### Return type
 
@@ -163,17 +163,17 @@ Name | Type | Description  | Required | Notes
 
 ## unmoderate_user
 
-> crate::models::Success unmoderate_user(inline_object13)
+> crate::models::Success unmoderate_user(moderate_user_request)
 Unmoderate User
 
-Removes a player moderation previously added through `moderateUser`. E.g if you previuosly have shown their avatar, but now want to reset it to default.
+Removes a player moderation previously added through `moderateUser`. E.g if you previously have shown their avatar, but now want to reset it to default.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inline_object13** | Option<[**InlineObject13**](InlineObject13.md)> |  |  |
+**moderate_user_request** | Option<[**ModerateUserRequest**](ModerateUserRequest.md)> |  |  |
 
 ### Return type
 

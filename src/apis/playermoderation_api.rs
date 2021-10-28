@@ -183,7 +183,7 @@ pub fn get_player_moderations(configuration: &configuration::Configuration, _typ
 }
 
 /// Moderate a user, e.g. unmute them or show their avatar.
-pub fn moderate_user(configuration: &configuration::Configuration, inline_object12: Option<crate::models::InlineObject12>) -> Result<crate::models::PlayerModeration, Error<ModerateUserError>> {
+pub fn moderate_user(configuration: &configuration::Configuration, moderate_user_request: Option<crate::models::ModerateUserRequest>) -> Result<crate::models::PlayerModeration, Error<ModerateUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -194,7 +194,7 @@ pub fn moderate_user(configuration: &configuration::Configuration, inline_object
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object12);
+    local_var_req_builder = local_var_req_builder.json(&moderate_user_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;
@@ -211,8 +211,8 @@ pub fn moderate_user(configuration: &configuration::Configuration, inline_object
     }
 }
 
-/// Removes a player moderation previously added through `moderateUser`. E.g if you previuosly have shown their avatar, but now want to reset it to default.
-pub fn unmoderate_user(configuration: &configuration::Configuration, inline_object13: Option<crate::models::InlineObject13>) -> Result<crate::models::Success, Error<UnmoderateUserError>> {
+/// Removes a player moderation previously added through `moderateUser`. E.g if you previously have shown their avatar, but now want to reset it to default.
+pub fn unmoderate_user(configuration: &configuration::Configuration, moderate_user_request: Option<crate::models::ModerateUserRequest>) -> Result<crate::models::Success, Error<UnmoderateUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -223,7 +223,7 @@ pub fn unmoderate_user(configuration: &configuration::Configuration, inline_obje
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object13);
+    local_var_req_builder = local_var_req_builder.json(&moderate_user_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;

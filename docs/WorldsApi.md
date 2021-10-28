@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## create_world
 
-> crate::models::World create_world(inline_object6)
+> crate::models::World create_world(create_world_request)
 Create World
 
 Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
@@ -32,7 +32,7 @@ Create a new world. This endpoint requires `assetUrl` to be a valid File object 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inline_object6** | Option<[**InlineObject6**](InlineObject6.md)> |  |  |
+**create_world_request** | Option<[**CreateWorldRequest**](CreateWorldRequest.md)> |  |  |
 
 ### Return type
 
@@ -268,7 +268,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_world_metadata
 
-> crate::models::InlineResponse2005 get_world_metadata(world_id)
+> crate::models::WorldMetadata get_world_metadata(world_id)
 Get World Metadata
 
 Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
@@ -282,7 +282,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2005**](inline_response_200_5.md)
+[**crate::models::WorldMetadata**](WorldMetadata.md)
 
 ### Authorization
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_world_publish_status
 
-> crate::models::InlineResponse2006 get_world_publish_status(world_id)
+> crate::models::WorldPublishStatus get_world_publish_status(world_id)
 Get World Publish Status
 
 Returns a worlds publish status.
@@ -312,7 +312,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InlineResponse2006**](inline_response_200_6.md)
+[**crate::models::WorldPublishStatus**](WorldPublishStatus.md)
 
 ### Authorization
 
@@ -431,7 +431,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_world
 
-> crate::models::World update_world(world_id, inline_object7)
+> crate::models::World update_world(world_id, update_world_request)
 Update World
 
 Update information about a specific World.
@@ -442,7 +442,7 @@ Update information about a specific World.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **world_id** | **String** |  | [required] |
-**inline_object7** | Option<[**InlineObject7**](InlineObject7.md)> |  |  |
+**update_world_request** | Option<[**UpdateWorldRequest**](UpdateWorldRequest.md)> |  |  |
 
 ### Return type
 

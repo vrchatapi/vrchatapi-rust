@@ -78,8 +78,8 @@ pub enum UpdateFavoriteGroupError {
 }
 
 
-/// Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar and World groups are named `avatars1` to `avatar4` and `worlds1` to `worlds4`.  You cannot add people whom you are not friends with to your friends list. Destroying a friendship removes the person as favorite on both sides.
-pub fn add_favorite(configuration: &configuration::Configuration, inline_object8: Option<crate::models::InlineObject8>) -> Result<crate::models::Favorite, Error<AddFavoriteError>> {
+/// Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar and World groups are named `avatars1` to `avatars4` and `worlds1` to `worlds4`.  You cannot add people whom you are not friends with to your friends list. Destroying a friendship removes the person as favorite on both sides.
+pub fn add_favorite(configuration: &configuration::Configuration, add_favorite_request: Option<crate::models::AddFavoriteRequest>) -> Result<crate::models::Favorite, Error<AddFavoriteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -90,7 +90,7 @@ pub fn add_favorite(configuration: &configuration::Configuration, inline_object8
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object8);
+    local_var_req_builder = local_var_req_builder.json(&add_favorite_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;
@@ -297,7 +297,7 @@ pub fn remove_favorite(configuration: &configuration::Configuration, favorite_id
 }
 
 /// Update information about a specific favorite group.
-pub fn update_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str, inline_object9: Option<crate::models::InlineObject9>) -> Result<(), Error<UpdateFavoriteGroupError>> {
+pub fn update_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str, update_favorite_group_request: Option<crate::models::UpdateFavoriteGroupRequest>) -> Result<(), Error<UpdateFavoriteGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -308,7 +308,7 @@ pub fn update_favorite_group(configuration: &configuration::Configuration, favor
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object9);
+    local_var_req_builder = local_var_req_builder.json(&update_favorite_group_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;

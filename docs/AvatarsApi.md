@@ -10,13 +10,14 @@ Method | HTTP request | Description
 [**get_favorited_avatars**](AvatarsApi.md#get_favorited_avatars) | **GET** /avatars/favorites | List Favorited Avatars
 [**search_avatars**](AvatarsApi.md#search_avatars) | **GET** /avatars | Search Avatars
 [**select_avatar**](AvatarsApi.md#select_avatar) | **PUT** /avatars/{avatarId}/select | Select Avatar
+[**select_fallback_avatar**](AvatarsApi.md#select_fallback_avatar) | **PUT** /avatars/{avatarId}/selectFallback | Select Fallback Avatar
 [**update_avatar**](AvatarsApi.md#update_avatar) | **PUT** /avatars/{avatarId} | Update Avatar
 
 
 
 ## create_avatar
 
-> crate::models::Avatar create_avatar(inline_object10)
+> crate::models::Avatar create_avatar(create_avatar_request)
 Create Avatar
 
 Create an avatar. It's possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
@@ -26,7 +27,7 @@ Create an avatar. It's possible to optionally specify a ID if you want a custom 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inline_object10** | Option<[**InlineObject10**](InlineObject10.md)> |  |  |
+**create_avatar_request** | Option<[**CreateAvatarRequest**](CreateAvatarRequest.md)> |  |  |
 
 ### Return type
 
@@ -218,9 +219,39 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## select_fallback_avatar
+
+> crate::models::CurrentUser select_fallback_avatar(avatar_id)
+Select Fallback Avatar
+
+Switches into that avatar as your fallback avatar.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**avatar_id** | **String** |  | [required] |
+
+### Return type
+
+[**crate::models::CurrentUser**](CurrentUser.md)
+
+### Authorization
+
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## update_avatar
 
-> crate::models::Avatar update_avatar(avatar_id, inline_object11)
+> crate::models::Avatar update_avatar(avatar_id, update_avatar_request)
 Update Avatar
 
 Update information about a specific avatar.
@@ -231,7 +262,7 @@ Update information about a specific avatar.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **avatar_id** | **String** |  | [required] |
-**inline_object11** | Option<[**InlineObject11**](InlineObject11.md)> |  |  |
+**update_avatar_request** | Option<[**UpdateAvatarRequest**](UpdateAvatarRequest.md)> |  |  |
 
 ### Return type
 

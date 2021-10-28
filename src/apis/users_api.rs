@@ -143,7 +143,7 @@ pub fn search_users(configuration: &configuration::Configuration, search: Option
 }
 
 /// Update a users information such as the email and birthday.
-pub fn update_user(configuration: &configuration::Configuration, user_id: &str, inline_object2: Option<crate::models::InlineObject2>) -> Result<crate::models::CurrentUser, Error<UpdateUserError>> {
+pub fn update_user(configuration: &configuration::Configuration, user_id: &str, update_user_request: Option<crate::models::UpdateUserRequest>) -> Result<crate::models::CurrentUser, Error<UpdateUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -154,7 +154,7 @@ pub fn update_user(configuration: &configuration::Configuration, user_id: &str, 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object2);
+    local_var_req_builder = local_var_req_builder.json(&update_user_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;

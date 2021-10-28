@@ -5,10 +5,10 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_config**](SystemApi.md#get_config) | **GET** /config | Fetch API Config
-[**get_css**](SystemApi.md#get_css) | **GET** /css/app.js | Download Frontend CSS
+[**get_css**](SystemApi.md#get_css) | **GET** /css/app.js | Download CSS
 [**get_current_online_users**](SystemApi.md#get_current_online_users) | **GET** /visits | Current Online Users
 [**get_health**](SystemApi.md#get_health) | **GET** /health | Check API Health
-[**get_java_script**](SystemApi.md#get_java_script) | **GET** /js/app.js | Download Frontend JavaScript
+[**get_java_script**](SystemApi.md#get_java_script) | **GET** /js/app.js | Download JavaScript
 [**get_system_time**](SystemApi.md#get_system_time) | **GET** /time | Current System Time
 
 
@@ -43,7 +43,7 @@ No authorization required
 ## get_css
 
 > String get_css(variant, branch)
-Download Frontend CSS
+Download CSS
 
 Fetches the CSS code to the frontend React website.
 
@@ -100,7 +100,7 @@ No authorization required
 
 ## get_health
 
-> crate::models::InlineResponse2002 get_health()
+> crate::models::ApiHealth get_health()
 Check API Health
 
 ~~Gets the overall health status, the server name, and the current build version tag of the API.~~  **DEPRECATED:** VRChat has suddenly restricted this endpoint for unknown reasons, and now always return 401 Unauthorized.
@@ -111,7 +111,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::InlineResponse2002**](inline_response_200_2.md)
+[**crate::models::ApiHealth**](APIHealth.md)
 
 ### Authorization
 
@@ -128,7 +128,7 @@ No authorization required
 ## get_java_script
 
 > String get_java_script(variant, branch)
-Download Frontend JavaScript
+Download JavaScript
 
 Fetches the JavaScript code to the frontend React website.
 

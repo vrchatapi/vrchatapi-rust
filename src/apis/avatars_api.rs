@@ -65,6 +65,16 @@ pub enum SelectAvatarError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`select_fallback_avatar`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SelectFallbackAvatarError {
+    Status401(crate::models::Error),
+    Status403(crate::models::Error),
+    Status404(crate::models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`update_avatar`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -76,7 +86,7 @@ pub enum UpdateAvatarError {
 
 
 /// Create an avatar. It's possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
-pub fn create_avatar(configuration: &configuration::Configuration, inline_object10: Option<crate::models::InlineObject10>) -> Result<crate::models::Avatar, Error<CreateAvatarError>> {
+pub fn create_avatar(configuration: &configuration::Configuration, create_avatar_request: Option<crate::models::CreateAvatarRequest>) -> Result<crate::models::Avatar, Error<CreateAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -87,7 +97,7 @@ pub fn create_avatar(configuration: &configuration::Configuration, inline_object
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object10);
+    local_var_req_builder = local_var_req_builder.json(&create_avatar_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;
@@ -322,8 +332,36 @@ pub fn select_avatar(configuration: &configuration::Configuration, avatar_id: &s
     }
 }
 
+/// Switches into that avatar as your fallback avatar.
+pub fn select_fallback_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::CurrentUser, Error<SelectFallbackAvatarError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/avatars/{avatarId}/selectFallback", local_var_configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text()?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<SelectFallbackAvatarError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Update information about a specific avatar.
-pub fn update_avatar(configuration: &configuration::Configuration, avatar_id: &str, inline_object11: Option<crate::models::InlineObject11>) -> Result<crate::models::Avatar, Error<UpdateAvatarError>> {
+pub fn update_avatar(configuration: &configuration::Configuration, avatar_id: &str, update_avatar_request: Option<crate::models::UpdateAvatarRequest>) -> Result<crate::models::Avatar, Error<UpdateAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -334,7 +372,7 @@ pub fn update_avatar(configuration: &configuration::Configuration, avatar_id: &s
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object11);
+    local_var_req_builder = local_var_req_builder.json(&update_avatar_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;

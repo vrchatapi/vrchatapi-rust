@@ -127,7 +127,7 @@ pub enum UpdateWorldError {
 
 
 /// Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
-pub fn create_world(configuration: &configuration::Configuration, inline_object6: Option<crate::models::InlineObject6>) -> Result<crate::models::World, Error<CreateWorldError>> {
+pub fn create_world(configuration: &configuration::Configuration, create_world_request: Option<crate::models::CreateWorldRequest>) -> Result<crate::models::World, Error<CreateWorldError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -138,7 +138,7 @@ pub fn create_world(configuration: &configuration::Configuration, inline_object6
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object6);
+    local_var_req_builder = local_var_req_builder.json(&create_world_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;
@@ -438,7 +438,7 @@ pub fn get_world_instance(configuration: &configuration::Configuration, world_id
 }
 
 /// Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
-pub fn get_world_metadata(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::InlineResponse2005, Error<GetWorldMetadataError>> {
+pub fn get_world_metadata(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::WorldMetadata, Error<GetWorldMetadataError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -466,7 +466,7 @@ pub fn get_world_metadata(configuration: &configuration::Configuration, world_id
 }
 
 /// Returns a worlds publish status.
-pub fn get_world_publish_status(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::InlineResponse2006, Error<GetWorldPublishStatusError>> {
+pub fn get_world_publish_status(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::WorldPublishStatus, Error<GetWorldPublishStatusError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -620,7 +620,7 @@ pub fn unpublish_world(configuration: &configuration::Configuration, world_id: &
 }
 
 /// Update information about a specific World.
-pub fn update_world(configuration: &configuration::Configuration, world_id: &str, inline_object7: Option<crate::models::InlineObject7>) -> Result<crate::models::World, Error<UpdateWorldError>> {
+pub fn update_world(configuration: &configuration::Configuration, world_id: &str, update_world_request: Option<crate::models::UpdateWorldRequest>) -> Result<crate::models::World, Error<UpdateWorldError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -631,7 +631,7 @@ pub fn update_world(configuration: &configuration::Configuration, world_id: &str
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object7);
+    local_var_req_builder = local_var_req_builder.json(&update_world_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;

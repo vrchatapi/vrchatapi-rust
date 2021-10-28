@@ -43,6 +43,10 @@ pub struct LimitedUser {
     pub user_icon: String,
     #[serde(rename = "username")]
     pub username: String,
+    #[serde(rename = "location", skip_serializing_if = "Option::is_none")]
+    pub location: Option<String>,
+    #[serde(rename = "friendKey", skip_serializing_if = "Option::is_none")]
+    pub friend_key: Option<String>,
 }
 
 impl LimitedUser {
@@ -63,6 +67,8 @@ impl LimitedUser {
             tags,
             user_icon,
             username,
+            location: None,
+            friend_key: None,
         }
     }
 }

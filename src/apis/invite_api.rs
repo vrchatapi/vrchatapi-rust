@@ -17,8 +17,8 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInviteMessageError {
-    Status400(crate::models::InlineResponse400),
-    Status401(crate::models::InlineResponse400),
+    Status400(crate::models::Error),
+    Status401(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -26,8 +26,8 @@ pub enum GetInviteMessageError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInviteMessagesError {
-    Status400(crate::models::InlineResponse400),
-    Status401(crate::models::InlineResponse400),
+    Status400(crate::models::Error),
+    Status401(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -35,7 +35,7 @@ pub enum GetInviteMessagesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum InviteUserError {
-    Status403(crate::models::InlineResponse400),
+    Status403(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -43,7 +43,7 @@ pub enum InviteUserError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RequestInviteError {
-    Status403(crate::models::InlineResponse400),
+    Status403(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -51,9 +51,9 @@ pub enum RequestInviteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ResetInviteMessageError {
-    Status400(crate::models::InlineResponse400),
-    Status401(crate::models::InlineResponse400),
-    Status429(crate::models::InlineResponse400),
+    Status400(crate::models::Error),
+    Status401(crate::models::Error),
+    Status429(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -61,7 +61,7 @@ pub enum ResetInviteMessageError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RespondInviteError {
-    Status400(crate::models::InlineResponse400),
+    Status400(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -69,9 +69,9 @@ pub enum RespondInviteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateInviteMessageError {
-    Status400(crate::models::InlineResponse400),
-    Status401(crate::models::InlineResponse400),
-    Status429(crate::models::InlineResponse400),
+    Status400(crate::models::Error),
+    Status401(crate::models::Error),
+    Status429(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -217,7 +217,7 @@ pub fn reset_invite_message(configuration: &configuration::Configuration, user_i
     }
 }
 
-/// Sends a world invite to a user.
+/// Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
 pub fn respond_invite(configuration: &configuration::Configuration, notification_id: &str, invite_response: Option<crate::models::InviteResponse>) -> Result<crate::models::Notification, Error<RespondInviteError>> {
     let local_var_configuration = configuration;
 

@@ -133,7 +133,7 @@ This endpoint does not need any parameter.
 
 ## verify2_fa
 
-> crate::models::InlineResponse2001 verify2_fa(inline_object)
+> crate::models::Verify2FaResult verify2_fa(two_factor_auth_code)
 Verify 2FA code
 
 Finishes the login sequence with a normal 2FA-generated code for accounts with 2FA-protection enabled.
@@ -143,11 +143,11 @@ Finishes the login sequence with a normal 2FA-generated code for accounts with 2
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inline_object** | Option<[**InlineObject**](InlineObject.md)> |  |  |
+**two_factor_auth_code** | Option<[**TwoFactorAuthCode**](TwoFactorAuthCode.md)> |  |  |
 
 ### Return type
 
-[**crate::models::InlineResponse2001**](inline_response_200_1.md)
+[**crate::models::Verify2FaResult**](Verify2FAResult.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Required | Notes
 
 ## verify_auth_token
 
-> crate::models::InlineResponse200 verify_auth_token()
+> crate::models::VerifyAuthTokenResult verify_auth_token()
 Verify Auth Token
 
 Verify whether the currently provided Auth Token is valid.
@@ -174,7 +174,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::InlineResponse200**](inline_response_200.md)
+[**crate::models::VerifyAuthTokenResult**](VerifyAuthTokenResult.md)
 
 ### Authorization
 
@@ -190,7 +190,7 @@ This endpoint does not need any parameter.
 
 ## verify_recovery_code
 
-> crate::models::InlineResponse2001 verify_recovery_code(inline_object1)
+> crate::models::Verify2FaResult verify_recovery_code(two_factor_auth_code)
 Verify 2FA code with Recovery code
 
 Finishes the login sequence with an OTP (One Time Password) recovery code for accounts with 2FA-protection enabled.
@@ -200,11 +200,11 @@ Finishes the login sequence with an OTP (One Time Password) recovery code for ac
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inline_object1** | Option<[**InlineObject1**](InlineObject1.md)> |  |  |
+**two_factor_auth_code** | Option<[**TwoFactorAuthCode**](TwoFactorAuthCode.md)> |  |  |
 
 ### Return type
 
-[**crate::models::InlineResponse2001**](inline_response_200_1.md)
+[**crate::models::Verify2FaResult**](Verify2FAResult.md)
 
 ### Authorization
 

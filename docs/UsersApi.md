@@ -106,7 +106,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_user
 
-> crate::models::CurrentUser update_user(user_id, inline_object2)
+> crate::models::CurrentUser update_user(user_id, update_user_request)
 Update User Info
 
 Update a users information such as the email and birthday.
@@ -117,7 +117,7 @@ Update a users information such as the email and birthday.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** |  | [required] |
-**inline_object2** | Option<[**InlineObject2**](InlineObject2.md)> |  |  |
+**update_user_request** | Option<[**UpdateUserRequest**](UpdateUserRequest.md)> |  |  |
 
 ### Return type
 

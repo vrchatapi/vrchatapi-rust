@@ -198,7 +198,7 @@ pub fn logout(configuration: &configuration::Configuration, ) -> Result<crate::m
 }
 
 /// Finishes the login sequence with a normal 2FA-generated code for accounts with 2FA-protection enabled.
-pub fn verify2_fa(configuration: &configuration::Configuration, inline_object: Option<crate::models::InlineObject>) -> Result<crate::models::InlineResponse2001, Error<Verify2FaError>> {
+pub fn verify2_fa(configuration: &configuration::Configuration, two_factor_auth_code: Option<crate::models::TwoFactorAuthCode>) -> Result<crate::models::Verify2FaResult, Error<Verify2FaError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -209,7 +209,7 @@ pub fn verify2_fa(configuration: &configuration::Configuration, inline_object: O
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object);
+    local_var_req_builder = local_var_req_builder.json(&two_factor_auth_code);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;
@@ -227,7 +227,7 @@ pub fn verify2_fa(configuration: &configuration::Configuration, inline_object: O
 }
 
 /// Verify whether the currently provided Auth Token is valid.
-pub fn verify_auth_token(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse200, Error<VerifyAuthTokenError>> {
+pub fn verify_auth_token(configuration: &configuration::Configuration, ) -> Result<crate::models::VerifyAuthTokenResult, Error<VerifyAuthTokenError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -255,7 +255,7 @@ pub fn verify_auth_token(configuration: &configuration::Configuration, ) -> Resu
 }
 
 /// Finishes the login sequence with an OTP (One Time Password) recovery code for accounts with 2FA-protection enabled.
-pub fn verify_recovery_code(configuration: &configuration::Configuration, inline_object1: Option<crate::models::InlineObject1>) -> Result<crate::models::InlineResponse2001, Error<VerifyRecoveryCodeError>> {
+pub fn verify_recovery_code(configuration: &configuration::Configuration, two_factor_auth_code: Option<crate::models::TwoFactorAuthCode>) -> Result<crate::models::Verify2FaResult, Error<VerifyRecoveryCodeError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -266,7 +266,7 @@ pub fn verify_recovery_code(configuration: &configuration::Configuration, inline
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&inline_object1);
+    local_var_req_builder = local_var_req_builder.json(&two_factor_auth_code);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;
