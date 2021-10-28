@@ -3,7 +3,7 @@
 # Generate Client
 rm src/apis src/models docs -rf
 
-./node_modules/\@openapitools/openapi-generator-cli/main.js generate \
+java -jar ./openapi-generator-cli.jar generate \
 -g rust \
 --additional-properties=packageName=vrchatapi,supportAsync=false \
 --git-user-id=vrchatapi \
@@ -11,6 +11,7 @@ rm src/apis src/models docs -rf
 -o . \
 -i https://vrchatapi.github.io/specification/openapi.yaml \
 --http-user-agent="vrchatapi-rust"
+#--global-property debugOperations=true
 
 # Add license and description to Cargo.toml
 sed -i '/^edition = "2018"/i license = "MIT"' Cargo.toml
