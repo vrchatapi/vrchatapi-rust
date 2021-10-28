@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct User {
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,

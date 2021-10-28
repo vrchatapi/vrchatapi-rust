@@ -13,21 +13,21 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `create_file`
+/// struct for typed errors of method [`create_file`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateFileError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `create_file_version`
+/// struct for typed errors of method [`create_file_version`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateFileVersionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_file`
+/// struct for typed errors of method [`delete_file`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteFileError {
@@ -35,7 +35,7 @@ pub enum DeleteFileError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_file_version`
+/// struct for typed errors of method [`delete_file_version`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteFileVersionError {
@@ -44,21 +44,21 @@ pub enum DeleteFileVersionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `download_file_version`
+/// struct for typed errors of method [`download_file_version`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DownloadFileVersionError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `finish_file_data_upload`
+/// struct for typed errors of method [`finish_file_data_upload`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FinishFileDataUploadError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_file`
+/// struct for typed errors of method [`get_file`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFileError {
@@ -66,21 +66,21 @@ pub enum GetFileError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_file_data_upload_status`
+/// struct for typed errors of method [`get_file_data_upload_status`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFileDataUploadStatusError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_files`
+/// struct for typed errors of method [`get_files`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFilesError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `start_file_data_upload`
+/// struct for typed errors of method [`start_file_data_upload`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum StartFileDataUploadError {
@@ -91,13 +91,14 @@ pub enum StartFileDataUploadError {
 
 /// Creates a new File object
 pub fn create_file(configuration: &configuration::Configuration, inline_object3: Option<crate::models::InlineObject3>) -> Result<crate::models::File, Error<CreateFileError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/file", configuration.base_path);
+    let local_var_uri_str = format!("{}/file", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     local_var_req_builder = local_var_req_builder.json(&inline_object3);
@@ -119,13 +120,14 @@ pub fn create_file(configuration: &configuration::Configuration, inline_object3:
 
 /// Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
 pub fn create_file_version(configuration: &configuration::Configuration, file_id: &str, inline_object4: Option<crate::models::InlineObject4>) -> Result<crate::models::File, Error<CreateFileVersionError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/file/{fileId}", configuration.base_path, fileId=crate::apis::urlencode(file_id));
+    let local_var_uri_str = format!("{}/file/{fileId}", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     local_var_req_builder = local_var_req_builder.json(&inline_object4);
@@ -147,13 +149,14 @@ pub fn create_file_version(configuration: &configuration::Configuration, file_id
 
 /// Deletes a File object.
 pub fn delete_file(configuration: &configuration::Configuration, file_id: &str) -> Result<crate::models::Success, Error<DeleteFileError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/file/{fileId}", configuration.base_path, fileId=crate::apis::urlencode(file_id));
+    let local_var_uri_str = format!("{}/file/{fileId}", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -174,13 +177,14 @@ pub fn delete_file(configuration: &configuration::Configuration, file_id: &str) 
 
 /// Delete a specific version of a file. You can only delete the latest version.
 pub fn delete_file_version(configuration: &configuration::Configuration, file_id: &str, version_id: i32) -> Result<crate::models::File, Error<DeleteFileVersionError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/file/{fileId}/{versionId}", configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id);
+    let local_var_uri_str = format!("{}/file/{fileId}/{versionId}", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -201,13 +205,14 @@ pub fn delete_file_version(configuration: &configuration::Configuration, file_id
 
 /// Downloads the file with the provided version number.  **Version Note:** Version 0 is always when the file was created. The real data is usually always located in version 1 and up.  **Extension Note:** Files are not guaranteed to have a file extensions. UnityPackage files tends to have it, images through this endpoint do not. You are responsible for appending file extension from the `extension` field when neccesary.
 pub fn download_file_version(configuration: &configuration::Configuration, file_id: &str, version_id: i32) -> Result<(), Error<DownloadFileVersionError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/file/{fileId}/{versionId}", configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id);
+    let local_var_uri_str = format!("{}/file/{fileId}/{versionId}", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -228,13 +233,14 @@ pub fn download_file_version(configuration: &configuration::Configuration, file_
 
 /// Finish an upload of a FileData. This will mark it as \"complete\". After uploading the `file` for Avatars and Worlds you then have to upload a `signature` file.
 pub fn finish_file_data_upload(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str, inline_object5: Option<crate::models::InlineObject5>) -> Result<crate::models::File, Error<FinishFileDataUploadError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/file/{fileId}/{versionId}/{fileType}/finish", configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id, fileType=crate::apis::urlencode(file_type));
+    let local_var_uri_str = format!("{}/file/{fileId}/{versionId}/{fileType}/finish", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id, fileType=crate::apis::urlencode(file_type));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     local_var_req_builder = local_var_req_builder.json(&inline_object5);
@@ -256,13 +262,14 @@ pub fn finish_file_data_upload(configuration: &configuration::Configuration, fil
 
 /// Shows general information about the \"File\" object. Each File can have several \"Version\"'s, and each Version can have multiple real files or \"Data\" blobs.
 pub fn get_file(configuration: &configuration::Configuration, file_id: &str) -> Result<crate::models::File, Error<GetFileError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/file/{fileId}", configuration.base_path, fileId=crate::apis::urlencode(file_id));
+    let local_var_uri_str = format!("{}/file/{fileId}", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -283,13 +290,14 @@ pub fn get_file(configuration: &configuration::Configuration, file_id: &str) -> 
 
 /// Retrieves the upload status for file upload. Can currently only be accessed when `status` is `waiting`. Trying to access it on a file version already uploaded currently times out.
 pub fn get_file_data_upload_status(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str) -> Result<crate::models::InlineResponse2003, Error<GetFileDataUploadStatusError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/file/{fileId}/{versionId}/{fileType}/status", configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id, fileType=crate::apis::urlencode(file_type));
+    let local_var_uri_str = format!("{}/file/{fileId}/{versionId}/{fileType}/status", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id, fileType=crate::apis::urlencode(file_type));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -310,10 +318,11 @@ pub fn get_file_data_upload_status(configuration: &configuration::Configuration,
 
 /// Returns a list of files
 pub fn get_files(configuration: &configuration::Configuration, tag: Option<&str>, user_id: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::File>, Error<GetFilesError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/files", configuration.base_path);
+    let local_var_uri_str = format!("{}/files", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = tag {
@@ -328,7 +337,7 @@ pub fn get_files(configuration: &configuration::Configuration, tag: Option<&str>
     if let Some(ref local_var_str) = offset {
         local_var_req_builder = local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -349,14 +358,15 @@ pub fn get_files(configuration: &configuration::Configuration, tag: Option<&str>
 
 /// Starts an upload of a specific FilePart. This endpoint will return an AWS URL which you can PUT data to. You need to call this and receive a new AWS API URL for each `partNumber`. Please see AWS's REST documentation on \"PUT Object to S3\" on how to upload. Once all parts has been uploaded, proceed to `/finish` endpoint.  **Note:** `nextPartNumber` seems like it is always ignored. Despite it returning 0, first partNumber is always 1.
 pub fn start_file_data_upload(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str, part_number: i32) -> Result<crate::models::InlineResponse2004, Error<StartFileDataUploadError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/file/{fileId}/{versionId}/{fileType}/start", configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id, fileType=crate::apis::urlencode(file_type));
+    let local_var_uri_str = format!("{}/file/{fileId}/{versionId}/{fileType}/start", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id, fileType=crate::apis::urlencode(file_type));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
     local_var_req_builder = local_var_req_builder.query(&[("partNumber", &part_number.to_string())]);
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 

@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct ApiConfig {
     /// Unknown, probably voice optimization testing
     #[serde(rename = "VoiceEnableDegradation")]

@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Avatar {
     /// Not present from general serach `/avatars`, only on specific requests `/avatars/{avatarId}`.
     #[serde(rename = "assetUrl", skip_serializing_if = "Option::is_none")]

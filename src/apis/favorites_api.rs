@@ -13,7 +13,7 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `add_favorite`
+/// struct for typed errors of method [`add_favorite`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddFavoriteError {
@@ -22,14 +22,14 @@ pub enum AddFavoriteError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `clear_favorite_group`
+/// struct for typed errors of method [`clear_favorite_group`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ClearFavoriteGroupError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_favorite`
+/// struct for typed errors of method [`get_favorite`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoriteError {
@@ -38,14 +38,14 @@ pub enum GetFavoriteError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_favorite_group`
+/// struct for typed errors of method [`get_favorite_group`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoriteGroupError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_favorite_groups`
+/// struct for typed errors of method [`get_favorite_groups`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoriteGroupsError {
@@ -53,7 +53,7 @@ pub enum GetFavoriteGroupsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_favorites`
+/// struct for typed errors of method [`get_favorites`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoritesError {
@@ -61,7 +61,7 @@ pub enum GetFavoritesError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `remove_favorite`
+/// struct for typed errors of method [`remove_favorite`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RemoveFavoriteError {
@@ -70,7 +70,7 @@ pub enum RemoveFavoriteError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `update_favorite_group`
+/// struct for typed errors of method [`update_favorite_group`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateFavoriteGroupError {
@@ -80,13 +80,14 @@ pub enum UpdateFavoriteGroupError {
 
 /// Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar and World groups are named `avatars1` to `avatar4` and `worlds1` to `worlds4`.  You cannot add people whom you are not friends with to your friends list. Destroying a friendship removes the person as favorite on both sides.
 pub fn add_favorite(configuration: &configuration::Configuration, inline_object8: Option<crate::models::InlineObject8>) -> Result<crate::models::Favorite, Error<AddFavoriteError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/favorites", configuration.base_path);
+    let local_var_uri_str = format!("{}/favorites", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     local_var_req_builder = local_var_req_builder.json(&inline_object8);
@@ -108,13 +109,14 @@ pub fn add_favorite(configuration: &configuration::Configuration, inline_object8
 
 /// Clear ALL contents of a specific favorite group.
 pub fn clear_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str) -> Result<crate::models::Success, Error<ClearFavoriteGroupError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}", configuration.base_path, favoriteGroupType=crate::apis::urlencode(favorite_group_type), favoriteGroupName=crate::apis::urlencode(favorite_group_name), userId=crate::apis::urlencode(user_id));
+    let local_var_uri_str = format!("{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}", local_var_configuration.base_path, favoriteGroupType=crate::apis::urlencode(favorite_group_type), favoriteGroupName=crate::apis::urlencode(favorite_group_name), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -135,13 +137,14 @@ pub fn clear_favorite_group(configuration: &configuration::Configuration, favori
 
 /// Return information about a specific Favorite.
 pub fn get_favorite(configuration: &configuration::Configuration, favorite_id: &str) -> Result<crate::models::Favorite, Error<GetFavoriteError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/favorites/{favoriteId}", configuration.base_path, favoriteId=crate::apis::urlencode(favorite_id));
+    let local_var_uri_str = format!("{}/favorites/{favoriteId}", local_var_configuration.base_path, favoriteId=crate::apis::urlencode(favorite_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -162,13 +165,14 @@ pub fn get_favorite(configuration: &configuration::Configuration, favorite_id: &
 
 /// Fetch information about a specific favorite group.
 pub fn get_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str) -> Result<crate::models::FavoriteGroup, Error<GetFavoriteGroupError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}", configuration.base_path, favoriteGroupType=crate::apis::urlencode(favorite_group_type), favoriteGroupName=crate::apis::urlencode(favorite_group_name), userId=crate::apis::urlencode(user_id));
+    let local_var_uri_str = format!("{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}", local_var_configuration.base_path, favoriteGroupType=crate::apis::urlencode(favorite_group_type), favoriteGroupName=crate::apis::urlencode(favorite_group_name), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -189,10 +193,11 @@ pub fn get_favorite_group(configuration: &configuration::Configuration, favorite
 
 /// Return a list of favorite groups owned by a user. Returns the same information as `getFavoriteGroups`.
 pub fn get_favorite_groups(configuration: &configuration::Configuration, n: Option<i32>, offset: Option<i32>, owner_id: Option<&str>) -> Result<Vec<crate::models::FavoriteGroup>, Error<GetFavoriteGroupsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/favorite/groups", configuration.base_path);
+    let local_var_uri_str = format!("{}/favorite/groups", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = n {
@@ -204,7 +209,7 @@ pub fn get_favorite_groups(configuration: &configuration::Configuration, n: Opti
     if let Some(ref local_var_str) = owner_id {
         local_var_req_builder = local_var_req_builder.query(&[("ownerId", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -225,10 +230,11 @@ pub fn get_favorite_groups(configuration: &configuration::Configuration, n: Opti
 
 /// Returns a list of favorites.
 pub fn get_favorites(configuration: &configuration::Configuration, n: Option<i32>, offset: Option<i32>, _type: Option<&str>, tag: Option<&str>) -> Result<Vec<crate::models::Favorite>, Error<GetFavoritesError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/favorites", configuration.base_path);
+    let local_var_uri_str = format!("{}/favorites", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = n {
@@ -243,7 +249,7 @@ pub fn get_favorites(configuration: &configuration::Configuration, n: Option<i32
     if let Some(ref local_var_str) = tag {
         local_var_req_builder = local_var_req_builder.query(&[("tag", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -264,13 +270,14 @@ pub fn get_favorites(configuration: &configuration::Configuration, n: Option<i32
 
 /// Remove a favorite from your favorites list.
 pub fn remove_favorite(configuration: &configuration::Configuration, favorite_id: &str) -> Result<crate::models::Success, Error<RemoveFavoriteError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/favorites/{favoriteId}", configuration.base_path, favoriteId=crate::apis::urlencode(favorite_id));
+    let local_var_uri_str = format!("{}/favorites/{favoriteId}", local_var_configuration.base_path, favoriteId=crate::apis::urlencode(favorite_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -291,13 +298,14 @@ pub fn remove_favorite(configuration: &configuration::Configuration, favorite_id
 
 /// Update information about a specific favorite group.
 pub fn update_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str, inline_object9: Option<crate::models::InlineObject9>) -> Result<(), Error<UpdateFavoriteGroupError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}", configuration.base_path, favoriteGroupType=crate::apis::urlencode(favorite_group_type), favoriteGroupName=crate::apis::urlencode(favorite_group_name), userId=crate::apis::urlencode(user_id));
+    let local_var_uri_str = format!("{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}", local_var_configuration.base_path, favoriteGroupType=crate::apis::urlencode(favorite_group_type), favoriteGroupName=crate::apis::urlencode(favorite_group_name), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     local_var_req_builder = local_var_req_builder.json(&inline_object9);

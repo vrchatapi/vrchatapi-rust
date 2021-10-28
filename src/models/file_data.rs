@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct FileData {
     #[serde(rename = "category")]
     pub category: Category,
@@ -50,5 +50,11 @@ pub enum Category {
     Queued,
     #[serde(rename = "simple")]
     Simple,
+}
+
+impl Default for Category {
+    fn default() -> Category {
+        Self::Multipart
+    }
 }
 

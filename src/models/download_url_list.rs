@@ -10,7 +10,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct DownloadUrlList {
     /// Download link for legacy SDK2
     #[serde(rename = "sdk2")]

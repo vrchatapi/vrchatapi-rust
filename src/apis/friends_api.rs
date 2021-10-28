@@ -13,7 +13,7 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `delete_friend_request`
+/// struct for typed errors of method [`delete_friend_request`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteFriendRequestError {
@@ -22,7 +22,7 @@ pub enum DeleteFriendRequestError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `friend`
+/// struct for typed errors of method [`friend`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FriendError {
@@ -31,7 +31,7 @@ pub enum FriendError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_friend_status`
+/// struct for typed errors of method [`get_friend_status`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFriendStatusError {
@@ -39,7 +39,7 @@ pub enum GetFriendStatusError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_friends`
+/// struct for typed errors of method [`get_friends`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFriendsError {
@@ -47,7 +47,7 @@ pub enum GetFriendsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `unfriend`
+/// struct for typed errors of method [`unfriend`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UnfriendError {
@@ -59,13 +59,14 @@ pub enum UnfriendError {
 
 /// Deletes an outgoing pending friend request to another user. To delete an incoming friend request, use the `deleteNotification` endpoint instead.
 pub fn delete_friend_request(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Success, Error<DeleteFriendRequestError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/user/{userId}/friendRequest", configuration.base_path, userId=crate::apis::urlencode(user_id));
+    let local_var_uri_str = format!("{}/user/{userId}/friendRequest", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -86,13 +87,14 @@ pub fn delete_friend_request(configuration: &configuration::Configuration, user_
 
 /// Send a friend request to another user.
 pub fn friend(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Notification, Error<FriendError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/user/{userId}/friendRequest", configuration.base_path, userId=crate::apis::urlencode(user_id));
+    let local_var_uri_str = format!("{}/user/{userId}/friendRequest", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -113,13 +115,14 @@ pub fn friend(configuration: &configuration::Configuration, user_id: &str) -> Re
 
 /// Retrieve if the user is currently a friend with a given user, if they have an outgoing friend request, and if they have an incoming friend request. The proper way to receive and accept friend request is by checking if the user has an incoming `Notification` of type `friendRequest`, and then accepting that notification.
 pub fn get_friend_status(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::FriendStatus, Error<GetFriendStatusError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/user/{userId}/friendStatus", configuration.base_path, userId=crate::apis::urlencode(user_id));
+    let local_var_uri_str = format!("{}/user/{userId}/friendStatus", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -140,10 +143,11 @@ pub fn get_friend_status(configuration: &configuration::Configuration, user_id: 
 
 /// List information about friends.
 pub fn get_friends(configuration: &configuration::Configuration, offset: Option<i32>, n: Option<i32>, offline: Option<bool>) -> Result<Vec<crate::models::LimitedUser>, Error<GetFriendsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/user/friends", configuration.base_path);
+    let local_var_uri_str = format!("{}/auth/user/friends", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = offset {
@@ -155,7 +159,7 @@ pub fn get_friends(configuration: &configuration::Configuration, offset: Option<
     if let Some(ref local_var_str) = offline {
         local_var_req_builder = local_var_req_builder.query(&[("offline", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -176,13 +180,14 @@ pub fn get_friends(configuration: &configuration::Configuration, offset: Option<
 
 /// Unfriend a user by ID.
 pub fn unfriend(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Success, Error<UnfriendError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/user/friends/{userId}", configuration.base_path, userId=crate::apis::urlencode(user_id));
+    let local_var_uri_str = format!("{}/auth/user/friends/{userId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 

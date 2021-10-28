@@ -13,7 +13,7 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `get_user`
+/// struct for typed errors of method [`get_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetUserError {
@@ -21,7 +21,7 @@ pub enum GetUserError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_user_by_name`
+/// struct for typed errors of method [`get_user_by_name`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetUserByNameError {
@@ -29,7 +29,7 @@ pub enum GetUserByNameError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `search_users`
+/// struct for typed errors of method [`search_users`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchUsersError {
@@ -38,7 +38,7 @@ pub enum SearchUsersError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `update_user`
+/// struct for typed errors of method [`update_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateUserError {
@@ -48,13 +48,14 @@ pub enum UpdateUserError {
 
 /// Get public user information about a specific user using their ID.
 pub fn get_user(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::User, Error<GetUserError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/users/{userId}", configuration.base_path, userId=crate::apis::urlencode(user_id));
+    let local_var_uri_str = format!("{}/users/{userId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -75,13 +76,14 @@ pub fn get_user(configuration: &configuration::Configuration, user_id: &str) -> 
 
 /// Get public user information about a specific user using their name.
 pub fn get_user_by_name(configuration: &configuration::Configuration, username: &str) -> Result<crate::models::User, Error<GetUserByNameError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/users/{username}/name", configuration.base_path, username=crate::apis::urlencode(username));
+    let local_var_uri_str = format!("{}/users/{username}/name", local_var_configuration.base_path, username=crate::apis::urlencode(username));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -102,10 +104,11 @@ pub fn get_user_by_name(configuration: &configuration::Configuration, username: 
 
 /// Search and list any users by text query
 pub fn search_users(configuration: &configuration::Configuration, search: Option<&str>, developer_type: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::LimitedUser>, Error<SearchUsersError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/users", configuration.base_path);
+    let local_var_uri_str = format!("{}/users", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = search {
@@ -120,7 +123,7 @@ pub fn search_users(configuration: &configuration::Configuration, search: Option
     if let Some(ref local_var_str) = offset {
         local_var_req_builder = local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -141,13 +144,14 @@ pub fn search_users(configuration: &configuration::Configuration, search: Option
 
 /// Update a users information such as the email and birthday.
 pub fn update_user(configuration: &configuration::Configuration, user_id: &str, inline_object2: Option<crate::models::InlineObject2>) -> Result<crate::models::CurrentUser, Error<UpdateUserError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/users/{userId}", configuration.base_path, userId=crate::apis::urlencode(user_id));
+    let local_var_uri_str = format!("{}/users/{userId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     local_var_req_builder = local_var_req_builder.json(&inline_object2);

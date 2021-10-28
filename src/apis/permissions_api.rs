@@ -13,7 +13,7 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `get_assigned_permissions`
+/// struct for typed errors of method [`get_assigned_permissions`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetAssignedPermissionsError {
@@ -21,7 +21,7 @@ pub enum GetAssignedPermissionsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_permission`
+/// struct for typed errors of method [`get_permission`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetPermissionError {
@@ -32,13 +32,14 @@ pub enum GetPermissionError {
 
 /// Returns a list of all permissions currently granted by the user. Permissions are assigned e.g. by subscribing to VRC+.
 pub fn get_assigned_permissions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Permission>, Error<GetAssignedPermissionsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/permissions", configuration.base_path);
+    let local_var_uri_str = format!("{}/auth/permissions", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -59,13 +60,14 @@ pub fn get_assigned_permissions(configuration: &configuration::Configuration, ) 
 
 /// Returns a single permission. This endpoint is pretty useless, as it returns the exact same information as `/auth/permissions`.
 pub fn get_permission(configuration: &configuration::Configuration, permission_id: &str) -> Result<crate::models::Permission, Error<GetPermissionError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/permissions/{permissionId}", configuration.base_path, permissionId=crate::apis::urlencode(permission_id));
+    let local_var_uri_str = format!("{}/permissions/{permissionId}", local_var_configuration.base_path, permissionId=crate::apis::urlencode(permission_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 

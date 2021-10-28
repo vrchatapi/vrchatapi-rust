@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct CurrentUser {
     #[serde(rename = "acceptedTOSVersion")]
     pub accepted_tos_version: i32,

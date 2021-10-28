@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct Favorite {
     /// MUST be either AvatarID, UserID or WorldID.
     #[serde(rename = "favoriteId")]

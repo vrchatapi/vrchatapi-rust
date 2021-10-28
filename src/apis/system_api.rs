@@ -13,14 +13,14 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `get_config`
+/// struct for typed errors of method [`get_config`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetConfigError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_css`
+/// struct for typed errors of method [`get_css`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCssError {
@@ -28,21 +28,21 @@ pub enum GetCssError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_current_online_users`
+/// struct for typed errors of method [`get_current_online_users`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCurrentOnlineUsersError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_health`
+/// struct for typed errors of method [`get_health`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetHealthError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_java_script`
+/// struct for typed errors of method [`get_java_script`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetJavaScriptError {
@@ -50,7 +50,7 @@ pub enum GetJavaScriptError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_system_time`
+/// struct for typed errors of method [`get_system_time`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetSystemTimeError {
@@ -60,13 +60,14 @@ pub enum GetSystemTimeError {
 
 /// API config contains configuration that the clients needs to work properly.  Currently the most important value here is `clientApiKey` which is used for all other API endpoints.
 pub fn get_config(configuration: &configuration::Configuration, ) -> Result<crate::models::ApiConfig, Error<GetConfigError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/config", configuration.base_path);
+    let local_var_uri_str = format!("{}/config", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -87,10 +88,11 @@ pub fn get_config(configuration: &configuration::Configuration, ) -> Result<crat
 
 /// Fetches the CSS code to the frontend React website.
 pub fn get_css(configuration: &configuration::Configuration, variant: Option<&str>, branch: Option<&str>) -> Result<String, Error<GetCssError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/css/app.js", configuration.base_path);
+    let local_var_uri_str = format!("{}/css/app.js", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = variant {
@@ -99,7 +101,7 @@ pub fn get_css(configuration: &configuration::Configuration, variant: Option<&st
     if let Some(ref local_var_str) = branch {
         local_var_req_builder = local_var_req_builder.query(&[("branch", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -120,13 +122,14 @@ pub fn get_css(configuration: &configuration::Configuration, variant: Option<&st
 
 /// Returns in plain format the number of currently online users.  **NOTE:** The response type is not of JSON, but is an integer in plain ASCII format.
 pub fn get_current_online_users(configuration: &configuration::Configuration, ) -> Result<i32, Error<GetCurrentOnlineUsersError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/visits", configuration.base_path);
+    let local_var_uri_str = format!("{}/visits", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -147,13 +150,14 @@ pub fn get_current_online_users(configuration: &configuration::Configuration, ) 
 
 /// ~~Gets the overall health status, the server name, and the current build version tag of the API.~~  **DEPRECATED:** VRChat has suddenly restricted this endpoint for unknown reasons, and now always return 401 Unauthorized.
 pub fn get_health(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse2002, Error<GetHealthError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/health", configuration.base_path);
+    let local_var_uri_str = format!("{}/health", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -174,10 +178,11 @@ pub fn get_health(configuration: &configuration::Configuration, ) -> Result<crat
 
 /// Fetches the JavaScript code to the frontend React website.
 pub fn get_java_script(configuration: &configuration::Configuration, variant: Option<&str>, branch: Option<&str>) -> Result<String, Error<GetJavaScriptError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/js/app.js", configuration.base_path);
+    let local_var_uri_str = format!("{}/js/app.js", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = variant {
@@ -186,7 +191,7 @@ pub fn get_java_script(configuration: &configuration::Configuration, variant: Op
     if let Some(ref local_var_str) = branch {
         local_var_req_builder = local_var_req_builder.query(&[("branch", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -207,13 +212,14 @@ pub fn get_java_script(configuration: &configuration::Configuration, variant: Op
 
 /// Returns in plain format the current time of the API server.  **NOTE:** The response type is not of JSON, but is a string in plain ASCII format.
 pub fn get_system_time(configuration: &configuration::Configuration, ) -> Result<String, Error<GetSystemTimeError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/time", configuration.base_path);
+    let local_var_uri_str = format!("{}/time", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 

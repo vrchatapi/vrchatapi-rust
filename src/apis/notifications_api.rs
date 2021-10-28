@@ -13,7 +13,7 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `accept_friend_request`
+/// struct for typed errors of method [`accept_friend_request`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AcceptFriendRequestError {
@@ -22,7 +22,7 @@ pub enum AcceptFriendRequestError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `clear_notifications`
+/// struct for typed errors of method [`clear_notifications`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ClearNotificationsError {
@@ -30,7 +30,7 @@ pub enum ClearNotificationsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_notification`
+/// struct for typed errors of method [`delete_notification`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteNotificationError {
@@ -38,7 +38,7 @@ pub enum DeleteNotificationError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_notifications`
+/// struct for typed errors of method [`get_notifications`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetNotificationsError {
@@ -46,7 +46,7 @@ pub enum GetNotificationsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `mark_notification_as_read`
+/// struct for typed errors of method [`mark_notification_as_read`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum MarkNotificationAsReadError {
@@ -57,13 +57,14 @@ pub enum MarkNotificationAsReadError {
 
 /// Accept a friend request by notification `frq_` ID. Friend requests can be found using the NotificationsAPI `getNotifications` by filtering of type `friendRequest`.
 pub fn accept_friend_request(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Success, Error<AcceptFriendRequestError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/user/notifications/{notificationId}/accept", configuration.base_path, notificationId=crate::apis::urlencode(notification_id));
+    let local_var_uri_str = format!("{}/auth/user/notifications/{notificationId}/accept", local_var_configuration.base_path, notificationId=crate::apis::urlencode(notification_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -84,13 +85,14 @@ pub fn accept_friend_request(configuration: &configuration::Configuration, notif
 
 /// Clear **all** notifications.
 pub fn clear_notifications(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<ClearNotificationsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/user/notifications/clear", configuration.base_path);
+    let local_var_uri_str = format!("{}/auth/user/notifications/clear", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -111,13 +113,14 @@ pub fn clear_notifications(configuration: &configuration::Configuration, ) -> Re
 
 /// Delete a notification.
 pub fn delete_notification(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Notification, Error<DeleteNotificationError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/user/notifications/{notificationId}/hide", configuration.base_path, notificationId=crate::apis::urlencode(notification_id));
+    let local_var_uri_str = format!("{}/auth/user/notifications/{notificationId}/hide", local_var_configuration.base_path, notificationId=crate::apis::urlencode(notification_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -138,10 +141,11 @@ pub fn delete_notification(configuration: &configuration::Configuration, notific
 
 /// Retrieve all of the current user's notifications.
 pub fn get_notifications(configuration: &configuration::Configuration, _type: Option<&str>, sent: Option<bool>, hidden: Option<bool>, after: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::Notification>, Error<GetNotificationsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/user/notifications", configuration.base_path);
+    let local_var_uri_str = format!("{}/auth/user/notifications", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = _type {
@@ -162,7 +166,7 @@ pub fn get_notifications(configuration: &configuration::Configuration, _type: Op
     if let Some(ref local_var_str) = offset {
         local_var_req_builder = local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -183,13 +187,14 @@ pub fn get_notifications(configuration: &configuration::Configuration, _type: Op
 
 /// Mark a notification as seen.
 pub fn mark_notification_as_read(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Notification, Error<MarkNotificationAsReadError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/user/notifications/{notificationId}/see", configuration.base_path, notificationId=crate::apis::urlencode(notification_id));
+    let local_var_uri_str = format!("{}/auth/user/notifications/{notificationId}/see", local_var_configuration.base_path, notificationId=crate::apis::urlencode(notification_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 

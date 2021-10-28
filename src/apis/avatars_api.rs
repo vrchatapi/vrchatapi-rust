@@ -13,7 +13,7 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `create_avatar`
+/// struct for typed errors of method [`create_avatar`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateAvatarError {
@@ -21,7 +21,7 @@ pub enum CreateAvatarError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_avatar`
+/// struct for typed errors of method [`delete_avatar`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteAvatarError {
@@ -30,7 +30,7 @@ pub enum DeleteAvatarError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_avatar`
+/// struct for typed errors of method [`get_avatar`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetAvatarError {
@@ -39,7 +39,7 @@ pub enum GetAvatarError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_favorited_avatars`
+/// struct for typed errors of method [`get_favorited_avatars`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoritedAvatarsError {
@@ -48,7 +48,7 @@ pub enum GetFavoritedAvatarsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `search_avatars`
+/// struct for typed errors of method [`search_avatars`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchAvatarsError {
@@ -56,7 +56,7 @@ pub enum SearchAvatarsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `select_avatar`
+/// struct for typed errors of method [`select_avatar`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SelectAvatarError {
@@ -65,7 +65,7 @@ pub enum SelectAvatarError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `update_avatar`
+/// struct for typed errors of method [`update_avatar`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateAvatarError {
@@ -77,13 +77,14 @@ pub enum UpdateAvatarError {
 
 /// Create an avatar. It's possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
 pub fn create_avatar(configuration: &configuration::Configuration, inline_object10: Option<crate::models::InlineObject10>) -> Result<crate::models::Avatar, Error<CreateAvatarError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/avatars", configuration.base_path);
+    let local_var_uri_str = format!("{}/avatars", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     local_var_req_builder = local_var_req_builder.json(&inline_object10);
@@ -105,13 +106,14 @@ pub fn create_avatar(configuration: &configuration::Configuration, inline_object
 
 /// Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
 pub fn delete_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::Avatar, Error<DeleteAvatarError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/avatars/{avatarId}", configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
+    let local_var_uri_str = format!("{}/avatars/{avatarId}", local_var_configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -132,13 +134,14 @@ pub fn delete_avatar(configuration: &configuration::Configuration, avatar_id: &s
 
 /// Get information about a specific Avatar.
 pub fn get_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::Avatar, Error<GetAvatarError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/avatars/{avatarId}", configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
+    let local_var_uri_str = format!("{}/avatars/{avatarId}", local_var_configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -159,10 +162,11 @@ pub fn get_avatar(configuration: &configuration::Configuration, avatar_id: &str)
 
 /// Search and list favorited avatars by query filters.
 pub fn get_favorited_avatars(configuration: &configuration::Configuration, featured: Option<&str>, sort: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<GetFavoritedAvatarsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/avatars/favorites", configuration.base_path);
+    let local_var_uri_str = format!("{}/avatars/favorites", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = featured {
@@ -204,7 +208,7 @@ pub fn get_favorited_avatars(configuration: &configuration::Configuration, featu
     if let Some(ref local_var_str) = user_id {
         local_var_req_builder = local_var_req_builder.query(&[("userId", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -225,10 +229,11 @@ pub fn get_favorited_avatars(configuration: &configuration::Configuration, featu
 
 /// Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
 pub fn search_avatars(configuration: &configuration::Configuration, featured: Option<&str>, sort: Option<&str>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<SearchAvatarsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/avatars", configuration.base_path);
+    let local_var_uri_str = format!("{}/avatars", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = featured {
@@ -270,7 +275,7 @@ pub fn search_avatars(configuration: &configuration::Configuration, featured: Op
     if let Some(ref local_var_str) = platform {
         local_var_req_builder = local_var_req_builder.query(&[("platform", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -291,13 +296,14 @@ pub fn search_avatars(configuration: &configuration::Configuration, featured: Op
 
 /// Switches into that avatar.
 pub fn select_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::CurrentUser, Error<SelectAvatarError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/avatars/{avatarId}/select", configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
+    let local_var_uri_str = format!("{}/avatars/{avatarId}/select", local_var_configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -318,13 +324,14 @@ pub fn select_avatar(configuration: &configuration::Configuration, avatar_id: &s
 
 /// Update information about a specific avatar.
 pub fn update_avatar(configuration: &configuration::Configuration, avatar_id: &str, inline_object11: Option<crate::models::InlineObject11>) -> Result<crate::models::Avatar, Error<UpdateAvatarError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/avatars/{avatarId}", configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
+    let local_var_uri_str = format!("{}/avatars/{avatarId}", local_var_configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     local_var_req_builder = local_var_req_builder.json(&inline_object11);

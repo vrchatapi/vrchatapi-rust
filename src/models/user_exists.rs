@@ -10,7 +10,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct UserExists {
     /// Status if a user exist with that username or userId.
     #[serde(rename = "userExists")]

@@ -13,7 +13,7 @@ use crate::apis::ResponseContent;
 use super::{Error, configuration};
 
 
-/// struct for typed errors of method `check_user_exists`
+/// struct for typed errors of method [`check_user_exists`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CheckUserExistsError {
@@ -21,7 +21,7 @@ pub enum CheckUserExistsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `delete_user`
+/// struct for typed errors of method [`delete_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteUserError {
@@ -29,7 +29,7 @@ pub enum DeleteUserError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `get_current_user`
+/// struct for typed errors of method [`get_current_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCurrentUserError {
@@ -37,7 +37,7 @@ pub enum GetCurrentUserError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `logout`
+/// struct for typed errors of method [`logout`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LogoutError {
@@ -45,7 +45,7 @@ pub enum LogoutError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `verify2_fa`
+/// struct for typed errors of method [`verify2_fa`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum Verify2FaError {
@@ -53,7 +53,7 @@ pub enum Verify2FaError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `verify_auth_token`
+/// struct for typed errors of method [`verify_auth_token`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum VerifyAuthTokenError {
@@ -61,7 +61,7 @@ pub enum VerifyAuthTokenError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method `verify_recovery_code`
+/// struct for typed errors of method [`verify_recovery_code`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum VerifyRecoveryCodeError {
@@ -72,10 +72,11 @@ pub enum VerifyRecoveryCodeError {
 
 /// Checks if a user by a given `username`, `displayName` or `email` exist. This is used during registration to check if a username has already been taken, during change of displayName to check if a displayName is available, and during change of email to check if the email is already used. In the later two cases the `excludeUserId` is used to exclude oneself, otherwise the result would always be true.  It is **REQUIRED** to include **AT LEAST** `username`, `displayName` **or** `email` query parameter. Although they can be combined - in addition with `excludeUserId` (generally to exclude yourself) - to further fine-tune the search.
 pub fn check_user_exists(configuration: &configuration::Configuration, email: Option<&str>, display_name: Option<&str>, user_id: Option<&str>, exclude_user_id: Option<&str>) -> Result<crate::models::UserExists, Error<CheckUserExistsError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/exists", configuration.base_path);
+    let local_var_uri_str = format!("{}/auth/exists", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = email {
@@ -90,7 +91,7 @@ pub fn check_user_exists(configuration: &configuration::Configuration, email: Op
     if let Some(ref local_var_str) = exclude_user_id {
         local_var_req_builder = local_var_req_builder.query(&[("excludeUserId", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -111,13 +112,14 @@ pub fn check_user_exists(configuration: &configuration::Configuration, email: Op
 
 /// Deletes the account with given ID. Normal users only have permission to delete their own account. Account deletion is 14 days from this request, and will be cancelled if you do an authenticated request with the account afterwards.  **VRC+ NOTE:** Despite the 14-days cooldown, any VRC+ subscription will be cancelled **immediately**.  **METHOD NOTE:** Despite this being a Delete action, the method type required is PUT.
 pub fn delete_user(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::CurrentUser, Error<DeleteUserError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/user/{userId}/delete", configuration.base_path, userId=crate::apis::urlencode(user_id));
+    let local_var_uri_str = format!("{}/user/{userId}/delete", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -138,16 +140,17 @@ pub fn delete_user(configuration: &configuration::Configuration, user_id: &str) 
 
 /// This endpoint does the following two operations:   1) Checks if you are already logged in by looking for a valid `auth` cookie. If you are have a valid auth cookie then no additional auth-related actions are taken. If you are **not** logged in then it will log you in with the `Authorization` header and set the `auth` cookie. The `auth` cookie will only be sent once.   2) If logged in, this function will also return the CurrentUser object containing detailed information about the currently logged in user.  **WARNING: Session Limit:** Each authentication with login credentials counts as a separate session, out of which you have a limited amount. Make sure to save and reuse the `auth` cookie if you are often restarting the program. The provided API libraries automatically save cookies during runtime, but does not persist during restart. While it can be fine to use username/password during development, expect in production to very fast run into the rate-limit and be temporarily blocked from making new sessions until older ones expire. The exact number of simultaneous sessions is unknown/undisclosed.
 pub fn get_current_user(configuration: &configuration::Configuration, ) -> Result<crate::models::CurrentUser, Error<GetCurrentUserError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/user", configuration.base_path);
+    let local_var_uri_str = format!("{}/auth/user", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    if let Some(ref local_var_auth_conf) = configuration.basic_auth {
+    if let Some(ref local_var_auth_conf) = local_var_configuration.basic_auth {
         local_var_req_builder = local_var_req_builder.basic_auth(local_var_auth_conf.0.to_owned(), local_var_auth_conf.1.to_owned());
     };
 
@@ -168,13 +171,14 @@ pub fn get_current_user(configuration: &configuration::Configuration, ) -> Resul
 
 /// Invalidates the login session.
 pub fn logout(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<LogoutError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/logout", configuration.base_path);
+    let local_var_uri_str = format!("{}/logout", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -195,13 +199,14 @@ pub fn logout(configuration: &configuration::Configuration, ) -> Result<crate::m
 
 /// Finishes the login sequence with a normal 2FA-generated code for accounts with 2FA-protection enabled.
 pub fn verify2_fa(configuration: &configuration::Configuration, inline_object: Option<crate::models::InlineObject>) -> Result<crate::models::InlineResponse2001, Error<Verify2FaError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/twofactorauth/totp/verify", configuration.base_path);
+    let local_var_uri_str = format!("{}/auth/twofactorauth/totp/verify", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     local_var_req_builder = local_var_req_builder.json(&inline_object);
@@ -223,13 +228,14 @@ pub fn verify2_fa(configuration: &configuration::Configuration, inline_object: O
 
 /// Verify whether the currently provided Auth Token is valid.
 pub fn verify_auth_token(configuration: &configuration::Configuration, ) -> Result<crate::models::InlineResponse200, Error<VerifyAuthTokenError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth", configuration.base_path);
+    let local_var_uri_str = format!("{}/auth", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
 
@@ -250,13 +256,14 @@ pub fn verify_auth_token(configuration: &configuration::Configuration, ) -> Resu
 
 /// Finishes the login sequence with an OTP (One Time Password) recovery code for accounts with 2FA-protection enabled.
 pub fn verify_recovery_code(configuration: &configuration::Configuration, inline_object1: Option<crate::models::InlineObject1>) -> Result<crate::models::InlineResponse2001, Error<VerifyRecoveryCodeError>> {
+    let local_var_configuration = configuration;
 
-    let local_var_client = &configuration.client;
+    let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/auth/twofactorauth/otp/verify", configuration.base_path);
+    let local_var_uri_str = format!("{}/auth/twofactorauth/otp/verify", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_user_agent) = configuration.user_agent {
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     local_var_req_builder = local_var_req_builder.json(&inline_object1);

@@ -9,7 +9,7 @@
 
 
 
-#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct InlineObject13 {
     #[serde(rename = "moderated", skip_serializing_if = "Option::is_none")]
     pub moderated: Option<String>,
