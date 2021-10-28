@@ -48,6 +48,8 @@ jobs:
           branch: main
           folder: .
           commit-message: "Upgrade Rust SDK to spec ${{ env.spec_version }}"
+      - name: Remove openapi-generator-cli.jar before publish
+        run: rm openapi-generator-cli.jar
       - name: Deploy to Crates.io
         uses: katyo/publish-crates@v1
         with:
