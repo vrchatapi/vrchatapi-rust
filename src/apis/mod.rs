@@ -66,7 +66,6 @@ pub mod avatars_api;
 pub mod favorites_api;
 pub mod files_api;
 pub mod friends_api;
-pub mod instances_api;
 pub mod invite_api;
 pub mod notifications_api;
 pub mod permissions_api;

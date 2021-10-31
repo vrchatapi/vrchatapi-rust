@@ -65,7 +65,7 @@ pub enum UnmoderateUserError {
 
 
 /// ⚠️ **This will delete every single player moderation you've ever made.**
-pub fn clear_all_player_moderations(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<ClearAllPlayerModerationsError>> {
+pub fn clear_all_player_moderations(configuration: &configuration::Configuration, ) -> Result<crate::models::Error, Error<ClearAllPlayerModerationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

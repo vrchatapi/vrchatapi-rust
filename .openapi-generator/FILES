@@ -33,10 +33,8 @@ docs/FilesApi.md
 docs/FinishFileDataUploadRequest.md
 docs/FriendStatus.md
 docs/FriendsApi.md
-docs/InlineResponse404.md
 docs/Instance.md
 docs/InstancePlatforms.md
-docs/InstancesApi.md
 docs/InviteApi.md
 docs/InviteMessage.md
 docs/InviteMessageType.md
@@ -65,7 +63,6 @@ docs/TwoFactorAuthCode.md
 docs/UnityPackage.md
 docs/UpdateAvatarRequest.md
 docs/UpdateFavoriteGroupRequest.md
-docs/UpdateInviteMessageRequest.md
 docs/UpdateUserRequest.md
 docs/UpdateWorldRequest.md
 docs/User.md
@@ -86,7 +83,6 @@ src/apis/configuration.rs
 src/apis/favorites_api.rs
 src/apis/files_api.rs
 src/apis/friends_api.rs
-src/apis/instances_api.rs
 src/apis/invite_api.rs
 src/apis/mod.rs
 src/apis/notifications_api.rs
@@ -124,7 +120,6 @@ src/models/file_version.rs
 src/models/file_version_upload_status.rs
 src/models/finish_file_data_upload_request.rs
 src/models/friend_status.rs
-src/models/inline_response_404.rs
 src/models/instance.rs
 src/models/instance_platforms.rs
 src/models/invite_message.rs
@@ -151,7 +146,6 @@ src/models/two_factor_auth_code.rs
 src/models/unity_package.rs
 src/models/update_avatar_request.rs
 src/models/update_favorite_group_request.rs
-src/models/update_invite_message_request.rs
 src/models/update_user_request.rs
 src/models/update_world_request.rs
 src/models/user.rs

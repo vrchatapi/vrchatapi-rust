@@ -19,7 +19,6 @@ use super::{Error, configuration};
 pub enum GetInviteMessageError {
     Status400(crate::models::Error),
     Status401(crate::models::Error),
-    Status404(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -54,7 +53,6 @@ pub enum RequestInviteError {
 pub enum ResetInviteMessageError {
     Status400(crate::models::Error),
     Status401(crate::models::Error),
-    Status404(crate::models::InlineResponse404),
     Status429(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -79,12 +77,12 @@ pub enum UpdateInviteMessageError {
 
 
 /// Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
-pub fn get_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: &str, slot: i32) -> Result<crate::models::InviteMessage, Error<GetInviteMessageError>> {
+pub fn get_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: &str, message_id: i32) -> Result<crate::models::InviteMessage, Error<GetInviteMessageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=crate::apis::urlencode(message_type), slot=slot);
+    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{messageId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=crate::apis::urlencode(message_type), messageId=message_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -191,13 +189,13 @@ pub fn request_invite(configuration: &configuration::Configuration, user_id: &st
     }
 }
 
-/// Resets a single Invite Message back to it's original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, so it is not possible to reset within the 60 minutes countdown. Resetting it does however not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite  The DELETE endpoint does not have/require any request body.
-pub fn reset_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: &str, slot: i32) -> Result<Vec<crate::models::InviteMessage>, Error<ResetInviteMessageError>> {
+/// Resets a single Invite Message back to it's original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, but resetting it does not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 Too Fast Error.  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
+pub fn reset_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: &str, message_id: i32) -> Result<Vec<crate::models::InviteMessage>, Error<ResetInviteMessageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=crate::apis::urlencode(message_type), slot=slot);
+    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{messageId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=crate::apis::urlencode(message_type), messageId=message_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -248,19 +246,18 @@ pub fn respond_invite(configuration: &configuration::Configuration, notification
     }
 }
 
-/// Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
-pub fn update_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: &str, slot: i32, update_invite_message_request: Option<crate::models::UpdateInviteMessageRequest>) -> Result<Vec<crate::models::InviteMessage>, Error<UpdateInviteMessageError>> {
+/// Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 Too Fast Error.  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
+pub fn update_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: &str, message_id: i32) -> Result<Vec<crate::models::InviteMessage>, Error<UpdateInviteMessageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=crate::apis::urlencode(message_type), slot=slot);
+    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{messageId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=crate::apis::urlencode(message_type), messageId=message_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&update_invite_message_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;
