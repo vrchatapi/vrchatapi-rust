@@ -92,7 +92,7 @@ pub fn get_css(configuration: &configuration::Configuration, variant: Option<&st
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/css/app.js", local_var_configuration.base_path);
+    let local_var_uri_str = format!("{}/css/app.css", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_str) = variant {
@@ -120,7 +120,7 @@ pub fn get_css(configuration: &configuration::Configuration, variant: Option<&st
     }
 }
 
-/// Returns in plain format the number of currently online users.  **NOTE:** The response type is not of JSON, but is an integer in plain ASCII format.
+/// Returns the current number of online users.  **NOTE:** The response type is not a JSON object, but a simple JSON integer.
 pub fn get_current_online_users(configuration: &configuration::Configuration, ) -> Result<i32, Error<GetCurrentOnlineUsersError>> {
     let local_var_configuration = configuration;
 
@@ -210,7 +210,7 @@ pub fn get_java_script(configuration: &configuration::Configuration, variant: Op
     }
 }
 
-/// Returns in plain format the current time of the API server.  **NOTE:** The response type is not of JSON, but is a string in plain ASCII format.
+/// Returns the current time of the API server.  **NOTE:** The response type is not a JSON object, but a simple JSON string.
 pub fn get_system_time(configuration: &configuration::Configuration, ) -> Result<String, Error<GetSystemTimeError>> {
     let local_var_configuration = configuration;
 

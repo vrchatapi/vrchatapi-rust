@@ -5,7 +5,7 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_config**](SystemApi.md#get_config) | **GET** /config | Fetch API Config
-[**get_css**](SystemApi.md#get_css) | **GET** /css/app.js | Download CSS
+[**get_css**](SystemApi.md#get_css) | **GET** /css/app.css | Download CSS
 [**get_current_online_users**](SystemApi.md#get_current_online_users) | **GET** /visits | Current Online Users
 [**get_health**](SystemApi.md#get_health) | **GET** /health | Check API Health
 [**get_java_script**](SystemApi.md#get_java_script) | **GET** /js/app.js | Download JavaScript
@@ -76,7 +76,7 @@ No authorization required
 > i32 get_current_online_users()
 Current Online Users
 
-Returns in plain format the number of currently online users.  **NOTE:** The response type is not of JSON, but is an integer in plain ASCII format.
+Returns the current number of online users.  **NOTE:** The response type is not a JSON object, but a simple JSON integer.
 
 ### Parameters
 
@@ -93,7 +93,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -161,7 +161,7 @@ No authorization required
 > String get_system_time()
 Current System Time
 
-Returns in plain format the current time of the API server.  **NOTE:** The response type is not of JSON, but is a string in plain ASCII format.
+Returns the current time of the API server.  **NOTE:** The response type is not a JSON object, but a simple JSON string.
 
 ### Parameters
 
@@ -178,7 +178,7 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: text/plain
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
