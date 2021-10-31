@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## clear_all_player_moderations
 
-> crate::models::Error clear_all_player_moderations()
+> crate::models::Success clear_all_player_moderations()
 Clear All Player Moderations
 
 ⚠️ **This will delete every single player moderation you've ever made.**
@@ -26,7 +26,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::Error**](Error.md)
+[**crate::models::Success**](Success.md)
 
 ### Authorization
 
