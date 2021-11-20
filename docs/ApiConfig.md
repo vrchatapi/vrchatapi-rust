@@ -44,7 +44,7 @@ Name | Type | Description | Notes
 **disable_upgrade_account** | **bool** | Toggles if account upgrading \"linking with Steam/Oculus\" should be disabled. | [default to false]
 **download_link_windows** | **String** | Download link for game on the Oculus Rift website. | 
 **download_urls** | [**crate::models::DownloadUrlList**](DownloadURLList.md) |  | 
-**dynamic_world_rows** | [**Vec<crate::models::DynamicWorldRow>**](DynamicWorldRow.md) | Array of DynamicWorldRow objects, used by the game to display the list of world rows | 
+**dynamic_world_rows** | [**Vec<crate::models::DynamicContentRow>**](DynamicContentRow.md) | Array of DynamicWorldRow objects, used by the game to display the list of world rows | 
 **events** | [**crate::models::ApiEventConfig**](APIEventConfig.md) |  | 
 **gear_demo_room_id** | **String** | Unknown | 
 **home_world_id** | **String** |  | 

@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **allow_avatar_copying** | **bool** |  | 
 **bio** | **String** |  | 
 **bio_links** | **Vec<String>** |  | 
-**current_avatar_image_url** | **String** |  | 
-**current_avatar_thumbnail_image_url** | **String** |  | 
+**current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
+**current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **date_joined** | [**String**](string.md) |  | [readonly]
 **developer_type** | [**crate::models::DeveloperType**](DeveloperType.md) |  | 
 **display_name** | **String** |  | 

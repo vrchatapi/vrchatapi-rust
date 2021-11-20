@@ -186,7 +186,7 @@ Name | Type | Description  | Required | Notes
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **_type** | Option<**String**> | The type of favorites to return, FavoriteType. |  |
-**tag** | Option<**String**> | Tags to include (comma-separated). |  |
+**tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 
 ### Return type
 

@@ -5,8 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bio** | Option<**String**> |  | [optional]
-**current_avatar_image_url** | **String** |  | 
-**current_avatar_thumbnail_image_url** | **String** |  | 
+**current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
+**current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **developer_type** | [**crate::models::DeveloperType**](DeveloperType.md) |  | 
 **display_name** | **String** |  | 
 **fallback_avatar** | **String** |  | 

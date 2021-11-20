@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**get_css**](SystemApi.md#get_css) | **GET** /css/app.css | Download CSS
 [**get_current_online_users**](SystemApi.md#get_current_online_users) | **GET** /visits | Current Online Users
 [**get_health**](SystemApi.md#get_health) | **GET** /health | Check API Health
+[**get_info_push**](SystemApi.md#get_info_push) | **GET** /infoPush | Show Information Notices
 [**get_java_script**](SystemApi.md#get_java_script) | **GET** /js/app.js | Download JavaScript
 [**get_system_time**](SystemApi.md#get_system_time) | **GET** /time | Current System Time
 
@@ -112,6 +113,37 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**crate::models::ApiHealth**](APIHealth.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_info_push
+
+> Vec<crate::models::InfoPush> get_info_push(require, include)
+Show Information Notices
+
+IPS (Info Push System) is a system for VRChat to push out dynamic information to the client. This is primarily used by the Quick-Menu info banners, but can also be used to e.g. alert you to update your game to the latest version.  `include` is used to query what Information Pushes should be included in the response. If include is missing or empty, then no notices will normally be returned. This is an \"any of\" search.  `require` is used to limit what Information Pushes should be included in the response. This is usually used in combination with `include`, and is an \"all of\" search.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**require** | Option<**String**> | Tags to include (comma-separated). All of the tags needs to be present. |  |
+**include** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
+
+### Return type
+
+[**Vec<crate::models::InfoPush>**](InfoPush.md)
 
 ### Authorization
 

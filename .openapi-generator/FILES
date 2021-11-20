@@ -16,7 +16,7 @@ docs/CurrentUser.md
 docs/DeploymentGroup.md
 docs/DeveloperType.md
 docs/DownloadUrlList.md
-docs/DynamicWorldRow.md
+docs/DynamicContentRow.md
 docs/EconomyApi.md
 docs/Error.md
 docs/Favorite.md
@@ -34,6 +34,11 @@ docs/FilesApi.md
 docs/FinishFileDataUploadRequest.md
 docs/FriendStatus.md
 docs/FriendsApi.md
+docs/InfoPush.md
+docs/InfoPushData.md
+docs/InfoPushDataArticle.md
+docs/InfoPushDataArticleContent.md
+docs/InfoPushDataClickable.md
 docs/Instance.md
 docs/InstancePlatforms.md
 docs/InstancesApi.md
@@ -123,7 +128,7 @@ src/models/current_user.rs
 src/models/deployment_group.rs
 src/models/developer_type.rs
 src/models/download_url_list.rs
-src/models/dynamic_world_row.rs
+src/models/dynamic_content_row.rs
 src/models/error.rs
 src/models/favorite.rs
 src/models/favorite_group.rs
@@ -137,6 +142,11 @@ src/models/file_version.rs
 src/models/file_version_upload_status.rs
 src/models/finish_file_data_upload_request.rs
 src/models/friend_status.rs
+src/models/info_push.rs
+src/models/info_push_data.rs
+src/models/info_push_data_article.rs
+src/models/info_push_data_article_content.rs
+src/models/info_push_data_clickable.rs
 src/models/instance.rs
 src/models/instance_platforms.rs
 src/models/invite_message.rs

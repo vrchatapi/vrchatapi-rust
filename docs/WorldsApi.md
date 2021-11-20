@@ -98,7 +98,7 @@ Name | Type | Description  | Required | Notes
 **order** | Option<**String**> |  |  |[default to descending]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
-**tag** | Option<**String**> | Tags to include (comma-separated). |  |
+**tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
 **release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
@@ -139,7 +139,7 @@ Name | Type | Description  | Required | Notes
 **order** | Option<**String**> |  |  |[default to descending]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
-**tag** | Option<**String**> | Tags to include (comma-separated). |  |
+**tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
 **release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
@@ -181,7 +181,7 @@ Name | Type | Description  | Required | Notes
 **order** | Option<**String**> |  |  |[default to descending]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
-**tag** | Option<**String**> | Tags to include (comma-separated). |  |
+**tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
 **release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
@@ -376,7 +376,7 @@ Name | Type | Description  | Required | Notes
 **order** | Option<**String**> |  |  |[default to descending]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
-**tag** | Option<**String**> | Tags to include (comma-separated). |  |
+**tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
 **release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
