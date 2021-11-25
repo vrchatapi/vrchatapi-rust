@@ -15,6 +15,7 @@ pub struct World {
     pub asset_url: String,
     #[serde(rename = "assetUrlObject")]
     pub asset_url_object: serde_json::Value,
+    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "authorId")]
     pub author_id: String,
     #[serde(rename = "authorName")]
@@ -31,6 +32,7 @@ pub struct World {
     pub featured: bool,
     #[serde(rename = "heat")]
     pub heat: i32,
+    /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "imageUrl")]

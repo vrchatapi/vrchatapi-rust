@@ -47,9 +47,9 @@ Name | Type | Description | Notes
 **dynamic_world_rows** | [**Vec<crate::models::DynamicContentRow>**](DynamicContentRow.md) | Array of DynamicWorldRow objects, used by the game to display the list of world rows | 
 **events** | [**crate::models::ApiEventConfig**](APIEventConfig.md) |  | 
 **gear_demo_room_id** | **String** | Unknown | 
-**home_world_id** | **String** |  | 
+**home_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **homepage_redirect_target** | **String** | Redirect target if you try to open the base API domain in your browser | [default to https://hello.vrchat.com]
-**hub_world_id** | **String** |  | 
+**hub_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **jobs_email** | **String** | VRChat's job application email | 
 **message_of_the_day** | **String** | MOTD | 
 **moderation_email** | **String** | VRChat's moderation related email | 
@@ -66,8 +66,8 @@ Name | Type | Description | Notes
 **sdk_unity_version** | **String** | Unity version supported by the SDK | 
 **server_name** | **String** | Server name of the API server currently responding | 
 **support_email** | **String** | VRChat's support email | 
-**time_out_world_id** | **String** |  | 
-**tutorial_world_id** | **String** |  | 
+**time_out_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
+**tutorial_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **update_rate_ms_maximum** | **i32** | Unknown | 
 **update_rate_ms_minimum** | **i32** | Unknown | 
 **update_rate_ms_normal** | **i32** | Unknown | 

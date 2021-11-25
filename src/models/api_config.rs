@@ -136,11 +136,13 @@ pub struct ApiConfig {
     /// Unknown
     #[serde(rename = "gearDemoRoomId")]
     pub gear_demo_room_id: String,
+    /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "homeWorldId")]
     pub home_world_id: String,
     /// Redirect target if you try to open the base API domain in your browser
     #[serde(rename = "homepageRedirectTarget")]
     pub homepage_redirect_target: String,
+    /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "hubWorldId")]
     pub hub_world_id: String,
     /// VRChat's job application email
@@ -191,8 +193,10 @@ pub struct ApiConfig {
     /// VRChat's support email
     #[serde(rename = "supportEmail")]
     pub support_email: String,
+    /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "timeOutWorldId")]
     pub time_out_world_id: String,
+    /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "tutorialWorldId")]
     pub tutorial_world_id: String,
     /// Unknown

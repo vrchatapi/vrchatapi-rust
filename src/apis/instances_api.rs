@@ -38,7 +38,7 @@ pub enum SendSelfInviteError {
 }
 
 
-/// Returns an instance.
+/// Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.  If an invalid instanceId is provided, this endpoint will simply return \"null\"!
 pub fn get_instance(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::Instance, Error<GetInstanceError>> {
     let local_var_configuration = configuration;
 

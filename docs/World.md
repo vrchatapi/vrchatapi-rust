@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **asset_url** | **String** |  | 
 **asset_url_object** | [**serde_json::Value**](.md) |  | 
-**author_id** | **String** |  | 
+**author_id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
 **author_name** | **String** |  | 
 **capacity** | **i32** |  | 
 **created_at** | **String** |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **favorites** | Option<**i32**> |  | [optional][default to 0]
 **featured** | **bool** |  | [default to false]
 **heat** | **i32** |  | [default to 0]
-**id** | **String** |  | 
+**id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **image_url** | **String** |  | 
 **instances** | Option<[**Vec<Vec<serde_json::Value>>**](array.md)> |  | [optional]
 **labs_publication_date** | **String** |  | 

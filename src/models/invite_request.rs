@@ -11,6 +11,7 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct InviteRequest {
+    /// InstanceID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "instanceId")]
     pub instance_id: String,
 }

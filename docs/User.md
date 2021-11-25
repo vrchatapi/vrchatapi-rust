@@ -4,29 +4,29 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**allow_avatar_copying** | **bool** |  | 
+**allow_avatar_copying** | **bool** |  | [default to true]
 **bio** | **String** |  | 
 **bio_links** | **Vec<String>** |  | 
 **current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
-**date_joined** | [**String**](string.md) |  | [readonly]
+**date_joined** | [**String**](string.md) |  | 
 **developer_type** | [**crate::models::DeveloperType**](DeveloperType.md) |  | 
-**display_name** | **String** |  | 
+**display_name** | **String** | A users visual display name. This is what shows up in-game, and can different from their `username`. Changing display name is restricted to a cooldown period. | 
 **friend_key** | **String** |  | 
-**id** | **String** |  | 
-**instance_id** | Option<**String**> |  | [optional]
-**is_friend** | **bool** |  | 
-**last_login** | **String** |  | 
+**id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
+**instance_id** | Option<**String**> | InstanceID be \"offline\" on User profiles if you are not friends with that user. | [optional]
+**is_friend** | **bool** | Either their `friendKey`, or empty string if you are not friends. Unknown usage. | 
+**last_login** | **String** | Either a date-time or empty string. | 
 **last_platform** | **String** | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
-**location** | Option<**String**> |  | [optional]
+**location** | Option<**String**> | WorldID be \"offline\" on User profiles if you are not friends with that user. | [optional]
 **profile_pic_override** | **String** |  | 
 **state** | [**crate::models::UserState**](UserState.md) |  | 
 **status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
 **status_description** | **String** |  | 
 **tags** | **Vec<String>** |  | 
 **user_icon** | **String** |  | 
-**username** | **String** |  | 
-**world_id** | Option<**String**> |  | [optional]
+**username** | **String** | A users unique name, used during login. This is different from `displayName` which is what shows up in-game. A users `username` can never be changed. | 
+**world_id** | Option<**String**> | WorldID be \"offline\" on User profiles if you are not friends with that user. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

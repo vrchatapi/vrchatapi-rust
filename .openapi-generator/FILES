@@ -41,6 +41,7 @@ docs/InfoPushDataArticleContent.md
 docs/InfoPushDataClickable.md
 docs/Instance.md
 docs/InstancePlatforms.md
+docs/InstanceType.md
 docs/InstancesApi.md
 docs/InviteApi.md
 docs/InviteMessage.md
@@ -66,6 +67,7 @@ docs/PlayerModeration.md
 docs/PlayerModerationType.md
 docs/PlayermoderationApi.md
 docs/PublicAnnouncement.md
+docs/Region.md
 docs/ReleaseStatus.md
 docs/Response.md
 docs/Subscription.md
@@ -149,6 +151,7 @@ src/models/info_push_data_article_content.rs
 src/models/info_push_data_clickable.rs
 src/models/instance.rs
 src/models/instance_platforms.rs
+src/models/instance_type.rs
 src/models/invite_message.rs
 src/models/invite_message_type.rs
 src/models/invite_request.rs
@@ -170,6 +173,7 @@ src/models/permission.rs
 src/models/player_moderation.rs
 src/models/player_moderation_type.rs
 src/models/public_announcement.rs
+src/models/region.rs
 src/models/release_status.rs
 src/models/response.rs
 src/models/subscription.rs
