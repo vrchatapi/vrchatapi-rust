@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**asset_url** | **String** |  | 
+**asset_url** | **String** | Empty if unauthenticated. | 
 **asset_url_object** | [**serde_json::Value**](.md) |  | 
 **author_id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
 **author_name** | **String** |  | 
@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **tags** | **Vec<String>** |  | 
 **thumbnail_image_url** | **String** |  | 
 **unity_package_url_object** | [**serde_json::Value**](.md) |  | 
-**unity_packages** | [**Vec<crate::models::UnityPackage>**](UnityPackage.md) |  | 
+**unity_packages** | [**Vec<crate::models::UnityPackage>**](UnityPackage.md) | Empty if unauthenticated. | 
 **updated_at** | **String** |  | 
 **version** | **i32** |  | [default to 0]
 **visits** | **i32** |  | [default to 0]

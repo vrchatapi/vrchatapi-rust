@@ -11,6 +11,7 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct World {
+    /// Empty if unauthenticated.
     #[serde(rename = "assetUrl")]
     pub asset_url: String,
     #[serde(rename = "assetUrlObject")]
@@ -69,6 +70,7 @@ pub struct World {
     pub thumbnail_image_url: String,
     #[serde(rename = "unityPackageUrlObject")]
     pub unity_package_url_object: serde_json::Value,
+    /// Empty if unauthenticated.
     #[serde(rename = "unityPackages")]
     pub unity_packages: Vec<crate::models::UnityPackage>,
     #[serde(rename = "updated_at")]
