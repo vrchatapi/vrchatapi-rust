@@ -19,6 +19,8 @@ pub enum Region {
     Eu,
     #[serde(rename = "jp")]
     Jp,
+    #[serde(rename = "unknown")]
+    Unknown,
 
 }
 
@@ -29,6 +31,7 @@ impl ToString for Region {
             Self::_Use => String::from("use"),
             Self::Eu => String::from("eu"),
             Self::Jp => String::from("jp"),
+            Self::Unknown => String::from("unknown"),
         }
     }
 }
