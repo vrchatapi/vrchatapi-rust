@@ -110,7 +110,7 @@ Name | Type | Description  | Required | Notes
 
 ## request_invite
 
-> crate::models::Notification request_invite(user_id)
+> crate::models::Notification request_invite(user_id, request_invite_request)
 Request Invite
 
 Requests an invite from a user. Returns the Notification of type `requestInvite` that was sent.
@@ -121,6 +121,7 @@ Requests an invite from a user. Returns the Notification of type `requestInvite`
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** |  | [required] |
+**request_invite_request** | Option<[**RequestInviteRequest**](RequestInviteRequest.md)> | Slot number of the Request Message to use when request an invite. |  |
 
 ### Return type
 
@@ -132,7 +133,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -183,7 +184,7 @@ Respond to an invite request by sending a world invite to the requesting user. `
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **notification_id** | **String** |  | [required] |
-**invite_response** | Option<[**InviteResponse**](InviteResponse.md)> | Instance ID when inviting a user. |  |
+**invite_response** | Option<[**InviteResponse**](InviteResponse.md)> | Slot number of the Response Message to use when responding to a user. |  |
 
 ### Return type
 

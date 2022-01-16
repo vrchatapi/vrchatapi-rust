@@ -114,6 +114,8 @@ pub mod region;
 pub use self::region::Region;
 pub mod release_status;
 pub use self::release_status::ReleaseStatus;
+pub mod request_invite_request;
+pub use self::request_invite_request::RequestInviteRequest;
 pub mod response;
 pub use self::response::Response;
 pub mod subscription;

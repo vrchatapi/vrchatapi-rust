@@ -69,6 +69,7 @@ docs/PlayermoderationApi.md
 docs/PublicAnnouncement.md
 docs/Region.md
 docs/ReleaseStatus.md
+docs/RequestInviteRequest.md
 docs/Response.md
 docs/Subscription.md
 docs/SubscriptionPeriod.md
@@ -175,6 +176,7 @@ src/models/player_moderation_type.rs
 src/models/public_announcement.rs
 src/models/region.rs
 src/models/release_status.rs
+src/models/request_invite_request.rs
 src/models/response.rs
 src/models/subscription.rs
 src/models/subscription_period.rs

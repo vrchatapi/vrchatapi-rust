@@ -10,18 +10,14 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct InviteRequest {
-    /// InstanceID be \"offline\" on User profiles if you are not friends with that user.
-    #[serde(rename = "instanceId")]
-    pub instance_id: String,
+pub struct RequestInviteRequest {
     #[serde(rename = "messageSlot", skip_serializing_if = "Option::is_none")]
     pub message_slot: Option<i32>,
 }
 
-impl InviteRequest {
-    pub fn new(instance_id: String) -> InviteRequest {
-        InviteRequest {
-            instance_id,
+impl RequestInviteRequest {
+    pub fn new() -> RequestInviteRequest {
+        RequestInviteRequest {
             message_slot: None,
         }
     }

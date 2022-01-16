@@ -164,7 +164,7 @@ pub fn invite_user(configuration: &configuration::Configuration, user_id: &str, 
 }
 
 /// Requests an invite from a user. Returns the Notification of type `requestInvite` that was sent.
-pub fn request_invite(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Notification, Error<RequestInviteError>> {
+pub fn request_invite(configuration: &configuration::Configuration, user_id: &str, request_invite_request: Option<crate::models::RequestInviteRequest>) -> Result<crate::models::Notification, Error<RequestInviteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -175,6 +175,7 @@ pub fn request_invite(configuration: &configuration::Configuration, user_id: &st
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
+    local_var_req_builder = local_var_req_builder.json(&request_invite_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;
