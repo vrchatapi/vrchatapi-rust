@@ -313,7 +313,7 @@ Name | Type | Description  | Required | Notes
 **file_id** | **String** |  | [required] |
 **version_id** | **i32** |  | [required] |
 **file_type** | **String** |  | [required] |
-**part_number** | **i32** |  | [required] |
+**part_number** | Option<**i32**> |  |  |
 
 ### Return type
 

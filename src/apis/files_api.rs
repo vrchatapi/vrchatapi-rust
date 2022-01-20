@@ -357,7 +357,7 @@ pub fn get_files(configuration: &configuration::Configuration, tag: Option<&str>
 }
 
 /// Starts an upload of a specific FilePart. This endpoint will return an AWS URL which you can PUT data to. You need to call this and receive a new AWS API URL for each `partNumber`. Please see AWS's REST documentation on \"PUT Object to S3\" on how to upload. Once all parts has been uploaded, proceed to `/finish` endpoint.  **Note:** `nextPartNumber` seems like it is always ignored. Despite it returning 0, first partNumber is always 1.
-pub fn start_file_data_upload(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str, part_number: i32) -> Result<crate::models::FileUploadUrl, Error<StartFileDataUploadError>> {
+pub fn start_file_data_upload(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str, part_number: Option<i32>) -> Result<crate::models::FileUploadUrl, Error<StartFileDataUploadError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -365,7 +365,9 @@ pub fn start_file_data_upload(configuration: &configuration::Configuration, file
     let local_var_uri_str = format!("{}/file/{fileId}/{versionId}/{fileType}/start", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id, fileType=crate::apis::urlencode(file_type));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
-    local_var_req_builder = local_var_req_builder.query(&[("partNumber", &part_number.to_string())]);
+    if let Some(ref local_var_str) = part_number {
+        local_var_req_builder = local_var_req_builder.query(&[("partNumber", &local_var_str.to_string())]);
+    }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }

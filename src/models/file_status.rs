@@ -16,6 +16,8 @@ pub enum FileStatus {
     Complete,
     #[serde(rename = "none")]
     None,
+    #[serde(rename = "queued")]
+    Queued,
 
 }
 
@@ -25,6 +27,7 @@ impl ToString for FileStatus {
             Self::Waiting => String::from("waiting"),
             Self::Complete => String::from("complete"),
             Self::None => String::from("none"),
+            Self::Queued => String::from("queued"),
         }
     }
 }
