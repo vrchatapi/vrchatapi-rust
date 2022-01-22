@@ -23,12 +23,12 @@ pub struct Instance {
     pub client_number: String,
     #[serde(rename = "full")]
     pub full: bool,
-    /// InstanceID be \"offline\" on User profiles if you are not friends with that user.
+    /// InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance.
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "instanceId")]
     pub instance_id: String,
-    /// InstanceID be \"offline\" on User profiles if you are not friends with that user.
+    /// InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance.
     #[serde(rename = "location")]
     pub location: String,
     #[serde(rename = "n_users")]

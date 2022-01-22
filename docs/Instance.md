@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **capacity** | **i32** |  | 
 **client_number** | **String** | Always returns \"unknown\". | 
 **full** | **bool** |  | [default to false]
-**id** | **String** | InstanceID be \"offline\" on User profiles if you are not friends with that user. | 
+**id** | **String** | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | 
 **instance_id** | **String** |  | 
-**location** | **String** | InstanceID be \"offline\" on User profiles if you are not friends with that user. | 
+**location** | **String** | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | 
 **n_users** | **i32** |  | 
 **name** | **String** |  | 
 **owner_id** | Option<**String**> | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | [optional]

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **display_name** | **String** | A users visual display name. This is what shows up in-game, and can different from their `username`. Changing display name is restricted to a cooldown period. | 
 **friend_key** | **String** |  | 
 **id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
-**instance_id** | Option<**String**> | InstanceID be \"offline\" on User profiles if you are not friends with that user. | [optional]
+**instance_id** | Option<**String**> | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | [optional]
 **is_friend** | **bool** | Either their `friendKey`, or empty string if you are not friends. Unknown usage. | 
 **last_login** | **String** | Either a date-time or empty string. | 
 **last_platform** | **String** | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
