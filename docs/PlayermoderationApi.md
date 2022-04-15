@@ -136,7 +136,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::PlayerModeration moderate_user(moderate_user_request)
 Moderate User
 
-Moderate a user, e.g. unmute them or show their avatar.
+Moderate a user, e.g. unmute them or show their avatar.  Please see the [Player Moderation docs](https://vrchatapi.github.io/docs/api/#tag--playermoderation) on what playerModerations are, and how they differ from staff moderations.
 
 ### Parameters
 

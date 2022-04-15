@@ -47,7 +47,7 @@ Name | Type | Description | Notes
 **steam_id** | **String** |  | 
 **tags** | **Vec<String>** |  | 
 **two_factor_auth_enabled** | **bool** |  | 
-**two_factor_auth_enabled_date** | **String** |  | 
+**two_factor_auth_enabled_date** | Option<**String**> |  | [optional]
 **unsubscribe** | **bool** |  | 
 **user_icon** | **String** |  | 
 **username** | **String** |  | 
