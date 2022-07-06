@@ -92,7 +92,7 @@ Search and list currently Active worlds by query filters.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**featured** | Option<**String**> | Filters on featured results. |  |
+**featured** | Option<**bool**> | Filters on featured results. |  |
 **sort** | Option<**String**> |  |  |[default to popularity]
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **order** | Option<**String**> |  |  |[default to descending]
@@ -133,7 +133,7 @@ Search and list favorited worlds by query filters.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**featured** | Option<**String**> | Filters on featured results. |  |
+**featured** | Option<**bool**> | Filters on featured results. |  |
 **sort** | Option<**String**> |  |  |[default to popularity]
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **order** | Option<**String**> |  |  |[default to descending]
@@ -175,7 +175,7 @@ Search and list recently visited worlds by query filters.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**featured** | Option<**String**> | Filters on featured results. |  |
+**featured** | Option<**bool**> | Filters on featured results. |  |
 **sort** | Option<**String**> |  |  |[default to popularity]
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **order** | Option<**String**> |  |  |[default to descending]
@@ -368,7 +368,7 @@ Search and list any worlds by query filters.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**featured** | Option<**String**> | Filters on featured results. |  |
+**featured** | Option<**bool**> | Filters on featured results. |  |
 **sort** | Option<**String**> |  |  |[default to popularity]
 **user** | Option<**String**> | Set to `me` for searching own worlds. |  |
 **user_id** | Option<**String**> | Filter by UserID. |  |

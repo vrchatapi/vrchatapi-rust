@@ -184,7 +184,7 @@ pub fn delete_world(configuration: &configuration::Configuration, world_id: &str
 }
 
 /// Search and list currently Active worlds by query filters.
-pub fn get_active_worlds(configuration: &configuration::Configuration, featured: Option<&str>, sort: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetActiveWorldsError>> {
+pub fn get_active_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetActiveWorldsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -248,7 +248,7 @@ pub fn get_active_worlds(configuration: &configuration::Configuration, featured:
 }
 
 /// Search and list favorited worlds by query filters.
-pub fn get_favorited_worlds(configuration: &configuration::Configuration, featured: Option<&str>, sort: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetFavoritedWorldsError>> {
+pub fn get_favorited_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetFavoritedWorldsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -315,7 +315,7 @@ pub fn get_favorited_worlds(configuration: &configuration::Configuration, featur
 }
 
 /// Search and list recently visited worlds by query filters.
-pub fn get_recent_worlds(configuration: &configuration::Configuration, featured: Option<&str>, sort: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetRecentWorldsError>> {
+pub fn get_recent_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetRecentWorldsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -522,7 +522,7 @@ pub fn publish_world(configuration: &configuration::Configuration, world_id: &st
 }
 
 /// Search and list any worlds by query filters.
-pub fn search_worlds(configuration: &configuration::Configuration, featured: Option<&str>, sort: Option<&str>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<SearchWorldsError>> {
+pub fn search_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<&str>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<SearchWorldsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

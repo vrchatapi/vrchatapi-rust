@@ -117,7 +117,7 @@ Search and list favorited avatars by query filters.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**featured** | Option<**String**> | Filters on featured results. |  |
+**featured** | Option<**bool**> | Filters on featured results. |  |
 **sort** | Option<**String**> |  |  |[default to popularity]
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **order** | Option<**String**> |  |  |[default to descending]
@@ -159,7 +159,7 @@ Search and list avatars by query filters. You can only search your own or featur
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**featured** | Option<**String**> | Filters on featured results. |  |
+**featured** | Option<**bool**> | Filters on featured results. |  |
 **sort** | Option<**String**> |  |  |[default to popularity]
 **user** | Option<**String**> | Set to `me` for searching own avatars. |  |
 **user_id** | Option<**String**> | Filter by UserID. |  |

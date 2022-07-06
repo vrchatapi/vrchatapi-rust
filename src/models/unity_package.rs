@@ -29,7 +29,7 @@ pub struct UnityPackage {
     #[serde(rename = "pluginUrlObject", skip_serializing_if = "Option::is_none")]
     pub plugin_url_object: Option<serde_json::Value>,
     #[serde(rename = "unitySortNumber", skip_serializing_if = "Option::is_none")]
-    pub unity_sort_number: Option<i32>,
+    pub unity_sort_number: Option<i64>,
     #[serde(rename = "unityVersion")]
     pub unity_version: String,
 }

@@ -171,7 +171,7 @@ pub fn get_avatar(configuration: &configuration::Configuration, avatar_id: &str)
 }
 
 /// Search and list favorited avatars by query filters.
-pub fn get_favorited_avatars(configuration: &configuration::Configuration, featured: Option<&str>, sort: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<GetFavoritedAvatarsError>> {
+pub fn get_favorited_avatars(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<GetFavoritedAvatarsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -238,7 +238,7 @@ pub fn get_favorited_avatars(configuration: &configuration::Configuration, featu
 }
 
 /// Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
-pub fn search_avatars(configuration: &configuration::Configuration, featured: Option<&str>, sort: Option<&str>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<SearchAvatarsError>> {
+pub fn search_avatars(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<&str>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<&str>, offset: Option<i32>, tag: Option<&str>, notag: Option<&str>, release_status: Option<&str>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<SearchAvatarsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
