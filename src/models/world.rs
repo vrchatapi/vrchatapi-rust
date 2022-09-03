@@ -14,8 +14,6 @@ pub struct World {
     /// Empty if unauthenticated.
     #[serde(rename = "assetUrl")]
     pub asset_url: String,
-    #[serde(rename = "assetUrlObject")]
-    pub asset_url_object: serde_json::Value,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "authorId")]
     pub author_id: String,
@@ -50,8 +48,6 @@ pub struct World {
     pub occupants: Option<i32>,
     #[serde(rename = "organization")]
     pub organization: String,
-    #[serde(rename = "pluginUrlObject")]
-    pub plugin_url_object: serde_json::Value,
     #[serde(rename = "popularity")]
     pub popularity: i32,
     #[serde(rename = "previewYoutubeId", skip_serializing_if = "Option::is_none")]
@@ -68,8 +64,6 @@ pub struct World {
     pub tags: Vec<String>,
     #[serde(rename = "thumbnailImageUrl")]
     pub thumbnail_image_url: String,
-    #[serde(rename = "unityPackageUrlObject")]
-    pub unity_package_url_object: serde_json::Value,
     /// Empty if unauthenticated.
     #[serde(rename = "unityPackages")]
     pub unity_packages: Vec<crate::models::UnityPackage>,
@@ -82,10 +76,9 @@ pub struct World {
 }
 
 impl World {
-    pub fn new(asset_url: String, asset_url_object: serde_json::Value, author_id: String, author_name: String, capacity: i32, created_at: String, description: String, featured: bool, heat: i32, id: String, image_url: String, labs_publication_date: String, name: String, namespace: String, organization: String, plugin_url_object: serde_json::Value, popularity: i32, publication_date: String, release_status: crate::models::ReleaseStatus, tags: Vec<String>, thumbnail_image_url: String, unity_package_url_object: serde_json::Value, unity_packages: Vec<crate::models::UnityPackage>, updated_at: String, version: i32, visits: i32) -> World {
+    pub fn new(asset_url: String, author_id: String, author_name: String, capacity: i32, created_at: String, description: String, featured: bool, heat: i32, id: String, image_url: String, labs_publication_date: String, name: String, namespace: String, organization: String, popularity: i32, publication_date: String, release_status: crate::models::ReleaseStatus, tags: Vec<String>, thumbnail_image_url: String, unity_packages: Vec<crate::models::UnityPackage>, updated_at: String, version: i32, visits: i32) -> World {
         World {
             asset_url,
-            asset_url_object,
             author_id,
             author_name,
             capacity,
@@ -102,7 +95,6 @@ impl World {
             namespace,
             occupants: None,
             organization,
-            plugin_url_object,
             popularity,
             preview_youtube_id: None,
             private_occupants: None,
@@ -111,7 +103,6 @@ impl World {
             release_status,
             tags,
             thumbnail_image_url,
-            unity_package_url_object,
             unity_packages,
             updated_at,
             version,

@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_invite_message**](InviteApi.md#get_invite_message) | **GET** /message/{userId}/{messageType}/{slot} | Get Invite Message
 [**get_invite_messages**](InviteApi.md#get_invite_messages) | **GET** /message/{userId}/{messageType} | List Invite Messages
+[**invite_myself_to**](InviteApi.md#invite_myself_to) | **POST** /invite/myself/to/{worldId}:{instanceId} | Invite Myself To Instance
 [**invite_user**](InviteApi.md#invite_user) | **POST** /invite/{userId} | Invite User
 [**request_invite**](InviteApi.md#request_invite) | **POST** /requestInvite/{userId} | Request Invite
 [**reset_invite_message**](InviteApi.md#reset_invite_message) | **DELETE** /message/{userId}/{messageType}/{slot} | Reset Invite Message
@@ -77,9 +78,41 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## invite_myself_to
+
+> crate::models::SentNotification invite_myself_to(world_id, instance_id, invite_myself_to_request)
+Invite Myself To Instance
+
+Sends self an invite to an instance
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**world_id** | **String** |  | [required] |
+**instance_id** | **String** |  | [required] |
+**invite_myself_to_request** | Option<[**InviteMyselfToRequest**](InviteMyselfToRequest.md)> |  |  |
+
+### Return type
+
+[**crate::models::SentNotification**](SentNotification.md)
+
+### Authorization
+
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## invite_user
 
-> crate::models::Notification invite_user(user_id, invite_request)
+> crate::models::SentNotification invite_user(user_id, invite_request)
 Invite User
 
 Sends an invite to a user. Returns the Notification of type `invite` that was sent.
@@ -94,7 +127,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Notification**](Notification.md)
+[**crate::models::SentNotification**](SentNotification.md)
 
 ### Authorization
 

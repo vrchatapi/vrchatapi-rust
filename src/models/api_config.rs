@@ -242,15 +242,15 @@ pub struct ApiConfig {
     #[serde(rename = "worldUpdatePeriod")]
     pub world_update_period: i32,
     /// Currently used youtube-dl.exe hash in SHA-256-delimited format
-    #[serde(rename = "youtubedl-hash")]
-    pub youtubedl_hash: String,
+    #[serde(rename = "player-url-resolver-hash")]
+    pub player_url_resolver_hash: String,
     /// Currently used youtube-dl.exe version
-    #[serde(rename = "youtubedl-version")]
-    pub youtubedl_version: String,
+    #[serde(rename = "player-url-resolver-version")]
+    pub player_url_resolver_version: String,
 }
 
 impl ApiConfig {
-    pub fn new(voice_enable_degradation: bool, voice_enable_receiver_limiting: bool, address: String, announcements: Vec<crate::models::PublicAnnouncement>, api_key: String, app_name: String, build_version_tag: String, client_api_key: String, client_bps_ceiling: i32, client_disconnect_timeout: i32, client_reserved_player_bps: i32, client_sent_count_allowance: i32, contact_email: String, copyright_email: String, current_tos_version: i32, default_avatar: String, deployment_group: crate::models::DeploymentGroup, dev_app_version_standalone: String, dev_download_link_windows: String, dev_sdk_url: String, dev_sdk_version: String, dev_server_version_standalone: String, dis_countdown: String, disable_avatar_copying: bool, disable_avatar_gating: bool, disable_community_labs: bool, disable_community_labs_promotion: bool, disable_email: bool, disable_event_stream: bool, disable_feedback_gating: bool, disable_frontend_builds: bool, disable_hello: bool, disable_oculus_subs: bool, disable_registration: bool, disable_steam_networking: bool, disable_two_factor_auth: bool, disable_udon: bool, disable_upgrade_account: bool, download_link_windows: String, download_urls: crate::models::DownloadUrlList, dynamic_world_rows: Vec<crate::models::DynamicContentRow>, events: crate::models::ApiEventConfig, gear_demo_room_id: String, home_world_id: String, homepage_redirect_target: String, hub_world_id: String, jobs_email: String, message_of_the_day: String, moderation_email: String, moderation_query_period: i32, not_allowed_to_select_avatar_in_private_world_message: String, plugin: String, release_app_version_standalone: String, release_sdk_url: String, release_sdk_version: String, release_server_version_standalone: String, sdk_developer_faq_url: String, sdk_discord_url: String, sdk_not_allowed_to_publish_message: String, sdk_unity_version: String, server_name: String, support_email: String, time_out_world_id: String, tutorial_world_id: String, update_rate_ms_maximum: i32, update_rate_ms_minimum: i32, update_rate_ms_normal: i32, update_rate_ms_udon_manual: i32, upload_analysis_percent: i32, url_list: Vec<String>, use_reliable_udp_for_voice: bool, user_update_period: i32, user_verification_delay: i32, user_verification_retry: i32, user_verification_timeout: i32, vive_windows_url: String, white_listed_asset_urls: Vec<String>, world_update_period: i32, youtubedl_hash: String, youtubedl_version: String) -> ApiConfig {
+    pub fn new(voice_enable_degradation: bool, voice_enable_receiver_limiting: bool, address: String, announcements: Vec<crate::models::PublicAnnouncement>, api_key: String, app_name: String, build_version_tag: String, client_api_key: String, client_bps_ceiling: i32, client_disconnect_timeout: i32, client_reserved_player_bps: i32, client_sent_count_allowance: i32, contact_email: String, copyright_email: String, current_tos_version: i32, default_avatar: String, deployment_group: crate::models::DeploymentGroup, dev_app_version_standalone: String, dev_download_link_windows: String, dev_sdk_url: String, dev_sdk_version: String, dev_server_version_standalone: String, dis_countdown: String, disable_avatar_copying: bool, disable_avatar_gating: bool, disable_community_labs: bool, disable_community_labs_promotion: bool, disable_email: bool, disable_event_stream: bool, disable_feedback_gating: bool, disable_frontend_builds: bool, disable_hello: bool, disable_oculus_subs: bool, disable_registration: bool, disable_steam_networking: bool, disable_two_factor_auth: bool, disable_udon: bool, disable_upgrade_account: bool, download_link_windows: String, download_urls: crate::models::DownloadUrlList, dynamic_world_rows: Vec<crate::models::DynamicContentRow>, events: crate::models::ApiEventConfig, gear_demo_room_id: String, home_world_id: String, homepage_redirect_target: String, hub_world_id: String, jobs_email: String, message_of_the_day: String, moderation_email: String, moderation_query_period: i32, not_allowed_to_select_avatar_in_private_world_message: String, plugin: String, release_app_version_standalone: String, release_sdk_url: String, release_sdk_version: String, release_server_version_standalone: String, sdk_developer_faq_url: String, sdk_discord_url: String, sdk_not_allowed_to_publish_message: String, sdk_unity_version: String, server_name: String, support_email: String, time_out_world_id: String, tutorial_world_id: String, update_rate_ms_maximum: i32, update_rate_ms_minimum: i32, update_rate_ms_normal: i32, update_rate_ms_udon_manual: i32, upload_analysis_percent: i32, url_list: Vec<String>, use_reliable_udp_for_voice: bool, user_update_period: i32, user_verification_delay: i32, user_verification_retry: i32, user_verification_timeout: i32, vive_windows_url: String, white_listed_asset_urls: Vec<String>, world_update_period: i32, player_url_resolver_hash: String, player_url_resolver_version: String) -> ApiConfig {
         ApiConfig {
             voice_enable_degradation,
             voice_enable_receiver_limiting,
@@ -330,8 +330,8 @@ impl ApiConfig {
             vive_windows_url,
             white_listed_asset_urls,
             world_update_period,
-            youtubedl_hash,
-            youtubedl_version,
+            player_url_resolver_hash,
+            player_url_resolver_version,
         }
     }
 }

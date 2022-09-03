@@ -46,6 +46,7 @@ docs/InstancesApi.md
 docs/InviteApi.md
 docs/InviteMessage.md
 docs/InviteMessageType.md
+docs/InviteMyselfToRequest.md
 docs/InviteRequest.md
 docs/InviteResponse.md
 docs/License.md
@@ -71,6 +72,7 @@ docs/Region.md
 docs/ReleaseStatus.md
 docs/RequestInviteRequest.md
 docs/Response.md
+docs/SentNotification.md
 docs/Subscription.md
 docs/SubscriptionPeriod.md
 docs/Success.md
@@ -155,6 +157,7 @@ src/models/instance_platforms.rs
 src/models/instance_type.rs
 src/models/invite_message.rs
 src/models/invite_message_type.rs
+src/models/invite_myself_to_request.rs
 src/models/invite_request.rs
 src/models/invite_response.rs
 src/models/license.rs
@@ -178,6 +181,7 @@ src/models/region.rs
 src/models/release_status.rs
 src/models/request_invite_request.rs
 src/models/response.rs
+src/models/sent_notification.rs
 src/models/subscription.rs
 src/models/subscription_period.rs
 src/models/success.rs
