@@ -80,7 +80,7 @@ Name | Type | Description  | Required | Notes
 
 ## invite_myself_to
 
-> crate::models::SentNotification invite_myself_to(world_id, instance_id, invite_myself_to_request)
+> crate::models::SentNotification invite_myself_to(world_id, instance_id)
 Invite Myself To Instance
 
 Sends self an invite to an instance
@@ -92,7 +92,6 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **world_id** | **String** |  | [required] |
 **instance_id** | **String** |  | [required] |
-**invite_myself_to_request** | Option<[**InviteMyselfToRequest**](InviteMyselfToRequest.md)> |  |  |
 
 ### Return type
 
@@ -104,7 +103,7 @@ Name | Type | Description  | Required | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

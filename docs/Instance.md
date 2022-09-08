@@ -19,7 +19,8 @@ Name | Type | Description | Notes
 **photon_region** | [**crate::models::Region**](Region.md) |  | 
 **platforms** | [**crate::models::InstancePlatforms**](InstancePlatforms.md) |  | 
 **region** | [**crate::models::Region**](Region.md) |  | 
-**short_name** | **String** |  | 
+**secure_name** | **String** |  | 
+**short_name** | Option<**String**> |  | [optional]
 **tags** | **Vec<String>** | The tags array on Instances usually contain the language tags of the people in the instance.  | 
 **_type** | [**crate::models::InstanceType**](InstanceType.md) |  | 
 **world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 

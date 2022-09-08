@@ -144,7 +144,7 @@ pub fn get_invite_messages(configuration: &configuration::Configuration, user_id
 }
 
 /// Sends self an invite to an instance
-pub fn invite_myself_to(configuration: &configuration::Configuration, world_id: &str, instance_id: &str, invite_myself_to_request: Option<crate::models::InviteMyselfToRequest>) -> Result<crate::models::SentNotification, Error<InviteMyselfToError>> {
+pub fn invite_myself_to(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::SentNotification, Error<InviteMyselfToError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -155,7 +155,6 @@ pub fn invite_myself_to(configuration: &configuration::Configuration, world_id: 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&invite_myself_to_request);
 
     let local_var_req = local_var_req_builder.build()?;
     let mut local_var_resp = local_var_client.execute(local_var_req)?;

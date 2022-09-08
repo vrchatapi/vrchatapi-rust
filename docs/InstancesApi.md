@@ -74,7 +74,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_short_name
 
-> String get_short_name(world_id, instance_id)
+> crate::models::InstanceShortNameResponse get_short_name(world_id, instance_id)
 Get Instance Short Name
 
 Returns an instance short name.
@@ -89,7 +89,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-**String**
+[**crate::models::InstanceShortNameResponse**](InstanceShortNameResponse.md)
 
 ### Authorization
 

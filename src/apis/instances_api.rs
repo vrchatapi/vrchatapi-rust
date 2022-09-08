@@ -104,7 +104,7 @@ pub fn get_instance_by_short_name(configuration: &configuration::Configuration, 
 }
 
 /// Returns an instance short name.
-pub fn get_short_name(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<String, Error<GetShortNameError>> {
+pub fn get_short_name(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::InstanceShortNameResponse, Error<GetShortNameError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
