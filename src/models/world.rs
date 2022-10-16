@@ -33,6 +33,7 @@ pub struct World {
     pub id: String,
     #[serde(rename = "imageUrl")]
     pub image_url: String,
+    /// Will always be an empty list when unauthenticated.
     #[serde(rename = "instances", skip_serializing_if = "Option::is_none")]
     pub instances: Option<Vec<Vec<serde_json::Value>>>,
     #[serde(rename = "labsPublicationDate")]
@@ -41,6 +42,7 @@ pub struct World {
     pub name: String,
     #[serde(rename = "namespace")]
     pub namespace: String,
+    /// Will always be `0` when unauthenticated.
     #[serde(rename = "occupants", skip_serializing_if = "Option::is_none")]
     pub occupants: Option<i32>,
     #[serde(rename = "organization")]
@@ -49,8 +51,10 @@ pub struct World {
     pub popularity: i32,
     #[serde(rename = "previewYoutubeId", skip_serializing_if = "Option::is_none")]
     pub preview_youtube_id: Option<String>,
+    /// Will always be `0` when unauthenticated.
     #[serde(rename = "privateOccupants", skip_serializing_if = "Option::is_none")]
     pub private_occupants: Option<i32>,
+    /// Will always be `0` when unauthenticated.
     #[serde(rename = "publicOccupants", skip_serializing_if = "Option::is_none")]
     pub public_occupants: Option<i32>,
     #[serde(rename = "publicationDate")]

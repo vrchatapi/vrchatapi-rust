@@ -210,7 +210,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::World get_world(world_id)
 Get World by ID
 
-Get information about a specific World.
+Get information about a specific World. Works unauthenticated but when so will always return `0` for certain fields.
 
 ### Parameters
 

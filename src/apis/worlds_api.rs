@@ -381,7 +381,7 @@ pub fn get_recent_worlds(configuration: &configuration::Configuration, featured:
     }
 }
 
-/// Get information about a specific World.
+/// Get information about a specific World. Works unauthenticated but when so will always return `0` for certain fields.
 pub fn get_world(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::World, Error<GetWorldError>> {
     let local_var_configuration = configuration;
 

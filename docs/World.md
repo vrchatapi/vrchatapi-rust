@@ -14,16 +14,16 @@ Name | Type | Description | Notes
 **heat** | **i32** |  | [default to 0]
 **id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **image_url** | **String** |  | 
-**instances** | Option<[**Vec<Vec<serde_json::Value>>**](array.md)> |  | [optional]
+**instances** | Option<[**Vec<Vec<serde_json::Value>>**](array.md)> | Will always be an empty list when unauthenticated. | [optional]
 **labs_publication_date** | **String** |  | 
 **name** | **String** |  | 
 **namespace** | **String** |  | 
-**occupants** | Option<**i32**> |  | [optional][default to 0]
+**occupants** | Option<**i32**> | Will always be `0` when unauthenticated. | [optional][default to 0]
 **organization** | **String** |  | [default to vrchat]
 **popularity** | **i32** |  | [default to 0]
 **preview_youtube_id** | Option<**String**> |  | [optional]
-**private_occupants** | Option<**i32**> |  | [optional][default to 0]
-**public_occupants** | Option<**i32**> |  | [optional][default to 0]
+**private_occupants** | Option<**i32**> | Will always be `0` when unauthenticated. | [optional][default to 0]
+**public_occupants** | Option<**i32**> | Will always be `0` when unauthenticated. | [optional][default to 0]
 **publication_date** | **String** |  | 
 **release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **tags** | **Vec<String>** |  | 
