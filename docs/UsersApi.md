@@ -46,7 +46,7 @@ Name | Type | Description  | Required | Notes
 > crate::models::User get_user_by_name(username)
 Get User by Username
 
-Get public user information about a specific user using their name.
+~~Get public user information about a specific user using their name.~~  **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). This endpoint now require Admin Credentials.
 
 ### Parameters
 

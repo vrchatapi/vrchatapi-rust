@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **traveling_to_location** | Option<**String**> |  | [optional]
 **traveling_to_world** | Option<**String**> |  | [optional]
 **user_icon** | **String** |  | 
-**username** | **String** | A users unique name, used during login. This is different from `displayName` which is what shows up in-game. A users `username` can never be changed. | 
+**username** | Option<**String**> | -| A users unique name, used during login. This is different from `displayName` which is what shows up in-game. A users `username` can never be changed.' **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). | [optional]
 **world_id** | Option<**String**> | WorldID be \"offline\" on User profiles if you are not friends with that user. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

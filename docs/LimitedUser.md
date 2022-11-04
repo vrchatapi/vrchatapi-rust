@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **status_description** | **String** |  | 
 **tags** | **Vec<String>** | <- Always empty. | 
 **user_icon** | **String** |  | 
-**username** | **String** |  | 
+**username** | Option<**String**> | -| **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). | [optional]
 **location** | Option<**String**> |  | [optional]
 **friend_key** | Option<**String**> |  | [optional]
 

@@ -75,16 +75,16 @@ pub struct User {
     pub traveling_to_world: Option<String>,
     #[serde(rename = "userIcon")]
     pub user_icon: String,
-    /// A users unique name, used during login. This is different from `displayName` which is what shows up in-game. A users `username` can never be changed.
-    #[serde(rename = "username")]
-    pub username: String,
+    /// -| A users unique name, used during login. This is different from `displayName` which is what shows up in-game. A users `username` can never be changed.' **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
+    #[serde(rename = "username", skip_serializing_if = "Option::is_none")]
+    pub username: Option<String>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "worldId", skip_serializing_if = "Option::is_none")]
     pub world_id: Option<String>,
 }
 
 impl User {
-    pub fn new(allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, friend_key: String, friend_request_status: String, id: String, is_friend: bool, last_activity: String, last_login: String, last_platform: String, profile_pic_override: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String, username: String) -> User {
+    pub fn new(allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, friend_key: String, friend_request_status: String, id: String, is_friend: bool, last_activity: String, last_login: String, last_platform: String, profile_pic_override: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> User {
         User {
             allow_avatar_copying,
             bio,
@@ -113,7 +113,7 @@ impl User {
             traveling_to_location: None,
             traveling_to_world: None,
             user_icon,
-            username,
+            username: None,
             world_id: None,
         }
     }

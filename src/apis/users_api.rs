@@ -74,7 +74,7 @@ pub fn get_user(configuration: &configuration::Configuration, user_id: &str) -> 
     }
 }
 
-/// Get public user information about a specific user using their name.
+/// ~~Get public user information about a specific user using their name.~~  **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). This endpoint now require Admin Credentials.
 pub fn get_user_by_name(configuration: &configuration::Configuration, username: &str) -> Result<crate::models::User, Error<GetUserByNameError>> {
     let local_var_configuration = configuration;
 

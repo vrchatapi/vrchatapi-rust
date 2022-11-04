@@ -26,14 +26,15 @@ pub struct SentNotification {
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "senderUserId")]
     pub sender_user_id: String,
-    #[serde(rename = "senderUsername")]
-    pub sender_username: String,
+    /// -| **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
+    #[serde(rename = "senderUsername", skip_serializing_if = "Option::is_none")]
+    pub sender_username: Option<String>,
     #[serde(rename = "type")]
     pub _type: crate::models::NotificationType,
 }
 
 impl SentNotification {
-    pub fn new(created_at: String, details: String, id: String, message: String, reciever_user_id: String, sender_user_id: String, sender_username: String, _type: crate::models::NotificationType) -> SentNotification {
+    pub fn new(created_at: String, details: String, id: String, message: String, reciever_user_id: String, sender_user_id: String, _type: crate::models::NotificationType) -> SentNotification {
         SentNotification {
             created_at,
             details,
@@ -41,7 +42,7 @@ impl SentNotification {
             message,
             reciever_user_id,
             sender_user_id,
-            sender_username,
+            sender_username: None,
             _type,
         }
     }
