@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_avatar**](AvatarsApi.md#delete_avatar) | **DELETE** /avatars/{avatarId} | Delete Avatar
 [**get_avatar**](AvatarsApi.md#get_avatar) | **GET** /avatars/{avatarId} | Get Avatar
 [**get_favorited_avatars**](AvatarsApi.md#get_favorited_avatars) | **GET** /avatars/favorites | List Favorited Avatars
+[**get_own_avatar**](AvatarsApi.md#get_own_avatar) | **GET** /users/{userId}/avatar | Get Own Avatar
 [**search_avatars**](AvatarsApi.md#search_avatars) | **GET** /avatars | Search Avatars
 [**select_avatar**](AvatarsApi.md#select_avatar) | **PUT** /avatars/{avatarId}/select | Select Avatar
 [**select_fallback_avatar**](AvatarsApi.md#select_fallback_avatar) | **PUT** /avatars/{avatarId}/selectFallback | Select Fallback Avatar
@@ -134,6 +135,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<crate::models::Avatar>**](Avatar.md)
+
+### Authorization
+
+[apiKeyCookie](../README.md#apiKeyCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_own_avatar
+
+> crate::models::Avatar get_own_avatar(user_id)
+Get Own Avatar
+
+Get the current avatar for the user. This will return an error for any other user than the one logged in.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** |  | [required] |
+
+### Return type
+
+[**crate::models::Avatar**](Avatar.md)
 
 ### Authorization
 

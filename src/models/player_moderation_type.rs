@@ -18,10 +18,6 @@ pub enum PlayerModerationType {
     Block,
     #[serde(rename = "unblock")]
     Unblock,
-    #[serde(rename = "hideAvatar")]
-    HideAvatar,
-    #[serde(rename = "showAvatar")]
-    ShowAvatar,
     #[serde(rename = "interactOn")]
     InteractOn,
     #[serde(rename = "interactOff")]
@@ -36,8 +32,6 @@ impl ToString for PlayerModerationType {
             Self::Unmute => String::from("unmute"),
             Self::Block => String::from("block"),
             Self::Unblock => String::from("unblock"),
-            Self::HideAvatar => String::from("hideAvatar"),
-            Self::ShowAvatar => String::from("showAvatar"),
             Self::InteractOn => String::from("interactOn"),
             Self::InteractOff => String::from("interactOff"),
         }
