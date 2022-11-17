@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **developer_type** | [**crate::models::DeveloperType**](DeveloperType.md) |  | 
 **display_name** | **String** | A users visual display name. This is what shows up in-game, and can different from their `username`. Changing display name is restricted to a cooldown period. | 
 **friend_key** | **String** |  | 
-**friend_request_status** | **String** |  | 
+**friend_request_status** | Option<**String**> |  | [optional]
 **id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
 **instance_id** | Option<**String**> | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | [optional]
 **is_friend** | **bool** | Either their `friendKey`, or empty string if you are not friends. Unknown usage. | 

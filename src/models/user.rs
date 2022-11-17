@@ -32,8 +32,8 @@ pub struct User {
     pub display_name: String,
     #[serde(rename = "friendKey")]
     pub friend_key: String,
-    #[serde(rename = "friendRequestStatus")]
-    pub friend_request_status: String,
+    #[serde(rename = "friendRequestStatus", skip_serializing_if = "Option::is_none")]
+    pub friend_request_status: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id")]
     pub id: String,
@@ -84,7 +84,7 @@ pub struct User {
 }
 
 impl User {
-    pub fn new(allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, friend_key: String, friend_request_status: String, id: String, is_friend: bool, last_activity: String, last_login: String, last_platform: String, profile_pic_override: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> User {
+    pub fn new(allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, friend_key: String, id: String, is_friend: bool, last_activity: String, last_login: String, last_platform: String, profile_pic_override: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> User {
         User {
             allow_avatar_copying,
             bio,
@@ -95,7 +95,7 @@ impl User {
             developer_type,
             display_name,
             friend_key,
-            friend_request_status,
+            friend_request_status: None,
             id,
             instance_id: None,
             is_friend,
