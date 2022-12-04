@@ -13,9 +13,8 @@ rm src/apis src/models docs -rf
 --http-user-agent="vrchatapi-rust"
 #--global-property debugOperations=true
 
-# Add license and description to Cargo.toml
-sed -i '/^edition = "2018"/i license = "MIT"' Cargo.toml
-sed -i '/^edition = "2018"/a description="VRChat API Library for Rust"' Cargo.toml
+# Update entire description (replace entire line, match the random data there) line in Cargo.toml
+sed -i 's/^description = ".*"/description = "VRChat API Client for Rust"/' Cargo.toml
 
 # Remove messily pasted markdown at top of every file
 find src -type f -exec sed -i '/VRChat API Banner/d' {} \;
