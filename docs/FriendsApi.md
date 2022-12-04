@@ -24,7 +24,7 @@ Deletes an outgoing pending friend request to another user. To delete an incomin
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 
 ### Return type
 
@@ -54,7 +54,7 @@ Send a friend request to another user.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 
 ### Return type
 
@@ -84,7 +84,7 @@ Retrieve if the user is currently a friend with a given user, if they have an ou
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 
 ### Return type
 
@@ -146,7 +146,7 @@ Unfriend a user by ID.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 
 ### Return type
 

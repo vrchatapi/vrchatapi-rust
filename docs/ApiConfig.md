@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **voice_enable_degradation** | **bool** | Unknown, probably voice optimization testing | [default to false]
 **voice_enable_receiver_limiting** | **bool** | Unknown, probably voice optimization testing | [default to true]
 **address** | **String** | VRChat's office address | 
-**announcements** | [**Vec<crate::models::PublicAnnouncement>**](Public_Announcement.md) | Public Announcements | 
+**announcements** | [**Vec<crate::models::ApiConfigAnnouncement>**](APIConfigAnnouncement.md) | Public Announcements | 
 **api_key** | **String** | apiKey to be used for all other requests | 
 **app_name** | **String** | Game name | [default to VrChat]
 **build_version_tag** | **String** | Build tag of the API server | 
@@ -43,9 +43,9 @@ Name | Type | Description | Notes
 **disable_udon** | **bool** | Toggles if Udon should be universally disabled in-game. | [default to false]
 **disable_upgrade_account** | **bool** | Toggles if account upgrading \"linking with Steam/Oculus\" should be disabled. | [default to false]
 **download_link_windows** | **String** | Download link for game on the Oculus Rift website. | 
-**download_urls** | [**crate::models::DownloadUrlList**](DownloadURLList.md) |  | 
+**download_urls** | [**crate::models::ApiConfigDownloadUrlList**](APIConfigDownloadURLList.md) |  | 
 **dynamic_world_rows** | [**Vec<crate::models::DynamicContentRow>**](DynamicContentRow.md) | Array of DynamicWorldRow objects, used by the game to display the list of world rows | 
-**events** | [**crate::models::ApiEventConfig**](APIEventConfig.md) |  | 
+**events** | [**crate::models::ApiConfigEvents**](APIConfigEvents.md) |  | 
 **gear_demo_room_id** | **String** | Unknown | 
 **home_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **homepage_redirect_target** | **String** | Redirect target if you try to open the base API domain in your browser | [default to https://hello.vrchat.com]

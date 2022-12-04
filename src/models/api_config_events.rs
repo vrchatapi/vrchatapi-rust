@@ -10,7 +10,7 @@
 
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
-pub struct ApiEventConfig {
+pub struct ApiConfigEvents {
     /// Unknown
     #[serde(rename = "distanceClose")]
     pub distance_close: i32,
@@ -43,9 +43,9 @@ pub struct ApiEventConfig {
     pub view_segment_length: i32,
 }
 
-impl ApiEventConfig {
-    pub fn new(distance_close: i32, distance_factor: i32, distance_far: i32, group_distance: i32, maximum_bunch_size: i32, not_visible_factor: i32, player_order_bucket_size: i32, player_order_factor: i32, slow_update_factor_threshold: i32, view_segment_length: i32) -> ApiEventConfig {
-        ApiEventConfig {
+impl ApiConfigEvents {
+    pub fn new(distance_close: i32, distance_factor: i32, distance_far: i32, group_distance: i32, maximum_bunch_size: i32, not_visible_factor: i32, player_order_bucket_size: i32, player_order_factor: i32, slow_update_factor_threshold: i32, view_segment_length: i32) -> ApiConfigEvents {
+        ApiConfigEvents {
             distance_close,
             distance_factor,
             distance_far,

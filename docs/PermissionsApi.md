@@ -48,7 +48,7 @@ Returns a single permission. This endpoint is pretty useless, as it returns the 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**permission_id** | **String** |  | [required] |
+**permission_id** | **String** | Must be a valid permission ID. | [required] |
 
 ### Return type
 

@@ -52,7 +52,7 @@ Deletes a specific player moderation based on it's `pmod_` ID. The website uses 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**player_moderation_id** | **String** |  | [required] |
+**player_moderation_id** | **String** | Must be a valid `pmod_` ID. | [required] |
 
 ### Return type
 
@@ -82,7 +82,7 @@ Returns a single Player Moderation. This returns the exact same amount of inform
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**player_moderation_id** | **String** |  | [required] |
+**player_moderation_id** | **String** | Must be a valid `pmod_` ID. | [required] |
 
 ### Return type
 

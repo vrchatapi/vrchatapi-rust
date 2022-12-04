@@ -23,8 +23,8 @@ Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.i
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
-**instance_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**instance_id** | **String** | Must be a valid instance ID. | [required] |
 
 ### Return type
 
@@ -54,7 +54,7 @@ Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.i
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**short_name** | **String** |  | [required] |
+**short_name** | **String** | Must be a valid instance short name. | [required] |
 
 ### Return type
 
@@ -84,8 +84,8 @@ Returns an instance short name.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
-**instance_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**instance_id** | **String** | Must be a valid instance ID. | [required] |
 
 ### Return type
 
@@ -115,8 +115,8 @@ Sends an invite to the instance to yourself.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
-**instance_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**instance_id** | **String** | Must be a valid instance ID. | [required] |
 
 ### Return type
 

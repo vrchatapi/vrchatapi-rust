@@ -22,16 +22,7 @@ pub enum InviteMessageType {
 
 }
 
-impl ToString for InviteMessageType {
-    fn to_string(&self) -> String {
-        match self {
-            Self::Message => String::from("message"),
-            Self::Response => String::from("response"),
-            Self::Request => String::from("request"),
-            Self::RequestResponse => String::from("requestResponse"),
-        }
-    }
-}
+
 
 impl Default for InviteMessageType {
     fn default() -> InviteMessageType {
@@ -42,3 +33,13 @@ impl Default for InviteMessageType {
 
 
 
+impl std::fmt::Display for InviteMessageType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Message => write!(f, "message"),
+            Self::Response => write!(f, "response"),
+            Self::Request => write!(f, "request"),
+            Self::RequestResponse => write!(f, "requestResponse"),
+        }
+    }
+}

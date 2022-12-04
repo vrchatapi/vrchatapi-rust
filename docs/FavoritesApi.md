@@ -58,8 +58,8 @@ Clear ALL contents of a specific favorite group.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **favorite_group_type** | **String** | The type of group to fetch, must be a valid FavoriteType. | [required] |
-**favorite_group_name** | **String** |  | [required] |
-**user_id** | **String** |  | [required] |
+**favorite_group_name** | **String** | The name of the group to fetch, must be a name of a FavoriteGroup. | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 
 ### Return type
 
@@ -89,7 +89,7 @@ Return information about a specific Favorite.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**favorite_id** | **String** |  | [required] |
+**favorite_id** | **String** | Must be a valid favorite ID. | [required] |
 
 ### Return type
 
@@ -120,8 +120,8 @@ Fetch information about a specific favorite group.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **favorite_group_type** | **String** | The type of group to fetch, must be a valid FavoriteType. | [required] |
-**favorite_group_name** | **String** |  | [required] |
-**user_id** | **String** |  | [required] |
+**favorite_group_name** | **String** | The name of the group to fetch, must be a name of a FavoriteGroup. | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 
 ### Return type
 
@@ -216,7 +216,7 @@ Remove a favorite from your favorites list.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**favorite_id** | **String** |  | [required] |
+**favorite_id** | **String** | Must be a valid favorite ID. | [required] |
 
 ### Return type
 
@@ -247,8 +247,8 @@ Update information about a specific favorite group.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **favorite_group_type** | **String** | The type of group to fetch, must be a valid FavoriteType. | [required] |
-**favorite_group_name** | **String** |  | [required] |
-**user_id** | **String** |  | [required] |
+**favorite_group_name** | **String** | The name of the group to fetch, must be a name of a FavoriteGroup. | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 **update_favorite_group_request** | Option<[**UpdateFavoriteGroupRequest**](UpdateFavoriteGroupRequest.md)> |  |  |
 
 ### Return type

@@ -62,7 +62,7 @@ Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatu
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
 
 ### Return type
 
@@ -93,14 +93,14 @@ Search and list currently Active worlds by query filters.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
-**sort** | Option<**String**> |  |  |[default to popularity]
+**sort** | Option<[**SortOption**](.md)> | The sort order of the results. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
-**order** | Option<**String**> |  |  |[default to descending]
+**order** | Option<[**OrderOption**](.md)> | Result ordering |  |
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
+**release_status** | Option<[**ReleaseStatus**](.md)> | Filter by ReleaseStatus. |  |
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
@@ -134,14 +134,14 @@ Search and list favorited worlds by query filters.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
-**sort** | Option<**String**> |  |  |[default to popularity]
+**sort** | Option<[**SortOption**](.md)> | The sort order of the results. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
-**order** | Option<**String**> |  |  |[default to descending]
+**order** | Option<[**OrderOption**](.md)> | Result ordering |  |
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
+**release_status** | Option<[**ReleaseStatus**](.md)> | Filter by ReleaseStatus. |  |
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
@@ -176,14 +176,14 @@ Search and list recently visited worlds by query filters.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
-**sort** | Option<**String**> |  |  |[default to popularity]
+**sort** | Option<[**SortOption**](.md)> | The sort order of the results. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
-**order** | Option<**String**> |  |  |[default to descending]
+**order** | Option<[**OrderOption**](.md)> | Result ordering |  |
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
+**release_status** | Option<[**ReleaseStatus**](.md)> | Filter by ReleaseStatus. |  |
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
@@ -217,7 +217,7 @@ Get information about a specific World. Works unauthenticated but when so will a
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
 
 ### Return type
 
@@ -247,8 +247,8 @@ Returns a worlds instance.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
-**instance_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**instance_id** | **String** | Must be a valid instance ID. | [required] |
 
 ### Return type
 
@@ -278,7 +278,7 @@ Return a worlds custom metadata. This is currently believed to be unused. Metada
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
 
 ### Return type
 
@@ -308,7 +308,7 @@ Returns a worlds publish status.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
 
 ### Return type
 
@@ -338,7 +338,7 @@ Publish a world. You can only publish one world per week.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
 
 ### Return type
 
@@ -369,16 +369,16 @@ Search and list any worlds by query filters.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
-**sort** | Option<**String**> |  |  |[default to popularity]
+**sort** | Option<[**SortOption**](.md)> | The sort order of the results. |  |
 **user** | Option<**String**> | Set to `me` for searching own worlds. |  |
 **user_id** | Option<**String**> | Filter by UserID. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
-**order** | Option<**String**> |  |  |[default to descending]
+**order** | Option<[**OrderOption**](.md)> | Result ordering |  |
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
+**release_status** | Option<[**ReleaseStatus**](.md)> | Filter by ReleaseStatus. |  |
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
@@ -411,7 +411,7 @@ Unpublish a world.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
 
 ### Return type
 
@@ -441,7 +441,7 @@ Update information about a specific World.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
 **update_world_request** | Option<[**UpdateWorldRequest**](UpdateWorldRequest.md)> |  |  |
 
 ### Return type

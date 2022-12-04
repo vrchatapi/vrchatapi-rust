@@ -58,7 +58,7 @@ Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseS
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**avatar_id** | **String** |  | [required] |
+**avatar_id** | **String** | Must be a valid avatar ID. | [required] |
 
 ### Return type
 
@@ -88,7 +88,7 @@ Get information about a specific Avatar.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**avatar_id** | **String** |  | [required] |
+**avatar_id** | **String** | Must be a valid avatar ID. | [required] |
 
 ### Return type
 
@@ -119,14 +119,14 @@ Search and list favorited avatars by query filters.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
-**sort** | Option<**String**> |  |  |[default to popularity]
+**sort** | Option<[**SortOption**](.md)> | The sort order of the results. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
-**order** | Option<**String**> |  |  |[default to descending]
+**order** | Option<[**OrderOption**](.md)> | Result ordering |  |
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
+**release_status** | Option<[**ReleaseStatus**](.md)> | Filter by ReleaseStatus. |  |
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
@@ -160,7 +160,7 @@ Get the current avatar for the user. This will return an error for any other use
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 
 ### Return type
 
@@ -191,15 +191,15 @@ Search and list avatars by query filters. You can only search your own or featur
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
-**sort** | Option<**String**> |  |  |[default to popularity]
+**sort** | Option<[**SortOption**](.md)> | The sort order of the results. |  |
 **user** | Option<**String**> | Set to `me` for searching own avatars. |  |
 **user_id** | Option<**String**> | Filter by UserID. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
-**order** | Option<**String**> |  |  |[default to descending]
+**order** | Option<[**OrderOption**](.md)> | Result ordering |  |
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<**String**> | Filter by ReleaseStatus. |  |[default to public]
+**release_status** | Option<[**ReleaseStatus**](.md)> | Filter by ReleaseStatus. |  |
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
@@ -232,7 +232,7 @@ Switches into that avatar.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**avatar_id** | **String** |  | [required] |
+**avatar_id** | **String** | Must be a valid avatar ID. | [required] |
 
 ### Return type
 
@@ -262,7 +262,7 @@ Switches into that avatar as your fallback avatar.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**avatar_id** | **String** |  | [required] |
+**avatar_id** | **String** | Must be a valid avatar ID. | [required] |
 
 ### Return type
 
@@ -292,7 +292,7 @@ Update information about a specific avatar.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**avatar_id** | **String** |  | [required] |
+**avatar_id** | **String** | Must be a valid avatar ID. | [required] |
 **update_avatar_request** | Option<[**UpdateAvatarRequest**](UpdateAvatarRequest.md)> |  |  |
 
 ### Return type

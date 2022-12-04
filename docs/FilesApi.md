@@ -59,7 +59,7 @@ Creates a new FileVersion. Once a Version has been created, proceed to the `/fil
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file_id** | **String** |  | [required] |
+**file_id** | **String** | Must be a valid file ID. | [required] |
 **create_file_version_request** | Option<[**CreateFileVersionRequest**](CreateFileVersionRequest.md)> |  |  |
 
 ### Return type
@@ -90,7 +90,7 @@ Deletes a File object.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file_id** | **String** |  | [required] |
+**file_id** | **String** | Must be a valid file ID. | [required] |
 
 ### Return type
 
@@ -120,8 +120,8 @@ Delete a specific version of a file. You can only delete the latest version.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file_id** | **String** |  | [required] |
-**version_id** | **i32** |  | [required] |
+**file_id** | **String** | Must be a valid file ID. | [required] |
+**version_id** | **i32** | Version ID of the asset. | [required] |
 
 ### Return type
 
@@ -151,8 +151,8 @@ Downloads the file with the provided version number.  **Version Note:** Version 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file_id** | **String** |  | [required] |
-**version_id** | **i32** |  | [required] |
+**file_id** | **String** | Must be a valid file ID. | [required] |
+**version_id** | **i32** | Version ID of the asset. | [required] |
 
 ### Return type
 
@@ -182,9 +182,9 @@ Finish an upload of a FileData. This will mark it as \"complete\". After uploadi
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file_id** | **String** |  | [required] |
-**version_id** | **i32** |  | [required] |
-**file_type** | **String** |  | [required] |
+**file_id** | **String** | Must be a valid file ID. | [required] |
+**version_id** | **i32** | Version ID of the asset. | [required] |
+**file_type** | **String** | Type of file. | [required] |
 **finish_file_data_upload_request** | Option<[**FinishFileDataUploadRequest**](FinishFileDataUploadRequest.md)> | Please see documentation on ETag's: [https://teppen.io/2018/06/23/aws_s3_etags/](https://teppen.io/2018/06/23/aws_s3_etags/)  ETag's should NOT be present when uploading a `signature`. |  |
 
 ### Return type
@@ -215,7 +215,7 @@ Shows general information about the \"File\" object. Each File can have several 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file_id** | **String** |  | [required] |
+**file_id** | **String** | Must be a valid file ID. | [required] |
 
 ### Return type
 
@@ -245,9 +245,9 @@ Retrieves the upload status for file upload. Can currently only be accessed when
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file_id** | **String** |  | [required] |
-**version_id** | **i32** |  | [required] |
-**file_type** | **String** |  | [required] |
+**file_id** | **String** | Must be a valid file ID. | [required] |
+**version_id** | **i32** | Version ID of the asset. | [required] |
+**file_type** | **String** | Type of file. | [required] |
 
 ### Return type
 
@@ -310,10 +310,10 @@ Starts an upload of a specific FilePart. This endpoint will return an AWS URL wh
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file_id** | **String** |  | [required] |
-**version_id** | **i32** |  | [required] |
-**file_type** | **String** |  | [required] |
-**part_number** | Option<**i32**> |  |  |
+**file_id** | **String** | Must be a valid file ID. | [required] |
+**version_id** | **i32** | Version ID of the asset. | [required] |
+**file_type** | **String** | Type of file. | [required] |
+**part_number** | Option<**i32**> | The part number to start uploading. If not provided, the first part will be started. |  |
 
 ### Return type
 

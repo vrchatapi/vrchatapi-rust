@@ -21,10 +21,10 @@ jobs:
           key: ${{ runner.os }}-node-v16-${{ hashFiles('**/generate.sh') }}
           restore-keys: |
             ${{ runner.os }}-node-v16
-#      - name: Install OpenAPI Generator CLI
-#        run: npm install @openapitools/openapi-generator-cli
-#      - name: Set OpenAPI Generator version
-#        run: ./node_modules/\@openapitools/openapi-generator-cli/main.js version-manager set 5.3.0
+      - name: Install OpenAPI Generator CLI
+        run: npm install @openapitools/openapi-generator-cli
+      - name: Set OpenAPI Generator version
+        run: ./node_modules/\@openapitools/openapi-generator-cli/main.js version-manager set 6.2.1
       - name: Set up JDK 13
         uses: actions/setup-java@v2
         with:

@@ -59,7 +59,7 @@ Deletes the account with given ID. Normal users only have permission to delete t
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 
 ### Return type
 

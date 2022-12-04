@@ -27,9 +27,9 @@ Returns a single Invite Message. This returns the exact same information but les
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
-**message_type** | **String** |  | [required] |
-**slot** | **i32** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**message_type** | [**InviteMessageType**](.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
+**slot** | **i32** | The message slot to fetch of a given message type. | [required] |
 
 ### Return type
 
@@ -59,8 +59,8 @@ Returns a list of all the users Invite Messages. Admin Credentials are required 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
-**message_type** | **String** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**message_type** | [**InviteMessageType**](.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
 
 ### Return type
 
@@ -90,8 +90,8 @@ Sends self an invite to an instance
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**world_id** | **String** |  | [required] |
-**instance_id** | **String** |  | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**instance_id** | **String** | Must be a valid instance ID. | [required] |
 
 ### Return type
 
@@ -121,7 +121,7 @@ Sends an invite to a user. Returns the Notification of type `invite` that was se
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 **invite_request** | Option<[**InviteRequest**](InviteRequest.md)> | Slot number of the Invite Message to use when inviting a user. |  |
 
 ### Return type
@@ -152,7 +152,7 @@ Requests an invite from a user. Returns the Notification of type `requestInvite`
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
 **request_invite_request** | Option<[**RequestInviteRequest**](RequestInviteRequest.md)> | Slot number of the Request Message to use when request an invite. |  |
 
 ### Return type
@@ -183,9 +183,9 @@ Resets a single Invite Message back to its original message, and then returns a 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
-**message_type** | **String** |  | [required] |
-**slot** | **i32** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**message_type** | [**InviteMessageType**](.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
+**slot** | **i32** | The message slot to fetch of a given message type. | [required] |
 
 ### Return type
 
@@ -215,7 +215,7 @@ Respond to an invite request by sending a world invite to the requesting user. `
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**notification_id** | **String** |  | [required] |
+**notification_id** | **String** | Must be a valid notification ID. | [required] |
 **invite_response** | Option<[**InviteResponse**](InviteResponse.md)> | Slot number of the Response Message to use when responding to a user. |  |
 
 ### Return type
@@ -246,9 +246,9 @@ Updates a single Invite Message and then returns a list of all of them. Admin Cr
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** |  | [required] |
-**message_type** | **String** |  | [required] |
-**slot** | **i32** |  | [required] |
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**message_type** | [**InviteMessageType**](.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
+**slot** | **i32** | The message slot to fetch of a given message type. | [required] |
 **update_invite_message_request** | Option<[**UpdateInviteMessageRequest**](UpdateInviteMessageRequest.md)> | Message of what to set the invite message to. |  |
 
 ### Return type

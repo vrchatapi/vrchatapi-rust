@@ -51,7 +51,7 @@ Get a single License Group by given ID.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**license_group_id** | **String** |  | [required] |
+**license_group_id** | **String** | Must be a valid license group ID. | [required] |
 
 ### Return type
 
@@ -81,7 +81,7 @@ Get a single Steam transactions by ID. This returns the exact same information a
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**transaction_id** | **String** |  | [required] |
+**transaction_id** | **String** | Must be a valid transaction ID. | [required] |
 
 ### Return type
 

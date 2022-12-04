@@ -1,4 +1,4 @@
-# DownloadUrlList
+# ApiConfigDownloadUrlList
 
 ## Properties
 

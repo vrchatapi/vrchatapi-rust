@@ -24,7 +24,7 @@ Accept a friend request by notification `frq_` ID. Friend requests can be found 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**notification_id** | **String** |  | [required] |
+**notification_id** | **String** | Must be a valid notification ID. | [required] |
 
 ### Return type
 
@@ -81,7 +81,7 @@ Delete a notification.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**notification_id** | **String** |  | [required] |
+**notification_id** | **String** | Must be a valid notification ID. | [required] |
 
 ### Return type
 
@@ -146,7 +146,7 @@ Mark a notification as seen.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**notification_id** | **String** |  | [required] |
+**notification_id** | **String** | Must be a valid notification ID. | [required] |
 
 ### Return type
 
