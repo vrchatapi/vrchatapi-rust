@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **secure_name** | **String** |  | 
 **short_name** | Option<**String**> |  | [optional]
 **tags** | **Vec<String>** | The tags array on Instances usually contain the language tags of the people in the instance.  | 
-**_type** | [**crate::models::InstanceType**](InstanceType.md) |  | 
+**r#type** | [**crate::models::InstanceType**](InstanceType.md) |  | 
 **world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **hidden** | Option<**String**> | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | [optional]
 **friends** | Option<**String**> | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | [optional]

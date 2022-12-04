@@ -54,7 +54,7 @@ pub struct Instance {
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "type")]
-    pub _type: crate::models::InstanceType,
+    pub r#type: crate::models::InstanceType,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "worldId")]
     pub world_id: String,
@@ -71,7 +71,7 @@ pub struct Instance {
 
 impl Instance {
     /// * `hidden` field is only present if InstanceType is `hidden` aka \"Friends+\", and is instance creator. * `friends` field is only present if InstanceType is `friends` aka \"Friends\", and is instance creator. * `private` field is only present if InstanceType is `private` aka \"Invite\" or \"Invite+\", and is instance creator.
-    pub fn new(active: bool, can_request_invite: bool, capacity: i32, client_number: String, full: bool, id: String, instance_id: String, location: String, n_users: i32, name: String, permanent: bool, photon_region: crate::models::Region, platforms: crate::models::InstancePlatforms, region: crate::models::Region, secure_name: String, tags: Vec<String>, _type: crate::models::InstanceType, world_id: String) -> Instance {
+    pub fn new(active: bool, can_request_invite: bool, capacity: i32, client_number: String, full: bool, id: String, instance_id: String, location: String, n_users: i32, name: String, permanent: bool, photon_region: crate::models::Region, platforms: crate::models::InstancePlatforms, region: crate::models::Region, secure_name: String, tags: Vec<String>, r#type: crate::models::InstanceType, world_id: String) -> Instance {
         Instance {
             active,
             can_request_invite,
@@ -91,7 +91,7 @@ impl Instance {
             secure_name,
             short_name: None,
             tags,
-            _type,
+            r#type,
             world_id,
             hidden: None,
             friends: None,

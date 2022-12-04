@@ -13,8 +13,8 @@
 pub struct CurrentUser {
     #[serde(rename = "acceptedTOSVersion")]
     pub accepted_tos_version: i32,
-    #[serde(rename = "accountDeletionDate", skip_serializing_if = "Option::is_none")]
-    pub account_deletion_date: Option<String>,
+    #[serde(rename = "accountDeletionDate", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub account_deletion_date: Option<Option<String>>,
     #[serde(rename = "activeFriends", skip_serializing_if = "Option::is_none")]
     pub active_friends: Option<Vec<String>>,
     #[serde(rename = "allowAvatarCopying")]
@@ -81,6 +81,7 @@ pub struct CurrentUser {
     pub offline_friends: Option<Vec<String>>,
     #[serde(rename = "onlineFriends", skip_serializing_if = "Option::is_none")]
     pub online_friends: Option<Vec<String>>,
+    ///  
     #[serde(rename = "pastDisplayNames")]
     pub past_display_names: Vec<crate::models::PastDisplayName>,
     #[serde(rename = "profilePicOverride")]
@@ -103,8 +104,8 @@ pub struct CurrentUser {
     pub tags: Vec<String>,
     #[serde(rename = "twoFactorAuthEnabled")]
     pub two_factor_auth_enabled: bool,
-    #[serde(rename = "twoFactorAuthEnabledDate", skip_serializing_if = "Option::is_none")]
-    pub two_factor_auth_enabled_date: Option<String>,
+    #[serde(rename = "twoFactorAuthEnabledDate", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub two_factor_auth_enabled_date: Option<Option<String>>,
     #[serde(rename = "unsubscribe")]
     pub unsubscribe: bool,
     #[serde(rename = "userIcon")]

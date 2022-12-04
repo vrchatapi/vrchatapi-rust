@@ -65,6 +65,7 @@ pub struct User {
     pub status: crate::models::UserStatus,
     #[serde(rename = "statusDescription")]
     pub status_description: String,
+    ///  
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "travelingToInstance", skip_serializing_if = "Option::is_none")]

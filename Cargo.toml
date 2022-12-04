@@ -1,16 +1,16 @@
 [package]
 name = "vrchatapi"
 version = "1.9.1"
-authors = ["OpenAPI Generator team and contributors"]
-license = "MIT"
+authors = ["me@ariesclark.com"]
+description = "VRChat API Client for Rust"
+license = "The MIT License (MIT)"
 edition = "2018"
-description="VRChat API Library for Rust"
 
 [dependencies]
 serde = "^1.0"
 serde_derive = "^1.0"
+serde_with = "^2.0"
 serde_json = "^1.0"
 url = "^2.2"
+uuid = { version = "^1.0", features = ["serde"] }
 reqwest = "~0.9"
-
-[dev-dependencies]

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **id** | Option<**String**> |  | [optional]
 **name** | **String** |  | 
 **description** | Option<**String**> |  | [optional]
-**tags** | Option<**Vec<String>**> |  | [optional]
+**tags** | Option<**Vec<String>**> |   | [optional]
 **image_url** | **String** |  | 
 **release_status** | Option<[**crate::models::ReleaseStatus**](ReleaseStatus.md)> |  | [optional]
 **version** | Option<**f32**> |  | [optional][default to 1]

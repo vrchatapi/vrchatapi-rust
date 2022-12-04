@@ -11,60 +11,60 @@
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum MimeType {
     #[serde(rename = "image/jpeg")]
-    ImageJpeg,
+    ImageSlashJpeg,
     #[serde(rename = "image/jpg")]
-    ImageJpg,
+    ImageSlashJpg,
     #[serde(rename = "image/png")]
-    ImagePng,
+    ImageSlashPng,
     #[serde(rename = "image/webp")]
-    ImageWebp,
+    ImageSlashWebp,
     #[serde(rename = "image/gif")]
-    ImageGif,
+    ImageSlashGif,
     #[serde(rename = "image/bmp")]
-    ImageBmp,
+    ImageSlashBmp,
     #[serde(rename = "image/svg＋xml")]
-    ImageSvgxml,
+    ImageSlashSvgxml,
     #[serde(rename = "image/tiff")]
-    ImageTiff,
+    ImageSlashTiff,
     #[serde(rename = "application/x-avatar")]
-    ApplicationXAvatar,
+    ApplicationSlashXAvatar,
     #[serde(rename = "application/x-world")]
-    ApplicationXWorld,
+    ApplicationSlashXWorld,
     #[serde(rename = "application/gzip")]
-    ApplicationGzip,
+    ApplicationSlashGzip,
     #[serde(rename = "application/x-rsync-signature")]
-    ApplicationXRsyncSignature,
+    ApplicationSlashXRsyncSignature,
     #[serde(rename = "application/x-rsync-delta")]
-    ApplicationXRsyncDelta,
+    ApplicationSlashXRsyncDelta,
     #[serde(rename = "application/octet-stream")]
-    ApplicationOctetStream,
+    ApplicationSlashOctetStream,
 
 }
 
 impl ToString for MimeType {
     fn to_string(&self) -> String {
         match self {
-            Self::ImageJpeg => String::from("image/jpeg"),
-            Self::ImageJpg => String::from("image/jpg"),
-            Self::ImagePng => String::from("image/png"),
-            Self::ImageWebp => String::from("image/webp"),
-            Self::ImageGif => String::from("image/gif"),
-            Self::ImageBmp => String::from("image/bmp"),
-            Self::ImageSvgxml => String::from("image/svg＋xml"),
-            Self::ImageTiff => String::from("image/tiff"),
-            Self::ApplicationXAvatar => String::from("application/x-avatar"),
-            Self::ApplicationXWorld => String::from("application/x-world"),
-            Self::ApplicationGzip => String::from("application/gzip"),
-            Self::ApplicationXRsyncSignature => String::from("application/x-rsync-signature"),
-            Self::ApplicationXRsyncDelta => String::from("application/x-rsync-delta"),
-            Self::ApplicationOctetStream => String::from("application/octet-stream"),
+            Self::ImageSlashJpeg => String::from("image/jpeg"),
+            Self::ImageSlashJpg => String::from("image/jpg"),
+            Self::ImageSlashPng => String::from("image/png"),
+            Self::ImageSlashWebp => String::from("image/webp"),
+            Self::ImageSlashGif => String::from("image/gif"),
+            Self::ImageSlashBmp => String::from("image/bmp"),
+            Self::ImageSlashSvgxml => String::from("image/svg＋xml"),
+            Self::ImageSlashTiff => String::from("image/tiff"),
+            Self::ApplicationSlashXAvatar => String::from("application/x-avatar"),
+            Self::ApplicationSlashXWorld => String::from("application/x-world"),
+            Self::ApplicationSlashGzip => String::from("application/gzip"),
+            Self::ApplicationSlashXRsyncSignature => String::from("application/x-rsync-signature"),
+            Self::ApplicationSlashXRsyncDelta => String::from("application/x-rsync-delta"),
+            Self::ApplicationSlashOctetStream => String::from("application/octet-stream"),
         }
     }
 }
 
 impl Default for MimeType {
     fn default() -> MimeType {
-        Self::ImageJpeg
+        Self::ImageSlashJpeg
     }
 }
 

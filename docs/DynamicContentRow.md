@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **sort_order** | **String** |  | 
 **sort_ownership** | **String** |  | 
 **tag** | Option<**String**> | Tag to filter content for this row. | [optional]
-**_type** | Option<**String**> | Type is not present if it is a world. | [optional]
+**r#type** | Option<**String**> | Type is not present if it is a world. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

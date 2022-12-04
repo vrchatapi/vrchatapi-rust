@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **image_url** | **String** |  | 
 **name** | **String** |  | 
 **release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
-**tags** | **Vec<String>** |  | 
+**tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
 **unity_package_url** | **String** |  | 
 **unity_package_url_object** | [**crate::models::AvatarUnityPackageUrlObject**](Avatar_unityPackageUrlObject.md) |  | 

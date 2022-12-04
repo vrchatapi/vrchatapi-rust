@@ -229,7 +229,7 @@ pub fn get_favorite_groups(configuration: &configuration::Configuration, n: Opti
 }
 
 /// Returns a list of favorites.
-pub fn get_favorites(configuration: &configuration::Configuration, n: Option<i32>, offset: Option<i32>, _type: Option<&str>, tag: Option<&str>) -> Result<Vec<crate::models::Favorite>, Error<GetFavoritesError>> {
+pub fn get_favorites(configuration: &configuration::Configuration, n: Option<i32>, offset: Option<i32>, r#type: Option<&str>, tag: Option<&str>) -> Result<Vec<crate::models::Favorite>, Error<GetFavoritesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -243,7 +243,7 @@ pub fn get_favorites(configuration: &configuration::Configuration, n: Option<i32
     if let Some(ref local_var_str) = offset {
         local_var_req_builder = local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = _type {
+    if let Some(ref local_var_str) = r#type {
         local_var_req_builder = local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = tag {

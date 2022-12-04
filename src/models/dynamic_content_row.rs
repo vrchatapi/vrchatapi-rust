@@ -29,7 +29,7 @@ pub struct DynamicContentRow {
     pub tag: Option<String>,
     /// Type is not present if it is a world.
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub _type: Option<String>,
+    pub r#type: Option<String>,
 }
 
 impl DynamicContentRow {
@@ -42,7 +42,7 @@ impl DynamicContentRow {
             sort_order,
             sort_ownership,
             tag: None,
-            _type: None,
+            r#type: None,
         }
     }
 }

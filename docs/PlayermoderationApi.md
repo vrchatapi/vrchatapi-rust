@@ -102,7 +102,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_player_moderations
 
-> Vec<crate::models::PlayerModeration> get_player_moderations(_type, target_user_id)
+> Vec<crate::models::PlayerModeration> get_player_moderations(r#type, target_user_id)
 Search Player Moderations
 
 Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
@@ -112,7 +112,7 @@ Returns a list of all player moderations made by **you**.  This endpoint does no
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**_type** | Option<**String**> | Must be one of PlayerModerationType, except unblock. Unblocking simply removes a block. |  |
+**r#type** | Option<**String**> | Must be one of PlayerModerationType, except unblock. Unblocking simply removes a block. |  |
 **target_user_id** | Option<**String**> | Must be valid UserID. |  |
 
 ### Return type

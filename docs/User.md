@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **state** | [**crate::models::UserState**](UserState.md) |  | 
 **status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
 **status_description** | **String** |  | 
-**tags** | **Vec<String>** |  | 
+**tags** | **Vec<String>** |   | 
 **traveling_to_instance** | Option<**String**> |  | [optional]
 **traveling_to_location** | Option<**String**> |  | [optional]
 **traveling_to_world** | Option<**String**> |  | [optional]

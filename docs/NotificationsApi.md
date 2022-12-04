@@ -101,7 +101,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_notifications
 
-> Vec<crate::models::Notification> get_notifications(_type, sent, hidden, after, n, offset)
+> Vec<crate::models::Notification> get_notifications(r#type, sent, hidden, after, n, offset)
 List Notifications
 
 Retrieve all of the current user's notifications.
@@ -111,7 +111,7 @@ Retrieve all of the current user's notifications.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**_type** | Option<**String**> | Only send notifications of this type (can use `all` for all). This parameter no longer does anything, and is deprecated. |  |
+**r#type** | Option<**String**> | Only send notifications of this type (can use `all` for all). This parameter no longer does anything, and is deprecated. |  |
 **sent** | Option<**bool**> | Return notifications sent by the user. Must be false or omitted. |  |
 **hidden** | Option<**bool**> | Whether to return hidden or non-hidden notifications. True only allowed on type `friendRequest`. |  |
 **after** | Option<**String**> | Only return notifications sent after this Date. Ignored if type is `friendRequest`. |  |

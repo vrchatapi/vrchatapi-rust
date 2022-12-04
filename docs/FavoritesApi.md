@@ -173,7 +173,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_favorites
 
-> Vec<crate::models::Favorite> get_favorites(n, offset, _type, tag)
+> Vec<crate::models::Favorite> get_favorites(n, offset, r#type, tag)
 List Favorites
 
 Returns a list of favorites.
@@ -185,7 +185,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
-**_type** | Option<**String**> | The type of favorites to return, FavoriteType. |  |
+**r#type** | Option<**String**> | The type of favorites to return, FavoriteType. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 
 ### Return type

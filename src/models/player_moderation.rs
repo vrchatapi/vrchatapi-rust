@@ -26,11 +26,11 @@ pub struct PlayerModeration {
     #[serde(rename = "targetUserId")]
     pub target_user_id: String,
     #[serde(rename = "type")]
-    pub _type: crate::models::PlayerModerationType,
+    pub r#type: crate::models::PlayerModerationType,
 }
 
 impl PlayerModeration {
-    pub fn new(created: String, id: String, source_display_name: String, source_user_id: String, target_display_name: String, target_user_id: String, _type: crate::models::PlayerModerationType) -> PlayerModeration {
+    pub fn new(created: String, id: String, source_display_name: String, source_user_id: String, target_display_name: String, target_user_id: String, r#type: crate::models::PlayerModerationType) -> PlayerModeration {
         PlayerModeration {
             created,
             id,
@@ -38,7 +38,7 @@ impl PlayerModeration {
             source_user_id,
             target_display_name,
             target_user_id,
-            _type,
+            r#type,
         }
     }
 }

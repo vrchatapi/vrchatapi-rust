@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**category** | **String** |  | [default to Category_Queued]
+**category** | **String** |  | [default to Queued]
 **file_name** | **String** |  | 
 **md5** | **String** |  | 
 **size_in_bytes** | **i32** |  | 

@@ -149,7 +149,7 @@ pub fn get_player_moderation(configuration: &configuration::Configuration, playe
 }
 
 /// Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
-pub fn get_player_moderations(configuration: &configuration::Configuration, _type: Option<&str>, target_user_id: Option<&str>) -> Result<Vec<crate::models::PlayerModeration>, Error<GetPlayerModerationsError>> {
+pub fn get_player_moderations(configuration: &configuration::Configuration, r#type: Option<&str>, target_user_id: Option<&str>) -> Result<Vec<crate::models::PlayerModeration>, Error<GetPlayerModerationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -157,7 +157,7 @@ pub fn get_player_moderations(configuration: &configuration::Configuration, _typ
     let local_var_uri_str = format!("{}/auth/user/playermoderations", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_str) = _type {
+    if let Some(ref local_var_str) = r#type {
         local_var_req_builder = local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = target_user_id {

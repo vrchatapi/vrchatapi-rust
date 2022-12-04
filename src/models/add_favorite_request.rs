@@ -12,7 +12,7 @@
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct AddFavoriteRequest {
     #[serde(rename = "type")]
-    pub _type: crate::models::FavoriteType,
+    pub r#type: crate::models::FavoriteType,
     /// Must be either AvatarID, WorldID or UserID.
     #[serde(rename = "favoriteId")]
     pub favorite_id: String,
@@ -22,9 +22,9 @@ pub struct AddFavoriteRequest {
 }
 
 impl AddFavoriteRequest {
-    pub fn new(_type: crate::models::FavoriteType, favorite_id: String, tags: Vec<String>) -> AddFavoriteRequest {
+    pub fn new(r#type: crate::models::FavoriteType, favorite_id: String, tags: Vec<String>) -> AddFavoriteRequest {
         AddFavoriteRequest {
-            _type,
+            r#type,
             favorite_id,
             tags,
         }

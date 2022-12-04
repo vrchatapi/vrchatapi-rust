@@ -17,6 +17,7 @@ pub struct UpdateUserRequest {
     pub birthday: Option<String>,
     #[serde(rename = "acceptedTOSVersion", skip_serializing_if = "Option::is_none")]
     pub accepted_tos_version: Option<f32>,
+    ///  
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]

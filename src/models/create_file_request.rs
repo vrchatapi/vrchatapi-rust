@@ -17,6 +17,7 @@ pub struct CreateFileRequest {
     pub mime_type: crate::models::MimeType,
     #[serde(rename = "extension")]
     pub extension: String,
+    ///  
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
 }

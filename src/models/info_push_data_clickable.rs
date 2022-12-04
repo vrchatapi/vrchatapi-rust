@@ -31,9 +31,9 @@ impl InfoPushDataClickable {
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Command {
     #[serde(rename = "OpenURL")]
-    OpenURL,
+    OpenUrl,
     #[serde(rename = "OpenVRCPlusMenu")]
-    OpenVRCPlusMenu,
+    OpenVrcPlusMenu,
     #[serde(rename = "OpenSafetyMenu")]
     OpenSafetyMenu,
     #[serde(rename = "CannedWorldSearch")]
@@ -42,7 +42,7 @@ pub enum Command {
 
 impl Default for Command {
     fn default() -> Command {
-        Self::OpenURL
+        Self::OpenUrl
     }
 }
 

@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **public_occupants** | Option<**i32**> | Will always be `0` when unauthenticated. | [optional][default to 0]
 **publication_date** | **String** |  | 
 **release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
-**tags** | **Vec<String>** |  | 
+**tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
 **unity_packages** | [**Vec<crate::models::UnityPackage>**](UnityPackage.md) | Empty if unauthenticated. | 
 **updated_at** | **String** |  | 

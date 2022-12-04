@@ -36,6 +36,7 @@ pub struct CreateWorldRequest {
     pub platform: Option<String>,
     #[serde(rename = "releaseStatus", skip_serializing_if = "Option::is_none")]
     pub release_status: Option<crate::models::ReleaseStatus>,
+    ///  
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     #[serde(rename = "unityPackageUrl", skip_serializing_if = "Option::is_none")]

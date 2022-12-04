@@ -19,9 +19,9 @@ Name | Type | Description | Notes
 **popularity** | **i32** |  | [default to 0]
 **publication_date** | **String** |  | 
 **release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
-**tags** | **Vec<String>** |  | 
+**tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
-**unity_packages** | [**Vec<crate::models::LimitedUnityPackage>**](LimitedUnityPackage.md) |  | 
+**unity_packages** | [**Vec<crate::models::LimitedUnityPackage>**](LimitedUnityPackage.md) |   | 
 **updated_at** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

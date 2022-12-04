@@ -140,7 +140,7 @@ pub fn delete_notification(configuration: &configuration::Configuration, notific
 }
 
 /// Retrieve all of the current user's notifications.
-pub fn get_notifications(configuration: &configuration::Configuration, _type: Option<&str>, sent: Option<bool>, hidden: Option<bool>, after: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::Notification>, Error<GetNotificationsError>> {
+pub fn get_notifications(configuration: &configuration::Configuration, r#type: Option<&str>, sent: Option<bool>, hidden: Option<bool>, after: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::Notification>, Error<GetNotificationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -148,7 +148,7 @@ pub fn get_notifications(configuration: &configuration::Configuration, _type: Op
     let local_var_uri_str = format!("{}/auth/user/notifications", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
-    if let Some(ref local_var_str) = _type {
+    if let Some(ref local_var_str) = r#type {
         local_var_req_builder = local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = sent {

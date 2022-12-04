@@ -36,7 +36,7 @@ Name | Type | Description | Notes
 **oculus_id** | **String** |  | 
 **offline_friends** | Option<**Vec<String>**> |  | [optional]
 **online_friends** | Option<**Vec<String>**> |  | [optional]
-**past_display_names** | [**Vec<crate::models::PastDisplayName>**](PastDisplayName.md) |  | 
+**past_display_names** | [**Vec<crate::models::PastDisplayName>**](PastDisplayName.md) |   | 
 **profile_pic_override** | **String** |  | 
 **state** | [**crate::models::UserState**](UserState.md) |  | 
 **status** | [**crate::models::UserStatus**](UserStatus.md) |  | 

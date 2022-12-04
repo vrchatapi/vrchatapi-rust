@@ -15,14 +15,14 @@ pub struct ModerateUserRequest {
     #[serde(rename = "moderated")]
     pub moderated: String,
     #[serde(rename = "type")]
-    pub _type: crate::models::PlayerModerationType,
+    pub r#type: crate::models::PlayerModerationType,
 }
 
 impl ModerateUserRequest {
-    pub fn new(moderated: String, _type: crate::models::PlayerModerationType) -> ModerateUserRequest {
+    pub fn new(moderated: String, r#type: crate::models::PlayerModerationType) -> ModerateUserRequest {
         ModerateUserRequest {
             moderated,
-            _type,
+            r#type,
         }
     }
 }
