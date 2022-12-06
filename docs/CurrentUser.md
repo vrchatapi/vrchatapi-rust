@@ -6,10 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accepted_tos_version** | **i32** |  | 
 **account_deletion_date** | Option<[**String**](string.md)> |  | [optional]
-**active_friends** | Option<**Vec<String>**> |  | [optional]
+**account_deletion_log** | Option<[**Vec<crate::models::AccountDeletionLog>**](AccountDeletionLog.md)> |   | [optional]
+**active_friends** | Option<**Vec<String>**> |   | [optional]
 **allow_avatar_copying** | **bool** |  | 
 **bio** | **String** |  | 
-**bio_links** | **Vec<String>** |  | 
+**bio_links** | **Vec<String>** |   | 
 **current_avatar** | **String** |  | 
 **current_avatar_asset_url** | **String** |  | 
 **current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 

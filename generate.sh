@@ -9,7 +9,7 @@ rm src/apis src/models docs -rf
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
--i ../specification/dist/openapi.yaml \
+-i https://raw.githubusercontent.com/vrchatapi/specification/gh-pages/openapi.yaml \
 --http-user-agent="vrchatapi-rust"
 #--global-property debugOperations=true
 

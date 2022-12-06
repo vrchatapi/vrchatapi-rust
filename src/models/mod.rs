@@ -1,3 +1,5 @@
+pub mod account_deletion_log;
+pub use self::account_deletion_log::AccountDeletionLog;
 pub mod add_favorite_request;
 pub use self::add_favorite_request::AddFavoriteRequest;
 pub mod add_group_gallery_image_request;

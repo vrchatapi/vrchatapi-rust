@@ -1,5 +1,6 @@
 .travis.yml
 Cargo.toml
+docs/AccountDeletionLog.md
 docs/AddFavoriteRequest.md
 docs/AddGroupGalleryImageRequest.md
 docs/ApiConfig.md
@@ -152,6 +153,7 @@ src/apis/system_api.rs
 src/apis/users_api.rs
 src/apis/worlds_api.rs
 src/lib.rs
+src/models/account_deletion_log.rs
 src/models/add_favorite_request.rs
 src/models/add_group_gallery_image_request.rs
 src/models/api_config.rs

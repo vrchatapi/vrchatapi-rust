@@ -15,12 +15,17 @@ pub struct CurrentUser {
     pub accepted_tos_version: i32,
     #[serde(rename = "accountDeletionDate", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub account_deletion_date: Option<Option<String>>,
+    ///  
+    #[serde(rename = "accountDeletionLog", skip_serializing_if = "Option::is_none")]
+    pub account_deletion_log: Option<Vec<crate::models::AccountDeletionLog>>,
+    ///  
     #[serde(rename = "activeFriends", skip_serializing_if = "Option::is_none")]
     pub active_friends: Option<Vec<String>>,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
     #[serde(rename = "bio")]
     pub bio: String,
+    ///  
     #[serde(rename = "bioLinks")]
     pub bio_links: Vec<String>,
     #[serde(rename = "currentAvatar")]
@@ -120,6 +125,7 @@ impl CurrentUser {
         CurrentUser {
             accepted_tos_version,
             account_deletion_date: None,
+            account_deletion_log: None,
             active_friends: None,
             allow_avatar_copying,
             bio,
