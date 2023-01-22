@@ -112,6 +112,7 @@ docs/TransactionStatus.md
 docs/TransactionSteamInfo.md
 docs/TransactionSteamWalletInfo.md
 docs/TwoFactorAuthCode.md
+docs/TwoFactorEmailCode.md
 docs/UnityPackage.md
 docs/UpdateAvatarRequest.md
 docs/UpdateFavoriteGroupRequest.md
@@ -128,6 +129,7 @@ docs/UserState.md
 docs/UserStatus.md
 docs/UserSubscription.md
 docs/UsersApi.md
+docs/Verify2FaEmailCodeResult.md
 docs/Verify2FaResult.md
 docs/VerifyAuthTokenResult.md
 docs/World.md
@@ -253,6 +255,7 @@ src/models/transaction_status.rs
 src/models/transaction_steam_info.rs
 src/models/transaction_steam_wallet_info.rs
 src/models/two_factor_auth_code.rs
+src/models/two_factor_email_code.rs
 src/models/unity_package.rs
 src/models/update_avatar_request.rs
 src/models/update_favorite_group_request.rs
@@ -268,6 +271,7 @@ src/models/user_exists.rs
 src/models/user_state.rs
 src/models/user_status.rs
 src/models/user_subscription.rs
+src/models/verify2_fa_email_code_result.rs
 src/models/verify2_fa_result.rs
 src/models/verify_auth_token_result.rs
 src/models/world.rs

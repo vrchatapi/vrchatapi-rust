@@ -5,10 +5,11 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**check_user_exists**](AuthenticationApi.md#check_user_exists) | **GET** /auth/exists | Check User Exists
-[**delete_user**](AuthenticationApi.md#delete_user) | **PUT** /user/{userId}/delete | Delete User
+[**delete_user**](AuthenticationApi.md#delete_user) | **PUT** /users/{userId}/delete | Delete User
 [**get_current_user**](AuthenticationApi.md#get_current_user) | **GET** /auth/user | Login and/or Get Current User Info
 [**logout**](AuthenticationApi.md#logout) | **PUT** /logout | Logout
 [**verify2_fa**](AuthenticationApi.md#verify2_fa) | **POST** /auth/twofactorauth/totp/verify | Verify 2FA code
+[**verify2_fa_email_code**](AuthenticationApi.md#verify2_fa_email_code) | **POST** /auth/twofactorauth/emailotp/verify | Verify 2FA email code
 [**verify_auth_token**](AuthenticationApi.md#verify_auth_token) | **GET** /auth | Verify Auth Token
 [**verify_recovery_code**](AuthenticationApi.md#verify_recovery_code) | **POST** /auth/twofactorauth/otp/verify | Verify 2FA code with Recovery code
 
@@ -148,6 +149,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::Verify2FaResult**](Verify2FAResult.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## verify2_fa_email_code
+
+> crate::models::Verify2FaEmailCodeResult verify2_fa_email_code(two_factor_email_code)
+Verify 2FA email code
+
+Finishes the login sequence with an 2FA email code.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**two_factor_email_code** | Option<[**TwoFactorEmailCode**](TwoFactorEmailCode.md)> |  |  |
+
+### Return type
+
+[**crate::models::Verify2FaEmailCodeResult**](Verify2FAEmailCodeResult.md)
 
 ### Authorization
 
