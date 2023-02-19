@@ -1114,8 +1114,8 @@ pub fn get_group_roles(configuration: &configuration::Configuration, group_id: &
     }
 }
 
-/// Join a Group by ID and returns the joined Group.
-pub fn join_group(configuration: &configuration::Configuration, group_id: &str) -> Result<crate::models::Group, Error<JoinGroupError>> {
+/// Join a Group by ID and returns the member object.
+pub fn join_group(configuration: &configuration::Configuration, group_id: &str) -> Result<crate::models::GroupMember, Error<JoinGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

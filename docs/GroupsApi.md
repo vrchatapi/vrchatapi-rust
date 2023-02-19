@@ -853,10 +853,10 @@ Name | Type | Description  | Required | Notes
 
 ## join_group
 
-> crate::models::Group join_group(group_id)
+> crate::models::GroupMember join_group(group_id)
 Join Group
 
-Join a Group by ID and returns the joined Group.
+Join a Group by ID and returns the member object.
 
 ### Parameters
 
@@ -867,7 +867,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Group**](Group.md)
+[**crate::models::GroupMember**](GroupMember.md)
 
 ### Authorization
 
