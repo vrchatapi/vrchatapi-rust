@@ -127,7 +127,7 @@ pub enum UpdateWorldError {
 
 
 /// Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
-pub fn create_world(configuration: &configuration::Configuration, create_world_request: Option<crate::models::CreateWorldRequest>) -> Result<crate::models::World, Error<CreateWorldError>> {
+pub async fn create_world(configuration: &configuration::Configuration, create_world_request: Option<crate::models::CreateWorldRequest>) -> Result<crate::models::World, Error<CreateWorldError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -141,10 +141,10 @@ pub fn create_world(configuration: &configuration::Configuration, create_world_r
     local_var_req_builder = local_var_req_builder.json(&create_world_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -156,7 +156,7 @@ pub fn create_world(configuration: &configuration::Configuration, create_world_r
 }
 
 /// Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
-pub fn delete_world(configuration: &configuration::Configuration, world_id: &str) -> Result<(), Error<DeleteWorldError>> {
+pub async fn delete_world(configuration: &configuration::Configuration, world_id: &str) -> Result<(), Error<DeleteWorldError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -169,10 +169,10 @@ pub fn delete_world(configuration: &configuration::Configuration, world_id: &str
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -184,7 +184,7 @@ pub fn delete_world(configuration: &configuration::Configuration, world_id: &str
 }
 
 /// Search and list currently Active worlds by query filters.
-pub fn get_active_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetActiveWorldsError>> {
+pub async fn get_active_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetActiveWorldsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -233,10 +233,10 @@ pub fn get_active_worlds(configuration: &configuration::Configuration, featured:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -248,7 +248,7 @@ pub fn get_active_worlds(configuration: &configuration::Configuration, featured:
 }
 
 /// Search and list favorited worlds by query filters.
-pub fn get_favorited_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetFavoritedWorldsError>> {
+pub async fn get_favorited_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetFavoritedWorldsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -300,10 +300,10 @@ pub fn get_favorited_worlds(configuration: &configuration::Configuration, featur
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -315,7 +315,7 @@ pub fn get_favorited_worlds(configuration: &configuration::Configuration, featur
 }
 
 /// Search and list recently visited worlds by query filters.
-pub fn get_recent_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetRecentWorldsError>> {
+pub async fn get_recent_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetRecentWorldsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -367,10 +367,10 @@ pub fn get_recent_worlds(configuration: &configuration::Configuration, featured:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -382,7 +382,7 @@ pub fn get_recent_worlds(configuration: &configuration::Configuration, featured:
 }
 
 /// Get information about a specific World. Works unauthenticated but when so will always return `0` for certain fields.
-pub fn get_world(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::World, Error<GetWorldError>> {
+pub async fn get_world(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::World, Error<GetWorldError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -395,10 +395,10 @@ pub fn get_world(configuration: &configuration::Configuration, world_id: &str) -
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -410,7 +410,7 @@ pub fn get_world(configuration: &configuration::Configuration, world_id: &str) -
 }
 
 /// Returns a worlds instance.
-pub fn get_world_instance(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::Instance, Error<GetWorldInstanceError>> {
+pub async fn get_world_instance(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::Instance, Error<GetWorldInstanceError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -423,10 +423,10 @@ pub fn get_world_instance(configuration: &configuration::Configuration, world_id
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -438,7 +438,7 @@ pub fn get_world_instance(configuration: &configuration::Configuration, world_id
 }
 
 /// Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
-pub fn get_world_metadata(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::WorldMetadata, Error<GetWorldMetadataError>> {
+pub async fn get_world_metadata(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::WorldMetadata, Error<GetWorldMetadataError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -451,10 +451,10 @@ pub fn get_world_metadata(configuration: &configuration::Configuration, world_id
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -466,7 +466,7 @@ pub fn get_world_metadata(configuration: &configuration::Configuration, world_id
 }
 
 /// Returns a worlds publish status.
-pub fn get_world_publish_status(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::WorldPublishStatus, Error<GetWorldPublishStatusError>> {
+pub async fn get_world_publish_status(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::WorldPublishStatus, Error<GetWorldPublishStatusError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -479,10 +479,10 @@ pub fn get_world_publish_status(configuration: &configuration::Configuration, wo
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -494,7 +494,7 @@ pub fn get_world_publish_status(configuration: &configuration::Configuration, wo
 }
 
 /// Publish a world. You can only publish one world per week.
-pub fn publish_world(configuration: &configuration::Configuration, world_id: &str) -> Result<(), Error<PublishWorldError>> {
+pub async fn publish_world(configuration: &configuration::Configuration, world_id: &str) -> Result<(), Error<PublishWorldError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -507,10 +507,10 @@ pub fn publish_world(configuration: &configuration::Configuration, world_id: &st
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -522,7 +522,7 @@ pub fn publish_world(configuration: &configuration::Configuration, world_id: &st
 }
 
 /// Search and list any worlds by query filters.
-pub fn search_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<SearchWorldsError>> {
+pub async fn search_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<SearchWorldsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -577,10 +577,10 @@ pub fn search_worlds(configuration: &configuration::Configuration, featured: Opt
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -592,7 +592,7 @@ pub fn search_worlds(configuration: &configuration::Configuration, featured: Opt
 }
 
 /// Unpublish a world.
-pub fn unpublish_world(configuration: &configuration::Configuration, world_id: &str) -> Result<(), Error<UnpublishWorldError>> {
+pub async fn unpublish_world(configuration: &configuration::Configuration, world_id: &str) -> Result<(), Error<UnpublishWorldError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -605,10 +605,10 @@ pub fn unpublish_world(configuration: &configuration::Configuration, world_id: &
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -620,7 +620,7 @@ pub fn unpublish_world(configuration: &configuration::Configuration, world_id: &
 }
 
 /// Update information about a specific World.
-pub fn update_world(configuration: &configuration::Configuration, world_id: &str, update_world_request: Option<crate::models::UpdateWorldRequest>) -> Result<crate::models::World, Error<UpdateWorldError>> {
+pub async fn update_world(configuration: &configuration::Configuration, world_id: &str, update_world_request: Option<crate::models::UpdateWorldRequest>) -> Result<crate::models::World, Error<UpdateWorldError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -634,10 +634,10 @@ pub fn update_world(configuration: &configuration::Configuration, world_id: &str
     local_var_req_builder = local_var_req_builder.json(&update_world_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)

@@ -90,7 +90,7 @@ pub enum StartFileDataUploadError {
 
 
 /// Creates a new File object
-pub fn create_file(configuration: &configuration::Configuration, create_file_request: Option<crate::models::CreateFileRequest>) -> Result<crate::models::File, Error<CreateFileError>> {
+pub async fn create_file(configuration: &configuration::Configuration, create_file_request: Option<crate::models::CreateFileRequest>) -> Result<crate::models::File, Error<CreateFileError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -104,10 +104,10 @@ pub fn create_file(configuration: &configuration::Configuration, create_file_req
     local_var_req_builder = local_var_req_builder.json(&create_file_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -119,7 +119,7 @@ pub fn create_file(configuration: &configuration::Configuration, create_file_req
 }
 
 /// Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
-pub fn create_file_version(configuration: &configuration::Configuration, file_id: &str, create_file_version_request: Option<crate::models::CreateFileVersionRequest>) -> Result<crate::models::File, Error<CreateFileVersionError>> {
+pub async fn create_file_version(configuration: &configuration::Configuration, file_id: &str, create_file_version_request: Option<crate::models::CreateFileVersionRequest>) -> Result<crate::models::File, Error<CreateFileVersionError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -133,10 +133,10 @@ pub fn create_file_version(configuration: &configuration::Configuration, file_id
     local_var_req_builder = local_var_req_builder.json(&create_file_version_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -148,7 +148,7 @@ pub fn create_file_version(configuration: &configuration::Configuration, file_id
 }
 
 /// Deletes a File object.
-pub fn delete_file(configuration: &configuration::Configuration, file_id: &str) -> Result<crate::models::Success, Error<DeleteFileError>> {
+pub async fn delete_file(configuration: &configuration::Configuration, file_id: &str) -> Result<crate::models::Success, Error<DeleteFileError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -161,10 +161,10 @@ pub fn delete_file(configuration: &configuration::Configuration, file_id: &str) 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -176,7 +176,7 @@ pub fn delete_file(configuration: &configuration::Configuration, file_id: &str) 
 }
 
 /// Delete a specific version of a file. You can only delete the latest version.
-pub fn delete_file_version(configuration: &configuration::Configuration, file_id: &str, version_id: i32) -> Result<crate::models::File, Error<DeleteFileVersionError>> {
+pub async fn delete_file_version(configuration: &configuration::Configuration, file_id: &str, version_id: i32) -> Result<crate::models::File, Error<DeleteFileVersionError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -189,10 +189,10 @@ pub fn delete_file_version(configuration: &configuration::Configuration, file_id
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -204,7 +204,7 @@ pub fn delete_file_version(configuration: &configuration::Configuration, file_id
 }
 
 /// Downloads the file with the provided version number.  **Version Note:** Version 0 is always when the file was created. The real data is usually always located in version 1 and up.  **Extension Note:** Files are not guaranteed to have a file extensions. UnityPackage files tends to have it, images through this endpoint do not. You are responsible for appending file extension from the `extension` field when neccesary.
-pub fn download_file_version(configuration: &configuration::Configuration, file_id: &str, version_id: i32) -> Result<(), Error<DownloadFileVersionError>> {
+pub async fn download_file_version(configuration: &configuration::Configuration, file_id: &str, version_id: i32) -> Result<(), Error<DownloadFileVersionError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -217,10 +217,10 @@ pub fn download_file_version(configuration: &configuration::Configuration, file_
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
@@ -232,7 +232,7 @@ pub fn download_file_version(configuration: &configuration::Configuration, file_
 }
 
 /// Finish an upload of a FileData. This will mark it as \"complete\". After uploading the `file` for Avatars and Worlds you then have to upload a `signature` file.
-pub fn finish_file_data_upload(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str, finish_file_data_upload_request: Option<crate::models::FinishFileDataUploadRequest>) -> Result<crate::models::File, Error<FinishFileDataUploadError>> {
+pub async fn finish_file_data_upload(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str, finish_file_data_upload_request: Option<crate::models::FinishFileDataUploadRequest>) -> Result<crate::models::File, Error<FinishFileDataUploadError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -246,10 +246,10 @@ pub fn finish_file_data_upload(configuration: &configuration::Configuration, fil
     local_var_req_builder = local_var_req_builder.json(&finish_file_data_upload_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -261,7 +261,7 @@ pub fn finish_file_data_upload(configuration: &configuration::Configuration, fil
 }
 
 /// Shows general information about the \"File\" object. Each File can have several \"Version\"'s, and each Version can have multiple real files or \"Data\" blobs.
-pub fn get_file(configuration: &configuration::Configuration, file_id: &str) -> Result<crate::models::File, Error<GetFileError>> {
+pub async fn get_file(configuration: &configuration::Configuration, file_id: &str) -> Result<crate::models::File, Error<GetFileError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -274,10 +274,10 @@ pub fn get_file(configuration: &configuration::Configuration, file_id: &str) -> 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -289,7 +289,7 @@ pub fn get_file(configuration: &configuration::Configuration, file_id: &str) -> 
 }
 
 /// Retrieves the upload status for file upload. Can currently only be accessed when `status` is `waiting`. Trying to access it on a file version already uploaded currently times out.
-pub fn get_file_data_upload_status(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str) -> Result<crate::models::FileVersionUploadStatus, Error<GetFileDataUploadStatusError>> {
+pub async fn get_file_data_upload_status(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str) -> Result<crate::models::FileVersionUploadStatus, Error<GetFileDataUploadStatusError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -302,10 +302,10 @@ pub fn get_file_data_upload_status(configuration: &configuration::Configuration,
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -317,7 +317,7 @@ pub fn get_file_data_upload_status(configuration: &configuration::Configuration,
 }
 
 /// Returns a list of files
-pub fn get_files(configuration: &configuration::Configuration, tag: Option<&str>, user_id: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::File>, Error<GetFilesError>> {
+pub async fn get_files(configuration: &configuration::Configuration, tag: Option<&str>, user_id: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::File>, Error<GetFilesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -342,10 +342,10 @@ pub fn get_files(configuration: &configuration::Configuration, tag: Option<&str>
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -357,7 +357,7 @@ pub fn get_files(configuration: &configuration::Configuration, tag: Option<&str>
 }
 
 /// Starts an upload of a specific FilePart. This endpoint will return an AWS URL which you can PUT data to. You need to call this and receive a new AWS API URL for each `partNumber`. Please see AWS's REST documentation on \"PUT Object to S3\" on how to upload. Once all parts has been uploaded, proceed to `/finish` endpoint.  **Note:** `nextPartNumber` seems like it is always ignored. Despite it returning 0, first partNumber is always 1.
-pub fn start_file_data_upload(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str, part_number: Option<i32>) -> Result<crate::models::FileUploadUrl, Error<StartFileDataUploadError>> {
+pub async fn start_file_data_upload(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str, part_number: Option<i32>) -> Result<crate::models::FileUploadUrl, Error<StartFileDataUploadError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -373,10 +373,10 @@ pub fn start_file_data_upload(configuration: &configuration::Configuration, file
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
