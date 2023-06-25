@@ -40,6 +40,8 @@ pub mod create_world_request;
 pub use self::create_world_request::CreateWorldRequest;
 pub mod current_user;
 pub use self::current_user::CurrentUser;
+pub mod current_user_presence;
+pub use self::current_user_presence::CurrentUserPresence;
 pub mod deployment_group;
 pub use self::deployment_group::DeploymentGroup;
 pub mod developer_type;

@@ -22,7 +22,12 @@ find src -type f -exec sed -i '/VRChat API Banner/d' {} \;
 find src -type f -exec sed -i '/The version of the OpenAPI document/d' {} \;
 
 # Cookie storage
-sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
+sed -i 's/client: reqwest::Client/client: reqwest::blocking::Client/g' src/apis/configuration.rs
+sed -i 's/reqwest::blocking::Client::new()/reqwest::blocking::Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
+#bump reqwest to 0.11
+sed -i 's/reqwest = "~0.9"/reqwest = \{version = "^0.11", features = \["cookies", "blocking", "json"\]\}/g' Cargo.toml
+sed -i 's/let mut local_var_resp/let local_var_resp/g' src/apis/*.rs
+
 
 # https://github.com/OpenAPITools/openapi-generator/issues/14171
 # Replace Option<SortOption with Option<crate::models::SortOption in src/apis

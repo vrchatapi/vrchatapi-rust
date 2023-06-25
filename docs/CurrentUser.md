@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accepted_tos_version** | **i32** |  | 
+**accepted_privacy_version** | Option<**i32**> |  | [optional]
 **account_deletion_date** | Option<[**String**](string.md)> |  | [optional]
 **account_deletion_log** | Option<[**Vec<crate::models::AccountDeletionLog>**](AccountDeletionLog.md)> |   | [optional]
 **active_friends** | Option<**Vec<String>**> |   | [optional]
@@ -30,6 +31,7 @@ Name | Type | Description | Notes
 **home_location** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
 **is_friend** | **bool** |  | [default to false]
+**last_activity** | Option<**String**> |  | [optional]
 **last_login** | **String** |  | 
 **last_platform** | **String** | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **obfuscated_email** | **String** |  | 
@@ -38,6 +40,7 @@ Name | Type | Description | Notes
 **offline_friends** | Option<**Vec<String>**> |  | [optional]
 **online_friends** | Option<**Vec<String>**> |  | [optional]
 **past_display_names** | [**Vec<crate::models::PastDisplayName>**](PastDisplayName.md) |   | 
+**presence** | Option<[**crate::models::CurrentUserPresence**](CurrentUserPresence.md)> |  | [optional]
 **profile_pic_override** | **String** |  | 
 **state** | [**crate::models::UserState**](UserState.md) |  | 
 **status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
@@ -50,6 +53,7 @@ Name | Type | Description | Notes
 **two_factor_auth_enabled** | **bool** |  | 
 **two_factor_auth_enabled_date** | Option<**String**> |  | [optional]
 **unsubscribe** | **bool** |  | 
+**updated_at** | Option<**String**> |  | [optional]
 **user_icon** | **String** |  | 
 **username** | Option<**String**> | -| **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). | [optional]
 
