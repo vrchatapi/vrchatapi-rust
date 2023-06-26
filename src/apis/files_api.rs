@@ -104,7 +104,7 @@ pub fn create_file(configuration: &configuration::Configuration, create_file_req
     local_var_req_builder = local_var_req_builder.json(&create_file_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -133,7 +133,7 @@ pub fn create_file_version(configuration: &configuration::Configuration, file_id
     local_var_req_builder = local_var_req_builder.json(&create_file_version_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -161,7 +161,7 @@ pub fn delete_file(configuration: &configuration::Configuration, file_id: &str) 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -189,7 +189,7 @@ pub fn delete_file_version(configuration: &configuration::Configuration, file_id
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -217,7 +217,7 @@ pub fn download_file_version(configuration: &configuration::Configuration, file_
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -246,7 +246,7 @@ pub fn finish_file_data_upload(configuration: &configuration::Configuration, fil
     local_var_req_builder = local_var_req_builder.json(&finish_file_data_upload_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -274,7 +274,7 @@ pub fn get_file(configuration: &configuration::Configuration, file_id: &str) -> 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -302,7 +302,7 @@ pub fn get_file_data_upload_status(configuration: &configuration::Configuration,
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -342,7 +342,7 @@ pub fn get_files(configuration: &configuration::Configuration, tag: Option<&str>
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -373,7 +373,7 @@ pub fn start_file_data_upload(configuration: &configuration::Configuration, file
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

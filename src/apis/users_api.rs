@@ -77,7 +77,7 @@ pub fn get_user(configuration: &configuration::Configuration, user_id: &str) -> 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -105,7 +105,7 @@ pub fn get_user_by_name(configuration: &configuration::Configuration, username: 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -133,7 +133,7 @@ pub fn get_user_group_requests(configuration: &configuration::Configuration, use
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -161,7 +161,7 @@ pub fn get_user_groups(configuration: &configuration::Configuration, user_id: &s
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -201,7 +201,7 @@ pub fn search_users(configuration: &configuration::Configuration, search: Option
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -230,7 +230,7 @@ pub fn update_user(configuration: &configuration::Configuration, user_id: &str, 
     local_var_req_builder = local_var_req_builder.json(&update_user_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

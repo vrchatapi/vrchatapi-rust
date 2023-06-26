@@ -61,7 +61,7 @@ pub fn get_instance(configuration: &configuration::Configuration, world_id: &str
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -89,7 +89,7 @@ pub fn get_instance_by_short_name(configuration: &configuration::Configuration, 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -117,7 +117,7 @@ pub fn get_short_name(configuration: &configuration::Configuration, world_id: &s
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -145,7 +145,7 @@ pub fn send_self_invite(configuration: &configuration::Configuration, world_id: 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

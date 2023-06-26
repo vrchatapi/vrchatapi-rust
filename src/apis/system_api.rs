@@ -79,7 +79,7 @@ pub fn get_config(configuration: &configuration::Configuration, ) -> Result<crat
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -113,7 +113,7 @@ pub fn get_css(configuration: &configuration::Configuration, variant: Option<&st
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -141,7 +141,7 @@ pub fn get_current_online_users(configuration: &configuration::Configuration, ) 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -169,7 +169,7 @@ pub fn get_health(configuration: &configuration::Configuration, ) -> Result<crat
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -203,7 +203,7 @@ pub fn get_info_push(configuration: &configuration::Configuration, require: Opti
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -237,7 +237,7 @@ pub fn get_java_script(configuration: &configuration::Configuration, variant: Op
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -265,7 +265,7 @@ pub fn get_system_time(configuration: &configuration::Configuration, ) -> Result
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

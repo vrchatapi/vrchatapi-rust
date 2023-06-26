@@ -141,7 +141,7 @@ pub fn create_world(configuration: &configuration::Configuration, create_world_r
     local_var_req_builder = local_var_req_builder.json(&create_world_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -169,7 +169,7 @@ pub fn delete_world(configuration: &configuration::Configuration, world_id: &str
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -233,7 +233,7 @@ pub fn get_active_worlds(configuration: &configuration::Configuration, featured:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -300,7 +300,7 @@ pub fn get_favorited_worlds(configuration: &configuration::Configuration, featur
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -367,7 +367,7 @@ pub fn get_recent_worlds(configuration: &configuration::Configuration, featured:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -395,7 +395,7 @@ pub fn get_world(configuration: &configuration::Configuration, world_id: &str) -
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -423,7 +423,7 @@ pub fn get_world_instance(configuration: &configuration::Configuration, world_id
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -451,7 +451,7 @@ pub fn get_world_metadata(configuration: &configuration::Configuration, world_id
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -479,7 +479,7 @@ pub fn get_world_publish_status(configuration: &configuration::Configuration, wo
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -507,7 +507,7 @@ pub fn publish_world(configuration: &configuration::Configuration, world_id: &st
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -577,7 +577,7 @@ pub fn search_worlds(configuration: &configuration::Configuration, featured: Opt
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -605,7 +605,7 @@ pub fn unpublish_world(configuration: &configuration::Configuration, world_id: &
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -634,7 +634,7 @@ pub fn update_world(configuration: &configuration::Configuration, world_id: &str
     local_var_req_builder = local_var_req_builder.json(&update_world_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

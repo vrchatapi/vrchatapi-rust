@@ -26,8 +26,10 @@ sed -i 's/client: reqwest::Client/client: reqwest::blocking::Client/g' src/apis/
 sed -i 's/reqwest::blocking::Client::new()/reqwest::blocking::Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
 #bump reqwest to 0.11
 sed -i 's/reqwest = "~0.9"/reqwest = \{version = "^0.11", features = \["cookies", "blocking", "json"\]\}/g' Cargo.toml
-sed -i 's/let mut local_var_resp/#[allow(unused_mut)] let mut local_var_resp/g' src/apis/*.rs
-
+#sed -i 's/let mut local_var_resp/let local_var_resp/g' src/apis/*.rs #actually fix the unused_mut warnings
+#sed -i 's/let mut local_var_resp/#[allow(unused_mut)] let mut local_var_resp/g' src/apis/*.rs #allow unused_mut only where strictly needed
+sed -i 's/pub mod apis;/#\[allow\(unused_mut\)\] pub mod apis;/g' src/lib.rs #allow unused_mut in apis submodule only
+#(echo "#![allow(unused_mut)]"; cat src/lib.rs) | cat - > src/lib.rs #library global allow unsued_mut prepended
 
 # https://github.com/OpenAPITools/openapi-generator/issues/14171
 # Replace Option<SortOption with Option<crate::models::SortOption in src/apis

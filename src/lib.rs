@@ -6,5 +6,5 @@ extern crate serde_json;
 extern crate url;
 extern crate reqwest;
 
-pub mod apis;
+#[allow(unused_mut)] pub mod apis;
 pub mod models;
