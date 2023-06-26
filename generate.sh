@@ -26,7 +26,7 @@ sed -i 's/client: reqwest::Client/client: reqwest::blocking::Client/g' src/apis/
 sed -i 's/reqwest::blocking::Client::new()/reqwest::blocking::Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
 #bump reqwest to 0.11
 sed -i 's/reqwest = "~0.9"/reqwest = \{version = "^0.11", features = \["cookies", "blocking", "json"\]\}/g' Cargo.toml
-sed -i 's/let mut local_var_resp/let local_var_resp/g' src/apis/*.rs
+sed -i 's/let mut local_var_resp/#[allow(unused_mut)] let mut local_var_resp/g' src/apis/*.rs
 
 
 # https://github.com/OpenAPITools/openapi-generator/issues/14171

@@ -104,7 +104,7 @@ pub fn check_user_exists(configuration: &configuration::Configuration, email: Op
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req)?;
+    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -132,7 +132,7 @@ pub fn delete_user(configuration: &configuration::Configuration, user_id: &str) 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req)?;
+    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -163,7 +163,7 @@ pub fn get_current_user(configuration: &configuration::Configuration, ) -> Resul
     };
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req)?;
+    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -191,7 +191,7 @@ pub fn logout(configuration: &configuration::Configuration, ) -> Result<crate::m
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req)?;
+    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -220,7 +220,7 @@ pub fn verify2_fa(configuration: &configuration::Configuration, two_factor_auth_
     local_var_req_builder = local_var_req_builder.json(&two_factor_auth_code);
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req)?;
+    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -249,7 +249,7 @@ pub fn verify2_fa_email_code(configuration: &configuration::Configuration, two_f
     local_var_req_builder = local_var_req_builder.json(&two_factor_email_code);
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req)?;
+    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -277,7 +277,7 @@ pub fn verify_auth_token(configuration: &configuration::Configuration, ) -> Resu
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req)?;
+    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -306,7 +306,7 @@ pub fn verify_recovery_code(configuration: &configuration::Configuration, two_fa
     local_var_req_builder = local_var_req_builder.json(&two_factor_auth_code);
 
     let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req)?;
+    #[allow(unused_mut)] let mut local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
