@@ -91,7 +91,7 @@ pub enum UpdateInviteMessageError {
 pub async fn get_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: crate::models::InviteMessageType, slot: i32) -> Result<crate::models::InviteMessage, Error<GetInviteMessageError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type, slot=slot);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -119,7 +119,7 @@ pub async fn get_invite_message(configuration: &configuration::Configuration, us
 pub async fn get_invite_messages(configuration: &configuration::Configuration, user_id: &str, message_type: crate::models::InviteMessageType) -> Result<Vec<crate::models::InviteMessage>, Error<GetInviteMessagesError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/message/{userId}/{messageType}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -147,7 +147,7 @@ pub async fn get_invite_messages(configuration: &configuration::Configuration, u
 pub async fn invite_myself_to(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::SentNotification, Error<InviteMyselfToError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/invite/myself/to/{worldId}:{instanceId}", local_var_configuration.base_path, worldId=crate::apis::urlencode(world_id), instanceId=crate::apis::urlencode(instance_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -175,7 +175,7 @@ pub async fn invite_myself_to(configuration: &configuration::Configuration, worl
 pub async fn invite_user(configuration: &configuration::Configuration, user_id: &str, invite_request: Option<crate::models::InviteRequest>) -> Result<crate::models::SentNotification, Error<InviteUserError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/invite/{userId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -204,7 +204,7 @@ pub async fn invite_user(configuration: &configuration::Configuration, user_id: 
 pub async fn request_invite(configuration: &configuration::Configuration, user_id: &str, request_invite_request: Option<crate::models::RequestInviteRequest>) -> Result<crate::models::Notification, Error<RequestInviteError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/requestInvite/{userId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -233,7 +233,7 @@ pub async fn request_invite(configuration: &configuration::Configuration, user_i
 pub async fn reset_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: crate::models::InviteMessageType, slot: i32) -> Result<Vec<crate::models::InviteMessage>, Error<ResetInviteMessageError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type, slot=slot);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -261,7 +261,7 @@ pub async fn reset_invite_message(configuration: &configuration::Configuration, 
 pub async fn respond_invite(configuration: &configuration::Configuration, notification_id: &str, invite_response: Option<crate::models::InviteResponse>) -> Result<crate::models::Notification, Error<RespondInviteError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/invite/{notificationId}/response", local_var_configuration.base_path, notificationId=crate::apis::urlencode(notification_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -290,7 +290,7 @@ pub async fn respond_invite(configuration: &configuration::Configuration, notifi
 pub async fn update_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: crate::models::InviteMessageType, slot: i32, update_invite_message_request: Option<crate::models::UpdateInviteMessageRequest>) -> Result<Vec<crate::models::InviteMessage>, Error<UpdateInviteMessageError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type, slot=slot);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());

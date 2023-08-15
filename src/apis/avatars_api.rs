@@ -98,7 +98,7 @@ pub enum UpdateAvatarError {
 pub async fn create_avatar(configuration: &configuration::Configuration, create_avatar_request: Option<crate::models::CreateAvatarRequest>) -> Result<crate::models::Avatar, Error<CreateAvatarError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/avatars", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -127,7 +127,7 @@ pub async fn create_avatar(configuration: &configuration::Configuration, create_
 pub async fn delete_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::Avatar, Error<DeleteAvatarError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/avatars/{avatarId}", local_var_configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -155,7 +155,7 @@ pub async fn delete_avatar(configuration: &configuration::Configuration, avatar_
 pub async fn get_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::Avatar, Error<GetAvatarError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/avatars/{avatarId}", local_var_configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -183,7 +183,7 @@ pub async fn get_avatar(configuration: &configuration::Configuration, avatar_id:
 pub async fn get_favorited_avatars(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<GetFavoritedAvatarsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/avatars/favorites", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -250,7 +250,7 @@ pub async fn get_favorited_avatars(configuration: &configuration::Configuration,
 pub async fn get_own_avatar(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Avatar, Error<GetOwnAvatarError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/users/{userId}/avatar", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -278,7 +278,7 @@ pub async fn get_own_avatar(configuration: &configuration::Configuration, user_i
 pub async fn search_avatars(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<SearchAvatarsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/avatars", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -345,7 +345,7 @@ pub async fn search_avatars(configuration: &configuration::Configuration, featur
 pub async fn select_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::CurrentUser, Error<SelectAvatarError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/avatars/{avatarId}/select", local_var_configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -373,7 +373,7 @@ pub async fn select_avatar(configuration: &configuration::Configuration, avatar_
 pub async fn select_fallback_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::CurrentUser, Error<SelectFallbackAvatarError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/avatars/{avatarId}/selectFallback", local_var_configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -401,7 +401,7 @@ pub async fn select_fallback_avatar(configuration: &configuration::Configuration
 pub async fn update_avatar(configuration: &configuration::Configuration, avatar_id: &str, update_avatar_request: Option<crate::models::UpdateAvatarRequest>) -> Result<crate::models::Avatar, Error<UpdateAvatarError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/avatars/{avatarId}", local_var_configuration.base_path, avatarId=crate::apis::urlencode(avatar_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());

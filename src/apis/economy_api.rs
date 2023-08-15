@@ -58,7 +58,7 @@ pub enum GetSubscriptionsError {
 pub async fn get_current_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::UserSubscription>, Error<GetCurrentSubscriptionsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/subscription", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -86,7 +86,7 @@ pub async fn get_current_subscriptions(configuration: &configuration::Configurat
 pub async fn get_license_group(configuration: &configuration::Configuration, license_group_id: &str) -> Result<crate::models::LicenseGroup, Error<GetLicenseGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/licenseGroups/{licenseGroupId}", local_var_configuration.base_path, licenseGroupId=crate::apis::urlencode(license_group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -114,7 +114,7 @@ pub async fn get_license_group(configuration: &configuration::Configuration, lic
 pub async fn get_steam_transaction(configuration: &configuration::Configuration, transaction_id: &str) -> Result<crate::models::Transaction, Error<GetSteamTransactionError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/Steam/transactions/{transactionId}", local_var_configuration.base_path, transactionId=crate::apis::urlencode(transaction_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -142,7 +142,7 @@ pub async fn get_steam_transaction(configuration: &configuration::Configuration,
 pub async fn get_steam_transactions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Transaction>, Error<GetSteamTransactionsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/Steam/transactions", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -170,7 +170,7 @@ pub async fn get_steam_transactions(configuration: &configuration::Configuration
 pub async fn get_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Subscription>, Error<GetSubscriptionsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/subscriptions", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());

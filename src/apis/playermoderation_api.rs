@@ -68,7 +68,7 @@ pub enum UnmoderateUserError {
 pub async fn clear_all_player_moderations(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<ClearAllPlayerModerationsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/playermoderations", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -96,7 +96,7 @@ pub async fn clear_all_player_moderations(configuration: &configuration::Configu
 pub async fn delete_player_moderation(configuration: &configuration::Configuration, player_moderation_id: &str) -> Result<crate::models::Success, Error<DeletePlayerModerationError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/playermoderations/{playerModerationId}", local_var_configuration.base_path, playerModerationId=crate::apis::urlencode(player_moderation_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -124,7 +124,7 @@ pub async fn delete_player_moderation(configuration: &configuration::Configurati
 pub async fn get_player_moderation(configuration: &configuration::Configuration, player_moderation_id: &str) -> Result<crate::models::PlayerModeration, Error<GetPlayerModerationError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/playermoderations/{playerModerationId}", local_var_configuration.base_path, playerModerationId=crate::apis::urlencode(player_moderation_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -152,7 +152,7 @@ pub async fn get_player_moderation(configuration: &configuration::Configuration,
 pub async fn get_player_moderations(configuration: &configuration::Configuration, r#type: Option<&str>, target_user_id: Option<&str>) -> Result<Vec<crate::models::PlayerModeration>, Error<GetPlayerModerationsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/playermoderations", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -186,7 +186,7 @@ pub async fn get_player_moderations(configuration: &configuration::Configuration
 pub async fn moderate_user(configuration: &configuration::Configuration, moderate_user_request: Option<crate::models::ModerateUserRequest>) -> Result<crate::models::PlayerModeration, Error<ModerateUserError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/playermoderations", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -215,7 +215,7 @@ pub async fn moderate_user(configuration: &configuration::Configuration, moderat
 pub async fn unmoderate_user(configuration: &configuration::Configuration, moderate_user_request: Option<crate::models::ModerateUserRequest>) -> Result<crate::models::Success, Error<UnmoderateUserError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/unplayermoderate", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());

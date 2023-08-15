@@ -69,7 +69,7 @@ pub enum GetSystemTimeError {
 pub async fn get_config(configuration: &configuration::Configuration, ) -> Result<crate::models::ApiConfig, Error<GetConfigError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/config", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -97,7 +97,7 @@ pub async fn get_config(configuration: &configuration::Configuration, ) -> Resul
 pub async fn get_css(configuration: &configuration::Configuration, variant: Option<&str>, branch: Option<&str>) -> Result<String, Error<GetCssError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/css/app.css", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -131,7 +131,7 @@ pub async fn get_css(configuration: &configuration::Configuration, variant: Opti
 pub async fn get_current_online_users(configuration: &configuration::Configuration, ) -> Result<i32, Error<GetCurrentOnlineUsersError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/visits", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -159,7 +159,7 @@ pub async fn get_current_online_users(configuration: &configuration::Configurati
 pub async fn get_health(configuration: &configuration::Configuration, ) -> Result<crate::models::ApiHealth, Error<GetHealthError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/health", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -187,7 +187,7 @@ pub async fn get_health(configuration: &configuration::Configuration, ) -> Resul
 pub async fn get_info_push(configuration: &configuration::Configuration, require: Option<&str>, include: Option<&str>) -> Result<Vec<crate::models::InfoPush>, Error<GetInfoPushError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/infoPush", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -221,7 +221,7 @@ pub async fn get_info_push(configuration: &configuration::Configuration, require
 pub async fn get_java_script(configuration: &configuration::Configuration, variant: Option<&str>, branch: Option<&str>) -> Result<String, Error<GetJavaScriptError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/js/app.js", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -255,7 +255,7 @@ pub async fn get_java_script(configuration: &configuration::Configuration, varia
 pub async fn get_system_time(configuration: &configuration::Configuration, ) -> Result<String, Error<GetSystemTimeError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/time", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());

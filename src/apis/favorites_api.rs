@@ -82,7 +82,7 @@ pub enum UpdateFavoriteGroupError {
 pub async fn add_favorite(configuration: &configuration::Configuration, add_favorite_request: Option<crate::models::AddFavoriteRequest>) -> Result<crate::models::Favorite, Error<AddFavoriteError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/favorites", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -111,7 +111,7 @@ pub async fn add_favorite(configuration: &configuration::Configuration, add_favo
 pub async fn clear_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str) -> Result<crate::models::Success, Error<ClearFavoriteGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}", local_var_configuration.base_path, favoriteGroupType=crate::apis::urlencode(favorite_group_type), favoriteGroupName=crate::apis::urlencode(favorite_group_name), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -139,7 +139,7 @@ pub async fn clear_favorite_group(configuration: &configuration::Configuration, 
 pub async fn get_favorite(configuration: &configuration::Configuration, favorite_id: &str) -> Result<crate::models::Favorite, Error<GetFavoriteError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/favorites/{favoriteId}", local_var_configuration.base_path, favoriteId=crate::apis::urlencode(favorite_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -167,7 +167,7 @@ pub async fn get_favorite(configuration: &configuration::Configuration, favorite
 pub async fn get_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str) -> Result<crate::models::FavoriteGroup, Error<GetFavoriteGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}", local_var_configuration.base_path, favoriteGroupType=crate::apis::urlencode(favorite_group_type), favoriteGroupName=crate::apis::urlencode(favorite_group_name), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -195,7 +195,7 @@ pub async fn get_favorite_group(configuration: &configuration::Configuration, fa
 pub async fn get_favorite_groups(configuration: &configuration::Configuration, n: Option<i32>, offset: Option<i32>, owner_id: Option<&str>) -> Result<Vec<crate::models::FavoriteGroup>, Error<GetFavoriteGroupsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/favorite/groups", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -232,7 +232,7 @@ pub async fn get_favorite_groups(configuration: &configuration::Configuration, n
 pub async fn get_favorites(configuration: &configuration::Configuration, n: Option<i32>, offset: Option<i32>, r#type: Option<&str>, tag: Option<&str>) -> Result<Vec<crate::models::Favorite>, Error<GetFavoritesError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/favorites", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -272,7 +272,7 @@ pub async fn get_favorites(configuration: &configuration::Configuration, n: Opti
 pub async fn remove_favorite(configuration: &configuration::Configuration, favorite_id: &str) -> Result<crate::models::Success, Error<RemoveFavoriteError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/favorites/{favoriteId}", local_var_configuration.base_path, favoriteId=crate::apis::urlencode(favorite_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -300,7 +300,7 @@ pub async fn remove_favorite(configuration: &configuration::Configuration, favor
 pub async fn update_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str, update_favorite_group_request: Option<crate::models::UpdateFavoriteGroupRequest>) -> Result<(), Error<UpdateFavoriteGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}", local_var_configuration.base_path, favoriteGroupType=crate::apis::urlencode(favorite_group_type), favoriteGroupName=crate::apis::urlencode(favorite_group_name), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());

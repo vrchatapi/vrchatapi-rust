@@ -82,7 +82,7 @@ pub enum VerifyRecoveryCodeError {
 pub async fn check_user_exists(configuration: &configuration::Configuration, email: Option<&str>, display_name: Option<&str>, user_id: Option<&str>, exclude_user_id: Option<&str>) -> Result<crate::models::UserExists, Error<CheckUserExistsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/exists", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -122,7 +122,7 @@ pub async fn check_user_exists(configuration: &configuration::Configuration, ema
 pub async fn delete_user(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::CurrentUser, Error<DeleteUserError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/users/{userId}/delete", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -150,7 +150,7 @@ pub async fn delete_user(configuration: &configuration::Configuration, user_id: 
 pub async fn get_current_user(configuration: &configuration::Configuration, ) -> Result<crate::models::CurrentUser, Error<GetCurrentUserError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -181,7 +181,7 @@ pub async fn get_current_user(configuration: &configuration::Configuration, ) ->
 pub async fn logout(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<LogoutError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/logout", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -209,7 +209,7 @@ pub async fn logout(configuration: &configuration::Configuration, ) -> Result<cr
 pub async fn verify2_fa(configuration: &configuration::Configuration, two_factor_auth_code: Option<crate::models::TwoFactorAuthCode>) -> Result<crate::models::Verify2FaResult, Error<Verify2FaError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/twofactorauth/totp/verify", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -238,7 +238,7 @@ pub async fn verify2_fa(configuration: &configuration::Configuration, two_factor
 pub async fn verify2_fa_email_code(configuration: &configuration::Configuration, two_factor_email_code: Option<crate::models::TwoFactorEmailCode>) -> Result<crate::models::Verify2FaEmailCodeResult, Error<Verify2FaEmailCodeError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/twofactorauth/emailotp/verify", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -267,7 +267,7 @@ pub async fn verify2_fa_email_code(configuration: &configuration::Configuration,
 pub async fn verify_auth_token(configuration: &configuration::Configuration, ) -> Result<crate::models::VerifyAuthTokenResult, Error<VerifyAuthTokenError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -295,7 +295,7 @@ pub async fn verify_auth_token(configuration: &configuration::Configuration, ) -
 pub async fn verify_recovery_code(configuration: &configuration::Configuration, two_factor_auth_code: Option<crate::models::TwoFactorAuthCode>) -> Result<crate::models::Verify2FaResult, Error<VerifyRecoveryCodeError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/twofactorauth/otp/verify", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());

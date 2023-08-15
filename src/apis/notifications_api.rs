@@ -59,7 +59,7 @@ pub enum MarkNotificationAsReadError {
 pub async fn accept_friend_request(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Success, Error<AcceptFriendRequestError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/notifications/{notificationId}/accept", local_var_configuration.base_path, notificationId=crate::apis::urlencode(notification_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -87,7 +87,7 @@ pub async fn accept_friend_request(configuration: &configuration::Configuration,
 pub async fn clear_notifications(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<ClearNotificationsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/notifications/clear", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -115,7 +115,7 @@ pub async fn clear_notifications(configuration: &configuration::Configuration, )
 pub async fn delete_notification(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Notification, Error<DeleteNotificationError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/notifications/{notificationId}/hide", local_var_configuration.base_path, notificationId=crate::apis::urlencode(notification_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -143,7 +143,7 @@ pub async fn delete_notification(configuration: &configuration::Configuration, n
 pub async fn get_notifications(configuration: &configuration::Configuration, r#type: Option<&str>, sent: Option<bool>, hidden: Option<bool>, after: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::Notification>, Error<GetNotificationsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/notifications", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -189,7 +189,7 @@ pub async fn get_notifications(configuration: &configuration::Configuration, r#t
 pub async fn mark_notification_as_read(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Notification, Error<MarkNotificationAsReadError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/notifications/{notificationId}/see", local_var_configuration.base_path, notificationId=crate::apis::urlencode(notification_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());

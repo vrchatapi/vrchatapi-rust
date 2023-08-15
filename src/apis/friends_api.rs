@@ -61,7 +61,7 @@ pub enum UnfriendError {
 pub async fn delete_friend_request(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Success, Error<DeleteFriendRequestError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/user/{userId}/friendRequest", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -89,7 +89,7 @@ pub async fn delete_friend_request(configuration: &configuration::Configuration,
 pub async fn friend(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Notification, Error<FriendError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/user/{userId}/friendRequest", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -117,7 +117,7 @@ pub async fn friend(configuration: &configuration::Configuration, user_id: &str)
 pub async fn get_friend_status(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::FriendStatus, Error<GetFriendStatusError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/user/{userId}/friendStatus", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -145,7 +145,7 @@ pub async fn get_friend_status(configuration: &configuration::Configuration, use
 pub async fn get_friends(configuration: &configuration::Configuration, offset: Option<i32>, n: Option<i32>, offline: Option<bool>) -> Result<Vec<crate::models::LimitedUser>, Error<GetFriendsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/friends", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -182,7 +182,7 @@ pub async fn get_friends(configuration: &configuration::Configuration, offset: O
 pub async fn unfriend(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Success, Error<UnfriendError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/friends/{userId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());

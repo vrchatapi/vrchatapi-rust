@@ -67,7 +67,7 @@ pub enum UpdateUserError {
 pub async fn get_user(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::User, Error<GetUserError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/users/{userId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -95,7 +95,7 @@ pub async fn get_user(configuration: &configuration::Configuration, user_id: &st
 pub async fn get_user_by_name(configuration: &configuration::Configuration, username: &str) -> Result<crate::models::User, Error<GetUserByNameError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/users/{username}/name", local_var_configuration.base_path, username=crate::apis::urlencode(username));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -123,7 +123,7 @@ pub async fn get_user_by_name(configuration: &configuration::Configuration, user
 pub async fn get_user_group_requests(configuration: &configuration::Configuration, user_id: &str) -> Result<Vec<crate::models::Group>, Error<GetUserGroupRequestsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/users/{userId}/groups/requested", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -151,7 +151,7 @@ pub async fn get_user_group_requests(configuration: &configuration::Configuratio
 pub async fn get_user_groups(configuration: &configuration::Configuration, user_id: &str) -> Result<Vec<crate::models::Group>, Error<GetUserGroupsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/users/{userId}/groups", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -179,7 +179,7 @@ pub async fn get_user_groups(configuration: &configuration::Configuration, user_
 pub async fn search_users(configuration: &configuration::Configuration, search: Option<&str>, developer_type: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::LimitedUser>, Error<SearchUsersError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/users", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -219,7 +219,7 @@ pub async fn search_users(configuration: &configuration::Configuration, search: 
 pub async fn update_user(configuration: &configuration::Configuration, user_id: &str, update_user_request: Option<crate::models::UpdateUserRequest>) -> Result<crate::models::CurrentUser, Error<UpdateUserError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/users/{userId}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());

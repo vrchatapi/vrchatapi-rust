@@ -347,7 +347,7 @@ pub enum UpdateGroupRoleError {
 pub async fn add_group_gallery_image(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, add_group_gallery_image_request: Option<crate::models::AddGroupGalleryImageRequest>) -> Result<crate::models::GroupGalleryImage, Error<AddGroupGalleryImageError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/galleries/{groupGalleryId}/images", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), groupGalleryId=crate::apis::urlencode(group_gallery_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -376,7 +376,7 @@ pub async fn add_group_gallery_image(configuration: &configuration::Configuratio
 pub async fn add_group_member_role(configuration: &configuration::Configuration, group_id: &str, user_id: &str, group_role_id: &str) -> Result<Vec<String>, Error<AddGroupMemberRoleError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/members/{userId}/roles/{groupRoleId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), userId=crate::apis::urlencode(user_id), groupRoleId=crate::apis::urlencode(group_role_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -404,7 +404,7 @@ pub async fn add_group_member_role(configuration: &configuration::Configuration,
 pub async fn ban_group_member(configuration: &configuration::Configuration, group_id: &str, ban_group_member_request: Option<crate::models::BanGroupMemberRequest>) -> Result<crate::models::GroupMember, Error<BanGroupMemberError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/bans", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -433,7 +433,7 @@ pub async fn ban_group_member(configuration: &configuration::Configuration, grou
 pub async fn cancel_group_request(configuration: &configuration::Configuration, group_id: &str) -> Result<(), Error<CancelGroupRequestError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/requests", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -461,7 +461,7 @@ pub async fn cancel_group_request(configuration: &configuration::Configuration, 
 pub async fn create_group(configuration: &configuration::Configuration, create_group_request: Option<crate::models::CreateGroupRequest>) -> Result<crate::models::Group, Error<CreateGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -490,7 +490,7 @@ pub async fn create_group(configuration: &configuration::Configuration, create_g
 pub async fn create_group_announcement(configuration: &configuration::Configuration, group_id: &str, create_group_announcement_request: Option<crate::models::CreateGroupAnnouncementRequest>) -> Result<crate::models::GroupAnnouncement, Error<CreateGroupAnnouncementError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/announcement", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -519,7 +519,7 @@ pub async fn create_group_announcement(configuration: &configuration::Configurat
 pub async fn create_group_gallery(configuration: &configuration::Configuration, group_id: &str, create_group_gallery_request: Option<crate::models::CreateGroupGalleryRequest>) -> Result<crate::models::GroupGallery, Error<CreateGroupGalleryError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/galleries", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -548,7 +548,7 @@ pub async fn create_group_gallery(configuration: &configuration::Configuration, 
 pub async fn create_group_invite(configuration: &configuration::Configuration, group_id: &str, create_group_invite_request: Option<crate::models::CreateGroupInviteRequest>) -> Result<(), Error<CreateGroupInviteError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/invites", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -577,7 +577,7 @@ pub async fn create_group_invite(configuration: &configuration::Configuration, g
 pub async fn create_group_role(configuration: &configuration::Configuration, group_id: &str, create_group_role_request: Option<crate::models::CreateGroupRoleRequest>) -> Result<crate::models::GroupRole, Error<CreateGroupRoleError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/roles", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -606,7 +606,7 @@ pub async fn create_group_role(configuration: &configuration::Configuration, gro
 pub async fn delete_group(configuration: &configuration::Configuration, group_id: &str) -> Result<crate::models::Success, Error<DeleteGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -634,7 +634,7 @@ pub async fn delete_group(configuration: &configuration::Configuration, group_id
 pub async fn delete_group_announcement(configuration: &configuration::Configuration, group_id: &str) -> Result<crate::models::Success, Error<DeleteGroupAnnouncementError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/announcement", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -662,7 +662,7 @@ pub async fn delete_group_announcement(configuration: &configuration::Configurat
 pub async fn delete_group_gallery(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str) -> Result<crate::models::Success, Error<DeleteGroupGalleryError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/galleries/{groupGalleryId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), groupGalleryId=crate::apis::urlencode(group_gallery_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -690,7 +690,7 @@ pub async fn delete_group_gallery(configuration: &configuration::Configuration, 
 pub async fn delete_group_gallery_image(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, group_gallery_image_id: &str) -> Result<crate::models::Success, Error<DeleteGroupGalleryImageError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/galleries/{groupGalleryId}/images/{groupGalleryImageId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), groupGalleryId=crate::apis::urlencode(group_gallery_id), groupGalleryImageId=crate::apis::urlencode(group_gallery_image_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -718,7 +718,7 @@ pub async fn delete_group_gallery_image(configuration: &configuration::Configura
 pub async fn delete_group_invite(configuration: &configuration::Configuration, group_id: &str, user_id: &str) -> Result<(), Error<DeleteGroupInviteError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/invites/{userId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -746,7 +746,7 @@ pub async fn delete_group_invite(configuration: &configuration::Configuration, g
 pub async fn delete_group_role(configuration: &configuration::Configuration, group_id: &str, group_role_id: &str) -> Result<Vec<crate::models::GroupRole>, Error<DeleteGroupRoleError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/roles/{groupRoleId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), groupRoleId=crate::apis::urlencode(group_role_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -774,7 +774,7 @@ pub async fn delete_group_role(configuration: &configuration::Configuration, gro
 pub async fn get_group(configuration: &configuration::Configuration, group_id: &str, include_roles: Option<bool>) -> Result<crate::models::Group, Error<GetGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -805,7 +805,7 @@ pub async fn get_group(configuration: &configuration::Configuration, group_id: &
 pub async fn get_group_announcements(configuration: &configuration::Configuration, group_id: &str) -> Result<crate::models::GroupAnnouncement, Error<GetGroupAnnouncementsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/announcement", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -833,7 +833,7 @@ pub async fn get_group_announcements(configuration: &configuration::Configuratio
 pub async fn get_group_audit_logs(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, start_date: Option<String>, end_date: Option<String>) -> Result<crate::models::PaginatedGroupAuditLogEntryList, Error<GetGroupAuditLogsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/auditLogs", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -873,7 +873,7 @@ pub async fn get_group_audit_logs(configuration: &configuration::Configuration, 
 pub async fn get_group_bans(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupBansError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/bans", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -907,7 +907,7 @@ pub async fn get_group_bans(configuration: &configuration::Configuration, group_
 pub async fn get_group_gallery_images(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, n: Option<i32>, offset: Option<i32>, approved: Option<bool>) -> Result<Vec<crate::models::GroupGalleryImage>, Error<GetGroupGalleryImagesError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/galleries/{groupGalleryId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), groupGalleryId=crate::apis::urlencode(group_gallery_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -944,7 +944,7 @@ pub async fn get_group_gallery_images(configuration: &configuration::Configurati
 pub async fn get_group_invites(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupInvitesError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/invites", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -972,7 +972,7 @@ pub async fn get_group_invites(configuration: &configuration::Configuration, gro
 pub async fn get_group_member(configuration: &configuration::Configuration, group_id: &str, user_id: &str) -> Result<crate::models::GroupLimitedMember, Error<GetGroupMemberError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/members/{userId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1000,7 +1000,7 @@ pub async fn get_group_member(configuration: &configuration::Configuration, grou
 pub async fn get_group_members(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupMembersError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/members", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1034,7 +1034,7 @@ pub async fn get_group_members(configuration: &configuration::Configuration, gro
 pub async fn get_group_permissions(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<crate::models::GroupPermission>, Error<GetGroupPermissionsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/permissions", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1062,7 +1062,7 @@ pub async fn get_group_permissions(configuration: &configuration::Configuration,
 pub async fn get_group_requests(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupRequestsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/requests", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1090,7 +1090,7 @@ pub async fn get_group_requests(configuration: &configuration::Configuration, gr
 pub async fn get_group_roles(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<crate::models::GroupRole>, Error<GetGroupRolesError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/roles", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -1118,7 +1118,7 @@ pub async fn get_group_roles(configuration: &configuration::Configuration, group
 pub async fn join_group(configuration: &configuration::Configuration, group_id: &str) -> Result<crate::models::GroupMember, Error<JoinGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/join", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -1146,7 +1146,7 @@ pub async fn join_group(configuration: &configuration::Configuration, group_id: 
 pub async fn kick_group_member(configuration: &configuration::Configuration, group_id: &str, user_id: &str) -> Result<(), Error<KickGroupMemberError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/members/{userId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -1174,7 +1174,7 @@ pub async fn kick_group_member(configuration: &configuration::Configuration, gro
 pub async fn leave_group(configuration: &configuration::Configuration, group_id: &str) -> Result<(), Error<LeaveGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/leave", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -1202,7 +1202,7 @@ pub async fn leave_group(configuration: &configuration::Configuration, group_id:
 pub async fn remove_group_member_role(configuration: &configuration::Configuration, group_id: &str, user_id: &str, group_role_id: &str) -> Result<Vec<String>, Error<RemoveGroupMemberRoleError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/members/{userId}/roles/{groupRoleId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), userId=crate::apis::urlencode(user_id), groupRoleId=crate::apis::urlencode(group_role_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -1230,7 +1230,7 @@ pub async fn remove_group_member_role(configuration: &configuration::Configurati
 pub async fn respond_group_join_request(configuration: &configuration::Configuration, group_id: &str, user_id: &str, respond_group_join_request: Option<crate::models::RespondGroupJoinRequest>) -> Result<(), Error<RespondGroupJoinRequestError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/requests/{userId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -1259,7 +1259,7 @@ pub async fn respond_group_join_request(configuration: &configuration::Configura
 pub async fn unban_group_member(configuration: &configuration::Configuration, group_id: &str, user_id: &str) -> Result<crate::models::GroupMember, Error<UnbanGroupMemberError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/bans/{userId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -1287,7 +1287,7 @@ pub async fn unban_group_member(configuration: &configuration::Configuration, gr
 pub async fn update_group(configuration: &configuration::Configuration, group_id: &str, update_group_request: Option<crate::models::UpdateGroupRequest>) -> Result<crate::models::Group, Error<UpdateGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -1316,7 +1316,7 @@ pub async fn update_group(configuration: &configuration::Configuration, group_id
 pub async fn update_group_gallery(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, update_group_gallery_request: Option<crate::models::UpdateGroupGalleryRequest>) -> Result<crate::models::GroupGallery, Error<UpdateGroupGalleryError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/galleries/{groupGalleryId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), groupGalleryId=crate::apis::urlencode(group_gallery_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -1345,7 +1345,7 @@ pub async fn update_group_gallery(configuration: &configuration::Configuration, 
 pub async fn update_group_member(configuration: &configuration::Configuration, group_id: &str, user_id: &str, update_group_member_request: Option<crate::models::UpdateGroupMemberRequest>) -> Result<crate::models::GroupLimitedMember, Error<UpdateGroupMemberError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/members/{userId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), userId=crate::apis::urlencode(user_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -1374,7 +1374,7 @@ pub async fn update_group_member(configuration: &configuration::Configuration, g
 pub async fn update_group_role(configuration: &configuration::Configuration, group_id: &str, group_role_id: &str, update_group_role_request: Option<crate::models::UpdateGroupRoleRequest>) -> Result<Vec<crate::models::GroupRole>, Error<UpdateGroupRoleError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/groups/{groupId}/roles/{groupRoleId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), groupRoleId=crate::apis::urlencode(group_role_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());

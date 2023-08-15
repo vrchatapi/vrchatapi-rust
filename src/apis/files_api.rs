@@ -93,7 +93,7 @@ pub enum StartFileDataUploadError {
 pub async fn create_file(configuration: &configuration::Configuration, create_file_request: Option<crate::models::CreateFileRequest>) -> Result<crate::models::File, Error<CreateFileError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/file", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -122,7 +122,7 @@ pub async fn create_file(configuration: &configuration::Configuration, create_fi
 pub async fn create_file_version(configuration: &configuration::Configuration, file_id: &str, create_file_version_request: Option<crate::models::CreateFileVersionRequest>) -> Result<crate::models::File, Error<CreateFileVersionError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/file/{fileId}", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -151,7 +151,7 @@ pub async fn create_file_version(configuration: &configuration::Configuration, f
 pub async fn delete_file(configuration: &configuration::Configuration, file_id: &str) -> Result<crate::models::Success, Error<DeleteFileError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/file/{fileId}", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -179,7 +179,7 @@ pub async fn delete_file(configuration: &configuration::Configuration, file_id: 
 pub async fn delete_file_version(configuration: &configuration::Configuration, file_id: &str, version_id: i32) -> Result<crate::models::File, Error<DeleteFileVersionError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/file/{fileId}/{versionId}", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -207,7 +207,7 @@ pub async fn delete_file_version(configuration: &configuration::Configuration, f
 pub async fn download_file_version(configuration: &configuration::Configuration, file_id: &str, version_id: i32) -> Result<(), Error<DownloadFileVersionError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/file/{fileId}/{versionId}", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -235,7 +235,7 @@ pub async fn download_file_version(configuration: &configuration::Configuration,
 pub async fn finish_file_data_upload(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str, finish_file_data_upload_request: Option<crate::models::FinishFileDataUploadRequest>) -> Result<crate::models::File, Error<FinishFileDataUploadError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/file/{fileId}/{versionId}/{fileType}/finish", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id, fileType=crate::apis::urlencode(file_type));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -264,7 +264,7 @@ pub async fn finish_file_data_upload(configuration: &configuration::Configuratio
 pub async fn get_file(configuration: &configuration::Configuration, file_id: &str) -> Result<crate::models::File, Error<GetFileError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/file/{fileId}", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -292,7 +292,7 @@ pub async fn get_file(configuration: &configuration::Configuration, file_id: &st
 pub async fn get_file_data_upload_status(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str) -> Result<crate::models::FileVersionUploadStatus, Error<GetFileDataUploadStatusError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/file/{fileId}/{versionId}/{fileType}/status", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id, fileType=crate::apis::urlencode(file_type));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -320,7 +320,7 @@ pub async fn get_file_data_upload_status(configuration: &configuration::Configur
 pub async fn get_files(configuration: &configuration::Configuration, tag: Option<&str>, user_id: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::File>, Error<GetFilesError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/files", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -360,7 +360,7 @@ pub async fn get_files(configuration: &configuration::Configuration, tag: Option
 pub async fn start_file_data_upload(configuration: &configuration::Configuration, file_id: &str, version_id: i32, file_type: &str, part_number: Option<i32>) -> Result<crate::models::FileUploadUrl, Error<StartFileDataUploadError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/file/{fileId}/{versionId}/{fileType}/start", local_var_configuration.base_path, fileId=crate::apis::urlencode(file_id), versionId=version_id, fileType=crate::apis::urlencode(file_type));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());

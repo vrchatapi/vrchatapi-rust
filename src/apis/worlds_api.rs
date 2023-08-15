@@ -130,7 +130,7 @@ pub enum UpdateWorldError {
 pub async fn create_world(configuration: &configuration::Configuration, create_world_request: Option<crate::models::CreateWorldRequest>) -> Result<crate::models::World, Error<CreateWorldError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
@@ -159,7 +159,7 @@ pub async fn create_world(configuration: &configuration::Configuration, create_w
 pub async fn delete_world(configuration: &configuration::Configuration, world_id: &str) -> Result<(), Error<DeleteWorldError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/{worldId}", local_var_configuration.base_path, worldId=crate::apis::urlencode(world_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -187,7 +187,7 @@ pub async fn delete_world(configuration: &configuration::Configuration, world_id
 pub async fn get_active_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetActiveWorldsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/active", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -251,7 +251,7 @@ pub async fn get_active_worlds(configuration: &configuration::Configuration, fea
 pub async fn get_favorited_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetFavoritedWorldsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/favorites", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -318,7 +318,7 @@ pub async fn get_favorited_worlds(configuration: &configuration::Configuration, 
 pub async fn get_recent_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<GetRecentWorldsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/recent", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -385,7 +385,7 @@ pub async fn get_recent_worlds(configuration: &configuration::Configuration, fea
 pub async fn get_world(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::World, Error<GetWorldError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/{worldId}", local_var_configuration.base_path, worldId=crate::apis::urlencode(world_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -413,7 +413,7 @@ pub async fn get_world(configuration: &configuration::Configuration, world_id: &
 pub async fn get_world_instance(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::Instance, Error<GetWorldInstanceError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/{worldId}/{instanceId}", local_var_configuration.base_path, worldId=crate::apis::urlencode(world_id), instanceId=crate::apis::urlencode(instance_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -441,7 +441,7 @@ pub async fn get_world_instance(configuration: &configuration::Configuration, wo
 pub async fn get_world_metadata(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::WorldMetadata, Error<GetWorldMetadataError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/{worldId}/metadata", local_var_configuration.base_path, worldId=crate::apis::urlencode(world_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -469,7 +469,7 @@ pub async fn get_world_metadata(configuration: &configuration::Configuration, wo
 pub async fn get_world_publish_status(configuration: &configuration::Configuration, world_id: &str) -> Result<crate::models::WorldPublishStatus, Error<GetWorldPublishStatusError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/{worldId}/publish", local_var_configuration.base_path, worldId=crate::apis::urlencode(world_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -497,7 +497,7 @@ pub async fn get_world_publish_status(configuration: &configuration::Configurati
 pub async fn publish_world(configuration: &configuration::Configuration, world_id: &str) -> Result<(), Error<PublishWorldError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/{worldId}/publish", local_var_configuration.base_path, worldId=crate::apis::urlencode(world_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
@@ -525,7 +525,7 @@ pub async fn publish_world(configuration: &configuration::Configuration, world_i
 pub async fn search_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::LimitedWorld>, Error<SearchWorldsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -595,7 +595,7 @@ pub async fn search_worlds(configuration: &configuration::Configuration, feature
 pub async fn unpublish_world(configuration: &configuration::Configuration, world_id: &str) -> Result<(), Error<UnpublishWorldError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/{worldId}/publish", local_var_configuration.base_path, worldId=crate::apis::urlencode(world_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
@@ -623,7 +623,7 @@ pub async fn unpublish_world(configuration: &configuration::Configuration, world
 pub async fn update_world(configuration: &configuration::Configuration, world_id: &str, update_world_request: Option<crate::models::UpdateWorldRequest>) -> Result<crate::models::World, Error<UpdateWorldError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/worlds/{worldId}", local_var_configuration.base_path, worldId=crate::apis::urlencode(world_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
