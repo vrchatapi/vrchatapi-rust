@@ -13,6 +13,8 @@
 pub struct CurrentUser {
     #[serde(rename = "acceptedTOSVersion")]
     pub accepted_tos_version: i32,
+    #[serde(rename = "acceptedPrivacyVersion", skip_serializing_if = "Option::is_none")]
+    pub accepted_privacy_version: Option<i32>,
     #[serde(rename = "accountDeletionDate", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub account_deletion_date: Option<Option<String>>,
     ///  
@@ -71,6 +73,8 @@ pub struct CurrentUser {
     pub id: String,
     #[serde(rename = "isFriend")]
     pub is_friend: bool,
+    #[serde(rename = "last_activity", skip_serializing_if = "Option::is_none")]
+    pub last_activity: Option<String>,
     #[serde(rename = "last_login")]
     pub last_login: String,
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
@@ -89,6 +93,8 @@ pub struct CurrentUser {
     ///  
     #[serde(rename = "pastDisplayNames")]
     pub past_display_names: Vec<crate::models::PastDisplayName>,
+    #[serde(rename = "presence", skip_serializing_if = "Option::is_none")]
+    pub presence: Option<Box<crate::models::CurrentUserPresence>>,
     #[serde(rename = "profilePicOverride")]
     pub profile_pic_override: String,
     #[serde(rename = "state")]
@@ -113,6 +119,8 @@ pub struct CurrentUser {
     pub two_factor_auth_enabled_date: Option<Option<String>>,
     #[serde(rename = "unsubscribe")]
     pub unsubscribe: bool,
+    #[serde(rename = "updated_at", skip_serializing_if = "Option::is_none")]
+    pub updated_at: Option<String>,
     #[serde(rename = "userIcon")]
     pub user_icon: String,
     /// -| **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
@@ -124,6 +132,7 @@ impl CurrentUser {
     pub fn new(accepted_tos_version: i32, allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar: String, current_avatar_asset_url: String, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, email_verified: bool, friend_group_names: Vec<String>, friend_key: String, friends: Vec<String>, has_birthday: bool, has_email: bool, has_logged_in_from_client: bool, has_pending_email: bool, home_location: String, id: String, is_friend: bool, last_login: String, last_platform: String, obfuscated_email: String, obfuscated_pending_email: String, oculus_id: String, past_display_names: Vec<crate::models::PastDisplayName>, profile_pic_override: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, status_first_time: bool, status_history: Vec<String>, steam_details: serde_json::Value, steam_id: String, tags: Vec<String>, two_factor_auth_enabled: bool, unsubscribe: bool, user_icon: String) -> CurrentUser {
         CurrentUser {
             accepted_tos_version,
+            accepted_privacy_version: None,
             account_deletion_date: None,
             account_deletion_log: None,
             active_friends: None,
@@ -149,6 +158,7 @@ impl CurrentUser {
             home_location,
             id,
             is_friend,
+            last_activity: None,
             last_login,
             last_platform,
             obfuscated_email,
@@ -157,6 +167,7 @@ impl CurrentUser {
             offline_friends: None,
             online_friends: None,
             past_display_names,
+            presence: None,
             profile_pic_override,
             state,
             status,
@@ -169,6 +180,7 @@ impl CurrentUser {
             two_factor_auth_enabled,
             two_factor_auth_enabled_date: None,
             unsubscribe,
+            updated_at: None,
             user_icon,
             username: None,
         }

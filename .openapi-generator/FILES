@@ -23,6 +23,7 @@ docs/CreateGroupRequest.md
 docs/CreateGroupRoleRequest.md
 docs/CreateWorldRequest.md
 docs/CurrentUser.md
+docs/CurrentUserPresence.md
 docs/DeploymentGroup.md
 docs/DeveloperType.md
 docs/DynamicContentRow.md
@@ -176,6 +177,7 @@ src/models/create_group_request.rs
 src/models/create_group_role_request.rs
 src/models/create_world_request.rs
 src/models/current_user.rs
+src/models/current_user_presence.rs
 src/models/deployment_group.rs
 src/models/developer_type.rs
 src/models/dynamic_content_row.rs

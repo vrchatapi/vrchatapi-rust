@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **author_id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
 **author_name** | **String** |  | 
 **capacity** | **i32** |  | 
+**recommended_capacity** | **i32** |  | 
 **created_at** | **String** |  | 
 **description** | **String** |  | 
 **favorites** | Option<**i32**> |  | [optional][default to 0]

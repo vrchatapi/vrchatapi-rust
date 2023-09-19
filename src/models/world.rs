@@ -19,6 +19,8 @@ pub struct World {
     pub author_name: String,
     #[serde(rename = "capacity")]
     pub capacity: i32,
+    #[serde(rename = "recommendedCapacity")]
+    pub recommended_capacity: i32,
     #[serde(rename = "created_at")]
     pub created_at: String,
     #[serde(rename = "description")]
@@ -80,11 +82,12 @@ pub struct World {
 
 impl World {
     /// 
-    pub fn new(author_id: String, author_name: String, capacity: i32, created_at: String, description: String, featured: bool, heat: i32, id: String, image_url: String, labs_publication_date: String, name: String, namespace: String, organization: String, popularity: i32, publication_date: String, release_status: crate::models::ReleaseStatus, tags: Vec<String>, thumbnail_image_url: String, unity_packages: Vec<crate::models::UnityPackage>, updated_at: String, version: i32, visits: i32) -> World {
+    pub fn new(author_id: String, author_name: String, capacity: i32, recommended_capacity: i32, created_at: String, description: String, featured: bool, heat: i32, id: String, image_url: String, labs_publication_date: String, name: String, namespace: String, organization: String, popularity: i32, publication_date: String, release_status: crate::models::ReleaseStatus, tags: Vec<String>, thumbnail_image_url: String, unity_packages: Vec<crate::models::UnityPackage>, updated_at: String, version: i32, visits: i32) -> World {
         World {
             author_id,
             author_name,
             capacity,
+            recommended_capacity,
             created_at,
             description,
             favorites: None,

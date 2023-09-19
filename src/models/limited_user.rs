@@ -24,8 +24,8 @@ pub struct LimitedUser {
     pub developer_type: crate::models::DeveloperType,
     #[serde(rename = "displayName")]
     pub display_name: String,
-    #[serde(rename = "fallbackAvatar")]
-    pub fallback_avatar: String,
+    #[serde(rename = "fallbackAvatar", skip_serializing_if = "Option::is_none")]
+    pub fallback_avatar: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id")]
     pub id: String,
@@ -56,14 +56,14 @@ pub struct LimitedUser {
 
 impl LimitedUser {
     /// 
-    pub fn new(current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, developer_type: crate::models::DeveloperType, display_name: String, fallback_avatar: String, id: String, is_friend: bool, last_platform: String, profile_pic_override: String, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> LimitedUser {
+    pub fn new(current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, developer_type: crate::models::DeveloperType, display_name: String, id: String, is_friend: bool, last_platform: String, profile_pic_override: String, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> LimitedUser {
         LimitedUser {
             bio: None,
             current_avatar_image_url,
             current_avatar_thumbnail_image_url,
             developer_type,
             display_name,
-            fallback_avatar,
+            fallback_avatar: None,
             id,
             is_friend,
             last_platform,
