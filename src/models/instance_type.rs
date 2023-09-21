@@ -19,6 +19,8 @@ pub enum InstanceType {
     Friends,
     #[serde(rename = "private")]
     Private,
+    #[serde(rename = "group")]
+    Group,
 
 }
 
@@ -29,6 +31,7 @@ impl ToString for InstanceType {
             Self::Hidden => String::from("hidden"),
             Self::Friends => String::from("friends"),
             Self::Private => String::from("private"),
+            Self::Group => String::from("group"),
         }
     }
 }
