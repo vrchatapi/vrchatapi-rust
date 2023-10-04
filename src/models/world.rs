@@ -70,8 +70,8 @@ pub struct World {
     #[serde(rename = "thumbnailImageUrl")]
     pub thumbnail_image_url: String,
     /// Empty if unauthenticated.
-    #[serde(rename = "unityPackages")]
-    pub unity_packages: Vec<crate::models::UnityPackage>,
+    #[serde(rename = "unityPackages", skip_serializing_if = "Option::is_none")]
+    pub unity_packages: Option<Vec<crate::models::UnityPackage>>,
     #[serde(rename = "updated_at")]
     pub updated_at: String,
     #[serde(rename = "version")]
@@ -82,7 +82,7 @@ pub struct World {
 
 impl World {
     /// 
-    pub fn new(author_id: String, author_name: String, capacity: i32, recommended_capacity: i32, created_at: String, description: String, featured: bool, heat: i32, id: String, image_url: String, labs_publication_date: String, name: String, namespace: String, organization: String, popularity: i32, publication_date: String, release_status: crate::models::ReleaseStatus, tags: Vec<String>, thumbnail_image_url: String, unity_packages: Vec<crate::models::UnityPackage>, updated_at: String, version: i32, visits: i32) -> World {
+    pub fn new(author_id: String, author_name: String, capacity: i32, recommended_capacity: i32, created_at: String, description: String, featured: bool, heat: i32, id: String, image_url: String, labs_publication_date: String, name: String, namespace: String, organization: String, popularity: i32, publication_date: String, release_status: crate::models::ReleaseStatus, tags: Vec<String>, thumbnail_image_url: String, updated_at: String, version: i32, visits: i32) -> World {
         World {
             author_id,
             author_name,
@@ -109,7 +109,7 @@ impl World {
             release_status,
             tags,
             thumbnail_image_url,
-            unity_packages,
+            unity_packages: None,
             updated_at,
             version,
             visits,

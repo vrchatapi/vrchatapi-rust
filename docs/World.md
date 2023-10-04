@@ -29,7 +29,7 @@ Name | Type | Description | Notes
 **release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
-**unity_packages** | [**Vec<crate::models::UnityPackage>**](UnityPackage.md) | Empty if unauthenticated. | 
+**unity_packages** | Option<[**Vec<crate::models::UnityPackage>**](UnityPackage.md)> | Empty if unauthenticated. | [optional]
 **updated_at** | **String** |  | 
 **version** | **i32** |  | [default to 0]
 **visits** | **i32** |  | [default to 0]
