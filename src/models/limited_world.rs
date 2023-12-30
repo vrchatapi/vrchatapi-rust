@@ -19,6 +19,8 @@ pub struct LimitedWorld {
     pub author_name: String,
     #[serde(rename = "capacity")]
     pub capacity: i32,
+    #[serde(rename = "recommendedCapacity", skip_serializing_if = "Option::is_none")]
+    pub recommended_capacity: Option<i32>,
     #[serde(rename = "created_at")]
     pub created_at: String,
     #[serde(rename = "favorites")]
@@ -54,6 +56,8 @@ pub struct LimitedWorld {
     pub unity_packages: Vec<crate::models::LimitedUnityPackage>,
     #[serde(rename = "updated_at")]
     pub updated_at: String,
+    #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
+    pub udon_products: Option<Vec<String>>,
 }
 
 impl LimitedWorld {
@@ -63,6 +67,7 @@ impl LimitedWorld {
             author_id,
             author_name,
             capacity,
+            recommended_capacity: None,
             created_at,
             favorites,
             heat,
@@ -79,6 +84,7 @@ impl LimitedWorld {
             thumbnail_image_url,
             unity_packages,
             updated_at,
+            udon_products: None,
         }
     }
 }

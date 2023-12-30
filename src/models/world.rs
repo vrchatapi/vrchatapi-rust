@@ -78,6 +78,8 @@ pub struct World {
     pub version: i32,
     #[serde(rename = "visits")]
     pub visits: i32,
+    #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
+    pub udon_products: Option<Vec<String>>,
 }
 
 impl World {
@@ -113,6 +115,7 @@ impl World {
             updated_at,
             version,
             visits,
+            udon_products: None,
         }
     }
 }

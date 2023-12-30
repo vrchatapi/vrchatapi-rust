@@ -40,6 +40,8 @@ pub struct CurrentUser {
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarThumbnailImageUrl")]
     pub current_avatar_thumbnail_image_url: String,
+    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_tags: Option<Vec<String>>,
     #[serde(rename = "date_joined")]
     pub date_joined: String,
     #[serde(rename = "developerType")]
@@ -59,6 +61,12 @@ pub struct CurrentUser {
     pub friends: Vec<String>,
     #[serde(rename = "hasBirthday")]
     pub has_birthday: bool,
+    #[serde(rename = "hideContentFilterSettings", skip_serializing_if = "Option::is_none")]
+    pub hide_content_filter_settings: Option<bool>,
+    #[serde(rename = "userLanguage", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub user_language: Option<Option<String>>,
+    #[serde(rename = "userLanguageCode", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub user_language_code: Option<Option<String>>,
     #[serde(rename = "hasEmail")]
     pub has_email: bool,
     #[serde(rename = "hasLoggedInFromClient")]
@@ -86,6 +94,12 @@ pub struct CurrentUser {
     pub obfuscated_pending_email: String,
     #[serde(rename = "oculusId")]
     pub oculus_id: String,
+    #[serde(rename = "googleId", skip_serializing_if = "Option::is_none")]
+    pub google_id: Option<String>,
+    #[serde(rename = "picoId", skip_serializing_if = "Option::is_none")]
+    pub pico_id: Option<String>,
+    #[serde(rename = "viveId", skip_serializing_if = "Option::is_none")]
+    pub vive_id: Option<String>,
     #[serde(rename = "offlineFriends", skip_serializing_if = "Option::is_none")]
     pub offline_friends: Option<Vec<String>>,
     #[serde(rename = "onlineFriends", skip_serializing_if = "Option::is_none")]
@@ -143,6 +157,7 @@ impl CurrentUser {
             current_avatar_asset_url,
             current_avatar_image_url,
             current_avatar_thumbnail_image_url,
+            current_avatar_tags: None,
             date_joined,
             developer_type,
             display_name,
@@ -152,6 +167,9 @@ impl CurrentUser {
             friend_key,
             friends,
             has_birthday,
+            hide_content_filter_settings: None,
+            user_language: None,
+            user_language_code: None,
             has_email,
             has_logged_in_from_client,
             has_pending_email,
@@ -164,6 +182,9 @@ impl CurrentUser {
             obfuscated_email,
             obfuscated_pending_email,
             oculus_id,
+            google_id: None,
+            pico_id: None,
+            vive_id: None,
             offline_friends: None,
             online_friends: None,
             past_display_names,

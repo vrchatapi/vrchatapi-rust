@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **current_avatar_asset_url** | **String** |  | 
 **current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
+**current_avatar_tags** | Option<**Vec<String>**> |  | [optional]
 **date_joined** | [**String**](string.md) |  | 
 **developer_type** | [**crate::models::DeveloperType**](DeveloperType.md) |  | 
 **display_name** | **String** |  | 
@@ -25,6 +26,9 @@ Name | Type | Description | Notes
 **friend_key** | **String** |  | 
 **friends** | **Vec<String>** |  | 
 **has_birthday** | **bool** |  | 
+**hide_content_filter_settings** | Option<**bool**> |  | [optional]
+**user_language** | Option<**String**> |  | [optional]
+**user_language_code** | Option<**String**> |  | [optional]
 **has_email** | **bool** |  | 
 **has_logged_in_from_client** | **bool** |  | 
 **has_pending_email** | **bool** |  | 
@@ -37,6 +41,9 @@ Name | Type | Description | Notes
 **obfuscated_email** | **String** |  | 
 **obfuscated_pending_email** | **String** |  | 
 **oculus_id** | **String** |  | 
+**google_id** | Option<**String**> |  | [optional]
+**pico_id** | Option<**String**> |  | [optional]
+**vive_id** | Option<**String**> |  | [optional]
 **offline_friends** | Option<**Vec<String>**> |  | [optional]
 **online_friends** | Option<**Vec<String>**> |  | [optional]
 **past_display_names** | [**Vec<crate::models::PastDisplayName>**](PastDisplayName.md) |   | 

@@ -12,16 +12,16 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct UnityPackage {
-    #[serde(rename = "assetUrl", skip_serializing_if = "Option::is_none")]
-    pub asset_url: Option<String>,
+    #[serde(rename = "id")]
+    pub id: String,
+    #[serde(rename = "assetUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub asset_url: Option<Option<String>>,
     #[serde(rename = "assetUrlObject", skip_serializing_if = "Option::is_none")]
     pub asset_url_object: Option<serde_json::Value>,
     #[serde(rename = "assetVersion")]
     pub asset_version: i32,
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<String>,
-    #[serde(rename = "id")]
-    pub id: String,
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "platform")]
     pub platform: String,
@@ -33,22 +33,28 @@ pub struct UnityPackage {
     pub unity_sort_number: Option<i64>,
     #[serde(rename = "unityVersion")]
     pub unity_version: String,
+    #[serde(rename = "impostorUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub impostor_url: Option<Option<String>>,
+    #[serde(rename = "scanStatus", skip_serializing_if = "Option::is_none")]
+    pub scan_status: Option<String>,
 }
 
 impl UnityPackage {
     /// 
-    pub fn new(asset_version: i32, id: String, platform: String, unity_version: String) -> UnityPackage {
+    pub fn new(id: String, asset_version: i32, platform: String, unity_version: String) -> UnityPackage {
         UnityPackage {
+            id,
             asset_url: None,
             asset_url_object: None,
             asset_version,
             created_at: None,
-            id,
             platform,
             plugin_url: None,
             plugin_url_object: None,
             unity_sort_number: None,
             unity_version,
+            impostor_url: None,
+            scan_status: None,
         }
     }
 }
