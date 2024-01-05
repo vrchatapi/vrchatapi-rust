@@ -80,6 +80,7 @@ docs/License.md
 docs/LicenseAction.md
 docs/LicenseGroup.md
 docs/LicenseType.md
+docs/LimitedGroup.md
 docs/LimitedUnityPackage.md
 docs/LimitedUser.md
 docs/LimitedWorld.md
@@ -227,6 +228,7 @@ src/models/license.rs
 src/models/license_action.rs
 src/models/license_group.rs
 src/models/license_type.rs
+src/models/limited_group.rs
 src/models/limited_unity_package.rs
 src/models/limited_user.rs
 src/models/limited_world.rs

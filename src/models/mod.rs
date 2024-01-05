@@ -140,6 +140,8 @@ pub mod license_group;
 pub use self::license_group::LicenseGroup;
 pub mod license_type;
 pub use self::license_type::LicenseType;
+pub mod limited_group;
+pub use self::limited_group::LimitedGroup;
 pub mod limited_unity_package;
 pub use self::limited_unity_package::LimitedUnityPackage;
 pub mod limited_user;
