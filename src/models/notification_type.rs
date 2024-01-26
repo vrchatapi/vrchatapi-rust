@@ -16,6 +16,8 @@ pub enum NotificationType {
     Invite,
     #[serde(rename = "inviteResponse")]
     InviteResponse,
+    #[serde(rename = "message")]
+    Message,
     #[serde(rename = "requestInvite")]
     RequestInvite,
     #[serde(rename = "requestInviteResponse")]
@@ -31,6 +33,7 @@ impl ToString for NotificationType {
             Self::FriendRequest => String::from("friendRequest"),
             Self::Invite => String::from("invite"),
             Self::InviteResponse => String::from("inviteResponse"),
+            Self::Message => String::from("message"),
             Self::RequestInvite => String::from("requestInvite"),
             Self::RequestInviteResponse => String::from("requestInviteResponse"),
             Self::Votetokick => String::from("votetokick"),

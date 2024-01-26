@@ -15,11 +15,11 @@ pub struct LimitedUser {
     #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
     pub bio: Option<String>,
     /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarImageUrl")]
-    pub current_avatar_image_url: String,
+    #[serde(rename = "currentAvatarImageUrl", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_image_url: Option<String>,
     /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarThumbnailImageUrl")]
-    pub current_avatar_thumbnail_image_url: String,
+    #[serde(rename = "currentAvatarThumbnailImageUrl", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_thumbnail_image_url: Option<String>,
     #[serde(rename = "developerType")]
     pub developer_type: crate::models::DeveloperType,
     #[serde(rename = "displayName")]
@@ -34,8 +34,8 @@ pub struct LimitedUser {
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
-    #[serde(rename = "profilePicOverride")]
-    pub profile_pic_override: String,
+    #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
+    pub profile_pic_override: Option<String>,
     #[serde(rename = "status")]
     pub status: crate::models::UserStatus,
     #[serde(rename = "statusDescription")]
@@ -43,8 +43,8 @@ pub struct LimitedUser {
     /// <- Always empty.
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
-    #[serde(rename = "userIcon")]
-    pub user_icon: String,
+    #[serde(rename = "userIcon", skip_serializing_if = "Option::is_none")]
+    pub user_icon: Option<String>,
     /// -| **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
     #[serde(rename = "username", skip_serializing_if = "Option::is_none")]
     pub username: Option<String>,
@@ -56,22 +56,22 @@ pub struct LimitedUser {
 
 impl LimitedUser {
     /// 
-    pub fn new(current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, developer_type: crate::models::DeveloperType, display_name: String, id: String, is_friend: bool, last_platform: String, profile_pic_override: String, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> LimitedUser {
+    pub fn new(developer_type: crate::models::DeveloperType, display_name: String, id: String, is_friend: bool, last_platform: String, status: crate::models::UserStatus, status_description: String, tags: Vec<String>) -> LimitedUser {
         LimitedUser {
             bio: None,
-            current_avatar_image_url,
-            current_avatar_thumbnail_image_url,
+            current_avatar_image_url: None,
+            current_avatar_thumbnail_image_url: None,
             developer_type,
             display_name,
             fallback_avatar: None,
             id,
             is_friend,
             last_platform,
-            profile_pic_override,
+            profile_pic_override: None,
             status,
             status_description,
             tags,
-            user_icon,
+            user_icon: None,
             username: None,
             location: None,
             friend_key: None,
