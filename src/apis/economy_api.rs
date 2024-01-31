@@ -55,10 +55,10 @@ pub enum GetSubscriptionsError {
 
 
 /// Get a list of all current user subscriptions.
-pub fn get_current_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::UserSubscription>, Error<GetCurrentSubscriptionsError>> {
+pub async fn get_current_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::UserSubscription>, Error<GetCurrentSubscriptionsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/auth/user/subscription", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -68,10 +68,10 @@ pub fn get_current_subscriptions(configuration: &configuration::Configuration, )
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -83,10 +83,10 @@ pub fn get_current_subscriptions(configuration: &configuration::Configuration, )
 }
 
 /// Get a single License Group by given ID.
-pub fn get_license_group(configuration: &configuration::Configuration, license_group_id: &str) -> Result<crate::models::LicenseGroup, Error<GetLicenseGroupError>> {
+pub async fn get_license_group(configuration: &configuration::Configuration, license_group_id: &str) -> Result<crate::models::LicenseGroup, Error<GetLicenseGroupError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/licenseGroups/{licenseGroupId}", local_var_configuration.base_path, licenseGroupId=crate::apis::urlencode(license_group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -96,10 +96,10 @@ pub fn get_license_group(configuration: &configuration::Configuration, license_g
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -111,10 +111,10 @@ pub fn get_license_group(configuration: &configuration::Configuration, license_g
 }
 
 /// Get a single Steam transactions by ID. This returns the exact same information as `getSteamTransactions`, so no point in using this endpoint.
-pub fn get_steam_transaction(configuration: &configuration::Configuration, transaction_id: &str) -> Result<crate::models::Transaction, Error<GetSteamTransactionError>> {
+pub async fn get_steam_transaction(configuration: &configuration::Configuration, transaction_id: &str) -> Result<crate::models::Transaction, Error<GetSteamTransactionError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/Steam/transactions/{transactionId}", local_var_configuration.base_path, transactionId=crate::apis::urlencode(transaction_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -124,10 +124,10 @@ pub fn get_steam_transaction(configuration: &configuration::Configuration, trans
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -139,10 +139,10 @@ pub fn get_steam_transaction(configuration: &configuration::Configuration, trans
 }
 
 /// Get all own Steam transactions.
-pub fn get_steam_transactions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Transaction>, Error<GetSteamTransactionsError>> {
+pub async fn get_steam_transactions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Transaction>, Error<GetSteamTransactionsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/Steam/transactions", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -152,10 +152,10 @@ pub fn get_steam_transactions(configuration: &configuration::Configuration, ) ->
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -167,10 +167,10 @@ pub fn get_steam_transactions(configuration: &configuration::Configuration, ) ->
 }
 
 /// List all existing Subscriptions. For example, \"vrchatplus-monthly\" and \"vrchatplus-yearly\".
-pub fn get_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Subscription>, Error<GetSubscriptionsError>> {
+pub async fn get_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Subscription>, Error<GetSubscriptionsError>> {
     let local_var_configuration = configuration;
 
-    let local_var_client = &local_var_configuration.client;
+    let local_var_client = &local_var_configuration.client.get_ref().get_ref();
 
     let local_var_uri_str = format!("{}/subscriptions", local_var_configuration.base_path);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
@@ -180,10 +180,10 @@ pub fn get_subscriptions(configuration: &configuration::Configuration, ) -> Resu
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)

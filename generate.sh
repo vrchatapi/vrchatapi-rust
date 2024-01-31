@@ -5,7 +5,7 @@ rm src/apis src/models docs -rf
 
 ./node_modules/\@openapitools/openapi-generator-cli/main.js generate \
 -g rust \
---additional-properties=packageName=vrchatapi,supportAsync=false \
+--additional-properties=packageName=vrchatapi,supportAsync=true \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
@@ -22,7 +22,11 @@ find src -type f -exec sed -i '/VRChat API Banner/d' {} \;
 find src -type f -exec sed -i '/The version of the OpenAPI document/d' {} \;
 
 # Cookie storage
-sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
+sed -i 's/pub client: reqwest::Client,/pub client: std::sync::Arc<tower::limit::RateLimit<tower::timeout::Timeout<reqwest::Client>>>,/g' src/apis/configuration.rs
+sed -i 's/reqwest::Client::new()/std::sync::Arc::new(tower::ServiceBuilder::new().rate_limit(1, std::time::Duration::from_secs(60)).timeout(std::time::Duration::from_secs(10)).service(reqwest::Client::builder().cookie_store(true).build().unwrap()))/g' src/apis/configuration.rs
+sed -i 's/features = \["json", "multipart"\]/features = \["json", "cookies", "multipart"\]/g' Cargo.toml
+sed -i 's/\[dependencies\]/\[dependencies\]\ntower = {version = "0.4.12", features = ["limit","timeout"]}/g' Cargo.toml
+sed -i 's/local_var_configuration\.client;/local_var_configuration.client.get_ref().get_ref();/g' src/apis/*.rs
 
 # https://github.com/OpenAPITools/openapi-generator/issues/14171
 # Replace Option<SortOption with Option<crate::models::SortOption in src/apis
