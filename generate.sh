@@ -33,6 +33,8 @@ sed -i 's/Option<ReleaseStatus>/Option<crate::models::ReleaseStatus>/g' src/apis
 sed -i 's/Option<OrderOption>/Option<crate::models::OrderOption>/g' src/apis/*.rs
 # Replace message_type: InviteMessageType with message_type: crate::models::InviteMessageType in src/apis
 sed -i 's/message_type: InviteMessageType/message_type: crate::models::InviteMessageType/g' src/apis/*.rs
+# Replace Option<GroupSearchSort with Option<crate::models::GroupSearchSort in src/apis
+sed -i 's/Option<GroupSearchSort>/Option<crate::models::GroupSearchSort>/g' src/apis/*.rs
 
 # -Missing Github Issue-
 # Append patches/InviteMessageType-Display.rs to invite_message_type.rs
@@ -48,7 +50,8 @@ cat patches/InviteMessageType-Display.rs >> src/models/invite_message_type.rs
 #         }
 #     }
 # }
-sed -z -i 's/impl ToString for InviteMessageType {\n[ a-zA-Z_\(\)&-\>{\n:=",]*}\n    }\n}//g' src/models/invite_message_type.rs
 
+
+sed -z -i 's/impl ToString for InviteMessageType {\n[ a-zA-Z_\(\)&-\>{\n:=",]*}\n    }\n}//g' src/models/invite_message_type.rs
 
 cargo build
