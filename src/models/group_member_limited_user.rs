@@ -21,6 +21,12 @@ pub struct GroupMemberLimitedUser {
     pub thumbnail_url: Option<String>,
     #[serde(rename = "iconUrl", skip_serializing_if = "Option::is_none")]
     pub icon_url: Option<String>,
+    #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
+    pub profile_pic_override: Option<String>,
+    #[serde(rename = "currentAvatarThumbnailImageUrl", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_thumbnail_image_url: Option<String>,
+    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_tags: Option<Vec<String>>,
 }
 
 impl GroupMemberLimitedUser {
@@ -31,6 +37,9 @@ impl GroupMemberLimitedUser {
             display_name: None,
             thumbnail_url: None,
             icon_url: None,
+            profile_pic_override: None,
+            current_avatar_thumbnail_image_url: None,
+            current_avatar_tags: None,
         }
     }
 }

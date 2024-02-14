@@ -25,6 +25,8 @@ pub struct GroupMember {
     pub user: Option<Box<crate::models::GroupMemberLimitedUser>>,
     #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
     pub role_ids: Option<Vec<String>>,
+    #[serde(rename = "mRoleIds", skip_serializing_if = "Option::is_none")]
+    pub m_role_ids: Option<Vec<String>>,
     #[serde(rename = "joinedAt", skip_serializing_if = "Option::is_none")]
     pub joined_at: Option<String>,
     #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
@@ -42,6 +44,10 @@ pub struct GroupMember {
     /// Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
     #[serde(rename = "managerNotes", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub manager_notes: Option<Option<String>>,
+    #[serde(rename = "lastPostReadAt", skip_serializing_if = "Option::is_none")]
+    pub last_post_read_at: Option<String>,
+    #[serde(rename = "hasJoinedFromPurchase", skip_serializing_if = "Option::is_none")]
+    pub has_joined_from_purchase: Option<bool>,
 }
 
 impl GroupMember {
@@ -53,6 +59,7 @@ impl GroupMember {
             is_representing: None,
             user: None,
             role_ids: None,
+            m_role_ids: None,
             joined_at: None,
             membership_status: None,
             visibility: None,
@@ -60,6 +67,8 @@ impl GroupMember {
             created_at: None,
             banned_at: None,
             manager_notes: None,
+            last_post_read_at: None,
+            has_joined_from_purchase: None,
         }
     }
 }

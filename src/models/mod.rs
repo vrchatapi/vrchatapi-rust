@@ -104,6 +104,8 @@ pub mod group_role;
 pub use self::group_role::GroupRole;
 pub mod group_role_template;
 pub use self::group_role_template::GroupRoleTemplate;
+pub mod group_search_sort;
+pub use self::group_search_sort::GroupSearchSort;
 pub mod group_user_visibility;
 pub use self::group_user_visibility::GroupUserVisibility;
 pub mod info_push;

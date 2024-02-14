@@ -59,6 +59,7 @@ docs/GroupPermission.md
 docs/GroupPrivacy.md
 docs/GroupRole.md
 docs/GroupRoleTemplate.md
+docs/GroupSearchSort.md
 docs/GroupUserVisibility.md
 docs/GroupsApi.md
 docs/InfoPush.md
@@ -210,6 +211,7 @@ src/models/group_permission.rs
 src/models/group_privacy.rs
 src/models/group_role.rs
 src/models/group_role_template.rs
+src/models/group_search_sort.rs
 src/models/group_user_visibility.rs
 src/models/info_push.rs
 src/models/info_push_data.rs

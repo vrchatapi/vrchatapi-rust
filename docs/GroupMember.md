@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **is_representing** | Option<**bool**> | Whether the user is representing the group. This makes the group show up above the name tag in-game. | [optional][default to false]
 **user** | Option<[**crate::models::GroupMemberLimitedUser**](GroupMemberLimitedUser.md)> |  | [optional]
 **role_ids** | Option<**Vec<String>**> |  | [optional]
+**m_role_ids** | Option<**Vec<String>**> |  | [optional]
 **joined_at** | Option<**String**> |  | [optional]
 **membership_status** | Option<**String**> |  | [optional]
 **visibility** | Option<**String**> |  | [optional]
@@ -17,6 +18,8 @@ Name | Type | Description | Notes
 **created_at** | Option<**String**> | Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user. | [optional]
 **banned_at** | Option<**String**> | Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user. | [optional]
 **manager_notes** | Option<**String**> | Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user. | [optional]
+**last_post_read_at** | Option<**String**> |  | [optional]
+**has_joined_from_purchase** | Option<**bool**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

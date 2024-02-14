@@ -8,6 +8,9 @@ Name | Type | Description | Notes
 **display_name** | Option<**String**> |  | [optional]
 **thumbnail_url** | Option<**String**> |  | [optional]
 **icon_url** | Option<**String**> |  | [optional]
+**profile_pic_override** | Option<**String**> |  | [optional]
+**current_avatar_thumbnail_image_url** | Option<**String**> |  | [optional]
+**current_avatar_tags** | Option<**Vec<String>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

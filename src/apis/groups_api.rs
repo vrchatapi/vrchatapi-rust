@@ -1005,7 +1005,7 @@ pub fn get_group_member(configuration: &configuration::Configuration, group_id: 
 }
 
 /// Returns a List of all **other** Group Members. This endpoint will never return the user calling the endpoint. Information about the user calling the endpoint must be found in the `myMember` field of the Group object.
-pub fn get_group_members(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupMembersError>> {
+pub fn get_group_members(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, sort: Option<crate::models::GroupSearchSort>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupMembersError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1018,6 +1018,9 @@ pub fn get_group_members(configuration: &configuration::Configuration, group_id:
     }
     if let Some(ref local_var_str) = offset {
         local_var_req_builder = local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = sort {
+        local_var_req_builder = local_var_req_builder.query(&[("sort", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
