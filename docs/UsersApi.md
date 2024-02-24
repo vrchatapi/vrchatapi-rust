@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**get_user_by_name**](UsersApi.md#get_user_by_name) | **GET** /users/{username}/name | Get User by Username
 [**get_user_group_requests**](UsersApi.md#get_user_group_requests) | **GET** /users/{userId}/groups/requested | Get User Group Requests
 [**get_user_groups**](UsersApi.md#get_user_groups) | **GET** /users/{userId}/groups | Get User Groups
+[**get_user_represented_group**](UsersApi.md#get_user_represented_group) | **GET** /users/{userId}/groups/represented | Get user's current represented group
 [**search_users**](UsersApi.md#search_users) | **GET** /users | Search All Users
 [**update_user**](UsersApi.md#update_user) | **PUT** /users/{userId} | Update User Info
 
@@ -120,6 +121,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<crate::models::Group>**](Group.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_represented_group
+
+> crate::models::RepresentedGroup get_user_represented_group(user_id)
+Get user's current represented group
+
+Returns the current group that the user is currently representing
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**crate::models::RepresentedGroup**](representedGroup.md)
 
 ### Authorization
 

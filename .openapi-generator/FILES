@@ -100,6 +100,7 @@ docs/PlayerModerationType.md
 docs/PlayermoderationApi.md
 docs/Region.md
 docs/ReleaseStatus.md
+docs/RepresentedGroup.md
 docs/RequestInviteRequest.md
 docs/RespondGroupJoinRequest.md
 docs/Response.md
@@ -247,6 +248,7 @@ src/models/player_moderation.rs
 src/models/player_moderation_type.rs
 src/models/region.rs
 src/models/release_status.rs
+src/models/represented_group.rs
 src/models/request_invite_request.rs
 src/models/respond_group_join_request.rs
 src/models/response.rs

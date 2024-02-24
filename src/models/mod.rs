@@ -174,6 +174,8 @@ pub mod region;
 pub use self::region::Region;
 pub mod release_status;
 pub use self::release_status::ReleaseStatus;
+pub mod represented_group;
+pub use self::represented_group::RepresentedGroup;
 pub mod request_invite_request;
 pub use self::request_invite_request::RequestInviteRequest;
 pub mod respond_group_join_request;

@@ -30,6 +30,8 @@ pub struct UpdateAvatarRequest {
     pub version: Option<f32>,
     #[serde(rename = "unityPackageUrl", skip_serializing_if = "Option::is_none")]
     pub unity_package_url: Option<String>,
+    #[serde(rename = "unityVersion", skip_serializing_if = "Option::is_none")]
+    pub unity_version: Option<String>,
 }
 
 impl UpdateAvatarRequest {
@@ -44,6 +46,7 @@ impl UpdateAvatarRequest {
             release_status: None,
             version: None,
             unity_package_url: None,
+            unity_version: None,
         }
     }
 }

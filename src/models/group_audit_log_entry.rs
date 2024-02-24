@@ -20,8 +20,8 @@ pub struct GroupAuditLogEntry {
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "actorId", skip_serializing_if = "Option::is_none")]
     pub actor_id: Option<String>,
-    #[serde(rename = "actorDisplayname", skip_serializing_if = "Option::is_none")]
-    pub actor_displayname: Option<String>,
+    #[serde(rename = "actorDisplayName", skip_serializing_if = "Option::is_none")]
+    pub actor_display_name: Option<String>,
     /// Typically GroupID or GroupRoleID, but could be other types of IDs.
     #[serde(rename = "targetId", skip_serializing_if = "Option::is_none")]
     pub target_id: Option<String>,
@@ -43,7 +43,7 @@ impl GroupAuditLogEntry {
             created_at: None,
             group_id: None,
             actor_id: None,
-            actor_displayname: None,
+            actor_display_name: None,
             target_id: None,
             event_type: None,
             description: None,
