@@ -671,7 +671,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_invites
 
-> Vec<crate::models::GroupMember> get_group_invites(group_id)
+> Vec<crate::models::GroupMember> get_group_invites(group_id, n, offset)
 Get Group Invites Sent
 
 Returns a list of members that have been invited to the Group.
@@ -682,6 +682,8 @@ Returns a list of members that have been invited to the Group.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 
 ### Return type
 
@@ -795,7 +797,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_requests
 
-> Vec<crate::models::GroupMember> get_group_requests(group_id)
+> Vec<crate::models::GroupMember> get_group_requests(group_id, n, offset)
 Get Group Join Requests
 
 Returns a list of members that have requested to join the Group.
@@ -806,6 +808,8 @@ Returns a list of members that have requested to join the Group.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 
 ### Return type
 

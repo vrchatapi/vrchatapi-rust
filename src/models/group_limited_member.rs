@@ -42,8 +42,8 @@ pub struct GroupLimitedMember {
     /// Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
     #[serde(rename = "managerNotes", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub manager_notes: Option<Option<String>>,
-    #[serde(rename = "lastPostReadAt", skip_serializing_if = "Option::is_none")]
-    pub last_post_read_at: Option<String>,
+    #[serde(rename = "lastPostReadAt", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub last_post_read_at: Option<Option<String>>,
     #[serde(rename = "hasJoinedFromPurchase", skip_serializing_if = "Option::is_none")]
     pub has_joined_from_purchase: Option<bool>,
 }

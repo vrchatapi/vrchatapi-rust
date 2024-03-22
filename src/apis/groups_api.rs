@@ -949,7 +949,7 @@ pub fn get_group_gallery_images(configuration: &configuration::Configuration, gr
 }
 
 /// Returns a list of members that have been invited to the Group.
-pub fn get_group_invites(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupInvitesError>> {
+pub fn get_group_invites(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupInvitesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -957,6 +957,12 @@ pub fn get_group_invites(configuration: &configuration::Configuration, group_id:
     let local_var_uri_str = format!("{}/groups/{groupId}/invites", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
+    if let Some(ref local_var_str) = n {
+        local_var_req_builder = local_var_req_builder.query(&[("n", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = offset {
+        local_var_req_builder = local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
+    }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
@@ -1070,7 +1076,7 @@ pub fn get_group_permissions(configuration: &configuration::Configuration, group
 }
 
 /// Returns a list of members that have requested to join the Group.
-pub fn get_group_requests(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupRequestsError>> {
+pub fn get_group_requests(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupRequestsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1078,6 +1084,12 @@ pub fn get_group_requests(configuration: &configuration::Configuration, group_id
     let local_var_uri_str = format!("{}/groups/{groupId}/requests", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
+    if let Some(ref local_var_str) = n {
+        local_var_req_builder = local_var_req_builder.query(&[("n", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = offset {
+        local_var_req_builder = local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
+    }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
