@@ -183,7 +183,7 @@ pub fn get_player_moderations(configuration: &configuration::Configuration, r#ty
 }
 
 /// Moderate a user, e.g. unmute them or show their avatar.  Please see the [Player Moderation docs](https://vrchatapi.github.io/docs/api/#tag--playermoderation) on what playerModerations are, and how they differ from staff moderations.
-pub fn moderate_user(configuration: &configuration::Configuration, moderate_user_request: Option<crate::models::ModerateUserRequest>) -> Result<crate::models::PlayerModeration, Error<ModerateUserError>> {
+pub fn moderate_user(configuration: &configuration::Configuration, moderate_user_request: crate::models::ModerateUserRequest) -> Result<crate::models::PlayerModeration, Error<ModerateUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -212,7 +212,7 @@ pub fn moderate_user(configuration: &configuration::Configuration, moderate_user
 }
 
 /// Removes a player moderation previously added through `moderateUser`. E.g if you previously have shown their avatar, but now want to reset it to default.
-pub fn unmoderate_user(configuration: &configuration::Configuration, moderate_user_request: Option<crate::models::ModerateUserRequest>) -> Result<crate::models::Success, Error<UnmoderateUserError>> {
+pub fn unmoderate_user(configuration: &configuration::Configuration, moderate_user_request: crate::models::ModerateUserRequest) -> Result<crate::models::Success, Error<UnmoderateUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

@@ -206,7 +206,7 @@ pub fn logout(configuration: &configuration::Configuration, ) -> Result<crate::m
 }
 
 /// Finishes the login sequence with a normal 2FA-generated code for accounts with 2FA-protection enabled.
-pub fn verify2_fa(configuration: &configuration::Configuration, two_factor_auth_code: Option<crate::models::TwoFactorAuthCode>) -> Result<crate::models::Verify2FaResult, Error<Verify2FaError>> {
+pub fn verify2_fa(configuration: &configuration::Configuration, two_factor_auth_code: crate::models::TwoFactorAuthCode) -> Result<crate::models::Verify2FaResult, Error<Verify2FaError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -235,7 +235,7 @@ pub fn verify2_fa(configuration: &configuration::Configuration, two_factor_auth_
 }
 
 /// Finishes the login sequence with an 2FA email code.
-pub fn verify2_fa_email_code(configuration: &configuration::Configuration, two_factor_email_code: Option<crate::models::TwoFactorEmailCode>) -> Result<crate::models::Verify2FaEmailCodeResult, Error<Verify2FaEmailCodeError>> {
+pub fn verify2_fa_email_code(configuration: &configuration::Configuration, two_factor_email_code: crate::models::TwoFactorEmailCode) -> Result<crate::models::Verify2FaEmailCodeResult, Error<Verify2FaEmailCodeError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -292,7 +292,7 @@ pub fn verify_auth_token(configuration: &configuration::Configuration, ) -> Resu
 }
 
 /// Finishes the login sequence with an OTP (One Time Password) recovery code for accounts with 2FA-protection enabled.
-pub fn verify_recovery_code(configuration: &configuration::Configuration, two_factor_auth_code: Option<crate::models::TwoFactorAuthCode>) -> Result<crate::models::Verify2FaResult, Error<VerifyRecoveryCodeError>> {
+pub fn verify_recovery_code(configuration: &configuration::Configuration, two_factor_auth_code: crate::models::TwoFactorAuthCode) -> Result<crate::models::Verify2FaResult, Error<VerifyRecoveryCodeError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

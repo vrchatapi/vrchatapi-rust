@@ -23,8 +23,8 @@ pub struct GroupMemberLimitedUser {
     pub icon_url: Option<String>,
     #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
     pub profile_pic_override: Option<String>,
-    #[serde(rename = "currentAvatarThumbnailImageUrl", skip_serializing_if = "Option::is_none")]
-    pub current_avatar_thumbnail_image_url: Option<String>,
+    #[serde(rename = "currentAvatarThumbnailImageUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_thumbnail_image_url: Option<Option<String>>,
     #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
     pub current_avatar_tags: Option<Vec<String>>,
 }

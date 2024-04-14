@@ -122,7 +122,7 @@ Sends an invite to a user. Returns the Notification of type `invite` that was se
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**invite_request** | Option<[**InviteRequest**](InviteRequest.md)> | Slot number of the Invite Message to use when inviting a user. |  |
+**invite_request** | [**InviteRequest**](InviteRequest.md) | Slot number of the Invite Message to use when inviting a user. | [required] |
 
 ### Return type
 
@@ -216,7 +216,7 @@ Respond to an invite request by sending a world invite to the requesting user. `
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **notification_id** | **String** | Must be a valid notification ID. | [required] |
-**invite_response** | Option<[**InviteResponse**](InviteResponse.md)> | Slot number of the Response Message to use when responding to a user. |  |
+**invite_response** | [**InviteResponse**](InviteResponse.md) | Slot number of the Response Message to use when responding to a user. | [required] |
 
 ### Return type
 

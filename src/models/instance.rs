@@ -67,11 +67,28 @@ pub struct Instance {
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "private", skip_serializing_if = "Option::is_none")]
     pub private: Option<String>,
+    #[serde(rename = "queueEnabled")]
+    pub queue_enabled: bool,
+    #[serde(rename = "queueSize")]
+    pub queue_size: i32,
+    #[serde(rename = "recommendedCapacity")]
+    pub recommended_capacity: i32,
+    #[serde(rename = "roleRestricted")]
+    pub role_restricted: bool,
+    #[serde(rename = "strict")]
+    pub strict: bool,
+    #[serde(rename = "userCount")]
+    pub user_count: i32,
+    #[serde(rename = "world")]
+    pub world: Box<crate::models::World>,
+    /// The users field is present on instances created by the requesting user.
+    #[serde(rename = "users", skip_serializing_if = "Option::is_none")]
+    pub users: Option<Vec<crate::models::LimitedUser>>,
 }
 
 impl Instance {
     /// * `hidden` field is only present if InstanceType is `hidden` aka \"Friends+\", and is instance creator. * `friends` field is only present if InstanceType is `friends` aka \"Friends\", and is instance creator. * `private` field is only present if InstanceType is `private` aka \"Invite\" or \"Invite+\", and is instance creator.
-    pub fn new(active: bool, can_request_invite: bool, capacity: i32, client_number: String, full: bool, id: String, instance_id: String, location: String, n_users: i32, name: String, permanent: bool, photon_region: crate::models::Region, platforms: crate::models::InstancePlatforms, region: crate::models::Region, secure_name: String, tags: Vec<String>, r#type: crate::models::InstanceType, world_id: String) -> Instance {
+    pub fn new(active: bool, can_request_invite: bool, capacity: i32, client_number: String, full: bool, id: String, instance_id: String, location: String, n_users: i32, name: String, permanent: bool, photon_region: crate::models::Region, platforms: crate::models::InstancePlatforms, region: crate::models::Region, secure_name: String, tags: Vec<String>, r#type: crate::models::InstanceType, world_id: String, queue_enabled: bool, queue_size: i32, recommended_capacity: i32, role_restricted: bool, strict: bool, user_count: i32, world: crate::models::World) -> Instance {
         Instance {
             active,
             can_request_invite,
@@ -96,6 +113,14 @@ impl Instance {
             hidden: None,
             friends: None,
             private: None,
+            queue_enabled,
+            queue_size,
+            recommended_capacity,
+            role_restricted,
+            strict,
+            user_count,
+            world: Box::new(world),
+            users: None,
         }
     }
 }

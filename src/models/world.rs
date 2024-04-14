@@ -43,8 +43,8 @@ pub struct World {
     pub labs_publication_date: String,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "namespace")]
-    pub namespace: String,
+    #[serde(rename = "namespace", skip_serializing_if = "Option::is_none")]
+    pub namespace: Option<String>,
     /// Will always be `0` when unauthenticated.
     #[serde(rename = "occupants", skip_serializing_if = "Option::is_none")]
     pub occupants: Option<i32>,
@@ -84,7 +84,7 @@ pub struct World {
 
 impl World {
     /// 
-    pub fn new(author_id: String, author_name: String, capacity: i32, recommended_capacity: i32, created_at: String, description: String, featured: bool, heat: i32, id: String, image_url: String, labs_publication_date: String, name: String, namespace: String, organization: String, popularity: i32, publication_date: String, release_status: crate::models::ReleaseStatus, tags: Vec<String>, thumbnail_image_url: String, updated_at: String, version: i32, visits: i32) -> World {
+    pub fn new(author_id: String, author_name: String, capacity: i32, recommended_capacity: i32, created_at: String, description: String, featured: bool, heat: i32, id: String, image_url: String, labs_publication_date: String, name: String, organization: String, popularity: i32, publication_date: String, release_status: crate::models::ReleaseStatus, tags: Vec<String>, thumbnail_image_url: String, updated_at: String, version: i32, visits: i32) -> World {
         World {
             author_id,
             author_name,
@@ -100,7 +100,7 @@ impl World {
             instances: None,
             labs_publication_date,
             name,
-            namespace,
+            namespace: None,
             occupants: None,
             organization,
             popularity,

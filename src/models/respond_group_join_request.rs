@@ -11,14 +11,14 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct RespondGroupJoinRequest {
-    #[serde(rename = "action", skip_serializing_if = "Option::is_none")]
-    pub action: Option<String>,
+    #[serde(rename = "action")]
+    pub action: crate::models::GroupJoinRequestAction,
 }
 
 impl RespondGroupJoinRequest {
-    pub fn new() -> RespondGroupJoinRequest {
+    pub fn new(action: crate::models::GroupJoinRequestAction) -> RespondGroupJoinRequest {
         RespondGroupJoinRequest {
-            action: None,
+            action,
         }
     }
 }

@@ -28,7 +28,7 @@ pub struct GroupLimitedMember {
     #[serde(rename = "joinedAt", skip_serializing_if = "Option::is_none")]
     pub joined_at: Option<String>,
     #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
-    pub membership_status: Option<String>,
+    pub membership_status: Option<crate::models::GroupMemberStatus>,
     #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
     pub visibility: Option<String>,
     #[serde(rename = "isSubscribedToAnnouncements", skip_serializing_if = "Option::is_none")]

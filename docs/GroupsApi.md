@@ -58,7 +58,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
 **group_gallery_id** | **String** | Must be a valid group gallery ID. | [required] |
-**add_group_gallery_image_request** | Option<[**AddGroupGalleryImageRequest**](AddGroupGalleryImageRequest.md)> |  |  |
+**add_group_gallery_image_request** | [**AddGroupGalleryImageRequest**](AddGroupGalleryImageRequest.md) |  | [required] |
 
 ### Return type
 
@@ -121,7 +121,7 @@ Bans a user from a Group.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
-**ban_group_member_request** | Option<[**BanGroupMemberRequest**](BanGroupMemberRequest.md)> |  |  |
+**ban_group_member_request** | [**BanGroupMemberRequest**](BanGroupMemberRequest.md) |  | [required] |
 
 ### Return type
 
@@ -181,7 +181,7 @@ Creates a Group and returns a Group object. **Requires VRC+ Subscription.**
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**create_group_request** | Option<[**CreateGroupRequest**](CreateGroupRequest.md)> |  |  |
+**create_group_request** | [**CreateGroupRequest**](CreateGroupRequest.md) |  | [required] |
 
 ### Return type
 
@@ -212,7 +212,7 @@ Creates an Announcement for a Group.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
-**create_group_announcement_request** | Option<[**CreateGroupAnnouncementRequest**](CreateGroupAnnouncementRequest.md)> |  |  |
+**create_group_announcement_request** | [**CreateGroupAnnouncementRequest**](CreateGroupAnnouncementRequest.md) |  | [required] |
 
 ### Return type
 
@@ -243,7 +243,7 @@ Creates a gallery for a Group.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
-**create_group_gallery_request** | Option<[**CreateGroupGalleryRequest**](CreateGroupGalleryRequest.md)> |  |  |
+**create_group_gallery_request** | [**CreateGroupGalleryRequest**](CreateGroupGalleryRequest.md) |  | [required] |
 
 ### Return type
 
@@ -274,7 +274,7 @@ Sends an invite to a user to join the group.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
-**create_group_invite_request** | Option<[**CreateGroupInviteRequest**](CreateGroupInviteRequest.md)> |  |  |
+**create_group_invite_request** | [**CreateGroupInviteRequest**](CreateGroupInviteRequest.md) |  | [required] |
 
 ### Return type
 
@@ -305,7 +305,7 @@ Create a Group role.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
-**create_group_role_request** | Option<[**CreateGroupRoleRequest**](CreateGroupRoleRequest.md)> |  |  |
+**create_group_role_request** | [**CreateGroupRoleRequest**](CreateGroupRoleRequest.md) |  | [required] |
 
 ### Return type
 
@@ -994,7 +994,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**respond_group_join_request** | Option<[**RespondGroupJoinRequest**](RespondGroupJoinRequest.md)> |  |  |
+**respond_group_join_request** | [**RespondGroupJoinRequest**](RespondGroupJoinRequest.md) |  | [required] |
 
 ### Return type
 

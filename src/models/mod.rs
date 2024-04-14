@@ -84,6 +84,8 @@ pub mod group_gallery;
 pub use self::group_gallery::GroupGallery;
 pub mod group_gallery_image;
 pub use self::group_gallery_image::GroupGalleryImage;
+pub mod group_join_request_action;
+pub use self::group_join_request_action::GroupJoinRequestAction;
 pub mod group_join_state;
 pub use self::group_join_state::GroupJoinState;
 pub mod group_limited_member;

@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **instances** | Option<[**Vec<Vec<serde_json::Value>>**](array.md)> | Will always be an empty list when unauthenticated. | [optional]
 **labs_publication_date** | **String** |  | 
 **name** | **String** |  | 
-**namespace** | **String** |  | 
+**namespace** | Option<**String**> |  | [optional]
 **occupants** | Option<**i32**> | Will always be `0` when unauthenticated. | [optional][default to 0]
 **organization** | **String** |  | [default to vrchat]
 **popularity** | **i32** |  | [default to 0]

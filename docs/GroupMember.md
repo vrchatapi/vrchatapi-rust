@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **role_ids** | Option<**Vec<String>**> |  | [optional]
 **m_role_ids** | Option<**Vec<String>**> |  | [optional]
 **joined_at** | Option<**String**> |  | [optional]
-**membership_status** | Option<**String**> |  | [optional]
+**membership_status** | Option<[**crate::models::GroupMemberStatus**](GroupMemberStatus.md)> |  | [optional]
 **visibility** | Option<**String**> |  | [optional]
 **is_subscribed_to_announcements** | Option<**bool**> |  | [optional][default to false]
 **created_at** | Option<**String**> | Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user. | [optional]

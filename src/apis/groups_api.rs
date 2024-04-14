@@ -352,7 +352,7 @@ pub enum UpdateGroupRoleError {
 
 
 /// Adds an image to a Group gallery.
-pub fn add_group_gallery_image(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, add_group_gallery_image_request: Option<crate::models::AddGroupGalleryImageRequest>) -> Result<crate::models::GroupGalleryImage, Error<AddGroupGalleryImageError>> {
+pub fn add_group_gallery_image(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, add_group_gallery_image_request: crate::models::AddGroupGalleryImageRequest) -> Result<crate::models::GroupGalleryImage, Error<AddGroupGalleryImageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -409,7 +409,7 @@ pub fn add_group_member_role(configuration: &configuration::Configuration, group
 }
 
 /// Bans a user from a Group.
-pub fn ban_group_member(configuration: &configuration::Configuration, group_id: &str, ban_group_member_request: Option<crate::models::BanGroupMemberRequest>) -> Result<crate::models::GroupMember, Error<BanGroupMemberError>> {
+pub fn ban_group_member(configuration: &configuration::Configuration, group_id: &str, ban_group_member_request: crate::models::BanGroupMemberRequest) -> Result<crate::models::GroupMember, Error<BanGroupMemberError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -466,7 +466,7 @@ pub fn cancel_group_request(configuration: &configuration::Configuration, group_
 }
 
 /// Creates a Group and returns a Group object. **Requires VRC+ Subscription.**
-pub fn create_group(configuration: &configuration::Configuration, create_group_request: Option<crate::models::CreateGroupRequest>) -> Result<crate::models::Group, Error<CreateGroupError>> {
+pub fn create_group(configuration: &configuration::Configuration, create_group_request: crate::models::CreateGroupRequest) -> Result<crate::models::Group, Error<CreateGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -495,7 +495,7 @@ pub fn create_group(configuration: &configuration::Configuration, create_group_r
 }
 
 /// Creates an Announcement for a Group.
-pub fn create_group_announcement(configuration: &configuration::Configuration, group_id: &str, create_group_announcement_request: Option<crate::models::CreateGroupAnnouncementRequest>) -> Result<crate::models::GroupAnnouncement, Error<CreateGroupAnnouncementError>> {
+pub fn create_group_announcement(configuration: &configuration::Configuration, group_id: &str, create_group_announcement_request: crate::models::CreateGroupAnnouncementRequest) -> Result<crate::models::GroupAnnouncement, Error<CreateGroupAnnouncementError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -524,7 +524,7 @@ pub fn create_group_announcement(configuration: &configuration::Configuration, g
 }
 
 /// Creates a gallery for a Group.
-pub fn create_group_gallery(configuration: &configuration::Configuration, group_id: &str, create_group_gallery_request: Option<crate::models::CreateGroupGalleryRequest>) -> Result<crate::models::GroupGallery, Error<CreateGroupGalleryError>> {
+pub fn create_group_gallery(configuration: &configuration::Configuration, group_id: &str, create_group_gallery_request: crate::models::CreateGroupGalleryRequest) -> Result<crate::models::GroupGallery, Error<CreateGroupGalleryError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -553,7 +553,7 @@ pub fn create_group_gallery(configuration: &configuration::Configuration, group_
 }
 
 /// Sends an invite to a user to join the group.
-pub fn create_group_invite(configuration: &configuration::Configuration, group_id: &str, create_group_invite_request: Option<crate::models::CreateGroupInviteRequest>) -> Result<(), Error<CreateGroupInviteError>> {
+pub fn create_group_invite(configuration: &configuration::Configuration, group_id: &str, create_group_invite_request: crate::models::CreateGroupInviteRequest) -> Result<(), Error<CreateGroupInviteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -582,7 +582,7 @@ pub fn create_group_invite(configuration: &configuration::Configuration, group_i
 }
 
 /// Create a Group role.
-pub fn create_group_role(configuration: &configuration::Configuration, group_id: &str, create_group_role_request: Option<crate::models::CreateGroupRoleRequest>) -> Result<crate::models::GroupRole, Error<CreateGroupRoleError>> {
+pub fn create_group_role(configuration: &configuration::Configuration, group_id: &str, create_group_role_request: crate::models::CreateGroupRoleRequest) -> Result<crate::models::GroupRole, Error<CreateGroupRoleError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1250,7 +1250,7 @@ pub fn remove_group_member_role(configuration: &configuration::Configuration, gr
 }
 
 /// Responds to a Group Join Request with Accept/Deny
-pub fn respond_group_join_request(configuration: &configuration::Configuration, group_id: &str, user_id: &str, respond_group_join_request: Option<crate::models::RespondGroupJoinRequest>) -> Result<(), Error<RespondGroupJoinRequestError>> {
+pub fn respond_group_join_request(configuration: &configuration::Configuration, group_id: &str, user_id: &str, respond_group_join_request: crate::models::RespondGroupJoinRequest) -> Result<(), Error<RespondGroupJoinRequestError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

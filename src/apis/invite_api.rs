@@ -172,7 +172,7 @@ pub fn invite_myself_to(configuration: &configuration::Configuration, world_id: 
 }
 
 /// Sends an invite to a user. Returns the Notification of type `invite` that was sent.
-pub fn invite_user(configuration: &configuration::Configuration, user_id: &str, invite_request: Option<crate::models::InviteRequest>) -> Result<crate::models::SentNotification, Error<InviteUserError>> {
+pub fn invite_user(configuration: &configuration::Configuration, user_id: &str, invite_request: crate::models::InviteRequest) -> Result<crate::models::SentNotification, Error<InviteUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -258,7 +258,7 @@ pub fn reset_invite_message(configuration: &configuration::Configuration, user_i
 }
 
 /// Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
-pub fn respond_invite(configuration: &configuration::Configuration, notification_id: &str, invite_response: Option<crate::models::InviteResponse>) -> Result<crate::models::Notification, Error<RespondInviteError>> {
+pub fn respond_invite(configuration: &configuration::Configuration, notification_id: &str, invite_response: crate::models::InviteResponse) -> Result<crate::models::Notification, Error<RespondInviteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

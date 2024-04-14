@@ -143,7 +143,7 @@ Moderate a user, e.g. unmute them or show their avatar.  Please see the [Player 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**moderate_user_request** | Option<[**ModerateUserRequest**](ModerateUserRequest.md)> |  |  |
+**moderate_user_request** | [**ModerateUserRequest**](ModerateUserRequest.md) |  | [required] |
 
 ### Return type
 
@@ -173,7 +173,7 @@ Removes a player moderation previously added through `moderateUser`. E.g if you 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**moderate_user_request** | Option<[**ModerateUserRequest**](ModerateUserRequest.md)> |  |  |
+**moderate_user_request** | [**ModerateUserRequest**](ModerateUserRequest.md) |  | [required] |
 
 ### Return type
 

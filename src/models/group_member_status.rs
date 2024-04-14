@@ -18,6 +18,8 @@ pub enum GroupMemberStatus {
     Requested,
     #[serde(rename = "invited")]
     Invited,
+    #[serde(rename = "banned")]
+    Banned,
 
 }
 
@@ -28,6 +30,7 @@ impl ToString for GroupMemberStatus {
             Self::Member => String::from("member"),
             Self::Requested => String::from("requested"),
             Self::Invited => String::from("invited"),
+            Self::Banned => String::from("banned"),
         }
     }
 }

@@ -49,6 +49,7 @@ docs/GroupAnnouncement.md
 docs/GroupAuditLogEntry.md
 docs/GroupGallery.md
 docs/GroupGalleryImage.md
+docs/GroupJoinRequestAction.md
 docs/GroupJoinState.md
 docs/GroupLimitedMember.md
 docs/GroupMember.md
@@ -202,6 +203,7 @@ src/models/group_announcement.rs
 src/models/group_audit_log_entry.rs
 src/models/group_gallery.rs
 src/models/group_gallery_image.rs
+src/models/group_join_request_action.rs
 src/models/group_join_state.rs
 src/models/group_limited_member.rs
 src/models/group_member.rs

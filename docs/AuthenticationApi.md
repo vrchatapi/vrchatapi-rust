@@ -144,7 +144,7 @@ Finishes the login sequence with a normal 2FA-generated code for accounts with 2
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**two_factor_auth_code** | Option<[**TwoFactorAuthCode**](TwoFactorAuthCode.md)> |  |  |
+**two_factor_auth_code** | [**TwoFactorAuthCode**](TwoFactorAuthCode.md) |  | [required] |
 
 ### Return type
 
@@ -174,7 +174,7 @@ Finishes the login sequence with an 2FA email code.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**two_factor_email_code** | Option<[**TwoFactorEmailCode**](TwoFactorEmailCode.md)> |  |  |
+**two_factor_email_code** | [**TwoFactorEmailCode**](TwoFactorEmailCode.md) |  | [required] |
 
 ### Return type
 
@@ -231,7 +231,7 @@ Finishes the login sequence with an OTP (One Time Password) recovery code for ac
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**two_factor_auth_code** | Option<[**TwoFactorAuthCode**](TwoFactorAuthCode.md)> |  |  |
+**two_factor_auth_code** | [**TwoFactorAuthCode**](TwoFactorAuthCode.md) |  | [required] |
 
 ### Return type
 
