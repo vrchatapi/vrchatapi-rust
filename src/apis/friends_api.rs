@@ -26,6 +26,7 @@ pub enum DeleteFriendRequestError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FriendError {
+    Status400(crate::models::Error),
     Status401(crate::models::Error),
     Status404(crate::models::Error),
     UnknownValue(serde_json::Value),

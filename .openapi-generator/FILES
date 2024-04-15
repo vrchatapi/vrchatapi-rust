@@ -45,6 +45,7 @@ docs/FinishFileDataUploadRequest.md
 docs/FriendStatus.md
 docs/FriendsApi.md
 docs/Group.md
+docs/GroupAccessType.md
 docs/GroupAnnouncement.md
 docs/GroupAuditLogEntry.md
 docs/GroupGallery.md
@@ -199,6 +200,7 @@ src/models/file_version_upload_status.rs
 src/models/finish_file_data_upload_request.rs
 src/models/friend_status.rs
 src/models/group.rs
+src/models/group_access_type.rs
 src/models/group_announcement.rs
 src/models/group_audit_log_entry.rs
 src/models/group_gallery.rs

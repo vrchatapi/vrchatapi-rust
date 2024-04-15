@@ -76,6 +76,8 @@ pub mod friend_status;
 pub use self::friend_status::FriendStatus;
 pub mod group;
 pub use self::group::Group;
+pub mod group_access_type;
+pub use self::group_access_type::GroupAccessType;
 pub mod group_announcement;
 pub use self::group_announcement::GroupAnnouncement;
 pub mod group_audit_log_entry;

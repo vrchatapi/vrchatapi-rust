@@ -80,8 +80,9 @@ pub enum CreateGroupGalleryError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupInviteError {
-    Status400(),
+    Status400(crate::models::Error),
     Status401(crate::models::Error),
+    Status403(crate::models::Error),
     Status404(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -237,6 +238,7 @@ pub enum GetGroupPermissionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupRequestsError {
+    Status400(crate::models::Error),
     Status403(crate::models::Error),
     Status404(crate::models::Error),
     UnknownValue(serde_json::Value),
