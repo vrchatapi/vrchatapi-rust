@@ -17,8 +17,8 @@ pub struct GroupMemberLimitedUser {
     pub id: Option<String>,
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
     pub display_name: Option<String>,
-    #[serde(rename = "thumbnailUrl", skip_serializing_if = "Option::is_none")]
-    pub thumbnail_url: Option<String>,
+    #[serde(rename = "thumbnailUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub thumbnail_url: Option<Option<String>>,
     #[serde(rename = "iconUrl", skip_serializing_if = "Option::is_none")]
     pub icon_url: Option<String>,
     #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]

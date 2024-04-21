@@ -24,6 +24,7 @@ Method | HTTP request | Description
 [**get_group_audit_logs**](GroupsApi.md#get_group_audit_logs) | **GET** /groups/{groupId}/auditLogs | Get Group Audit Logs
 [**get_group_bans**](GroupsApi.md#get_group_bans) | **GET** /groups/{groupId}/bans | Get Group Bans
 [**get_group_gallery_images**](GroupsApi.md#get_group_gallery_images) | **GET** /groups/{groupId}/galleries/{groupGalleryId} | Get Group Gallery Images
+[**get_group_instances**](GroupsApi.md#get_group_instances) | **GET** /groups/{groupId}/instances | Get Group Instances
 [**get_group_invites**](GroupsApi.md#get_group_invites) | **GET** /groups/{groupId}/invites | Get Group Invites Sent
 [**get_group_member**](GroupsApi.md#get_group_member) | **GET** /groups/{groupId}/members/{userId} | Get Group Member
 [**get_group_members**](GroupsApi.md#get_group_members) | **GET** /groups/{groupId}/members | List Group Members
@@ -656,6 +657,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<crate::models::GroupGalleryImage>**](GroupGalleryImage.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_group_instances
+
+> Vec<crate::models::GroupInstance> get_group_instances(group_id)
+Get Group Instances
+
+Returns a list of group instances
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+
+### Return type
+
+[**Vec<crate::models::GroupInstance>**](GroupInstance.md)
 
 ### Authorization
 
