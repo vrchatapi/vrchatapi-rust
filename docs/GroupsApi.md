@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_group_gallery_image**](GroupsApi.md#add_group_gallery_image) | **POST** /groups/{groupId}/galleries/{groupGalleryId}/images | Add Group Gallery Image
 [**add_group_member_role**](GroupsApi.md#add_group_member_role) | **PUT** /groups/{groupId}/members/{userId}/roles/{groupRoleId} | Add Role to GroupMember
+[**add_group_post**](GroupsApi.md#add_group_post) | **POST** /groups/{groupId}/posts | Create a post in a Group
 [**ban_group_member**](GroupsApi.md#ban_group_member) | **POST** /groups/{groupId}/bans | Ban Group Member
 [**cancel_group_request**](GroupsApi.md#cancel_group_request) | **DELETE** /groups/{groupId}/requests | Cancel Group Join Request
 [**create_group**](GroupsApi.md#create_group) | **POST** /groups | Create Group
@@ -18,6 +19,7 @@ Method | HTTP request | Description
 [**delete_group_gallery**](GroupsApi.md#delete_group_gallery) | **DELETE** /groups/{groupId}/galleries/{groupGalleryId} | Delete Group Gallery
 [**delete_group_gallery_image**](GroupsApi.md#delete_group_gallery_image) | **DELETE** /groups/{groupId}/galleries/{groupGalleryId}/images/{groupGalleryImageId} | Delete Group Gallery Image
 [**delete_group_invite**](GroupsApi.md#delete_group_invite) | **DELETE** /groups/{groupId}/invites/{userId} | Delete User Invite
+[**delete_group_post**](GroupsApi.md#delete_group_post) | **DELETE** /groups/{groupId}/posts/{notificationId} | Delete a Group post
 [**delete_group_role**](GroupsApi.md#delete_group_role) | **DELETE** /groups/{groupId}/roles/{groupRoleId} | Delete Group Role
 [**get_group**](GroupsApi.md#get_group) | **GET** /groups/{groupId} | Get Group by ID
 [**get_group_announcements**](GroupsApi.md#get_group_announcements) | **GET** /groups/{groupId}/announcement | Get Group Announcement
@@ -29,6 +31,7 @@ Method | HTTP request | Description
 [**get_group_member**](GroupsApi.md#get_group_member) | **GET** /groups/{groupId}/members/{userId} | Get Group Member
 [**get_group_members**](GroupsApi.md#get_group_members) | **GET** /groups/{groupId}/members | List Group Members
 [**get_group_permissions**](GroupsApi.md#get_group_permissions) | **GET** /groups/{groupId}/permissions | List Group Permissions
+[**get_group_post**](GroupsApi.md#get_group_post) | **GET** /groups/{groupId}/posts | Get posts from a Group
 [**get_group_requests**](GroupsApi.md#get_group_requests) | **GET** /groups/{groupId}/requests | Get Group Join Requests
 [**get_group_roles**](GroupsApi.md#get_group_roles) | **GET** /groups/{groupId}/roles | Get Group Roles
 [**join_group**](GroupsApi.md#join_group) | **POST** /groups/{groupId}/join | Join Group
@@ -104,6 +107,37 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## add_group_post
+
+> crate::models::GroupPost add_group_post(group_id, create_group_post_request)
+Create a post in a Group
+
+Create a post in a Group.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+**create_group_post_request** | [**CreateGroupPostRequest**](CreateGroupPostRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::GroupPost**](GroupPost.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -478,6 +512,37 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## delete_group_post
+
+> crate::models::Success delete_group_post(group_id, notification_id)
+Delete a Group post
+
+Delete a Group post
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+**notification_id** | **String** | Must be a valid notification ID. | [required] |
+
+### Return type
+
+[**crate::models::Success**](Success.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_group_role
 
 > Vec<crate::models::GroupRole> delete_group_role(group_id, group_role_id)
@@ -813,6 +878,39 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<crate::models::GroupPermission>**](GroupPermission.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_group_post
+
+> crate::models::GroupPost get_group_post(group_id, n, offset, public_only)
+Get posts from a Group
+
+Get posts from a Group
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**public_only** | Option<**bool**> | See public posts only. |  |
+
+### Return type
+
+[**crate::models::GroupPost**](GroupPost.md)
 
 ### Authorization
 

@@ -31,6 +31,14 @@ pub enum AddGroupMemberRoleError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`add_group_post`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AddGroupPostError {
+    Status401(crate::models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`ban_group_member`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -138,7 +146,17 @@ pub enum DeleteGroupGalleryImageError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteGroupInviteError {
+    Status400(crate::models::Error),
     Status401(crate::models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`delete_group_post`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteGroupPostError {
+    Status401(crate::models::Error),
+    Status404(crate::models::Success),
     UnknownValue(serde_json::Value),
 }
 
@@ -241,6 +259,14 @@ pub enum GetGroupPermissionsError {
     Status400(crate::models::Error),
     Status401(crate::models::Error),
     Status404(crate::models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_group_post`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetGroupPostError {
+    Status401(crate::models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -415,6 +441,35 @@ pub fn add_group_member_role(configuration: &configuration::Configuration, group
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<AddGroupMemberRoleError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Create a post in a Group.
+pub fn add_group_post(configuration: &configuration::Configuration, group_id: &str, create_group_post_request: crate::models::CreateGroupPostRequest) -> Result<crate::models::GroupPost, Error<AddGroupPostError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/groups/{groupId}/posts", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    local_var_req_builder = local_var_req_builder.json(&create_group_post_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text()?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<AddGroupPostError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
@@ -757,6 +812,34 @@ pub fn delete_group_invite(configuration: &configuration::Configuration, group_i
         Ok(())
     } else {
         let local_var_entity: Option<DeleteGroupInviteError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Delete a Group post
+pub fn delete_group_post(configuration: &configuration::Configuration, group_id: &str, notification_id: &str) -> Result<crate::models::Success, Error<DeleteGroupPostError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/groups/{groupId}/posts/{notificationId}", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id), notificationId=crate::apis::urlencode(notification_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text()?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<DeleteGroupPostError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
@@ -1110,6 +1193,43 @@ pub fn get_group_permissions(configuration: &configuration::Configuration, group
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetGroupPermissionsError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Get posts from a Group
+pub fn get_group_post(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, public_only: Option<bool>) -> Result<crate::models::GroupPost, Error<GetGroupPostError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/groups/{groupId}/posts", local_var_configuration.base_path, groupId=crate::apis::urlencode(group_id));
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = n {
+        local_var_req_builder = local_var_req_builder.query(&[("n", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = offset {
+        local_var_req_builder = local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = public_only {
+        local_var_req_builder = local_var_req_builder.query(&[("publicOnly", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text()?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GetGroupPostError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }
