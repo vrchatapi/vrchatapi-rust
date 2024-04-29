@@ -106,7 +106,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_groups
 
-> Vec<crate::models::Group> get_user_groups(user_id)
+> Vec<crate::models::LimitedGroup> get_user_groups(user_id)
 Get User Groups
 
 Get user's public groups
@@ -120,7 +120,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Group>**](Group.md)
+[**Vec<crate::models::LimitedGroup>**](LimitedGroup.md)
 
 ### Authorization
 

@@ -23,6 +23,14 @@ pub enum CloseInstanceError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`create_instance`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CreateInstanceError {
+    Status401(crate::models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_instance`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -57,8 +65,8 @@ pub enum SendSelfInviteError {
 }
 
 
-/// Close an instance.  You can only close an instance if the ownerId is yourself or if the instance owner is a group and you have the `group-instance-moderate` permission.
-pub fn close_instance(configuration: &configuration::Configuration, world_id: &str, instance_id: &str, hard_close: Option<bool>) -> Result<crate::models::Instance, Error<CloseInstanceError>> {
+/// Close an instance or update the closedAt time when it will be closed.  You can only close an instance if the ownerId is yourself or if the instance owner is a group and you have the `group-instance-moderate` permission.
+pub fn close_instance(configuration: &configuration::Configuration, world_id: &str, instance_id: &str, hard_close: Option<bool>, closed_at: Option<String>) -> Result<crate::models::Instance, Error<CloseInstanceError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -68,6 +76,9 @@ pub fn close_instance(configuration: &configuration::Configuration, world_id: &s
 
     if let Some(ref local_var_str) = hard_close {
         local_var_req_builder = local_var_req_builder.query(&[("hardClose", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = closed_at {
+        local_var_req_builder = local_var_req_builder.query(&[("closedAt", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
@@ -83,6 +94,35 @@ pub fn close_instance(configuration: &configuration::Configuration, world_id: &s
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<CloseInstanceError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Create an instance
+pub fn create_instance(configuration: &configuration::Configuration, create_instance_request: crate::models::CreateInstanceRequest) -> Result<crate::models::Instance, Error<CreateInstanceError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/instances", local_var_configuration.base_path);
+    let mut local_var_req_builder = local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    local_var_req_builder = local_var_req_builder.json(&create_instance_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text()?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<CreateInstanceError> = serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent { status: local_var_status, content: local_var_content, entity: local_var_entity };
         Err(Error::ResponseError(local_var_error))
     }

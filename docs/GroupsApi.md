@@ -44,6 +44,7 @@ Method | HTTP request | Description
 [**update_group**](GroupsApi.md#update_group) | **PUT** /groups/{groupId} | Update Group
 [**update_group_gallery**](GroupsApi.md#update_group_gallery) | **PUT** /groups/{groupId}/galleries/{groupGalleryId} | Update Group Gallery
 [**update_group_member**](GroupsApi.md#update_group_member) | **PUT** /groups/{groupId}/members/{userId} | Update Group Member
+[**update_group_post**](GroupsApi.md#update_group_post) | **PUT** /groups/{groupId}/posts/{notificationId} | Edits a Group post
 [**update_group_role**](GroupsApi.md#update_group_role) | **PUT** /groups/{groupId}/roles/{groupRoleId} | Update Group Role
 
 
@@ -1286,6 +1287,38 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**crate::models::GroupLimitedMember**](GroupLimitedMember.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_group_post
+
+> crate::models::GroupPost update_group_post(group_id, notification_id, create_group_post_request)
+Edits a Group post
+
+Edits a Group post
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+**notification_id** | **String** | Must be a valid notification ID. | [required] |
+**create_group_post_request** | [**CreateGroupPostRequest**](CreateGroupPostRequest.md) |  | [required] |
+
+### Return type
+
+[**crate::models::GroupPost**](GroupPost.md)
 
 ### Authorization
 

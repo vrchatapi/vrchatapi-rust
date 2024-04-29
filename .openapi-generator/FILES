@@ -22,6 +22,7 @@ docs/CreateGroupInviteRequest.md
 docs/CreateGroupPostRequest.md
 docs/CreateGroupRequest.md
 docs/CreateGroupRoleRequest.md
+docs/CreateInstanceRequest.md
 docs/CreateWorldRequest.md
 docs/CurrentUser.md
 docs/CurrentUserPresence.md
@@ -94,6 +95,11 @@ docs/LimitedWorld.md
 docs/MimeType.md
 docs/ModerateUserRequest.md
 docs/Notification.md
+docs/NotificationDetailInvite.md
+docs/NotificationDetailInviteResponse.md
+docs/NotificationDetailRequestInvite.md
+docs/NotificationDetailRequestInviteResponse.md
+docs/NotificationDetailVoteToKick.md
 docs/NotificationType.md
 docs/NotificationsApi.md
 docs/OrderOption.md
@@ -185,6 +191,7 @@ src/models/create_group_invite_request.rs
 src/models/create_group_post_request.rs
 src/models/create_group_request.rs
 src/models/create_group_role_request.rs
+src/models/create_instance_request.rs
 src/models/create_world_request.rs
 src/models/current_user.rs
 src/models/current_user_presence.rs
@@ -251,6 +258,11 @@ src/models/mime_type.rs
 src/models/mod.rs
 src/models/moderate_user_request.rs
 src/models/notification.rs
+src/models/notification_detail_invite.rs
+src/models/notification_detail_invite_response.rs
+src/models/notification_detail_request_invite.rs
+src/models/notification_detail_request_invite_response.rs
+src/models/notification_detail_vote_to_kick.rs
 src/models/notification_type.rs
 src/models/order_option.rs
 src/models/paginated_group_audit_log_entry_list.rs
