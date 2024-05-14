@@ -30,5 +30,10 @@ sed -i 's/features = \["json", "multipart"\]/features = \["json", "cookies", "mu
 #Fix example
 printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
 
+# https://github.com/vrchatapi/specification/issues/241
+cat patches/2FA_Current_User.rs >> src/models/current_user.rs
+sed -i 's/pub use self::current_user::CurrentUser;/pub use self::current_user::{EitherUserOrTwoFactor, CurrentUser};/g' src/models/mod.rs
+sed -i 's/Result<models::CurrentUser, Error<GetCurrentUserError>>/Result<models::EitherUserOrTwoFactor, Error<GetCurrentUserError>>/g' src/apis/authentication_api.rs
+
 cargo build
 cargo test
