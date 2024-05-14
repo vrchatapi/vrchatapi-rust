@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Generate Client
 rm src/apis src/models docs -rf
 
 ./node_modules/\@openapitools/openapi-generator-cli/main.js generate \
 -g rust \
---additional-properties=packageName=vrchatapi,supportAsync=false \
+--additional-properties=packageName=vrchatapi,supportAsync=true \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
@@ -23,6 +23,10 @@ find src -type f -exec sed -i '/The version of the OpenAPI document/d' {} \;
 
 # Cookie storage
 sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
+sed -i 's/features = \["json", "multipart"\]/features = \["json", "cookies", "multipart"\]/g' Cargo.toml
+
+#Fix example
+printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
 
 # https://github.com/OpenAPITools/openapi-generator/issues/14171
 # Replace Option<SortOption with Option<crate::models::SortOption in src/apis
