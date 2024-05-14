@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Generate Client
 rm src/apis src/models docs -rf
@@ -21,8 +21,18 @@ find src -type f -exec sed -i '/VRChat API Banner/d' {} \;
 # Remove openapi version in every file
 find src -type f -exec sed -i '/The version of the OpenAPI document/d' {} \;
 
-# Cookie storage
-sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
+# Cookie storage & Rate Limiting
+sed -i 's/reqwest::Client::new()/std::sync::Arc::new(reqwest::Client::builder().cookie_store(true).build().unwrap())/g' src/apis/configuration.rs
+
+shopt -s extglob
+sed -i 's/Configuration/Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>/g' src/apis/!(configuration).rs
+shopt -u extglob
+
+sed -i 's/struct Configuration/struct Configuration<T>/g' src/apis/configuration.rs
+sed -i 's/pub client: reqwest::Client,/pub client: T,/g' src/apis/configuration.rs
+sed -i 's/impl Configuration/impl <T> Configuration<T>/g' src/apis/configuration.rs
+sed -i 's/fn new() -> Configuration/fn new() -> Configuration<std::sync::Arc<reqwest::Client>>/g' src/apis/configuration.rs
+sed -i 's/impl Default for Configuration/impl Default for Configuration<std::sync::Arc<reqwest::Client>>/g' src/apis/configuration.rs
 
 # https://github.com/OpenAPITools/openapi-generator/issues/14171
 # Replace Option<SortOption with Option<crate::models::SortOption in src/apis
