@@ -65,7 +65,7 @@ pub enum UnmoderateUserError {
 
 
 /// ⚠️ **This will delete every single player moderation you've ever made.**
-pub fn clear_all_player_moderations(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<ClearAllPlayerModerationsError>> {
+pub async fn clear_all_player_moderations(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<ClearAllPlayerModerationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -78,10 +78,10 @@ pub fn clear_all_player_moderations(configuration: &configuration::Configuration
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -93,7 +93,7 @@ pub fn clear_all_player_moderations(configuration: &configuration::Configuration
 }
 
 /// Deletes a specific player moderation based on it's `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
-pub fn delete_player_moderation(configuration: &configuration::Configuration, player_moderation_id: &str) -> Result<crate::models::Success, Error<DeletePlayerModerationError>> {
+pub async fn delete_player_moderation(configuration: &configuration::Configuration, player_moderation_id: &str) -> Result<crate::models::Success, Error<DeletePlayerModerationError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -106,10 +106,10 @@ pub fn delete_player_moderation(configuration: &configuration::Configuration, pl
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -121,7 +121,7 @@ pub fn delete_player_moderation(configuration: &configuration::Configuration, pl
 }
 
 /// Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
-pub fn get_player_moderation(configuration: &configuration::Configuration, player_moderation_id: &str) -> Result<crate::models::PlayerModeration, Error<GetPlayerModerationError>> {
+pub async fn get_player_moderation(configuration: &configuration::Configuration, player_moderation_id: &str) -> Result<crate::models::PlayerModeration, Error<GetPlayerModerationError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -134,10 +134,10 @@ pub fn get_player_moderation(configuration: &configuration::Configuration, playe
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -149,7 +149,7 @@ pub fn get_player_moderation(configuration: &configuration::Configuration, playe
 }
 
 /// Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
-pub fn get_player_moderations(configuration: &configuration::Configuration, r#type: Option<&str>, target_user_id: Option<&str>) -> Result<Vec<crate::models::PlayerModeration>, Error<GetPlayerModerationsError>> {
+pub async fn get_player_moderations(configuration: &configuration::Configuration, r#type: Option<&str>, target_user_id: Option<&str>) -> Result<Vec<crate::models::PlayerModeration>, Error<GetPlayerModerationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -168,10 +168,10 @@ pub fn get_player_moderations(configuration: &configuration::Configuration, r#ty
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -183,7 +183,7 @@ pub fn get_player_moderations(configuration: &configuration::Configuration, r#ty
 }
 
 /// Moderate a user, e.g. unmute them or show their avatar.  Please see the [Player Moderation docs](https://vrchatapi.github.io/docs/api/#tag--playermoderation) on what playerModerations are, and how they differ from staff moderations.
-pub fn moderate_user(configuration: &configuration::Configuration, moderate_user_request: crate::models::ModerateUserRequest) -> Result<crate::models::PlayerModeration, Error<ModerateUserError>> {
+pub async fn moderate_user(configuration: &configuration::Configuration, moderate_user_request: crate::models::ModerateUserRequest) -> Result<crate::models::PlayerModeration, Error<ModerateUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -197,10 +197,10 @@ pub fn moderate_user(configuration: &configuration::Configuration, moderate_user
     local_var_req_builder = local_var_req_builder.json(&moderate_user_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -212,7 +212,7 @@ pub fn moderate_user(configuration: &configuration::Configuration, moderate_user
 }
 
 /// Removes a player moderation previously added through `moderateUser`. E.g if you previously have shown their avatar, but now want to reset it to default.
-pub fn unmoderate_user(configuration: &configuration::Configuration, moderate_user_request: crate::models::ModerateUserRequest) -> Result<crate::models::Success, Error<UnmoderateUserError>> {
+pub async fn unmoderate_user(configuration: &configuration::Configuration, moderate_user_request: crate::models::ModerateUserRequest) -> Result<crate::models::Success, Error<UnmoderateUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -226,10 +226,10 @@ pub fn unmoderate_user(configuration: &configuration::Configuration, moderate_us
     local_var_req_builder = local_var_req_builder.json(&moderate_user_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)

@@ -79,7 +79,7 @@ pub enum UpdateFavoriteGroupError {
 
 
 /// Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar and World groups are named `avatars1` to `avatars4` and `worlds1` to `worlds4`.  You cannot add people whom you are not friends with to your friends list. Destroying a friendship removes the person as favorite on both sides.
-pub fn add_favorite(configuration: &configuration::Configuration, add_favorite_request: Option<crate::models::AddFavoriteRequest>) -> Result<crate::models::Favorite, Error<AddFavoriteError>> {
+pub async fn add_favorite(configuration: &configuration::Configuration, add_favorite_request: Option<crate::models::AddFavoriteRequest>) -> Result<crate::models::Favorite, Error<AddFavoriteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -93,10 +93,10 @@ pub fn add_favorite(configuration: &configuration::Configuration, add_favorite_r
     local_var_req_builder = local_var_req_builder.json(&add_favorite_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -108,7 +108,7 @@ pub fn add_favorite(configuration: &configuration::Configuration, add_favorite_r
 }
 
 /// Clear ALL contents of a specific favorite group.
-pub fn clear_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str) -> Result<crate::models::Success, Error<ClearFavoriteGroupError>> {
+pub async fn clear_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str) -> Result<crate::models::Success, Error<ClearFavoriteGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -121,10 +121,10 @@ pub fn clear_favorite_group(configuration: &configuration::Configuration, favori
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -136,7 +136,7 @@ pub fn clear_favorite_group(configuration: &configuration::Configuration, favori
 }
 
 /// Return information about a specific Favorite.
-pub fn get_favorite(configuration: &configuration::Configuration, favorite_id: &str) -> Result<crate::models::Favorite, Error<GetFavoriteError>> {
+pub async fn get_favorite(configuration: &configuration::Configuration, favorite_id: &str) -> Result<crate::models::Favorite, Error<GetFavoriteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -149,10 +149,10 @@ pub fn get_favorite(configuration: &configuration::Configuration, favorite_id: &
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -164,7 +164,7 @@ pub fn get_favorite(configuration: &configuration::Configuration, favorite_id: &
 }
 
 /// Fetch information about a specific favorite group.
-pub fn get_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str) -> Result<crate::models::FavoriteGroup, Error<GetFavoriteGroupError>> {
+pub async fn get_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str) -> Result<crate::models::FavoriteGroup, Error<GetFavoriteGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -177,10 +177,10 @@ pub fn get_favorite_group(configuration: &configuration::Configuration, favorite
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -192,7 +192,7 @@ pub fn get_favorite_group(configuration: &configuration::Configuration, favorite
 }
 
 /// Return a list of favorite groups owned by a user. Returns the same information as `getFavoriteGroups`.
-pub fn get_favorite_groups(configuration: &configuration::Configuration, n: Option<i32>, offset: Option<i32>, owner_id: Option<&str>) -> Result<Vec<crate::models::FavoriteGroup>, Error<GetFavoriteGroupsError>> {
+pub async fn get_favorite_groups(configuration: &configuration::Configuration, n: Option<i32>, offset: Option<i32>, owner_id: Option<&str>) -> Result<Vec<crate::models::FavoriteGroup>, Error<GetFavoriteGroupsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -214,10 +214,10 @@ pub fn get_favorite_groups(configuration: &configuration::Configuration, n: Opti
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -229,7 +229,7 @@ pub fn get_favorite_groups(configuration: &configuration::Configuration, n: Opti
 }
 
 /// Returns a list of favorites.
-pub fn get_favorites(configuration: &configuration::Configuration, n: Option<i32>, offset: Option<i32>, r#type: Option<&str>, tag: Option<&str>) -> Result<Vec<crate::models::Favorite>, Error<GetFavoritesError>> {
+pub async fn get_favorites(configuration: &configuration::Configuration, n: Option<i32>, offset: Option<i32>, r#type: Option<&str>, tag: Option<&str>) -> Result<Vec<crate::models::Favorite>, Error<GetFavoritesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -254,10 +254,10 @@ pub fn get_favorites(configuration: &configuration::Configuration, n: Option<i32
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -269,7 +269,7 @@ pub fn get_favorites(configuration: &configuration::Configuration, n: Option<i32
 }
 
 /// Remove a favorite from your favorites list.
-pub fn remove_favorite(configuration: &configuration::Configuration, favorite_id: &str) -> Result<crate::models::Success, Error<RemoveFavoriteError>> {
+pub async fn remove_favorite(configuration: &configuration::Configuration, favorite_id: &str) -> Result<crate::models::Success, Error<RemoveFavoriteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -282,10 +282,10 @@ pub fn remove_favorite(configuration: &configuration::Configuration, favorite_id
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
@@ -297,7 +297,7 @@ pub fn remove_favorite(configuration: &configuration::Configuration, favorite_id
 }
 
 /// Update information about a specific favorite group.
-pub fn update_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str, update_favorite_group_request: Option<crate::models::UpdateFavoriteGroupRequest>) -> Result<(), Error<UpdateFavoriteGroupError>> {
+pub async fn update_favorite_group(configuration: &configuration::Configuration, favorite_group_type: &str, favorite_group_name: &str, user_id: &str, update_favorite_group_request: Option<crate::models::UpdateFavoriteGroupRequest>) -> Result<(), Error<UpdateFavoriteGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -311,10 +311,10 @@ pub fn update_favorite_group(configuration: &configuration::Configuration, favor
     local_var_req_builder = local_var_req_builder.json(&update_favorite_group_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
 
     let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text()?;
+    let local_var_content = local_var_resp.text().await?;
 
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         Ok(())
