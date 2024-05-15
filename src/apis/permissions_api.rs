@@ -31,7 +31,7 @@ pub enum GetPermissionError {
 
 
 /// Returns a list of all permissions currently granted by the user. Permissions are assigned e.g. by subscribing to VRC+.
-pub fn get_assigned_permissions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Permission>, Error<GetAssignedPermissionsError>> {
+pub fn get_assigned_permissions(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, ) -> Result<Vec<crate::models::Permission>, Error<GetAssignedPermissionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -59,7 +59,7 @@ pub fn get_assigned_permissions(configuration: &configuration::Configuration, ) 
 }
 
 /// Returns a single permission. This endpoint is pretty useless, as it returns the exact same information as `/auth/permissions`.
-pub fn get_permission(configuration: &configuration::Configuration, permission_id: &str) -> Result<crate::models::Permission, Error<GetPermissionError>> {
+pub fn get_permission(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, permission_id: &str) -> Result<crate::models::Permission, Error<GetPermissionError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

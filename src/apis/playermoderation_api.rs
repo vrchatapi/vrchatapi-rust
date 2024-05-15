@@ -65,7 +65,7 @@ pub enum UnmoderateUserError {
 
 
 /// ⚠️ **This will delete every single player moderation you've ever made.**
-pub fn clear_all_player_moderations(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<ClearAllPlayerModerationsError>> {
+pub fn clear_all_player_moderations(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, ) -> Result<crate::models::Success, Error<ClearAllPlayerModerationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -93,7 +93,7 @@ pub fn clear_all_player_moderations(configuration: &configuration::Configuration
 }
 
 /// Deletes a specific player moderation based on it's `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
-pub fn delete_player_moderation(configuration: &configuration::Configuration, player_moderation_id: &str) -> Result<crate::models::Success, Error<DeletePlayerModerationError>> {
+pub fn delete_player_moderation(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, player_moderation_id: &str) -> Result<crate::models::Success, Error<DeletePlayerModerationError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -121,7 +121,7 @@ pub fn delete_player_moderation(configuration: &configuration::Configuration, pl
 }
 
 /// Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
-pub fn get_player_moderation(configuration: &configuration::Configuration, player_moderation_id: &str) -> Result<crate::models::PlayerModeration, Error<GetPlayerModerationError>> {
+pub fn get_player_moderation(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, player_moderation_id: &str) -> Result<crate::models::PlayerModeration, Error<GetPlayerModerationError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -149,7 +149,7 @@ pub fn get_player_moderation(configuration: &configuration::Configuration, playe
 }
 
 /// Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
-pub fn get_player_moderations(configuration: &configuration::Configuration, r#type: Option<&str>, target_user_id: Option<&str>) -> Result<Vec<crate::models::PlayerModeration>, Error<GetPlayerModerationsError>> {
+pub fn get_player_moderations(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, r#type: Option<&str>, target_user_id: Option<&str>) -> Result<Vec<crate::models::PlayerModeration>, Error<GetPlayerModerationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -183,7 +183,7 @@ pub fn get_player_moderations(configuration: &configuration::Configuration, r#ty
 }
 
 /// Moderate a user, e.g. unmute them or show their avatar.  Please see the [Player Moderation docs](https://vrchatapi.github.io/docs/api/#tag--playermoderation) on what playerModerations are, and how they differ from staff moderations.
-pub fn moderate_user(configuration: &configuration::Configuration, moderate_user_request: crate::models::ModerateUserRequest) -> Result<crate::models::PlayerModeration, Error<ModerateUserError>> {
+pub fn moderate_user(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, moderate_user_request: crate::models::ModerateUserRequest) -> Result<crate::models::PlayerModeration, Error<ModerateUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -212,7 +212,7 @@ pub fn moderate_user(configuration: &configuration::Configuration, moderate_user
 }
 
 /// Removes a player moderation previously added through `moderateUser`. E.g if you previously have shown their avatar, but now want to reset it to default.
-pub fn unmoderate_user(configuration: &configuration::Configuration, moderate_user_request: crate::models::ModerateUserRequest) -> Result<crate::models::Success, Error<UnmoderateUserError>> {
+pub fn unmoderate_user(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, moderate_user_request: crate::models::ModerateUserRequest) -> Result<crate::models::Success, Error<UnmoderateUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

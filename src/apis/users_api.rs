@@ -72,7 +72,7 @@ pub enum UpdateUserError {
 
 
 /// Get public user information about a specific user using their ID.
-pub fn get_user(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::User, Error<GetUserError>> {
+pub fn get_user(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, user_id: &str) -> Result<crate::models::User, Error<GetUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -100,7 +100,7 @@ pub fn get_user(configuration: &configuration::Configuration, user_id: &str) -> 
 }
 
 /// ~~Get public user information about a specific user using their name.~~  **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). This endpoint now require Admin Credentials.
-pub fn get_user_by_name(configuration: &configuration::Configuration, username: &str) -> Result<crate::models::User, Error<GetUserByNameError>> {
+pub fn get_user_by_name(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, username: &str) -> Result<crate::models::User, Error<GetUserByNameError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -128,7 +128,7 @@ pub fn get_user_by_name(configuration: &configuration::Configuration, username: 
 }
 
 /// Returns a list of Groups the user has requested to be invited into.
-pub fn get_user_group_requests(configuration: &configuration::Configuration, user_id: &str) -> Result<Vec<crate::models::Group>, Error<GetUserGroupRequestsError>> {
+pub fn get_user_group_requests(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, user_id: &str) -> Result<Vec<crate::models::Group>, Error<GetUserGroupRequestsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -156,7 +156,7 @@ pub fn get_user_group_requests(configuration: &configuration::Configuration, use
 }
 
 /// Get user's public groups
-pub fn get_user_groups(configuration: &configuration::Configuration, user_id: &str) -> Result<Vec<crate::models::LimitedUserGroups>, Error<GetUserGroupsError>> {
+pub fn get_user_groups(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, user_id: &str) -> Result<Vec<crate::models::LimitedUserGroups>, Error<GetUserGroupsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -184,7 +184,7 @@ pub fn get_user_groups(configuration: &configuration::Configuration, user_id: &s
 }
 
 /// Returns the current group that the user is currently representing
-pub fn get_user_represented_group(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::RepresentedGroup, Error<GetUserRepresentedGroupError>> {
+pub fn get_user_represented_group(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, user_id: &str) -> Result<crate::models::RepresentedGroup, Error<GetUserRepresentedGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -212,7 +212,7 @@ pub fn get_user_represented_group(configuration: &configuration::Configuration, 
 }
 
 /// Search and list any users by text query
-pub fn search_users(configuration: &configuration::Configuration, search: Option<&str>, developer_type: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::LimitedUser>, Error<SearchUsersError>> {
+pub fn search_users(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, search: Option<&str>, developer_type: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::LimitedUser>, Error<SearchUsersError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -252,7 +252,7 @@ pub fn search_users(configuration: &configuration::Configuration, search: Option
 }
 
 /// Update a users information such as the email and birthday.
-pub fn update_user(configuration: &configuration::Configuration, user_id: &str, update_user_request: Option<crate::models::UpdateUserRequest>) -> Result<crate::models::CurrentUser, Error<UpdateUserError>> {
+pub fn update_user(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, user_id: &str, update_user_request: Option<crate::models::UpdateUserRequest>) -> Result<crate::models::CurrentUser, Error<UpdateUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
