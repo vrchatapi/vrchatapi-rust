@@ -1,6 +1,6 @@
 # \UsersApi
 
-All URIs are relative to *https://api.vrchat.cloud/api/1*
+All URIs are relative to *https://vrchat.com/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -106,7 +106,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_groups
 
-> Vec<crate::models::LimitedGroup> get_user_groups(user_id)
+> Vec<crate::models::LimitedUserGroups> get_user_groups(user_id)
 Get User Groups
 
 Get user's public groups
@@ -120,7 +120,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::LimitedGroup>**](LimitedGroup.md)
+[**Vec<crate::models::LimitedUserGroups>**](LimitedUserGroups.md)
 
 ### Authorization
 

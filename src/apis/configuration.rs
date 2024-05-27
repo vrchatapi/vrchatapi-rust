@@ -40,7 +40,7 @@ impl Configuration {
 impl Default for Configuration {
     fn default() -> Self {
         Configuration {
-            base_path: "https://api.vrchat.cloud/api/1".to_owned(),
+            base_path: "https://vrchat.com/api/1".to_owned(),
             user_agent: Some("vrchatapi-rust".to_owned()),
             client: reqwest::Client::builder().cookie_store(true).build().unwrap(),
             basic_auth: None,

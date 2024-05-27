@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **recommended_capacity** | Option<**i32**> |  | [optional]
 **created_at** | **String** |  | 
 **favorites** | **i32** |  | [default to 0]
+**visits** | Option<**i32**> |  | [optional][default to 0]
 **heat** | **i32** |  | [default to 0]
 **id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **image_url** | **String** |  | 
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **occupants** | **i32** |  | [default to 0]
 **organization** | **String** |  | [default to vrchat]
 **popularity** | **i32** |  | [default to 0]
+**preview_youtube_id** | Option<**String**> |  | [optional]
 **publication_date** | **String** |  | 
 **release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **tags** | **Vec<String>** |   | 

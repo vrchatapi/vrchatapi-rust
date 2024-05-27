@@ -5,10 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **allow_avatar_copying** | **bool** |  | [default to true]
+**badges** | Option<[**Vec<crate::models::Badge>**](Badge.md)> |   | [optional]
 **bio** | **String** |  | 
 **bio_links** | **Vec<String>** |  | 
 **current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
+**current_avatar_tags** | **Vec<String>** |  | 
 **date_joined** | [**String**](string.md) |  | 
 **developer_type** | [**crate::models::DeveloperType**](DeveloperType.md) |  | 
 **display_name** | **String** | A users visual display name. This is what shows up in-game, and can different from their `username`. Changing display name is restricted to a cooldown period. | 
@@ -23,6 +25,7 @@ Name | Type | Description | Notes
 **location** | Option<**String**> | WorldID be \"offline\" on User profiles if you are not friends with that user. | [optional]
 **note** | Option<**String**> |  | [optional]
 **profile_pic_override** | **String** |  | 
+**pronouns** | **String** |  | 
 **state** | [**crate::models::UserState**](UserState.md) |  | 
 **status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
 **status_description** | **String** |  | 

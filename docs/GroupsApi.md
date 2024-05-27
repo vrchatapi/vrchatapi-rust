@@ -1,6 +1,6 @@
 # \GroupsApi
 
-All URIs are relative to *https://api.vrchat.cloud/api/1*
+All URIs are relative to *https://vrchat.com/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -927,7 +927,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_requests
 
-> Vec<crate::models::GroupMember> get_group_requests(group_id, n, offset)
+> Vec<crate::models::GroupMember> get_group_requests(group_id, n, offset, blocked)
 Get Group Join Requests
 
 Returns a list of members that have requested to join the Group.
@@ -940,6 +940,7 @@ Name | Type | Description  | Required | Notes
 **group_id** | **String** | Must be a valid group ID. | [required] |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**blocked** | Option<**bool**> | See blocked join requests |  |
 
 ### Return type
 

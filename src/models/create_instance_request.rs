@@ -17,7 +17,7 @@ pub struct CreateInstanceRequest {
     #[serde(rename = "type")]
     pub r#type: crate::models::InstanceType,
     #[serde(rename = "region")]
-    pub region: crate::models::Region,
+    pub region: crate::models::InstanceRegion,
     /// A groupId if the instance type is \"group\", null if instance type is public, or a userId otherwise
     #[serde(rename = "ownerId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub owner_id: Option<Option<String>>,
@@ -28,13 +28,21 @@ pub struct CreateInstanceRequest {
     pub group_access_type: Option<crate::models::GroupAccessType>,
     #[serde(rename = "queueEnabled", skip_serializing_if = "Option::is_none")]
     pub queue_enabled: Option<bool>,
-    /// The time after which users won't be allowed to join the instance
+    /// The time after which users won't be allowed to join the instance. This doesn't work for public instances.
     #[serde(rename = "closedAt", skip_serializing_if = "Option::is_none")]
     pub closed_at: Option<String>,
+    /// Only applies to invite type instances to make them invite+
+    #[serde(rename = "canRequestInvite", skip_serializing_if = "Option::is_none")]
+    pub can_request_invite: Option<bool>,
+    /// Currently unused, but will eventually be a flag to set if the closing of the instance should kick people.
+    #[serde(rename = "hardClose", skip_serializing_if = "Option::is_none")]
+    pub hard_close: Option<bool>,
+    #[serde(rename = "inviteOnly", skip_serializing_if = "Option::is_none")]
+    pub invite_only: Option<bool>,
 }
 
 impl CreateInstanceRequest {
-    pub fn new(world_id: String, r#type: crate::models::InstanceType, region: crate::models::Region) -> CreateInstanceRequest {
+    pub fn new(world_id: String, r#type: crate::models::InstanceType, region: crate::models::InstanceRegion) -> CreateInstanceRequest {
         CreateInstanceRequest {
             world_id,
             r#type,
@@ -44,6 +52,9 @@ impl CreateInstanceRequest {
             group_access_type: None,
             queue_enabled: None,
             closed_at: None,
+            can_request_invite: None,
+            hard_close: None,
+            invite_only: None,
         }
     }
 }

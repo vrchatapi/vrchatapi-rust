@@ -5,8 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bio** | Option<**String**> |  | [optional]
+**bio_links** | Option<**Vec<String>**> |   | [optional]
 **current_avatar_image_url** | Option<**String**> | When profilePicOverride is not empty, use it instead. | [optional]
 **current_avatar_thumbnail_image_url** | Option<**String**> | When profilePicOverride is not empty, use it instead. | [optional]
+**current_avatar_tags** | Option<**Vec<String>**> |  | [optional]
 **developer_type** | [**crate::models::DeveloperType**](DeveloperType.md) |  | 
 **display_name** | **String** |  | 
 **fallback_avatar** | Option<**String**> |  | [optional]
@@ -14,6 +16,7 @@ Name | Type | Description | Notes
 **is_friend** | **bool** |  | 
 **last_platform** | **String** | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **profile_pic_override** | Option<**String**> |  | [optional]
+**pronouns** | Option<**String**> |  | [optional]
 **status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
 **status_description** | **String** |  | 
 **tags** | **Vec<String>** | <- Always empty. | 

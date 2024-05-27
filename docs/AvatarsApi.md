@@ -1,6 +1,6 @@
 # \AvatarsApi
 
-All URIs are relative to *https://api.vrchat.cloud/api/1*
+All URIs are relative to *https://vrchat.com/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

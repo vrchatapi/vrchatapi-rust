@@ -11,14 +11,14 @@
 
 #[derive(Clone, Debug, PartialEq, Default, Serialize, Deserialize)]
 pub struct WorldPublishStatus {
-    #[serde(rename = "canPubilsh")]
-    pub can_pubilsh: bool,
+    #[serde(rename = "canPublish")]
+    pub can_publish: bool,
 }
 
 impl WorldPublishStatus {
-    pub fn new(can_pubilsh: bool) -> WorldPublishStatus {
+    pub fn new(can_publish: bool) -> WorldPublishStatus {
         WorldPublishStatus {
-            can_pubilsh,
+            can_publish,
         }
     }
 }

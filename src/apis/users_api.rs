@@ -156,7 +156,7 @@ pub fn get_user_group_requests(configuration: &configuration::Configuration, use
 }
 
 /// Get user's public groups
-pub fn get_user_groups(configuration: &configuration::Configuration, user_id: &str) -> Result<Vec<crate::models::LimitedGroup>, Error<GetUserGroupsError>> {
+pub fn get_user_groups(configuration: &configuration::Configuration, user_id: &str) -> Result<Vec<crate::models::LimitedUserGroups>, Error<GetUserGroupsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

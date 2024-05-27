@@ -45,7 +45,7 @@ pub struct Instance {
     #[serde(rename = "platforms")]
     pub platforms: Box<crate::models::InstancePlatforms>,
     #[serde(rename = "region")]
-    pub region: crate::models::Region,
+    pub region: crate::models::InstanceRegion,
     #[serde(rename = "secureName")]
     pub secure_name: String,
     #[serde(rename = "shortName", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
@@ -98,7 +98,7 @@ pub struct Instance {
 
 impl Instance {
     /// * `hidden` field is only present if InstanceType is `hidden` aka \"Friends+\", and is instance creator. * `friends` field is only present if InstanceType is `friends` aka \"Friends\", and is instance creator. * `private` field is only present if InstanceType is `private` aka \"Invite\" or \"Invite+\", and is instance creator.
-    pub fn new(active: bool, can_request_invite: bool, capacity: i32, client_number: String, full: bool, id: String, instance_id: String, location: String, n_users: i32, name: String, permanent: bool, photon_region: crate::models::Region, platforms: crate::models::InstancePlatforms, region: crate::models::Region, secure_name: String, tags: Vec<String>, r#type: crate::models::InstanceType, world_id: String, queue_enabled: bool, queue_size: i32, recommended_capacity: i32, strict: bool, user_count: i32, world: crate::models::World) -> Instance {
+    pub fn new(active: bool, can_request_invite: bool, capacity: i32, client_number: String, full: bool, id: String, instance_id: String, location: String, n_users: i32, name: String, permanent: bool, photon_region: crate::models::Region, platforms: crate::models::InstancePlatforms, region: crate::models::InstanceRegion, secure_name: String, tags: Vec<String>, r#type: crate::models::InstanceType, world_id: String, queue_enabled: bool, queue_size: i32, recommended_capacity: i32, strict: bool, user_count: i32, world: crate::models::World) -> Instance {
         Instance {
             active,
             can_request_invite,

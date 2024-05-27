@@ -37,6 +37,8 @@ pub struct UnityPackage {
     pub impostor_url: Option<Option<String>>,
     #[serde(rename = "scanStatus", skip_serializing_if = "Option::is_none")]
     pub scan_status: Option<String>,
+    #[serde(rename = "variant", skip_serializing_if = "Option::is_none")]
+    pub variant: Option<String>,
 }
 
 impl UnityPackage {
@@ -55,6 +57,7 @@ impl UnityPackage {
             unity_version,
             impostor_url: None,
             scan_status: None,
+            variant: None,
         }
     }
 }

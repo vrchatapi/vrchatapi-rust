@@ -13,12 +13,16 @@
 pub struct RespondGroupJoinRequest {
     #[serde(rename = "action")]
     pub action: crate::models::GroupJoinRequestAction,
+    /// Whether to block the user from requesting again
+    #[serde(rename = "block", skip_serializing_if = "Option::is_none")]
+    pub block: Option<bool>,
 }
 
 impl RespondGroupJoinRequest {
     pub fn new(action: crate::models::GroupJoinRequestAction) -> RespondGroupJoinRequest {
         RespondGroupJoinRequest {
             action,
+            block: None,
         }
     }
 }

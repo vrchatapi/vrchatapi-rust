@@ -28,6 +28,8 @@ pub struct UpdateUserRequest {
     pub bio: Option<String>,
     #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
     pub bio_links: Option<Vec<String>>,
+    #[serde(rename = "pronouns", skip_serializing_if = "Option::is_none")]
+    pub pronouns: Option<String>,
     /// MUST be a valid VRChat /file/ url.
     #[serde(rename = "userIcon", skip_serializing_if = "Option::is_none")]
     pub user_icon: Option<String>,
@@ -44,6 +46,7 @@ impl UpdateUserRequest {
             status_description: None,
             bio: None,
             bio_links: None,
+            pronouns: None,
             user_icon: None,
         }
     }

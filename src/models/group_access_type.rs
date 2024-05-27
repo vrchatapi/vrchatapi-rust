@@ -15,8 +15,8 @@ pub enum GroupAccessType {
     Public,
     #[serde(rename = "plus")]
     Plus,
-    #[serde(rename = "member")]
-    Member,
+    #[serde(rename = "members")]
+    Members,
 
 }
 
@@ -25,7 +25,7 @@ impl ToString for GroupAccessType {
         match self {
             Self::Public => String::from("public"),
             Self::Plus => String::from("plus"),
-            Self::Member => String::from("member"),
+            Self::Members => String::from("members"),
         }
     }
 }

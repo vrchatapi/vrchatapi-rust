@@ -12,6 +12,7 @@ docs/AuthenticationApi.md
 docs/Avatar.md
 docs/AvatarUnityPackageUrlObject.md
 docs/AvatarsApi.md
+docs/Badge.md
 docs/BanGroupMemberRequest.md
 docs/CreateAvatarRequest.md
 docs/CreateFileRequest.md
@@ -76,6 +77,7 @@ docs/InfoPushDataArticleContent.md
 docs/InfoPushDataClickable.md
 docs/Instance.md
 docs/InstancePlatforms.md
+docs/InstanceRegion.md
 docs/InstanceShortNameResponse.md
 docs/InstanceType.md
 docs/InstancesApi.md
@@ -91,6 +93,7 @@ docs/LicenseType.md
 docs/LimitedGroup.md
 docs/LimitedUnityPackage.md
 docs/LimitedUser.md
+docs/LimitedUserGroups.md
 docs/LimitedWorld.md
 docs/MimeType.md
 docs/ModerateUserRequest.md
@@ -181,6 +184,7 @@ src/models/api_config_events.rs
 src/models/api_health.rs
 src/models/avatar.rs
 src/models/avatar_unity_package_url_object.rs
+src/models/badge.rs
 src/models/ban_group_member_request.rs
 src/models/create_avatar_request.rs
 src/models/create_file_request.rs
@@ -240,6 +244,7 @@ src/models/info_push_data_article_content.rs
 src/models/info_push_data_clickable.rs
 src/models/instance.rs
 src/models/instance_platforms.rs
+src/models/instance_region.rs
 src/models/instance_short_name_response.rs
 src/models/instance_type.rs
 src/models/invite_message.rs
@@ -253,6 +258,7 @@ src/models/license_type.rs
 src/models/limited_group.rs
 src/models/limited_unity_package.rs
 src/models/limited_user.rs
+src/models/limited_user_groups.rs
 src/models/limited_world.rs
 src/models/mime_type.rs
 src/models/mod.rs

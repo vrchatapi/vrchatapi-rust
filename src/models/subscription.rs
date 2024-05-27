@@ -16,6 +16,14 @@ pub struct Subscription {
     pub id: String,
     #[serde(rename = "steamItemId")]
     pub steam_item_id: String,
+    #[serde(rename = "oculusSku", skip_serializing_if = "Option::is_none")]
+    pub oculus_sku: Option<String>,
+    #[serde(rename = "googleProductId", skip_serializing_if = "Option::is_none")]
+    pub google_product_id: Option<String>,
+    #[serde(rename = "googlePlanId", skip_serializing_if = "Option::is_none")]
+    pub google_plan_id: Option<String>,
+    #[serde(rename = "picoSku", skip_serializing_if = "Option::is_none")]
+    pub pico_sku: Option<String>,
     #[serde(rename = "amount")]
     pub amount: f32,
     #[serde(rename = "description")]
@@ -32,6 +40,10 @@ impl Subscription {
         Subscription {
             id,
             steam_item_id,
+            oculus_sku: None,
+            google_product_id: None,
+            google_plan_id: None,
+            pico_sku: None,
             amount,
             description,
             period,

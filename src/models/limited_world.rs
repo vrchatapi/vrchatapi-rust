@@ -25,6 +25,8 @@ pub struct LimitedWorld {
     pub created_at: String,
     #[serde(rename = "favorites")]
     pub favorites: i32,
+    #[serde(rename = "visits", skip_serializing_if = "Option::is_none")]
+    pub visits: Option<i32>,
     #[serde(rename = "heat")]
     pub heat: i32,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
@@ -42,6 +44,8 @@ pub struct LimitedWorld {
     pub organization: String,
     #[serde(rename = "popularity")]
     pub popularity: i32,
+    #[serde(rename = "previewYoutubeId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub preview_youtube_id: Option<Option<String>>,
     #[serde(rename = "publicationDate")]
     pub publication_date: String,
     #[serde(rename = "releaseStatus")]
@@ -70,6 +74,7 @@ impl LimitedWorld {
             recommended_capacity: None,
             created_at,
             favorites,
+            visits: None,
             heat,
             id,
             image_url,
@@ -78,6 +83,7 @@ impl LimitedWorld {
             occupants,
             organization,
             popularity,
+            preview_youtube_id: None,
             publication_date,
             release_status,
             tags,

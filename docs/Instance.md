@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **permanent** | **bool** |  | [default to false]
 **photon_region** | [**crate::models::Region**](Region.md) |  | 
 **platforms** | [**crate::models::InstancePlatforms**](InstancePlatforms.md) |  | 
-**region** | [**crate::models::Region**](Region.md) |  | 
+**region** | [**crate::models::InstanceRegion**](InstanceRegion.md) |  | 
 **secure_name** | **String** |  | 
 **short_name** | Option<**String**> |  | [optional]
 **tags** | **Vec<String>** | The tags array on Instances usually contain the language tags of the people in the instance.  | 

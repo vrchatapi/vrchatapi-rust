@@ -25,6 +25,9 @@ pub struct CurrentUser {
     pub active_friends: Option<Vec<String>>,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
+    ///  
+    #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
+    pub badges: Option<Vec<crate::models::Badge>>,
     #[serde(rename = "bio")]
     pub bio: String,
     ///  
@@ -40,8 +43,8 @@ pub struct CurrentUser {
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarThumbnailImageUrl")]
     pub current_avatar_thumbnail_image_url: String,
-    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
-    pub current_avatar_tags: Option<Vec<String>>,
+    #[serde(rename = "currentAvatarTags")]
+    pub current_avatar_tags: Vec<String>,
     #[serde(rename = "date_joined")]
     pub date_joined: String,
     #[serde(rename = "developerType")]
@@ -85,6 +88,8 @@ pub struct CurrentUser {
     pub last_activity: Option<String>,
     #[serde(rename = "last_login")]
     pub last_login: String,
+    #[serde(rename = "last_mobile", deserialize_with = "Option::deserialize")]
+    pub last_mobile: Option<String>,
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
@@ -96,6 +101,8 @@ pub struct CurrentUser {
     pub oculus_id: String,
     #[serde(rename = "googleId", skip_serializing_if = "Option::is_none")]
     pub google_id: Option<String>,
+    #[serde(rename = "googleDetails", skip_serializing_if = "Option::is_none")]
+    pub google_details: Option<serde_json::Value>,
     #[serde(rename = "picoId", skip_serializing_if = "Option::is_none")]
     pub pico_id: Option<String>,
     #[serde(rename = "viveId", skip_serializing_if = "Option::is_none")]
@@ -111,6 +118,8 @@ pub struct CurrentUser {
     pub presence: Option<Box<crate::models::CurrentUserPresence>>,
     #[serde(rename = "profilePicOverride")]
     pub profile_pic_override: String,
+    #[serde(rename = "pronouns")]
+    pub pronouns: String,
     #[serde(rename = "state")]
     pub state: crate::models::UserState,
     #[serde(rename = "status")]
@@ -143,7 +152,7 @@ pub struct CurrentUser {
 }
 
 impl CurrentUser {
-    pub fn new(accepted_tos_version: i32, allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar: String, current_avatar_asset_url: String, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, email_verified: bool, friend_group_names: Vec<String>, friend_key: String, friends: Vec<String>, has_birthday: bool, has_email: bool, has_logged_in_from_client: bool, has_pending_email: bool, home_location: String, id: String, is_friend: bool, last_login: String, last_platform: String, obfuscated_email: String, obfuscated_pending_email: String, oculus_id: String, past_display_names: Vec<crate::models::PastDisplayName>, profile_pic_override: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, status_first_time: bool, status_history: Vec<String>, steam_details: serde_json::Value, steam_id: String, tags: Vec<String>, two_factor_auth_enabled: bool, unsubscribe: bool, user_icon: String) -> CurrentUser {
+    pub fn new(accepted_tos_version: i32, allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar: String, current_avatar_asset_url: String, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, current_avatar_tags: Vec<String>, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, email_verified: bool, friend_group_names: Vec<String>, friend_key: String, friends: Vec<String>, has_birthday: bool, has_email: bool, has_logged_in_from_client: bool, has_pending_email: bool, home_location: String, id: String, is_friend: bool, last_login: String, last_mobile: Option<String>, last_platform: String, obfuscated_email: String, obfuscated_pending_email: String, oculus_id: String, past_display_names: Vec<crate::models::PastDisplayName>, profile_pic_override: String, pronouns: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, status_first_time: bool, status_history: Vec<String>, steam_details: serde_json::Value, steam_id: String, tags: Vec<String>, two_factor_auth_enabled: bool, unsubscribe: bool, user_icon: String) -> CurrentUser {
         CurrentUser {
             accepted_tos_version,
             accepted_privacy_version: None,
@@ -151,13 +160,14 @@ impl CurrentUser {
             account_deletion_log: None,
             active_friends: None,
             allow_avatar_copying,
+            badges: None,
             bio,
             bio_links,
             current_avatar,
             current_avatar_asset_url,
             current_avatar_image_url,
             current_avatar_thumbnail_image_url,
-            current_avatar_tags: None,
+            current_avatar_tags,
             date_joined,
             developer_type,
             display_name,
@@ -178,11 +188,13 @@ impl CurrentUser {
             is_friend,
             last_activity: None,
             last_login,
+            last_mobile,
             last_platform,
             obfuscated_email,
             obfuscated_pending_email,
             oculus_id,
             google_id: None,
+            google_details: None,
             pico_id: None,
             vive_id: None,
             offline_friends: None,
@@ -190,6 +202,7 @@ impl CurrentUser {
             past_display_names,
             presence: None,
             profile_pic_override,
+            pronouns,
             state,
             status,
             status_description,

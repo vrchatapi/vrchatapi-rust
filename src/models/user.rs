@@ -13,6 +13,9 @@
 pub struct User {
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
+    ///  
+    #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
+    pub badges: Option<Vec<crate::models::Badge>>,
     #[serde(rename = "bio")]
     pub bio: String,
     #[serde(rename = "bioLinks")]
@@ -23,6 +26,8 @@ pub struct User {
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarThumbnailImageUrl")]
     pub current_avatar_thumbnail_image_url: String,
+    #[serde(rename = "currentAvatarTags")]
+    pub current_avatar_tags: Vec<String>,
     #[serde(rename = "date_joined")]
     pub date_joined: String,
     #[serde(rename = "developerType")]
@@ -59,6 +64,8 @@ pub struct User {
     pub note: Option<String>,
     #[serde(rename = "profilePicOverride")]
     pub profile_pic_override: String,
+    #[serde(rename = "pronouns")]
+    pub pronouns: String,
     #[serde(rename = "state")]
     pub state: crate::models::UserState,
     #[serde(rename = "status")]
@@ -85,13 +92,15 @@ pub struct User {
 }
 
 impl User {
-    pub fn new(allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, friend_key: String, id: String, is_friend: bool, last_activity: String, last_login: String, last_platform: String, profile_pic_override: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> User {
+    pub fn new(allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, current_avatar_tags: Vec<String>, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, friend_key: String, id: String, is_friend: bool, last_activity: String, last_login: String, last_platform: String, profile_pic_override: String, pronouns: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> User {
         User {
             allow_avatar_copying,
+            badges: None,
             bio,
             bio_links,
             current_avatar_image_url,
             current_avatar_thumbnail_image_url,
+            current_avatar_tags,
             date_joined,
             developer_type,
             display_name,
@@ -106,6 +115,7 @@ impl User {
             location: None,
             note: None,
             profile_pic_override,
+            pronouns,
             state,
             status,
             status_description,

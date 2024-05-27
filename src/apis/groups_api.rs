@@ -1245,7 +1245,7 @@ pub fn get_group_post(configuration: &configuration::Configuration, group_id: &s
 }
 
 /// Returns a list of members that have requested to join the Group.
-pub fn get_group_requests(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupRequestsError>> {
+pub fn get_group_requests(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, blocked: Option<bool>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupRequestsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1258,6 +1258,9 @@ pub fn get_group_requests(configuration: &configuration::Configuration, group_id
     }
     if let Some(ref local_var_str) = offset {
         local_var_req_builder = local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = blocked {
+        local_var_req_builder = local_var_req_builder.query(&[("blocked", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());

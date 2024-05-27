@@ -14,12 +14,17 @@
 pub struct LimitedUser {
     #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
     pub bio: Option<String>,
+    ///  
+    #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
+    pub bio_links: Option<Vec<String>>,
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarImageUrl", skip_serializing_if = "Option::is_none")]
     pub current_avatar_image_url: Option<String>,
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarThumbnailImageUrl", skip_serializing_if = "Option::is_none")]
     pub current_avatar_thumbnail_image_url: Option<String>,
+    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_tags: Option<Vec<String>>,
     #[serde(rename = "developerType")]
     pub developer_type: crate::models::DeveloperType,
     #[serde(rename = "displayName")]
@@ -36,6 +41,8 @@ pub struct LimitedUser {
     pub last_platform: String,
     #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
     pub profile_pic_override: Option<String>,
+    #[serde(rename = "pronouns", skip_serializing_if = "Option::is_none")]
+    pub pronouns: Option<String>,
     #[serde(rename = "status")]
     pub status: crate::models::UserStatus,
     #[serde(rename = "statusDescription")]
@@ -59,8 +66,10 @@ impl LimitedUser {
     pub fn new(developer_type: crate::models::DeveloperType, display_name: String, id: String, is_friend: bool, last_platform: String, status: crate::models::UserStatus, status_description: String, tags: Vec<String>) -> LimitedUser {
         LimitedUser {
             bio: None,
+            bio_links: None,
             current_avatar_image_url: None,
             current_avatar_thumbnail_image_url: None,
+            current_avatar_tags: None,
             developer_type,
             display_name,
             fallback_avatar: None,
@@ -68,6 +77,7 @@ impl LimitedUser {
             is_friend,
             last_platform,
             profile_pic_override: None,
+            pronouns: None,
             status,
             status_description,
             tags,
