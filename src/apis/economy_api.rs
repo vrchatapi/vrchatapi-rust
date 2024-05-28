@@ -55,7 +55,7 @@ pub enum GetSubscriptionsError {
 
 
 /// Get a list of all current user subscriptions.
-pub fn get_current_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::UserSubscription>, Error<GetCurrentSubscriptionsError>> {
+pub fn get_current_subscriptions(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, ) -> Result<Vec<crate::models::UserSubscription>, Error<GetCurrentSubscriptionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -83,7 +83,7 @@ pub fn get_current_subscriptions(configuration: &configuration::Configuration, )
 }
 
 /// Get a single License Group by given ID.
-pub fn get_license_group(configuration: &configuration::Configuration, license_group_id: &str) -> Result<crate::models::LicenseGroup, Error<GetLicenseGroupError>> {
+pub fn get_license_group(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, license_group_id: &str) -> Result<crate::models::LicenseGroup, Error<GetLicenseGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -111,7 +111,7 @@ pub fn get_license_group(configuration: &configuration::Configuration, license_g
 }
 
 /// Get a single Steam transactions by ID. This returns the exact same information as `getSteamTransactions`, so no point in using this endpoint.
-pub fn get_steam_transaction(configuration: &configuration::Configuration, transaction_id: &str) -> Result<crate::models::Transaction, Error<GetSteamTransactionError>> {
+pub fn get_steam_transaction(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, transaction_id: &str) -> Result<crate::models::Transaction, Error<GetSteamTransactionError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -139,7 +139,7 @@ pub fn get_steam_transaction(configuration: &configuration::Configuration, trans
 }
 
 /// Get all own Steam transactions.
-pub fn get_steam_transactions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Transaction>, Error<GetSteamTransactionsError>> {
+pub fn get_steam_transactions(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, ) -> Result<Vec<crate::models::Transaction>, Error<GetSteamTransactionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -167,7 +167,7 @@ pub fn get_steam_transactions(configuration: &configuration::Configuration, ) ->
 }
 
 /// List all existing Subscriptions. For example, \"vrchatplus-monthly\" and \"vrchatplus-yearly\".
-pub fn get_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Subscription>, Error<GetSubscriptionsError>> {
+pub fn get_subscriptions(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, ) -> Result<Vec<crate::models::Subscription>, Error<GetSubscriptionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

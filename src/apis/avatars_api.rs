@@ -95,7 +95,7 @@ pub enum UpdateAvatarError {
 
 
 /// Create an avatar. It's possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
-pub fn create_avatar(configuration: &configuration::Configuration, create_avatar_request: Option<crate::models::CreateAvatarRequest>) -> Result<crate::models::Avatar, Error<CreateAvatarError>> {
+pub fn create_avatar(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, create_avatar_request: Option<crate::models::CreateAvatarRequest>) -> Result<crate::models::Avatar, Error<CreateAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -124,7 +124,7 @@ pub fn create_avatar(configuration: &configuration::Configuration, create_avatar
 }
 
 /// Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
-pub fn delete_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::Avatar, Error<DeleteAvatarError>> {
+pub fn delete_avatar(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, avatar_id: &str) -> Result<crate::models::Avatar, Error<DeleteAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -152,7 +152,7 @@ pub fn delete_avatar(configuration: &configuration::Configuration, avatar_id: &s
 }
 
 /// Get information about a specific Avatar.
-pub fn get_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::Avatar, Error<GetAvatarError>> {
+pub fn get_avatar(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, avatar_id: &str) -> Result<crate::models::Avatar, Error<GetAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -180,7 +180,7 @@ pub fn get_avatar(configuration: &configuration::Configuration, avatar_id: &str)
 }
 
 /// Search and list favorited avatars by query filters.
-pub fn get_favorited_avatars(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<GetFavoritedAvatarsError>> {
+pub fn get_favorited_avatars(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<GetFavoritedAvatarsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -247,7 +247,7 @@ pub fn get_favorited_avatars(configuration: &configuration::Configuration, featu
 }
 
 /// Get the current avatar for the user. This will return an error for any other user than the one logged in.
-pub fn get_own_avatar(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Avatar, Error<GetOwnAvatarError>> {
+pub fn get_own_avatar(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, user_id: &str) -> Result<crate::models::Avatar, Error<GetOwnAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -275,7 +275,7 @@ pub fn get_own_avatar(configuration: &configuration::Configuration, user_id: &st
 }
 
 /// Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
-pub fn search_avatars(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<SearchAvatarsError>> {
+pub fn search_avatars(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, featured: Option<bool>, sort: Option<crate::models::SortOption>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<SearchAvatarsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -342,7 +342,7 @@ pub fn search_avatars(configuration: &configuration::Configuration, featured: Op
 }
 
 /// Switches into that avatar.
-pub fn select_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::CurrentUser, Error<SelectAvatarError>> {
+pub fn select_avatar(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, avatar_id: &str) -> Result<crate::models::CurrentUser, Error<SelectAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -370,7 +370,7 @@ pub fn select_avatar(configuration: &configuration::Configuration, avatar_id: &s
 }
 
 /// Switches into that avatar as your fallback avatar.
-pub fn select_fallback_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::CurrentUser, Error<SelectFallbackAvatarError>> {
+pub fn select_fallback_avatar(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, avatar_id: &str) -> Result<crate::models::CurrentUser, Error<SelectFallbackAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -398,7 +398,7 @@ pub fn select_fallback_avatar(configuration: &configuration::Configuration, avat
 }
 
 /// Update information about a specific avatar.
-pub fn update_avatar(configuration: &configuration::Configuration, avatar_id: &str, update_avatar_request: Option<crate::models::UpdateAvatarRequest>) -> Result<crate::models::Avatar, Error<UpdateAvatarError>> {
+pub fn update_avatar(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, avatar_id: &str, update_avatar_request: Option<crate::models::UpdateAvatarRequest>) -> Result<crate::models::Avatar, Error<UpdateAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

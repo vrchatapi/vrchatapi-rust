@@ -59,7 +59,7 @@ pub enum UnfriendError {
 
 
 /// Deletes an outgoing pending friend request to another user. To delete an incoming friend request, use the `deleteNotification` endpoint instead.
-pub fn delete_friend_request(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Success, Error<DeleteFriendRequestError>> {
+pub fn delete_friend_request(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, user_id: &str) -> Result<crate::models::Success, Error<DeleteFriendRequestError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -87,7 +87,7 @@ pub fn delete_friend_request(configuration: &configuration::Configuration, user_
 }
 
 /// Send a friend request to another user.
-pub fn friend(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Notification, Error<FriendError>> {
+pub fn friend(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, user_id: &str) -> Result<crate::models::Notification, Error<FriendError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -115,7 +115,7 @@ pub fn friend(configuration: &configuration::Configuration, user_id: &str) -> Re
 }
 
 /// Retrieve if the user is currently a friend with a given user, if they have an outgoing friend request, and if they have an incoming friend request. The proper way to receive and accept friend request is by checking if the user has an incoming `Notification` of type `friendRequest`, and then accepting that notification.
-pub fn get_friend_status(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::FriendStatus, Error<GetFriendStatusError>> {
+pub fn get_friend_status(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, user_id: &str) -> Result<crate::models::FriendStatus, Error<GetFriendStatusError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -143,7 +143,7 @@ pub fn get_friend_status(configuration: &configuration::Configuration, user_id: 
 }
 
 /// List information about friends.
-pub fn get_friends(configuration: &configuration::Configuration, offset: Option<i32>, n: Option<i32>, offline: Option<bool>) -> Result<Vec<crate::models::LimitedUser>, Error<GetFriendsError>> {
+pub fn get_friends(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, offset: Option<i32>, n: Option<i32>, offline: Option<bool>) -> Result<Vec<crate::models::LimitedUser>, Error<GetFriendsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -180,7 +180,7 @@ pub fn get_friends(configuration: &configuration::Configuration, offset: Option<
 }
 
 /// Unfriend a user by ID.
-pub fn unfriend(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Success, Error<UnfriendError>> {
+pub fn unfriend(configuration: &configuration::Configuration<impl std::ops::Deref<Target = reqwest::Client> + Clone + core::fmt::Debug>, user_id: &str) -> Result<crate::models::Success, Error<UnfriendError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
