@@ -64,6 +64,8 @@ pub struct User {
     pub note: Option<String>,
     #[serde(rename = "profilePicOverride")]
     pub profile_pic_override: String,
+    #[serde(rename = "profilePicOverrideThumbnail")]
+    pub profile_pic_override_thumbnail: String,
     #[serde(rename = "pronouns")]
     pub pronouns: String,
     #[serde(rename = "state")]
@@ -92,7 +94,7 @@ pub struct User {
 }
 
 impl User {
-    pub fn new(allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, current_avatar_tags: Vec<String>, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, friend_key: String, id: String, is_friend: bool, last_activity: String, last_login: String, last_platform: String, profile_pic_override: String, pronouns: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> User {
+    pub fn new(allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, current_avatar_tags: Vec<String>, date_joined: String, developer_type: crate::models::DeveloperType, display_name: String, friend_key: String, id: String, is_friend: bool, last_activity: String, last_login: String, last_platform: String, profile_pic_override: String, profile_pic_override_thumbnail: String, pronouns: String, state: crate::models::UserState, status: crate::models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> User {
         User {
             allow_avatar_copying,
             badges: None,
@@ -115,6 +117,7 @@ impl User {
             location: None,
             note: None,
             profile_pic_override,
+            profile_pic_override_thumbnail,
             pronouns,
             state,
             status,

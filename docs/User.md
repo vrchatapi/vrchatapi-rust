@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **location** | Option<**String**> | WorldID be \"offline\" on User profiles if you are not friends with that user. | [optional]
 **note** | Option<**String**> |  | [optional]
 **profile_pic_override** | **String** |  | 
+**profile_pic_override_thumbnail** | **String** |  | 
 **pronouns** | **String** |  | 
 **state** | [**crate::models::UserState**](UserState.md) |  | 
 **status** | [**crate::models::UserStatus**](UserStatus.md) |  | 

@@ -35,6 +35,7 @@ Name | Type | Description | Notes
 **has_pending_email** | **bool** |  | 
 **home_location** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
+**is_booping_enabled** | Option<**bool**> |  | [optional][default to true]
 **is_friend** | **bool** |  | [default to false]
 **last_activity** | Option<**String**> |  | [optional]
 **last_login** | **String** |  | 
@@ -52,6 +53,7 @@ Name | Type | Description | Notes
 **past_display_names** | [**Vec<crate::models::PastDisplayName>**](PastDisplayName.md) |   | 
 **presence** | Option<[**crate::models::CurrentUserPresence**](CurrentUserPresence.md)> |  | [optional]
 **profile_pic_override** | **String** |  | 
+**profile_pic_override_thumbnail** | **String** |  | 
 **pronouns** | **String** |  | 
 **state** | [**crate::models::UserState**](UserState.md) |  | 
 **status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
