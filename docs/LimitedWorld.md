@@ -21,10 +21,10 @@ Name | Type | Description | Notes
 **popularity** | **i32** |  | [default to 0]
 **preview_youtube_id** | Option<**String**> |  | [optional]
 **publication_date** | **String** |  | 
-**release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
+**release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
-**unity_packages** | [**Vec<crate::models::LimitedUnityPackage>**](LimitedUnityPackage.md) |   | 
+**unity_packages** | [**Vec<models::LimitedUnityPackage>**](LimitedUnityPackage.md) |   | 
 **updated_at** | **String** |  | 
 **udon_products** | Option<**Vec<String>**> |  | [optional]
 

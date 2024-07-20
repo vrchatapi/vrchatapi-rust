@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## get_user
 
-> crate::models::User get_user(user_id)
+> models::User get_user(user_id)
 Get User by ID
 
 Get public user information about a specific user using their ID.
@@ -30,7 +30,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::User**](User.md)
+[**models::User**](User.md)
 
 ### Authorization
 
@@ -46,7 +46,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_by_name
 
-> crate::models::User get_user_by_name(username)
+> models::User get_user_by_name(username)
 Get User by Username
 
 ~~Get public user information about a specific user using their name.~~  **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). This endpoint now require Admin Credentials.
@@ -60,7 +60,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::User**](User.md)
+[**models::User**](User.md)
 
 ### Authorization
 
@@ -76,7 +76,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_group_requests
 
-> Vec<crate::models::Group> get_user_group_requests(user_id)
+> Vec<models::Group> get_user_group_requests(user_id)
 Get User Group Requests
 
 Returns a list of Groups the user has requested to be invited into.
@@ -90,7 +90,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Group>**](Group.md)
+[**Vec<models::Group>**](Group.md)
 
 ### Authorization
 
@@ -106,7 +106,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_groups
 
-> Vec<crate::models::LimitedUserGroups> get_user_groups(user_id)
+> Vec<models::LimitedUserGroups> get_user_groups(user_id)
 Get User Groups
 
 Get user's public groups
@@ -120,7 +120,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::LimitedUserGroups>**](LimitedUserGroups.md)
+[**Vec<models::LimitedUserGroups>**](LimitedUserGroups.md)
 
 ### Authorization
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_represented_group
 
-> crate::models::RepresentedGroup get_user_represented_group(user_id)
+> models::RepresentedGroup get_user_represented_group(user_id)
 Get user's current represented group
 
 Returns the current group that the user is currently representing
@@ -150,7 +150,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::RepresentedGroup**](representedGroup.md)
+[**models::RepresentedGroup**](representedGroup.md)
 
 ### Authorization
 
@@ -166,7 +166,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_users
 
-> Vec<crate::models::LimitedUser> search_users(search, developer_type, n, offset)
+> Vec<models::LimitedUser> search_users(search, developer_type, n, offset)
 Search All Users
 
 Search and list any users by text query
@@ -183,7 +183,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::LimitedUser>**](LimitedUser.md)
+[**Vec<models::LimitedUser>**](LimitedUser.md)
 
 ### Authorization
 
@@ -199,7 +199,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_user
 
-> crate::models::CurrentUser update_user(user_id, update_user_request)
+> models::CurrentUser update_user(user_id, update_user_request)
 Update User Info
 
 Update a users information such as the email and birthday.
@@ -214,7 +214,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::CurrentUser**](CurrentUser.md)
+[**models::CurrentUser**](CurrentUser.md)
 
 ### Authorization
 

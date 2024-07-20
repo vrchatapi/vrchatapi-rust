@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## delete_friend_request
 
-> crate::models::Success delete_friend_request(user_id)
+> models::Success delete_friend_request(user_id)
 Delete Friend Request
 
 Deletes an outgoing pending friend request to another user. To delete an incoming friend request, use the `deleteNotification` endpoint instead.
@@ -28,7 +28,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Required | Notes
 
 ## friend
 
-> crate::models::Notification friend(user_id)
+> models::Notification friend(user_id)
 Send Friend Request
 
 Send a friend request to another user.
@@ -58,7 +58,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Notification**](Notification.md)
+[**models::Notification**](Notification.md)
 
 ### Authorization
 
@@ -74,7 +74,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_friend_status
 
-> crate::models::FriendStatus get_friend_status(user_id)
+> models::FriendStatus get_friend_status(user_id)
 Check Friend Status
 
 Retrieve if the user is currently a friend with a given user, if they have an outgoing friend request, and if they have an incoming friend request. The proper way to receive and accept friend request is by checking if the user has an incoming `Notification` of type `friendRequest`, and then accepting that notification.
@@ -88,7 +88,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::FriendStatus**](FriendStatus.md)
+[**models::FriendStatus**](FriendStatus.md)
 
 ### Authorization
 
@@ -104,7 +104,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_friends
 
-> Vec<crate::models::LimitedUser> get_friends(offset, n, offline)
+> Vec<models::LimitedUser> get_friends(offset, n, offline)
 List Friends
 
 List information about friends.
@@ -120,7 +120,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::LimitedUser>**](LimitedUser.md)
+[**Vec<models::LimitedUser>**](LimitedUser.md)
 
 ### Authorization
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Required | Notes
 
 ## unfriend
 
-> crate::models::Success unfriend(user_id)
+> models::Success unfriend(user_id)
 Unfriend
 
 Unfriend a user by ID.
@@ -150,7 +150,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 

@@ -18,7 +18,7 @@ Method | HTTP request | Description
 
 ## create_avatar
 
-> crate::models::Avatar create_avatar(create_avatar_request)
+> models::Avatar create_avatar(create_avatar_request)
 Create Avatar
 
 Create an avatar. It's possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
@@ -32,7 +32,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Avatar**](Avatar.md)
+[**models::Avatar**](Avatar.md)
 
 ### Authorization
 
@@ -48,7 +48,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_avatar
 
-> crate::models::Avatar delete_avatar(avatar_id)
+> models::Avatar delete_avatar(avatar_id)
 Delete Avatar
 
 Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
@@ -62,7 +62,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Avatar**](Avatar.md)
+[**models::Avatar**](Avatar.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_avatar
 
-> crate::models::Avatar get_avatar(avatar_id)
+> models::Avatar get_avatar(avatar_id)
 Get Avatar
 
 Get information about a specific Avatar.
@@ -92,7 +92,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Avatar**](Avatar.md)
+[**models::Avatar**](Avatar.md)
 
 ### Authorization
 
@@ -108,7 +108,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_favorited_avatars
 
-> Vec<crate::models::Avatar> get_favorited_avatars(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, user_id)
+> Vec<models::Avatar> get_favorited_avatars(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, user_id)
 List Favorited Avatars
 
 Search and list favorited avatars by query filters.
@@ -134,7 +134,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Avatar>**](Avatar.md)
+[**Vec<models::Avatar>**](Avatar.md)
 
 ### Authorization
 
@@ -150,7 +150,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_own_avatar
 
-> crate::models::Avatar get_own_avatar(user_id)
+> models::Avatar get_own_avatar(user_id)
 Get Own Avatar
 
 Get the current avatar for the user. This will return an error for any other user than the one logged in.
@@ -164,7 +164,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Avatar**](Avatar.md)
+[**models::Avatar**](Avatar.md)
 
 ### Authorization
 
@@ -180,7 +180,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_avatars
 
-> Vec<crate::models::Avatar> search_avatars(featured, sort, user, user_id, n, order, offset, tag, notag, release_status, max_unity_version, min_unity_version, platform)
+> Vec<models::Avatar> search_avatars(featured, sort, user, user_id, n, order, offset, tag, notag, release_status, max_unity_version, min_unity_version, platform)
 Search Avatars
 
 Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
@@ -206,7 +206,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Avatar>**](Avatar.md)
+[**Vec<models::Avatar>**](Avatar.md)
 
 ### Authorization
 
@@ -222,7 +222,7 @@ Name | Type | Description  | Required | Notes
 
 ## select_avatar
 
-> crate::models::CurrentUser select_avatar(avatar_id)
+> models::CurrentUser select_avatar(avatar_id)
 Select Avatar
 
 Switches into that avatar.
@@ -236,7 +236,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::CurrentUser**](CurrentUser.md)
+[**models::CurrentUser**](CurrentUser.md)
 
 ### Authorization
 
@@ -252,7 +252,7 @@ Name | Type | Description  | Required | Notes
 
 ## select_fallback_avatar
 
-> crate::models::CurrentUser select_fallback_avatar(avatar_id)
+> models::CurrentUser select_fallback_avatar(avatar_id)
 Select Fallback Avatar
 
 Switches into that avatar as your fallback avatar.
@@ -266,7 +266,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::CurrentUser**](CurrentUser.md)
+[**models::CurrentUser**](CurrentUser.md)
 
 ### Authorization
 
@@ -282,7 +282,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_avatar
 
-> crate::models::Avatar update_avatar(avatar_id, update_avatar_request)
+> models::Avatar update_avatar(avatar_id, update_avatar_request)
 Update Avatar
 
 Update information about a specific avatar.
@@ -297,7 +297,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Avatar**](Avatar.md)
+[**models::Avatar**](Avatar.md)
 
 ### Authorization
 

@@ -8,8 +8,8 @@
 
 
 use reqwest;
-
-use crate::apis::ResponseContent;
+use serde::{Deserialize, Serialize};
+use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
@@ -17,9 +17,9 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CloseInstanceError {
-    Status401(crate::models::Error),
-    Status403(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -27,7 +27,7 @@ pub enum CloseInstanceError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateInstanceError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -35,7 +35,7 @@ pub enum CreateInstanceError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInstanceError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -43,8 +43,8 @@ pub enum GetInstanceError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInstanceByShortNameError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -52,7 +52,7 @@ pub enum GetInstanceByShortNameError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetShortNameError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -60,13 +60,13 @@ pub enum GetShortNameError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SendSelfInviteError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Close an instance or update the closedAt time when it will be closed.  You can only close an instance if the ownerId is yourself or if the instance owner is a group and you have the `group-instance-moderate` permission.
-pub fn close_instance(configuration: &configuration::Configuration, world_id: &str, instance_id: &str, hard_close: Option<bool>, closed_at: Option<String>) -> Result<crate::models::Instance, Error<CloseInstanceError>> {
+pub fn close_instance(configuration: &configuration::Configuration, world_id: &str, instance_id: &str, hard_close: Option<bool>, closed_at: Option<String>) -> Result<models::Instance, Error<CloseInstanceError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -85,7 +85,7 @@ pub fn close_instance(configuration: &configuration::Configuration, world_id: &s
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -100,7 +100,7 @@ pub fn close_instance(configuration: &configuration::Configuration, world_id: &s
 }
 
 /// Create an instance
-pub fn create_instance(configuration: &configuration::Configuration, create_instance_request: crate::models::CreateInstanceRequest) -> Result<crate::models::Instance, Error<CreateInstanceError>> {
+pub fn create_instance(configuration: &configuration::Configuration, create_instance_request: models::CreateInstanceRequest) -> Result<models::Instance, Error<CreateInstanceError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -114,7 +114,7 @@ pub fn create_instance(configuration: &configuration::Configuration, create_inst
     local_var_req_builder = local_var_req_builder.json(&create_instance_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -129,7 +129,7 @@ pub fn create_instance(configuration: &configuration::Configuration, create_inst
 }
 
 /// Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.  If an invalid instanceId is provided, this endpoint will simply return \"null\"!
-pub fn get_instance(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::Instance, Error<GetInstanceError>> {
+pub fn get_instance(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<models::Instance, Error<GetInstanceError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -142,7 +142,7 @@ pub fn get_instance(configuration: &configuration::Configuration, world_id: &str
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -157,7 +157,7 @@ pub fn get_instance(configuration: &configuration::Configuration, world_id: &str
 }
 
 /// Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.
-pub fn get_instance_by_short_name(configuration: &configuration::Configuration, short_name: &str) -> Result<crate::models::Instance, Error<GetInstanceByShortNameError>> {
+pub fn get_instance_by_short_name(configuration: &configuration::Configuration, short_name: &str) -> Result<models::Instance, Error<GetInstanceByShortNameError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -170,7 +170,7 @@ pub fn get_instance_by_short_name(configuration: &configuration::Configuration, 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -185,7 +185,7 @@ pub fn get_instance_by_short_name(configuration: &configuration::Configuration, 
 }
 
 /// Returns an instance short name.
-pub fn get_short_name(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::InstanceShortNameResponse, Error<GetShortNameError>> {
+pub fn get_short_name(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<models::InstanceShortNameResponse, Error<GetShortNameError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -198,7 +198,7 @@ pub fn get_short_name(configuration: &configuration::Configuration, world_id: &s
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -213,7 +213,7 @@ pub fn get_short_name(configuration: &configuration::Configuration, world_id: &s
 }
 
 /// Sends an invite to the instance to yourself.
-pub fn send_self_invite(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::Success, Error<SendSelfInviteError>> {
+pub fn send_self_invite(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<models::Success, Error<SendSelfInviteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -226,7 +226,7 @@ pub fn send_self_invite(configuration: &configuration::Configuration, world_id: 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

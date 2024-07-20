@@ -8,8 +8,8 @@
 
 
 use reqwest;
-
-use crate::apis::ResponseContent;
+use serde::{Deserialize, Serialize};
+use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
@@ -17,7 +17,7 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateAvatarError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -25,8 +25,8 @@ pub enum CreateAvatarError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteAvatarError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -34,8 +34,8 @@ pub enum DeleteAvatarError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetAvatarError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -43,8 +43,8 @@ pub enum GetAvatarError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoritedAvatarsError {
-    Status401(crate::models::Error),
-    Status403(crate::models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -52,8 +52,8 @@ pub enum GetFavoritedAvatarsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetOwnAvatarError {
-    Status401(crate::models::Error),
-    Status403(crate::models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -61,7 +61,7 @@ pub enum GetOwnAvatarError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchAvatarsError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -69,8 +69,8 @@ pub enum SearchAvatarsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SelectAvatarError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -78,9 +78,9 @@ pub enum SelectAvatarError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SelectFallbackAvatarError {
-    Status401(crate::models::Error),
-    Status403(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -88,14 +88,14 @@ pub enum SelectFallbackAvatarError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateAvatarError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Create an avatar. It's possible to optionally specify a ID if you want a custom one. Attempting to create an Avatar with an already claimed ID will result in a DB error.
-pub fn create_avatar(configuration: &configuration::Configuration, create_avatar_request: Option<crate::models::CreateAvatarRequest>) -> Result<crate::models::Avatar, Error<CreateAvatarError>> {
+pub fn create_avatar(configuration: &configuration::Configuration, create_avatar_request: Option<models::CreateAvatarRequest>) -> Result<models::Avatar, Error<CreateAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -109,7 +109,7 @@ pub fn create_avatar(configuration: &configuration::Configuration, create_avatar
     local_var_req_builder = local_var_req_builder.json(&create_avatar_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -124,7 +124,7 @@ pub fn create_avatar(configuration: &configuration::Configuration, create_avatar
 }
 
 /// Delete an avatar. Notice an avatar is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The AvatarID is permanently reserved.
-pub fn delete_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::Avatar, Error<DeleteAvatarError>> {
+pub fn delete_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<models::Avatar, Error<DeleteAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -137,7 +137,7 @@ pub fn delete_avatar(configuration: &configuration::Configuration, avatar_id: &s
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -152,7 +152,7 @@ pub fn delete_avatar(configuration: &configuration::Configuration, avatar_id: &s
 }
 
 /// Get information about a specific Avatar.
-pub fn get_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::Avatar, Error<GetAvatarError>> {
+pub fn get_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<models::Avatar, Error<GetAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -165,7 +165,7 @@ pub fn get_avatar(configuration: &configuration::Configuration, avatar_id: &str)
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -180,7 +180,7 @@ pub fn get_avatar(configuration: &configuration::Configuration, avatar_id: &str)
 }
 
 /// Search and list favorited avatars by query filters.
-pub fn get_favorited_avatars(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<GetFavoritedAvatarsError>> {
+pub fn get_favorited_avatars(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<models::SortOption>, n: Option<i32>, order: Option<models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, user_id: Option<&str>) -> Result<Vec<models::Avatar>, Error<GetFavoritedAvatarsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -232,7 +232,7 @@ pub fn get_favorited_avatars(configuration: &configuration::Configuration, featu
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -247,7 +247,7 @@ pub fn get_favorited_avatars(configuration: &configuration::Configuration, featu
 }
 
 /// Get the current avatar for the user. This will return an error for any other user than the one logged in.
-pub fn get_own_avatar(configuration: &configuration::Configuration, user_id: &str) -> Result<crate::models::Avatar, Error<GetOwnAvatarError>> {
+pub fn get_own_avatar(configuration: &configuration::Configuration, user_id: &str) -> Result<models::Avatar, Error<GetOwnAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -260,7 +260,7 @@ pub fn get_own_avatar(configuration: &configuration::Configuration, user_id: &st
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -275,7 +275,7 @@ pub fn get_own_avatar(configuration: &configuration::Configuration, user_id: &st
 }
 
 /// Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
-pub fn search_avatars(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<crate::models::SortOption>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<crate::models::OrderOption>, offset: Option<i32>, tag: Option<&str>, notag: Option<&str>, release_status: Option<crate::models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<crate::models::Avatar>, Error<SearchAvatarsError>> {
+pub fn search_avatars(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<models::SortOption>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<models::OrderOption>, offset: Option<i32>, tag: Option<&str>, notag: Option<&str>, release_status: Option<models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<models::Avatar>, Error<SearchAvatarsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -327,7 +327,7 @@ pub fn search_avatars(configuration: &configuration::Configuration, featured: Op
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -342,7 +342,7 @@ pub fn search_avatars(configuration: &configuration::Configuration, featured: Op
 }
 
 /// Switches into that avatar.
-pub fn select_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::CurrentUser, Error<SelectAvatarError>> {
+pub fn select_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<models::CurrentUser, Error<SelectAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -355,7 +355,7 @@ pub fn select_avatar(configuration: &configuration::Configuration, avatar_id: &s
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -370,7 +370,7 @@ pub fn select_avatar(configuration: &configuration::Configuration, avatar_id: &s
 }
 
 /// Switches into that avatar as your fallback avatar.
-pub fn select_fallback_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<crate::models::CurrentUser, Error<SelectFallbackAvatarError>> {
+pub fn select_fallback_avatar(configuration: &configuration::Configuration, avatar_id: &str) -> Result<models::CurrentUser, Error<SelectFallbackAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -383,7 +383,7 @@ pub fn select_fallback_avatar(configuration: &configuration::Configuration, avat
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -398,7 +398,7 @@ pub fn select_fallback_avatar(configuration: &configuration::Configuration, avat
 }
 
 /// Update information about a specific avatar.
-pub fn update_avatar(configuration: &configuration::Configuration, avatar_id: &str, update_avatar_request: Option<crate::models::UpdateAvatarRequest>) -> Result<crate::models::Avatar, Error<UpdateAvatarError>> {
+pub fn update_avatar(configuration: &configuration::Configuration, avatar_id: &str, update_avatar_request: Option<models::UpdateAvatarRequest>) -> Result<models::Avatar, Error<UpdateAvatarError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -412,7 +412,7 @@ pub fn update_avatar(configuration: &configuration::Configuration, avatar_id: &s
     local_var_req_builder = local_var_req_builder.json(&update_avatar_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

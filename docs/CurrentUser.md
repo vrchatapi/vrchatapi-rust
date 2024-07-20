@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 **accepted_tos_version** | **i32** |  | 
 **accepted_privacy_version** | Option<**i32**> |  | [optional]
 **account_deletion_date** | Option<[**String**](string.md)> |  | [optional]
-**account_deletion_log** | Option<[**Vec<crate::models::AccountDeletionLog>**](AccountDeletionLog.md)> |   | [optional]
+**account_deletion_log** | Option<[**Vec<models::AccountDeletionLog>**](AccountDeletionLog.md)> |   | [optional]
 **active_friends** | Option<**Vec<String>**> |   | [optional]
 **allow_avatar_copying** | **bool** |  | 
-**badges** | Option<[**Vec<crate::models::Badge>**](Badge.md)> |   | [optional]
+**badges** | Option<[**Vec<models::Badge>**](Badge.md)> |   | [optional]
 **bio** | **String** |  | 
 **bio_links** | **Vec<String>** |   | 
 **current_avatar** | **String** |  | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **current_avatar_tags** | **Vec<String>** |  | 
 **date_joined** | [**String**](string.md) |  | 
-**developer_type** | [**crate::models::DeveloperType**](DeveloperType.md) |  | 
+**developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 
 **display_name** | **String** |  | 
 **email_verified** | **bool** |  | 
 **fallback_avatar** | Option<**String**> |  | [optional]
@@ -50,13 +50,13 @@ Name | Type | Description | Notes
 **vive_id** | Option<**String**> |  | [optional]
 **offline_friends** | Option<**Vec<String>**> |  | [optional]
 **online_friends** | Option<**Vec<String>**> |  | [optional]
-**past_display_names** | [**Vec<crate::models::PastDisplayName>**](PastDisplayName.md) |   | 
-**presence** | Option<[**crate::models::CurrentUserPresence**](CurrentUserPresence.md)> |  | [optional]
+**past_display_names** | [**Vec<models::PastDisplayName>**](PastDisplayName.md) |   | 
+**presence** | Option<[**models::CurrentUserPresence**](CurrentUserPresence.md)> |  | [optional]
 **profile_pic_override** | **String** |  | 
 **profile_pic_override_thumbnail** | **String** |  | 
 **pronouns** | **String** |  | 
-**state** | [**crate::models::UserState**](UserState.md) |  | 
-**status** | [**crate::models::UserStatus**](UserStatus.md) |  | 
+**state** | [**models::UserState**](UserState.md) |  | 
+**status** | [**models::UserStatus**](UserStatus.md) |  | 
 **status_description** | **String** |  | 
 **status_first_time** | **bool** |  | 
 **status_history** | **Vec<String>** |  | 

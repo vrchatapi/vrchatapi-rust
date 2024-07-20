@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**visibility** | Option<[**crate::models::GroupUserVisibility**](GroupUserVisibility.md)> |  | [optional]
+**visibility** | Option<[**models::GroupUserVisibility**](GroupUserVisibility.md)> |  | [optional]
 **is_subscribed_to_announcements** | Option<**bool**> |  | [optional]
 **manager_notes** | Option<**String**> |  | [optional]
 

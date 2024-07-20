@@ -18,9 +18,9 @@ Name | Type | Description | Notes
 **member_count** | Option<**i32**> |  | [optional]
 **tags** | Option<**Vec<String>**> |   | [optional]
 **created_at** | Option<**String**> |  | [optional]
-**membership_status** | Option<[**crate::models::GroupMemberStatus**](GroupMemberStatus.md)> |  | [optional]
+**membership_status** | Option<[**models::GroupMemberStatus**](GroupMemberStatus.md)> |  | [optional]
 **is_searchable** | Option<**bool**> |  | [optional]
-**galleries** | Option<[**Vec<crate::models::GroupGallery>**](GroupGallery.md)> |   | [optional]
+**galleries** | Option<[**Vec<models::GroupGallery>**](GroupGallery.md)> |   | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

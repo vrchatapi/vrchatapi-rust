@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 ## get_assigned_permissions
 
-> Vec<crate::models::Permission> get_assigned_permissions()
+> Vec<models::Permission> get_assigned_permissions()
 Get Assigned Permissions
 
 Returns a list of all permissions currently granted by the user. Permissions are assigned e.g. by subscribing to VRC+.
@@ -22,7 +22,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::Permission>**](Permission.md)
+[**Vec<models::Permission>**](Permission.md)
 
 ### Authorization
 
@@ -38,7 +38,7 @@ This endpoint does not need any parameter.
 
 ## get_permission
 
-> crate::models::Permission get_permission(permission_id)
+> models::Permission get_permission(permission_id)
 Get Permission
 
 Returns a single permission. This endpoint is pretty useless, as it returns the exact same information as `/auth/permissions`.
@@ -52,7 +52,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Permission**](Permission.md)
+[**models::Permission**](Permission.md)
 
 ### Authorization
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**results** | Option<[**Vec<crate::models::GroupAuditLogEntry>**](GroupAuditLogEntry.md)> |   | [optional]
+**results** | Option<[**Vec<models::GroupAuditLogEntry>**](GroupAuditLogEntry.md)> |   | [optional]
 **total_count** | Option<**i32**> | The total number of results that the query would return if there were no pagination. | [optional]
 **has_next** | Option<**bool**> | Whether there are more results after this page. | [optional]
 

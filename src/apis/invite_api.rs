@@ -8,8 +8,8 @@
 
 
 use reqwest;
-
-use crate::apis::ResponseContent;
+use serde::{Deserialize, Serialize};
+use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
@@ -17,9 +17,9 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInviteMessageError {
-    Status400(crate::models::Error),
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -27,8 +27,8 @@ pub enum GetInviteMessageError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInviteMessagesError {
-    Status400(crate::models::Error),
-    Status401(crate::models::Error),
+    Status400(models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -36,8 +36,8 @@ pub enum GetInviteMessagesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum InviteMyselfToError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -45,7 +45,7 @@ pub enum InviteMyselfToError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum InviteUserError {
-    Status403(crate::models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -53,7 +53,7 @@ pub enum InviteUserError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RequestInviteError {
-    Status403(crate::models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -61,10 +61,10 @@ pub enum RequestInviteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ResetInviteMessageError {
-    Status400(crate::models::Error),
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
-    Status429(crate::models::Error),
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
+    Status429(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -72,7 +72,7 @@ pub enum ResetInviteMessageError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RespondInviteError {
-    Status400(crate::models::Error),
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -80,20 +80,20 @@ pub enum RespondInviteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateInviteMessageError {
-    Status400(crate::models::Error),
-    Status401(crate::models::Error),
-    Status429(crate::models::Error),
+    Status400(models::Error),
+    Status401(models::Error),
+    Status429(models::Error),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
-pub fn get_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: crate::models::InviteMessageType, slot: i32) -> Result<crate::models::InviteMessage, Error<GetInviteMessageError>> {
+pub fn get_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: models::InviteMessageType, slot: i32) -> Result<models::InviteMessage, Error<GetInviteMessageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type, slot=slot);
+    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type.to_string(), slot=slot);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -101,7 +101,7 @@ pub fn get_invite_message(configuration: &configuration::Configuration, user_id:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -116,12 +116,12 @@ pub fn get_invite_message(configuration: &configuration::Configuration, user_id:
 }
 
 /// Returns a list of all the users Invite Messages. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
-pub fn get_invite_messages(configuration: &configuration::Configuration, user_id: &str, message_type: crate::models::InviteMessageType) -> Result<Vec<crate::models::InviteMessage>, Error<GetInviteMessagesError>> {
+pub fn get_invite_messages(configuration: &configuration::Configuration, user_id: &str, message_type: models::InviteMessageType) -> Result<Vec<models::InviteMessage>, Error<GetInviteMessagesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/message/{userId}/{messageType}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type);
+    let local_var_uri_str = format!("{}/message/{userId}/{messageType}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type.to_string());
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -129,7 +129,7 @@ pub fn get_invite_messages(configuration: &configuration::Configuration, user_id
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -144,7 +144,7 @@ pub fn get_invite_messages(configuration: &configuration::Configuration, user_id
 }
 
 /// Sends self an invite to an instance
-pub fn invite_myself_to(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<crate::models::SentNotification, Error<InviteMyselfToError>> {
+pub fn invite_myself_to(configuration: &configuration::Configuration, world_id: &str, instance_id: &str) -> Result<models::SentNotification, Error<InviteMyselfToError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -157,7 +157,7 @@ pub fn invite_myself_to(configuration: &configuration::Configuration, world_id: 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -172,7 +172,7 @@ pub fn invite_myself_to(configuration: &configuration::Configuration, world_id: 
 }
 
 /// Sends an invite to a user. Returns the Notification of type `invite` that was sent.
-pub fn invite_user(configuration: &configuration::Configuration, user_id: &str, invite_request: crate::models::InviteRequest) -> Result<crate::models::SentNotification, Error<InviteUserError>> {
+pub fn invite_user(configuration: &configuration::Configuration, user_id: &str, invite_request: models::InviteRequest) -> Result<models::SentNotification, Error<InviteUserError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -186,7 +186,7 @@ pub fn invite_user(configuration: &configuration::Configuration, user_id: &str, 
     local_var_req_builder = local_var_req_builder.json(&invite_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -201,7 +201,7 @@ pub fn invite_user(configuration: &configuration::Configuration, user_id: &str, 
 }
 
 /// Requests an invite from a user. Returns the Notification of type `requestInvite` that was sent.
-pub fn request_invite(configuration: &configuration::Configuration, user_id: &str, request_invite_request: Option<crate::models::RequestInviteRequest>) -> Result<crate::models::Notification, Error<RequestInviteError>> {
+pub fn request_invite(configuration: &configuration::Configuration, user_id: &str, request_invite_request: Option<models::RequestInviteRequest>) -> Result<models::Notification, Error<RequestInviteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -215,7 +215,7 @@ pub fn request_invite(configuration: &configuration::Configuration, user_id: &st
     local_var_req_builder = local_var_req_builder.json(&request_invite_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -230,12 +230,12 @@ pub fn request_invite(configuration: &configuration::Configuration, user_id: &st
 }
 
 /// Resets a single Invite Message back to its original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, so it is not possible to reset within the 60 minutes countdown. Resetting it does however not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite  The DELETE endpoint does not have/require any request body.
-pub fn reset_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: crate::models::InviteMessageType, slot: i32) -> Result<Vec<crate::models::InviteMessage>, Error<ResetInviteMessageError>> {
+pub fn reset_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: models::InviteMessageType, slot: i32) -> Result<Vec<models::InviteMessage>, Error<ResetInviteMessageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type, slot=slot);
+    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type.to_string(), slot=slot);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -243,7 +243,7 @@ pub fn reset_invite_message(configuration: &configuration::Configuration, user_i
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -258,7 +258,7 @@ pub fn reset_invite_message(configuration: &configuration::Configuration, user_i
 }
 
 /// Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
-pub fn respond_invite(configuration: &configuration::Configuration, notification_id: &str, invite_response: crate::models::InviteResponse) -> Result<crate::models::Notification, Error<RespondInviteError>> {
+pub fn respond_invite(configuration: &configuration::Configuration, notification_id: &str, invite_response: models::InviteResponse) -> Result<models::Notification, Error<RespondInviteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -272,7 +272,7 @@ pub fn respond_invite(configuration: &configuration::Configuration, notification
     local_var_req_builder = local_var_req_builder.json(&invite_response);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -287,12 +287,12 @@ pub fn respond_invite(configuration: &configuration::Configuration, notification
 }
 
 /// Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
-pub fn update_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: crate::models::InviteMessageType, slot: i32, update_invite_message_request: Option<crate::models::UpdateInviteMessageRequest>) -> Result<Vec<crate::models::InviteMessage>, Error<UpdateInviteMessageError>> {
+pub fn update_invite_message(configuration: &configuration::Configuration, user_id: &str, message_type: models::InviteMessageType, slot: i32, update_invite_message_request: Option<models::UpdateInviteMessageRequest>) -> Result<Vec<models::InviteMessage>, Error<UpdateInviteMessageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
 
-    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type, slot=slot);
+    let local_var_uri_str = format!("{}/message/{userId}/{messageType}/{slot}", local_var_configuration.base_path, userId=crate::apis::urlencode(user_id), messageType=message_type.to_string(), slot=slot);
     let mut local_var_req_builder = local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
 
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
@@ -301,7 +301,7 @@ pub fn update_invite_message(configuration: &configuration::Configuration, user_
     local_var_req_builder = local_var_req_builder.json(&update_invite_message_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **name** | Option<**String**> |  | [optional]
 **short_code** | Option<**String**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
-**join_state** | Option<[**crate::models::GroupJoinState**](GroupJoinState.md)> |  | [optional]
+**join_state** | Option<[**models::GroupJoinState**](GroupJoinState.md)> |  | [optional]
 **icon_id** | Option<**String**> |  | [optional]
 **banner_id** | Option<**String**> |  | [optional]
 **languages** | Option<**Vec<String>**> | 3 letter language code | [optional]

@@ -14,12 +14,12 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **image_url** | **String** |  | 
 **name** | **String** |  | 
-**release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
+**release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
 **unity_package_url** | **String** |  | 
-**unity_package_url_object** | [**crate::models::AvatarUnityPackageUrlObject**](Avatar_unityPackageUrlObject.md) |  | 
-**unity_packages** | [**Vec<crate::models::UnityPackage>**](UnityPackage.md) |  | 
+**unity_package_url_object** | [**models::AvatarUnityPackageUrlObject**](Avatar_unityPackageUrlObject.md) |  | 
+**unity_packages** | [**Vec<models::UnityPackage>**](UnityPackage.md) |  | 
 **updated_at** | **String** |  | 
 **version** | **i32** |  | [default to 0]
 
