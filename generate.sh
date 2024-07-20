@@ -20,6 +20,8 @@ sed -i 's/^description = ".*"/description = "VRChat API Client for Rust"/' Cargo
 find src -type f -exec sed -i '/VRChat API Banner/d' {} \;
 # Remove openapi version in every file
 find src -type f -exec sed -i '/The version of the OpenAPI document/d' {} \;
+# Remove empty doc comments
+find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
 
 # Cookie storage
 sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
