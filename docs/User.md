@@ -24,6 +24,7 @@ Name | Type | Description | Notes
 **last_platform** | **String** | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **location** | Option<**String**> | WorldID be \"offline\" on User profiles if you are not friends with that user. | [optional]
 **note** | Option<**String**> |  | [optional]
+**platform** | **String** |  | 
 **profile_pic_override** | **String** |  | 
 **profile_pic_override_thumbnail** | **String** |  | 
 **pronouns** | **String** |  | 
