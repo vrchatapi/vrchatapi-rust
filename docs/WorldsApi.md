@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 ## create_world
 
-> crate::models::World create_world(create_world_request)
+> models::World create_world(create_world_request)
 Create World
 
 Create a new world. This endpoint requires `assetUrl` to be a valid File object with `.vrcw` file extension, and `imageUrl` to be a valid File object with an image file extension.
@@ -36,7 +36,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::World**](World.md)
+[**models::World**](World.md)
 
 ### Authorization
 
@@ -82,7 +82,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_active_worlds
 
-> Vec<crate::models::LimitedWorld> get_active_worlds(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform)
+> Vec<models::LimitedWorld> get_active_worlds(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform)
 List Active Worlds
 
 Search and list currently Active worlds by query filters.
@@ -107,7 +107,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::LimitedWorld>**](LimitedWorld.md)
+[**Vec<models::LimitedWorld>**](LimitedWorld.md)
 
 ### Authorization
 
@@ -123,7 +123,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_favorited_worlds
 
-> Vec<crate::models::LimitedWorld> get_favorited_worlds(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, user_id)
+> Vec<models::LimitedWorld> get_favorited_worlds(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, user_id)
 List Favorited Worlds
 
 Search and list favorited worlds by query filters.
@@ -149,7 +149,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::LimitedWorld>**](LimitedWorld.md)
+[**Vec<models::LimitedWorld>**](LimitedWorld.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_recent_worlds
 
-> Vec<crate::models::LimitedWorld> get_recent_worlds(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, user_id)
+> Vec<models::LimitedWorld> get_recent_worlds(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, user_id)
 List Recent Worlds
 
 Search and list recently visited worlds by query filters.
@@ -191,7 +191,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::LimitedWorld>**](LimitedWorld.md)
+[**Vec<models::LimitedWorld>**](LimitedWorld.md)
 
 ### Authorization
 
@@ -207,7 +207,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_world
 
-> crate::models::World get_world(world_id)
+> models::World get_world(world_id)
 Get World by ID
 
 Get information about a specific World. Works unauthenticated but when so will always return `0` for certain fields.
@@ -221,7 +221,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::World**](World.md)
+[**models::World**](World.md)
 
 ### Authorization
 
@@ -237,7 +237,7 @@ No authorization required
 
 ## get_world_instance
 
-> crate::models::Instance get_world_instance(world_id, instance_id)
+> models::Instance get_world_instance(world_id, instance_id)
 Get World Instance
 
 Returns a worlds instance.
@@ -252,7 +252,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Instance**](Instance.md)
+[**models::Instance**](Instance.md)
 
 ### Authorization
 
@@ -268,7 +268,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_world_metadata
 
-> crate::models::WorldMetadata get_world_metadata(world_id)
+> models::WorldMetadata get_world_metadata(world_id)
 Get World Metadata
 
 Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
@@ -282,7 +282,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::WorldMetadata**](WorldMetadata.md)
+[**models::WorldMetadata**](WorldMetadata.md)
 
 ### Authorization
 
@@ -298,7 +298,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_world_publish_status
 
-> crate::models::WorldPublishStatus get_world_publish_status(world_id)
+> models::WorldPublishStatus get_world_publish_status(world_id)
 Get World Publish Status
 
 Returns a worlds publish status.
@@ -312,7 +312,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::WorldPublishStatus**](WorldPublishStatus.md)
+[**models::WorldPublishStatus**](WorldPublishStatus.md)
 
 ### Authorization
 
@@ -358,7 +358,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_worlds
 
-> Vec<crate::models::LimitedWorld> search_worlds(featured, sort, user, user_id, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform)
+> Vec<models::LimitedWorld> search_worlds(featured, sort, user, user_id, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform)
 Search All Worlds
 
 Search and list any worlds by query filters.
@@ -385,7 +385,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::LimitedWorld>**](LimitedWorld.md)
+[**Vec<models::LimitedWorld>**](LimitedWorld.md)
 
 ### Authorization
 
@@ -431,7 +431,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_world
 
-> crate::models::World update_world(world_id, update_world_request)
+> models::World update_world(world_id, update_world_request)
 Update World
 
 Update information about a specific World.
@@ -446,7 +446,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::World**](World.md)
+[**models::World**](World.md)
 
 ### Authorization
 

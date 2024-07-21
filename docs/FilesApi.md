@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 ## create_file
 
-> crate::models::File create_file(create_file_request)
+> models::File create_file(create_file_request)
 Create File
 
 Creates a new File object
@@ -33,7 +33,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::File**](File.md)
+[**models::File**](File.md)
 
 ### Authorization
 
@@ -49,7 +49,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_file_version
 
-> crate::models::File create_file_version(file_id, create_file_version_request)
+> models::File create_file_version(file_id, create_file_version_request)
 Create File Version
 
 Creates a new FileVersion. Once a Version has been created, proceed to the `/file/{fileId}/{versionId}/file/start` endpoint to start a file upload.
@@ -64,7 +64,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::File**](File.md)
+[**models::File**](File.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_file
 
-> crate::models::Success delete_file(file_id)
+> models::Success delete_file(file_id)
 Delete File
 
 Deletes a File object.
@@ -94,7 +94,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -110,7 +110,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_file_version
 
-> crate::models::File delete_file_version(file_id, version_id)
+> models::File delete_file_version(file_id, version_id)
 Delete File Version
 
 Delete a specific version of a file. You can only delete the latest version.
@@ -125,7 +125,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::File**](File.md)
+[**models::File**](File.md)
 
 ### Authorization
 
@@ -172,7 +172,7 @@ Name | Type | Description  | Required | Notes
 
 ## finish_file_data_upload
 
-> crate::models::File finish_file_data_upload(file_id, version_id, file_type, finish_file_data_upload_request)
+> models::File finish_file_data_upload(file_id, version_id, file_type, finish_file_data_upload_request)
 Finish FileData Upload
 
 Finish an upload of a FileData. This will mark it as \"complete\". After uploading the `file` for Avatars and Worlds you then have to upload a `signature` file.
@@ -189,7 +189,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::File**](File.md)
+[**models::File**](File.md)
 
 ### Authorization
 
@@ -205,7 +205,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_file
 
-> crate::models::File get_file(file_id)
+> models::File get_file(file_id)
 Show File
 
 Shows general information about the \"File\" object. Each File can have several \"Version\"'s, and each Version can have multiple real files or \"Data\" blobs.
@@ -219,7 +219,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::File**](File.md)
+[**models::File**](File.md)
 
 ### Authorization
 
@@ -235,7 +235,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_file_data_upload_status
 
-> crate::models::FileVersionUploadStatus get_file_data_upload_status(file_id, version_id, file_type)
+> models::FileVersionUploadStatus get_file_data_upload_status(file_id, version_id, file_type)
 Check FileData Upload Status
 
 Retrieves the upload status for file upload. Can currently only be accessed when `status` is `waiting`. Trying to access it on a file version already uploaded currently times out.
@@ -251,7 +251,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::FileVersionUploadStatus**](FileVersionUploadStatus.md)
+[**models::FileVersionUploadStatus**](FileVersionUploadStatus.md)
 
 ### Authorization
 
@@ -267,7 +267,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_files
 
-> Vec<crate::models::File> get_files(tag, user_id, n, offset)
+> Vec<models::File> get_files(tag, user_id, n, offset)
 List Files
 
 Returns a list of files
@@ -284,7 +284,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::File>**](File.md)
+[**Vec<models::File>**](File.md)
 
 ### Authorization
 
@@ -300,7 +300,7 @@ Name | Type | Description  | Required | Notes
 
 ## start_file_data_upload
 
-> crate::models::FileUploadUrl start_file_data_upload(file_id, version_id, file_type, part_number)
+> models::FileUploadUrl start_file_data_upload(file_id, version_id, file_type, part_number)
 Start FileData Upload
 
 Starts an upload of a specific FilePart. This endpoint will return an AWS URL which you can PUT data to. You need to call this and receive a new AWS API URL for each `partNumber`. Please see AWS's REST documentation on \"PUT Object to S3\" on how to upload. Once all parts has been uploaded, proceed to `/finish` endpoint.  **Note:** `nextPartNumber` seems like it is always ignored. Despite it returning 0, first partNumber is always 1.
@@ -317,7 +317,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::FileUploadUrl**](FileUploadURL.md)
+[**models::FileUploadUrl**](FileUploadURL.md)
 
 ### Authorization
 

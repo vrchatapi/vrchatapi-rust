@@ -16,7 +16,7 @@ Method | HTTP request | Description
 
 ## get_config
 
-> crate::models::ApiConfig get_config()
+> models::ApiConfig get_config()
 Fetch API Config
 
 API config contains configuration that the clients needs to work properly.  Currently the most important value here is `clientApiKey` which is used for all other API endpoints.
@@ -27,7 +27,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::ApiConfig**](APIConfig.md)
+[**models::ApiConfig**](APIConfig.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ No authorization required
 
 ## get_health
 
-> crate::models::ApiHealth get_health()
+> models::ApiHealth get_health()
 Check API Health
 
 ~~Gets the overall health status, the server name, and the current build version tag of the API.~~  **DEPRECATED:** VRChat has suddenly restricted this endpoint for unknown reasons, and now always return 401 Unauthorized.
@@ -112,7 +112,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::ApiHealth**](APIHealth.md)
+[**models::ApiHealth**](APIHealth.md)
 
 ### Authorization
 
@@ -128,7 +128,7 @@ No authorization required
 
 ## get_info_push
 
-> Vec<crate::models::InfoPush> get_info_push(require, include)
+> Vec<models::InfoPush> get_info_push(require, include)
 Show Information Notices
 
 IPS (Info Push System) is a system for VRChat to push out dynamic information to the client. This is primarily used by the Quick-Menu info banners, but can also be used to e.g. alert you to update your game to the latest version.  `include` is used to query what Information Pushes should be included in the response. If include is missing or empty, then no notices will normally be returned. This is an \"any of\" search.  `require` is used to limit what Information Pushes should be included in the response. This is usually used in combination with `include`, and is an \"all of\" search.
@@ -143,7 +143,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::InfoPush>**](InfoPush.md)
+[**Vec<models::InfoPush>**](InfoPush.md)
 
 ### Authorization
 

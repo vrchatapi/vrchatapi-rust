@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## get_current_subscriptions
 
-> Vec<crate::models::UserSubscription> get_current_subscriptions()
+> Vec<models::UserSubscription> get_current_subscriptions()
 Get Current Subscriptions
 
 Get a list of all current user subscriptions.
@@ -25,7 +25,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::UserSubscription>**](UserSubscription.md)
+[**Vec<models::UserSubscription>**](UserSubscription.md)
 
 ### Authorization
 
@@ -41,7 +41,7 @@ This endpoint does not need any parameter.
 
 ## get_license_group
 
-> crate::models::LicenseGroup get_license_group(license_group_id)
+> models::LicenseGroup get_license_group(license_group_id)
 Get License Group
 
 Get a single License Group by given ID.
@@ -55,7 +55,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::LicenseGroup**](LicenseGroup.md)
+[**models::LicenseGroup**](LicenseGroup.md)
 
 ### Authorization
 
@@ -71,7 +71,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_steam_transaction
 
-> crate::models::Transaction get_steam_transaction(transaction_id)
+> models::Transaction get_steam_transaction(transaction_id)
 Get Steam Transaction
 
 Get a single Steam transactions by ID. This returns the exact same information as `getSteamTransactions`, so no point in using this endpoint.
@@ -85,7 +85,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Transaction**](Transaction.md)
+[**models::Transaction**](Transaction.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_steam_transactions
 
-> Vec<crate::models::Transaction> get_steam_transactions()
+> Vec<models::Transaction> get_steam_transactions()
 List Steam Transactions
 
 Get all own Steam transactions.
@@ -112,7 +112,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::Transaction>**](Transaction.md)
+[**Vec<models::Transaction>**](Transaction.md)
 
 ### Authorization
 
@@ -128,7 +128,7 @@ This endpoint does not need any parameter.
 
 ## get_subscriptions
 
-> Vec<crate::models::Subscription> get_subscriptions()
+> Vec<models::Subscription> get_subscriptions()
 List Subscriptions
 
 List all existing Subscriptions. For example, \"vrchatplus-monthly\" and \"vrchatplus-yearly\".
@@ -139,7 +139,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**Vec<crate::models::Subscription>**](Subscription.md)
+[**Vec<models::Subscription>**](Subscription.md)
 
 ### Authorization
 

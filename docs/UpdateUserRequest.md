@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | Option<**String**> |  | [optional]
 **birthday** | Option<[**String**](string.md)> |  | [optional]
-**accepted_tos_version** | Option<**f32**> |  | [optional]
+**accepted_tos_version** | Option<**f64**> |  | [optional]
 **tags** | Option<**Vec<String>**> |   | [optional]
-**status** | Option<[**crate::models::UserStatus**](UserStatus.md)> |  | [optional]
+**status** | Option<[**models::UserStatus**](UserStatus.md)> |  | [optional]
 **status_description** | Option<**String**> |  | [optional]
 **bio** | Option<**String**> |  | [optional]
 **bio_links** | Option<**Vec<String>**> |  | [optional]

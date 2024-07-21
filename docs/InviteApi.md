@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## get_invite_message
 
-> crate::models::InviteMessage get_invite_message(user_id, message_type, slot)
+> models::InviteMessage get_invite_message(user_id, message_type, slot)
 Get Invite Message
 
 Returns a single Invite Message. This returns the exact same information but less than `getInviteMessages`. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
@@ -33,7 +33,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InviteMessage**](InviteMessage.md)
+[**models::InviteMessage**](InviteMessage.md)
 
 ### Authorization
 
@@ -49,7 +49,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_invite_messages
 
-> Vec<crate::models::InviteMessage> get_invite_messages(user_id, message_type)
+> Vec<models::InviteMessage> get_invite_messages(user_id, message_type)
 List Invite Messages
 
 Returns a list of all the users Invite Messages. Admin Credentials are required to view messages of other users!  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
@@ -64,7 +64,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::InviteMessage>**](InviteMessage.md)
+[**Vec<models::InviteMessage>**](InviteMessage.md)
 
 ### Authorization
 
@@ -80,7 +80,7 @@ Name | Type | Description  | Required | Notes
 
 ## invite_myself_to
 
-> crate::models::SentNotification invite_myself_to(world_id, instance_id)
+> models::SentNotification invite_myself_to(world_id, instance_id)
 Invite Myself To Instance
 
 Sends self an invite to an instance
@@ -95,7 +95,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::SentNotification**](SentNotification.md)
+[**models::SentNotification**](SentNotification.md)
 
 ### Authorization
 
@@ -111,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 ## invite_user
 
-> crate::models::SentNotification invite_user(user_id, invite_request)
+> models::SentNotification invite_user(user_id, invite_request)
 Invite User
 
 Sends an invite to a user. Returns the Notification of type `invite` that was sent.
@@ -126,7 +126,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::SentNotification**](SentNotification.md)
+[**models::SentNotification**](SentNotification.md)
 
 ### Authorization
 
@@ -142,7 +142,7 @@ Name | Type | Description  | Required | Notes
 
 ## request_invite
 
-> crate::models::Notification request_invite(user_id, request_invite_request)
+> models::Notification request_invite(user_id, request_invite_request)
 Request Invite
 
 Requests an invite from a user. Returns the Notification of type `requestInvite` that was sent.
@@ -157,7 +157,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Notification**](Notification.md)
+[**models::Notification**](Notification.md)
 
 ### Authorization
 
@@ -173,7 +173,7 @@ Name | Type | Description  | Required | Notes
 
 ## reset_invite_message
 
-> Vec<crate::models::InviteMessage> reset_invite_message(user_id, message_type, slot)
+> Vec<models::InviteMessage> reset_invite_message(user_id, message_type, slot)
 Reset Invite Message
 
 Resets a single Invite Message back to its original message, and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Resetting a message respects the rate-limit, so it is not possible to reset within the 60 minutes countdown. Resetting it does however not set the rate-limit to 60 like when editing it. It is possible to edit it right after resetting it. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite  The DELETE endpoint does not have/require any request body.
@@ -189,7 +189,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::InviteMessage>**](InviteMessage.md)
+[**Vec<models::InviteMessage>**](InviteMessage.md)
 
 ### Authorization
 
@@ -205,7 +205,7 @@ Name | Type | Description  | Required | Notes
 
 ## respond_invite
 
-> crate::models::Notification respond_invite(notification_id, invite_response)
+> models::Notification respond_invite(notification_id, invite_response)
 Respond Invite
 
 Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
@@ -220,7 +220,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Notification**](Notification.md)
+[**models::Notification**](Notification.md)
 
 ### Authorization
 
@@ -236,7 +236,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_invite_message
 
-> Vec<crate::models::InviteMessage> update_invite_message(user_id, message_type, slot, update_invite_message_request)
+> Vec<models::InviteMessage> update_invite_message(user_id, message_type, slot, update_invite_message_request)
 Update Invite Message
 
 Updates a single Invite Message and then returns a list of all of them. Admin Credentials are required to update messages of other users!  Updating a message automatically sets the cooldown timer to 60 minutes. Trying to edit a message before the cooldown timer expires results in a 429 \"Too Fast Error\".  Message type refers to a different collection of messages, used during different types of responses.  * `message` = Message during a normal invite * `response` = Message when replying to a message * `request` = Message when requesting an invite * `requestResponse` = Message when replying to a request for invite
@@ -253,7 +253,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::InviteMessage>**](InviteMessage.md)
+[**Vec<models::InviteMessage>**](InviteMessage.md)
 
 ### Authorization
 

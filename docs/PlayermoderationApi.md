@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## clear_all_player_moderations
 
-> crate::models::Success clear_all_player_moderations()
+> models::Success clear_all_player_moderations()
 Clear All Player Moderations
 
 ⚠️ **This will delete every single player moderation you've ever made.**
@@ -26,7 +26,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -42,7 +42,7 @@ This endpoint does not need any parameter.
 
 ## delete_player_moderation
 
-> crate::models::Success delete_player_moderation(player_moderation_id)
+> models::Success delete_player_moderation(player_moderation_id)
 Delete Player Moderation
 
 Deletes a specific player moderation based on it's `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
@@ -56,7 +56,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -72,7 +72,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_player_moderation
 
-> crate::models::PlayerModeration get_player_moderation(player_moderation_id)
+> models::PlayerModeration get_player_moderation(player_moderation_id)
 Get Player Moderation
 
 Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
@@ -86,7 +86,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PlayerModeration**](PlayerModeration.md)
+[**models::PlayerModeration**](PlayerModeration.md)
 
 ### Authorization
 
@@ -102,7 +102,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_player_moderations
 
-> Vec<crate::models::PlayerModeration> get_player_moderations(r#type, target_user_id)
+> Vec<models::PlayerModeration> get_player_moderations(r#type, target_user_id)
 Search Player Moderations
 
 Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
@@ -117,7 +117,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::PlayerModeration>**](PlayerModeration.md)
+[**Vec<models::PlayerModeration>**](PlayerModeration.md)
 
 ### Authorization
 
@@ -133,7 +133,7 @@ Name | Type | Description  | Required | Notes
 
 ## moderate_user
 
-> crate::models::PlayerModeration moderate_user(moderate_user_request)
+> models::PlayerModeration moderate_user(moderate_user_request)
 Moderate User
 
 Moderate a user, e.g. unmute them or show their avatar.  Please see the [Player Moderation docs](https://vrchatapi.github.io/docs/api/#tag--playermoderation) on what playerModerations are, and how they differ from staff moderations.
@@ -147,7 +147,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PlayerModeration**](PlayerModeration.md)
+[**models::PlayerModeration**](PlayerModeration.md)
 
 ### Authorization
 
@@ -163,7 +163,7 @@ Name | Type | Description  | Required | Notes
 
 ## unmoderate_user
 
-> crate::models::Success unmoderate_user(moderate_user_request)
+> models::Success unmoderate_user(moderate_user_request)
 Unmoderate User
 
 Removes a player moderation previously added through `moderateUser`. E.g if you previously have shown their avatar, but now want to reset it to default.
@@ -177,7 +177,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 

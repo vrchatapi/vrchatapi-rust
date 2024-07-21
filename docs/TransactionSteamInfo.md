@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**wallet_info** | [**crate::models::TransactionSteamWalletInfo**](TransactionSteamWalletInfo.md) |  | 
+**wallet_info** | [**models::TransactionSteamWalletInfo**](TransactionSteamWalletInfo.md) |  | 
 **steam_id** | **String** | Steam User ID | 
 **order_id** | **String** | Steam Order ID | 
 **steam_url** | **String** | Empty | 

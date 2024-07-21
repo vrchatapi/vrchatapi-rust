@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **heat** | **i32** |  | [default to 0]
 **id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **image_url** | **String** |  | 
-**instances** | Option<[**Vec<Vec<serde_json::Value>>**](array.md)> | Will always be an empty list when unauthenticated. | [optional]
+**instances** | Option<[**Vec<Vec<serde_json::Value>>**](Vec.md)> | Will always be an empty list when unauthenticated. | [optional]
 **labs_publication_date** | **String** |  | 
 **name** | **String** |  | 
 **namespace** | Option<**String**> |  | [optional]
@@ -26,10 +26,10 @@ Name | Type | Description | Notes
 **private_occupants** | Option<**i32**> | Will always be `0` when unauthenticated. | [optional][default to 0]
 **public_occupants** | Option<**i32**> | Will always be `0` when unauthenticated. | [optional][default to 0]
 **publication_date** | **String** |  | 
-**release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
+**release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
-**unity_packages** | Option<[**Vec<crate::models::UnityPackage>**](UnityPackage.md)> | Empty if unauthenticated. | [optional]
+**unity_packages** | Option<[**Vec<models::UnityPackage>**](UnityPackage.md)> | Empty if unauthenticated. | [optional]
 **updated_at** | **String** |  | 
 **version** | **i32** |  | [default to 0]
 **visits** | **i32** |  | [default to 0]

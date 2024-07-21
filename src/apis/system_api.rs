@@ -8,8 +8,8 @@
 
 
 use reqwest;
-
-use crate::apis::ResponseContent;
+use serde::{Deserialize, Serialize};
+use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
@@ -24,7 +24,7 @@ pub enum GetConfigError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCssError {
-    Status400(crate::models::Error),
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -53,7 +53,7 @@ pub enum GetInfoPushError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetJavaScriptError {
-    Status400(crate::models::Error),
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -66,7 +66,7 @@ pub enum GetSystemTimeError {
 
 
 /// API config contains configuration that the clients needs to work properly.  Currently the most important value here is `clientApiKey` which is used for all other API endpoints.
-pub fn get_config(configuration: &configuration::Configuration, ) -> Result<crate::models::ApiConfig, Error<GetConfigError>> {
+pub fn get_config(configuration: &configuration::Configuration, ) -> Result<models::ApiConfig, Error<GetConfigError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -79,7 +79,7 @@ pub fn get_config(configuration: &configuration::Configuration, ) -> Result<crat
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -113,7 +113,7 @@ pub fn get_css(configuration: &configuration::Configuration, variant: Option<&st
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -141,7 +141,7 @@ pub fn get_current_online_users(configuration: &configuration::Configuration, ) 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -156,7 +156,7 @@ pub fn get_current_online_users(configuration: &configuration::Configuration, ) 
 }
 
 /// ~~Gets the overall health status, the server name, and the current build version tag of the API.~~  **DEPRECATED:** VRChat has suddenly restricted this endpoint for unknown reasons, and now always return 401 Unauthorized.
-pub fn get_health(configuration: &configuration::Configuration, ) -> Result<crate::models::ApiHealth, Error<GetHealthError>> {
+pub fn get_health(configuration: &configuration::Configuration, ) -> Result<models::ApiHealth, Error<GetHealthError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -169,7 +169,7 @@ pub fn get_health(configuration: &configuration::Configuration, ) -> Result<crat
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -184,7 +184,7 @@ pub fn get_health(configuration: &configuration::Configuration, ) -> Result<crat
 }
 
 /// IPS (Info Push System) is a system for VRChat to push out dynamic information to the client. This is primarily used by the Quick-Menu info banners, but can also be used to e.g. alert you to update your game to the latest version.  `include` is used to query what Information Pushes should be included in the response. If include is missing or empty, then no notices will normally be returned. This is an \"any of\" search.  `require` is used to limit what Information Pushes should be included in the response. This is usually used in combination with `include`, and is an \"all of\" search.
-pub fn get_info_push(configuration: &configuration::Configuration, require: Option<&str>, include: Option<&str>) -> Result<Vec<crate::models::InfoPush>, Error<GetInfoPushError>> {
+pub fn get_info_push(configuration: &configuration::Configuration, require: Option<&str>, include: Option<&str>) -> Result<Vec<models::InfoPush>, Error<GetInfoPushError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -203,7 +203,7 @@ pub fn get_info_push(configuration: &configuration::Configuration, require: Opti
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -237,7 +237,7 @@ pub fn get_java_script(configuration: &configuration::Configuration, variant: Op
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -265,7 +265,7 @@ pub fn get_system_time(configuration: &configuration::Configuration, ) -> Result
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

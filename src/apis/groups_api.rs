@@ -8,8 +8,8 @@
 
 
 use reqwest;
-
-use crate::apis::ResponseContent;
+use serde::{Deserialize, Serialize};
+use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
@@ -17,8 +17,8 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddGroupGalleryImageError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -26,8 +26,8 @@ pub enum AddGroupGalleryImageError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddGroupMemberRoleError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -35,7 +35,7 @@ pub enum AddGroupMemberRoleError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddGroupPostError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -43,9 +43,9 @@ pub enum AddGroupPostError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum BanGroupMemberError {
-    Status400(crate::models::Error),
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -54,8 +54,8 @@ pub enum BanGroupMemberError {
 #[serde(untagged)]
 pub enum CancelGroupRequestError {
     Status400(),
-    Status403(crate::models::Error),
-    Status404(crate::models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -63,7 +63,7 @@ pub enum CancelGroupRequestError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -71,8 +71,8 @@ pub enum CreateGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupAnnouncementError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -80,8 +80,8 @@ pub enum CreateGroupAnnouncementError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupGalleryError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -89,10 +89,10 @@ pub enum CreateGroupGalleryError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupInviteError {
-    Status400(crate::models::Error),
-    Status401(crate::models::Error),
-    Status403(crate::models::Error),
-    Status404(crate::models::Error),
+    Status400(models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -100,8 +100,8 @@ pub enum CreateGroupInviteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupRoleError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -109,8 +109,8 @@ pub enum CreateGroupRoleError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteGroupError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -118,8 +118,8 @@ pub enum DeleteGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteGroupAnnouncementError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -127,8 +127,8 @@ pub enum DeleteGroupAnnouncementError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteGroupGalleryError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -136,9 +136,9 @@ pub enum DeleteGroupGalleryError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteGroupGalleryImageError {
-    Status401(crate::models::Error),
-    Status403(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -146,8 +146,8 @@ pub enum DeleteGroupGalleryImageError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteGroupInviteError {
-    Status400(crate::models::Error),
-    Status401(crate::models::Error),
+    Status400(models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -155,8 +155,8 @@ pub enum DeleteGroupInviteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteGroupPostError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Success),
+    Status401(models::Error),
+    Status404(models::Success),
     UnknownValue(serde_json::Value),
 }
 
@@ -164,8 +164,8 @@ pub enum DeleteGroupPostError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteGroupRoleError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -173,8 +173,8 @@ pub enum DeleteGroupRoleError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -182,8 +182,8 @@ pub enum GetGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupAnnouncementsError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -191,8 +191,8 @@ pub enum GetGroupAnnouncementsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupAuditLogsError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -200,8 +200,8 @@ pub enum GetGroupAuditLogsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupBansError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -209,8 +209,8 @@ pub enum GetGroupBansError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupGalleryImagesError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -218,8 +218,8 @@ pub enum GetGroupGalleryImagesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupInstancesError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -227,9 +227,9 @@ pub enum GetGroupInstancesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupInvitesError {
-    Status401(crate::models::Error),
-    Status403(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -237,8 +237,8 @@ pub enum GetGroupInvitesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupMemberError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -246,9 +246,9 @@ pub enum GetGroupMemberError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupMembersError {
-    Status400(crate::models::Error),
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -256,9 +256,9 @@ pub enum GetGroupMembersError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupPermissionsError {
-    Status400(crate::models::Error),
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -266,7 +266,7 @@ pub enum GetGroupPermissionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupPostError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -274,9 +274,9 @@ pub enum GetGroupPostError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupRequestsError {
-    Status400(crate::models::Error),
-    Status403(crate::models::Error),
-    Status404(crate::models::Error),
+    Status400(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -284,8 +284,8 @@ pub enum GetGroupRequestsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupRolesError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -293,9 +293,9 @@ pub enum GetGroupRolesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum JoinGroupError {
-    Status400(crate::models::Error),
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -303,9 +303,9 @@ pub enum JoinGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum KickGroupMemberError {
-    Status401(crate::models::Error),
-    Status403(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -313,8 +313,8 @@ pub enum KickGroupMemberError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LeaveGroupError {
-    Status403(crate::models::Error),
-    Status404(crate::models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -322,8 +322,8 @@ pub enum LeaveGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RemoveGroupMemberRoleError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -331,8 +331,8 @@ pub enum RemoveGroupMemberRoleError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RespondGroupJoinRequestError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -340,7 +340,7 @@ pub enum RespondGroupJoinRequestError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SearchGroupsError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -348,8 +348,8 @@ pub enum SearchGroupsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UnbanGroupMemberError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -357,8 +357,8 @@ pub enum UnbanGroupMemberError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateGroupError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -366,8 +366,8 @@ pub enum UpdateGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateGroupGalleryError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -375,8 +375,8 @@ pub enum UpdateGroupGalleryError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateGroupMemberError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -384,8 +384,8 @@ pub enum UpdateGroupMemberError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateGroupPostError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Success),
+    Status401(models::Error),
+    Status404(models::Success),
     UnknownValue(serde_json::Value),
 }
 
@@ -393,13 +393,13 @@ pub enum UpdateGroupPostError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateGroupRoleError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Adds an image to a Group gallery.
-pub fn add_group_gallery_image(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, add_group_gallery_image_request: crate::models::AddGroupGalleryImageRequest) -> Result<crate::models::GroupGalleryImage, Error<AddGroupGalleryImageError>> {
+pub fn add_group_gallery_image(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, add_group_gallery_image_request: models::AddGroupGalleryImageRequest) -> Result<models::GroupGalleryImage, Error<AddGroupGalleryImageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -413,7 +413,7 @@ pub fn add_group_gallery_image(configuration: &configuration::Configuration, gro
     local_var_req_builder = local_var_req_builder.json(&add_group_gallery_image_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -441,7 +441,7 @@ pub fn add_group_member_role(configuration: &configuration::Configuration, group
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -456,7 +456,7 @@ pub fn add_group_member_role(configuration: &configuration::Configuration, group
 }
 
 /// Create a post in a Group.
-pub fn add_group_post(configuration: &configuration::Configuration, group_id: &str, create_group_post_request: crate::models::CreateGroupPostRequest) -> Result<crate::models::GroupPost, Error<AddGroupPostError>> {
+pub fn add_group_post(configuration: &configuration::Configuration, group_id: &str, create_group_post_request: models::CreateGroupPostRequest) -> Result<models::GroupPost, Error<AddGroupPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -470,7 +470,7 @@ pub fn add_group_post(configuration: &configuration::Configuration, group_id: &s
     local_var_req_builder = local_var_req_builder.json(&create_group_post_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -485,7 +485,7 @@ pub fn add_group_post(configuration: &configuration::Configuration, group_id: &s
 }
 
 /// Bans a user from a Group.
-pub fn ban_group_member(configuration: &configuration::Configuration, group_id: &str, ban_group_member_request: crate::models::BanGroupMemberRequest) -> Result<crate::models::GroupMember, Error<BanGroupMemberError>> {
+pub fn ban_group_member(configuration: &configuration::Configuration, group_id: &str, ban_group_member_request: models::BanGroupMemberRequest) -> Result<models::GroupMember, Error<BanGroupMemberError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -499,7 +499,7 @@ pub fn ban_group_member(configuration: &configuration::Configuration, group_id: 
     local_var_req_builder = local_var_req_builder.json(&ban_group_member_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -527,7 +527,7 @@ pub fn cancel_group_request(configuration: &configuration::Configuration, group_
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -542,7 +542,7 @@ pub fn cancel_group_request(configuration: &configuration::Configuration, group_
 }
 
 /// Creates a Group and returns a Group object. **Requires VRC+ Subscription.**
-pub fn create_group(configuration: &configuration::Configuration, create_group_request: crate::models::CreateGroupRequest) -> Result<crate::models::Group, Error<CreateGroupError>> {
+pub fn create_group(configuration: &configuration::Configuration, create_group_request: models::CreateGroupRequest) -> Result<models::Group, Error<CreateGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -556,7 +556,7 @@ pub fn create_group(configuration: &configuration::Configuration, create_group_r
     local_var_req_builder = local_var_req_builder.json(&create_group_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -571,7 +571,7 @@ pub fn create_group(configuration: &configuration::Configuration, create_group_r
 }
 
 /// Creates an Announcement for a Group.
-pub fn create_group_announcement(configuration: &configuration::Configuration, group_id: &str, create_group_announcement_request: crate::models::CreateGroupAnnouncementRequest) -> Result<crate::models::GroupAnnouncement, Error<CreateGroupAnnouncementError>> {
+pub fn create_group_announcement(configuration: &configuration::Configuration, group_id: &str, create_group_announcement_request: models::CreateGroupAnnouncementRequest) -> Result<models::GroupAnnouncement, Error<CreateGroupAnnouncementError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -585,7 +585,7 @@ pub fn create_group_announcement(configuration: &configuration::Configuration, g
     local_var_req_builder = local_var_req_builder.json(&create_group_announcement_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -600,7 +600,7 @@ pub fn create_group_announcement(configuration: &configuration::Configuration, g
 }
 
 /// Creates a gallery for a Group.
-pub fn create_group_gallery(configuration: &configuration::Configuration, group_id: &str, create_group_gallery_request: crate::models::CreateGroupGalleryRequest) -> Result<crate::models::GroupGallery, Error<CreateGroupGalleryError>> {
+pub fn create_group_gallery(configuration: &configuration::Configuration, group_id: &str, create_group_gallery_request: models::CreateGroupGalleryRequest) -> Result<models::GroupGallery, Error<CreateGroupGalleryError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -614,7 +614,7 @@ pub fn create_group_gallery(configuration: &configuration::Configuration, group_
     local_var_req_builder = local_var_req_builder.json(&create_group_gallery_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -629,7 +629,7 @@ pub fn create_group_gallery(configuration: &configuration::Configuration, group_
 }
 
 /// Sends an invite to a user to join the group.
-pub fn create_group_invite(configuration: &configuration::Configuration, group_id: &str, create_group_invite_request: crate::models::CreateGroupInviteRequest) -> Result<(), Error<CreateGroupInviteError>> {
+pub fn create_group_invite(configuration: &configuration::Configuration, group_id: &str, create_group_invite_request: models::CreateGroupInviteRequest) -> Result<(), Error<CreateGroupInviteError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -643,7 +643,7 @@ pub fn create_group_invite(configuration: &configuration::Configuration, group_i
     local_var_req_builder = local_var_req_builder.json(&create_group_invite_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -658,7 +658,7 @@ pub fn create_group_invite(configuration: &configuration::Configuration, group_i
 }
 
 /// Create a Group role.
-pub fn create_group_role(configuration: &configuration::Configuration, group_id: &str, create_group_role_request: crate::models::CreateGroupRoleRequest) -> Result<crate::models::GroupRole, Error<CreateGroupRoleError>> {
+pub fn create_group_role(configuration: &configuration::Configuration, group_id: &str, create_group_role_request: models::CreateGroupRoleRequest) -> Result<models::GroupRole, Error<CreateGroupRoleError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -672,7 +672,7 @@ pub fn create_group_role(configuration: &configuration::Configuration, group_id:
     local_var_req_builder = local_var_req_builder.json(&create_group_role_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -687,7 +687,7 @@ pub fn create_group_role(configuration: &configuration::Configuration, group_id:
 }
 
 /// Deletes a Group.
-pub fn delete_group(configuration: &configuration::Configuration, group_id: &str) -> Result<crate::models::Success, Error<DeleteGroupError>> {
+pub fn delete_group(configuration: &configuration::Configuration, group_id: &str) -> Result<models::Success, Error<DeleteGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -700,7 +700,7 @@ pub fn delete_group(configuration: &configuration::Configuration, group_id: &str
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -715,7 +715,7 @@ pub fn delete_group(configuration: &configuration::Configuration, group_id: &str
 }
 
 /// Deletes the announcement for a Group.
-pub fn delete_group_announcement(configuration: &configuration::Configuration, group_id: &str) -> Result<crate::models::Success, Error<DeleteGroupAnnouncementError>> {
+pub fn delete_group_announcement(configuration: &configuration::Configuration, group_id: &str) -> Result<models::Success, Error<DeleteGroupAnnouncementError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -728,7 +728,7 @@ pub fn delete_group_announcement(configuration: &configuration::Configuration, g
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -743,7 +743,7 @@ pub fn delete_group_announcement(configuration: &configuration::Configuration, g
 }
 
 /// Deletes a gallery for a Group.
-pub fn delete_group_gallery(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str) -> Result<crate::models::Success, Error<DeleteGroupGalleryError>> {
+pub fn delete_group_gallery(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str) -> Result<models::Success, Error<DeleteGroupGalleryError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -756,7 +756,7 @@ pub fn delete_group_gallery(configuration: &configuration::Configuration, group_
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -771,7 +771,7 @@ pub fn delete_group_gallery(configuration: &configuration::Configuration, group_
 }
 
 /// Deletes an image from a Group gallery.
-pub fn delete_group_gallery_image(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, group_gallery_image_id: &str) -> Result<crate::models::Success, Error<DeleteGroupGalleryImageError>> {
+pub fn delete_group_gallery_image(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, group_gallery_image_id: &str) -> Result<models::Success, Error<DeleteGroupGalleryImageError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -784,7 +784,7 @@ pub fn delete_group_gallery_image(configuration: &configuration::Configuration, 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -812,7 +812,7 @@ pub fn delete_group_invite(configuration: &configuration::Configuration, group_i
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -827,7 +827,7 @@ pub fn delete_group_invite(configuration: &configuration::Configuration, group_i
 }
 
 /// Delete a Group post
-pub fn delete_group_post(configuration: &configuration::Configuration, group_id: &str, notification_id: &str) -> Result<crate::models::Success, Error<DeleteGroupPostError>> {
+pub fn delete_group_post(configuration: &configuration::Configuration, group_id: &str, notification_id: &str) -> Result<models::Success, Error<DeleteGroupPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -840,7 +840,7 @@ pub fn delete_group_post(configuration: &configuration::Configuration, group_id:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -855,7 +855,7 @@ pub fn delete_group_post(configuration: &configuration::Configuration, group_id:
 }
 
 /// Deletes a Group Role by ID and returns the remaining roles.
-pub fn delete_group_role(configuration: &configuration::Configuration, group_id: &str, group_role_id: &str) -> Result<Vec<crate::models::GroupRole>, Error<DeleteGroupRoleError>> {
+pub fn delete_group_role(configuration: &configuration::Configuration, group_id: &str, group_role_id: &str) -> Result<Vec<models::GroupRole>, Error<DeleteGroupRoleError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -868,7 +868,7 @@ pub fn delete_group_role(configuration: &configuration::Configuration, group_id:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -883,7 +883,7 @@ pub fn delete_group_role(configuration: &configuration::Configuration, group_id:
 }
 
 /// Returns a single Group by ID.
-pub fn get_group(configuration: &configuration::Configuration, group_id: &str, include_roles: Option<bool>) -> Result<crate::models::Group, Error<GetGroupError>> {
+pub fn get_group(configuration: &configuration::Configuration, group_id: &str, include_roles: Option<bool>) -> Result<models::Group, Error<GetGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -899,7 +899,7 @@ pub fn get_group(configuration: &configuration::Configuration, group_id: &str, i
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -914,7 +914,7 @@ pub fn get_group(configuration: &configuration::Configuration, group_id: &str, i
 }
 
 /// Returns the announcement for a Group. If no announcement has been made, then it returns **empty object**.  If an announcement exists, then it will always return all fields except `imageId` and `imageUrl` which may be null.
-pub fn get_group_announcements(configuration: &configuration::Configuration, group_id: &str) -> Result<crate::models::GroupAnnouncement, Error<GetGroupAnnouncementsError>> {
+pub fn get_group_announcements(configuration: &configuration::Configuration, group_id: &str) -> Result<models::GroupAnnouncement, Error<GetGroupAnnouncementsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -927,7 +927,7 @@ pub fn get_group_announcements(configuration: &configuration::Configuration, gro
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -942,7 +942,7 @@ pub fn get_group_announcements(configuration: &configuration::Configuration, gro
 }
 
 /// Returns a list of audit logs for a Group.
-pub fn get_group_audit_logs(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, start_date: Option<String>, end_date: Option<String>) -> Result<crate::models::PaginatedGroupAuditLogEntryList, Error<GetGroupAuditLogsError>> {
+pub fn get_group_audit_logs(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, start_date: Option<String>, end_date: Option<String>) -> Result<models::PaginatedGroupAuditLogEntryList, Error<GetGroupAuditLogsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -967,7 +967,7 @@ pub fn get_group_audit_logs(configuration: &configuration::Configuration, group_
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -982,7 +982,7 @@ pub fn get_group_audit_logs(configuration: &configuration::Configuration, group_
 }
 
 /// Returns a list of banned users for a Group.
-pub fn get_group_bans(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupBansError>> {
+pub fn get_group_bans(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>) -> Result<Vec<models::GroupMember>, Error<GetGroupBansError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1001,7 +1001,7 @@ pub fn get_group_bans(configuration: &configuration::Configuration, group_id: &s
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1016,7 +1016,7 @@ pub fn get_group_bans(configuration: &configuration::Configuration, group_id: &s
 }
 
 /// Returns a list of images for a Group gallery.
-pub fn get_group_gallery_images(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, n: Option<i32>, offset: Option<i32>, approved: Option<bool>) -> Result<Vec<crate::models::GroupGalleryImage>, Error<GetGroupGalleryImagesError>> {
+pub fn get_group_gallery_images(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, n: Option<i32>, offset: Option<i32>, approved: Option<bool>) -> Result<Vec<models::GroupGalleryImage>, Error<GetGroupGalleryImagesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1038,7 +1038,7 @@ pub fn get_group_gallery_images(configuration: &configuration::Configuration, gr
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1053,7 +1053,7 @@ pub fn get_group_gallery_images(configuration: &configuration::Configuration, gr
 }
 
 /// Returns a list of group instances
-pub fn get_group_instances(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<crate::models::GroupInstance>, Error<GetGroupInstancesError>> {
+pub fn get_group_instances(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<models::GroupInstance>, Error<GetGroupInstancesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1066,7 +1066,7 @@ pub fn get_group_instances(configuration: &configuration::Configuration, group_i
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1081,7 +1081,7 @@ pub fn get_group_instances(configuration: &configuration::Configuration, group_i
 }
 
 /// Returns a list of members that have been invited to the Group.
-pub fn get_group_invites(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupInvitesError>> {
+pub fn get_group_invites(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>) -> Result<Vec<models::GroupMember>, Error<GetGroupInvitesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1100,7 +1100,7 @@ pub fn get_group_invites(configuration: &configuration::Configuration, group_id:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1115,7 +1115,7 @@ pub fn get_group_invites(configuration: &configuration::Configuration, group_id:
 }
 
 /// Returns a LimitedGroup Member.
-pub fn get_group_member(configuration: &configuration::Configuration, group_id: &str, user_id: &str) -> Result<crate::models::GroupLimitedMember, Error<GetGroupMemberError>> {
+pub fn get_group_member(configuration: &configuration::Configuration, group_id: &str, user_id: &str) -> Result<models::GroupLimitedMember, Error<GetGroupMemberError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1128,7 +1128,7 @@ pub fn get_group_member(configuration: &configuration::Configuration, group_id: 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1143,7 +1143,7 @@ pub fn get_group_member(configuration: &configuration::Configuration, group_id: 
 }
 
 /// Returns a List of all **other** Group Members. This endpoint will never return the user calling the endpoint. Information about the user calling the endpoint must be found in the `myMember` field of the Group object.
-pub fn get_group_members(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, sort: Option<crate::models::GroupSearchSort>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupMembersError>> {
+pub fn get_group_members(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, sort: Option<models::GroupSearchSort>) -> Result<Vec<models::GroupMember>, Error<GetGroupMembersError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1165,7 +1165,7 @@ pub fn get_group_members(configuration: &configuration::Configuration, group_id:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1180,7 +1180,7 @@ pub fn get_group_members(configuration: &configuration::Configuration, group_id:
 }
 
 /// Returns a List of all possible/available permissions for a Group.
-pub fn get_group_permissions(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<crate::models::GroupPermission>, Error<GetGroupPermissionsError>> {
+pub fn get_group_permissions(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<models::GroupPermission>, Error<GetGroupPermissionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1193,7 +1193,7 @@ pub fn get_group_permissions(configuration: &configuration::Configuration, group
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1208,7 +1208,7 @@ pub fn get_group_permissions(configuration: &configuration::Configuration, group
 }
 
 /// Get posts from a Group
-pub fn get_group_post(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, public_only: Option<bool>) -> Result<crate::models::GroupPost, Error<GetGroupPostError>> {
+pub fn get_group_post(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, public_only: Option<bool>) -> Result<models::GroupPost, Error<GetGroupPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1230,7 +1230,7 @@ pub fn get_group_post(configuration: &configuration::Configuration, group_id: &s
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1245,7 +1245,7 @@ pub fn get_group_post(configuration: &configuration::Configuration, group_id: &s
 }
 
 /// Returns a list of members that have requested to join the Group.
-pub fn get_group_requests(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, blocked: Option<bool>) -> Result<Vec<crate::models::GroupMember>, Error<GetGroupRequestsError>> {
+pub fn get_group_requests(configuration: &configuration::Configuration, group_id: &str, n: Option<i32>, offset: Option<i32>, blocked: Option<bool>) -> Result<Vec<models::GroupMember>, Error<GetGroupRequestsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1267,7 +1267,7 @@ pub fn get_group_requests(configuration: &configuration::Configuration, group_id
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1282,7 +1282,7 @@ pub fn get_group_requests(configuration: &configuration::Configuration, group_id
 }
 
 /// Returns a Group Role by ID.
-pub fn get_group_roles(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<crate::models::GroupRole>, Error<GetGroupRolesError>> {
+pub fn get_group_roles(configuration: &configuration::Configuration, group_id: &str) -> Result<Vec<models::GroupRole>, Error<GetGroupRolesError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1295,7 +1295,7 @@ pub fn get_group_roles(configuration: &configuration::Configuration, group_id: &
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1310,7 +1310,7 @@ pub fn get_group_roles(configuration: &configuration::Configuration, group_id: &
 }
 
 /// Join a Group by ID and returns the member object.
-pub fn join_group(configuration: &configuration::Configuration, group_id: &str) -> Result<crate::models::GroupMember, Error<JoinGroupError>> {
+pub fn join_group(configuration: &configuration::Configuration, group_id: &str) -> Result<models::GroupMember, Error<JoinGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1323,7 +1323,7 @@ pub fn join_group(configuration: &configuration::Configuration, group_id: &str) 
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1351,7 +1351,7 @@ pub fn kick_group_member(configuration: &configuration::Configuration, group_id:
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1379,7 +1379,7 @@ pub fn leave_group(configuration: &configuration::Configuration, group_id: &str)
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1407,7 +1407,7 @@ pub fn remove_group_member_role(configuration: &configuration::Configuration, gr
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1422,7 +1422,7 @@ pub fn remove_group_member_role(configuration: &configuration::Configuration, gr
 }
 
 /// Responds to a Group Join Request with Accept/Deny
-pub fn respond_group_join_request(configuration: &configuration::Configuration, group_id: &str, user_id: &str, respond_group_join_request: crate::models::RespondGroupJoinRequest) -> Result<(), Error<RespondGroupJoinRequestError>> {
+pub fn respond_group_join_request(configuration: &configuration::Configuration, group_id: &str, user_id: &str, respond_group_join_request: models::RespondGroupJoinRequest) -> Result<(), Error<RespondGroupJoinRequestError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1436,7 +1436,7 @@ pub fn respond_group_join_request(configuration: &configuration::Configuration, 
     local_var_req_builder = local_var_req_builder.json(&respond_group_join_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1451,7 +1451,7 @@ pub fn respond_group_join_request(configuration: &configuration::Configuration, 
 }
 
 /// Searches Groups by name or shortCode
-pub fn search_groups(configuration: &configuration::Configuration, query: Option<&str>, offset: Option<i32>, n: Option<i32>) -> Result<Vec<crate::models::LimitedGroup>, Error<SearchGroupsError>> {
+pub fn search_groups(configuration: &configuration::Configuration, query: Option<&str>, offset: Option<i32>, n: Option<i32>) -> Result<Vec<models::LimitedGroup>, Error<SearchGroupsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1473,7 +1473,7 @@ pub fn search_groups(configuration: &configuration::Configuration, query: Option
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1488,7 +1488,7 @@ pub fn search_groups(configuration: &configuration::Configuration, query: Option
 }
 
 /// Unbans a user from a Group.
-pub fn unban_group_member(configuration: &configuration::Configuration, group_id: &str, user_id: &str) -> Result<crate::models::GroupMember, Error<UnbanGroupMemberError>> {
+pub fn unban_group_member(configuration: &configuration::Configuration, group_id: &str, user_id: &str) -> Result<models::GroupMember, Error<UnbanGroupMemberError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1501,7 +1501,7 @@ pub fn unban_group_member(configuration: &configuration::Configuration, group_id
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1516,7 +1516,7 @@ pub fn unban_group_member(configuration: &configuration::Configuration, group_id
 }
 
 /// Updates a Group and returns it.
-pub fn update_group(configuration: &configuration::Configuration, group_id: &str, update_group_request: Option<crate::models::UpdateGroupRequest>) -> Result<crate::models::Group, Error<UpdateGroupError>> {
+pub fn update_group(configuration: &configuration::Configuration, group_id: &str, update_group_request: Option<models::UpdateGroupRequest>) -> Result<models::Group, Error<UpdateGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1530,7 +1530,7 @@ pub fn update_group(configuration: &configuration::Configuration, group_id: &str
     local_var_req_builder = local_var_req_builder.json(&update_group_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1545,7 +1545,7 @@ pub fn update_group(configuration: &configuration::Configuration, group_id: &str
 }
 
 /// Updates a gallery for a Group.
-pub fn update_group_gallery(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, update_group_gallery_request: Option<crate::models::UpdateGroupGalleryRequest>) -> Result<crate::models::GroupGallery, Error<UpdateGroupGalleryError>> {
+pub fn update_group_gallery(configuration: &configuration::Configuration, group_id: &str, group_gallery_id: &str, update_group_gallery_request: Option<models::UpdateGroupGalleryRequest>) -> Result<models::GroupGallery, Error<UpdateGroupGalleryError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1559,7 +1559,7 @@ pub fn update_group_gallery(configuration: &configuration::Configuration, group_
     local_var_req_builder = local_var_req_builder.json(&update_group_gallery_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1574,7 +1574,7 @@ pub fn update_group_gallery(configuration: &configuration::Configuration, group_
 }
 
 /// Updates a Group Member
-pub fn update_group_member(configuration: &configuration::Configuration, group_id: &str, user_id: &str, update_group_member_request: Option<crate::models::UpdateGroupMemberRequest>) -> Result<crate::models::GroupLimitedMember, Error<UpdateGroupMemberError>> {
+pub fn update_group_member(configuration: &configuration::Configuration, group_id: &str, user_id: &str, update_group_member_request: Option<models::UpdateGroupMemberRequest>) -> Result<models::GroupLimitedMember, Error<UpdateGroupMemberError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1588,7 +1588,7 @@ pub fn update_group_member(configuration: &configuration::Configuration, group_i
     local_var_req_builder = local_var_req_builder.json(&update_group_member_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1603,7 +1603,7 @@ pub fn update_group_member(configuration: &configuration::Configuration, group_i
 }
 
 /// Edits a Group post
-pub fn update_group_post(configuration: &configuration::Configuration, group_id: &str, notification_id: &str, create_group_post_request: crate::models::CreateGroupPostRequest) -> Result<crate::models::GroupPost, Error<UpdateGroupPostError>> {
+pub fn update_group_post(configuration: &configuration::Configuration, group_id: &str, notification_id: &str, create_group_post_request: models::CreateGroupPostRequest) -> Result<models::GroupPost, Error<UpdateGroupPostError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1617,7 +1617,7 @@ pub fn update_group_post(configuration: &configuration::Configuration, group_id:
     local_var_req_builder = local_var_req_builder.json(&create_group_post_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -1632,7 +1632,7 @@ pub fn update_group_post(configuration: &configuration::Configuration, group_id:
 }
 
 /// Updates a group role by ID.
-pub fn update_group_role(configuration: &configuration::Configuration, group_id: &str, group_role_id: &str, update_group_role_request: Option<crate::models::UpdateGroupRoleRequest>) -> Result<Vec<crate::models::GroupRole>, Error<UpdateGroupRoleError>> {
+pub fn update_group_role(configuration: &configuration::Configuration, group_id: &str, group_role_id: &str, update_group_role_request: Option<models::UpdateGroupRoleRequest>) -> Result<Vec<models::GroupRole>, Error<UpdateGroupRoleError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1646,7 +1646,7 @@ pub fn update_group_role(configuration: &configuration::Configuration, group_id:
     local_var_req_builder = local_var_req_builder.json(&update_group_role_request);
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

@@ -6,10 +6,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
 **is_enabled** | **bool** |  | [default to true]
-**release_status** | [**crate::models::ReleaseStatus**](ReleaseStatus.md) |  | 
+**release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **priority** | **i32** |  | 
 **tags** | **Vec<String>** |   | 
-**data** | [**crate::models::InfoPushData**](InfoPushData.md) |  | 
+**data** | [**models::InfoPushData**](InfoPushData.md) |  | 
 **hash** | **String** | Unknown usage, MD5 | 
 **created_at** | **String** |  | 
 **updated_at** | **String** |  | 

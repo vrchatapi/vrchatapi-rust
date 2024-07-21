@@ -8,8 +8,8 @@
 
 
 use reqwest;
-
-use crate::apis::ResponseContent;
+use serde::{Deserialize, Serialize};
+use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
@@ -17,8 +17,8 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AcceptFriendRequestError {
-    Status401(crate::models::Error),
-    Status404(crate::models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -26,7 +26,7 @@ pub enum AcceptFriendRequestError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ClearNotificationsError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -34,7 +34,7 @@ pub enum ClearNotificationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteNotificationError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -42,7 +42,7 @@ pub enum DeleteNotificationError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetNotificationsError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -50,13 +50,13 @@ pub enum GetNotificationsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum MarkNotificationAsReadError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Accept a friend request by notification `frq_` ID. Friend requests can be found using the NotificationsAPI `getNotifications` by filtering of type `friendRequest`.
-pub fn accept_friend_request(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Success, Error<AcceptFriendRequestError>> {
+pub fn accept_friend_request(configuration: &configuration::Configuration, notification_id: &str) -> Result<models::Success, Error<AcceptFriendRequestError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -69,7 +69,7 @@ pub fn accept_friend_request(configuration: &configuration::Configuration, notif
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -84,7 +84,7 @@ pub fn accept_friend_request(configuration: &configuration::Configuration, notif
 }
 
 /// Clear **all** notifications.
-pub fn clear_notifications(configuration: &configuration::Configuration, ) -> Result<crate::models::Success, Error<ClearNotificationsError>> {
+pub fn clear_notifications(configuration: &configuration::Configuration, ) -> Result<models::Success, Error<ClearNotificationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -97,7 +97,7 @@ pub fn clear_notifications(configuration: &configuration::Configuration, ) -> Re
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -112,7 +112,7 @@ pub fn clear_notifications(configuration: &configuration::Configuration, ) -> Re
 }
 
 /// Delete a notification.
-pub fn delete_notification(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Notification, Error<DeleteNotificationError>> {
+pub fn delete_notification(configuration: &configuration::Configuration, notification_id: &str) -> Result<models::Notification, Error<DeleteNotificationError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -125,7 +125,7 @@ pub fn delete_notification(configuration: &configuration::Configuration, notific
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -140,7 +140,7 @@ pub fn delete_notification(configuration: &configuration::Configuration, notific
 }
 
 /// Retrieve all of the current user's notifications.
-pub fn get_notifications(configuration: &configuration::Configuration, r#type: Option<&str>, sent: Option<bool>, hidden: Option<bool>, after: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<crate::models::Notification>, Error<GetNotificationsError>> {
+pub fn get_notifications(configuration: &configuration::Configuration, r#type: Option<&str>, sent: Option<bool>, hidden: Option<bool>, after: Option<&str>, n: Option<i32>, offset: Option<i32>) -> Result<Vec<models::Notification>, Error<GetNotificationsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -171,7 +171,7 @@ pub fn get_notifications(configuration: &configuration::Configuration, r#type: O
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -186,7 +186,7 @@ pub fn get_notifications(configuration: &configuration::Configuration, r#type: O
 }
 
 /// Mark a notification as seen.
-pub fn mark_notification_as_read(configuration: &configuration::Configuration, notification_id: &str) -> Result<crate::models::Notification, Error<MarkNotificationAsReadError>> {
+pub fn mark_notification_as_read(configuration: &configuration::Configuration, notification_id: &str) -> Result<models::Notification, Error<MarkNotificationAsReadError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -199,7 +199,7 @@ pub fn mark_notification_as_read(configuration: &configuration::Configuration, n
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

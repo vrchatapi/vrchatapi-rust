@@ -51,7 +51,7 @@ Method | HTTP request | Description
 
 ## add_group_gallery_image
 
-> crate::models::GroupGalleryImage add_group_gallery_image(group_id, group_gallery_id, add_group_gallery_image_request)
+> models::GroupGalleryImage add_group_gallery_image(group_id, group_gallery_id, add_group_gallery_image_request)
 Add Group Gallery Image
 
 Adds an image to a Group gallery.
@@ -67,7 +67,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupGalleryImage**](GroupGalleryImage.md)
+[**models::GroupGalleryImage**](GroupGalleryImage.md)
 
 ### Authorization
 
@@ -115,7 +115,7 @@ Name | Type | Description  | Required | Notes
 
 ## add_group_post
 
-> crate::models::GroupPost add_group_post(group_id, create_group_post_request)
+> models::GroupPost add_group_post(group_id, create_group_post_request)
 Create a post in a Group
 
 Create a post in a Group.
@@ -130,7 +130,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupPost**](GroupPost.md)
+[**models::GroupPost**](GroupPost.md)
 
 ### Authorization
 
@@ -146,7 +146,7 @@ Name | Type | Description  | Required | Notes
 
 ## ban_group_member
 
-> crate::models::GroupMember ban_group_member(group_id, ban_group_member_request)
+> models::GroupMember ban_group_member(group_id, ban_group_member_request)
 Ban Group Member
 
 Bans a user from a Group.
@@ -161,7 +161,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupMember**](GroupMember.md)
+[**models::GroupMember**](GroupMember.md)
 
 ### Authorization
 
@@ -207,7 +207,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_group
 
-> crate::models::Group create_group(create_group_request)
+> models::Group create_group(create_group_request)
 Create Group
 
 Creates a Group and returns a Group object. **Requires VRC+ Subscription.**
@@ -221,7 +221,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Group**](Group.md)
+[**models::Group**](Group.md)
 
 ### Authorization
 
@@ -237,7 +237,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_group_announcement
 
-> crate::models::GroupAnnouncement create_group_announcement(group_id, create_group_announcement_request)
+> models::GroupAnnouncement create_group_announcement(group_id, create_group_announcement_request)
 Create Group Announcement
 
 Creates an Announcement for a Group.
@@ -252,7 +252,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupAnnouncement**](GroupAnnouncement.md)
+[**models::GroupAnnouncement**](GroupAnnouncement.md)
 
 ### Authorization
 
@@ -268,7 +268,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_group_gallery
 
-> crate::models::GroupGallery create_group_gallery(group_id, create_group_gallery_request)
+> models::GroupGallery create_group_gallery(group_id, create_group_gallery_request)
 Create Group Gallery
 
 Creates a gallery for a Group.
@@ -283,7 +283,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupGallery**](GroupGallery.md)
+[**models::GroupGallery**](GroupGallery.md)
 
 ### Authorization
 
@@ -330,7 +330,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_group_role
 
-> crate::models::GroupRole create_group_role(group_id, create_group_role_request)
+> models::GroupRole create_group_role(group_id, create_group_role_request)
 Create GroupRole
 
 Create a Group role.
@@ -345,7 +345,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupRole**](GroupRole.md)
+[**models::GroupRole**](GroupRole.md)
 
 ### Authorization
 
@@ -361,7 +361,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_group
 
-> crate::models::Success delete_group(group_id)
+> models::Success delete_group(group_id)
 Delete Group
 
 Deletes a Group.
@@ -375,7 +375,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -391,7 +391,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_group_announcement
 
-> crate::models::Success delete_group_announcement(group_id)
+> models::Success delete_group_announcement(group_id)
 Delete Group Announcement
 
 Deletes the announcement for a Group.
@@ -405,7 +405,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -421,7 +421,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_group_gallery
 
-> crate::models::Success delete_group_gallery(group_id, group_gallery_id)
+> models::Success delete_group_gallery(group_id, group_gallery_id)
 Delete Group Gallery
 
 Deletes a gallery for a Group.
@@ -436,7 +436,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -452,7 +452,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_group_gallery_image
 
-> crate::models::Success delete_group_gallery_image(group_id, group_gallery_id, group_gallery_image_id)
+> models::Success delete_group_gallery_image(group_id, group_gallery_id, group_gallery_image_id)
 Delete Group Gallery Image
 
 Deletes an image from a Group gallery.
@@ -468,7 +468,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -515,7 +515,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_group_post
 
-> crate::models::Success delete_group_post(group_id, notification_id)
+> models::Success delete_group_post(group_id, notification_id)
 Delete a Group post
 
 Delete a Group post
@@ -530,7 +530,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -546,7 +546,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_group_role
 
-> Vec<crate::models::GroupRole> delete_group_role(group_id, group_role_id)
+> Vec<models::GroupRole> delete_group_role(group_id, group_role_id)
 Delete Group Role
 
 Deletes a Group Role by ID and returns the remaining roles.
@@ -561,7 +561,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GroupRole>**](GroupRole.md)
+[**Vec<models::GroupRole>**](GroupRole.md)
 
 ### Authorization
 
@@ -577,7 +577,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group
 
-> crate::models::Group get_group(group_id, include_roles)
+> models::Group get_group(group_id, include_roles)
 Get Group by ID
 
 Returns a single Group by ID.
@@ -592,7 +592,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Group**](Group.md)
+[**models::Group**](Group.md)
 
 ### Authorization
 
@@ -608,7 +608,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_announcements
 
-> crate::models::GroupAnnouncement get_group_announcements(group_id)
+> models::GroupAnnouncement get_group_announcements(group_id)
 Get Group Announcement
 
 Returns the announcement for a Group. If no announcement has been made, then it returns **empty object**.  If an announcement exists, then it will always return all fields except `imageId` and `imageUrl` which may be null.
@@ -622,7 +622,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupAnnouncement**](GroupAnnouncement.md)
+[**models::GroupAnnouncement**](GroupAnnouncement.md)
 
 ### Authorization
 
@@ -638,7 +638,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_audit_logs
 
-> crate::models::PaginatedGroupAuditLogEntryList get_group_audit_logs(group_id, n, offset, start_date, end_date)
+> models::PaginatedGroupAuditLogEntryList get_group_audit_logs(group_id, n, offset, start_date, end_date)
 Get Group Audit Logs
 
 Returns a list of audit logs for a Group.
@@ -656,7 +656,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::PaginatedGroupAuditLogEntryList**](PaginatedGroupAuditLogEntryList.md)
+[**models::PaginatedGroupAuditLogEntryList**](PaginatedGroupAuditLogEntryList.md)
 
 ### Authorization
 
@@ -672,7 +672,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_bans
 
-> Vec<crate::models::GroupMember> get_group_bans(group_id, n, offset)
+> Vec<models::GroupMember> get_group_bans(group_id, n, offset)
 Get Group Bans
 
 Returns a list of banned users for a Group.
@@ -688,7 +688,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GroupMember>**](GroupMember.md)
+[**Vec<models::GroupMember>**](GroupMember.md)
 
 ### Authorization
 
@@ -704,7 +704,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_gallery_images
 
-> Vec<crate::models::GroupGalleryImage> get_group_gallery_images(group_id, group_gallery_id, n, offset, approved)
+> Vec<models::GroupGalleryImage> get_group_gallery_images(group_id, group_gallery_id, n, offset, approved)
 Get Group Gallery Images
 
 Returns a list of images for a Group gallery.
@@ -722,7 +722,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GroupGalleryImage>**](GroupGalleryImage.md)
+[**Vec<models::GroupGalleryImage>**](GroupGalleryImage.md)
 
 ### Authorization
 
@@ -738,7 +738,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_instances
 
-> Vec<crate::models::GroupInstance> get_group_instances(group_id)
+> Vec<models::GroupInstance> get_group_instances(group_id)
 Get Group Instances
 
 Returns a list of group instances
@@ -752,7 +752,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GroupInstance>**](GroupInstance.md)
+[**Vec<models::GroupInstance>**](GroupInstance.md)
 
 ### Authorization
 
@@ -768,7 +768,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_invites
 
-> Vec<crate::models::GroupMember> get_group_invites(group_id, n, offset)
+> Vec<models::GroupMember> get_group_invites(group_id, n, offset)
 Get Group Invites Sent
 
 Returns a list of members that have been invited to the Group.
@@ -784,7 +784,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GroupMember>**](GroupMember.md)
+[**Vec<models::GroupMember>**](GroupMember.md)
 
 ### Authorization
 
@@ -800,7 +800,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_member
 
-> crate::models::GroupLimitedMember get_group_member(group_id, user_id)
+> models::GroupLimitedMember get_group_member(group_id, user_id)
 Get Group Member
 
 Returns a LimitedGroup Member.
@@ -815,7 +815,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupLimitedMember**](GroupLimitedMember.md)
+[**models::GroupLimitedMember**](GroupLimitedMember.md)
 
 ### Authorization
 
@@ -831,7 +831,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_members
 
-> Vec<crate::models::GroupMember> get_group_members(group_id, n, offset, sort)
+> Vec<models::GroupMember> get_group_members(group_id, n, offset, sort)
 List Group Members
 
 Returns a List of all **other** Group Members. This endpoint will never return the user calling the endpoint. Information about the user calling the endpoint must be found in the `myMember` field of the Group object.
@@ -848,7 +848,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GroupMember>**](GroupMember.md)
+[**Vec<models::GroupMember>**](GroupMember.md)
 
 ### Authorization
 
@@ -864,7 +864,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_permissions
 
-> Vec<crate::models::GroupPermission> get_group_permissions(group_id)
+> Vec<models::GroupPermission> get_group_permissions(group_id)
 List Group Permissions
 
 Returns a List of all possible/available permissions for a Group.
@@ -878,7 +878,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GroupPermission>**](GroupPermission.md)
+[**Vec<models::GroupPermission>**](GroupPermission.md)
 
 ### Authorization
 
@@ -894,7 +894,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_post
 
-> crate::models::GroupPost get_group_post(group_id, n, offset, public_only)
+> models::GroupPost get_group_post(group_id, n, offset, public_only)
 Get posts from a Group
 
 Get posts from a Group
@@ -911,7 +911,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupPost**](GroupPost.md)
+[**models::GroupPost**](GroupPost.md)
 
 ### Authorization
 
@@ -927,7 +927,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_requests
 
-> Vec<crate::models::GroupMember> get_group_requests(group_id, n, offset, blocked)
+> Vec<models::GroupMember> get_group_requests(group_id, n, offset, blocked)
 Get Group Join Requests
 
 Returns a list of members that have requested to join the Group.
@@ -944,7 +944,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GroupMember>**](GroupMember.md)
+[**Vec<models::GroupMember>**](GroupMember.md)
 
 ### Authorization
 
@@ -960,7 +960,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_roles
 
-> Vec<crate::models::GroupRole> get_group_roles(group_id)
+> Vec<models::GroupRole> get_group_roles(group_id)
 Get Group Roles
 
 Returns a Group Role by ID.
@@ -974,7 +974,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GroupRole>**](GroupRole.md)
+[**Vec<models::GroupRole>**](GroupRole.md)
 
 ### Authorization
 
@@ -990,7 +990,7 @@ Name | Type | Description  | Required | Notes
 
 ## join_group
 
-> crate::models::GroupMember join_group(group_id)
+> models::GroupMember join_group(group_id)
 Join Group
 
 Join a Group by ID and returns the member object.
@@ -1004,7 +1004,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupMember**](GroupMember.md)
+[**models::GroupMember**](GroupMember.md)
 
 ### Authorization
 
@@ -1145,7 +1145,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_groups
 
-> Vec<crate::models::LimitedGroup> search_groups(query, offset, n)
+> Vec<models::LimitedGroup> search_groups(query, offset, n)
 Search Group
 
 Searches Groups by name or shortCode
@@ -1161,7 +1161,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::LimitedGroup>**](LimitedGroup.md)
+[**Vec<models::LimitedGroup>**](LimitedGroup.md)
 
 ### Authorization
 
@@ -1177,7 +1177,7 @@ No authorization required
 
 ## unban_group_member
 
-> crate::models::GroupMember unban_group_member(group_id, user_id)
+> models::GroupMember unban_group_member(group_id, user_id)
 Unban Group Member
 
 Unbans a user from a Group.
@@ -1192,7 +1192,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupMember**](GroupMember.md)
+[**models::GroupMember**](GroupMember.md)
 
 ### Authorization
 
@@ -1208,7 +1208,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_group
 
-> crate::models::Group update_group(group_id, update_group_request)
+> models::Group update_group(group_id, update_group_request)
 Update Group
 
 Updates a Group and returns it.
@@ -1223,7 +1223,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Group**](Group.md)
+[**models::Group**](Group.md)
 
 ### Authorization
 
@@ -1239,7 +1239,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_group_gallery
 
-> crate::models::GroupGallery update_group_gallery(group_id, group_gallery_id, update_group_gallery_request)
+> models::GroupGallery update_group_gallery(group_id, group_gallery_id, update_group_gallery_request)
 Update Group Gallery
 
 Updates a gallery for a Group.
@@ -1255,7 +1255,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupGallery**](GroupGallery.md)
+[**models::GroupGallery**](GroupGallery.md)
 
 ### Authorization
 
@@ -1271,7 +1271,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_group_member
 
-> crate::models::GroupLimitedMember update_group_member(group_id, user_id, update_group_member_request)
+> models::GroupLimitedMember update_group_member(group_id, user_id, update_group_member_request)
 Update Group Member
 
 Updates a Group Member
@@ -1287,7 +1287,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupLimitedMember**](GroupLimitedMember.md)
+[**models::GroupLimitedMember**](GroupLimitedMember.md)
 
 ### Authorization
 
@@ -1303,7 +1303,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_group_post
 
-> crate::models::GroupPost update_group_post(group_id, notification_id, create_group_post_request)
+> models::GroupPost update_group_post(group_id, notification_id, create_group_post_request)
 Edits a Group post
 
 Edits a Group post
@@ -1319,7 +1319,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::GroupPost**](GroupPost.md)
+[**models::GroupPost**](GroupPost.md)
 
 ### Authorization
 
@@ -1335,7 +1335,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_group_role
 
-> Vec<crate::models::GroupRole> update_group_role(group_id, group_role_id, update_group_role_request)
+> Vec<models::GroupRole> update_group_role(group_id, group_role_id, update_group_role_request)
 Update Group Role
 
 Updates a group role by ID.
@@ -1351,7 +1351,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::GroupRole>**](GroupRole.md)
+[**Vec<models::GroupRole>**](GroupRole.md)
 
 ### Authorization
 

@@ -8,8 +8,8 @@
 
 
 use reqwest;
-
-use crate::apis::ResponseContent;
+use serde::{Deserialize, Serialize};
+use crate::{apis::ResponseContent, models};
 use super::{Error, configuration};
 
 
@@ -17,7 +17,7 @@ use super::{Error, configuration};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCurrentSubscriptionsError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -25,7 +25,7 @@ pub enum GetCurrentSubscriptionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetLicenseGroupError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -33,7 +33,7 @@ pub enum GetLicenseGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetSteamTransactionError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -41,7 +41,7 @@ pub enum GetSteamTransactionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetSteamTransactionsError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -49,13 +49,13 @@ pub enum GetSteamTransactionsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetSubscriptionsError {
-    Status401(crate::models::Error),
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
 
 /// Get a list of all current user subscriptions.
-pub fn get_current_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::UserSubscription>, Error<GetCurrentSubscriptionsError>> {
+pub fn get_current_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<models::UserSubscription>, Error<GetCurrentSubscriptionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -68,7 +68,7 @@ pub fn get_current_subscriptions(configuration: &configuration::Configuration, )
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -83,7 +83,7 @@ pub fn get_current_subscriptions(configuration: &configuration::Configuration, )
 }
 
 /// Get a single License Group by given ID.
-pub fn get_license_group(configuration: &configuration::Configuration, license_group_id: &str) -> Result<crate::models::LicenseGroup, Error<GetLicenseGroupError>> {
+pub fn get_license_group(configuration: &configuration::Configuration, license_group_id: &str) -> Result<models::LicenseGroup, Error<GetLicenseGroupError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -96,7 +96,7 @@ pub fn get_license_group(configuration: &configuration::Configuration, license_g
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -111,7 +111,7 @@ pub fn get_license_group(configuration: &configuration::Configuration, license_g
 }
 
 /// Get a single Steam transactions by ID. This returns the exact same information as `getSteamTransactions`, so no point in using this endpoint.
-pub fn get_steam_transaction(configuration: &configuration::Configuration, transaction_id: &str) -> Result<crate::models::Transaction, Error<GetSteamTransactionError>> {
+pub fn get_steam_transaction(configuration: &configuration::Configuration, transaction_id: &str) -> Result<models::Transaction, Error<GetSteamTransactionError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -124,7 +124,7 @@ pub fn get_steam_transaction(configuration: &configuration::Configuration, trans
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -139,7 +139,7 @@ pub fn get_steam_transaction(configuration: &configuration::Configuration, trans
 }
 
 /// Get all own Steam transactions.
-pub fn get_steam_transactions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Transaction>, Error<GetSteamTransactionsError>> {
+pub fn get_steam_transactions(configuration: &configuration::Configuration, ) -> Result<Vec<models::Transaction>, Error<GetSteamTransactionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -152,7 +152,7 @@ pub fn get_steam_transactions(configuration: &configuration::Configuration, ) ->
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;
@@ -167,7 +167,7 @@ pub fn get_steam_transactions(configuration: &configuration::Configuration, ) ->
 }
 
 /// List all existing Subscriptions. For example, \"vrchatplus-monthly\" and \"vrchatplus-yearly\".
-pub fn get_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<crate::models::Subscription>, Error<GetSubscriptionsError>> {
+pub fn get_subscriptions(configuration: &configuration::Configuration, ) -> Result<Vec<models::Subscription>, Error<GetSubscriptionsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -180,7 +180,7 @@ pub fn get_subscriptions(configuration: &configuration::Configuration, ) -> Resu
     }
 
     let local_var_req = local_var_req_builder.build()?;
-    let mut local_var_resp = local_var_client.execute(local_var_req)?;
+    let local_var_resp = local_var_client.execute(local_var_req)?;
 
     let local_var_status = local_var_resp.status();
     let local_var_content = local_var_resp.text()?;

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **file_name** | **String** |  | 
 **md5** | **String** |  | 
 **size_in_bytes** | **i32** |  | 
-**status** | [**crate::models::FileStatus**](FileStatus.md) |  | 
+**status** | [**models::FileStatus**](FileStatus.md) |  | 
 **upload_id** | **String** |  | [default to ]
 **url** | **String** |  | 
 

@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## accept_friend_request
 
-> crate::models::Success accept_friend_request(notification_id)
+> models::Success accept_friend_request(notification_id)
 Accept Friend Request
 
 Accept a friend request by notification `frq_` ID. Friend requests can be found using the NotificationsAPI `getNotifications` by filtering of type `friendRequest`.
@@ -28,7 +28,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -44,7 +44,7 @@ Name | Type | Description  | Required | Notes
 
 ## clear_notifications
 
-> crate::models::Success clear_notifications()
+> models::Success clear_notifications()
 Clear All Notifications
 
 Clear **all** notifications.
@@ -55,7 +55,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -71,7 +71,7 @@ This endpoint does not need any parameter.
 
 ## delete_notification
 
-> crate::models::Notification delete_notification(notification_id)
+> models::Notification delete_notification(notification_id)
 Delete Notification
 
 Delete a notification.
@@ -85,7 +85,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Notification**](Notification.md)
+[**models::Notification**](Notification.md)
 
 ### Authorization
 
@@ -101,7 +101,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_notifications
 
-> Vec<crate::models::Notification> get_notifications(r#type, sent, hidden, after, n, offset)
+> Vec<models::Notification> get_notifications(r#type, sent, hidden, after, n, offset)
 List Notifications
 
 Retrieve all of the current user's notifications.
@@ -120,7 +120,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Notification>**](Notification.md)
+[**Vec<models::Notification>**](Notification.md)
 
 ### Authorization
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Required | Notes
 
 ## mark_notification_as_read
 
-> crate::models::Notification mark_notification_as_read(notification_id)
+> models::Notification mark_notification_as_read(notification_id)
 Mark Notification As Read
 
 Mark a notification as seen.
@@ -150,7 +150,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Notification**](Notification.md)
+[**models::Notification**](Notification.md)
 
 ### Authorization
 

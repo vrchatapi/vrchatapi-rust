@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 **google_product_id** | Option<**String**> |  | [optional]
 **google_plan_id** | Option<**String**> |  | [optional]
 **pico_sku** | Option<**String**> |  | [optional]
-**amount** | **f32** |  | 
+**amount** | **f64** |  | 
 **description** | **String** |  | 
-**period** | [**crate::models::SubscriptionPeriod**](SubscriptionPeriod.md) |  | 
-**tier** | **f32** |  | 
+**period** | [**models::SubscriptionPeriod**](SubscriptionPeriod.md) |  | 
+**tier** | **f64** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

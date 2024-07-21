@@ -8,12 +8,12 @@ Name | Type | Description | Notes
 **transaction_id** | **String** |  | 
 **store** | **String** | Which \"Store\" it came from. Right now only Stores are \"Steam\" and \"Admin\". | 
 **steam_item_id** | Option<**String**> |  | [optional]
-**amount** | **f32** |  | 
+**amount** | **f64** |  | 
 **description** | **String** |  | 
-**period** | [**crate::models::SubscriptionPeriod**](SubscriptionPeriod.md) |  | 
-**tier** | **f32** |  | 
+**period** | [**models::SubscriptionPeriod**](SubscriptionPeriod.md) |  | 
+**tier** | **f64** |  | 
 **active** | **bool** |  | [default to true]
-**status** | [**crate::models::TransactionStatus**](TransactionStatus.md) |  | 
+**status** | [**models::TransactionStatus**](TransactionStatus.md) |  | 
 **expires** | **String** |  | 
 **created_at** | **String** |  | 
 **updated_at** | **String** |  | 

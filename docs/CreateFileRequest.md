@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **String** |  | 
-**mime_type** | [**crate::models::MimeType**](MIMEType.md) |  | 
+**mime_type** | [**models::MimeType**](MIMEType.md) |  | 
 **extension** | **String** |  | 
 **tags** | Option<**Vec<String>**> |   | [optional]
 

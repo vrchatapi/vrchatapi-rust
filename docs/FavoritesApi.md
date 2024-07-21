@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## add_favorite
 
-> crate::models::Favorite add_favorite(add_favorite_request)
+> models::Favorite add_favorite(add_favorite_request)
 Add Favorite
 
 Add a new favorite.  Friend groups are named `group_0` through `group_3`. Avatar and World groups are named `avatars1` to `avatars4` and `worlds1` to `worlds4`.  You cannot add people whom you are not friends with to your friends list. Destroying a friendship removes the person as favorite on both sides.
@@ -31,7 +31,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Favorite**](Favorite.md)
+[**models::Favorite**](Favorite.md)
 
 ### Authorization
 
@@ -47,7 +47,7 @@ Name | Type | Description  | Required | Notes
 
 ## clear_favorite_group
 
-> crate::models::Success clear_favorite_group(favorite_group_type, favorite_group_name, user_id)
+> models::Success clear_favorite_group(favorite_group_type, favorite_group_name, user_id)
 Clear Favorite Group
 
 Clear ALL contents of a specific favorite group.
@@ -63,7 +63,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -79,7 +79,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_favorite
 
-> crate::models::Favorite get_favorite(favorite_id)
+> models::Favorite get_favorite(favorite_id)
 Show Favorite
 
 Return information about a specific Favorite.
@@ -93,7 +93,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Favorite**](Favorite.md)
+[**models::Favorite**](Favorite.md)
 
 ### Authorization
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_favorite_group
 
-> crate::models::FavoriteGroup get_favorite_group(favorite_group_type, favorite_group_name, user_id)
+> models::FavoriteGroup get_favorite_group(favorite_group_type, favorite_group_name, user_id)
 Show Favorite Group
 
 Fetch information about a specific favorite group.
@@ -125,7 +125,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::FavoriteGroup**](FavoriteGroup.md)
+[**models::FavoriteGroup**](FavoriteGroup.md)
 
 ### Authorization
 
@@ -141,7 +141,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_favorite_groups
 
-> Vec<crate::models::FavoriteGroup> get_favorite_groups(n, offset, owner_id)
+> Vec<models::FavoriteGroup> get_favorite_groups(n, offset, owner_id)
 List Favorite Groups
 
 Return a list of favorite groups owned by a user. Returns the same information as `getFavoriteGroups`.
@@ -157,7 +157,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::FavoriteGroup>**](FavoriteGroup.md)
+[**Vec<models::FavoriteGroup>**](FavoriteGroup.md)
 
 ### Authorization
 
@@ -173,7 +173,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_favorites
 
-> Vec<crate::models::Favorite> get_favorites(n, offset, r#type, tag)
+> Vec<models::Favorite> get_favorites(n, offset, r#type, tag)
 List Favorites
 
 Returns a list of favorites.
@@ -190,7 +190,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<crate::models::Favorite>**](Favorite.md)
+[**Vec<models::Favorite>**](Favorite.md)
 
 ### Authorization
 
@@ -206,7 +206,7 @@ Name | Type | Description  | Required | Notes
 
 ## remove_favorite
 
-> crate::models::Success remove_favorite(favorite_id)
+> models::Success remove_favorite(favorite_id)
 Remove Favorite
 
 Remove a favorite from your favorites list.
@@ -220,7 +220,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 

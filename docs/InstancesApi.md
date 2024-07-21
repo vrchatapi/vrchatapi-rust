@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## close_instance
 
-> crate::models::Instance close_instance(world_id, instance_id, hard_close, closed_at)
+> models::Instance close_instance(world_id, instance_id, hard_close, closed_at)
 Close Instance
 
 Close an instance or update the closedAt time when it will be closed.  You can only close an instance if the ownerId is yourself or if the instance owner is a group and you have the `group-instance-moderate` permission.
@@ -32,7 +32,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Instance**](Instance.md)
+[**models::Instance**](Instance.md)
 
 ### Authorization
 
@@ -48,7 +48,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_instance
 
-> crate::models::Instance create_instance(create_instance_request)
+> models::Instance create_instance(create_instance_request)
 Create Instance
 
 Create an instance
@@ -62,7 +62,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Instance**](Instance.md)
+[**models::Instance**](Instance.md)
 
 ### Authorization
 
@@ -78,7 +78,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_instance
 
-> crate::models::Instance get_instance(world_id, instance_id)
+> models::Instance get_instance(world_id, instance_id)
 Get Instance
 
 Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.  If an invalid instanceId is provided, this endpoint will simply return \"null\"!
@@ -93,7 +93,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Instance**](Instance.md)
+[**models::Instance**](Instance.md)
 
 ### Authorization
 
@@ -109,7 +109,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_instance_by_short_name
 
-> crate::models::Instance get_instance_by_short_name(short_name)
+> models::Instance get_instance_by_short_name(short_name)
 Get Instance By Short Name
 
 Returns an instance. Please read [Instances Tutorial](https://vrchatapi.github.io/tutorials/instances/) for more information on Instances.
@@ -123,7 +123,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Instance**](Instance.md)
+[**models::Instance**](Instance.md)
 
 ### Authorization
 
@@ -139,7 +139,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_short_name
 
-> crate::models::InstanceShortNameResponse get_short_name(world_id, instance_id)
+> models::InstanceShortNameResponse get_short_name(world_id, instance_id)
 Get Instance Short Name
 
 Returns an instance short name.
@@ -154,7 +154,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::InstanceShortNameResponse**](InstanceShortNameResponse.md)
+[**models::InstanceShortNameResponse**](InstanceShortNameResponse.md)
 
 ### Authorization
 
@@ -170,7 +170,7 @@ Name | Type | Description  | Required | Notes
 
 ## send_self_invite
 
-> crate::models::Success send_self_invite(world_id, instance_id)
+> models::Success send_self_invite(world_id, instance_id)
 Send Self Invite
 
 Sends an invite to the instance to yourself.
@@ -185,7 +185,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**crate::models::Success**](Success.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 
