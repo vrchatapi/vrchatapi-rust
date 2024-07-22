@@ -201,6 +201,7 @@ pub enum GetGroupAuditLogsError {
 #[serde(untagged)]
 pub enum GetGroupBansError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -238,6 +239,7 @@ pub enum GetGroupInvitesError {
 #[serde(untagged)]
 pub enum GetGroupMemberError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }

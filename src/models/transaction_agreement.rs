@@ -9,13 +9,15 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// TransactionAgreement : 
+/// TransactionAgreement : Represents a single Transaction, which is likely between VRChat and Steam.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TransactionAgreement {
     #[serde(rename = "agreementId")]
     pub agreement_id: String,
     #[serde(rename = "itemId")]
     pub item_id: f64,
+    #[serde(rename = "agreement")]
+    pub agreement: String,
     /// This is NOT TransactionStatus, but whatever Steam return.
     #[serde(rename = "status")]
     pub status: String,
@@ -50,10 +52,12 @@ pub struct TransactionAgreement {
 }
 
 impl TransactionAgreement {
-    pub fn new(agreement_id: String, item_id: f64, status: String, period: String, frequency: f64, billing_type: String, start_date: String, end_date: String, recurring_amt: f64, currency: String, time_created: String, next_payment: String, last_payment: String, last_amount: f64, last_amount_vat: f64, outstanding: f64, failed_attempts: f64) -> TransactionAgreement {
+    /// Represents a single Transaction, which is likely between VRChat and Steam.
+    pub fn new(agreement_id: String, item_id: f64, agreement: String, status: String, period: String, frequency: f64, billing_type: String, start_date: String, end_date: String, recurring_amt: f64, currency: String, time_created: String, next_payment: String, last_payment: String, last_amount: f64, last_amount_vat: f64, outstanding: f64, failed_attempts: f64) -> TransactionAgreement {
         TransactionAgreement {
             agreement_id,
             item_id,
+            agreement,
             status,
             period,
             frequency,

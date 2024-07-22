@@ -20,6 +20,13 @@ pub struct GroupMyMember {
     pub user_id: Option<String>,
     #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
     pub role_ids: Option<Vec<String>>,
+    #[serde(rename = "acceptedByDisplayName", skip_serializing_if = "Option::is_none")]
+    pub accepted_by_display_name: Option<String>,
+    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+    #[serde(rename = "acceptedById", skip_serializing_if = "Option::is_none")]
+    pub accepted_by_id: Option<String>,
+    #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
+    pub created_at: Option<String>,
     #[serde(rename = "managerNotes", skip_serializing_if = "Option::is_none")]
     pub manager_notes: Option<String>,
     #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
@@ -36,6 +43,12 @@ pub struct GroupMyMember {
     pub banned_at: Option<Option<String>>,
     #[serde(rename = "has2FA", skip_serializing_if = "Option::is_none")]
     pub has2_fa: Option<bool>,
+    #[serde(rename = "hasJoinedFromPurchase", skip_serializing_if = "Option::is_none")]
+    pub has_joined_from_purchase: Option<bool>,
+    #[serde(rename = "lastPostReadAt", skip_serializing_if = "Option::is_none")]
+    pub last_post_read_at: Option<String>,
+    #[serde(rename = "mRoleIds", skip_serializing_if = "Option::is_none")]
+    pub m_role_ids: Option<Vec<String>>,
     #[serde(rename = "permissions", skip_serializing_if = "Option::is_none")]
     pub permissions: Option<Vec<String>>,
 }
@@ -47,6 +60,9 @@ impl GroupMyMember {
             group_id: None,
             user_id: None,
             role_ids: None,
+            accepted_by_display_name: None,
+            accepted_by_id: None,
+            created_at: None,
             manager_notes: None,
             membership_status: None,
             is_subscribed_to_announcements: None,
@@ -55,6 +71,9 @@ impl GroupMyMember {
             joined_at: None,
             banned_at: None,
             has2_fa: None,
+            has_joined_from_purchase: None,
+            last_post_read_at: None,
+            m_role_ids: None,
             permissions: None,
         }
     }

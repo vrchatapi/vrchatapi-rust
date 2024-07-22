@@ -522,7 +522,7 @@ pub async fn publish_world(configuration: &configuration::Configuration, world_i
 }
 
 /// Search and list any worlds by query filters.
-pub async fn search_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<models::SortOption>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>) -> Result<Vec<models::LimitedWorld>, Error<SearchWorldsError>> {
+pub async fn search_worlds(configuration: &configuration::Configuration, featured: Option<bool>, sort: Option<models::SortOption>, user: Option<&str>, user_id: Option<&str>, n: Option<i32>, order: Option<models::OrderOption>, offset: Option<i32>, search: Option<&str>, tag: Option<&str>, notag: Option<&str>, release_status: Option<models::ReleaseStatus>, max_unity_version: Option<&str>, min_unity_version: Option<&str>, platform: Option<&str>, fuzzy: Option<bool>) -> Result<Vec<models::LimitedWorld>, Error<SearchWorldsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -571,6 +571,9 @@ pub async fn search_worlds(configuration: &configuration::Configuration, feature
     }
     if let Some(ref local_var_str) = platform {
         local_var_req_builder = local_var_req_builder.query(&[("platform", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = fuzzy {
+        local_var_req_builder = local_var_req_builder.query(&[("fuzzy", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder = local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());

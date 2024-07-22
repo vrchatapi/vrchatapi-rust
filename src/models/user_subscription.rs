@@ -33,6 +33,8 @@ pub struct UserSubscription {
     pub active: bool,
     #[serde(rename = "status")]
     pub status: models::TransactionStatus,
+    #[serde(rename = "starts", skip_serializing_if = "Option::is_none")]
+    pub starts: Option<String>,
     #[serde(rename = "expires")]
     pub expires: String,
     #[serde(rename = "created_at")]
@@ -58,6 +60,7 @@ impl UserSubscription {
             tier,
             active,
             status,
+            starts: None,
             expires,
             created_at,
             updated_at,

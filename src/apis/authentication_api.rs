@@ -79,7 +79,7 @@ pub enum VerifyRecoveryCodeError {
 
 
 /// Checks if a user by a given `username`, `displayName` or `email` exist. This is used during registration to check if a username has already been taken, during change of displayName to check if a displayName is available, and during change of email to check if the email is already used. In the later two cases the `excludeUserId` is used to exclude oneself, otherwise the result would always be true.  It is **REQUIRED** to include **AT LEAST** `username`, `displayName` **or** `email` query parameter. Although they can be combined - in addition with `excludeUserId` (generally to exclude yourself) - to further fine-tune the search.
-pub async fn check_user_exists(configuration: &configuration::Configuration, email: Option<&str>, display_name: Option<&str>, user_id: Option<&str>, exclude_user_id: Option<&str>) -> Result<models::UserExists, Error<CheckUserExistsError>> {
+pub async fn check_user_exists(configuration: &configuration::Configuration, email: Option<&str>, display_name: Option<&str>, username: Option<&str>, exclude_user_id: Option<&str>) -> Result<models::UserExists, Error<CheckUserExistsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -93,8 +93,8 @@ pub async fn check_user_exists(configuration: &configuration::Configuration, ema
     if let Some(ref local_var_str) = display_name {
         local_var_req_builder = local_var_req_builder.query(&[("displayName", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = user_id {
-        local_var_req_builder = local_var_req_builder.query(&[("userId", &local_var_str.to_string())]);
+    if let Some(ref local_var_str) = username {
+        local_var_req_builder = local_var_req_builder.query(&[("username", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = exclude_user_id {
         local_var_req_builder = local_var_req_builder.query(&[("excludeUserId", &local_var_str.to_string())]);

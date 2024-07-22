@@ -358,7 +358,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_worlds
 
-> Vec<models::LimitedWorld> search_worlds(featured, sort, user, user_id, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform)
+> Vec<models::LimitedWorld> search_worlds(featured, sort, user, user_id, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, fuzzy)
 Search All Worlds
 
 Search and list any worlds by query filters.
@@ -382,6 +382,7 @@ Name | Type | Description  | Required | Notes
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
+**fuzzy** | Option<**bool**> |  |  |
 
 ### Return type
 

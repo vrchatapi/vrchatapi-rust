@@ -48,6 +48,7 @@ pub enum DeleteFileVersionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DownloadFileVersionError {
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -148,7 +149,7 @@ pub async fn create_file_version(configuration: &configuration::Configuration, f
 }
 
 /// Deletes a File object.
-pub async fn delete_file(configuration: &configuration::Configuration, file_id: &str) -> Result<models::Success, Error<DeleteFileError>> {
+pub async fn delete_file(configuration: &configuration::Configuration, file_id: &str) -> Result<models::File, Error<DeleteFileError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

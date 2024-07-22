@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **tier** | **f64** |  | 
 **active** | **bool** |  | [default to true]
 **status** | [**models::TransactionStatus**](TransactionStatus.md) |  | 
+**starts** | Option<**String**> |  | [optional]
 **expires** | **String** |  | 
 **created_at** | **String** |  | 
 **updated_at** | **String** |  | 

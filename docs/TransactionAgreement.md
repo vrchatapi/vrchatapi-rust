@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **agreement_id** | **String** |  | 
 **item_id** | **f64** |  | 
+**agreement** | **String** |  | 
 **status** | **String** | This is NOT TransactionStatus, but whatever Steam return. | 
 **period** | **String** |  | 
 **frequency** | **f64** |  | 

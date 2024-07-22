@@ -80,7 +80,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_file
 
-> models::Success delete_file(file_id)
+> models::File delete_file(file_id)
 Delete File
 
 Deletes a File object.
@@ -94,7 +94,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::Success**](Success.md)
+[**models::File**](File.md)
 
 ### Authorization
 
@@ -165,7 +165,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

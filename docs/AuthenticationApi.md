@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## check_user_exists
 
-> models::UserExists check_user_exists(email, display_name, user_id, exclude_user_id)
+> models::UserExists check_user_exists(email, display_name, username, exclude_user_id)
 Check User Exists
 
 Checks if a user by a given `username`, `displayName` or `email` exist. This is used during registration to check if a username has already been taken, during change of displayName to check if a displayName is available, and during change of email to check if the email is already used. In the later two cases the `excludeUserId` is used to exclude oneself, otherwise the result would always be true.  It is **REQUIRED** to include **AT LEAST** `username`, `displayName` **or** `email` query parameter. Although they can be combined - in addition with `excludeUserId` (generally to exclude yourself) - to further fine-tune the search.
@@ -29,7 +29,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **email** | Option<**String**> | Filter by email. |  |
 **display_name** | Option<**String**> | Filter by displayName. |  |
-**user_id** | Option<**String**> | Filter by UserID. |  |
+**username** | Option<**String**> | Filter by Username. |  |
 **exclude_user_id** | Option<**String**> | Exclude by UserID. |  |
 
 ### Return type

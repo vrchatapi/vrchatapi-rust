@@ -16,8 +16,8 @@ pub struct FileData {
     pub category: Category,
     #[serde(rename = "fileName")]
     pub file_name: String,
-    #[serde(rename = "md5")]
-    pub md5: String,
+    #[serde(rename = "md5", skip_serializing_if = "Option::is_none")]
+    pub md5: Option<String>,
     #[serde(rename = "sizeInBytes")]
     pub size_in_bytes: i32,
     #[serde(rename = "status")]
@@ -29,11 +29,11 @@ pub struct FileData {
 }
 
 impl FileData {
-    pub fn new(category: Category, file_name: String, md5: String, size_in_bytes: i32, status: models::FileStatus, upload_id: String, url: String) -> FileData {
+    pub fn new(category: Category, file_name: String, size_in_bytes: i32, status: models::FileStatus, upload_id: String, url: String) -> FileData {
         FileData {
             category,
             file_name,
-            md5,
+            md5: None,
             size_in_bytes,
             status,
             upload_id,

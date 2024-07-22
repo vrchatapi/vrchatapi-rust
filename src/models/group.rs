@@ -50,10 +50,17 @@ pub struct Group {
     pub join_state: Option<models::GroupJoinState>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
+    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+    #[serde(rename = "transferTargetId", skip_serializing_if = "Option::is_none")]
+    pub transfer_target_id: Option<String>,
     #[serde(rename = "galleries", skip_serializing_if = "Option::is_none")]
     pub galleries: Option<Vec<models::GroupGallery>>,
     #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<String>,
+    #[serde(rename = "updatedAt", skip_serializing_if = "Option::is_none")]
+    pub updated_at: Option<String>,
+    #[serde(rename = "lastPostCreatedAt", skip_serializing_if = "Option::is_none")]
+    pub last_post_created_at: Option<String>,
     #[serde(rename = "onlineMemberCount", skip_serializing_if = "Option::is_none")]
     pub online_member_count: Option<i32>,
     #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
@@ -87,8 +94,11 @@ impl Group {
             is_verified: None,
             join_state: None,
             tags: None,
+            transfer_target_id: None,
             galleries: None,
             created_at: None,
+            updated_at: None,
+            last_post_created_at: None,
             online_member_count: None,
             membership_status: None,
             my_member: None,
