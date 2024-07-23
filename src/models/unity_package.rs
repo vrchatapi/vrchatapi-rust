@@ -9,12 +9,17 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// UnityPackage : 
+/// UnityPackage :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UnityPackage {
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "assetUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "assetUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub asset_url: Option<Option<String>>,
     #[serde(rename = "assetUrlObject", skip_serializing_if = "Option::is_none")]
     pub asset_url_object: Option<serde_json::Value>,
@@ -33,7 +38,12 @@ pub struct UnityPackage {
     pub unity_sort_number: Option<i64>,
     #[serde(rename = "unityVersion")]
     pub unity_version: String,
-    #[serde(rename = "impostorUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "impostorUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub impostor_url: Option<Option<String>>,
     #[serde(rename = "scanStatus", skip_serializing_if = "Option::is_none")]
     pub scan_status: Option<String>,
@@ -42,7 +52,12 @@ pub struct UnityPackage {
 }
 
 impl UnityPackage {
-    pub fn new(id: String, asset_version: i32, platform: String, unity_version: String) -> UnityPackage {
+    pub fn new(
+        id: String,
+        asset_version: i32,
+        platform: String,
+        unity_version: String,
+    ) -> UnityPackage {
         UnityPackage {
             id,
             asset_url: None,
@@ -60,4 +75,3 @@ impl UnityPackage {
         }
     }
 }
-

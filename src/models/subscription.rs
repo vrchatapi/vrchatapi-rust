@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Subscription : 
+/// Subscription :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Subscription {
     #[serde(rename = "id")]
@@ -35,7 +35,14 @@ pub struct Subscription {
 }
 
 impl Subscription {
-    pub fn new(id: String, steam_item_id: String, amount: f64, description: String, period: models::SubscriptionPeriod, tier: f64) -> Subscription {
+    pub fn new(
+        id: String,
+        steam_item_id: String,
+        amount: f64,
+        description: String,
+        period: models::SubscriptionPeriod,
+        tier: f64,
+    ) -> Subscription {
         Subscription {
             id,
             steam_item_id,
@@ -50,4 +57,3 @@ impl Subscription {
         }
     }
 }
-

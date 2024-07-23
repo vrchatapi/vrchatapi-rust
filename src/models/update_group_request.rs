@@ -19,9 +19,19 @@ pub struct UpdateGroupRequest {
     pub description: Option<String>,
     #[serde(rename = "joinState", skip_serializing_if = "Option::is_none")]
     pub join_state: Option<models::GroupJoinState>,
-    #[serde(rename = "iconId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "iconId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub icon_id: Option<Option<String>>,
-    #[serde(rename = "bannerId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "bannerId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub banner_id: Option<Option<String>>,
     /// 3 letter language code
     #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
@@ -50,4 +60,3 @@ impl UpdateGroupRequest {
         }
     }
 }
-

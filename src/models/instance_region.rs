@@ -21,7 +21,6 @@ pub enum InstanceRegion {
     Eu,
     #[serde(rename = "jp")]
     Jp,
-
 }
 
 impl std::fmt::Display for InstanceRegion {
@@ -40,4 +39,3 @@ impl Default for InstanceRegion {
         Self::Us
     }
 }
-

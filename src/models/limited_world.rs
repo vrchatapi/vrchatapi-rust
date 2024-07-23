@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// LimitedWorld : 
+/// LimitedWorld :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedWorld {
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
@@ -19,7 +19,10 @@ pub struct LimitedWorld {
     pub author_name: String,
     #[serde(rename = "capacity")]
     pub capacity: i32,
-    #[serde(rename = "recommendedCapacity", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "recommendedCapacity",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub recommended_capacity: Option<i32>,
     #[serde(rename = "created_at")]
     pub created_at: String,
@@ -44,7 +47,12 @@ pub struct LimitedWorld {
     pub organization: String,
     #[serde(rename = "popularity")]
     pub popularity: i32,
-    #[serde(rename = "previewYoutubeId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "previewYoutubeId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub preview_youtube_id: Option<Option<String>>,
     #[serde(rename = "publicationDate")]
     pub publication_date: String,
@@ -63,7 +71,27 @@ pub struct LimitedWorld {
 }
 
 impl LimitedWorld {
-    pub fn new(author_id: String, author_name: String, capacity: i32, created_at: String, favorites: i32, heat: i32, id: String, image_url: String, labs_publication_date: String, name: String, occupants: i32, organization: String, popularity: i32, publication_date: String, release_status: models::ReleaseStatus, tags: Vec<String>, thumbnail_image_url: String, unity_packages: Vec<models::LimitedUnityPackage>, updated_at: String) -> LimitedWorld {
+    pub fn new(
+        author_id: String,
+        author_name: String,
+        capacity: i32,
+        created_at: String,
+        favorites: i32,
+        heat: i32,
+        id: String,
+        image_url: String,
+        labs_publication_date: String,
+        name: String,
+        occupants: i32,
+        organization: String,
+        popularity: i32,
+        publication_date: String,
+        release_status: models::ReleaseStatus,
+        tags: Vec<String>,
+        thumbnail_image_url: String,
+        unity_packages: Vec<models::LimitedUnityPackage>,
+        updated_at: String,
+    ) -> LimitedWorld {
         LimitedWorld {
             author_id,
             author_name,
@@ -91,4 +119,3 @@ impl LimitedWorld {
         }
     }
 }
-

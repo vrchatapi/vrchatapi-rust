@@ -19,7 +19,12 @@ pub struct CreateInstanceRequest {
     #[serde(rename = "region")]
     pub region: models::InstanceRegion,
     /// A groupId if the instance type is \"group\", null if instance type is public, or a userId otherwise
-    #[serde(rename = "ownerId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "ownerId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub owner_id: Option<Option<String>>,
     /// Group roleIds that are allowed to join if the type is \"group\" and groupAccessType is \"member\"
     #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
@@ -42,7 +47,11 @@ pub struct CreateInstanceRequest {
 }
 
 impl CreateInstanceRequest {
-    pub fn new(world_id: String, r#type: models::InstanceType, region: models::InstanceRegion) -> CreateInstanceRequest {
+    pub fn new(
+        world_id: String,
+        r#type: models::InstanceType,
+        region: models::InstanceRegion,
+    ) -> CreateInstanceRequest {
         CreateInstanceRequest {
             world_id,
             r#type,
@@ -58,4 +67,3 @@ impl CreateInstanceRequest {
         }
     }
 }
-

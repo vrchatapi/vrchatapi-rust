@@ -17,9 +17,6 @@ pub struct WorldPublishStatus {
 
 impl WorldPublishStatus {
     pub fn new(can_publish: bool) -> WorldPublishStatus {
-        WorldPublishStatus {
-            can_publish,
-        }
+        WorldPublishStatus { can_publish }
     }
 }
-

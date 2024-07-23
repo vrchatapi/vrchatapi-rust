@@ -17,9 +17,6 @@ pub struct AddGroupGalleryImageRequest {
 
 impl AddGroupGalleryImageRequest {
     pub fn new(file_id: String) -> AddGroupGalleryImageRequest {
-        AddGroupGalleryImageRequest {
-            file_id,
-        }
+        AddGroupGalleryImageRequest { file_id }
     }
 }
-
