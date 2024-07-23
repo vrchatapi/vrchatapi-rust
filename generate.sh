@@ -1,17 +1,29 @@
 #!/usr/bin/env bash
+set -eux -o pipefail
 
-# Generate Client
+# clean up old files
 rm src/apis src/models docs -rf
 
+# Download OpenAPI spec
+wget https://raw.githubusercontent.com/vrchatapi/specification/gh-pages/openapi.yaml -O openapi.yaml
+
+# patch openapi.yaml
+for p in patches/*.patch; do
+    patch -p1 openapi.yaml $p
+done
+
+# Generate client
 ./node_modules/\@openapitools/openapi-generator-cli/main.js generate \
 -g rust \
---additional-properties=packageName=vrchatapi,supportAsync=true \
+--additional-properties=packageName=vrchatapi,supportAsync=true,avoidBoxedModels=true \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
--i https://raw.githubusercontent.com/vrchatapi/specification/gh-pages/openapi.yaml \
+-i openapi.yaml \
 --http-user-agent="vrchatapi-rust"
-#--global-property debugOperations=true
+
+# Remove openapi.yaml
+rm openapi.yaml
 
 # Update entire description (replace entire line, match the random data there) line in Cargo.toml
 sed -i 's/^description = ".*"/description = "VRChat API Client for Rust"/' Cargo.toml
@@ -24,16 +36,13 @@ find src -type f -exec sed -i '/The version of the OpenAPI document/d' {} \;
 find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
 
 # Cookie storage
-sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
+sed -i 's/Client::new()/Client::builder().cookie_store(true).build().expect("Failed to build client")/g' src/apis/configuration.rs
 sed -i 's/features = \["json", "multipart"\]/features = \["json", "cookies", "multipart"\]/g' Cargo.toml
 
-#Fix example
+# Fix example
 printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
 
-# https://github.com/vrchatapi/specification/issues/241
-cat patches/2FA_Current_User.rs >> src/models/current_user.rs
-sed -i 's/pub use self::current_user::CurrentUser;/pub use self::current_user::{EitherUserOrTwoFactor, CurrentUser};/g' src/models/mod.rs
-sed -i 's/Result<models::CurrentUser, Error<GetCurrentUserError>>/Result<models::EitherUserOrTwoFactor, Error<GetCurrentUserError>>/g' src/apis/authentication_api.rs
-
+# Format and test
 cargo build
+cargo fmt
 cargo test

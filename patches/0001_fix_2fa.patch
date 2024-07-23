@@ -1,0 +1,36 @@
+diff --git a/openapi.yaml b/openapi_2fa.yaml
+https://github.com/vrchatapi/specification/issues/241
+--- a/openapi.yaml
++++ b/openapi_2fa.yaml
+@@ -3997,6 +3997,20 @@ components:
+         - friendKey
+       title: CurrentUser
+       type: object
++    TwoFactorRequired:
++      title: TwoFactorRequired
++      type: object
++      properties:
++        requiresTwoFactorAuth:
++          type: array
++          items:
++            type: string
++            enum:
++              - totp
++              - otp
++              - emailOtp
++      required:
++        - requiresTwoFactorAuth
+     TwoFactorAuthCode:
+       title: TwoFactorAuthCode
+       type: object
+@@ -8139,7 +8153,9 @@ components:
+       content:
+         application/json:
+           schema:
+-            $ref: '#/components/schemas/CurrentUser'
++            oneOf:
++              - $ref: '#/components/schemas/CurrentUser'
++              - $ref: '#/components/schemas/TwoFactorRequired'
+       headers:
+         Set-Cookie:
+           schema:
