@@ -39,6 +39,7 @@ pub enum MimeType {
     ApplicationSlashXRsyncDelta,
     #[serde(rename = "application/octet-stream")]
     ApplicationSlashOctetStream,
+
 }
 
 impl std::fmt::Display for MimeType {
@@ -67,3 +68,4 @@ impl Default for MimeType {
         Self::ImageSlashJpeg
     }
 }
+

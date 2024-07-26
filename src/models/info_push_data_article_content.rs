@@ -16,7 +16,7 @@ pub struct InfoPushDataArticleContent {
     #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
     pub image_url: Option<String>,
     #[serde(rename = "onPressed", skip_serializing_if = "Option::is_none")]
-    pub on_pressed: Option<models::InfoPushDataClickable>,
+    pub on_pressed: Option<Box<models::InfoPushDataClickable>>,
 }
 
 impl InfoPushDataArticleContent {
@@ -28,3 +28,4 @@ impl InfoPushDataArticleContent {
         }
     }
 }
+

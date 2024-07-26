@@ -47,6 +47,7 @@ pub enum SortOption {
     Magic,
     #[serde(rename = "name")]
     Name,
+
 }
 
 impl std::fmt::Display for SortOption {
@@ -79,3 +80,4 @@ impl Default for SortOption {
         Self::Popularity
     }
 }
+

@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// InviteMessage :
+/// InviteMessage : 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InviteMessage {
     #[serde(rename = "canBeUpdated")]
@@ -30,15 +30,7 @@ pub struct InviteMessage {
 }
 
 impl InviteMessage {
-    pub fn new(
-        can_be_updated: bool,
-        id: String,
-        message: String,
-        message_type: models::InviteMessageType,
-        remaining_cooldown_minutes: i32,
-        slot: i32,
-        updated_at: String,
-    ) -> InviteMessage {
+    pub fn new(can_be_updated: bool, id: String, message: String, message_type: models::InviteMessageType, remaining_cooldown_minutes: i32, slot: i32, updated_at: String) -> InviteMessage {
         InviteMessage {
             can_be_updated,
             id,
@@ -50,3 +42,4 @@ impl InviteMessage {
         }
     }
 }
+

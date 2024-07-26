@@ -15,6 +15,7 @@ pub enum GroupPrivacy {
     Default,
     #[serde(rename = "private")]
     Private,
+
 }
 
 impl std::fmt::Display for GroupPrivacy {
@@ -31,3 +32,4 @@ impl Default for GroupPrivacy {
         Self::Default
     }
 }
+

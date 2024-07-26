@@ -12,8 +12,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCurrentUser200Response {
-    CurrentUser(models::CurrentUser),
-    TwoFactorRequired(models::TwoFactorRequired),
+    CurrentUser(Box<models::CurrentUser>),
+    TwoFactorRequired(Box<models::TwoFactorRequired>),
 }
 
 impl Default for GetCurrentUser200Response {
@@ -36,3 +36,4 @@ impl Default for RequiresTwoFactorAuth {
         Self::Totp
     }
 }
+

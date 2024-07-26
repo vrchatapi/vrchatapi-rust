@@ -19,6 +19,7 @@ pub enum LicenseType {
     Permission,
     #[serde(rename = "product")]
     Product,
+
 }
 
 impl std::fmt::Display for LicenseType {
@@ -37,3 +38,4 @@ impl Default for LicenseType {
         Self::Avatar
     }
 }
+

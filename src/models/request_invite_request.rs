@@ -17,6 +17,9 @@ pub struct RequestInviteRequest {
 
 impl RequestInviteRequest {
     pub fn new() -> RequestInviteRequest {
-        RequestInviteRequest { message_slot: None }
+        RequestInviteRequest {
+            message_slot: None,
+        }
     }
 }
+

@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FavoriteGroup :
+/// FavoriteGroup : 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FavoriteGroup {
     #[serde(rename = "displayName")]
@@ -32,16 +32,7 @@ pub struct FavoriteGroup {
 }
 
 impl FavoriteGroup {
-    pub fn new(
-        display_name: String,
-        id: String,
-        name: String,
-        owner_display_name: String,
-        owner_id: String,
-        tags: Vec<String>,
-        r#type: models::FavoriteType,
-        visibility: models::FavoriteGroupVisibility,
-    ) -> FavoriteGroup {
+    pub fn new(display_name: String, id: String, name: String, owner_display_name: String, owner_id: String, tags: Vec<String>, r#type: models::FavoriteType, visibility: models::FavoriteGroupVisibility) -> FavoriteGroup {
         FavoriteGroup {
             display_name,
             id,
@@ -54,3 +45,4 @@ impl FavoriteGroup {
         }
     }
 }
+

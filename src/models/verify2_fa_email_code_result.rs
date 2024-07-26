@@ -17,6 +17,9 @@ pub struct Verify2FaEmailCodeResult {
 
 impl Verify2FaEmailCodeResult {
     pub fn new(verified: bool) -> Verify2FaEmailCodeResult {
-        Verify2FaEmailCodeResult { verified }
+        Verify2FaEmailCodeResult {
+            verified,
+        }
     }
 }
+

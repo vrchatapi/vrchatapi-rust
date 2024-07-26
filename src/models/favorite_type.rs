@@ -17,6 +17,7 @@ pub enum FavoriteType {
     Friend,
     #[serde(rename = "avatar")]
     Avatar,
+
 }
 
 impl std::fmt::Display for FavoriteType {
@@ -34,3 +35,4 @@ impl Default for FavoriteType {
         Self::World
     }
 }
+

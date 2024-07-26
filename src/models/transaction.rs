@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Transaction :
+/// Transaction : 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Transaction {
     #[serde(rename = "id")]
@@ -22,7 +22,7 @@ pub struct Transaction {
     #[serde(rename = "status")]
     pub status: models::TransactionStatus,
     #[serde(rename = "subscription")]
-    pub subscription: models::Subscription,
+    pub subscription: Box<models::Subscription>,
     #[serde(rename = "sandbox")]
     pub sandbox: bool,
     #[serde(rename = "created_at")]
@@ -30,9 +30,9 @@ pub struct Transaction {
     #[serde(rename = "updated_at")]
     pub updated_at: String,
     #[serde(rename = "steam", skip_serializing_if = "Option::is_none")]
-    pub steam: Option<models::TransactionSteamInfo>,
+    pub steam: Option<Box<models::TransactionSteamInfo>>,
     #[serde(rename = "agreement", skip_serializing_if = "Option::is_none")]
-    pub agreement: Option<models::TransactionAgreement>,
+    pub agreement: Option<Box<models::TransactionAgreement>>,
     #[serde(rename = "error")]
     pub error: String,
     #[serde(rename = "isGift", skip_serializing_if = "Option::is_none")]
@@ -42,21 +42,13 @@ pub struct Transaction {
 }
 
 impl Transaction {
-    pub fn new(
-        id: String,
-        status: models::TransactionStatus,
-        subscription: models::Subscription,
-        sandbox: bool,
-        created_at: String,
-        updated_at: String,
-        error: String,
-    ) -> Transaction {
+    pub fn new(id: String, status: models::TransactionStatus, subscription: models::Subscription, sandbox: bool, created_at: String, updated_at: String, error: String) -> Transaction {
         Transaction {
             id,
             user_id: None,
             user_display_name: None,
             status,
-            subscription,
+            subscription: Box::new(subscription),
             sandbox,
             created_at,
             updated_at,
@@ -68,3 +60,4 @@ impl Transaction {
         }
     }
 }
+

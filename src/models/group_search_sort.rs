@@ -15,6 +15,7 @@ pub enum GroupSearchSort {
     Asc,
     #[serde(rename = "joinedAt:desc")]
     Desc,
+
 }
 
 impl std::fmt::Display for GroupSearchSort {
@@ -31,3 +32,4 @@ impl Default for GroupSearchSort {
         Self::Asc
     }
 }
+

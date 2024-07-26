@@ -19,6 +19,7 @@ pub enum TransactionStatus {
     Expired,
     #[serde(rename = "chargeback")]
     Chargeback,
+
 }
 
 impl std::fmt::Display for TransactionStatus {
@@ -37,3 +38,4 @@ impl Default for TransactionStatus {
         Self::Active
     }
 }
+

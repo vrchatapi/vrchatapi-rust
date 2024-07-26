@@ -31,13 +31,7 @@ pub struct ApiConfigDownloadUrlList {
 
 impl ApiConfigDownloadUrlList {
     /// Download links for various development assets.
-    pub fn new(
-        sdk2: String,
-        sdk3_avatars: String,
-        sdk3_worlds: String,
-        vcc: String,
-        bootstrap: String,
-    ) -> ApiConfigDownloadUrlList {
+    pub fn new(sdk2: String, sdk3_avatars: String, sdk3_worlds: String, vcc: String, bootstrap: String) -> ApiConfigDownloadUrlList {
         ApiConfigDownloadUrlList {
             sdk2,
             sdk3_avatars,
@@ -47,3 +41,4 @@ impl ApiConfigDownloadUrlList {
         }
     }
 }
+

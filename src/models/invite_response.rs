@@ -17,6 +17,9 @@ pub struct InviteResponse {
 
 impl InviteResponse {
     pub fn new(response_slot: i32) -> InviteResponse {
-        InviteResponse { response_slot }
+        InviteResponse {
+            response_slot,
+        }
     }
 }
+

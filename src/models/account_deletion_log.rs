@@ -15,12 +15,7 @@ pub struct AccountDeletionLog {
     #[serde(rename = "message", skip_serializing_if = "Option::is_none")]
     pub message: Option<String>,
     /// When the deletion is scheduled to happen, standard is 14 days after the request.
-    #[serde(
-        rename = "deletionScheduled",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
+    #[serde(rename = "deletionScheduled", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub deletion_scheduled: Option<Option<String>>,
     /// Date and time of the deletion request.
     #[serde(rename = "dateTime", skip_serializing_if = "Option::is_none")]
@@ -36,3 +31,4 @@ impl AccountDeletionLog {
         }
     }
 }
+

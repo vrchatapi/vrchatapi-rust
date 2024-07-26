@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// File :
+/// File : 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct File {
     #[serde(rename = "extension")]
@@ -30,15 +30,7 @@ pub struct File {
 }
 
 impl File {
-    pub fn new(
-        extension: String,
-        id: String,
-        mime_type: models::MimeType,
-        name: String,
-        owner_id: String,
-        tags: Vec<String>,
-        versions: Vec<models::FileVersion>,
-    ) -> File {
+    pub fn new(extension: String, id: String, mime_type: models::MimeType, name: String, owner_id: String, tags: Vec<String>, versions: Vec<models::FileVersion>) -> File {
         File {
             extension,
             id,
@@ -50,3 +42,4 @@ impl File {
         }
     }
 }
+

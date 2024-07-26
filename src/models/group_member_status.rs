@@ -23,6 +23,7 @@ pub enum GroupMemberStatus {
     Banned,
     #[serde(rename = "userblocked")]
     Userblocked,
+
 }
 
 impl std::fmt::Display for GroupMemberStatus {
@@ -43,3 +44,4 @@ impl Default for GroupMemberStatus {
         Self::Inactive
     }
 }
+

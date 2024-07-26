@@ -21,6 +21,7 @@ pub enum SubscriptionPeriod {
     Month,
     #[serde(rename = "year")]
     Year,
+
 }
 
 impl std::fmt::Display for SubscriptionPeriod {
@@ -40,3 +41,4 @@ impl Default for SubscriptionPeriod {
         Self::Hour
     }
 }
+

@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Avatar :
+/// Avatar : 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Avatar {
     /// Not present from general serach `/avatars`, only on specific requests `/avatars/{avatarId}`.
@@ -44,7 +44,7 @@ pub struct Avatar {
     #[serde(rename = "unityPackageUrl")]
     pub unity_package_url: String,
     #[serde(rename = "unityPackageUrlObject")]
-    pub unity_package_url_object: models::AvatarUnityPackageUrlObject,
+    pub unity_package_url_object: Box<models::AvatarUnityPackageUrlObject>,
     #[serde(rename = "unityPackages")]
     pub unity_packages: Vec<models::UnityPackage>,
     #[serde(rename = "updated_at")]
@@ -54,24 +54,7 @@ pub struct Avatar {
 }
 
 impl Avatar {
-    pub fn new(
-        author_id: String,
-        author_name: String,
-        created_at: String,
-        description: String,
-        featured: bool,
-        id: String,
-        image_url: String,
-        name: String,
-        release_status: models::ReleaseStatus,
-        tags: Vec<String>,
-        thumbnail_image_url: String,
-        unity_package_url: String,
-        unity_package_url_object: models::AvatarUnityPackageUrlObject,
-        unity_packages: Vec<models::UnityPackage>,
-        updated_at: String,
-        version: i32,
-    ) -> Avatar {
+    pub fn new(author_id: String, author_name: String, created_at: String, description: String, featured: bool, id: String, image_url: String, name: String, release_status: models::ReleaseStatus, tags: Vec<String>, thumbnail_image_url: String, unity_package_url: String, unity_package_url_object: models::AvatarUnityPackageUrlObject, unity_packages: Vec<models::UnityPackage>, updated_at: String, version: i32) -> Avatar {
         Avatar {
             asset_url: None,
             asset_url_object: None,
@@ -87,10 +70,11 @@ impl Avatar {
             tags,
             thumbnail_image_url,
             unity_package_url,
-            unity_package_url_object,
+            unity_package_url_object: Box::new(unity_package_url_object),
             unity_packages,
             updated_at,
             version,
         }
     }
 }
+

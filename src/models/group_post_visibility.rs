@@ -15,6 +15,7 @@ pub enum GroupPostVisibility {
     Group,
     #[serde(rename = "public")]
     Public,
+
 }
 
 impl std::fmt::Display for GroupPostVisibility {
@@ -31,3 +32,4 @@ impl Default for GroupPostVisibility {
         Self::Group
     }
 }
+

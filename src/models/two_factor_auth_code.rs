@@ -17,6 +17,9 @@ pub struct TwoFactorAuthCode {
 
 impl TwoFactorAuthCode {
     pub fn new(code: String) -> TwoFactorAuthCode {
-        TwoFactorAuthCode { code }
+        TwoFactorAuthCode {
+            code,
+        }
     }
 }
+

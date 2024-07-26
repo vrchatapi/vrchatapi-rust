@@ -17,6 +17,9 @@ pub struct Verify2FaResult {
 
 impl Verify2FaResult {
     pub fn new(verified: bool) -> Verify2FaResult {
-        Verify2FaResult { verified }
+        Verify2FaResult {
+            verified,
+        }
     }
 }
+

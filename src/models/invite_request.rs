@@ -26,3 +26,4 @@ impl InviteRequest {
         }
     }
 }
+

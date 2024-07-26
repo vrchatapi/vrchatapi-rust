@@ -37,3 +37,4 @@ impl Default for RequiresTwoFactorAuth {
         Self::Totp
     }
 }
+

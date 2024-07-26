@@ -23,6 +23,10 @@ pub struct ApiConfigAnnouncement {
 impl ApiConfigAnnouncement {
     /// Public Announcement
     pub fn new(name: String, text: String) -> ApiConfigAnnouncement {
-        ApiConfigAnnouncement { name, text }
+        ApiConfigAnnouncement {
+            name,
+            text,
+        }
     }
 }
+

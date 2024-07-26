@@ -21,6 +21,7 @@ pub enum DeploymentGroup {
     Grape,
     #[serde(rename = "cherry")]
     Cherry,
+
 }
 
 impl std::fmt::Display for DeploymentGroup {
@@ -39,3 +40,4 @@ impl Default for DeploymentGroup {
         Self::Blue
     }
 }
+

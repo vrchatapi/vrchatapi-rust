@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Permission :
+/// Permission : 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Permission {
     #[serde(rename = "id")]
@@ -26,12 +26,7 @@ pub struct Permission {
 }
 
 impl Permission {
-    pub fn new(
-        id: String,
-        owner_display_name: String,
-        name: String,
-        owner_id: String,
-    ) -> Permission {
+    pub fn new(id: String, owner_display_name: String, name: String, owner_id: String) -> Permission {
         Permission {
             id,
             owner_display_name,
@@ -41,3 +36,4 @@ impl Permission {
         }
     }
 }
+

@@ -20,6 +20,10 @@ pub struct ModerateUserRequest {
 
 impl ModerateUserRequest {
     pub fn new(moderated: String, r#type: models::PlayerModerationType) -> ModerateUserRequest {
-        ModerateUserRequest { moderated, r#type }
+        ModerateUserRequest {
+            moderated,
+            r#type,
+        }
     }
 }
+

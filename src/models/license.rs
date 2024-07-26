@@ -23,12 +23,7 @@ pub struct License {
 }
 
 impl License {
-    pub fn new(
-        for_id: String,
-        for_type: models::LicenseType,
-        for_name: String,
-        for_action: models::LicenseAction,
-    ) -> License {
+    pub fn new(for_id: String, for_type: models::LicenseType, for_name: String, for_action: models::LicenseAction) -> License {
         License {
             for_id,
             for_type,
@@ -37,3 +32,4 @@ impl License {
         }
     }
 }
+

@@ -19,6 +19,7 @@ pub enum GroupJoinState {
     Request,
     #[serde(rename = "open")]
     Open,
+
 }
 
 impl std::fmt::Display for GroupJoinState {
@@ -37,3 +38,4 @@ impl Default for GroupJoinState {
         Self::Closed
     }
 }
+

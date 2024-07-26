@@ -15,6 +15,7 @@ pub enum GroupJoinRequestAction {
     Accept,
     #[serde(rename = "reject")]
     Reject,
+
 }
 
 impl std::fmt::Display for GroupJoinRequestAction {
@@ -31,3 +32,4 @@ impl Default for GroupJoinRequestAction {
         Self::Accept
     }
 }
+

@@ -25,6 +25,7 @@ pub enum NotificationType {
     RequestInviteResponse,
     #[serde(rename = "votetokick")]
     Votetokick,
+
 }
 
 impl std::fmt::Display for NotificationType {
@@ -46,3 +47,4 @@ impl Default for NotificationType {
         Self::FriendRequest
     }
 }
+

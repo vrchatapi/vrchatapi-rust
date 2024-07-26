@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FileVersionUploadStatus :
+/// FileVersionUploadStatus : 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileVersionUploadStatus {
     #[serde(rename = "uploadId")]
@@ -28,14 +28,7 @@ pub struct FileVersionUploadStatus {
 }
 
 impl FileVersionUploadStatus {
-    pub fn new(
-        upload_id: String,
-        file_name: String,
-        next_part_number: f64,
-        max_parts: f64,
-        parts: Vec<serde_json::Value>,
-        etags: Vec<serde_json::Value>,
-    ) -> FileVersionUploadStatus {
+    pub fn new(upload_id: String, file_name: String, next_part_number: f64, max_parts: f64, parts: Vec<serde_json::Value>, etags: Vec<serde_json::Value>) -> FileVersionUploadStatus {
         FileVersionUploadStatus {
             upload_id,
             file_name,
@@ -46,3 +39,4 @@ impl FileVersionUploadStatus {
         }
     }
 }
+

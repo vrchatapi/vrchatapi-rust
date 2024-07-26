@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// SentNotification :
+/// SentNotification : 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SentNotification {
     #[serde(rename = "created_at")]
@@ -34,15 +34,7 @@ pub struct SentNotification {
 }
 
 impl SentNotification {
-    pub fn new(
-        created_at: String,
-        details: serde_json::Value,
-        id: String,
-        message: String,
-        receiver_user_id: String,
-        sender_user_id: String,
-        r#type: models::NotificationType,
-    ) -> SentNotification {
+    pub fn new(created_at: String, details: serde_json::Value, id: String, message: String, receiver_user_id: String, sender_user_id: String, r#type: models::NotificationType) -> SentNotification {
         SentNotification {
             created_at,
             details,
@@ -55,3 +47,4 @@ impl SentNotification {
         }
     }
 }
+

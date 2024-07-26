@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// InviteMessageType :
+/// InviteMessageType : 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum InviteMessageType {
     #[serde(rename = "message")]
@@ -20,6 +20,7 @@ pub enum InviteMessageType {
     Request,
     #[serde(rename = "requestResponse")]
     RequestResponse,
+
 }
 
 impl std::fmt::Display for InviteMessageType {
@@ -38,3 +39,4 @@ impl Default for InviteMessageType {
         Self::Message
     }
 }
+

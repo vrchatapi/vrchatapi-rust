@@ -23,6 +23,7 @@ pub enum PlayerModerationType {
     InteractOn,
     #[serde(rename = "interactOff")]
     InteractOff,
+
 }
 
 impl std::fmt::Display for PlayerModerationType {
@@ -43,3 +44,4 @@ impl Default for PlayerModerationType {
         Self::Mute
     }
 }
+

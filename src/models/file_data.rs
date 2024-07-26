@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FileData :
+/// FileData : 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileData {
     #[serde(rename = "category")]
@@ -29,14 +29,7 @@ pub struct FileData {
 }
 
 impl FileData {
-    pub fn new(
-        category: Category,
-        file_name: String,
-        size_in_bytes: i32,
-        status: models::FileStatus,
-        upload_id: String,
-        url: String,
-    ) -> FileData {
+    pub fn new(category: Category, file_name: String, size_in_bytes: i32, status: models::FileStatus, upload_id: String, url: String) -> FileData {
         FileData {
             category,
             file_name,
@@ -63,3 +56,4 @@ impl Default for Category {
         Self::Multipart
     }
 }
+

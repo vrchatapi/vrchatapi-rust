@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FileVersion :
+/// FileVersion : 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileVersion {
     #[serde(rename = "created_at")]
@@ -18,11 +18,11 @@ pub struct FileVersion {
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<bool>,
     #[serde(rename = "delta", skip_serializing_if = "Option::is_none")]
-    pub delta: Option<models::FileData>,
+    pub delta: Option<Box<models::FileData>>,
     #[serde(rename = "file", skip_serializing_if = "Option::is_none")]
-    pub file: Option<models::FileData>,
+    pub file: Option<Box<models::FileData>>,
     #[serde(rename = "signature", skip_serializing_if = "Option::is_none")]
-    pub signature: Option<models::FileData>,
+    pub signature: Option<Box<models::FileData>>,
     #[serde(rename = "status")]
     pub status: models::FileStatus,
     /// Incremental version counter, can only be increased.
@@ -43,3 +43,4 @@ impl FileVersion {
         }
     }
 }
+

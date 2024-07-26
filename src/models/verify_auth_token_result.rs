@@ -19,6 +19,10 @@ pub struct VerifyAuthTokenResult {
 
 impl VerifyAuthTokenResult {
     pub fn new(ok: bool, token: String) -> VerifyAuthTokenResult {
-        VerifyAuthTokenResult { ok, token }
+        VerifyAuthTokenResult {
+            ok,
+            token,
+        }
     }
 }
+
