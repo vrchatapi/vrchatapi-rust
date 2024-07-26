@@ -15,7 +15,7 @@ done
 # Generate client
 ./node_modules/\@openapitools/openapi-generator-cli/main.js generate \
 -g rust \
---additional-properties=packageName=vrchatapi,supportAsync=true,avoidBoxedModels=true \
+--additional-properties=packageName=vrchatapi,supportAsync=true \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
@@ -36,7 +36,7 @@ find src -type f -exec sed -i '/The version of the OpenAPI document/d' {} \;
 find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
 
 # Cookie storage
-sed -i 's/Client::new()/Client::builder().cookie_store(true).build().expect("Failed to build client")/g' src/apis/configuration.rs
+sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
 sed -i 's/features = \["json", "multipart"\]/features = \["json", "cookies", "multipart"\]/g' Cargo.toml
 
 # Fix example
@@ -44,5 +44,4 @@ printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt
 
 # Format and test
 cargo build
-cargo fmt
 cargo test
