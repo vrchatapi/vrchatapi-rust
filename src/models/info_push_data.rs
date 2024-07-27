@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InfoPushData {
     #[serde(rename = "contentList", skip_serializing_if = "Option::is_none")]
-    pub content_list: Option<Box<models::DynamicContentRow>>,
+    pub content_list: Option<models::DynamicContentRow>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
@@ -21,13 +21,13 @@ pub struct InfoPushData {
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "onPressed", skip_serializing_if = "Option::is_none")]
-    pub on_pressed: Option<Box<models::InfoPushDataClickable>>,
+    pub on_pressed: Option<models::InfoPushDataClickable>,
     #[serde(rename = "template", skip_serializing_if = "Option::is_none")]
     pub template: Option<String>,
     #[serde(rename = "version", skip_serializing_if = "Option::is_none")]
     pub version: Option<String>,
     #[serde(rename = "article", skip_serializing_if = "Option::is_none")]
-    pub article: Option<Box<models::InfoPushDataArticle>>,
+    pub article: Option<models::InfoPushDataArticle>,
 }
 
 impl InfoPushData {

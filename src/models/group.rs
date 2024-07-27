@@ -66,7 +66,7 @@ pub struct Group {
     #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
     pub membership_status: Option<models::GroupMemberStatus>,
     #[serde(rename = "myMember", skip_serializing_if = "Option::is_none")]
-    pub my_member: Option<Box<models::GroupMyMember>>,
+    pub my_member: Option<models::GroupMyMember>,
     /// Only returned if ?includeRoles=true is specified.
     #[serde(rename = "roles", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub roles: Option<Option<Vec<models::GroupRole>>>,

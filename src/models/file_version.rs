@@ -18,11 +18,11 @@ pub struct FileVersion {
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<bool>,
     #[serde(rename = "delta", skip_serializing_if = "Option::is_none")]
-    pub delta: Option<Box<models::FileData>>,
+    pub delta: Option<models::FileData>,
     #[serde(rename = "file", skip_serializing_if = "Option::is_none")]
-    pub file: Option<Box<models::FileData>>,
+    pub file: Option<models::FileData>,
     #[serde(rename = "signature", skip_serializing_if = "Option::is_none")]
-    pub signature: Option<Box<models::FileData>>,
+    pub signature: Option<models::FileData>,
     #[serde(rename = "status")]
     pub status: models::FileStatus,
     /// Incremental version counter, can only be increased.

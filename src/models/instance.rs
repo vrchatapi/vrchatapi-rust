@@ -43,7 +43,7 @@ pub struct Instance {
     #[serde(rename = "photonRegion")]
     pub photon_region: models::Region,
     #[serde(rename = "platforms")]
-    pub platforms: Box<models::InstancePlatforms>,
+    pub platforms: models::InstancePlatforms,
     #[serde(rename = "region")]
     pub region: models::InstanceRegion,
     #[serde(rename = "secureName")]
@@ -80,7 +80,7 @@ pub struct Instance {
     #[serde(rename = "userCount")]
     pub user_count: i32,
     #[serde(rename = "world")]
-    pub world: Box<models::World>,
+    pub world: models::World,
     /// The users field is present on instances created by the requesting user.
     #[serde(rename = "users", skip_serializing_if = "Option::is_none")]
     pub users: Option<Vec<models::LimitedUser>>,
@@ -113,7 +113,7 @@ impl Instance {
             owner_id: None,
             permanent,
             photon_region,
-            platforms: Box::new(platforms),
+            platforms,
             region,
             secure_name,
             short_name: None,
@@ -129,7 +129,7 @@ impl Instance {
             role_restricted: None,
             strict,
             user_count,
-            world: Box::new(world),
+            world,
             users: None,
             group_access_type: None,
             has_capacity_for_you: None,
