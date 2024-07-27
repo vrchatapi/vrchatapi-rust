@@ -10,26 +10,12 @@
           "type": "array",
           "items": {
             "type": "string",
-            "enum": [
-              "totp",
-              "otp",
-              "emailOtp"
-            ]
+            "enum": ["totp", "otp", "emailOtp"]
           }
         }
       },
-      "required": [
-        "requiresTwoFactorAuth"
-      ]
+      "required": ["requiresTwoFactorAuth"]
     }
-  },
-  {
-    "op": "remove",
-    "path": "/components/schemas/UserExists/properties/nameOk"
-  },
-  {
-    "op": "remove",
-    "path": "/components/schemas/UserExists/required/1"
   },
   {
     "op": "remove",
