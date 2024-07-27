@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+# This script assumes that all npm dependencies are installed (e.g. by a previous step in CI)
+
 set -eux -o pipefail
 
 # clean up old files
@@ -8,8 +10,8 @@ rm src/apis src/models docs -rf
 wget https://raw.githubusercontent.com/vrchatapi/specification/gh-pages/openapi.yaml -O openapi.yaml
 
 # patch openapi.yaml
-for p in patches/*.patch; do
-    patch -p1 openapi.yaml $p
+for p in patches/*.json; do
+    node bin/apply_json_patch.js $p openapi.yaml
 done
 
 # Generate client
