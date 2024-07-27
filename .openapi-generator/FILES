@@ -47,6 +47,7 @@ docs/FilesApi.md
 docs/FinishFileDataUploadRequest.md
 docs/FriendStatus.md
 docs/FriendsApi.md
+docs/GetCurrentUser200Response.md
 docs/Group.md
 docs/GroupAccessType.md
 docs/GroupAnnouncement.md
@@ -132,6 +133,7 @@ docs/TransactionSteamInfo.md
 docs/TransactionSteamWalletInfo.md
 docs/TwoFactorAuthCode.md
 docs/TwoFactorEmailCode.md
+docs/TwoFactorRequired.md
 docs/UnityPackage.md
 docs/UpdateAvatarRequest.md
 docs/UpdateFavoriteGroupRequest.md
@@ -215,6 +217,7 @@ src/models/file_version.rs
 src/models/file_version_upload_status.rs
 src/models/finish_file_data_upload_request.rs
 src/models/friend_status.rs
+src/models/get_current_user_200_response.rs
 src/models/group.rs
 src/models/group_access_type.rs
 src/models/group_announcement.rs
@@ -294,6 +297,7 @@ src/models/transaction_steam_info.rs
 src/models/transaction_steam_wallet_info.rs
 src/models/two_factor_auth_code.rs
 src/models/two_factor_email_code.rs
+src/models/two_factor_required.rs
 src/models/unity_package.rs
 src/models/update_avatar_request.rs
 src/models/update_favorite_group_request.rs

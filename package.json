@@ -1,5 +1,8 @@
 {
+  "type": "module",
   "dependencies": {
-    "@openapitools/openapi-generator-cli": "^2.13.4"
+    "@openapitools/openapi-generator-cli": "^2.13.4",
+    "rfc6902": "^5.1.1",
+    "yaml": "^2.5.0"
   }
 }
