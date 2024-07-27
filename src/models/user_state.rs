@@ -19,7 +19,6 @@ pub enum UserState {
     Active,
     #[serde(rename = "online")]
     Online,
-
 }
 
 impl std::fmt::Display for UserState {
@@ -37,4 +36,3 @@ impl Default for UserState {
         Self::Offline
     }
 }
-

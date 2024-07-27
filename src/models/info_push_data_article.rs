@@ -17,9 +17,6 @@ pub struct InfoPushDataArticle {
 
 impl InfoPushDataArticle {
     pub fn new() -> InfoPushDataArticle {
-        InfoPushDataArticle {
-            content: None,
-        }
+        InfoPushDataArticle { content: None }
     }
 }
-

@@ -29,7 +29,12 @@ pub struct CreateGroupPostRequest {
 }
 
 impl CreateGroupPostRequest {
-    pub fn new(title: String, text: String, send_notification: bool, visibility: models::GroupPostVisibility) -> CreateGroupPostRequest {
+    pub fn new(
+        title: String,
+        text: String,
+        send_notification: bool,
+        visibility: models::GroupPostVisibility,
+    ) -> CreateGroupPostRequest {
         CreateGroupPostRequest {
             title,
             text,
@@ -40,4 +45,3 @@ impl CreateGroupPostRequest {
         }
     }
 }
-

@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Transaction : 
+/// Transaction :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Transaction {
     #[serde(rename = "id")]
@@ -42,7 +42,15 @@ pub struct Transaction {
 }
 
 impl Transaction {
-    pub fn new(id: String, status: models::TransactionStatus, subscription: models::Subscription, sandbox: bool, created_at: String, updated_at: String, error: String) -> Transaction {
+    pub fn new(
+        id: String,
+        status: models::TransactionStatus,
+        subscription: models::Subscription,
+        sandbox: bool,
+        created_at: String,
+        updated_at: String,
+        error: String,
+    ) -> Transaction {
         Transaction {
             id,
             user_id: None,
@@ -60,4 +68,3 @@ impl Transaction {
         }
     }
 }
-

@@ -17,9 +17,6 @@ pub struct TwoFactorEmailCode {
 
 impl TwoFactorEmailCode {
     pub fn new(code: String) -> TwoFactorEmailCode {
-        TwoFactorEmailCode {
-            code,
-        }
+        TwoFactorEmailCode { code }
     }
 }
-

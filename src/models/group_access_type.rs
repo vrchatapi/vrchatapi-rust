@@ -19,7 +19,6 @@ pub enum GroupAccessType {
     Plus,
     #[serde(rename = "members")]
     Members,
-
 }
 
 impl std::fmt::Display for GroupAccessType {
@@ -37,4 +36,3 @@ impl Default for GroupAccessType {
         Self::Public
     }
 }
-

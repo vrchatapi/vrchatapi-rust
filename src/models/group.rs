@@ -21,28 +21,56 @@ pub struct Group {
     pub discriminator: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
-    #[serde(rename = "iconUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "iconUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub icon_url: Option<Option<String>>,
-    #[serde(rename = "bannerUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "bannerUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub banner_url: Option<Option<String>>,
     #[serde(rename = "privacy", skip_serializing_if = "Option::is_none")]
     pub privacy: Option<models::GroupPrivacy>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "ownerId", skip_serializing_if = "Option::is_none")]
     pub owner_id: Option<String>,
-    #[serde(rename = "rules", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "rules",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub rules: Option<Option<String>>,
     #[serde(rename = "links", skip_serializing_if = "Option::is_none")]
     pub links: Option<Vec<String>>,
     #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
     pub languages: Option<Vec<String>>,
-    #[serde(rename = "iconId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "iconId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub icon_id: Option<Option<String>>,
-    #[serde(rename = "bannerId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "bannerId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub banner_id: Option<Option<String>>,
     #[serde(rename = "memberCount", skip_serializing_if = "Option::is_none")]
     pub member_count: Option<i32>,
-    #[serde(rename = "memberCountSyncedAt", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "memberCountSyncedAt",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub member_count_synced_at: Option<String>,
     #[serde(rename = "isVerified", skip_serializing_if = "Option::is_none")]
     pub is_verified: Option<bool>,
@@ -68,7 +96,12 @@ pub struct Group {
     #[serde(rename = "myMember", skip_serializing_if = "Option::is_none")]
     pub my_member: Option<Box<models::GroupMyMember>>,
     /// Only returned if ?includeRoles=true is specified.
-    #[serde(rename = "roles", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "roles",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub roles: Option<Option<Vec<models::GroupRole>>>,
 }
 
@@ -106,4 +139,3 @@ impl Group {
         }
     }
 }
-

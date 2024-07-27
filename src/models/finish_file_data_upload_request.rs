@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FinishFileDataUploadRequest : 
+/// FinishFileDataUploadRequest :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FinishFileDataUploadRequest {
     /// Array of ETags uploaded.
@@ -32,4 +32,3 @@ impl FinishFileDataUploadRequest {
         }
     }
 }
-

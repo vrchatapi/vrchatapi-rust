@@ -17,9 +17,6 @@ pub struct Error {
 
 impl Error {
     pub fn new() -> Error {
-        Error {
-            error: None,
-        }
+        Error { error: None }
     }
 }
-

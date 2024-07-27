@@ -13,7 +13,10 @@ use serde::{Deserialize, Serialize};
 pub struct UpdateGroupMemberRequest {
     #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
     pub visibility: Option<models::GroupUserVisibility>,
-    #[serde(rename = "isSubscribedToAnnouncements", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "isSubscribedToAnnouncements",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub is_subscribed_to_announcements: Option<bool>,
     #[serde(rename = "managerNotes", skip_serializing_if = "Option::is_none")]
     pub manager_notes: Option<String>,
@@ -28,4 +31,3 @@ impl UpdateGroupMemberRequest {
         }
     }
 }
-

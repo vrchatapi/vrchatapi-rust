@@ -17,7 +17,6 @@ pub enum GroupUserVisibility {
     Hidden,
     #[serde(rename = "friends")]
     Friends,
-
 }
 
 impl std::fmt::Display for GroupUserVisibility {
@@ -35,4 +34,3 @@ impl Default for GroupUserVisibility {
         Self::Visible
     }
 }
-

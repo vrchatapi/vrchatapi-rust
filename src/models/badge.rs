@@ -12,7 +12,12 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Badge {
     /// only present in CurrentUser badges
-    #[serde(rename = "assignedAt", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "assignedAt",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub assigned_at: Option<Option<String>>,
     #[serde(rename = "badgeDescription")]
     pub badge_description: String,
@@ -24,17 +29,33 @@ pub struct Badge {
     #[serde(rename = "badgeName")]
     pub badge_name: String,
     /// only present in CurrentUser badges
-    #[serde(rename = "hidden", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "hidden",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub hidden: Option<Option<bool>>,
     #[serde(rename = "showcased")]
     pub showcased: bool,
     /// only present in CurrentUser badges
-    #[serde(rename = "updatedAt", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "updatedAt",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub updated_at: Option<Option<String>>,
 }
 
 impl Badge {
-    pub fn new(badge_description: String, badge_id: String, badge_image_url: String, badge_name: String, showcased: bool) -> Badge {
+    pub fn new(
+        badge_description: String,
+        badge_id: String,
+        badge_image_url: String,
+        badge_name: String,
+        showcased: bool,
+    ) -> Badge {
         Badge {
             assigned_at: None,
             badge_description,
@@ -47,4 +68,3 @@ impl Badge {
         }
     }
 }
-

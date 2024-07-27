@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ApiConfig : 
+/// ApiConfig :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfig {
     /// Unknown, probably voice optimization testing
@@ -46,7 +46,10 @@ pub struct ApiConfig {
     #[serde(rename = "clientDisconnectTimeout")]
     pub client_disconnect_timeout: i32,
     /// Unknown
-    #[serde(rename = "clientNetDispatchThread", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "clientNetDispatchThread",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub client_net_dispatch_thread: Option<bool>,
     /// Unknown
     #[serde(rename = "clientNetInThread", skip_serializing_if = "Option::is_none")]
@@ -55,22 +58,37 @@ pub struct ApiConfig {
     #[serde(rename = "clientNetInThread2", skip_serializing_if = "Option::is_none")]
     pub client_net_in_thread2: Option<bool>,
     /// Unknown
-    #[serde(rename = "clientNetInThreadMobile", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "clientNetInThreadMobile",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub client_net_in_thread_mobile: Option<bool>,
     /// Unknown
-    #[serde(rename = "clientNetInThreadMobile2", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "clientNetInThreadMobile2",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub client_net_in_thread_mobile2: Option<bool>,
     /// Unknown
     #[serde(rename = "clientNetOutThread", skip_serializing_if = "Option::is_none")]
     pub client_net_out_thread: Option<bool>,
     /// Unknown
-    #[serde(rename = "clientNetOutThread2", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "clientNetOutThread2",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub client_net_out_thread2: Option<bool>,
     /// Unknown
-    #[serde(rename = "clientNetOutThreadMobile", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "clientNetOutThreadMobile",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub client_net_out_thread_mobile: Option<bool>,
     /// Unknown
-    #[serde(rename = "clientNetOutThreadMobile2", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "clientNetOutThreadMobile2",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub client_net_out_thread_mobile2: Option<bool>,
     /// Unknown
     #[serde(rename = "clientQR", skip_serializing_if = "Option::is_none")]
@@ -88,7 +106,10 @@ pub struct ApiConfig {
     #[serde(rename = "copyrightEmail")]
     pub copyright_email: String,
     /// Current version number of the Privacy Agreement
-    #[serde(rename = "currentPrivacyVersion", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "currentPrivacyVersion",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub current_privacy_version: Option<i32>,
     /// Current version number of the Terms of Service
     #[serde(rename = "currentTOSVersion")]
@@ -110,7 +131,10 @@ pub struct ApiConfig {
     #[serde(rename = "dis-countdown")]
     pub dis_countdown: String,
     /// Unknown
-    #[serde(rename = "disableAVProInProton", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "disableAVProInProton",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub disable_av_pro_in_proton: Option<bool>,
     /// Toggles if copying avatars should be disabled
     #[serde(rename = "disableAvatarCopying")]
@@ -263,7 +287,75 @@ pub struct ApiConfig {
 }
 
 impl ApiConfig {
-    pub fn new(voice_enable_degradation: bool, voice_enable_receiver_limiting: bool, address: String, announcements: Vec<models::ApiConfigAnnouncement>, app_name: String, available_language_codes: Vec<String>, available_languages: Vec<String>, build_version_tag: String, client_api_key: String, client_bps_ceiling: i32, client_disconnect_timeout: i32, client_reserved_player_bps: i32, client_sent_count_allowance: i32, contact_email: String, copyright_email: String, current_tos_version: i32, default_avatar: String, deployment_group: models::DeploymentGroup, dev_sdk_url: String, dev_sdk_version: String, dis_countdown: String, disable_avatar_copying: bool, disable_avatar_gating: bool, disable_community_labs: bool, disable_community_labs_promotion: bool, disable_email: bool, disable_event_stream: bool, disable_feedback_gating: bool, disable_frontend_builds: bool, disable_hello: bool, disable_oculus_subs: bool, disable_registration: bool, disable_steam_networking: bool, disable_two_factor_auth: bool, disable_udon: bool, disable_upgrade_account: bool, download_link_windows: String, download_urls: models::ApiConfigDownloadUrlList, dynamic_world_rows: Vec<models::DynamicContentRow>, events: models::ApiConfigEvents, home_world_id: String, homepage_redirect_target: String, hub_world_id: String, image_host_url_list: Vec<String>, jobs_email: String, moderation_email: String, not_allowed_to_select_avatar_in_private_world_message: String, sdk_developer_faq_url: String, sdk_discord_url: String, sdk_not_allowed_to_publish_message: String, sdk_unity_version: String, server_name: String, string_host_url_list: Vec<String>, support_email: String, time_out_world_id: String, tutorial_world_id: String, update_rate_ms_maximum: i32, update_rate_ms_minimum: i32, update_rate_ms_normal: i32, update_rate_ms_udon_manual: i32, upload_analysis_percent: i32, url_list: Vec<String>, use_reliable_udp_for_voice: bool, vive_windows_url: String, white_listed_asset_urls: Vec<String>, player_url_resolver_version: String, player_url_resolver_sha1: String) -> ApiConfig {
+    pub fn new(
+        voice_enable_degradation: bool,
+        voice_enable_receiver_limiting: bool,
+        address: String,
+        announcements: Vec<models::ApiConfigAnnouncement>,
+        app_name: String,
+        available_language_codes: Vec<String>,
+        available_languages: Vec<String>,
+        build_version_tag: String,
+        client_api_key: String,
+        client_bps_ceiling: i32,
+        client_disconnect_timeout: i32,
+        client_reserved_player_bps: i32,
+        client_sent_count_allowance: i32,
+        contact_email: String,
+        copyright_email: String,
+        current_tos_version: i32,
+        default_avatar: String,
+        deployment_group: models::DeploymentGroup,
+        dev_sdk_url: String,
+        dev_sdk_version: String,
+        dis_countdown: String,
+        disable_avatar_copying: bool,
+        disable_avatar_gating: bool,
+        disable_community_labs: bool,
+        disable_community_labs_promotion: bool,
+        disable_email: bool,
+        disable_event_stream: bool,
+        disable_feedback_gating: bool,
+        disable_frontend_builds: bool,
+        disable_hello: bool,
+        disable_oculus_subs: bool,
+        disable_registration: bool,
+        disable_steam_networking: bool,
+        disable_two_factor_auth: bool,
+        disable_udon: bool,
+        disable_upgrade_account: bool,
+        download_link_windows: String,
+        download_urls: models::ApiConfigDownloadUrlList,
+        dynamic_world_rows: Vec<models::DynamicContentRow>,
+        events: models::ApiConfigEvents,
+        home_world_id: String,
+        homepage_redirect_target: String,
+        hub_world_id: String,
+        image_host_url_list: Vec<String>,
+        jobs_email: String,
+        moderation_email: String,
+        not_allowed_to_select_avatar_in_private_world_message: String,
+        sdk_developer_faq_url: String,
+        sdk_discord_url: String,
+        sdk_not_allowed_to_publish_message: String,
+        sdk_unity_version: String,
+        server_name: String,
+        string_host_url_list: Vec<String>,
+        support_email: String,
+        time_out_world_id: String,
+        tutorial_world_id: String,
+        update_rate_ms_maximum: i32,
+        update_rate_ms_minimum: i32,
+        update_rate_ms_normal: i32,
+        update_rate_ms_udon_manual: i32,
+        upload_analysis_percent: i32,
+        url_list: Vec<String>,
+        use_reliable_udp_for_voice: bool,
+        vive_windows_url: String,
+        white_listed_asset_urls: Vec<String>,
+        player_url_resolver_version: String,
+        player_url_resolver_sha1: String,
+    ) -> ApiConfig {
         ApiConfig {
             voice_enable_degradation,
             voice_enable_receiver_limiting,
@@ -352,4 +444,3 @@ impl ApiConfig {
         }
     }
 }
-

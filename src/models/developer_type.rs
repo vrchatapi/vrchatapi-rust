@@ -21,7 +21,6 @@ pub enum DeveloperType {
     Internal,
     #[serde(rename = "moderator")]
     Moderator,
-
 }
 
 impl std::fmt::Display for DeveloperType {
@@ -40,4 +39,3 @@ impl Default for DeveloperType {
         Self::None
     }
 }
-

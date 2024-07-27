@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// InfoPush : 
+/// InfoPush :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InfoPush {
     #[serde(rename = "id")]
@@ -38,7 +38,17 @@ pub struct InfoPush {
 }
 
 impl InfoPush {
-    pub fn new(id: String, is_enabled: bool, release_status: models::ReleaseStatus, priority: i32, tags: Vec<String>, data: models::InfoPushData, hash: String, created_at: String, updated_at: String) -> InfoPush {
+    pub fn new(
+        id: String,
+        is_enabled: bool,
+        release_status: models::ReleaseStatus,
+        priority: i32,
+        tags: Vec<String>,
+        data: models::InfoPushData,
+        hash: String,
+        created_at: String,
+        updated_at: String,
+    ) -> InfoPush {
         InfoPush {
             id,
             is_enabled,
@@ -54,4 +64,3 @@ impl InfoPush {
         }
     }
 }
-

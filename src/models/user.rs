@@ -36,7 +36,10 @@ pub struct User {
     pub display_name: String,
     #[serde(rename = "friendKey")]
     pub friend_key: String,
-    #[serde(rename = "friendRequestStatus", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "friendRequestStatus",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub friend_request_status: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id")]
@@ -77,9 +80,15 @@ pub struct User {
     pub status_description: String,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
-    #[serde(rename = "travelingToInstance", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "travelingToInstance",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub traveling_to_instance: Option<String>,
-    #[serde(rename = "travelingToLocation", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "travelingToLocation",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub traveling_to_location: Option<String>,
     #[serde(rename = "travelingToWorld", skip_serializing_if = "Option::is_none")]
     pub traveling_to_world: Option<String>,
@@ -94,7 +103,32 @@ pub struct User {
 }
 
 impl User {
-    pub fn new(allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, current_avatar_tags: Vec<String>, date_joined: String, developer_type: models::DeveloperType, display_name: String, friend_key: String, id: String, is_friend: bool, last_activity: String, last_login: String, last_platform: String, platform: String, profile_pic_override: String, profile_pic_override_thumbnail: String, pronouns: String, state: models::UserState, status: models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> User {
+    pub fn new(
+        allow_avatar_copying: bool,
+        bio: String,
+        bio_links: Vec<String>,
+        current_avatar_image_url: String,
+        current_avatar_thumbnail_image_url: String,
+        current_avatar_tags: Vec<String>,
+        date_joined: String,
+        developer_type: models::DeveloperType,
+        display_name: String,
+        friend_key: String,
+        id: String,
+        is_friend: bool,
+        last_activity: String,
+        last_login: String,
+        last_platform: String,
+        platform: String,
+        profile_pic_override: String,
+        profile_pic_override_thumbnail: String,
+        pronouns: String,
+        state: models::UserState,
+        status: models::UserStatus,
+        status_description: String,
+        tags: Vec<String>,
+        user_icon: String,
+    ) -> User {
         User {
             allow_avatar_copying,
             badges: None,
@@ -133,4 +167,3 @@ impl User {
         }
     }
 }
-

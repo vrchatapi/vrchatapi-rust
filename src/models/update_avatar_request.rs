@@ -49,4 +49,3 @@ impl UpdateAvatarRequest {
         }
     }
 }
-

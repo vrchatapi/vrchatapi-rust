@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// InstanceType : 
+/// InstanceType :
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum InstanceType {
     #[serde(rename = "public")]
@@ -22,7 +22,6 @@ pub enum InstanceType {
     Private,
     #[serde(rename = "group")]
     Group,
-
 }
 
 impl std::fmt::Display for InstanceType {
@@ -42,4 +41,3 @@ impl Default for InstanceType {
         Self::Public
     }
 }
-

@@ -17,9 +17,6 @@ pub struct UpdateInviteMessageRequest {
 
 impl UpdateInviteMessageRequest {
     pub fn new(message: String) -> UpdateInviteMessageRequest {
-        UpdateInviteMessageRequest {
-            message,
-        }
+        UpdateInviteMessageRequest { message }
     }
 }
-

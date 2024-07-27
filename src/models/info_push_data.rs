@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// InfoPushData : 
+/// InfoPushData :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InfoPushData {
     #[serde(rename = "contentList", skip_serializing_if = "Option::is_none")]
@@ -44,4 +44,3 @@ impl InfoPushData {
         }
     }
 }
-

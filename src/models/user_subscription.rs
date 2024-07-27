@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// UserSubscription : 
+/// UserSubscription :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UserSubscription {
     #[serde(rename = "id")]
@@ -48,7 +48,22 @@ pub struct UserSubscription {
 }
 
 impl UserSubscription {
-    pub fn new(id: String, transaction_id: String, store: String, amount: f64, description: String, period: models::SubscriptionPeriod, tier: f64, active: bool, status: models::TransactionStatus, expires: String, created_at: String, updated_at: String, license_groups: Vec<String>, is_gift: bool) -> UserSubscription {
+    pub fn new(
+        id: String,
+        transaction_id: String,
+        store: String,
+        amount: f64,
+        description: String,
+        period: models::SubscriptionPeriod,
+        tier: f64,
+        active: bool,
+        status: models::TransactionStatus,
+        expires: String,
+        created_at: String,
+        updated_at: String,
+        license_groups: Vec<String>,
+        is_gift: bool,
+    ) -> UserSubscription {
         UserSubscription {
             id,
             transaction_id,
@@ -69,4 +84,3 @@ impl UserSubscription {
         }
     }
 }
-

@@ -17,7 +17,6 @@ pub enum FavoriteGroupVisibility {
     Friends,
     #[serde(rename = "public")]
     Public,
-
 }
 
 impl std::fmt::Display for FavoriteGroupVisibility {
@@ -35,4 +34,3 @@ impl Default for FavoriteGroupVisibility {
         Self::Private
     }
 }
-

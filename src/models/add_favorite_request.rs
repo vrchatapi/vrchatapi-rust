@@ -22,7 +22,11 @@ pub struct AddFavoriteRequest {
 }
 
 impl AddFavoriteRequest {
-    pub fn new(r#type: models::FavoriteType, favorite_id: String, tags: Vec<String>) -> AddFavoriteRequest {
+    pub fn new(
+        r#type: models::FavoriteType,
+        favorite_id: String,
+        tags: Vec<String>,
+    ) -> AddFavoriteRequest {
         AddFavoriteRequest {
             r#type,
             favorite_id,
@@ -30,4 +34,3 @@ impl AddFavoriteRequest {
         }
     }
 }
-

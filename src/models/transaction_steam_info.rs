@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// TransactionSteamInfo : 
+/// TransactionSteamInfo :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSteamInfo {
     #[serde(rename = "walletInfo")]
@@ -29,7 +29,13 @@ pub struct TransactionSteamInfo {
 }
 
 impl TransactionSteamInfo {
-    pub fn new(wallet_info: models::TransactionSteamWalletInfo, steam_id: String, order_id: String, steam_url: String, trans_id: String) -> TransactionSteamInfo {
+    pub fn new(
+        wallet_info: models::TransactionSteamWalletInfo,
+        steam_id: String,
+        order_id: String,
+        steam_url: String,
+        trans_id: String,
+    ) -> TransactionSteamInfo {
         TransactionSteamInfo {
             wallet_info: Box::new(wallet_info),
             steam_id,
@@ -39,4 +45,3 @@ impl TransactionSteamInfo {
         }
     }
 }
-

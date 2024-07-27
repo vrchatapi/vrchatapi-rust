@@ -15,7 +15,6 @@ pub enum OrderOption {
     Ascending,
     #[serde(rename = "descending")]
     Descending,
-
 }
 
 impl std::fmt::Display for OrderOption {
@@ -32,4 +31,3 @@ impl Default for OrderOption {
         Self::Ascending
     }
 }
-

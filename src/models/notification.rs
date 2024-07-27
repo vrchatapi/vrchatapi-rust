@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Notification : 
+/// Notification :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Notification {
     #[serde(rename = "created_at")]
@@ -38,7 +38,14 @@ pub struct Notification {
 }
 
 impl Notification {
-    pub fn new(created_at: String, details: String, id: String, message: String, sender_user_id: String, r#type: models::NotificationType) -> Notification {
+    pub fn new(
+        created_at: String,
+        details: String,
+        id: String,
+        message: String,
+        sender_user_id: String,
+        r#type: models::NotificationType,
+    ) -> Notification {
         Notification {
             created_at,
             details,
@@ -52,4 +59,3 @@ impl Notification {
         }
     }
 }
-

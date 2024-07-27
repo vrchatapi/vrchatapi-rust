@@ -21,17 +21,42 @@ pub struct LimitedUserGroups {
     pub discriminator: Option<String>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
-    #[serde(rename = "iconId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "iconId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub icon_id: Option<Option<String>>,
-    #[serde(rename = "iconUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "iconUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub icon_url: Option<Option<String>>,
-    #[serde(rename = "bannerId", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "bannerId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub banner_id: Option<Option<String>>,
-    #[serde(rename = "bannerUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "bannerUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub banner_url: Option<Option<String>>,
     #[serde(rename = "privacy", skip_serializing_if = "Option::is_none")]
     pub privacy: Option<String>,
-    #[serde(rename = "lastPostCreatedAt", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "lastPostCreatedAt",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub last_post_created_at: Option<Option<String>>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "ownerId", skip_serializing_if = "Option::is_none")]
@@ -46,7 +71,12 @@ pub struct LimitedUserGroups {
     pub is_representing: Option<bool>,
     #[serde(rename = "mutualGroup", skip_serializing_if = "Option::is_none")]
     pub mutual_group: Option<bool>,
-    #[serde(rename = "lastPostReadAt", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "lastPostReadAt",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub last_post_read_at: Option<Option<String>>,
 }
 
@@ -74,4 +104,3 @@ impl LimitedUserGroups {
         }
     }
 }
-

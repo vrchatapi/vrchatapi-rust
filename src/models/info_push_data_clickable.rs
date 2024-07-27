@@ -43,4 +43,3 @@ impl Default for Command {
         Self::OpenUrl
     }
 }
-

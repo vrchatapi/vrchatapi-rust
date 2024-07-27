@@ -22,7 +22,10 @@ pub struct GroupPermission {
     #[serde(rename = "help", skip_serializing_if = "Option::is_none")]
     pub help: Option<String>,
     /// Whether this permission is a \"management\" permission.
-    #[serde(rename = "isManagementPermission", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "isManagementPermission",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub is_management_permission: Option<bool>,
     /// Whether the user is allowed to add this permission to a role.
     #[serde(rename = "allowedToAdd", skip_serializing_if = "Option::is_none")]
@@ -41,4 +44,3 @@ impl GroupPermission {
         }
     }
 }
-
