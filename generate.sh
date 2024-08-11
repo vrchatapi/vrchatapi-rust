@@ -24,7 +24,7 @@ find src -type f -exec sed -i '/The version of the OpenAPI document/d' {} \;
 find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
 
 # Cookie storage
-sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
+sed -i 's/reqwest::Client::new()/{#[cfg(target_family = "wasm")] {reqwest::Client::new()}\n #[cfg(not(target_family = "wasm"))] { reqwest::Client::builder().cookie_store(true).build().unwrap()}\n }/g' src/apis/configuration.rs
 sed -i 's/features = \["json", "multipart"\]/features = \["json", "cookies", "multipart"\]/g' Cargo.toml
 
 #Fix example

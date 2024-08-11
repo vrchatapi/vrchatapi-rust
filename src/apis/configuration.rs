@@ -40,7 +40,9 @@ impl Default for Configuration {
         Configuration {
             base_path: "https://vrchat.com/api/1".to_owned(),
             user_agent: Some("vrchatapi-rust".to_owned()),
-            client: reqwest::Client::builder().cookie_store(true).build().unwrap(),
+            client: {#[cfg(target_family = "wasm")] {reqwest::Client::new()}
+ #[cfg(not(target_family = "wasm"))] { reqwest::Client::builder().cookie_store(true).build().unwrap()}
+ },
             basic_auth: None,
             oauth_access_token: None,
             bearer_access_token: None,
