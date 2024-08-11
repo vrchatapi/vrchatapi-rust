@@ -26,7 +26,7 @@ find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
 # Cookie storage
 sed -i 's/reqwest::Client::new()/{#[cfg(target_family = "wasm")] {reqwest::Client::new()}\n #[cfg(not(target_family = "wasm"))] { reqwest::Client::builder().cookie_store(true).build().unwrap()}\n }/g' src/apis/configuration.rs
 sed -i 's/features = \["json", "multipart"\]/features = \["json", "cookies", "multipart"\]/g' Cargo.toml
-printf '\n[features]\njs = ["uuid/js"]\n' >> Cargo.toml # add wasm feature
+printf '\n[features]\njs = ["uuid/js"]\n' >> Cargo.toml
 
 #Fix example
 printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
