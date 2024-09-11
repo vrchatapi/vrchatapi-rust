@@ -59,8 +59,8 @@ pub struct Group {
     pub created_at: Option<String>,
     #[serde(rename = "updatedAt", skip_serializing_if = "Option::is_none")]
     pub updated_at: Option<String>,
-    #[serde(rename = "lastPostCreatedAt", skip_serializing_if = "Option::is_none")]
-    pub last_post_created_at: Option<String>,
+    #[serde(rename = "lastPostCreatedAt", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub last_post_created_at: Option<Option<String>>,
     #[serde(rename = "onlineMemberCount", skip_serializing_if = "Option::is_none")]
     pub online_member_count: Option<i32>,
     #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]

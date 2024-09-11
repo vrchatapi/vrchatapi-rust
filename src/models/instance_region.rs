@@ -21,6 +21,8 @@ pub enum InstanceRegion {
     Eu,
     #[serde(rename = "jp")]
     Jp,
+    #[serde(rename = "unknown")]
+    Unknown,
 
 }
 
@@ -31,6 +33,7 @@ impl std::fmt::Display for InstanceRegion {
             Self::Use => write!(f, "use"),
             Self::Eu => write!(f, "eu"),
             Self::Jp => write!(f, "jp"),
+            Self::Unknown => write!(f, "unknown"),
         }
     }
 }
