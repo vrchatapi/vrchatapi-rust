@@ -22,6 +22,8 @@ pub struct UnityPackage {
     pub asset_version: i32,
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<String>,
+    #[serde(rename = "impostorizerVersion", skip_serializing_if = "Option::is_none")]
+    pub impostorizer_version: Option<String>,
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "platform")]
     pub platform: String,
@@ -49,6 +51,7 @@ impl UnityPackage {
             asset_url_object: None,
             asset_version,
             created_at: None,
+            impostorizer_version: None,
             platform,
             plugin_url: None,
             plugin_url_object: None,

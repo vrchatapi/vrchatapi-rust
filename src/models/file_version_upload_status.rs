@@ -17,9 +17,9 @@ pub struct FileVersionUploadStatus {
     #[serde(rename = "fileName")]
     pub file_name: String,
     #[serde(rename = "nextPartNumber")]
-    pub next_part_number: f64,
+    pub next_part_number: i32,
     #[serde(rename = "maxParts")]
-    pub max_parts: f64,
+    pub max_parts: i32,
     #[serde(rename = "parts")]
     pub parts: Vec<serde_json::Value>,
     /// Unknown
@@ -28,7 +28,7 @@ pub struct FileVersionUploadStatus {
 }
 
 impl FileVersionUploadStatus {
-    pub fn new(upload_id: String, file_name: String, next_part_number: f64, max_parts: f64, parts: Vec<serde_json::Value>, etags: Vec<serde_json::Value>) -> FileVersionUploadStatus {
+    pub fn new(upload_id: String, file_name: String, next_part_number: i32, max_parts: i32, parts: Vec<serde_json::Value>, etags: Vec<serde_json::Value>) -> FileVersionUploadStatus {
         FileVersionUploadStatus {
             upload_id,
             file_name,

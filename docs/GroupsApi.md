@@ -831,7 +831,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_members
 
-> Vec<models::GroupMember> get_group_members(group_id, n, offset, sort)
+> Vec<models::GroupMember> get_group_members(group_id, n, offset, sort, role_id)
 List Group Members
 
 Returns a List of all **other** Group Members. This endpoint will never return the user calling the endpoint. Information about the user calling the endpoint must be found in the `myMember` field of the Group object.
@@ -845,6 +845,7 @@ Name | Type | Description  | Required | Notes
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **sort** | Option<[**GroupSearchSort**](.md)> | The sort order of Group Member results |  |
+**role_id** | Option<**String**> | Only returns members with a specific groupRoleId |  |
 
 ### Return type
 

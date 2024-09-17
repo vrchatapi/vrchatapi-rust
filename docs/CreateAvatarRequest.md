@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **tags** | Option<**Vec<String>**> |   | [optional]
 **image_url** | **String** |  | 
 **release_status** | Option<[**models::ReleaseStatus**](ReleaseStatus.md)> |  | [optional]
-**version** | Option<**f64**> |  | [optional][default to 1]
+**version** | Option<**i32**> |  | [optional][default to 1]
 **unity_package_url** | Option<**String**> |  | [optional]
 **unity_version** | Option<**String**> |  | [optional][default to 5.3.4p1]
 

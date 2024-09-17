@@ -13,6 +13,8 @@ use serde::{Deserialize, Serialize};
 pub struct CurrentUserPresence {
     #[serde(rename = "avatarThumbnail", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
     pub avatar_thumbnail: Option<Option<String>>,
+    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_tags: Option<String>,
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
     pub display_name: Option<String>,
     #[serde(rename = "groups", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
@@ -40,6 +42,8 @@ pub struct CurrentUserPresence {
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "travelingToWorld", skip_serializing_if = "Option::is_none")]
     pub traveling_to_world: Option<String>,
+    #[serde(rename = "userIcon", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub user_icon: Option<Option<String>>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "world", skip_serializing_if = "Option::is_none")]
     pub world: Option<String>,
@@ -49,6 +53,7 @@ impl CurrentUserPresence {
     pub fn new() -> CurrentUserPresence {
         CurrentUserPresence {
             avatar_thumbnail: None,
+            current_avatar_tags: None,
             display_name: None,
             groups: None,
             id: None,
@@ -60,6 +65,7 @@ impl CurrentUserPresence {
             status: None,
             traveling_to_instance: None,
             traveling_to_world: None,
+            user_icon: None,
             world: None,
         }
     }

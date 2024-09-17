@@ -119,6 +119,10 @@ pub struct CurrentUser {
     pub profile_pic_override_thumbnail: String,
     #[serde(rename = "pronouns")]
     pub pronouns: String,
+    #[serde(rename = "queuedInstance", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    pub queued_instance: Option<Option<String>>,
+    #[serde(rename = "receiveMobileInvitations", skip_serializing_if = "Option::is_none")]
+    pub receive_mobile_invitations: Option<bool>,
     #[serde(rename = "state")]
     pub state: models::UserState,
     #[serde(rename = "status")]
@@ -204,6 +208,8 @@ impl CurrentUser {
             profile_pic_override,
             profile_pic_override_thumbnail,
             pronouns,
+            queued_instance: None,
+            receive_mobile_invitations: None,
             state,
             status,
             status_description,
