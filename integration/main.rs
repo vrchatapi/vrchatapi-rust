@@ -38,14 +38,22 @@ async fn test() -> Result<(), anyhow::Error>{
     dotenv::dotenv().map_err(|e|Error::DotenvInitError(e))?;
     let username = dotenv::var("USERNAME").map_err(|e|Error::NoUsername(e))?;
     let password = dotenv::var("PASSWORD").map_err(|e|Error::NoPassword(e))?;
+
+    let mut client = vrchatapi::apis::configuration::Configuration::default();
+    client.user_agent = Some(format!("vrchatapi-rust@{VERSION} https://github.com/vrchatapi/vrchatapi-rust/issues/new"));
+    client.basic_auth = Some((username.clone(), Some(password)));
+    let u = login(&client, &username).await?;
+
+    logout(&client).await?;
+    Ok(())
+}
+
+async fn login(client: &vrchatapi::apis::configuration::Configuration, username: &String) -> Result<vrchatapi::models::CurrentUser, anyhow::Error> {
     let totp_secret = dotenv::var("TOTP_SECRET").map_err(|e|Error::NoTotpSecret(e))?;
     let totp_secret = base32::decode(Alphabet::Rfc4648Lower {padding: false}, totp_secret.as_str()).ok_or(Error::TOTPBase32)?;
     let generator = totp_rfc6238::TotpGenerator::new()
         .build();
 
-    let mut client = vrchatapi::apis::configuration::Configuration::default();
-    client.user_agent = Some(format!("vrchatapi-rust@{VERSION} https://github.com/vrchatapi/vrchatapi-rust/issues/new"));
-    client.basic_auth = Some((username.clone(), Some(password)));
     let u = match vrchatapi::apis::authentication_api::get_current_user(&client).await.map_err(|e|Error::GetCurrentUser(e))? {
         EitherUserOrTwoFactor::CurrentUser(u) => u,
         EitherUserOrTwoFactor::RequiresTwoFactorAuth(r2fa) => {
@@ -68,11 +76,8 @@ async fn test() -> Result<(), anyhow::Error>{
         }
     };
     println!("Logged in as: {} (Login Name was {username}", u.username.as_ref().map(String::as_str).unwrap_or("Unknown User"));
-
-    logout(&client).await?;
-    Ok(())
+    Ok(u)
 }
-
 async fn logout(client: &vrchatapi::apis::configuration::Configuration) -> Result<(), anyhow::Error> {
     vrchatapi::apis::authentication_api::logout(&client).await.map_err(|e|Error::Logout(e))?;
     Ok(())
