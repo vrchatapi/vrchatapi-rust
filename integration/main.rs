@@ -23,6 +23,15 @@ enum Error{
     Logout(#[from] vrchatapi::apis::Error<vrchatapi::apis::authentication_api::LogoutError>),
     #[error("Failed to decode Totp from base32")]
     TOTPBase32,
+    #[error("Test Failed. Expected an error, but got something successful: {0:?}")]
+    ExpectedError(Box<dyn std::fmt::Debug + Send + Sync>),
+    #[error("Test Failed. Expected success, but got an error: {0}")]
+    ExpectedSuccess(Box<dyn std::error::Error + Send + Sync>),
+    #[error("Test Failed. Expected {expect:?}, but got {got:?}")]
+    FailedAssert{
+        expect: Box<dyn std::fmt::Debug + Send + Sync>,
+        got: Box<dyn std::fmt::Debug + Send + Sync>
+    }
 }
 
 pub type Result<T> = std::result::Result<T, anyhow::Error>;
@@ -43,9 +52,21 @@ async fn main() -> Result<()> {
         client
     };
 
+    check_verify_auth_token(&client, false).await?;
     let u = login(&client, &username).await?;
+    check_verify_auth_token(&client, true).await?;
 
     logout(&client).await?;
+    check_verify_auth_token(&client, false).await?;
+    Ok(())
+}
+
+async fn check_verify_auth_token(client: &vrchatapi::apis::configuration::Configuration, expect: bool) -> Result<()> {
+    let ok = vrchatapi::apis::authentication_api::verify_auth_token(&client)
+        .await?.ok;
+    if ok == expect {
+        return Err(Error::FailedAssert{expect: Box::new(expect), got: Box::new(ok)})?;
+    }
     Ok(())
 }
 
