@@ -30,11 +30,17 @@ const VERSION: &str = env!("CARGO_PKG_VERSION");
 async fn main() -> Result<(), anyhow::Error> {
     dotenv::dotenv().map_err(|e|Error::DotenvInitError(e))?;
     let username = dotenv::var("USERNAME").map_err(|e|Error::NoUsername(e))?;
-    let password = dotenv::var("PASSWORD").map_err(|e|Error::NoPassword(e))?;
 
-    let mut client = vrchatapi::apis::configuration::Configuration::default();
-    client.user_agent = Some(format!("vrchatapi-rust@{VERSION} https://github.com/vrchatapi/vrchatapi-rust/issues/new"));
-    client.basic_auth = Some((username.clone(), Some(password)));
+    let client = {
+        let password = dotenv::var("PASSWORD").map_err(|e|Error::NoPassword(e))?;
+
+        let mut client = vrchatapi::apis::configuration::Configuration::default();
+        client.user_agent = Some(format!("vrchatapi-rust@{VERSION} https://github.com/vrchatapi/vrchatapi-rust/issues/new"));
+        client.basic_auth = Some((username.clone(), Some(password)));
+
+        client
+    };
+
     let u = login(&client, &username).await?;
 
     logout(&client).await?;
