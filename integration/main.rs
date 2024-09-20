@@ -27,14 +27,7 @@ enum Error{
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 #[tokio::main]
-async fn main() {
-    println!("Hello");
-    match test().await {
-        Ok(()) => {}
-        Err(e) => eprint!("{e}")
-    }
-}
-async fn test() -> Result<(), anyhow::Error>{
+async fn main() -> Result<(), anyhow::Error> {
     dotenv::dotenv().map_err(|e|Error::DotenvInitError(e))?;
     let username = dotenv::var("USERNAME").map_err(|e|Error::NoUsername(e))?;
     let password = dotenv::var("PASSWORD").map_err(|e|Error::NoPassword(e))?;
