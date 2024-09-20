@@ -25,9 +25,11 @@ enum Error{
     TOTPBase32,
 }
 
+pub type Result<T> = std::result::Result<T, anyhow::Error>;
+
 const VERSION: &str = env!("CARGO_PKG_VERSION");
 #[tokio::main]
-async fn main() -> Result<(), anyhow::Error> {
+async fn main() -> Result<()> {
     dotenv::dotenv().map_err(|e|Error::DotenvInitError(e))?;
     let username = dotenv::var("USERNAME").map_err(|e|Error::NoUsername(e))?;
 
@@ -47,7 +49,7 @@ async fn main() -> Result<(), anyhow::Error> {
     Ok(())
 }
 
-async fn login(client: &vrchatapi::apis::configuration::Configuration, username: &String) -> Result<vrchatapi::models::CurrentUser, anyhow::Error> {
+async fn login(client: &vrchatapi::apis::configuration::Configuration, username: &String) -> Result<vrchatapi::models::CurrentUser> {
     let totp_secret = dotenv::var("TOTP_SECRET").map_err(|e|Error::NoTotpSecret(e))?;
     let totp_secret = base32::decode(Alphabet::Rfc4648Lower {padding: false}, totp_secret.as_str()).ok_or(Error::TOTPBase32)?;
     let generator = totp_rfc6238::TotpGenerator::new()
@@ -77,7 +79,7 @@ async fn login(client: &vrchatapi::apis::configuration::Configuration, username:
     println!("Logged in as: {} (Login Name was {username}", u.username.as_ref().map(String::as_str).unwrap_or("Unknown User"));
     Ok(u)
 }
-async fn logout(client: &vrchatapi::apis::configuration::Configuration) -> Result<(), anyhow::Error> {
+async fn logout(client: &vrchatapi::apis::configuration::Configuration) -> Result<()> {
     vrchatapi::apis::authentication_api::logout(&client).await.map_err(|e|Error::Logout(e))?;
     Ok(())
 }
