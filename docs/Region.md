@@ -7,6 +7,7 @@
 | Us | us |
 | Use | use |
 | Usw | usw |
+| Usx | usx |
 | Eu | eu |
 | Jp | jp |
 | Unknown | unknown |

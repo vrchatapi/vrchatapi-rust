@@ -1,6 +1,6 @@
 [package]
 name = "vrchatapi"
-version = "1.18.3"
+version = "1.18.4"
 authors = ["vrchatapi.lpv0t@aries.fyi"]
 description = "VRChat API Client for Rust"
 license = "MIT"
@@ -16,6 +16,5 @@ reqwest = { version = "^0.12", default-features = false, features = ["json", "co
 
 [dev-dependencies]
 tokio = { version = '1', features = ['macros', 'rt-multi-thread'] }
-
 [features]
 default = ["reqwest/default"]
