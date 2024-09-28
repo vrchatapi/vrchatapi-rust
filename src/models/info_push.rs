@@ -23,7 +23,7 @@ pub struct InfoPush {
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "data")]
-    pub data: Box<models::InfoPushData>,
+    pub data: models::InfoPushData,
     /// Unknown usage, MD5
     #[serde(rename = "hash")]
     pub hash: String,
@@ -45,7 +45,7 @@ impl InfoPush {
             release_status,
             priority,
             tags,
-            data: Box::new(data),
+            data,
             hash,
             created_at,
             updated_at,

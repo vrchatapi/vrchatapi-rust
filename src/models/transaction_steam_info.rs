@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSteamInfo {
     #[serde(rename = "walletInfo")]
-    pub wallet_info: Box<models::TransactionSteamWalletInfo>,
+    pub wallet_info: models::TransactionSteamWalletInfo,
     /// Steam User ID
     #[serde(rename = "steamId")]
     pub steam_id: String,
@@ -31,7 +31,7 @@ pub struct TransactionSteamInfo {
 impl TransactionSteamInfo {
     pub fn new(wallet_info: models::TransactionSteamWalletInfo, steam_id: String, order_id: String, steam_url: String, trans_id: String) -> TransactionSteamInfo {
         TransactionSteamInfo {
-            wallet_info: Box::new(wallet_info),
+            wallet_info,
             steam_id,
             order_id,
             steam_url,

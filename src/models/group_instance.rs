@@ -17,7 +17,7 @@ pub struct GroupInstance {
     #[serde(rename = "location")]
     pub location: String,
     #[serde(rename = "world")]
-    pub world: Box<models::World>,
+    pub world: models::World,
     #[serde(rename = "memberCount")]
     pub member_count: i32,
 }
@@ -27,7 +27,7 @@ impl GroupInstance {
         GroupInstance {
             instance_id,
             location,
-            world: Box::new(world),
+            world,
             member_count,
         }
     }
