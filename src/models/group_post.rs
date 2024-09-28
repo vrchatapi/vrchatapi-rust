@@ -31,7 +31,12 @@ pub struct GroupPost {
     pub text: Option<String>,
     #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
     pub image_id: Option<String>,
-    #[serde(rename = "imageUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "imageUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub image_url: Option<Option<String>>,
     #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<String>,
@@ -57,4 +62,3 @@ impl GroupPost {
         }
     }
 }
-

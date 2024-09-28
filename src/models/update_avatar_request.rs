@@ -26,7 +26,7 @@ pub struct UpdateAvatarRequest {
     #[serde(rename = "releaseStatus", skip_serializing_if = "Option::is_none")]
     pub release_status: Option<models::ReleaseStatus>,
     #[serde(rename = "version", skip_serializing_if = "Option::is_none")]
-    pub version: Option<f64>,
+    pub version: Option<i32>,
     #[serde(rename = "unityPackageUrl", skip_serializing_if = "Option::is_none")]
     pub unity_package_url: Option<String>,
     #[serde(rename = "unityVersion", skip_serializing_if = "Option::is_none")]
@@ -49,4 +49,3 @@ impl UpdateAvatarRequest {
         }
     }
 }
-

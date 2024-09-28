@@ -19,13 +19,14 @@ pub enum Region {
     Use,
     #[serde(rename = "usw")]
     Usw,
+    #[serde(rename = "usx")]
+    Usx,
     #[serde(rename = "eu")]
     Eu,
     #[serde(rename = "jp")]
     Jp,
     #[serde(rename = "unknown")]
     Unknown,
-
 }
 
 impl std::fmt::Display for Region {
@@ -34,6 +35,7 @@ impl std::fmt::Display for Region {
             Self::Us => write!(f, "us"),
             Self::Use => write!(f, "use"),
             Self::Usw => write!(f, "usw"),
+            Self::Usx => write!(f, "usx"),
             Self::Eu => write!(f, "eu"),
             Self::Jp => write!(f, "jp"),
             Self::Unknown => write!(f, "unknown"),
@@ -46,4 +48,3 @@ impl Default for Region {
         Self::Us
     }
 }
-

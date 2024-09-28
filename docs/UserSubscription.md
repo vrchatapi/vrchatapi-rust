@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **amount** | **f64** |  | 
 **description** | **String** |  | 
 **period** | [**models::SubscriptionPeriod**](SubscriptionPeriod.md) |  | 
-**tier** | **f64** |  | 
+**tier** | **i32** |  | 
 **active** | **bool** |  | [default to true]
 **status** | [**models::TransactionStatus**](TransactionStatus.md) |  | 
 **starts** | Option<**String**> |  | [optional]

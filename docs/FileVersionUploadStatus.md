@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **upload_id** | **String** |  | 
 **file_name** | **String** |  | 
-**next_part_number** | **f64** |  | 
-**max_parts** | **f64** |  | 
+**next_part_number** | **i32** |  | 
+**max_parts** | **i32** |  | 
 **parts** | [**Vec<serde_json::Value>**](serde_json::Value.md) |  | 
 **etags** | [**Vec<serde_json::Value>**](serde_json::Value.md) | Unknown | 
 

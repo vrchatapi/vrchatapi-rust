@@ -19,7 +19,6 @@ pub enum GroupRoleTemplate {
     ManagedInvite,
     #[serde(rename = "managedRequest")]
     ManagedRequest,
-
 }
 
 impl std::fmt::Display for GroupRoleTemplate {
@@ -38,4 +37,3 @@ impl Default for GroupRoleTemplate {
         Self::Default
     }
 }
-

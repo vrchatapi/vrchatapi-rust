@@ -15,7 +15,7 @@ pub struct TransactionAgreement {
     #[serde(rename = "agreementId")]
     pub agreement_id: String,
     #[serde(rename = "itemId")]
-    pub item_id: f64,
+    pub item_id: i32,
     #[serde(rename = "agreement")]
     pub agreement: String,
     /// This is NOT TransactionStatus, but whatever Steam return.
@@ -24,7 +24,7 @@ pub struct TransactionAgreement {
     #[serde(rename = "period")]
     pub period: String,
     #[serde(rename = "frequency")]
-    pub frequency: f64,
+    pub frequency: i32,
     #[serde(rename = "billingType")]
     pub billing_type: String,
     #[serde(rename = "startDate")]
@@ -46,14 +46,33 @@ pub struct TransactionAgreement {
     #[serde(rename = "lastAmountVat")]
     pub last_amount_vat: f64,
     #[serde(rename = "outstanding")]
-    pub outstanding: f64,
+    pub outstanding: i32,
     #[serde(rename = "failedAttempts")]
-    pub failed_attempts: f64,
+    pub failed_attempts: i32,
 }
 
 impl TransactionAgreement {
     /// Represents a single Transaction, which is likely between VRChat and Steam.
-    pub fn new(agreement_id: String, item_id: f64, agreement: String, status: String, period: String, frequency: f64, billing_type: String, start_date: String, end_date: String, recurring_amt: f64, currency: String, time_created: String, next_payment: String, last_payment: String, last_amount: f64, last_amount_vat: f64, outstanding: f64, failed_attempts: f64) -> TransactionAgreement {
+    pub fn new(
+        agreement_id: String,
+        item_id: i32,
+        agreement: String,
+        status: String,
+        period: String,
+        frequency: i32,
+        billing_type: String,
+        start_date: String,
+        end_date: String,
+        recurring_amt: f64,
+        currency: String,
+        time_created: String,
+        next_payment: String,
+        last_payment: String,
+        last_amount: f64,
+        last_amount_vat: f64,
+        outstanding: i32,
+        failed_attempts: i32,
+    ) -> TransactionAgreement {
         TransactionAgreement {
             agreement_id,
             item_id,
@@ -76,4 +95,3 @@ impl TransactionAgreement {
         }
     }
 }
-

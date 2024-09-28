@@ -36,7 +36,10 @@ pub struct User {
     pub display_name: String,
     #[serde(rename = "friendKey")]
     pub friend_key: String,
-    #[serde(rename = "friendRequestStatus", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "friendRequestStatus",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub friend_request_status: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id")]
@@ -53,6 +56,13 @@ pub struct User {
     /// Either a date-time or empty string.
     #[serde(rename = "last_login")]
     pub last_login: String,
+    #[serde(
+        rename = "last_mobile",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub last_mobile: Option<Option<String>>,
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
@@ -61,8 +71,8 @@ pub struct User {
     pub location: Option<String>,
     #[serde(rename = "note", skip_serializing_if = "Option::is_none")]
     pub note: Option<String>,
-    #[serde(rename = "platform")]
-    pub platform: String,
+    #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
+    pub platform: Option<String>,
     #[serde(rename = "profilePicOverride")]
     pub profile_pic_override: String,
     #[serde(rename = "profilePicOverrideThumbnail")]
@@ -77,9 +87,15 @@ pub struct User {
     pub status_description: String,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
-    #[serde(rename = "travelingToInstance", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "travelingToInstance",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub traveling_to_instance: Option<String>,
-    #[serde(rename = "travelingToLocation", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "travelingToLocation",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub traveling_to_location: Option<String>,
     #[serde(rename = "travelingToWorld", skip_serializing_if = "Option::is_none")]
     pub traveling_to_world: Option<String>,
@@ -94,7 +110,31 @@ pub struct User {
 }
 
 impl User {
-    pub fn new(allow_avatar_copying: bool, bio: String, bio_links: Vec<String>, current_avatar_image_url: String, current_avatar_thumbnail_image_url: String, current_avatar_tags: Vec<String>, date_joined: String, developer_type: models::DeveloperType, display_name: String, friend_key: String, id: String, is_friend: bool, last_activity: String, last_login: String, last_platform: String, platform: String, profile_pic_override: String, profile_pic_override_thumbnail: String, pronouns: String, state: models::UserState, status: models::UserStatus, status_description: String, tags: Vec<String>, user_icon: String) -> User {
+    pub fn new(
+        allow_avatar_copying: bool,
+        bio: String,
+        bio_links: Vec<String>,
+        current_avatar_image_url: String,
+        current_avatar_thumbnail_image_url: String,
+        current_avatar_tags: Vec<String>,
+        date_joined: String,
+        developer_type: models::DeveloperType,
+        display_name: String,
+        friend_key: String,
+        id: String,
+        is_friend: bool,
+        last_activity: String,
+        last_login: String,
+        last_platform: String,
+        profile_pic_override: String,
+        profile_pic_override_thumbnail: String,
+        pronouns: String,
+        state: models::UserState,
+        status: models::UserStatus,
+        status_description: String,
+        tags: Vec<String>,
+        user_icon: String,
+    ) -> User {
         User {
             allow_avatar_copying,
             badges: None,
@@ -113,10 +153,11 @@ impl User {
             is_friend,
             last_activity,
             last_login,
+            last_mobile: None,
             last_platform,
             location: None,
             note: None,
-            platform,
+            platform: None,
             profile_pic_override,
             profile_pic_override_thumbnail,
             pronouns,
@@ -133,4 +174,3 @@ impl User {
         }
     }
 }
-

@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// LicenseGroup : 
+/// LicenseGroup :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LicenseGroup {
     #[serde(rename = "id")]
@@ -23,7 +23,12 @@ pub struct LicenseGroup {
 }
 
 impl LicenseGroup {
-    pub fn new(id: String, name: String, description: String, licenses: Vec<models::License>) -> LicenseGroup {
+    pub fn new(
+        id: String,
+        name: String,
+        description: String,
+        licenses: Vec<models::License>,
+    ) -> LicenseGroup {
         LicenseGroup {
             id,
             name,
@@ -32,4 +37,3 @@ impl LicenseGroup {
         }
     }
 }
-

@@ -14,15 +14,15 @@ pub struct CreateFileVersionRequest {
     #[serde(rename = "signatureMd5")]
     pub signature_md5: String,
     #[serde(rename = "signatureSizeInBytes")]
-    pub signature_size_in_bytes: f64,
+    pub signature_size_in_bytes: i32,
     #[serde(rename = "fileMd5", skip_serializing_if = "Option::is_none")]
     pub file_md5: Option<String>,
     #[serde(rename = "fileSizeInBytes", skip_serializing_if = "Option::is_none")]
-    pub file_size_in_bytes: Option<f64>,
+    pub file_size_in_bytes: Option<i32>,
 }
 
 impl CreateFileVersionRequest {
-    pub fn new(signature_md5: String, signature_size_in_bytes: f64) -> CreateFileVersionRequest {
+    pub fn new(signature_md5: String, signature_size_in_bytes: i32) -> CreateFileVersionRequest {
         CreateFileVersionRequest {
             signature_md5,
             signature_size_in_bytes,
@@ -31,4 +31,3 @@ impl CreateFileVersionRequest {
         }
     }
 }
-

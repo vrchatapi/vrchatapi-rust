@@ -18,11 +18,13 @@ pub struct NotificationDetailInviteResponse {
 }
 
 impl NotificationDetailInviteResponse {
-    pub fn new(in_response_to: String, response_message: String) -> NotificationDetailInviteResponse {
+    pub fn new(
+        in_response_to: String,
+        response_message: String,
+    ) -> NotificationDetailInviteResponse {
         NotificationDetailInviteResponse {
             in_response_to,
             response_message,
         }
     }
 }
-

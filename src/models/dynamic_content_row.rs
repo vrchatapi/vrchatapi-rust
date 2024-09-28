@@ -33,7 +33,13 @@ pub struct DynamicContentRow {
 }
 
 impl DynamicContentRow {
-    pub fn new(name: String, platform: String, sort_heading: String, sort_order: String, sort_ownership: String) -> DynamicContentRow {
+    pub fn new(
+        name: String,
+        platform: String,
+        sort_heading: String,
+        sort_order: String,
+        sort_ownership: String,
+    ) -> DynamicContentRow {
         DynamicContentRow {
             index: None,
             name,
@@ -46,4 +52,3 @@ impl DynamicContentRow {
         }
     }
 }
-

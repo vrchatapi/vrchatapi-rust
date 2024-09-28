@@ -12,14 +12,11 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Error {
     #[serde(rename = "error", skip_serializing_if = "Option::is_none")]
-    pub error: Option<Box<models::Response>>,
+    pub error: Option<models::Response>,
 }
 
 impl Error {
     pub fn new() -> Error {
-        Error {
-            error: None,
-        }
+        Error { error: None }
     }
 }
-

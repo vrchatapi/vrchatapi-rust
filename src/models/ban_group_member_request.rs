@@ -18,9 +18,6 @@ pub struct BanGroupMemberRequest {
 
 impl BanGroupMemberRequest {
     pub fn new(user_id: String) -> BanGroupMemberRequest {
-        BanGroupMemberRequest {
-            user_id,
-        }
+        BanGroupMemberRequest { user_id }
     }
 }
-

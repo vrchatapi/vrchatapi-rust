@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **email** | Option<**String**> |  | [optional]
 **birthday** | Option<[**String**](string.md)> |  | [optional]
-**accepted_tos_version** | Option<**f64**> |  | [optional]
+**accepted_tos_version** | Option<**i32**> |  | [optional]
 **tags** | Option<**Vec<String>**> |   | [optional]
 **status** | Option<[**models::UserStatus**](UserStatus.md)> |  | [optional]
 **status_description** | Option<**String**> |  | [optional]

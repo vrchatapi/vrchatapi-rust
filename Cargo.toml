@@ -1,6 +1,6 @@
 [package]
 name = "vrchatapi"
-version = "1.18.1"
+version = "1.18.4"
 authors = ["vrchatapi.lpv0t@aries.fyi"]
 description = "VRChat API Client for Rust"
 license = "MIT"
@@ -12,7 +12,9 @@ serde_with = { version = "^3.8", default-features = false, features = ["base64",
 serde_json = "^1.0"
 url = "^2.5"
 uuid = { version = "^1.8", features = ["serde", "v4"] }
-reqwest = { version = "^0.12", features = ["json", "cookies", "multipart"] }
+reqwest = { version = "^0.12", default-features = false, features = ["json", "cookies", "multipart"] }
 
 [dev-dependencies]
 tokio = { version = '1', features = ['macros', 'rt-multi-thread'] }
+[features]
+default = ["reqwest/default"]

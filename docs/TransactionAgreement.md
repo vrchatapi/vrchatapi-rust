@@ -5,11 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **agreement_id** | **String** |  | 
-**item_id** | **f64** |  | 
+**item_id** | **i32** |  | 
 **agreement** | **String** |  | 
 **status** | **String** | This is NOT TransactionStatus, but whatever Steam return. | 
 **period** | **String** |  | 
-**frequency** | **f64** |  | 
+**frequency** | **i32** |  | 
 **billing_type** | **String** |  | 
 **start_date** | **String** |  | 
 **end_date** | **String** |  | 
@@ -20,8 +20,8 @@ Name | Type | Description | Notes
 **last_payment** | **String** |  | 
 **last_amount** | **f64** |  | 
 **last_amount_vat** | **f64** |  | 
-**outstanding** | **f64** |  | 
-**failed_attempts** | **f64** |  | 
+**outstanding** | **i32** |  | 
+**failed_attempts** | **i32** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
