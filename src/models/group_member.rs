@@ -22,7 +22,7 @@ pub struct GroupMember {
     #[serde(rename = "isRepresenting", skip_serializing_if = "Option::is_none")]
     pub is_representing: Option<bool>,
     #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<Box<models::GroupMemberLimitedUser>>,
+    pub user: Option<models::GroupMemberLimitedUser>,
     #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
     pub role_ids: Option<Vec<String>>,
     #[serde(rename = "mRoleIds", skip_serializing_if = "Option::is_none")]

@@ -112,7 +112,7 @@ pub struct CurrentUser {
     #[serde(rename = "pastDisplayNames")]
     pub past_display_names: Vec<models::PastDisplayName>,
     #[serde(rename = "presence", skip_serializing_if = "Option::is_none")]
-    pub presence: Option<Box<models::CurrentUserPresence>>,
+    pub presence: Option<models::CurrentUserPresence>,
     #[serde(rename = "profilePicOverride")]
     pub profile_pic_override: String,
     #[serde(rename = "profilePicOverrideThumbnail")]

@@ -44,7 +44,7 @@ pub struct Avatar {
     #[serde(rename = "unityPackageUrl")]
     pub unity_package_url: String,
     #[serde(rename = "unityPackageUrlObject")]
-    pub unity_package_url_object: Box<models::AvatarUnityPackageUrlObject>,
+    pub unity_package_url_object: models::AvatarUnityPackageUrlObject,
     #[serde(rename = "unityPackages")]
     pub unity_packages: Vec<models::UnityPackage>,
     #[serde(rename = "updated_at")]
@@ -70,7 +70,7 @@ impl Avatar {
             tags,
             thumbnail_image_url,
             unity_package_url,
-            unity_package_url_object: Box::new(unity_package_url_object),
+            unity_package_url_object,
             unity_packages,
             updated_at,
             version,

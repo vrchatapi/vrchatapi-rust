@@ -164,7 +164,7 @@ pub struct ApiConfig {
     #[serde(rename = "downloadLinkWindows")]
     pub download_link_windows: String,
     #[serde(rename = "downloadUrls")]
-    pub download_urls: Box<models::ApiConfigDownloadUrlList>,
+    pub download_urls: models::ApiConfigDownloadUrlList,
     /// Array of DynamicWorldRow objects, used by the game to display the list of world rows
     #[serde(rename = "dynamicWorldRows")]
     pub dynamic_world_rows: Vec<models::DynamicContentRow>,
@@ -178,7 +178,7 @@ pub struct ApiConfig {
     #[serde(rename = "economyState", skip_serializing_if = "Option::is_none")]
     pub economy_state: Option<i32>,
     #[serde(rename = "events")]
-    pub events: Box<models::ApiConfigEvents>,
+    pub events: models::ApiConfigEvents,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "homeWorldId")]
     pub home_world_id: String,
@@ -316,12 +316,12 @@ impl ApiConfig {
             disable_udon,
             disable_upgrade_account,
             download_link_windows,
-            download_urls: Box::new(download_urls),
+            download_urls,
             dynamic_world_rows,
             economy_pause_end: None,
             economy_pause_start: None,
             economy_state: None,
-            events: Box::new(events),
+            events,
             home_world_id,
             homepage_redirect_target,
             hub_world_id,
