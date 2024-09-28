@@ -53,7 +53,26 @@ pub struct TransactionAgreement {
 
 impl TransactionAgreement {
     /// Represents a single Transaction, which is likely between VRChat and Steam.
-    pub fn new(agreement_id: String, item_id: i32, agreement: String, status: String, period: String, frequency: i32, billing_type: String, start_date: String, end_date: String, recurring_amt: f64, currency: String, time_created: String, next_payment: String, last_payment: String, last_amount: f64, last_amount_vat: f64, outstanding: i32, failed_attempts: i32) -> TransactionAgreement {
+    pub fn new(
+        agreement_id: String,
+        item_id: i32,
+        agreement: String,
+        status: String,
+        period: String,
+        frequency: i32,
+        billing_type: String,
+        start_date: String,
+        end_date: String,
+        recurring_amt: f64,
+        currency: String,
+        time_created: String,
+        next_payment: String,
+        last_payment: String,
+        last_amount: f64,
+        last_amount_vat: f64,
+        outstanding: i32,
+        failed_attempts: i32,
+    ) -> TransactionAgreement {
         TransactionAgreement {
             agreement_id,
             item_id,
@@ -76,4 +95,3 @@ impl TransactionAgreement {
         }
     }
 }
-

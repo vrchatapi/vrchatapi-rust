@@ -19,7 +19,6 @@ pub enum ReleaseStatus {
     Hidden,
     #[serde(rename = "all")]
     All,
-
 }
 
 impl std::fmt::Display for ReleaseStatus {
@@ -38,4 +37,3 @@ impl Default for ReleaseStatus {
         Self::Public
     }
 }
-

@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FileUploadUrl : 
+/// FileUploadUrl :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileUploadUrl {
     #[serde(rename = "url")]
@@ -18,9 +18,6 @@ pub struct FileUploadUrl {
 
 impl FileUploadUrl {
     pub fn new(url: String) -> FileUploadUrl {
-        FileUploadUrl {
-            url,
-        }
+        FileUploadUrl { url }
     }
 }
-

@@ -23,7 +23,12 @@ pub struct GroupInstance {
 }
 
 impl GroupInstance {
-    pub fn new(instance_id: String, location: String, world: models::World, member_count: i32) -> GroupInstance {
+    pub fn new(
+        instance_id: String,
+        location: String,
+        world: models::World,
+        member_count: i32,
+    ) -> GroupInstance {
         GroupInstance {
             instance_id,
             location,
@@ -32,4 +37,3 @@ impl GroupInstance {
         }
     }
 }
-

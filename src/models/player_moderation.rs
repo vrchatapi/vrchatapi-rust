@@ -30,7 +30,15 @@ pub struct PlayerModeration {
 }
 
 impl PlayerModeration {
-    pub fn new(created: String, id: String, source_display_name: String, source_user_id: String, target_display_name: String, target_user_id: String, r#type: models::PlayerModerationType) -> PlayerModeration {
+    pub fn new(
+        created: String,
+        id: String,
+        source_display_name: String,
+        source_user_id: String,
+        target_display_name: String,
+        target_user_id: String,
+        r#type: models::PlayerModerationType,
+    ) -> PlayerModeration {
         PlayerModeration {
             created,
             id,
@@ -42,4 +50,3 @@ impl PlayerModeration {
         }
     }
 }
-

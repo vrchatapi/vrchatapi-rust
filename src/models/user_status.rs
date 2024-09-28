@@ -23,7 +23,6 @@ pub enum UserStatus {
     Busy,
     #[serde(rename = "offline")]
     Offline,
-
 }
 
 impl std::fmt::Display for UserStatus {
@@ -43,4 +42,3 @@ impl Default for UserStatus {
         Self::Active
     }
 }
-

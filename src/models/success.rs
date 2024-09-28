@@ -17,9 +17,6 @@ pub struct Success {
 
 impl Success {
     pub fn new() -> Success {
-        Success {
-            success: None,
-        }
+        Success { success: None }
     }
 }
-

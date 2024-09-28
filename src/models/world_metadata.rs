@@ -20,10 +20,6 @@ pub struct WorldMetadata {
 
 impl WorldMetadata {
     pub fn new(id: String, metadata: serde_json::Value) -> WorldMetadata {
-        WorldMetadata {
-            id,
-            metadata,
-        }
+        WorldMetadata { id, metadata }
     }
 }
-
