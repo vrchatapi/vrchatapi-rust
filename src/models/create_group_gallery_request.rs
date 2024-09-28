@@ -20,13 +20,33 @@ pub struct CreateGroupGalleryRequest {
     /// Whether the gallery is members only.
     #[serde(rename = "membersOnly", skip_serializing_if = "Option::is_none")]
     pub members_only: Option<bool>,
-    #[serde(rename = "roleIdsToView", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "roleIdsToView",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub role_ids_to_view: Option<Option<Vec<String>>>,
-    #[serde(rename = "roleIdsToSubmit", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "roleIdsToSubmit",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub role_ids_to_submit: Option<Option<Vec<String>>>,
-    #[serde(rename = "roleIdsToAutoApprove", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "roleIdsToAutoApprove",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub role_ids_to_auto_approve: Option<Option<Vec<String>>>,
-    #[serde(rename = "roleIdsToManage", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "roleIdsToManage",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub role_ids_to_manage: Option<Option<Vec<String>>>,
 }
 
@@ -43,4 +63,3 @@ impl CreateGroupGalleryRequest {
         }
     }
 }
-

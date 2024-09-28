@@ -27,7 +27,6 @@ pub enum Region {
     Jp,
     #[serde(rename = "unknown")]
     Unknown,
-
 }
 
 impl std::fmt::Display for Region {
@@ -49,4 +48,3 @@ impl Default for Region {
         Self::Us
     }
 }
-

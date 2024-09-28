@@ -23,7 +23,6 @@ pub enum InstanceRegion {
     Jp,
     #[serde(rename = "unknown")]
     Unknown,
-
 }
 
 impl std::fmt::Display for InstanceRegion {
@@ -43,4 +42,3 @@ impl Default for InstanceRegion {
         Self::Us
     }
 }
-

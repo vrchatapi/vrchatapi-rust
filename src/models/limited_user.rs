@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// LimitedUser : 
+/// LimitedUser :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedUser {
     #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
@@ -17,10 +17,16 @@ pub struct LimitedUser {
     #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
     pub bio_links: Option<Vec<String>>,
     /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarImageUrl", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "currentAvatarImageUrl",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub current_avatar_image_url: Option<String>,
     /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarThumbnailImageUrl", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "currentAvatarThumbnailImageUrl",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub current_avatar_thumbnail_image_url: Option<String>,
     #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
     pub current_avatar_tags: Option<Vec<String>>,
@@ -61,7 +67,16 @@ pub struct LimitedUser {
 }
 
 impl LimitedUser {
-    pub fn new(developer_type: models::DeveloperType, display_name: String, id: String, is_friend: bool, last_platform: String, status: models::UserStatus, status_description: String, tags: Vec<String>) -> LimitedUser {
+    pub fn new(
+        developer_type: models::DeveloperType,
+        display_name: String,
+        id: String,
+        is_friend: bool,
+        last_platform: String,
+        status: models::UserStatus,
+        status_description: String,
+        tags: Vec<String>,
+    ) -> LimitedUser {
         LimitedUser {
             bio: None,
             bio_links: None,
@@ -86,4 +101,3 @@ impl LimitedUser {
         }
     }
 }
-

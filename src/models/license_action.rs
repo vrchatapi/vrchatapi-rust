@@ -15,7 +15,6 @@ pub enum LicenseAction {
     Wear,
     #[serde(rename = "have")]
     Have,
-
 }
 
 impl std::fmt::Display for LicenseAction {
@@ -32,4 +31,3 @@ impl Default for LicenseAction {
         Self::Wear
     }
 }
-

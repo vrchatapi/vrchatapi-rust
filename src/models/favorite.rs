@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Favorite : 
+/// Favorite :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Favorite {
     /// MUST be either AvatarID, UserID or WorldID.
@@ -24,7 +24,12 @@ pub struct Favorite {
 }
 
 impl Favorite {
-    pub fn new(favorite_id: String, id: String, tags: Vec<String>, r#type: models::FavoriteType) -> Favorite {
+    pub fn new(
+        favorite_id: String,
+        id: String,
+        tags: Vec<String>,
+        r#type: models::FavoriteType,
+    ) -> Favorite {
         Favorite {
             favorite_id,
             id,
@@ -33,4 +38,3 @@ impl Favorite {
         }
     }
 }
-

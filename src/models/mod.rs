@@ -45,7 +45,7 @@ pub use self::create_instance_request::CreateInstanceRequest;
 pub mod create_world_request;
 pub use self::create_world_request::CreateWorldRequest;
 pub mod current_user;
-pub use self::current_user::{EitherUserOrTwoFactor, CurrentUser};
+pub use self::current_user::{CurrentUser, EitherUserOrTwoFactor};
 pub mod current_user_presence;
 pub use self::current_user_presence::CurrentUserPresence;
 pub mod deployment_group;

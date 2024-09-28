@@ -17,13 +17,23 @@ pub struct GroupMemberLimitedUser {
     pub id: Option<String>,
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
     pub display_name: Option<String>,
-    #[serde(rename = "thumbnailUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "thumbnailUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub thumbnail_url: Option<Option<String>>,
     #[serde(rename = "iconUrl", skip_serializing_if = "Option::is_none")]
     pub icon_url: Option<String>,
     #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
     pub profile_pic_override: Option<String>,
-    #[serde(rename = "currentAvatarThumbnailImageUrl", default, with = "::serde_with::rust::double_option", skip_serializing_if = "Option::is_none")]
+    #[serde(
+        rename = "currentAvatarThumbnailImageUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
     pub current_avatar_thumbnail_image_url: Option<Option<String>>,
     #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
     pub current_avatar_tags: Option<Vec<String>>,
@@ -43,4 +53,3 @@ impl GroupMemberLimitedUser {
         }
     }
 }
-

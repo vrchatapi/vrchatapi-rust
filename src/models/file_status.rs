@@ -19,7 +19,6 @@ pub enum FileStatus {
     None,
     #[serde(rename = "queued")]
     Queued,
-
 }
 
 impl std::fmt::Display for FileStatus {
@@ -38,4 +37,3 @@ impl Default for FileStatus {
         Self::Waiting
     }
 }
-
