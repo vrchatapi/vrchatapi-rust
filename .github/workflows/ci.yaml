@@ -32,10 +32,7 @@ jobs:
           java-version: '13'
           distribution: 'adopt'
       - name: Install Rustup toolchain
-        uses: actions-rs/toolchain@v1
-        with:
-            toolchain: stable
-            override: true
+        uses: moonrepo/setup-rust@v1
       - name: Generate SDK Client
         run: bash ./generate.sh
       - name: Check version number
