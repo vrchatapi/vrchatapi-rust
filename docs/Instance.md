@@ -8,9 +8,12 @@ Name | Type | Description | Notes
 **can_request_invite** | **bool** |  | [default to true]
 **capacity** | **i32** |  | 
 **client_number** | **String** | Always returns \"unknown\". | 
+**display_name** | Option<**String**> |  | 
 **full** | **bool** |  | [default to false]
+**game_server_version** | **i32** |  | 
 **id** | **String** | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | 
 **instance_id** | **String** |  | 
+**instance_persistence_enabled** | Option<**String**> |  | 
 **location** | **String** | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | 
 **n_users** | **i32** |  | 
 **name** | **String** |  | 
@@ -18,6 +21,7 @@ Name | Type | Description | Notes
 **permanent** | **bool** |  | [default to false]
 **photon_region** | [**models::Region**](Region.md) |  | 
 **platforms** | [**models::InstancePlatforms**](InstancePlatforms.md) |  | 
+**player_persistence_enabled** | Option<**String**> |  | 
 **region** | [**models::InstanceRegion**](InstanceRegion.md) |  | 
 **secure_name** | **String** |  | 
 **short_name** | Option<**String**> |  | [optional]

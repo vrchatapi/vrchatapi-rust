@@ -21,13 +21,22 @@ pub struct Instance {
     /// Always returns \"unknown\".
     #[serde(rename = "clientNumber")]
     pub client_number: String,
+    #[serde(rename = "displayName", deserialize_with = "Option::deserialize")]
+    pub display_name: Option<String>,
     #[serde(rename = "full")]
     pub full: bool,
+    #[serde(rename = "gameServerVersion")]
+    pub game_server_version: i32,
     /// InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance.
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "instanceId")]
     pub instance_id: String,
+    #[serde(
+        rename = "instancePersistenceEnabled",
+        deserialize_with = "Option::deserialize"
+    )]
+    pub instance_persistence_enabled: Option<String>,
     /// InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance.
     #[serde(rename = "location")]
     pub location: String,
@@ -49,6 +58,11 @@ pub struct Instance {
     pub photon_region: models::Region,
     #[serde(rename = "platforms")]
     pub platforms: models::InstancePlatforms,
+    #[serde(
+        rename = "playerPersistenceEnabled",
+        deserialize_with = "Option::deserialize"
+    )]
+    pub player_persistence_enabled: Option<String>,
     #[serde(rename = "region")]
     pub region: models::InstanceRegion,
     #[serde(rename = "secureName")]
@@ -123,15 +137,19 @@ impl Instance {
         can_request_invite: bool,
         capacity: i32,
         client_number: String,
+        display_name: Option<String>,
         full: bool,
+        game_server_version: i32,
         id: String,
         instance_id: String,
+        instance_persistence_enabled: Option<String>,
         location: String,
         n_users: i32,
         name: String,
         permanent: bool,
         photon_region: models::Region,
         platforms: models::InstancePlatforms,
+        player_persistence_enabled: Option<String>,
         region: models::InstanceRegion,
         secure_name: String,
         tags: Vec<String>,
@@ -149,9 +167,12 @@ impl Instance {
             can_request_invite,
             capacity,
             client_number,
+            display_name,
             full,
+            game_server_version,
             id,
             instance_id,
+            instance_persistence_enabled,
             location,
             n_users,
             name,
@@ -159,6 +180,7 @@ impl Instance {
             permanent,
             photon_region,
             platforms,
+            player_persistence_enabled,
             region,
             secure_name,
             short_name: None,

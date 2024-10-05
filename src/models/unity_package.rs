@@ -32,6 +32,8 @@ pub struct UnityPackage {
         skip_serializing_if = "Option::is_none"
     )]
     pub impostorizer_version: Option<String>,
+    #[serde(rename = "performanceRating", skip_serializing_if = "Option::is_none")]
+    pub performance_rating: Option<models::PerformanceRatings>,
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "platform")]
     pub platform: String,
@@ -43,6 +45,13 @@ pub struct UnityPackage {
     pub unity_sort_number: Option<i64>,
     #[serde(rename = "unityVersion")]
     pub unity_version: String,
+    #[serde(
+        rename = "worldSignature",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub world_signature: Option<Option<String>>,
     #[serde(
         rename = "impostorUrl",
         default,
@@ -70,11 +79,13 @@ impl UnityPackage {
             asset_version,
             created_at: None,
             impostorizer_version: None,
+            performance_rating: None,
             platform,
             plugin_url: None,
             plugin_url_object: None,
             unity_sort_number: None,
             unity_version,
+            world_signature: None,
             impostor_url: None,
             scan_status: None,
             variant: None,

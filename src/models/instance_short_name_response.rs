@@ -13,8 +13,13 @@ use serde::{Deserialize, Serialize};
 pub struct InstanceShortNameResponse {
     #[serde(rename = "secureName")]
     pub secure_name: String,
-    #[serde(rename = "shortName", skip_serializing_if = "Option::is_none")]
-    pub short_name: Option<String>,
+    #[serde(
+        rename = "shortName",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub short_name: Option<Option<String>>,
 }
 
 impl InstanceShortNameResponse {

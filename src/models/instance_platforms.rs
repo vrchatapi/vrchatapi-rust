@@ -13,6 +13,8 @@ use serde::{Deserialize, Serialize};
 pub struct InstancePlatforms {
     #[serde(rename = "android")]
     pub android: i32,
+    #[serde(rename = "ios", skip_serializing_if = "Option::is_none")]
+    pub ios: Option<i32>,
     #[serde(rename = "standalonewindows")]
     pub standalonewindows: i32,
 }
@@ -21,6 +23,7 @@ impl InstancePlatforms {
     pub fn new(android: i32, standalonewindows: i32) -> InstancePlatforms {
         InstancePlatforms {
             android,
+            ios: None,
             standalonewindows,
         }
     }

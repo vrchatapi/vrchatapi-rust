@@ -8,14 +8,18 @@ Name | Type | Description | Notes
 **voice_enable_receiver_limiting** | **bool** | Unknown, probably voice optimization testing | [default to true]
 **address** | **String** | VRChat's office address | 
 **announcements** | [**Vec<models::ApiConfigAnnouncement>**](APIConfigAnnouncement.md) | Public Announcements | 
+**analytics_segment_new_ui_pct_of_users** | **i32** | Unknown | 
+**analytics_segment_new_ui_salt** | **String** | Unknown | 
 **app_name** | **String** | Game name | [default to VrChat]
 **available_language_codes** | **Vec<String>** | List of supported Languages | 
 **available_languages** | **Vec<String>** | List of supported Languages | 
 **build_version_tag** | **String** | Build tag of the API server | 
+**chatbox_log_buffer_seconds** | **i32** | Unknown | [default to 40]
 **client_api_key** | **String** | apiKey to be used for all other requests | 
 **client_bps_ceiling** | **i32** | Unknown | [default to 18432]
 **client_disconnect_timeout** | **i32** | Unknown | [default to 30000]
 **client_net_dispatch_thread** | Option<**bool**> | Unknown | [optional][default to false]
+**client_net_dispatch_thread_mobile** | **bool** | Unknown | [default to true]
 **client_net_in_thread** | Option<**bool**> | Unknown | [optional][default to false]
 **client_net_in_thread2** | Option<**bool**> | Unknown | [optional][default to false]
 **client_net_in_thread_mobile** | Option<**bool**> | Unknown | [optional][default to false]
@@ -27,6 +31,7 @@ Name | Type | Description | Notes
 **client_qr** | Option<**i32**> | Unknown | [optional][default to 1]
 **client_reserved_player_bps** | **i32** | Unknown | [default to 7168]
 **client_sent_count_allowance** | **i32** | Unknown | [default to 15]
+**constants** | [**models::ApiConfigConstants**](APIConfigConstants.md) |  | 
 **contact_email** | **String** | VRChat's contact email | 
 **copyright_email** | **String** | VRChat's copyright-issues-related email | 
 **current_privacy_version** | Option<**i32**> | Current version number of the Privacy Agreement | [optional][default to 1]
@@ -61,13 +66,24 @@ Name | Type | Description | Notes
 **economy_pause_start** | Option<**String**> | Unknown | [optional]
 **economy_state** | Option<**i32**> | Unknown | [optional][default to 1]
 **events** | [**models::ApiConfigEvents**](APIConfigEvents.md) |  | 
+**force_use_latest_world** | **bool** | Unknown | [default to true]
+**google_api_client_id** | **String** | Unknown | [default to 827942544393-r2ouvckvouldn9dg9uruseje575e878f.apps.googleusercontent.com]
 **home_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **homepage_redirect_target** | **String** | Redirect target if you try to open the base API domain in your browser | [default to https://hello.vrchat.com]
 **hub_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **image_host_url_list** | **Vec<String>** | A list of explicitly allowed origins that worlds can request images from via the Udon's [VRCImageDownloader#DownloadImage](https://creators.vrchat.com/worlds/udon/image-loading/#downloadimage). | 
 **jobs_email** | **String** | VRChat's job application email | 
+**min_supported_client_build_number** | [**models::ApiConfigMinSupportedClientBuildNumber**](APIConfig_minSupportedClientBuildNumber.md) |  | 
+**minimum_unity_version_for_uploads** | **String** | Minimum Unity version required for uploading assets | [default to 2019.0.0f1]
 **moderation_email** | **String** | VRChat's moderation related email | 
 **not_allowed_to_select_avatar_in_private_world_message** | **String** | Used in-game to notify a user they aren't allowed to select avatars in private worlds | 
+**offline_analysis** | [**models::ApiConfigOfflineAnalysis**](APIConfig_offlineAnalysis.md) |  | 
+**photon_nameserver_overrides** | **Vec<String>** | Unknown | 
+**photon_public_keys** | **Vec<String>** | Unknown | 
+**report_categories** | [**models::ApiConfigReportCategories**](APIConfig_reportCategories.md) |  | 
+**report_form_url** | **String** | URL to the report form | [default to https://help.vrchat.com/hc/en-us/requests/new?ticket_form_id=1500000182242&tf_360056455174=user_report&tf_360057451993={userId}&tf_1500001445142={reportedId}&tf_subject={reason} {category} By {contentType} {reportedName}&tf_description={description}]
+**report_options** | [**serde_json::Value**](.md) | Options for reporting content | 
+**report_reasons** | [**models::ApiConfigReportReasons**](APIConfig_reportReasons.md) |  | 
 **sdk_developer_faq_url** | **String** | Link to the developer FAQ | 
 **sdk_discord_url** | **String** | Link to the official VRChat Discord | 
 **sdk_not_allowed_to_publish_message** | **String** | Used in the SDK to notify a user they aren't allowed to upload avatars/worlds yet | 
@@ -75,6 +91,7 @@ Name | Type | Description | Notes
 **server_name** | **String** | Server name of the API server currently responding | 
 **string_host_url_list** | **Vec<String>** | A list of explicitly allowed origins that worlds can request strings from via the Udon's [VRCStringDownloader.LoadUrl](https://creators.vrchat.com/worlds/udon/string-loading/#ivrcstringdownload). | 
 **support_email** | **String** | VRChat's support email | 
+**timekeeping** | **bool** | Unknown | [default to true]
 **time_out_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **tutorial_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **update_rate_ms_maximum** | **i32** | Unknown | 
@@ -88,6 +105,9 @@ Name | Type | Description | Notes
 **white_listed_asset_urls** | **Vec<String>** | List of allowed URLs that are allowed to host avatar assets | 
 **player_url_resolver_version** | **String** | Currently used youtube-dl.exe version | 
 **player_url_resolver_sha1** | **String** | Currently used youtube-dl.exe hash in SHA1-delimited format | 
+**websocket_max_friends_refresh_delay** | **i32** | Unknown | [default to 900]
+**websocket_quick_reconnect_time** | **i32** | Unknown | [default to 2]
+**websocket_reconnect_max_delay** | **i32** | Unknown | [default to 2]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

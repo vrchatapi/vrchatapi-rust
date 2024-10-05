@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **public_occupants** | Option<**i32**> | Will always be `0` when unauthenticated. | [optional][default to 0]
 **publication_date** | **String** |  | 
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
+**store_id** | Option<**String**> |  | 
 **tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
 **unity_packages** | Option<[**Vec<models::UnityPackage>**](UnityPackage.md)> | Empty if unauthenticated. | [optional]

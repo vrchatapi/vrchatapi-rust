@@ -1,12 +1,10 @@
-# InstancePlatforms
+# ApiConfigConstantsLanguage
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**android** | **i32** |  | 
-**ios** | Option<**i32**> |  | [optional]
-**standalonewindows** | **i32** |  | 
+**spoken_language_options** | Option<**std::collections::HashMap<String, String>**> | Supported spoken language options | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

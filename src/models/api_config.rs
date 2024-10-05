@@ -24,6 +24,12 @@ pub struct ApiConfig {
     /// Public Announcements
     #[serde(rename = "announcements")]
     pub announcements: Vec<models::ApiConfigAnnouncement>,
+    /// Unknown
+    #[serde(rename = "analyticsSegment_NewUI_PctOfUsers")]
+    pub analytics_segment_new_ui_pct_of_users: i32,
+    /// Unknown
+    #[serde(rename = "analyticsSegment_NewUI_Salt")]
+    pub analytics_segment_new_ui_salt: String,
     /// Game name
     #[serde(rename = "appName")]
     pub app_name: String,
@@ -36,6 +42,9 @@ pub struct ApiConfig {
     /// Build tag of the API server
     #[serde(rename = "buildVersionTag")]
     pub build_version_tag: String,
+    /// Unknown
+    #[serde(rename = "chatboxLogBufferSeconds")]
+    pub chatbox_log_buffer_seconds: i32,
     /// apiKey to be used for all other requests
     #[serde(rename = "clientApiKey")]
     pub client_api_key: String,
@@ -51,6 +60,9 @@ pub struct ApiConfig {
         skip_serializing_if = "Option::is_none"
     )]
     pub client_net_dispatch_thread: Option<bool>,
+    /// Unknown
+    #[serde(rename = "clientNetDispatchThreadMobile")]
+    pub client_net_dispatch_thread_mobile: bool,
     /// Unknown
     #[serde(rename = "clientNetInThread", skip_serializing_if = "Option::is_none")]
     pub client_net_in_thread: Option<bool>,
@@ -99,6 +111,8 @@ pub struct ApiConfig {
     /// Unknown
     #[serde(rename = "clientSentCountAllowance")]
     pub client_sent_count_allowance: i32,
+    #[serde(rename = "constants")]
+    pub constants: models::ApiConfigConstants,
     /// VRChat's contact email
     #[serde(rename = "contactEmail")]
     pub contact_email: String,
@@ -203,6 +217,12 @@ pub struct ApiConfig {
     pub economy_state: Option<i32>,
     #[serde(rename = "events")]
     pub events: models::ApiConfigEvents,
+    /// Unknown
+    #[serde(rename = "forceUseLatestWorld")]
+    pub force_use_latest_world: bool,
+    /// Unknown
+    #[serde(rename = "googleApiClientId")]
+    pub google_api_client_id: String,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "homeWorldId")]
     pub home_world_id: String,
@@ -218,12 +238,35 @@ pub struct ApiConfig {
     /// VRChat's job application email
     #[serde(rename = "jobsEmail")]
     pub jobs_email: String,
+    #[serde(rename = "minSupportedClientBuildNumber")]
+    pub min_supported_client_build_number: models::ApiConfigMinSupportedClientBuildNumber,
+    /// Minimum Unity version required for uploading assets
+    #[serde(rename = "minimumUnityVersionForUploads")]
+    pub minimum_unity_version_for_uploads: String,
     /// VRChat's moderation related email
     #[serde(rename = "moderationEmail")]
     pub moderation_email: String,
     /// Used in-game to notify a user they aren't allowed to select avatars in private worlds
     #[serde(rename = "notAllowedToSelectAvatarInPrivateWorldMessage")]
     pub not_allowed_to_select_avatar_in_private_world_message: String,
+    #[serde(rename = "offlineAnalysis")]
+    pub offline_analysis: models::ApiConfigOfflineAnalysis,
+    /// Unknown
+    #[serde(rename = "photonNameserverOverrides")]
+    pub photon_nameserver_overrides: Vec<String>,
+    /// Unknown
+    #[serde(rename = "photonPublicKeys")]
+    pub photon_public_keys: Vec<String>,
+    #[serde(rename = "reportCategories")]
+    pub report_categories: models::ApiConfigReportCategories,
+    /// URL to the report form
+    #[serde(rename = "reportFormUrl")]
+    pub report_form_url: String,
+    /// Options for reporting content
+    #[serde(rename = "reportOptions")]
+    pub report_options: serde_json::Value,
+    #[serde(rename = "reportReasons")]
+    pub report_reasons: models::ApiConfigReportReasons,
     /// Link to the developer FAQ
     #[serde(rename = "sdkDeveloperFaqUrl")]
     pub sdk_developer_faq_url: String,
@@ -245,6 +288,9 @@ pub struct ApiConfig {
     /// VRChat's support email
     #[serde(rename = "supportEmail")]
     pub support_email: String,
+    /// Unknown
+    #[serde(rename = "timekeeping")]
+    pub timekeeping: bool,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "timeOutWorldId")]
     pub time_out_world_id: String,
@@ -284,6 +330,15 @@ pub struct ApiConfig {
     /// Currently used youtube-dl.exe hash in SHA1-delimited format
     #[serde(rename = "player-url-resolver-sha1")]
     pub player_url_resolver_sha1: String,
+    /// Unknown
+    #[serde(rename = "websocketMaxFriendsRefreshDelay")]
+    pub websocket_max_friends_refresh_delay: i32,
+    /// Unknown
+    #[serde(rename = "websocketQuickReconnectTime")]
+    pub websocket_quick_reconnect_time: i32,
+    /// Unknown
+    #[serde(rename = "websocketReconnectMaxDelay")]
+    pub websocket_reconnect_max_delay: i32,
 }
 
 impl ApiConfig {
@@ -292,15 +347,20 @@ impl ApiConfig {
         voice_enable_receiver_limiting: bool,
         address: String,
         announcements: Vec<models::ApiConfigAnnouncement>,
+        analytics_segment_new_ui_pct_of_users: i32,
+        analytics_segment_new_ui_salt: String,
         app_name: String,
         available_language_codes: Vec<String>,
         available_languages: Vec<String>,
         build_version_tag: String,
+        chatbox_log_buffer_seconds: i32,
         client_api_key: String,
         client_bps_ceiling: i32,
         client_disconnect_timeout: i32,
+        client_net_dispatch_thread_mobile: bool,
         client_reserved_player_bps: i32,
         client_sent_count_allowance: i32,
+        constants: models::ApiConfigConstants,
         contact_email: String,
         copyright_email: String,
         current_tos_version: i32,
@@ -328,13 +388,24 @@ impl ApiConfig {
         download_urls: models::ApiConfigDownloadUrlList,
         dynamic_world_rows: Vec<models::DynamicContentRow>,
         events: models::ApiConfigEvents,
+        force_use_latest_world: bool,
+        google_api_client_id: String,
         home_world_id: String,
         homepage_redirect_target: String,
         hub_world_id: String,
         image_host_url_list: Vec<String>,
         jobs_email: String,
+        min_supported_client_build_number: models::ApiConfigMinSupportedClientBuildNumber,
+        minimum_unity_version_for_uploads: String,
         moderation_email: String,
         not_allowed_to_select_avatar_in_private_world_message: String,
+        offline_analysis: models::ApiConfigOfflineAnalysis,
+        photon_nameserver_overrides: Vec<String>,
+        photon_public_keys: Vec<String>,
+        report_categories: models::ApiConfigReportCategories,
+        report_form_url: String,
+        report_options: serde_json::Value,
+        report_reasons: models::ApiConfigReportReasons,
         sdk_developer_faq_url: String,
         sdk_discord_url: String,
         sdk_not_allowed_to_publish_message: String,
@@ -342,6 +413,7 @@ impl ApiConfig {
         server_name: String,
         string_host_url_list: Vec<String>,
         support_email: String,
+        timekeeping: bool,
         time_out_world_id: String,
         tutorial_world_id: String,
         update_rate_ms_maximum: i32,
@@ -355,20 +427,27 @@ impl ApiConfig {
         white_listed_asset_urls: Vec<String>,
         player_url_resolver_version: String,
         player_url_resolver_sha1: String,
+        websocket_max_friends_refresh_delay: i32,
+        websocket_quick_reconnect_time: i32,
+        websocket_reconnect_max_delay: i32,
     ) -> ApiConfig {
         ApiConfig {
             voice_enable_degradation,
             voice_enable_receiver_limiting,
             address,
             announcements,
+            analytics_segment_new_ui_pct_of_users,
+            analytics_segment_new_ui_salt,
             app_name,
             available_language_codes,
             available_languages,
             build_version_tag,
+            chatbox_log_buffer_seconds,
             client_api_key,
             client_bps_ceiling,
             client_disconnect_timeout,
             client_net_dispatch_thread: None,
+            client_net_dispatch_thread_mobile,
             client_net_in_thread: None,
             client_net_in_thread2: None,
             client_net_in_thread_mobile: None,
@@ -380,6 +459,7 @@ impl ApiConfig {
             client_qr: None,
             client_reserved_player_bps,
             client_sent_count_allowance,
+            constants,
             contact_email,
             copyright_email,
             current_privacy_version: None,
@@ -414,13 +494,24 @@ impl ApiConfig {
             economy_pause_start: None,
             economy_state: None,
             events,
+            force_use_latest_world,
+            google_api_client_id,
             home_world_id,
             homepage_redirect_target,
             hub_world_id,
             image_host_url_list,
             jobs_email,
+            min_supported_client_build_number,
+            minimum_unity_version_for_uploads,
             moderation_email,
             not_allowed_to_select_avatar_in_private_world_message,
+            offline_analysis,
+            photon_nameserver_overrides,
+            photon_public_keys,
+            report_categories,
+            report_form_url,
+            report_options,
+            report_reasons,
             sdk_developer_faq_url,
             sdk_discord_url,
             sdk_not_allowed_to_publish_message,
@@ -428,6 +519,7 @@ impl ApiConfig {
             server_name,
             string_host_url_list,
             support_email,
+            timekeeping,
             time_out_world_id,
             tutorial_world_id,
             update_rate_ms_maximum,
@@ -441,6 +533,9 @@ impl ApiConfig {
             white_listed_asset_urls,
             player_url_resolver_version,
             player_url_resolver_sha1,
+            websocket_max_friends_refresh_delay,
+            websocket_quick_reconnect_time,
+            websocket_reconnect_max_delay,
         }
     }
 }

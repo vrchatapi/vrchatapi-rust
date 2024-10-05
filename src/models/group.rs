@@ -11,6 +11,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Group {
+    #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
+    pub badges: Option<Vec<String>>,
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
@@ -113,6 +115,7 @@ pub struct Group {
 impl Group {
     pub fn new() -> Group {
         Group {
+            badges: None,
             id: None,
             name: None,
             short_code: None,

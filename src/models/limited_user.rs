@@ -44,6 +44,13 @@ pub struct LimitedUser {
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
+    #[serde(
+        rename = "last_login",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub last_login: Option<Option<String>>,
     #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
     pub profile_pic_override: Option<String>,
     #[serde(rename = "pronouns", skip_serializing_if = "Option::is_none")]
@@ -89,6 +96,7 @@ impl LimitedUser {
             id,
             is_friend,
             last_platform,
+            last_login: None,
             profile_pic_override: None,
             pronouns: None,
             status,

@@ -16,16 +16,16 @@ pub struct UserExists {
     #[serde(rename = "userExists")]
     pub user_exists: bool,
     /// Is the username valid?
-    #[serde(rename = "nameOk")]
-    pub name_ok: bool,
+    #[serde(rename = "nameOk", skip_serializing_if = "Option::is_none")]
+    pub name_ok: Option<bool>,
 }
 
 impl UserExists {
     /// Status object representing if a queried user by username or userId exists or not. This model is primarily used by the `/auth/exists` endpoint, which in turn is used during registration. Please see the documentation on that endpoint for more information on usage.
-    pub fn new(user_exists: bool, name_ok: bool) -> UserExists {
+    pub fn new(user_exists: bool) -> UserExists {
         UserExists {
             user_exists,
-            name_ok,
+            name_ok: None,
         }
     }
 }

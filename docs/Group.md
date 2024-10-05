@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**badges** | Option<**Vec<String>**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
 **short_code** | Option<**String**> |  | [optional]
