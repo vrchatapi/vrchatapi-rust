@@ -104,7 +104,10 @@ pub async fn create_file(
         local_var_req_builder =
             local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&create_file_request);
+
+    if let Some(create_file_request) = create_file_request {
+        local_var_req_builder = local_var_req_builder.json(&create_file_request);
+    }
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -148,7 +151,9 @@ pub async fn create_file_version(
         local_var_req_builder =
             local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&create_file_version_request);
+    if let Some(create_file_version_request) = create_file_version_request {
+        local_var_req_builder = local_var_req_builder.json(&create_file_version_request);
+    }
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
@@ -326,7 +331,10 @@ pub async fn finish_file_data_upload(
         local_var_req_builder =
             local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
-    local_var_req_builder = local_var_req_builder.json(&finish_file_data_upload_request);
+
+    if let Some(finish_file_data_upload_request) = finish_file_data_upload_request {
+        local_var_req_builder = local_var_req_builder.json(&finish_file_data_upload_request);
+    }
 
     let local_var_req = local_var_req_builder.build()?;
     let local_var_resp = local_var_client.execute(local_var_req).await?;
