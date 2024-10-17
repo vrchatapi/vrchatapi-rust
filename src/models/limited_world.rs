@@ -58,8 +58,6 @@ pub struct LimitedWorld {
     pub publication_date: String,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
-    #[serde(rename = "storeId", deserialize_with = "Option::deserialize")]
-    pub store_id: Option<String>,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "thumbnailImageUrl")]
@@ -89,7 +87,6 @@ impl LimitedWorld {
         popularity: i32,
         publication_date: String,
         release_status: models::ReleaseStatus,
-        store_id: Option<String>,
         tags: Vec<String>,
         thumbnail_image_url: String,
         unity_packages: Vec<models::LimitedUnityPackage>,
@@ -114,7 +111,6 @@ impl LimitedWorld {
             preview_youtube_id: None,
             publication_date,
             release_status,
-            store_id,
             tags,
             thumbnail_image_url,
             unity_packages,

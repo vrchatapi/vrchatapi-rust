@@ -5,8 +5,6 @@ All URIs are relative to *https://vrchat.com/api/1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**clear_all_player_moderations**](PlayermoderationApi.md#clear_all_player_moderations) | **DELETE** /auth/user/playermoderations | Clear All Player Moderations
-[**delete_player_moderation**](PlayermoderationApi.md#delete_player_moderation) | **DELETE** /auth/user/playermoderations/{playerModerationId} | Delete Player Moderation
-[**get_player_moderation**](PlayermoderationApi.md#get_player_moderation) | **GET** /auth/user/playermoderations/{playerModerationId} | Get Player Moderation
 [**get_player_moderations**](PlayermoderationApi.md#get_player_moderations) | **GET** /auth/user/playermoderations | Search Player Moderations
 [**moderate_user**](PlayermoderationApi.md#moderate_user) | **POST** /auth/user/playermoderations | Moderate User
 [**unmoderate_user**](PlayermoderationApi.md#unmoderate_user) | **PUT** /auth/user/unplayermoderate | Unmoderate User
@@ -27,66 +25,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**models::Success**](Success.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## delete_player_moderation
-
-> models::Success delete_player_moderation(player_moderation_id)
-Delete Player Moderation
-
-Deletes a specific player moderation based on it's `pmod_` ID. The website uses `unmoderateUser` instead. You can delete the same player moderation multiple times successfully.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**player_moderation_id** | **String** | Must be a valid `pmod_` ID. | [required] |
-
-### Return type
-
-[**models::Success**](Success.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## get_player_moderation
-
-> models::PlayerModeration get_player_moderation(player_moderation_id)
-Get Player Moderation
-
-Returns a single Player Moderation. This returns the exact same amount of information as the more generalised `getPlayerModerations`.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**player_moderation_id** | **String** | Must be a valid `pmod_` ID. | [required] |
-
-### Return type
-
-[**models::PlayerModeration**](PlayerModeration.md)
 
 ### Authorization
 

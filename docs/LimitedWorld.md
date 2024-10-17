@@ -22,7 +22,6 @@ Name | Type | Description | Notes
 **preview_youtube_id** | Option<**String**> |  | [optional]
 **publication_date** | **String** |  | 
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
-**store_id** | Option<**String**> |  | 
 **tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
 **unity_packages** | [**Vec<models::LimitedUnityPackage>**](LimitedUnityPackage.md) |   | 
