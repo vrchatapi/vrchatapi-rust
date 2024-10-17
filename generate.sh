@@ -39,6 +39,9 @@ cat patches/2FA_Current_User.rs >> src/models/current_user.rs
 sed -i 's/pub use self::current_user::CurrentUser;/pub use self::current_user::{EitherUserOrTwoFactor, CurrentUser};/g' src/models/mod.rs
 sed -i 's/Result<models::CurrentUser, Error<GetCurrentUserError>>/Result<models::EitherUserOrTwoFactor, Error<GetCurrentUserError>>/g' src/apis/authentication_api.rs
 
+# https://github.com/vrchatapi/vrchatapi-rust/pull/29
+sed -i "s/local_var_req_builder = local_var_req_builder.json(&\(.*\));/if let Some(\1) = \1 { \0 }/g" src/apis/files_api.rs
+
 cargo fmt
 cargo build
 cargo test
