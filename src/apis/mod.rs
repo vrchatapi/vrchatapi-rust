@@ -101,7 +101,6 @@ pub mod friends_api;
 pub mod groups_api;
 pub mod instances_api;
 pub mod invite_api;
-pub mod jams_api;
 pub mod notifications_api;
 pub mod permissions_api;
 pub mod playermoderation_api;

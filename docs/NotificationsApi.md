@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**accept_friend_request**](NotificationsApi.md#accept_friend_request) | **PUT** /auth/user/notifications/{notificationId}/accept | Accept Friend Request
 [**clear_notifications**](NotificationsApi.md#clear_notifications) | **PUT** /auth/user/notifications/clear | Clear All Notifications
 [**delete_notification**](NotificationsApi.md#delete_notification) | **PUT** /auth/user/notifications/{notificationId}/hide | Delete Notification
-[**get_notification**](NotificationsApi.md#get_notification) | **GET** /auth/user/notifications/{notificationId} | Show notification
 [**get_notifications**](NotificationsApi.md#get_notifications) | **GET** /auth/user/notifications | List Notifications
 [**mark_notification_as_read**](NotificationsApi.md#mark_notification_as_read) | **PUT** /auth/user/notifications/{notificationId}/see | Mark Notification As Read
 
@@ -76,36 +75,6 @@ This endpoint does not need any parameter.
 Delete Notification
 
 Delete a notification.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**notification_id** | **String** | Must be a valid notification ID. | [required] |
-
-### Return type
-
-[**models::Notification**](Notification.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## get_notification
-
-> models::Notification get_notification(notification_id)
-Show notification
-
-Get a notification by notification `not_` ID.
 
 ### Parameters
 

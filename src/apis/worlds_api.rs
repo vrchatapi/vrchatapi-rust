@@ -315,7 +315,7 @@ pub async fn get_favorited_worlds(
     min_unity_version: Option<&str>,
     platform: Option<&str>,
     user_id: Option<&str>,
-) -> Result<Vec<models::FavoritedWorld>, Error<GetFavoritedWorldsError>> {
+) -> Result<Vec<models::LimitedWorld>, Error<GetFavoritedWorldsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

@@ -48,7 +48,6 @@ docs/Favorite.md
 docs/FavoriteGroup.md
 docs/FavoriteGroupVisibility.md
 docs/FavoriteType.md
-docs/FavoritedWorld.md
 docs/FavoritesApi.md
 docs/File.md
 docs/FileData.md
@@ -99,9 +98,6 @@ docs/InviteMessage.md
 docs/InviteMessageType.md
 docs/InviteRequest.md
 docs/InviteResponse.md
-docs/Jam.md
-docs/JamStateChangeDates.md
-docs/JamsApi.md
 docs/License.md
 docs/LicenseAction.md
 docs/LicenseGroup.md
@@ -141,7 +137,6 @@ docs/RespondGroupJoinRequest.md
 docs/Response.md
 docs/SentNotification.md
 docs/SortOption.md
-docs/Submission.md
 docs/Subscription.md
 docs/SubscriptionPeriod.md
 docs/Success.md
@@ -187,7 +182,6 @@ src/apis/friends_api.rs
 src/apis/groups_api.rs
 src/apis/instances_api.rs
 src/apis/invite_api.rs
-src/apis/jams_api.rs
 src/apis/mod.rs
 src/apis/notifications_api.rs
 src/apis/permissions_api.rs
@@ -241,7 +235,6 @@ src/models/favorite.rs
 src/models/favorite_group.rs
 src/models/favorite_group_visibility.rs
 src/models/favorite_type.rs
-src/models/favorited_world.rs
 src/models/file.rs
 src/models/file_data.rs
 src/models/file_status.rs
@@ -286,8 +279,6 @@ src/models/invite_message.rs
 src/models/invite_message_type.rs
 src/models/invite_request.rs
 src/models/invite_response.rs
-src/models/jam.rs
-src/models/jam_state_change_dates.rs
 src/models/license.rs
 src/models/license_action.rs
 src/models/license_group.rs
@@ -325,7 +316,6 @@ src/models/respond_group_join_request.rs
 src/models/response.rs
 src/models/sent_notification.rs
 src/models/sort_option.rs
-src/models/submission.rs
 src/models/subscription.rs
 src/models/subscription_period.rs
 src/models/success.rs
