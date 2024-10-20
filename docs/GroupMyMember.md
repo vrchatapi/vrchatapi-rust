@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **user_id** | Option<**String**> | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | [optional]
 **role_ids** | Option<**Vec<String>**> |  | [optional]
 **accepted_by_display_name** | Option<**String**> |  | [optional]
-**accepted_by_id** | Option<**String**> | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | [optional]
+**accepted_by_id** | Option<**String**> |  | [optional]
 **created_at** | Option<**String**> |  | [optional]
 **manager_notes** | Option<**String**> |  | [optional]
 **membership_status** | Option<**String**> |  | [optional]

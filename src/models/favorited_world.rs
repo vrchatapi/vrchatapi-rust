@@ -9,9 +9,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// World :
+/// FavoritedWorld :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct World {
+pub struct FavoritedWorld {
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "authorId")]
     pub author_id: String,
@@ -19,16 +19,25 @@ pub struct World {
     pub author_name: String,
     #[serde(rename = "capacity")]
     pub capacity: i32,
-    #[serde(rename = "recommendedCapacity")]
-    pub recommended_capacity: i32,
-    #[serde(rename = "created_at")]
-    pub created_at: String,
     #[serde(rename = "description")]
     pub description: String,
-    #[serde(rename = "favorites", skip_serializing_if = "Option::is_none")]
-    pub favorites: Option<i32>,
+    #[serde(
+        rename = "recommendedCapacity",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub recommended_capacity: Option<i32>,
+    #[serde(rename = "created_at")]
+    pub created_at: String,
+    #[serde(rename = "favorites")]
+    pub favorites: i32,
+    #[serde(rename = "favoriteGroup")]
+    pub favorite_group: String,
+    #[serde(rename = "favoriteId")]
+    pub favorite_id: String,
     #[serde(rename = "featured")]
     pub featured: bool,
+    #[serde(rename = "visits", skip_serializing_if = "Option::is_none")]
+    pub visits: Option<i32>,
     #[serde(rename = "heat")]
     pub heat: i32,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
@@ -36,18 +45,12 @@ pub struct World {
     pub id: String,
     #[serde(rename = "imageUrl")]
     pub image_url: String,
-    /// Will always be an empty list when unauthenticated.
-    #[serde(rename = "instances", skip_serializing_if = "Option::is_none")]
-    pub instances: Option<Vec<Vec<serde_json::Value>>>,
     #[serde(rename = "labsPublicationDate")]
     pub labs_publication_date: String,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "namespace", skip_serializing_if = "Option::is_none")]
-    pub namespace: Option<String>,
-    /// Will always be `0` when unauthenticated.
-    #[serde(rename = "occupants", skip_serializing_if = "Option::is_none")]
-    pub occupants: Option<i32>,
+    #[serde(rename = "occupants")]
+    pub occupants: i32,
     #[serde(rename = "organization")]
     pub organization: String,
     #[serde(rename = "popularity")]
@@ -59,12 +62,6 @@ pub struct World {
         skip_serializing_if = "Option::is_none"
     )]
     pub preview_youtube_id: Option<Option<String>>,
-    /// Will always be `0` when unauthenticated.
-    #[serde(rename = "privateOccupants", skip_serializing_if = "Option::is_none")]
-    pub private_occupants: Option<i32>,
-    /// Will always be `0` when unauthenticated.
-    #[serde(rename = "publicOccupants", skip_serializing_if = "Option::is_none")]
-    pub public_occupants: Option<i32>,
     #[serde(rename = "publicationDate")]
     pub publication_date: String,
     #[serde(rename = "releaseStatus")]
@@ -73,74 +70,72 @@ pub struct World {
     pub tags: Vec<String>,
     #[serde(rename = "thumbnailImageUrl")]
     pub thumbnail_image_url: String,
-    /// Empty if unauthenticated.
-    #[serde(rename = "unityPackages", skip_serializing_if = "Option::is_none")]
-    pub unity_packages: Option<Vec<models::UnityPackage>>,
+    #[serde(rename = "unityPackages")]
+    pub unity_packages: Vec<models::UnityPackage>,
     #[serde(rename = "updated_at")]
     pub updated_at: String,
-    #[serde(rename = "version")]
-    pub version: i32,
-    #[serde(rename = "visits")]
-    pub visits: i32,
     #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
     pub udon_products: Option<Vec<String>>,
+    #[serde(rename = "version")]
+    pub version: i32,
 }
 
-impl World {
+impl FavoritedWorld {
     pub fn new(
         author_id: String,
         author_name: String,
         capacity: i32,
-        recommended_capacity: i32,
-        created_at: String,
         description: String,
+        created_at: String,
+        favorites: i32,
+        favorite_group: String,
+        favorite_id: String,
         featured: bool,
         heat: i32,
         id: String,
         image_url: String,
         labs_publication_date: String,
         name: String,
+        occupants: i32,
         organization: String,
         popularity: i32,
         publication_date: String,
         release_status: models::ReleaseStatus,
         tags: Vec<String>,
         thumbnail_image_url: String,
+        unity_packages: Vec<models::UnityPackage>,
         updated_at: String,
         version: i32,
-        visits: i32,
-    ) -> World {
-        World {
+    ) -> FavoritedWorld {
+        FavoritedWorld {
             author_id,
             author_name,
             capacity,
-            recommended_capacity,
-            created_at,
             description,
-            favorites: None,
+            recommended_capacity: None,
+            created_at,
+            favorites,
+            favorite_group,
+            favorite_id,
             featured,
+            visits: None,
             heat,
             id,
             image_url,
-            instances: None,
             labs_publication_date,
             name,
-            namespace: None,
-            occupants: None,
+            occupants,
             organization,
             popularity,
             preview_youtube_id: None,
-            private_occupants: None,
-            public_occupants: None,
             publication_date,
             release_status,
             tags,
             thumbnail_image_url,
-            unity_packages: None,
+            unity_packages,
             updated_at,
-            version,
-            visits,
             udon_products: None,
+            version,
         }
     }
 }

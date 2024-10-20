@@ -123,7 +123,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_favorited_worlds
 
-> Vec<models::LimitedWorld> get_favorited_worlds(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, user_id)
+> Vec<models::FavoritedWorld> get_favorited_worlds(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, user_id)
 List Favorited Worlds
 
 Search and list favorited worlds by query filters.
@@ -149,7 +149,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<models::LimitedWorld>**](LimitedWorld.md)
+[**Vec<models::FavoritedWorld>**](FavoritedWorld.md)
 
 ### Authorization
 
