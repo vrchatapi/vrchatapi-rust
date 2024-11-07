@@ -5,6 +5,7 @@ docs/AddFavoriteRequest.md
 docs/AddGroupGalleryImageRequest.md
 docs/ApiConfig.md
 docs/ApiConfigAnnouncement.md
+docs/ApiConfigAvatarPerfLimiter.md
 docs/ApiConfigConstants.md
 docs/ApiConfigConstantsGroups.md
 docs/ApiConfigConstantsInstance.md
@@ -124,6 +125,7 @@ docs/NotificationsApi.md
 docs/OrderOption.md
 docs/PaginatedGroupAuditLogEntryList.md
 docs/PastDisplayName.md
+docs/PerformanceLimiterInfo.md
 docs/PerformanceRatings.md
 docs/Permission.md
 docs/PermissionsApi.md
@@ -201,6 +203,7 @@ src/models/add_favorite_request.rs
 src/models/add_group_gallery_image_request.rs
 src/models/api_config.rs
 src/models/api_config_announcement.rs
+src/models/api_config_avatar_perf_limiter.rs
 src/models/api_config_constants.rs
 src/models/api_config_constants_groups.rs
 src/models/api_config_constants_instance.rs
@@ -310,6 +313,7 @@ src/models/notification_type.rs
 src/models/order_option.rs
 src/models/paginated_group_audit_log_entry_list.rs
 src/models/past_display_name.rs
+src/models/performance_limiter_info.rs
 src/models/performance_ratings.rs
 src/models/permission.rs
 src/models/platform_build_info.rs

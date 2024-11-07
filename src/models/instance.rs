@@ -14,6 +14,13 @@ use serde::{Deserialize, Serialize};
 pub struct Instance {
     #[serde(rename = "active")]
     pub active: bool,
+    #[serde(
+        rename = "ageGate",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub age_gate: Option<Option<String>>,
     #[serde(rename = "canRequestInvite")]
     pub can_request_invite: bool,
     #[serde(rename = "capacity")]
@@ -62,7 +69,7 @@ pub struct Instance {
         rename = "playerPersistenceEnabled",
         deserialize_with = "Option::deserialize"
     )]
-    pub player_persistence_enabled: Option<String>,
+    pub player_persistence_enabled: Option<bool>,
     #[serde(rename = "region")]
     pub region: models::InstanceRegion,
     #[serde(rename = "secureName")]
@@ -149,7 +156,7 @@ impl Instance {
         permanent: bool,
         photon_region: models::Region,
         platforms: models::InstancePlatforms,
-        player_persistence_enabled: Option<String>,
+        player_persistence_enabled: Option<bool>,
         region: models::InstanceRegion,
         secure_name: String,
         tags: Vec<String>,
@@ -164,6 +171,7 @@ impl Instance {
     ) -> Instance {
         Instance {
             active,
+            age_gate: None,
             can_request_invite,
             capacity,
             client_number,

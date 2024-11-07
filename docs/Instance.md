@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** |  | [default to true]
+**age_gate** | Option<**String**> |  | [optional]
 **can_request_invite** | **bool** |  | [default to true]
 **capacity** | **i32** |  | 
 **client_number** | **String** | Always returns \"unknown\". | 
@@ -21,7 +22,7 @@ Name | Type | Description | Notes
 **permanent** | **bool** |  | [default to false]
 **photon_region** | [**models::Region**](Region.md) |  | 
 **platforms** | [**models::InstancePlatforms**](InstancePlatforms.md) |  | 
-**player_persistence_enabled** | Option<**String**> |  | 
+**player_persistence_enabled** | Option<**bool**> |  | 
 **region** | [**models::InstanceRegion**](InstanceRegion.md) |  | 
 **secure_name** | **String** |  | 
 **short_name** | Option<**String**> |  | [optional]

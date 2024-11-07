@@ -30,6 +30,7 @@ Name | Type | Description | Notes
 **thumbnail_image_url** | **String** |  | 
 **unity_packages** | [**Vec<models::UnityPackage>**](UnityPackage.md) |   | 
 **updated_at** | **String** |  | 
+**url_list** | **Vec<String>** |  | 
 **udon_products** | Option<**Vec<String>**> |  | [optional]
 **version** | **i32** |  | 
 

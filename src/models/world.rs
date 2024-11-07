@@ -78,6 +78,8 @@ pub struct World {
     pub unity_packages: Option<Vec<models::UnityPackage>>,
     #[serde(rename = "updated_at")]
     pub updated_at: String,
+    #[serde(rename = "urlList", skip_serializing_if = "Option::is_none")]
+    pub url_list: Option<Vec<String>>,
     #[serde(rename = "version")]
     pub version: i32,
     #[serde(rename = "visits")]
@@ -138,6 +140,7 @@ impl World {
             thumbnail_image_url,
             unity_packages: None,
             updated_at,
+            url_list: None,
             version,
             visits,
             udon_products: None,

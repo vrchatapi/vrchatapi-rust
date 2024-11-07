@@ -31,6 +31,7 @@ Name | Type | Description | Notes
 **thumbnail_image_url** | **String** |  | 
 **unity_packages** | Option<[**Vec<models::UnityPackage>**](UnityPackage.md)> | Empty if unauthenticated. | [optional]
 **updated_at** | **String** |  | 
+**url_list** | Option<**Vec<String>**> |  | [optional]
 **version** | **i32** |  | [default to 0]
 **visits** | **i32** |  | [default to 0]
 **udon_products** | Option<**Vec<String>**> |  | [optional]

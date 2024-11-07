@@ -74,6 +74,8 @@ pub struct FavoritedWorld {
     pub unity_packages: Vec<models::UnityPackage>,
     #[serde(rename = "updated_at")]
     pub updated_at: String,
+    #[serde(rename = "urlList")]
+    pub url_list: Vec<String>,
     #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
     pub udon_products: Option<Vec<String>>,
     #[serde(rename = "version")]
@@ -105,6 +107,7 @@ impl FavoritedWorld {
         thumbnail_image_url: String,
         unity_packages: Vec<models::UnityPackage>,
         updated_at: String,
+        url_list: Vec<String>,
         version: i32,
     ) -> FavoritedWorld {
         FavoritedWorld {
@@ -134,6 +137,7 @@ impl FavoritedWorld {
             thumbnail_image_url,
             unity_packages,
             updated_at,
+            url_list,
             udon_products: None,
             version,
         }

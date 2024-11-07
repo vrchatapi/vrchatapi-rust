@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **account_deletion_date** | Option<[**String**](string.md)> |  | [optional]
 **account_deletion_log** | Option<[**Vec<models::AccountDeletionLog>**](AccountDeletionLog.md)> |   | [optional]
 **active_friends** | Option<**Vec<String>**> |   | [optional]
+**age_verification_status** | **String** |  | 
+**age_verified** | **bool** |  | 
 **allow_avatar_copying** | **bool** |  | 
 **badges** | Option<[**Vec<models::Badge>**](Badge.md)> |   | [optional]
 **bio** | **String** |  | 
@@ -35,6 +37,7 @@ Name | Type | Description | Notes
 **has_pending_email** | **bool** |  | 
 **home_location** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
+**is_adult** | **bool** |  | 
 **is_booping_enabled** | Option<**bool**> |  | [optional][default to true]
 **is_friend** | **bool** |  | [default to false]
 **last_activity** | Option<**String**> |  | [optional]

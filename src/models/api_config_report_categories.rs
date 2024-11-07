@@ -18,6 +18,8 @@ pub struct ApiConfigReportCategories {
     pub behavior: models::ReportCategory,
     #[serde(rename = "chat")]
     pub chat: models::ReportCategory,
+    #[serde(rename = "emoji", skip_serializing_if = "Option::is_none")]
+    pub emoji: Option<models::ReportCategory>,
     #[serde(rename = "environment")]
     pub environment: models::ReportCategory,
     #[serde(rename = "groupstore")]
@@ -26,6 +28,8 @@ pub struct ApiConfigReportCategories {
     pub image: models::ReportCategory,
     #[serde(rename = "text")]
     pub text: models::ReportCategory,
+    #[serde(rename = "sticker", skip_serializing_if = "Option::is_none")]
+    pub sticker: Option<models::ReportCategory>,
     #[serde(rename = "warnings")]
     pub warnings: models::ReportCategory,
     #[serde(rename = "worldimage")]
@@ -52,10 +56,12 @@ impl ApiConfigReportCategories {
             avatar,
             behavior,
             chat,
+            emoji: None,
             environment,
             groupstore,
             image,
             text,
+            sticker: None,
             warnings,
             worldimage,
             worldstore,

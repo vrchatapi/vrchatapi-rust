@@ -34,6 +34,10 @@ pub struct CurrentUser {
     pub account_deletion_log: Option<Option<Vec<models::AccountDeletionLog>>>,
     #[serde(rename = "activeFriends", skip_serializing_if = "Option::is_none")]
     pub active_friends: Option<Vec<String>>,
+    #[serde(rename = "ageVerificationStatus")]
+    pub age_verification_status: String,
+    #[serde(rename = "ageVerified")]
+    pub age_verified: bool,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
@@ -104,6 +108,8 @@ pub struct CurrentUser {
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id")]
     pub id: String,
+    #[serde(rename = "isAdult")]
+    pub is_adult: bool,
     #[serde(rename = "isBoopingEnabled", skip_serializing_if = "Option::is_none")]
     pub is_booping_enabled: Option<bool>,
     #[serde(rename = "isFriend")]
@@ -196,6 +202,8 @@ pub struct CurrentUser {
 impl CurrentUser {
     pub fn new(
         accepted_tos_version: i32,
+        age_verification_status: String,
+        age_verified: bool,
         allow_avatar_copying: bool,
         bio: String,
         bio_links: Vec<String>,
@@ -217,6 +225,7 @@ impl CurrentUser {
         has_pending_email: bool,
         home_location: String,
         id: String,
+        is_adult: bool,
         is_friend: bool,
         last_login: String,
         last_mobile: Option<String>,
@@ -246,6 +255,8 @@ impl CurrentUser {
             account_deletion_date: None,
             account_deletion_log: None,
             active_friends: None,
+            age_verification_status,
+            age_verified,
             allow_avatar_copying,
             badges: None,
             bio,
@@ -272,6 +283,7 @@ impl CurrentUser {
             has_pending_email,
             home_location,
             id,
+            is_adult,
             is_booping_enabled: None,
             is_friend,
             last_activity: None,

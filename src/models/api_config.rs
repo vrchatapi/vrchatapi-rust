@@ -21,6 +21,10 @@ pub struct ApiConfig {
     /// VRChat's office address
     #[serde(rename = "address")]
     pub address: String,
+    #[serde(rename = "ageVerificationP")]
+    pub age_verification_p: bool,
+    #[serde(rename = "ageVerificationStatusVisible")]
+    pub age_verification_status_visible: bool,
     /// Public Announcements
     #[serde(rename = "announcements")]
     pub announcements: Vec<models::ApiConfigAnnouncement>,
@@ -39,6 +43,8 @@ pub struct ApiConfig {
     /// List of supported Languages
     #[serde(rename = "availableLanguages")]
     pub available_languages: Vec<String>,
+    #[serde(rename = "avatarPerfLimiter")]
+    pub avatar_perf_limiter: models::ApiConfigAvatarPerfLimiter,
     /// Build tag of the API server
     #[serde(rename = "buildVersionTag")]
     pub build_version_tag: String,
@@ -130,6 +136,8 @@ pub struct ApiConfig {
     pub current_tos_version: i32,
     #[serde(rename = "defaultAvatar")]
     pub default_avatar: String,
+    #[serde(rename = "defaultStickerSet")]
+    pub default_sticker_set: String,
     #[serde(rename = "deploymentGroup")]
     pub deployment_group: models::DeploymentGroup,
     /// Unknown
@@ -288,6 +296,9 @@ pub struct ApiConfig {
     /// VRChat's support email
     #[serde(rename = "supportEmail")]
     pub support_email: String,
+    /// VRChat's support form
+    #[serde(rename = "supportFormUrl")]
+    pub support_form_url: String,
     /// Unknown
     #[serde(rename = "timekeeping")]
     pub timekeeping: bool,
@@ -346,12 +357,15 @@ impl ApiConfig {
         voice_enable_degradation: bool,
         voice_enable_receiver_limiting: bool,
         address: String,
+        age_verification_p: bool,
+        age_verification_status_visible: bool,
         announcements: Vec<models::ApiConfigAnnouncement>,
         analytics_segment_new_ui_pct_of_users: i32,
         analytics_segment_new_ui_salt: String,
         app_name: String,
         available_language_codes: Vec<String>,
         available_languages: Vec<String>,
+        avatar_perf_limiter: models::ApiConfigAvatarPerfLimiter,
         build_version_tag: String,
         chatbox_log_buffer_seconds: i32,
         client_api_key: String,
@@ -365,6 +379,7 @@ impl ApiConfig {
         copyright_email: String,
         current_tos_version: i32,
         default_avatar: String,
+        default_sticker_set: String,
         deployment_group: models::DeploymentGroup,
         dev_sdk_url: String,
         dev_sdk_version: String,
@@ -413,6 +428,7 @@ impl ApiConfig {
         server_name: String,
         string_host_url_list: Vec<String>,
         support_email: String,
+        support_form_url: String,
         timekeeping: bool,
         time_out_world_id: String,
         tutorial_world_id: String,
@@ -435,12 +451,15 @@ impl ApiConfig {
             voice_enable_degradation,
             voice_enable_receiver_limiting,
             address,
+            age_verification_p,
+            age_verification_status_visible,
             announcements,
             analytics_segment_new_ui_pct_of_users,
             analytics_segment_new_ui_salt,
             app_name,
             available_language_codes,
             available_languages,
+            avatar_perf_limiter,
             build_version_tag,
             chatbox_log_buffer_seconds,
             client_api_key,
@@ -465,6 +484,7 @@ impl ApiConfig {
             current_privacy_version: None,
             current_tos_version,
             default_avatar,
+            default_sticker_set,
             deployment_group,
             dev_language_codes: None,
             dev_sdk_url,
@@ -519,6 +539,7 @@ impl ApiConfig {
             server_name,
             string_host_url_list,
             support_email,
+            support_form_url,
             timekeeping,
             time_out_world_id,
             tutorial_world_id,
