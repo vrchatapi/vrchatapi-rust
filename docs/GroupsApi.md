@@ -240,7 +240,7 @@ Name | Type | Description  | Required | Notes
 > models::GroupAnnouncement create_group_announcement(group_id, create_group_announcement_request)
 Create Group Announcement
 
-Creates an Announcement for a Group.
+Creates an Announcement for a Group. Warning: This will also remove all announcements. To make proper announcements, use the posts endpoint instead
 
 ### Parameters
 

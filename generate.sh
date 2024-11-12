@@ -42,6 +42,9 @@ sed -i 's/Result<models::CurrentUser, Error<GetCurrentUserError>>/Result<models:
 # https://github.com/vrchatapi/vrchatapi-rust/pull/29
 sed -i "s/local_var_req_builder = local_var_req_builder.json(&\(.*\));/if let Some(\1) = \1 { \0 }/g" src/apis/files_api.rs
 
+#https://github.com/vrchatapi/vrchatapi-rust/pull/30
+perl -0pi -e 's|(fn\s+[^(]*\([^)]*)file:\s+:?:?std::path::PathBuf,?([^)]*)((?:(?!\/\/ TODO: support file upload for '\''file'\'' parameter)[\s\S])*)\/\/ TODO: support file upload for '\''file'\'' parameter|\1file: impl Into<::std::borrow::Cow<'\''static, [u8]>>,\n\tfilename: impl Into<::std::borrow::Cow<'\''static, str>>,\n\tmime_type: &str,\2\3let part = reqwest::multipart::Part::bytes(file).file_name(filename).mime_str(mime_type)?;\n\tlocal_var_form = local_var_form.part("file", part);|g' src/apis/files_api.rs
+
 cargo fmt
 cargo build
 cargo test

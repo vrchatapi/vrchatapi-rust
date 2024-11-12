@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **image_url** | **String** |  | 
 **name** | **String** |  | 
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
+**styles** | [**models::AvatarStyles**](Avatar_styles.md) |  | 
 **tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
 **unity_package_url** | **String** |  | 

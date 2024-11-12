@@ -658,7 +658,7 @@ pub async fn create_group(
     }
 }
 
-/// Creates an Announcement for a Group.
+/// Creates an Announcement for a Group. Warning: This will also remove all announcements. To make proper announcements, use the posts endpoint instead
 pub async fn create_group_announcement(
     configuration: &configuration::Configuration,
     group_id: &str,

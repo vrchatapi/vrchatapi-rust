@@ -42,6 +42,8 @@ pub mod api_health;
 pub use self::api_health::ApiHealth;
 pub mod avatar;
 pub use self::avatar::Avatar;
+pub mod avatar_styles;
+pub use self::avatar_styles::AvatarStyles;
 pub mod avatar_unity_package_url_object;
 pub use self::avatar_unity_package_url_object::AvatarUnityPackageUrlObject;
 pub mod badge;
