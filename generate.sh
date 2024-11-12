@@ -42,7 +42,15 @@ sed -i 's/Result<models::CurrentUser, Error<GetCurrentUserError>>/Result<models:
 # https://github.com/vrchatapi/vrchatapi-rust/pull/29
 sed -i "s/local_var_req_builder = local_var_req_builder.json(&\(.*\));/if let Some(\1) = \1 { \0 }/g" src/apis/files_api.rs
 
-sed -i 's|// TODO: support file upload for '\''file'\'' parameter|let part = reqwest::multipart::Part::bytes(std::fs::read(\&file).unwrap()).file_name(file.file_name().unwrap().to_string_lossy().to_string()).mime_str(if file.file_name().unwrap().to_string_lossy().to_string().ends_with("png") { "image/png" } else { "application/octet-stream" })?;\n\tlocal_var_form = local_var_form.part("file", part);|' src/apis/files_api.rs
+#https://github.com/vrchatapi/vrchatapi-rust/pull/30
+#Add async_std for async file io
+sed -i 's/\[dependencies\]/\0\nasync-std = "1"/' Cargo.toml
+sed -i "s/pub\s\+enum\s\+Error<T>\s\+{/\0\nAsyncStdIo(::async_std::io::Error),/" src/apis/mod.rs
+sed -E -i 's/Error::Reqwest\(e\)\s+=>\s+\("reqwest", e\.to_string\(\)\),/Error::AsyncStdIo(e) => ("async_std", e.to_string()),\0/' src/apis/mod.rs #Fix Debug
+sed -E -i 's/Error::Reqwest\(e\)\s+=>\s+\e,/Error::AsyncStdIo(e) => e,\n\0/' src/apis/mod.rs #Fix Error
+sed -i "s/impl<T> From<reqwest::Error> for Error<T>/impl<T> From<::async_std::io::Error> for Error<T> {\nfn from(val: ::async_std::io::Error) -> Self {\n Error::AsyncStdIo(val)\n}\n\}\n\0/" src/apis/mod.rs #Add From impl
+#Use the async file io
+sed -i 's|// TODO: support file upload for '\''file'\'' parameter|let part = {let mut part = reqwest::multipart::Part::bytes(::async_std::fs::read(\&file).await?);\nif let Some(filename) = file.file_name() { \npart = part.file_name(filename.to_string_lossy().to_string()).mime_str(if filename.to_string_lossy().ends_with("png") { "image/png" } else { "application/octet-stream" })?;} \n else { part = part.mime_str("application/octet-stream")?; }\n part };\n\tlocal_var_form = local_var_form.part("file", part);|' src/apis/files_api.rs
 
 cargo fmt
 cargo build
