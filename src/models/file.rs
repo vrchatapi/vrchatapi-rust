@@ -12,6 +12,10 @@ use serde::{Deserialize, Serialize};
 /// File :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct File {
+    #[serde(rename = "animationStyle", skip_serializing_if = "Option::is_none")]
+    pub animation_style: Option<String>,
+    #[serde(rename = "maskTag", skip_serializing_if = "Option::is_none")]
+    pub mask_tag: Option<String>,
     #[serde(rename = "extension")]
     pub extension: String,
     #[serde(rename = "id")]
@@ -40,6 +44,8 @@ impl File {
         versions: Vec<models::FileVersion>,
     ) -> File {
         File {
+            animation_style: None,
+            mask_tag: None,
             extension,
             id,
             mime_type,

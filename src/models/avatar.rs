@@ -37,6 +37,8 @@ pub struct Avatar {
     pub name: String,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
+    #[serde(rename = "styles")]
+    pub styles: models::AvatarStyles,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "thumbnailImageUrl")]
@@ -64,6 +66,7 @@ impl Avatar {
         image_url: String,
         name: String,
         release_status: models::ReleaseStatus,
+        styles: models::AvatarStyles,
         tags: Vec<String>,
         thumbnail_image_url: String,
         unity_package_url: String,
@@ -84,6 +87,7 @@ impl Avatar {
             image_url,
             name,
             release_status,
+            styles,
             tags,
             thumbnail_image_url,
             unity_package_url,

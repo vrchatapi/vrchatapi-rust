@@ -23,6 +23,7 @@ docs/ApiConfigReportReasons.md
 docs/ApiHealth.md
 docs/AuthenticationApi.md
 docs/Avatar.md
+docs/AvatarStyles.md
 docs/AvatarUnityPackageUrlObject.md
 docs/AvatarsApi.md
 docs/Badge.md
@@ -220,6 +221,7 @@ src/models/api_config_report_categories.rs
 src/models/api_config_report_reasons.rs
 src/models/api_health.rs
 src/models/avatar.rs
+src/models/avatar_styles.rs
 src/models/avatar_unity_package_url_object.rs
 src/models/badge.rs
 src/models/ban_group_member_request.rs
