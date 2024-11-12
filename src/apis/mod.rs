@@ -10,7 +10,6 @@ pub struct ResponseContent<T> {
 
 #[derive(Debug)]
 pub enum Error<T> {
-    AsyncStdIo(::async_std::io::Error),
     Reqwest(reqwest::Error),
     Serde(serde_json::Error),
     Io(std::io::Error),
@@ -20,7 +19,6 @@ pub enum Error<T> {
 impl<T> fmt::Display for Error<T> {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let (module, e) = match self {
-            Error::AsyncStdIo(e) => ("async_std", e.to_string()),
             Error::Reqwest(e) => ("reqwest", e.to_string()),
             Error::Serde(e) => ("serde", e.to_string()),
             Error::Io(e) => ("IO", e.to_string()),
@@ -33,7 +31,6 @@ impl<T> fmt::Display for Error<T> {
 impl<T: fmt::Debug> error::Error for Error<T> {
     fn source(&self) -> Option<&(dyn error::Error + 'static)> {
         Some(match self {
-            Error::AsyncStdIo(e) => e,
             Error::Reqwest(e) => e,
             Error::Serde(e) => e,
             Error::Io(e) => e,

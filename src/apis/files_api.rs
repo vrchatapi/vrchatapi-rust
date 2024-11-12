@@ -570,7 +570,9 @@ pub async fn start_file_data_upload(
 /// Upload a gallery image
 pub async fn upload_gallery_image(
     configuration: &configuration::Configuration,
-    file: std::path::PathBuf,
+    file: impl Into<::std::borrow::Cow<'static, [u8]>>,
+    filename: impl Into<::std::borrow::Cow<'static, str>>,
+    mime_type: &str,
 ) -> Result<models::File, Error<UploadGalleryImageError>> {
     let local_var_configuration = configuration;
 
@@ -585,21 +587,9 @@ pub async fn upload_gallery_image(
             local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     let mut local_var_form = reqwest::multipart::Form::new();
-    let part = {
-        let mut part = reqwest::multipart::Part::bytes(::async_std::fs::read(&file).await?);
-        if let Some(filename) = file.file_name() {
-            part = part
-                .file_name(filename.to_string_lossy().to_string())
-                .mime_str(if filename.to_string_lossy().ends_with("png") {
-                    "image/png"
-                } else {
-                    "application/octet-stream"
-                })?;
-        } else {
-            part = part.mime_str("application/octet-stream")?;
-        }
-        part
-    };
+    let part = reqwest::multipart::Part::bytes(file)
+        .file_name(filename)
+        .mime_str(mime_type)?;
     local_var_form = local_var_form.part("file", part);
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
@@ -626,7 +616,9 @@ pub async fn upload_gallery_image(
 /// Upload an icon
 pub async fn upload_icon(
     configuration: &configuration::Configuration,
-    file: std::path::PathBuf,
+    file: impl Into<::std::borrow::Cow<'static, [u8]>>,
+    filename: impl Into<::std::borrow::Cow<'static, str>>,
+    mime_type: &str,
 ) -> Result<models::File, Error<UploadIconError>> {
     let local_var_configuration = configuration;
 
@@ -641,21 +633,9 @@ pub async fn upload_icon(
             local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     let mut local_var_form = reqwest::multipart::Form::new();
-    let part = {
-        let mut part = reqwest::multipart::Part::bytes(::async_std::fs::read(&file).await?);
-        if let Some(filename) = file.file_name() {
-            part = part
-                .file_name(filename.to_string_lossy().to_string())
-                .mime_str(if filename.to_string_lossy().ends_with("png") {
-                    "image/png"
-                } else {
-                    "application/octet-stream"
-                })?;
-        } else {
-            part = part.mime_str("application/octet-stream")?;
-        }
-        part
-    };
+    let part = reqwest::multipart::Part::bytes(file)
+        .file_name(filename)
+        .mime_str(mime_type)?;
     local_var_form = local_var_form.part("file", part);
     local_var_req_builder = local_var_req_builder.multipart(local_var_form);
 
@@ -682,7 +662,9 @@ pub async fn upload_icon(
 /// Upload an image, which can be an icon, gallery image, sticker or emoji
 pub async fn upload_image(
     configuration: &configuration::Configuration,
-    file: std::path::PathBuf,
+    file: impl Into<::std::borrow::Cow<'static, [u8]>>,
+    filename: impl Into<::std::borrow::Cow<'static, str>>,
+    mime_type: &str,
     tag: &str,
     animation_style: Option<&str>,
     mask_tag: Option<&str>,
@@ -700,21 +682,9 @@ pub async fn upload_image(
             local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
     }
     let mut local_var_form = reqwest::multipart::Form::new();
-    let part = {
-        let mut part = reqwest::multipart::Part::bytes(::async_std::fs::read(&file).await?);
-        if let Some(filename) = file.file_name() {
-            part = part
-                .file_name(filename.to_string_lossy().to_string())
-                .mime_str(if filename.to_string_lossy().ends_with("png") {
-                    "image/png"
-                } else {
-                    "application/octet-stream"
-                })?;
-        } else {
-            part = part.mime_str("application/octet-stream")?;
-        }
-        part
-    };
+    let part = reqwest::multipart::Part::bytes(file)
+        .file_name(filename)
+        .mime_str(mime_type)?;
     local_var_form = local_var_form.part("file", part);
     local_var_form = local_var_form.text("tag", tag.to_string());
     if let Some(local_var_param_value) = animation_style {
