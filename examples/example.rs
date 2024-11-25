@@ -6,7 +6,7 @@ use vrchatapi::models::{EitherUserOrTwoFactor, TwoFactorAuthCode, TwoFactorEmail
 async fn main() {
     let mut config = apis::configuration::Configuration::default();
     config.basic_auth = Some((String::from("username"), Some(String::from("password"))));
-    config.user_agent = Some(String::from("ProjectName/0.0.1 email@example.com"));
+    config.user_agent = Some(String::from("ExampleProgram/0.0.1 my@email.com"));
     match apis::authentication_api::get_current_user(&config)
         .await
         .unwrap()
