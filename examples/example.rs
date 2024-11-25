@@ -15,28 +15,28 @@ async fn main() {
             println!("Username: {}", me.username.unwrap())
         }
         vrchatapi::models::EitherUserOrTwoFactor::RequiresTwoFactorAuth(requires_auth) => {
-            if requires_auth.requires_two_factor_auth.contains(&String::from("emailOtp")){
+            if requires_auth
+                .requires_two_factor_auth
+                .contains(&String::from("emailOtp"))
+            {
                 let code = read_user_input("Please enter your Email 2fa code: ");
                 if let Err(err) = apis::authentication_api::verify2_fa_email_code(
                     &config,
                     TwoFactorEmailCode::new(code),
                 )
-                    .await
+                .await
                 {
                     eprintln!("Error verifying 2FA email code: {}", err);
                 }
             } else {
                 let code = read_user_input("Please enter your Authenticator 2fa code: ");
-                if let Err(err) = apis::authentication_api::verify2_fa(
-                    &config,
-                    TwoFactorAuthCode::new(code),
-                )
-                    .await
+                if let Err(err) =
+                    apis::authentication_api::verify2_fa(&config, TwoFactorAuthCode::new(code))
+                        .await
                 {
                     eprintln!("Error verifying 2FA auth code: {}", err);
                 }
             }
-
         }
     }
 
@@ -46,7 +46,7 @@ async fn main() {
 
     match user {
         EitherUserOrTwoFactor::CurrentUser(user) => println!("Current user: {}", user.display_name),
-        EitherUserOrTwoFactor::RequiresTwoFactorAuth(_) => println!("cookie invalid")
+        EitherUserOrTwoFactor::RequiresTwoFactorAuth(_) => println!("cookie invalid"),
     }
 }
 
