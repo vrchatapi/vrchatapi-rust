@@ -1,6 +1,6 @@
 use std::io::{self, Write};
 pub use vrchatapi::apis;
-use vrchatapi::models::{TwoFactorAuthCode, TwoFactorEmailCode};
+use vrchatapi::models::{EitherUserOrTwoFactor, TwoFactorAuthCode, TwoFactorEmailCode};
 
 #[tokio::main]
 async fn main() {
@@ -40,10 +40,14 @@ async fn main() {
         }
     }
 
-    let online = apis::system_api::get_current_online_users(&config)
+    let user = apis::authentication_api::get_current_user(&config)
         .await
         .unwrap();
-    println!("Current Online Users: {}", online);
+
+    match user {
+        EitherUserOrTwoFactor::CurrentUser(user) => println!("Current user: {}", user.display_name),
+        EitherUserOrTwoFactor::RequiresTwoFactorAuth(_) => println!("cookie invalid")
+    }
 }
 
 fn read_user_input(prompt: &str) -> String {
