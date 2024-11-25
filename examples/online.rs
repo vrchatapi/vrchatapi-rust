@@ -15,7 +15,7 @@ async fn main() {
             println!("Username: {}", me.username.unwrap())
         }
         vrchatapi::models::EitherUserOrTwoFactor::RequiresTwoFactorAuth(requires_auth) => {
-            if (requires_auth.requires_two_factor_auth.contains(&String::from("emailOtp"))){
+            if requires_auth.requires_two_factor_auth.contains(&String::from("emailOtp")){
                 let code = read_user_input("Please enter your Email 2fa code: ");
                 if let Err(err) = apis::authentication_api::verify2_fa_email_code(
                     &config,
