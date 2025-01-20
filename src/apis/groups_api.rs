@@ -1236,6 +1236,9 @@ pub async fn get_group_audit_logs(
     offset: Option<i32>,
     start_date: Option<String>,
     end_date: Option<String>,
+    actor_ids: Option<&str>,
+    event_types: Option<&str>,
+    target_ids: Option<&str>,
 ) -> Result<models::PaginatedGroupAuditLogEntryList, Error<GetGroupAuditLogsError>> {
     let local_var_configuration = configuration;
 
@@ -1263,6 +1266,18 @@ pub async fn get_group_audit_logs(
     if let Some(ref local_var_str) = end_date {
         local_var_req_builder =
             local_var_req_builder.query(&[("endDate", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = actor_ids {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("actorIds", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = event_types {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("eventTypes", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = target_ids {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("targetIds", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder =

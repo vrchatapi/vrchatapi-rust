@@ -35,7 +35,7 @@ pub struct CurrentUser {
     #[serde(rename = "activeFriends", skip_serializing_if = "Option::is_none")]
     pub active_friends: Option<Vec<String>>,
     #[serde(rename = "ageVerificationStatus")]
-    pub age_verification_status: String,
+    pub age_verification_status: models::AgeVerificationStatus,
     #[serde(rename = "ageVerified")]
     pub age_verified: bool,
     #[serde(rename = "allowAvatarCopying")]
@@ -202,7 +202,7 @@ pub struct CurrentUser {
 impl CurrentUser {
     pub fn new(
         accepted_tos_version: i32,
-        age_verification_status: String,
+        age_verification_status: models::AgeVerificationStatus,
         age_verified: bool,
         allow_avatar_copying: bool,
         bio: String,

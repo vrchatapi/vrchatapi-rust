@@ -6,11 +6,16 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_user**](UsersApi.md#get_user) | **GET** /users/{userId} | Get User by ID
 [**get_user_by_name**](UsersApi.md#get_user_by_name) | **GET** /users/{username}/name | Get User by Username
+[**get_user_feedback**](UsersApi.md#get_user_feedback) | **GET** /users/{userId}/feedback | Get User Feedback
+[**get_user_group_instances**](UsersApi.md#get_user_group_instances) | **GET** /users/{userId}/instances/groups | Get User Group Instances
 [**get_user_group_requests**](UsersApi.md#get_user_group_requests) | **GET** /users/{userId}/groups/requested | Get User Group Requests
 [**get_user_groups**](UsersApi.md#get_user_groups) | **GET** /users/{userId}/groups | Get User Groups
+[**get_user_note**](UsersApi.md#get_user_note) | **GET** /userNotes/{userNoteId} | Get User Note
+[**get_user_notes**](UsersApi.md#get_user_notes) | **GET** /userNotes | Get User Notes
 [**get_user_represented_group**](UsersApi.md#get_user_represented_group) | **GET** /users/{userId}/groups/represented | Get user's current represented group
 [**search_users**](UsersApi.md#search_users) | **GET** /users | Search All Users
 [**update_user**](UsersApi.md#update_user) | **PUT** /users/{userId} | Update User Info
+[**update_user_note**](UsersApi.md#update_user_note) | **POST** /userNotes | Update User Note
 
 
 
@@ -74,6 +79,69 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_user_feedback
+
+> Vec<models::Feedback> get_user_feedback(user_id, content_id, n, offset)
+Get User Feedback
+
+Get user's submitted feedback
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**content_id** | Option<**bool**> | Filter for users' previously submitted feedback, e.g., a groupId, useeId, avatarId, etc. |  |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+
+### Return type
+
+[**Vec<models::Feedback>**](Feedback.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_group_instances
+
+> models::GetUserGroupInstances200Response get_user_group_instances(user_id)
+Get User Group Instances
+
+Returns a list of group instances for a user
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**models::GetUserGroupInstances200Response**](getUserGroupInstances_200_response.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_user_group_requests
 
 > Vec<models::Group> get_user_group_requests(user_id)
@@ -121,6 +189,67 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<models::LimitedUserGroups>**](LimitedUserGroups.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_note
+
+> models::UserNote get_user_note(user_note_id)
+Get User Note
+
+Get a particular user note
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_note_id** | **String** | Must be a valid user note ID. | [required] |
+
+### Return type
+
+[**models::UserNote**](UserNote.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_notes
+
+> Vec<models::UserNote> get_user_notes(n, offset)
+Get User Notes
+
+Get recently updated user notes
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+
+### Return type
+
+[**Vec<models::UserNote>**](UserNote.md)
 
 ### Authorization
 
@@ -215,6 +344,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::CurrentUser**](CurrentUser.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_user_note
+
+> models::UserNote update_user_note(update_user_note_request)
+Update User Note
+
+Updates the currently authenticated user's note on a user
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**update_user_note_request** | [**UpdateUserNoteRequest**](UpdateUserNoteRequest.md) |  | [required] |
+
+### Return type
+
+[**models::UserNote**](UserNote.md)
 
 ### Authorization
 

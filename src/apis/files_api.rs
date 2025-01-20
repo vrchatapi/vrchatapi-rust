@@ -65,6 +65,30 @@ pub enum GetFileError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_file_analysis`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetFileAnalysisError {
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_file_analysis_security`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetFileAnalysisSecurityError {
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_file_analysis_standard`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetFileAnalysisStandardError {
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_file_data_upload_status`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -84,27 +108,6 @@ pub enum GetFilesError {
 #[serde(untagged)]
 pub enum StartFileDataUploadError {
     Status400(models::Error),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`upload_gallery_image`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UploadGalleryImageError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`upload_icon`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UploadIconError {
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`upload_image`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UploadImageError {
     UnknownValue(serde_json::Value),
 }
 
@@ -416,6 +419,138 @@ pub async fn get_file(
     }
 }
 
+/// Get the performance analysis for the uploaded assets of an avatar
+pub async fn get_file_analysis(
+    configuration: &configuration::Configuration,
+    file_id: &str,
+    version_id: i32,
+) -> Result<models::FileAnalysis, Error<GetFileAnalysisError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/analysis/{fileId}/{versionId}",
+        local_var_configuration.base_path,
+        fileId = crate::apis::urlencode(file_id),
+        versionId = version_id
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GetFileAnalysisError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Get the security performance analysis for the uploaded assets of an avatar
+pub async fn get_file_analysis_security(
+    configuration: &configuration::Configuration,
+    file_id: &str,
+    version_id: i32,
+) -> Result<models::FileAnalysis, Error<GetFileAnalysisSecurityError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/analysis/{fileId}/{versionId}/security",
+        local_var_configuration.base_path,
+        fileId = crate::apis::urlencode(file_id),
+        versionId = version_id
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GetFileAnalysisSecurityError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Get the standard performance analysis for the uploaded assets of an avatar
+pub async fn get_file_analysis_standard(
+    configuration: &configuration::Configuration,
+    file_id: &str,
+    version_id: i32,
+) -> Result<models::FileAnalysis, Error<GetFileAnalysisStandardError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/analysis/{fileId}/{versionId}/standard",
+        local_var_configuration.base_path,
+        fileId = crate::apis::urlencode(file_id),
+        versionId = version_id
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GetFileAnalysisStandardError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Retrieves the upload status for file upload. Can currently only be accessed when `status` is `waiting`. Trying to access it on a file version already uploaded currently times out.
 pub async fn get_file_data_upload_status(
     configuration: &configuration::Configuration,
@@ -557,154 +692,6 @@ pub async fn start_file_data_upload(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<StartFileDataUploadError> =
-            serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent {
-            status: local_var_status,
-            content: local_var_content,
-            entity: local_var_entity,
-        };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Upload a gallery image
-pub async fn upload_gallery_image(
-    configuration: &configuration::Configuration,
-    file: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
-) -> Result<models::File, Error<UploadGalleryImageError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/gallery", local_var_configuration.base_path);
-    let mut local_var_req_builder =
-        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder =
-            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    let mut local_var_form = reqwest::multipart::Form::new();
-    let part = reqwest::multipart::Part::bytes(file)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    local_var_form = local_var_form.part("file", part);
-    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<UploadGalleryImageError> =
-            serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent {
-            status: local_var_status,
-            content: local_var_content,
-            entity: local_var_entity,
-        };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Upload an icon
-pub async fn upload_icon(
-    configuration: &configuration::Configuration,
-    file: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
-) -> Result<models::File, Error<UploadIconError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/icon", local_var_configuration.base_path);
-    let mut local_var_req_builder =
-        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder =
-            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    let mut local_var_form = reqwest::multipart::Form::new();
-    let part = reqwest::multipart::Part::bytes(file)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    local_var_form = local_var_form.part("file", part);
-    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<UploadIconError> =
-            serde_json::from_str(&local_var_content).ok();
-        let local_var_error = ResponseContent {
-            status: local_var_status,
-            content: local_var_content,
-            entity: local_var_entity,
-        };
-        Err(Error::ResponseError(local_var_error))
-    }
-}
-
-/// Upload an image, which can be an icon, gallery image, sticker or emoji
-pub async fn upload_image(
-    configuration: &configuration::Configuration,
-    file: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
-    tag: &str,
-    animation_style: Option<&str>,
-    mask_tag: Option<&str>,
-) -> Result<models::File, Error<UploadImageError>> {
-    let local_var_configuration = configuration;
-
-    let local_var_client = &local_var_configuration.client;
-
-    let local_var_uri_str = format!("{}/file/image", local_var_configuration.base_path);
-    let mut local_var_req_builder =
-        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
-
-    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
-        local_var_req_builder =
-            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
-    }
-    let mut local_var_form = reqwest::multipart::Form::new();
-    let part = reqwest::multipart::Part::bytes(file)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    local_var_form = local_var_form.part("file", part);
-    local_var_form = local_var_form.text("tag", tag.to_string());
-    if let Some(local_var_param_value) = animation_style {
-        local_var_form = local_var_form.text("animationStyle", local_var_param_value.to_string());
-    }
-    if let Some(local_var_param_value) = mask_tag {
-        local_var_form = local_var_form.text("maskTag", local_var_param_value.to_string());
-    }
-    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
-
-    let local_var_req = local_var_req_builder.build()?;
-    let local_var_resp = local_var_client.execute(local_var_req).await?;
-
-    let local_var_status = local_var_resp.status();
-    let local_var_content = local_var_resp.text().await?;
-
-    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
-        serde_json::from_str(&local_var_content).map_err(Error::from)
-    } else {
-        let local_var_entity: Option<UploadImageError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,

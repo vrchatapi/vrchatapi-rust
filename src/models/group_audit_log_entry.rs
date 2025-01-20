@@ -22,7 +22,7 @@ pub struct GroupAuditLogEntry {
     pub actor_id: Option<String>,
     #[serde(rename = "actorDisplayName", skip_serializing_if = "Option::is_none")]
     pub actor_display_name: Option<String>,
-    /// Typically GroupID or GroupRoleID, but could be other types of IDs.
+    /// Typically a UserID, GroupID, GroupRoleID, or Location, but could be other types of IDs.
     #[serde(rename = "targetId", skip_serializing_if = "Option::is_none")]
     pub target_id: Option<String>,
     /// The type of event that occurred. This is a string that is prefixed with the type of object that the event occurred on. For example, a group role update event would be prefixed with `group.role`.

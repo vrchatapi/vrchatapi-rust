@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **account_deletion_date** | Option<[**String**](string.md)> |  | [optional]
 **account_deletion_log** | Option<[**Vec<models::AccountDeletionLog>**](AccountDeletionLog.md)> |   | [optional]
 **active_friends** | Option<**Vec<String>**> |   | [optional]
-**age_verification_status** | **String** |  | 
+**age_verification_status** | [**models::AgeVerificationStatus**](AgeVerificationStatus.md) |  | 
 **age_verified** | **bool** |  | 
 **allow_avatar_copying** | **bool** |  | 
 **badges** | Option<[**Vec<models::Badge>**](Badge.md)> |   | [optional]

@@ -45,6 +45,8 @@ pub struct UserSubscription {
     pub license_groups: Vec<String>,
     #[serde(rename = "isGift")]
     pub is_gift: bool,
+    #[serde(rename = "isBulkGift")]
+    pub is_bulk_gift: bool,
 }
 
 impl UserSubscription {
@@ -63,6 +65,7 @@ impl UserSubscription {
         updated_at: String,
         license_groups: Vec<String>,
         is_gift: bool,
+        is_bulk_gift: bool,
     ) -> UserSubscription {
         UserSubscription {
             id,
@@ -81,6 +84,7 @@ impl UserSubscription {
             updated_at,
             license_groups,
             is_gift,
+            is_bulk_gift,
         }
     }
 }

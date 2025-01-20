@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** |  | [default to true]
-**age_gate** | Option<**String**> |  | [optional]
+**age_gate** | Option<**bool**> |  | [optional]
 **can_request_invite** | **bool** |  | [default to true]
 **capacity** | **i32** |  | 
 **client_number** | **String** | Always returns \"unknown\". | 

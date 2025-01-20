@@ -11,12 +11,12 @@ Method | HTTP request | Description
 [**download_file_version**](FilesApi.md#download_file_version) | **GET** /file/{fileId}/{versionId} | Download File Version
 [**finish_file_data_upload**](FilesApi.md#finish_file_data_upload) | **PUT** /file/{fileId}/{versionId}/{fileType}/finish | Finish FileData Upload
 [**get_file**](FilesApi.md#get_file) | **GET** /file/{fileId} | Show File
+[**get_file_analysis**](FilesApi.md#get_file_analysis) | **GET** /analysis/{fileId}/{versionId} | Get File Version Analysis
+[**get_file_analysis_security**](FilesApi.md#get_file_analysis_security) | **GET** /analysis/{fileId}/{versionId}/security | Get File Version Analysis Security
+[**get_file_analysis_standard**](FilesApi.md#get_file_analysis_standard) | **GET** /analysis/{fileId}/{versionId}/standard | Get File Version Analysis Standard
 [**get_file_data_upload_status**](FilesApi.md#get_file_data_upload_status) | **GET** /file/{fileId}/{versionId}/{fileType}/status | Check FileData Upload Status
 [**get_files**](FilesApi.md#get_files) | **GET** /files | List Files
 [**start_file_data_upload**](FilesApi.md#start_file_data_upload) | **PUT** /file/{fileId}/{versionId}/{fileType}/start | Start FileData Upload
-[**upload_gallery_image**](FilesApi.md#upload_gallery_image) | **POST** /gallery | Upload gallery image
-[**upload_icon**](FilesApi.md#upload_icon) | **POST** /icon | Upload icon
-[**upload_image**](FilesApi.md#upload_image) | **POST** /file/image | Upload gallery image, icon, emoji or sticker
 
 
 
@@ -236,6 +236,99 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_file_analysis
+
+> models::FileAnalysis get_file_analysis(file_id, version_id)
+Get File Version Analysis
+
+Get the performance analysis for the uploaded assets of an avatar
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**file_id** | **String** | Must be a valid file ID. | [required] |
+**version_id** | **i32** | Version ID of the asset. | [required] |
+
+### Return type
+
+[**models::FileAnalysis**](FileAnalysis.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_file_analysis_security
+
+> models::FileAnalysis get_file_analysis_security(file_id, version_id)
+Get File Version Analysis Security
+
+Get the security performance analysis for the uploaded assets of an avatar
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**file_id** | **String** | Must be a valid file ID. | [required] |
+**version_id** | **i32** | Version ID of the asset. | [required] |
+
+### Return type
+
+[**models::FileAnalysis**](FileAnalysis.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_file_analysis_standard
+
+> models::FileAnalysis get_file_analysis_standard(file_id, version_id)
+Get File Version Analysis Standard
+
+Get the standard performance analysis for the uploaded assets of an avatar
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**file_id** | **String** | Must be a valid file ID. | [required] |
+**version_id** | **i32** | Version ID of the asset. | [required] |
+
+### Return type
+
+[**models::FileAnalysis**](FileAnalysis.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_file_data_upload_status
 
 > models::FileVersionUploadStatus get_file_data_upload_status(file_id, version_id, file_type)
@@ -329,99 +422,6 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## upload_gallery_image
-
-> models::File upload_gallery_image(file)
-Upload gallery image
-
-Upload a gallery image
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**file** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
-
-### Return type
-
-[**models::File**](File.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## upload_icon
-
-> models::File upload_icon(file)
-Upload icon
-
-Upload an icon
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**file** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
-
-### Return type
-
-[**models::File**](File.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: multipart/form-data
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## upload_image
-
-> models::File upload_image(file, tag, animation_style, mask_tag)
-Upload gallery image, icon, emoji or sticker
-
-Upload an image, which can be an icon, gallery image, sticker or emoji
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**file** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
-**tag** | **String** | Needs to be either icon, gallery, sticker or emoji | [required] |
-**animation_style** | Option<**String**> | Animation style for sticker, required for sticker. |  |
-**mask_tag** | Option<**String**> | Mask of the sticker, optional for sticker. |  |
-
-### Return type
-
-[**models::File**](File.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

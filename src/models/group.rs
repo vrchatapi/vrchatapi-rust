@@ -11,6 +11,21 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Group {
+    #[serde(
+        rename = "ageVerificationSlotsAvailable",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub age_verification_slots_available: Option<bool>,
+    #[serde(
+        rename = "ageVerificationBetaCode",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub age_verification_beta_code: Option<String>,
+    #[serde(
+        rename = "ageVerificationBetaSlots",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub age_verification_beta_slots: Option<f64>,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
     pub badges: Option<Vec<String>>,
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
@@ -115,6 +130,9 @@ pub struct Group {
 impl Group {
     pub fn new() -> Group {
         Group {
+            age_verification_slots_available: None,
+            age_verification_beta_code: None,
+            age_verification_beta_slots: None,
             badges: None,
             id: None,
             name: None,

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**age_verification_status** | **String** |  | 
+**age_verification_status** | [**models::AgeVerificationStatus**](AgeVerificationStatus.md) |  | 
 **allow_avatar_copying** | **bool** |  | [default to true]
 **badges** | Option<[**Vec<models::Badge>**](Badge.md)> |   | [optional]
 **bio** | **String** |  | 

@@ -20,7 +20,7 @@ pub struct Instance {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub age_gate: Option<Option<String>>,
+    pub age_gate: Option<Option<bool>>,
     #[serde(rename = "canRequestInvite")]
     pub can_request_invite: bool,
     #[serde(rename = "capacity")]

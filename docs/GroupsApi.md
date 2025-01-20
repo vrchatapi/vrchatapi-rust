@@ -638,7 +638,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_audit_logs
 
-> models::PaginatedGroupAuditLogEntryList get_group_audit_logs(group_id, n, offset, start_date, end_date)
+> models::PaginatedGroupAuditLogEntryList get_group_audit_logs(group_id, n, offset, start_date, end_date, actor_ids, event_types, target_ids)
 Get Group Audit Logs
 
 Returns a list of audit logs for a Group.
@@ -653,6 +653,9 @@ Name | Type | Description  | Required | Notes
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **start_date** | Option<**String**> | The start date of the search range. |  |
 **end_date** | Option<**String**> | The end date of the search range. |  |
+**actor_ids** | Option<**String**> | The comma-separated actor ids to search for. |  |
+**event_types** | Option<**String**> | The comma-separated event types to search for. |  |
+**target_ids** | Option<**String**> | The comma-separated target ids to search for. |  |
 
 ### Return type
 

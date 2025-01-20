@@ -4,8 +4,6 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**animation_style** | Option<**String**> |  | [optional]
-**mask_tag** | Option<**String**> |  | [optional]
 **extension** | **String** |  | 
 **id** | **String** |  | 
 **mime_type** | [**models::MimeType**](MIMEType.md) |  | 

@@ -12,7 +12,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct User {
     #[serde(rename = "ageVerificationStatus")]
-    pub age_verification_status: String,
+    pub age_verification_status: models::AgeVerificationStatus,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
@@ -113,7 +113,7 @@ pub struct User {
 
 impl User {
     pub fn new(
-        age_verification_status: String,
+        age_verification_status: models::AgeVerificationStatus,
         allow_avatar_copying: bool,
         bio: String,
         bio_links: Vec<String>,

@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**get_favorite**](FavoritesApi.md#get_favorite) | **GET** /favorites/{favoriteId} | Show Favorite
 [**get_favorite_group**](FavoritesApi.md#get_favorite_group) | **GET** /favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId} | Show Favorite Group
 [**get_favorite_groups**](FavoritesApi.md#get_favorite_groups) | **GET** /favorite/groups | List Favorite Groups
+[**get_favorite_limits**](FavoritesApi.md#get_favorite_limits) | **GET** /auth/user/favoritelimits | Get Favorite Limits
 [**get_favorites**](FavoritesApi.md#get_favorites) | **GET** /favorites | List Favorites
 [**remove_favorite**](FavoritesApi.md#remove_favorite) | **DELETE** /favorites/{favoriteId} | Remove Favorite
 [**update_favorite_group**](FavoritesApi.md#update_favorite_group) | **PUT** /favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId} | Update Favorite Group
@@ -158,6 +159,33 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<models::FavoriteGroup>**](FavoriteGroup.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_favorite_limits
+
+> models::FavoriteLimits get_favorite_limits()
+Get Favorite Limits
+
+Return information about a specific Favorite.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::FavoriteLimits**](FavoriteLimits.md)
 
 ### Authorization
 
