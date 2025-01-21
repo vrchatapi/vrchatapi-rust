@@ -22,7 +22,7 @@ pub struct GroupRole {
     #[serde(rename = "isSelfAssignable", skip_serializing_if = "Option::is_none")]
     pub is_self_assignable: Option<bool>,
     #[serde(rename = "permissions", skip_serializing_if = "Option::is_none")]
-    pub permissions: Option<Vec<Permissions>>,
+    pub permissions: Option<Vec<models::GroupPermissions>>,
     #[serde(rename = "isManagementRole", skip_serializing_if = "Option::is_none")]
     pub is_management_role: Option<bool>,
     #[serde(rename = "requiresTwoFactor", skip_serializing_if = "Option::is_none")]
@@ -53,62 +53,5 @@ impl GroupRole {
             created_at: None,
             updated_at: None,
         }
-    }
-}
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Permissions {
-    #[serde(rename = "\\*")]
-    group_all,
-    #[serde(rename = "group-announcement-manage")]
-    group_announcement_manage,
-    #[serde(rename = "group-audit-view")]
-    group_audit_view,
-    #[serde(rename = "group-bans-manage")]
-    group_bans_manage,
-    #[serde(rename = "group-data-manage")]
-    group_data_manage,
-    #[serde(rename = "group-default-role-manage")]
-    group_default_role_manage,
-    #[serde(rename = "group-galleries-manage")]
-    group_galleries_manage,
-    #[serde(rename = "group-instance-age-gated-create")]
-    group_instance_age_gated_create,
-    #[serde(rename = "group-instance-join")]
-    group_instance_join,
-    #[serde(rename = "group-instance-manage")]
-    group_instance_manage,
-    #[serde(rename = "group-instance-moderate")]
-    group_instance_moderate,
-    #[serde(rename = "group-instance-open-create")]
-    group_instance_open_create,
-    #[serde(rename = "group-instance-plus-create")]
-    group_instance_plus_create,
-    #[serde(rename = "group-instance-plus-portal")]
-    group_instance_plus_portal,
-    #[serde(rename = "group-instance-plus-portal-unlocked")]
-    group_instance_plus_portal_unlocked,
-    #[serde(rename = "group-instance-public-create")]
-    group_instance_public_create,
-    #[serde(rename = "group-instance-queue-priority")]
-    group_instance_queue_priority,
-    #[serde(rename = "group-instance-restricted-create")]
-    group_instance_restricted_create,
-    #[serde(rename = "group-invites-manage")]
-    group_invites_manage,
-    #[serde(rename = "group-members-manage")]
-    group_members_manage,
-    #[serde(rename = "group-members-remove")]
-    group_members_remove,
-    #[serde(rename = "group-members-viewall")]
-    group_members_viewall,
-    #[serde(rename = "group-roles-assign")]
-    group_roles_assign,
-    #[serde(rename = "group-roles-manage")]
-    group_roles_manage,
-}
-
-impl Default for Permissions {
-    fn default() -> Permissions {
-        Self::group_all
     }
 }

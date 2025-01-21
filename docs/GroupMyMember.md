@@ -22,7 +22,7 @@ Name | Type | Description | Notes
 **has_joined_from_purchase** | Option<**bool**> |  | [optional][default to false]
 **last_post_read_at** | Option<**String**> |  | [optional]
 **m_role_ids** | Option<**Vec<String>**> |  | [optional]
-**permissions** | Option<**Vec<String>**> |  | [optional]
+**permissions** | Option<[**Vec<models::GroupPermissions>**](GroupPermissions.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

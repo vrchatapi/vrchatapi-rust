@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | Option<**String**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
 **is_self_assignable** | Option<**bool**> |  | [optional][default to false]
-**permissions** | Option<**Vec<String>**> |  | [optional]
+**permissions** | Option<[**Vec<models::GroupPermissions>**](GroupPermissions.md)> |  | [optional]
 **is_management_role** | Option<**bool**> |  | [optional][default to false]
 **requires_two_factor** | Option<**bool**> |  | [optional][default to false]
 **requires_purchase** | Option<**bool**> |  | [optional][default to false]

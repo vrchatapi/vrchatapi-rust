@@ -156,6 +156,8 @@ pub mod group_my_member;
 pub use self::group_my_member::GroupMyMember;
 pub mod group_permission;
 pub use self::group_permission::GroupPermission;
+pub mod group_permissions;
+pub use self::group_permissions::GroupPermissions;
 pub mod group_post;
 pub use self::group_post::GroupPost;
 pub mod group_post_visibility;

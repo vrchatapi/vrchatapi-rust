@@ -85,6 +85,7 @@ docs/GroupMemberLimitedUser.md
 docs/GroupMemberStatus.md
 docs/GroupMyMember.md
 docs/GroupPermission.md
+docs/GroupPermissions.md
 docs/GroupPost.md
 docs/GroupPostVisibility.md
 docs/GroupPrivacy.md
@@ -297,6 +298,7 @@ src/models/group_member_limited_user.rs
 src/models/group_member_status.rs
 src/models/group_my_member.rs
 src/models/group_permission.rs
+src/models/group_permissions.rs
 src/models/group_post.rs
 src/models/group_post_visibility.rs
 src/models/group_privacy.rs
