@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **account_deletion_log** | Option<[**Vec<models::AccountDeletionLog>**](AccountDeletionLog.md)> |   | [optional]
 **active_friends** | Option<**Vec<String>**> |   | [optional]
 **age_verification_status** | [**models::AgeVerificationStatus**](AgeVerificationStatus.md) |  | 
-**age_verified** | **bool** |  | 
+**age_verified** | **bool** | `true` if, user is age verified (not 18+). | 
 **allow_avatar_copying** | **bool** |  | 
 **badges** | Option<[**Vec<models::Badge>**](Badge.md)> |   | [optional]
 **bio** | **String** |  | 
@@ -55,6 +55,7 @@ Name | Type | Description | Notes
 **online_friends** | Option<**Vec<String>**> |  | [optional]
 **past_display_names** | [**Vec<models::PastDisplayName>**](PastDisplayName.md) |   | 
 **presence** | Option<[**models::CurrentUserPresence**](CurrentUserPresence.md)> |  | [optional]
+**platform_history** | Option<[**Vec<models::CurrentUserPlatformHistoryInner>**](CurrentUser_platform_history_inner.md)> |  | [optional]
 **profile_pic_override** | **String** |  | 
 **profile_pic_override_thumbnail** | **String** |  | 
 **pronouns** | **String** |  | 

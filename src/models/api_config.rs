@@ -18,13 +18,23 @@ pub struct ApiConfig {
     /// Unknown, probably voice optimization testing
     #[serde(rename = "VoiceEnableReceiverLimiting")]
     pub voice_enable_receiver_limiting: bool,
+    #[serde(rename = "accessLogsUrls")]
+    pub access_logs_urls: models::ApiConfigAccessLogsUrls,
     /// VRChat's office address
     #[serde(rename = "address")]
     pub address: String,
+    #[serde(rename = "ageVerificationInviteVisible")]
+    pub age_verification_invite_visible: bool,
     #[serde(rename = "ageVerificationP")]
     pub age_verification_p: bool,
     #[serde(rename = "ageVerificationStatusVisible")]
     pub age_verification_status_visible: bool,
+    /// Max retries for avatar analysis requests
+    #[serde(rename = "analysisMaxRetries")]
+    pub analysis_max_retries: i32,
+    /// Interval between retries for avatar analysis requests
+    #[serde(rename = "analysisRetryInterval")]
+    pub analysis_retry_interval: i32,
     /// Public Announcements
     #[serde(rename = "announcements")]
     pub announcements: Vec<models::ApiConfigAnnouncement>,
@@ -185,6 +195,9 @@ pub struct ApiConfig {
     /// Unknown, probably toggles compilation of frontend web builds? So internal flag?
     #[serde(rename = "disableFrontendBuilds")]
     pub disable_frontend_builds: bool,
+    /// Toggles if gift drops should be disabled
+    #[serde(rename = "disableGiftDrops")]
+    pub disable_gift_drops: bool,
     /// Unknown
     #[serde(rename = "disableHello")]
     pub disable_hello: bool,
@@ -228,6 +241,9 @@ pub struct ApiConfig {
     /// Unknown
     #[serde(rename = "forceUseLatestWorld")]
     pub force_use_latest_world: bool,
+    /// Display type of gifts
+    #[serde(rename = "giftDisplayType")]
+    pub gift_display_type: String,
     /// Unknown
     #[serde(rename = "googleApiClientId")]
     pub google_api_client_id: String,
@@ -270,11 +286,12 @@ pub struct ApiConfig {
     /// URL to the report form
     #[serde(rename = "reportFormUrl")]
     pub report_form_url: String,
-    /// Options for reporting content
     #[serde(rename = "reportOptions")]
-    pub report_options: serde_json::Value,
+    pub report_options: models::ApiConfigReportOptions,
     #[serde(rename = "reportReasons")]
     pub report_reasons: models::ApiConfigReportReasons,
+    #[serde(rename = "requireAgeVerificationBetaTag")]
+    pub require_age_verification_beta_tag: bool,
     /// Link to the developer FAQ
     #[serde(rename = "sdkDeveloperFaqUrl")]
     pub sdk_developer_faq_url: String,
@@ -356,9 +373,13 @@ impl ApiConfig {
     pub fn new(
         voice_enable_degradation: bool,
         voice_enable_receiver_limiting: bool,
+        access_logs_urls: models::ApiConfigAccessLogsUrls,
         address: String,
+        age_verification_invite_visible: bool,
         age_verification_p: bool,
         age_verification_status_visible: bool,
+        analysis_max_retries: i32,
+        analysis_retry_interval: i32,
         announcements: Vec<models::ApiConfigAnnouncement>,
         analytics_segment_new_ui_pct_of_users: i32,
         analytics_segment_new_ui_salt: String,
@@ -392,6 +413,7 @@ impl ApiConfig {
         disable_event_stream: bool,
         disable_feedback_gating: bool,
         disable_frontend_builds: bool,
+        disable_gift_drops: bool,
         disable_hello: bool,
         disable_oculus_subs: bool,
         disable_registration: bool,
@@ -404,6 +426,7 @@ impl ApiConfig {
         dynamic_world_rows: Vec<models::DynamicContentRow>,
         events: models::ApiConfigEvents,
         force_use_latest_world: bool,
+        gift_display_type: String,
         google_api_client_id: String,
         home_world_id: String,
         homepage_redirect_target: String,
@@ -419,8 +442,9 @@ impl ApiConfig {
         photon_public_keys: Vec<String>,
         report_categories: models::ApiConfigReportCategories,
         report_form_url: String,
-        report_options: serde_json::Value,
+        report_options: models::ApiConfigReportOptions,
         report_reasons: models::ApiConfigReportReasons,
+        require_age_verification_beta_tag: bool,
         sdk_developer_faq_url: String,
         sdk_discord_url: String,
         sdk_not_allowed_to_publish_message: String,
@@ -450,9 +474,13 @@ impl ApiConfig {
         ApiConfig {
             voice_enable_degradation,
             voice_enable_receiver_limiting,
+            access_logs_urls,
             address,
+            age_verification_invite_visible,
             age_verification_p,
             age_verification_status_visible,
+            analysis_max_retries,
+            analysis_retry_interval,
             announcements,
             analytics_segment_new_ui_pct_of_users,
             analytics_segment_new_ui_salt,
@@ -500,6 +528,7 @@ impl ApiConfig {
             disable_event_stream,
             disable_feedback_gating,
             disable_frontend_builds,
+            disable_gift_drops,
             disable_hello,
             disable_oculus_subs,
             disable_registration,
@@ -515,6 +544,7 @@ impl ApiConfig {
             economy_state: None,
             events,
             force_use_latest_world,
+            gift_display_type,
             google_api_client_id,
             home_world_id,
             homepage_redirect_target,
@@ -532,6 +562,7 @@ impl ApiConfig {
             report_form_url,
             report_options,
             report_reasons,
+            require_age_verification_beta_tag,
             sdk_developer_faq_url,
             sdk_discord_url,
             sdk_not_allowed_to_publish_message,

@@ -5,6 +5,7 @@ docs/AddFavoriteRequest.md
 docs/AddGroupGalleryImageRequest.md
 docs/AgeVerificationStatus.md
 docs/ApiConfig.md
+docs/ApiConfigAccessLogsUrls.md
 docs/ApiConfigAnnouncement.md
 docs/ApiConfigAvatarPerfLimiter.md
 docs/ApiConfigConstants.md
@@ -20,6 +21,11 @@ docs/ApiConfigEvents.md
 docs/ApiConfigMinSupportedClientBuildNumber.md
 docs/ApiConfigOfflineAnalysis.md
 docs/ApiConfigReportCategories.md
+docs/ApiConfigReportOptions.md
+docs/ApiConfigReportOptionsAvatar.md
+docs/ApiConfigReportOptionsGroup.md
+docs/ApiConfigReportOptionsUser.md
+docs/ApiConfigReportOptionsWorld.md
 docs/ApiConfigReportReasons.md
 docs/ApiHealth.md
 docs/AuthenticationApi.md
@@ -42,6 +48,7 @@ docs/CreateGroupRoleRequest.md
 docs/CreateInstanceRequest.md
 docs/CreateWorldRequest.md
 docs/CurrentUser.md
+docs/CurrentUserPlatformHistoryInner.md
 docs/CurrentUserPresence.md
 docs/DeploymentGroup.md
 docs/DeveloperType.md
@@ -224,6 +231,7 @@ src/models/add_favorite_request.rs
 src/models/add_group_gallery_image_request.rs
 src/models/age_verification_status.rs
 src/models/api_config.rs
+src/models/api_config_access_logs_urls.rs
 src/models/api_config_announcement.rs
 src/models/api_config_avatar_perf_limiter.rs
 src/models/api_config_constants.rs
@@ -239,6 +247,11 @@ src/models/api_config_events.rs
 src/models/api_config_min_supported_client_build_number.rs
 src/models/api_config_offline_analysis.rs
 src/models/api_config_report_categories.rs
+src/models/api_config_report_options.rs
+src/models/api_config_report_options_avatar.rs
+src/models/api_config_report_options_group.rs
+src/models/api_config_report_options_user.rs
+src/models/api_config_report_options_world.rs
 src/models/api_config_report_reasons.rs
 src/models/api_health.rs
 src/models/avatar.rs
@@ -259,6 +272,7 @@ src/models/create_group_role_request.rs
 src/models/create_instance_request.rs
 src/models/create_world_request.rs
 src/models/current_user.rs
+src/models/current_user_platform_history_inner.rs
 src/models/current_user_presence.rs
 src/models/deployment_group.rs
 src/models/developer_type.rs

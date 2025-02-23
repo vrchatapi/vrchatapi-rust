@@ -1,10 +1,11 @@
-# PerformanceLimiterInfo
+# ApiConfigReportOptionsAvatar
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**max_seats** | **i32** | Maximum amount of seats. -1 means no limit. | 
+**avatar** | Option<**Vec<String>**> |  | [optional]
+**warnings** | Option<**Vec<String>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

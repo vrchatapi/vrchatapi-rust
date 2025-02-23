@@ -36,6 +36,7 @@ pub struct CurrentUser {
     pub active_friends: Option<Vec<String>>,
     #[serde(rename = "ageVerificationStatus")]
     pub age_verification_status: models::AgeVerificationStatus,
+    /// `true` if, user is age verified (not 18+).
     #[serde(rename = "ageVerified")]
     pub age_verified: bool,
     #[serde(rename = "allowAvatarCopying")]
@@ -145,6 +146,8 @@ pub struct CurrentUser {
     pub past_display_names: Vec<models::PastDisplayName>,
     #[serde(rename = "presence", skip_serializing_if = "Option::is_none")]
     pub presence: Option<models::CurrentUserPresence>,
+    #[serde(rename = "platform_history", skip_serializing_if = "Option::is_none")]
+    pub platform_history: Option<Vec<models::CurrentUserPlatformHistoryInner>>,
     #[serde(rename = "profilePicOverride")]
     pub profile_pic_override: String,
     #[serde(rename = "profilePicOverrideThumbnail")]
@@ -301,6 +304,7 @@ impl CurrentUser {
             online_friends: None,
             past_display_names,
             presence: None,
+            platform_history: None,
             profile_pic_override,
             profile_pic_override_thumbnail,
             pronouns,

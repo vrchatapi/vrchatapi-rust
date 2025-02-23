@@ -1,10 +1,12 @@
-# PerformanceLimiterInfo
+# ApiConfigReportOptionsGroup
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**max_seats** | **i32** | Maximum amount of seats. -1 means no limit. | 
+**groupstore** | Option<**Vec<String>**> |  | [optional]
+**image** | Option<**Vec<String>**> |  | [optional]
+**text** | Option<**Vec<String>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

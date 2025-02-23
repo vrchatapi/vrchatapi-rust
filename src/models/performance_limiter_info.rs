@@ -12,8 +12,6 @@ use serde::{Deserialize, Serialize};
 /// PerformanceLimiterInfo : Info about the performance limits on a platform
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PerformanceLimiterInfo {
-    #[serde(rename = "allowed")]
-    pub allowed: bool,
     /// Maximum amount of seats. -1 means no limit.
     #[serde(rename = "maxSeats")]
     pub max_seats: i32,
@@ -21,7 +19,7 @@ pub struct PerformanceLimiterInfo {
 
 impl PerformanceLimiterInfo {
     /// Info about the performance limits on a platform
-    pub fn new(allowed: bool, max_seats: i32) -> PerformanceLimiterInfo {
-        PerformanceLimiterInfo { allowed, max_seats }
+    pub fn new(max_seats: i32) -> PerformanceLimiterInfo {
+        PerformanceLimiterInfo { max_seats }
     }
 }

@@ -13,6 +13,9 @@ use serde::{Deserialize, Serialize};
 pub struct User {
     #[serde(rename = "ageVerificationStatus")]
     pub age_verification_status: models::AgeVerificationStatus,
+    /// `true` if, user is age verified (not 18+).
+    #[serde(rename = "ageVerified")]
+    pub age_verified: bool,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
@@ -114,6 +117,7 @@ pub struct User {
 impl User {
     pub fn new(
         age_verification_status: models::AgeVerificationStatus,
+        age_verified: bool,
         allow_avatar_copying: bool,
         bio: String,
         bio_links: Vec<String>,
@@ -140,6 +144,7 @@ impl User {
     ) -> User {
         User {
             age_verification_status,
+            age_verified,
             allow_avatar_copying,
             badges: None,
             bio,

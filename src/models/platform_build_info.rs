@@ -16,16 +16,16 @@ pub struct PlatformBuildInfo {
     #[serde(rename = "minBuildNumber")]
     pub min_build_number: i32,
     /// Redirection URL for updating the app
-    #[serde(rename = "redirectionAddress")]
-    pub redirection_address: String,
+    #[serde(rename = "redirectionAddress", skip_serializing_if = "Option::is_none")]
+    pub redirection_address: Option<String>,
 }
 
 impl PlatformBuildInfo {
     /// Build information for a platform
-    pub fn new(min_build_number: i32, redirection_address: String) -> PlatformBuildInfo {
+    pub fn new(min_build_number: i32) -> PlatformBuildInfo {
         PlatformBuildInfo {
             min_build_number,
-            redirection_address,
+            redirection_address: None,
         }
     }
 }
