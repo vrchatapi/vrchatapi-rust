@@ -23,7 +23,6 @@ async fn main() {
     let jar = Arc::new(jar);
 
     config.client = reqwest::Client::builder()
-        .cookie_store(true)
         .cookie_provider(jar)
         .build()
         .unwrap();
