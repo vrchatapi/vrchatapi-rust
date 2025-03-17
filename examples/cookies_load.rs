@@ -11,7 +11,7 @@ async fn main() {
     config.basic_auth = Some((String::from("username"), Some(String::from("password"))));
     config.user_agent = Some(String::from("ExampleProgram/0.0.1 my@email.com"));
 
-    let mut jar = reqwest::cookie::Jar::default();
+    let jar = reqwest::cookie::Jar::default();
     jar.set_cookies(
         &mut [HeaderValue::from_str(
             &"auth=[AUTH_COOKIE_HERE], twoFactorAuth=[TWO_FACTOR_AUTH_COOKIE_HERE]",

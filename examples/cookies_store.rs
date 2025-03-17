@@ -13,7 +13,6 @@ async fn main() {
 
     let cookie_store = std::sync::Arc::new(reqwest::cookie::Jar::default());
     config.client = reqwest::Client::builder()
-        .cookie_store(true)
         .cookie_provider(cookie_store.clone())
         .build()
         .unwrap();
