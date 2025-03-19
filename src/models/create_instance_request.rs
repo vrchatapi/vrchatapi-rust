@@ -51,19 +51,28 @@ impl CreateInstanceRequest {
         world_id: String,
         r#type: models::InstanceType,
         region: models::InstanceRegion,
+        owner_id: Option<Option<String>>,
+        role_ids: Option<Vec<String>>,
+        group_access_type: Option<models::GroupAccessType>,
+        queue_enabled: Option<bool>,
+        closed_at: Option<String>,
+        can_request_invite: Option<bool>,
+        hard_close: Option<bool>,
+        invite_only: Option<bool>,
+        
     ) -> CreateInstanceRequest {
         CreateInstanceRequest {
             world_id,
             r#type,
             region,
-            owner_id: None,
-            role_ids: None,
-            group_access_type: None,
-            queue_enabled: None,
-            closed_at: None,
-            can_request_invite: None,
-            hard_close: None,
-            invite_only: None,
+            owner_id,
+            role_ids,
+            group_access_type,
+            queue_enabled,
+            closed_at,
+            can_request_invite,
+            hard_close,
+            invite_only,
         }
     }
 }
