@@ -44,9 +44,6 @@ pub struct ApiConfig {
     /// Unknown
     #[serde(rename = "analyticsSegment_NewUI_Salt")]
     pub analytics_segment_new_ui_salt: String,
-    /// Game name
-    #[serde(rename = "appName")]
-    pub app_name: String,
     /// List of supported Languages
     #[serde(rename = "availableLanguageCodes")]
     pub available_language_codes: Vec<String>,
@@ -55,9 +52,6 @@ pub struct ApiConfig {
     pub available_languages: Vec<String>,
     #[serde(rename = "avatarPerfLimiter")]
     pub avatar_perf_limiter: models::ApiConfigAvatarPerfLimiter,
-    /// Build tag of the API server
-    #[serde(rename = "buildVersionTag")]
-    pub build_version_tag: String,
     /// Unknown
     #[serde(rename = "chatboxLogBufferSeconds")]
     pub chatbox_log_buffer_seconds: i32,
@@ -148,8 +142,6 @@ pub struct ApiConfig {
     pub default_avatar: String,
     #[serde(rename = "defaultStickerSet")]
     pub default_sticker_set: String,
-    #[serde(rename = "deploymentGroup")]
-    pub deployment_group: models::DeploymentGroup,
     /// Unknown
     #[serde(rename = "devLanguageCodes", skip_serializing_if = "Option::is_none")]
     pub dev_language_codes: Option<Vec<String>>,
@@ -304,9 +296,6 @@ pub struct ApiConfig {
     /// Unity version supported by the SDK
     #[serde(rename = "sdkUnityVersion")]
     pub sdk_unity_version: String,
-    /// Server name of the API server currently responding
-    #[serde(rename = "serverName")]
-    pub server_name: String,
     /// A list of explicitly allowed origins that worlds can request strings from via the Udon's [VRCStringDownloader.LoadUrl](https://creators.vrchat.com/worlds/udon/string-loading/#ivrcstringdownload).
     #[serde(rename = "stringHostUrlList")]
     pub string_host_url_list: Vec<String>,
@@ -358,6 +347,9 @@ pub struct ApiConfig {
     /// Currently used youtube-dl.exe hash in SHA1-delimited format
     #[serde(rename = "player-url-resolver-sha1")]
     pub player_url_resolver_sha1: String,
+    /// Public key, hex encoded
+    #[serde(rename = "publicKey")]
+    pub public_key: String,
     /// Unknown
     #[serde(rename = "websocketMaxFriendsRefreshDelay")]
     pub websocket_max_friends_refresh_delay: i32,
@@ -383,11 +375,9 @@ impl ApiConfig {
         announcements: Vec<models::ApiConfigAnnouncement>,
         analytics_segment_new_ui_pct_of_users: i32,
         analytics_segment_new_ui_salt: String,
-        app_name: String,
         available_language_codes: Vec<String>,
         available_languages: Vec<String>,
         avatar_perf_limiter: models::ApiConfigAvatarPerfLimiter,
-        build_version_tag: String,
         chatbox_log_buffer_seconds: i32,
         client_api_key: String,
         client_bps_ceiling: i32,
@@ -401,7 +391,6 @@ impl ApiConfig {
         current_tos_version: i32,
         default_avatar: String,
         default_sticker_set: String,
-        deployment_group: models::DeploymentGroup,
         dev_sdk_url: String,
         dev_sdk_version: String,
         dis_countdown: String,
@@ -449,7 +438,6 @@ impl ApiConfig {
         sdk_discord_url: String,
         sdk_not_allowed_to_publish_message: String,
         sdk_unity_version: String,
-        server_name: String,
         string_host_url_list: Vec<String>,
         support_email: String,
         support_form_url: String,
@@ -467,6 +455,7 @@ impl ApiConfig {
         white_listed_asset_urls: Vec<String>,
         player_url_resolver_version: String,
         player_url_resolver_sha1: String,
+        public_key: String,
         websocket_max_friends_refresh_delay: i32,
         websocket_quick_reconnect_time: i32,
         websocket_reconnect_max_delay: i32,
@@ -484,11 +473,9 @@ impl ApiConfig {
             announcements,
             analytics_segment_new_ui_pct_of_users,
             analytics_segment_new_ui_salt,
-            app_name,
             available_language_codes,
             available_languages,
             avatar_perf_limiter,
-            build_version_tag,
             chatbox_log_buffer_seconds,
             client_api_key,
             client_bps_ceiling,
@@ -513,7 +500,6 @@ impl ApiConfig {
             current_tos_version,
             default_avatar,
             default_sticker_set,
-            deployment_group,
             dev_language_codes: None,
             dev_sdk_url,
             dev_sdk_version,
@@ -567,7 +553,6 @@ impl ApiConfig {
             sdk_discord_url,
             sdk_not_allowed_to_publish_message,
             sdk_unity_version,
-            server_name,
             string_host_url_list,
             support_email,
             support_form_url,
@@ -585,6 +570,7 @@ impl ApiConfig {
             white_listed_asset_urls,
             player_url_resolver_version,
             player_url_resolver_sha1,
+            public_key,
             websocket_max_friends_refresh_delay,
             websocket_quick_reconnect_time,
             websocket_reconnect_max_delay,

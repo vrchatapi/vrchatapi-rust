@@ -31,7 +31,7 @@ Method | HTTP request | Description
 [**get_group_member**](GroupsApi.md#get_group_member) | **GET** /groups/{groupId}/members/{userId} | Get Group Member
 [**get_group_members**](GroupsApi.md#get_group_members) | **GET** /groups/{groupId}/members | List Group Members
 [**get_group_permissions**](GroupsApi.md#get_group_permissions) | **GET** /groups/{groupId}/permissions | List Group Permissions
-[**get_group_post**](GroupsApi.md#get_group_post) | **GET** /groups/{groupId}/posts | Get posts from a Group
+[**get_group_posts**](GroupsApi.md#get_group_posts) | **GET** /groups/{groupId}/posts | Get posts from a Group
 [**get_group_requests**](GroupsApi.md#get_group_requests) | **GET** /groups/{groupId}/requests | Get Group Join Requests
 [**get_group_roles**](GroupsApi.md#get_group_roles) | **GET** /groups/{groupId}/roles | Get Group Roles
 [**join_group**](GroupsApi.md#join_group) | **POST** /groups/{groupId}/join | Join Group
@@ -896,9 +896,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_group_post
+## get_group_posts
 
-> models::GroupPost get_group_post(group_id, n, offset, public_only)
+> models::GetGroupPosts200Response get_group_posts(group_id, n, offset, public_only)
 Get posts from a Group
 
 Get posts from a Group
@@ -915,7 +915,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::GroupPost**](GroupPost.md)
+[**models::GetGroupPosts200Response**](getGroupPosts_200_response.md)
 
 ### Authorization
 

@@ -13,6 +13,8 @@ use serde::{Deserialize, Serialize};
 pub struct ApiConfigReportOptionsAvatar {
     #[serde(rename = "avatar", skip_serializing_if = "Option::is_none")]
     pub avatar: Option<Vec<String>>,
+    #[serde(rename = "avatarpage", skip_serializing_if = "Option::is_none")]
+    pub avatarpage: Option<Vec<String>>,
     #[serde(rename = "warnings", skip_serializing_if = "Option::is_none")]
     pub warnings: Option<Vec<String>>,
 }
@@ -21,6 +23,7 @@ impl ApiConfigReportOptionsAvatar {
     pub fn new() -> ApiConfigReportOptionsAvatar {
         ApiConfigReportOptionsAvatar {
             avatar: None,
+            avatarpage: None,
             warnings: None,
         }
     }

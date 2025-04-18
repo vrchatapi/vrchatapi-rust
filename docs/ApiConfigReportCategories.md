@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **avatar** | [**models::ReportCategory**](ReportCategory.md) |  | 
+**avatarpage** | Option<[**models::ReportCategory**](ReportCategory.md)> |  | [optional]
 **behavior** | [**models::ReportCategory**](ReportCategory.md) |  | 
 **chat** | [**models::ReportCategory**](ReportCategory.md) |  | 
 **emoji** | Option<[**models::ReportCategory**](ReportCategory.md)> |  | [optional]

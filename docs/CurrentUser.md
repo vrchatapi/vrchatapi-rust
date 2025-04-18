@@ -16,7 +16,6 @@ Name | Type | Description | Notes
 **bio** | **String** |  | 
 **bio_links** | **Vec<String>** |   | 
 **current_avatar** | **String** |  | 
-**current_avatar_asset_url** | **String** |  | 
 **current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **current_avatar_tags** | **Vec<String>** |  | 

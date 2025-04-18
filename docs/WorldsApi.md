@@ -4,7 +4,9 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**check_user_persistence_exists**](WorldsApi.md#check_user_persistence_exists) | **GET** /users/{userId}/{worldId}/persist/exists | Check User Persistence Exists
 [**create_world**](WorldsApi.md#create_world) | **POST** /worlds | Create World
+[**delete_user_persistence**](WorldsApi.md#delete_user_persistence) | **DELETE** /users/{userId}/{worldId}/persist | Delete User Persistence
 [**delete_world**](WorldsApi.md#delete_world) | **DELETE** /worlds/{worldId} | Delete World
 [**get_active_worlds**](WorldsApi.md#get_active_worlds) | **GET** /worlds/active | List Active Worlds
 [**get_favorited_worlds**](WorldsApi.md#get_favorited_worlds) | **GET** /worlds/favorites | List Favorited Worlds
@@ -18,6 +20,37 @@ Method | HTTP request | Description
 [**unpublish_world**](WorldsApi.md#unpublish_world) | **DELETE** /worlds/{worldId}/publish | Unpublish World
 [**update_world**](WorldsApi.md#update_world) | **PUT** /worlds/{worldId} | Update World
 
+
+
+## check_user_persistence_exists
+
+> check_user_persistence_exists(user_id, world_id)
+Check User Persistence Exists
+
+Checks whether the user has persistence data for a given world
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## create_world
@@ -45,6 +78,37 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_user_persistence
+
+> delete_user_persistence(user_id, world_id)
+Delete User Persistence
+
+Deletes the user's persistence data for a given world
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

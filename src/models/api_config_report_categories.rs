@@ -14,6 +14,8 @@ use serde::{Deserialize, Serialize};
 pub struct ApiConfigReportCategories {
     #[serde(rename = "avatar")]
     pub avatar: models::ReportCategory,
+    #[serde(rename = "avatarpage", skip_serializing_if = "Option::is_none")]
+    pub avatarpage: Option<models::ReportCategory>,
     #[serde(rename = "behavior")]
     pub behavior: models::ReportCategory,
     #[serde(rename = "chat")]
@@ -54,6 +56,7 @@ impl ApiConfigReportCategories {
     ) -> ApiConfigReportCategories {
         ApiConfigReportCategories {
             avatar,
+            avatarpage: None,
             behavior,
             chat,
             emoji: None,

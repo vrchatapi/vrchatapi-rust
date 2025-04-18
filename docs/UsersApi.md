@@ -4,6 +4,9 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_tags**](UsersApi.md#add_tags) | **POST** /users/{userId}/addTags | Add User Tags
+[**check_user_persistence_exists**](UsersApi.md#check_user_persistence_exists) | **GET** /users/{userId}/{worldId}/persist/exists | Check User Persistence Exists
+[**delete_user_persistence**](UsersApi.md#delete_user_persistence) | **DELETE** /users/{userId}/{worldId}/persist | Delete User Persistence
 [**get_user**](UsersApi.md#get_user) | **GET** /users/{userId} | Get User by ID
 [**get_user_by_name**](UsersApi.md#get_user_by_name) | **GET** /users/{username}/name | Get User by Username
 [**get_user_feedback**](UsersApi.md#get_user_feedback) | **GET** /users/{userId}/feedback | Get User Feedback
@@ -13,10 +16,105 @@ Method | HTTP request | Description
 [**get_user_note**](UsersApi.md#get_user_note) | **GET** /userNotes/{userNoteId} | Get User Note
 [**get_user_notes**](UsersApi.md#get_user_notes) | **GET** /userNotes | Get User Notes
 [**get_user_represented_group**](UsersApi.md#get_user_represented_group) | **GET** /users/{userId}/groups/represented | Get user's current represented group
+[**remove_tags**](UsersApi.md#remove_tags) | **POST** /users/{userId}/removeTags | Remove User Tags
 [**search_users**](UsersApi.md#search_users) | **GET** /users | Search All Users
+[**update_badge**](UsersApi.md#update_badge) | **PUT** /users/{userId}/badges/{badgeId} | Update User Badge
 [**update_user**](UsersApi.md#update_user) | **PUT** /users/{userId} | Update User Info
 [**update_user_note**](UsersApi.md#update_user_note) | **POST** /userNotes | Update User Note
 
+
+
+## add_tags
+
+> models::CurrentUser add_tags(user_id, change_user_tags_request)
+Add User Tags
+
+Adds tags to the user's profile
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**change_user_tags_request** | [**ChangeUserTagsRequest**](ChangeUserTagsRequest.md) |  | [required] |
+
+### Return type
+
+[**models::CurrentUser**](CurrentUser.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## check_user_persistence_exists
+
+> check_user_persistence_exists(user_id, world_id)
+Check User Persistence Exists
+
+Checks whether the user has persistence data for a given world
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_user_persistence
+
+> delete_user_persistence(user_id, world_id)
+Delete User Persistence
+
+Deletes the user's persistence data for a given world
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**world_id** | **String** | Must be a valid world ID. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## get_user
@@ -293,6 +391,37 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## remove_tags
+
+> models::CurrentUser remove_tags(user_id, change_user_tags_request)
+Remove User Tags
+
+Removes tags from the user's profile
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**change_user_tags_request** | [**ChangeUserTagsRequest**](ChangeUserTagsRequest.md) |  | [required] |
+
+### Return type
+
+[**models::CurrentUser**](CurrentUser.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## search_users
 
 > Vec<models::LimitedUser> search_users(search, developer_type, n, offset)
@@ -321,6 +450,38 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_badge
+
+> update_badge(user_id, badge_id, update_user_badge_request)
+Update User Badge
+
+Updates a user's badge
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**badge_id** | **String** | Must be a valid badge ID. | [required] |
+**update_user_badge_request** | [**UpdateUserBadgeRequest**](UpdateUserBadgeRequest.md) |  | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

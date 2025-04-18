@@ -6,8 +6,12 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_avatar**](AvatarsApi.md#create_avatar) | **POST** /avatars | Create Avatar
 [**delete_avatar**](AvatarsApi.md#delete_avatar) | **DELETE** /avatars/{avatarId} | Delete Avatar
+[**delete_impostor**](AvatarsApi.md#delete_impostor) | **DELETE** /avatars/{avatarId}/impostor | Delete generated Impostor
+[**enqueue_impostor**](AvatarsApi.md#enqueue_impostor) | **POST** /avatars/{avatarId}/impostor/enqueue | Enqueue Impostor generation
 [**get_avatar**](AvatarsApi.md#get_avatar) | **GET** /avatars/{avatarId} | Get Avatar
 [**get_favorited_avatars**](AvatarsApi.md#get_favorited_avatars) | **GET** /avatars/favorites | List Favorited Avatars
+[**get_impostor_queue_stats**](AvatarsApi.md#get_impostor_queue_stats) | **GET** /avatars/impostor/queue/stats | Get Impostor Queue Stats
+[**get_licensed_avatars**](AvatarsApi.md#get_licensed_avatars) | **GET** /avatars/licensed | List Licensed Avatars
 [**get_own_avatar**](AvatarsApi.md#get_own_avatar) | **GET** /users/{userId}/avatar | Get Own Avatar
 [**search_avatars**](AvatarsApi.md#search_avatars) | **GET** /avatars | Search Avatars
 [**select_avatar**](AvatarsApi.md#select_avatar) | **PUT** /avatars/{avatarId}/select | Select Avatar
@@ -76,6 +80,66 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## delete_impostor
+
+> delete_impostor(avatar_id)
+Delete generated Impostor
+
+Delete generated Impostor for that avatar.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**avatar_id** | **String** | Must be a valid avatar ID. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## enqueue_impostor
+
+> models::ServiceStatus enqueue_impostor(avatar_id)
+Enqueue Impostor generation
+
+Enqueue Impostor generation for that avatar.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**avatar_id** | **String** | Must be a valid avatar ID. | [required] |
+
+### Return type
+
+[**models::ServiceStatus**](ServiceStatus.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_avatar
 
 > models::Avatar get_avatar(avatar_id)
@@ -131,6 +195,64 @@ Name | Type | Description  | Required | Notes
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
 **user_id** | Option<**String**> | Target user to see information on, admin-only. |  |
+
+### Return type
+
+[**Vec<models::Avatar>**](Avatar.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_impostor_queue_stats
+
+> models::ServiceQueueStats get_impostor_queue_stats()
+Get Impostor Queue Stats
+
+Gets service stats for queued impostor.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::ServiceQueueStats**](ServiceQueueStats.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_licensed_avatars
+
+> Vec<models::Avatar> get_licensed_avatars(n, offset)
+List Licensed Avatars
+
+List licensed avatars.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 
 ### Return type
 

@@ -36,6 +36,7 @@ docs/AvatarsApi.md
 docs/Badge.md
 docs/Balance.md
 docs/BanGroupMemberRequest.md
+docs/ChangeUserTagsRequest.md
 docs/CreateAvatarRequest.md
 docs/CreateFileRequest.md
 docs/CreateFileVersionRequest.md
@@ -50,7 +51,6 @@ docs/CreateWorldRequest.md
 docs/CurrentUser.md
 docs/CurrentUserPlatformHistoryInner.md
 docs/CurrentUserPresence.md
-docs/DeploymentGroup.md
 docs/DeveloperType.md
 docs/DynamicContentRow.md
 docs/EconomyApi.md
@@ -76,6 +76,7 @@ docs/FilesApi.md
 docs/FinishFileDataUploadRequest.md
 docs/FriendStatus.md
 docs/FriendsApi.md
+docs/GetGroupPosts200Response.md
 docs/GetUserGroupInstances200Response.md
 docs/Group.md
 docs/GroupAccessType.md
@@ -150,6 +151,9 @@ docs/PlatformBuildInfo.md
 docs/PlayerModeration.md
 docs/PlayerModerationType.md
 docs/PlayermoderationApi.md
+docs/Print.md
+docs/PrintFiles.md
+docs/PrintsApi.md
 docs/Product.md
 docs/ProductListing.md
 docs/ProductListingType.md
@@ -164,6 +168,8 @@ docs/RequestInviteRequest.md
 docs/RespondGroupJoinRequest.md
 docs/Response.md
 docs/SentNotification.md
+docs/ServiceQueueStats.md
+docs/ServiceStatus.md
 docs/SortOption.md
 docs/Submission.md
 docs/Subscription.md
@@ -188,6 +194,7 @@ docs/UpdateGroupMemberRequest.md
 docs/UpdateGroupRequest.md
 docs/UpdateGroupRoleRequest.md
 docs/UpdateInviteMessageRequest.md
+docs/UpdateUserBadgeRequest.md
 docs/UpdateUserNoteRequest.md
 docs/UpdateUserRequest.md
 docs/UpdateWorldRequest.md
@@ -222,6 +229,7 @@ src/apis/mod.rs
 src/apis/notifications_api.rs
 src/apis/permissions_api.rs
 src/apis/playermoderation_api.rs
+src/apis/prints_api.rs
 src/apis/system_api.rs
 src/apis/users_api.rs
 src/apis/worlds_api.rs
@@ -260,6 +268,7 @@ src/models/avatar_unity_package_url_object.rs
 src/models/badge.rs
 src/models/balance.rs
 src/models/ban_group_member_request.rs
+src/models/change_user_tags_request.rs
 src/models/create_avatar_request.rs
 src/models/create_file_request.rs
 src/models/create_file_version_request.rs
@@ -274,7 +283,6 @@ src/models/create_world_request.rs
 src/models/current_user.rs
 src/models/current_user_platform_history_inner.rs
 src/models/current_user_presence.rs
-src/models/deployment_group.rs
 src/models/developer_type.rs
 src/models/dynamic_content_row.rs
 src/models/error.rs
@@ -296,6 +304,7 @@ src/models/file_version.rs
 src/models/file_version_upload_status.rs
 src/models/finish_file_data_upload_request.rs
 src/models/friend_status.rs
+src/models/get_group_posts_200_response.rs
 src/models/get_user_group_instances_200_response.rs
 src/models/group.rs
 src/models/group_access_type.rs
@@ -364,6 +373,8 @@ src/models/permission.rs
 src/models/platform_build_info.rs
 src/models/player_moderation.rs
 src/models/player_moderation_type.rs
+src/models/print.rs
+src/models/print_files.rs
 src/models/product.rs
 src/models/product_listing.rs
 src/models/product_listing_type.rs
@@ -378,6 +389,8 @@ src/models/request_invite_request.rs
 src/models/respond_group_join_request.rs
 src/models/response.rs
 src/models/sent_notification.rs
+src/models/service_queue_stats.rs
+src/models/service_status.rs
 src/models/sort_option.rs
 src/models/submission.rs
 src/models/subscription.rs
@@ -401,6 +414,7 @@ src/models/update_group_member_request.rs
 src/models/update_group_request.rs
 src/models/update_group_role_request.rs
 src/models/update_invite_message_request.rs
+src/models/update_user_badge_request.rs
 src/models/update_user_note_request.rs
 src/models/update_user_request.rs
 src/models/update_world_request.rs

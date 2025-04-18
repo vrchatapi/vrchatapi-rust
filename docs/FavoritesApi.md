@@ -6,7 +6,6 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_favorite**](FavoritesApi.md#add_favorite) | **POST** /favorites | Add Favorite
 [**clear_favorite_group**](FavoritesApi.md#clear_favorite_group) | **DELETE** /favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId} | Clear Favorite Group
-[**get_favorite**](FavoritesApi.md#get_favorite) | **GET** /favorites/{favoriteId} | Show Favorite
 [**get_favorite_group**](FavoritesApi.md#get_favorite_group) | **GET** /favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId} | Show Favorite Group
 [**get_favorite_groups**](FavoritesApi.md#get_favorite_groups) | **GET** /favorite/groups | List Favorite Groups
 [**get_favorite_limits**](FavoritesApi.md#get_favorite_limits) | **GET** /auth/user/favoritelimits | Get Favorite Limits
@@ -65,36 +64,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::Success**](Success.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## get_favorite
-
-> models::Favorite get_favorite(favorite_id)
-Show Favorite
-
-Return information about a specific Favorite.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**favorite_id** | **String** | Must be a valid favorite ID. | [required] |
-
-### Return type
-
-[**models::Favorite**](Favorite.md)
 
 ### Authorization
 

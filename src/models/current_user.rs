@@ -49,8 +49,6 @@ pub struct CurrentUser {
     pub bio_links: Vec<String>,
     #[serde(rename = "currentAvatar")]
     pub current_avatar: String,
-    #[serde(rename = "currentAvatarAssetUrl")]
-    pub current_avatar_asset_url: String,
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarImageUrl")]
     pub current_avatar_image_url: String,
@@ -211,7 +209,6 @@ impl CurrentUser {
         bio: String,
         bio_links: Vec<String>,
         current_avatar: String,
-        current_avatar_asset_url: String,
         current_avatar_image_url: String,
         current_avatar_thumbnail_image_url: String,
         current_avatar_tags: Vec<String>,
@@ -265,7 +262,6 @@ impl CurrentUser {
             bio,
             bio_links,
             current_avatar,
-            current_avatar_asset_url,
             current_avatar_image_url,
             current_avatar_thumbnail_image_url,
             current_avatar_tags,

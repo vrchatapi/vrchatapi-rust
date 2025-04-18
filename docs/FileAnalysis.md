@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **avatar_stats** | [**models::FileAnalysisAvatarStats**](FileAnalysisAvatarStats.md) |  | 
 **created_at** | Option<**String**> |  | [optional]
 **file_size** | **i32** |  | 
+**performance_rating** | Option<**String**> |  | [optional]
 **success** | **bool** |  | 
 **uncompressed_size** | **i32** |  | 
 

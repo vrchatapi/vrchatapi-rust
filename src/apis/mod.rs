@@ -105,6 +105,7 @@ pub mod jams_api;
 pub mod notifications_api;
 pub mod permissions_api;
 pub mod playermoderation_api;
+pub mod prints_api;
 pub mod system_api;
 pub mod users_api;
 pub mod worlds_api;

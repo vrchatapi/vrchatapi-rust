@@ -18,6 +18,10 @@ pub struct ApiConfigReportReasons {
     pub botting: models::ReportReason,
     #[serde(rename = "cancellation")]
     pub cancellation: models::ReportReason,
+    #[serde(rename = "copyright", skip_serializing_if = "Option::is_none")]
+    pub copyright: Option<models::ReportReason>,
+    #[serde(rename = "fraud", skip_serializing_if = "Option::is_none")]
+    pub fraud: Option<models::ReportReason>,
     #[serde(rename = "gore")]
     pub gore: models::ReportReason,
     #[serde(rename = "hacking")]
@@ -46,6 +50,8 @@ pub struct ApiConfigReportReasons {
     pub service: models::ReportReason,
     #[serde(rename = "sexual")]
     pub sexual: models::ReportReason,
+    #[serde(rename = "technical", skip_serializing_if = "Option::is_none")]
+    pub technical: Option<models::ReportReason>,
     #[serde(rename = "threatening")]
     pub threatening: models::ReportReason,
     #[serde(rename = "visuals")]
@@ -79,6 +85,8 @@ impl ApiConfigReportReasons {
             billing,
             botting,
             cancellation,
+            copyright: None,
+            fraud: None,
             gore,
             hacking,
             harassing,
@@ -93,6 +101,7 @@ impl ApiConfigReportReasons {
             security,
             service,
             sexual,
+            technical: None,
             threatening,
             visuals,
         }

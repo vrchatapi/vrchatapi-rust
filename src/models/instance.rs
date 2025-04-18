@@ -32,8 +32,8 @@ pub struct Instance {
     pub display_name: Option<String>,
     #[serde(rename = "full")]
     pub full: bool,
-    #[serde(rename = "gameServerVersion")]
-    pub game_server_version: i32,
+    #[serde(rename = "gameServerVersion", skip_serializing_if = "Option::is_none")]
+    pub game_server_version: Option<i32>,
     /// InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance.
     #[serde(rename = "id")]
     pub id: String,
@@ -146,7 +146,6 @@ impl Instance {
         client_number: String,
         display_name: Option<String>,
         full: bool,
-        game_server_version: i32,
         id: String,
         instance_id: String,
         instance_persistence_enabled: Option<String>,
@@ -177,7 +176,7 @@ impl Instance {
             client_number,
             display_name,
             full,
-            game_server_version,
+            game_server_version: None,
             id,
             instance_id,
             instance_persistence_enabled,

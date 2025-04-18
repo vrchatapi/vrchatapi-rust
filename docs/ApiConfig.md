@@ -16,11 +16,9 @@ Name | Type | Description | Notes
 **announcements** | [**Vec<models::ApiConfigAnnouncement>**](APIConfigAnnouncement.md) | Public Announcements | 
 **analytics_segment_new_ui_pct_of_users** | **i32** | Unknown | 
 **analytics_segment_new_ui_salt** | **String** | Unknown | 
-**app_name** | **String** | Game name | [default to VrChat]
 **available_language_codes** | **Vec<String>** | List of supported Languages | 
 **available_languages** | **Vec<String>** | List of supported Languages | 
 **avatar_perf_limiter** | [**models::ApiConfigAvatarPerfLimiter**](APIConfig_avatarPerfLimiter.md) |  | 
-**build_version_tag** | **String** | Build tag of the API server | 
 **chatbox_log_buffer_seconds** | **i32** | Unknown | [default to 40]
 **client_api_key** | **String** | apiKey to be used for all other requests | 
 **client_bps_ceiling** | **i32** | Unknown | [default to 18432]
@@ -45,7 +43,6 @@ Name | Type | Description | Notes
 **current_tos_version** | **i32** | Current version number of the Terms of Service | 
 **default_avatar** | **String** |  | 
 **default_sticker_set** | **String** |  | 
-**deployment_group** | [**models::DeploymentGroup**](DeploymentGroup.md) |  | 
 **dev_language_codes** | Option<**Vec<String>**> | Unknown | [optional]
 **dev_sdk_url** | **String** | Link to download the development SDK, use downloadUrls instead | 
 **dev_sdk_version** | **String** | Version of the development SDK | 
@@ -99,7 +96,6 @@ Name | Type | Description | Notes
 **sdk_discord_url** | **String** | Link to the official VRChat Discord | 
 **sdk_not_allowed_to_publish_message** | **String** | Used in the SDK to notify a user they aren't allowed to upload avatars/worlds yet | 
 **sdk_unity_version** | **String** | Unity version supported by the SDK | 
-**server_name** | **String** | Server name of the API server currently responding | 
 **string_host_url_list** | **Vec<String>** | A list of explicitly allowed origins that worlds can request strings from via the Udon's [VRCStringDownloader.LoadUrl](https://creators.vrchat.com/worlds/udon/string-loading/#ivrcstringdownload). | 
 **support_email** | **String** | VRChat's support email | 
 **support_form_url** | **String** | VRChat's support form | 
@@ -117,6 +113,7 @@ Name | Type | Description | Notes
 **white_listed_asset_urls** | **Vec<String>** | List of allowed URLs that are allowed to host avatar assets | 
 **player_url_resolver_version** | **String** | Currently used youtube-dl.exe version | 
 **player_url_resolver_sha1** | **String** | Currently used youtube-dl.exe hash in SHA1-delimited format | 
+**public_key** | **String** | Public key, hex encoded | 
 **websocket_max_friends_refresh_delay** | **i32** | Unknown | [default to 900]
 **websocket_quick_reconnect_time** | **i32** | Unknown | [default to 2]
 **websocket_reconnect_max_delay** | **i32** | Unknown | [default to 2]

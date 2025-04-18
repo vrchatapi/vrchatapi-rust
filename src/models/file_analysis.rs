@@ -17,6 +17,8 @@ pub struct FileAnalysis {
     pub created_at: Option<String>,
     #[serde(rename = "fileSize")]
     pub file_size: i32,
+    #[serde(rename = "performanceRating", skip_serializing_if = "Option::is_none")]
+    pub performance_rating: Option<String>,
     #[serde(rename = "success")]
     pub success: bool,
     #[serde(rename = "uncompressedSize")]
@@ -34,6 +36,7 @@ impl FileAnalysis {
             avatar_stats,
             created_at: None,
             file_size,
+            performance_rating: None,
             success,
             uncompressed_size,
         }

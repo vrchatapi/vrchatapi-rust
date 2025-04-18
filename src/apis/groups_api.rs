@@ -262,10 +262,10 @@ pub enum GetGroupPermissionsError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`get_group_post`]
+/// struct for typed errors of method [`get_group_posts`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum GetGroupPostError {
+pub enum GetGroupPostsError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -1654,13 +1654,13 @@ pub async fn get_group_permissions(
 }
 
 /// Get posts from a Group
-pub async fn get_group_post(
+pub async fn get_group_posts(
     configuration: &configuration::Configuration,
     group_id: &str,
     n: Option<i32>,
     offset: Option<i32>,
     public_only: Option<bool>,
-) -> Result<models::GroupPost, Error<GetGroupPostError>> {
+) -> Result<models::GetGroupPosts200Response, Error<GetGroupPostsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
@@ -1698,7 +1698,7 @@ pub async fn get_group_post(
     if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
-        let local_var_entity: Option<GetGroupPostError> =
+        let local_var_entity: Option<GetGroupPostsError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
