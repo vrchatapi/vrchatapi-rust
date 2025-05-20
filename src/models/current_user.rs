@@ -41,12 +41,18 @@ pub struct CurrentUser {
     pub age_verified: bool,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
+    /// The auth token for NEWLY REGISTERED ACCOUNTS ONLY (/auth/register)
+    #[serde(rename = "authToken", skip_serializing_if = "Option::is_none")]
+    pub auth_token: Option<String>,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
     pub badges: Option<Vec<models::Badge>>,
     #[serde(rename = "bio")]
     pub bio: String,
     #[serde(rename = "bioLinks")]
     pub bio_links: Vec<String>,
+    /// These tags begin with `content_` and control content gating
+    #[serde(rename = "contentFilters", skip_serializing_if = "Option::is_none")]
+    pub content_filters: Option<Vec<String>>,
     #[serde(rename = "currentAvatar")]
     pub current_avatar: String,
     /// When profilePicOverride is not empty, use it instead.
@@ -258,9 +264,11 @@ impl CurrentUser {
             age_verification_status,
             age_verified,
             allow_avatar_copying,
+            auth_token: None,
             badges: None,
             bio,
             bio_links,
+            content_filters: None,
             current_avatar,
             current_avatar_image_url,
             current_avatar_thumbnail_image_url,

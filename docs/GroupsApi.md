@@ -33,6 +33,7 @@ Method | HTTP request | Description
 [**get_group_permissions**](GroupsApi.md#get_group_permissions) | **GET** /groups/{groupId}/permissions | List Group Permissions
 [**get_group_posts**](GroupsApi.md#get_group_posts) | **GET** /groups/{groupId}/posts | Get posts from a Group
 [**get_group_requests**](GroupsApi.md#get_group_requests) | **GET** /groups/{groupId}/requests | Get Group Join Requests
+[**get_group_role_templates**](GroupsApi.md#get_group_role_templates) | **GET** /groups/roleTemplates | Get Group Role Templates
 [**get_group_roles**](GroupsApi.md#get_group_roles) | **GET** /groups/{groupId}/roles | Get Group Roles
 [**join_group**](GroupsApi.md#join_group) | **POST** /groups/{groupId}/join | Join Group
 [**kick_group_member**](GroupsApi.md#kick_group_member) | **DELETE** /groups/{groupId}/members/{userId} | Kick Group Member
@@ -949,6 +950,33 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<models::GroupMember>**](GroupMember.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_group_role_templates
+
+> std::collections::HashMap<String, models::GroupRoleTemplateValues> get_group_role_templates()
+Get Group Role Templates
+
+Obtain predefined templates for group roles
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**std::collections::HashMap<String, models::GroupRoleTemplateValues>**](GroupRoleTemplateValues.md)
 
 ### Authorization
 

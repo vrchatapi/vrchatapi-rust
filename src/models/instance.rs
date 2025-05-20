@@ -28,6 +28,8 @@ pub struct Instance {
     /// Always returns \"unknown\".
     #[serde(rename = "clientNumber")]
     pub client_number: String,
+    #[serde(rename = "contentSettings")]
+    pub content_settings: models::InstanceContentSettings,
     #[serde(rename = "displayName", deserialize_with = "Option::deserialize")]
     pub display_name: Option<String>,
     #[serde(rename = "full")]
@@ -144,6 +146,7 @@ impl Instance {
         can_request_invite: bool,
         capacity: i32,
         client_number: String,
+        content_settings: models::InstanceContentSettings,
         display_name: Option<String>,
         full: bool,
         id: String,
@@ -174,6 +177,7 @@ impl Instance {
             can_request_invite,
             capacity,
             client_number,
+            content_settings,
             display_name,
             full,
             game_server_version: None,

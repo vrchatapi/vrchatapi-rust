@@ -1,11 +1,11 @@
-# Verify2FaResult
+# TwoFactorRecoveryCodesOtpInner
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**verified** | **bool** |  | 
-**enabled** | Option<**bool**> |  | [optional][default to true]
+**code** | **String** |  | 
+**used** | **bool** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

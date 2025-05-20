@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **capacity** | **i32** |  | 
 **recommended_capacity** | **i32** |  | 
 **created_at** | **String** |  | 
+**default_content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
 **description** | **String** |  | 
 **favorites** | Option<**i32**> |  | [optional][default to 0]
 **featured** | **bool** |  | [default to false]
@@ -27,6 +28,7 @@ Name | Type | Description | Notes
 **public_occupants** | Option<**i32**> | Will always be `0` when unauthenticated. | [optional][default to 0]
 **publication_date** | **String** |  | 
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
+**store_id** | Option<**String**> |  | [optional]
 **tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
 **unity_packages** | Option<[**Vec<models::UnityPackage>**](UnityPackage.md)> | Empty if unauthenticated. | [optional]

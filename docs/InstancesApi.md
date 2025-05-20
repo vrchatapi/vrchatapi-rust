@@ -17,7 +17,7 @@ Method | HTTP request | Description
 > models::Instance close_instance(world_id, instance_id, hard_close, closed_at)
 Close Instance
 
-Close an instance or update the closedAt time when it will be closed.  You can only close an instance if the ownerId is yourself or if the instance owner is a group and you have the `group-instance-moderate` permission.
+Close an instance or update the closedAt time when it will be closed.  You can only close an instance if the ownerId is yourself or if the instance owner is a group and you have the `group-instance-manage` permission.
 
 ### Parameters
 

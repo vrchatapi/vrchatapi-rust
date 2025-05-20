@@ -30,6 +30,7 @@ docs/ApiConfigReportReasons.md
 docs/ApiHealth.md
 docs/AuthenticationApi.md
 docs/Avatar.md
+docs/AvatarPublishedListingsInner.md
 docs/AvatarStyles.md
 docs/AvatarUnityPackageUrlObject.md
 docs/AvatarsApi.md
@@ -52,6 +53,7 @@ docs/CurrentUser.md
 docs/CurrentUserPlatformHistoryInner.md
 docs/CurrentUserPresence.md
 docs/DeveloperType.md
+docs/Disable2FaResult.md
 docs/DynamicContentRow.md
 docs/EconomyApi.md
 docs/Error.md
@@ -99,6 +101,8 @@ docs/GroupPostVisibility.md
 docs/GroupPrivacy.md
 docs/GroupRole.md
 docs/GroupRoleTemplate.md
+docs/GroupRoleTemplateValues.md
+docs/GroupRoleTemplateValuesRoles.md
 docs/GroupSearchSort.md
 docs/GroupUserVisibility.md
 docs/GroupsApi.md
@@ -108,6 +112,7 @@ docs/InfoPushDataArticle.md
 docs/InfoPushDataArticleContent.md
 docs/InfoPushDataClickable.md
 docs/Instance.md
+docs/InstanceContentSettings.md
 docs/InstancePlatforms.md
 docs/InstanceRegion.md
 docs/InstanceShortNameResponse.md
@@ -143,6 +148,7 @@ docs/NotificationsApi.md
 docs/OrderOption.md
 docs/PaginatedGroupAuditLogEntryList.md
 docs/PastDisplayName.md
+docs/Pending2FaResult.md
 docs/PerformanceLimiterInfo.md
 docs/PerformanceRatings.md
 docs/Permission.md
@@ -160,6 +166,7 @@ docs/ProductListingType.md
 docs/ProductListingVariant.md
 docs/ProductType.md
 docs/Region.md
+docs/RegisterUserAccountRequest.md
 docs/ReleaseStatus.md
 docs/ReportCategory.md
 docs/ReportReason.md
@@ -186,6 +193,8 @@ docs/TransactionSteamInfo.md
 docs/TransactionSteamWalletInfo.md
 docs/TwoFactorAuthCode.md
 docs/TwoFactorEmailCode.md
+docs/TwoFactorRecoveryCodes.md
+docs/TwoFactorRecoveryCodesOtpInner.md
 docs/UnityPackage.md
 docs/UpdateAvatarRequest.md
 docs/UpdateFavoriteGroupRequest.md
@@ -263,6 +272,7 @@ src/models/api_config_report_options_world.rs
 src/models/api_config_report_reasons.rs
 src/models/api_health.rs
 src/models/avatar.rs
+src/models/avatar_published_listings_inner.rs
 src/models/avatar_styles.rs
 src/models/avatar_unity_package_url_object.rs
 src/models/badge.rs
@@ -284,6 +294,7 @@ src/models/current_user.rs
 src/models/current_user_platform_history_inner.rs
 src/models/current_user_presence.rs
 src/models/developer_type.rs
+src/models/disable2_fa_result.rs
 src/models/dynamic_content_row.rs
 src/models/error.rs
 src/models/favorite.rs
@@ -327,6 +338,8 @@ src/models/group_post_visibility.rs
 src/models/group_privacy.rs
 src/models/group_role.rs
 src/models/group_role_template.rs
+src/models/group_role_template_values.rs
+src/models/group_role_template_values_roles.rs
 src/models/group_search_sort.rs
 src/models/group_user_visibility.rs
 src/models/info_push.rs
@@ -335,6 +348,7 @@ src/models/info_push_data_article.rs
 src/models/info_push_data_article_content.rs
 src/models/info_push_data_clickable.rs
 src/models/instance.rs
+src/models/instance_content_settings.rs
 src/models/instance_platforms.rs
 src/models/instance_region.rs
 src/models/instance_short_name_response.rs
@@ -367,6 +381,7 @@ src/models/notification_type.rs
 src/models/order_option.rs
 src/models/paginated_group_audit_log_entry_list.rs
 src/models/past_display_name.rs
+src/models/pending2_fa_result.rs
 src/models/performance_limiter_info.rs
 src/models/performance_ratings.rs
 src/models/permission.rs
@@ -381,6 +396,7 @@ src/models/product_listing_type.rs
 src/models/product_listing_variant.rs
 src/models/product_type.rs
 src/models/region.rs
+src/models/register_user_account_request.rs
 src/models/release_status.rs
 src/models/report_category.rs
 src/models/report_reason.rs
@@ -406,6 +422,8 @@ src/models/transaction_steam_info.rs
 src/models/transaction_steam_wallet_info.rs
 src/models/two_factor_auth_code.rs
 src/models/two_factor_email_code.rs
+src/models/two_factor_recovery_codes.rs
+src/models/two_factor_recovery_codes_otp_inner.rs
 src/models/unity_package.rs
 src/models/update_avatar_request.rs
 src/models/update_favorite_group_request.rs

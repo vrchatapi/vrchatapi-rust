@@ -111,7 +111,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_favorite_groups
 
-> Vec<models::FavoriteGroup> get_favorite_groups(n, offset, owner_id)
+> Vec<models::FavoriteGroup> get_favorite_groups(n, offset, user_id, owner_id)
 List Favorite Groups
 
 Return a list of favorite groups owned by a user. Returns the same information as `getFavoriteGroups`.
@@ -123,6 +123,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**user_id** | Option<**String**> | Target user to see information on, admin-only. |  |
 **owner_id** | Option<**String**> | The owner of whoms favorite groups to return. Must be a UserID. |  |
 
 ### Return type

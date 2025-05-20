@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **can_request_invite** | **bool** |  | [default to true]
 **capacity** | **i32** |  | 
 **client_number** | **String** | Always returns \"unknown\". | 
+**content_settings** | [**models::InstanceContentSettings**](InstanceContentSettings.md) |  | 
 **display_name** | Option<**String**> |  | 
 **full** | **bool** |  | [default to false]
 **game_server_version** | Option<**i32**> |  | [optional]

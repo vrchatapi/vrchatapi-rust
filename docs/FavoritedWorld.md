@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | 
 **recommended_capacity** | Option<**i32**> |  | [optional]
 **created_at** | **String** |  | 
+**default_content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
 **favorites** | **i32** |  | [default to 0]
 **favorite_group** | **String** |  | 
 **favorite_id** | **String** |  | 

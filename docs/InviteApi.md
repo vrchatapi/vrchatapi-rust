@@ -8,9 +8,12 @@ Method | HTTP request | Description
 [**get_invite_messages**](InviteApi.md#get_invite_messages) | **GET** /message/{userId}/{messageType} | List Invite Messages
 [**invite_myself_to**](InviteApi.md#invite_myself_to) | **POST** /invite/myself/to/{worldId}:{instanceId} | Invite Myself To Instance
 [**invite_user**](InviteApi.md#invite_user) | **POST** /invite/{userId} | Invite User
+[**invite_user_with_photo**](InviteApi.md#invite_user_with_photo) | **POST** /invite/{userId}/photo | Invite User with photo
 [**request_invite**](InviteApi.md#request_invite) | **POST** /requestInvite/{userId} | Request Invite
+[**request_invite_with_photo**](InviteApi.md#request_invite_with_photo) | **POST** /requestInvite/{userId}/photo | Request Invite with photo
 [**reset_invite_message**](InviteApi.md#reset_invite_message) | **DELETE** /message/{userId}/{messageType}/{slot} | Reset Invite Message
 [**respond_invite**](InviteApi.md#respond_invite) | **POST** /invite/{notificationId}/response | Respond Invite
+[**respond_invite_with_photo**](InviteApi.md#respond_invite_with_photo) | **POST** /invite/{notificationId}/response/photo | Respond Invite with photo
 [**update_invite_message**](InviteApi.md#update_invite_message) | **PUT** /message/{userId}/{messageType}/{slot} | Update Invite Message
 
 
@@ -140,6 +143,38 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## invite_user_with_photo
+
+> models::SentNotification invite_user_with_photo(user_id, image, data)
+Invite User with photo
+
+Sends an photo invite to a user. Returns the Notification of type `invite` that was sent.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**data** | [**models::InviteRequest**](InviteRequest.md) |  | [required] |
+
+### Return type
+
+[**models::SentNotification**](SentNotification.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## request_invite
 
 > models::Notification request_invite(user_id, request_invite_request)
@@ -166,6 +201,38 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## request_invite_with_photo
+
+> models::Notification request_invite_with_photo(user_id, image, data)
+Request Invite with photo
+
+Requests with photo an invite from a user. Returns the Notification of type `requestInvite` that was sent.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**data** | [**models::RequestInviteRequest**](RequestInviteRequest.md) |  | [required] |
+
+### Return type
+
+[**models::Notification**](Notification.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -208,7 +275,7 @@ Name | Type | Description  | Required | Notes
 > models::Notification respond_invite(notification_id, invite_response)
 Respond Invite
 
-Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
+Respond to an invite or invite request without accepting it. `:notificationId` is the ID of the requesting notification.  In case the notification being replied to is an invite, the `responseSlot` refers to a response message from the the `message` collection. In case the notification is an invite request, it will refer to one from the `requestResponse` collection instead.
 
 ### Parameters
 
@@ -229,6 +296,38 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## respond_invite_with_photo
+
+> models::Notification respond_invite_with_photo(notification_id, image, data)
+Respond Invite with photo
+
+Respond with photo to an invite or invite request without accepting it. `:notificationId` is the ID of the requesting notification.  In case the notification being replied to is an invite, the `responseSlot` refers to a response message from the the `message` collection. In case the notification is an invite request, it will refer to one from the `requestResponse` collection instead.'
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**notification_id** | **String** | Must be a valid notification ID. | [required] |
+**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**data** | [**models::InviteResponse**](InviteResponse.md) |  | [required] |
+
+### Return type
+
+[**models::Notification**](Notification.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: multipart/form-data
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

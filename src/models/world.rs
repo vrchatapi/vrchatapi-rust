@@ -23,6 +23,11 @@ pub struct World {
     pub recommended_capacity: i32,
     #[serde(rename = "created_at")]
     pub created_at: String,
+    #[serde(
+        rename = "defaultContentSettings",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub default_content_settings: Option<models::InstanceContentSettings>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "favorites", skip_serializing_if = "Option::is_none")]
@@ -69,6 +74,8 @@ pub struct World {
     pub publication_date: String,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
+    #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
+    pub store_id: Option<String>,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "thumbnailImageUrl")]
@@ -118,6 +125,7 @@ impl World {
             capacity,
             recommended_capacity,
             created_at,
+            default_content_settings: None,
             description,
             favorites: None,
             featured,
@@ -136,6 +144,7 @@ impl World {
             public_occupants: None,
             publication_date,
             release_status,
+            store_id: None,
             tags,
             thumbnail_image_url,
             unity_packages: None,

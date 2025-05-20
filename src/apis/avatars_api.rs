@@ -15,6 +15,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateAvatarError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }

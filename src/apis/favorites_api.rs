@@ -210,6 +210,7 @@ pub async fn get_favorite_groups(
     configuration: &configuration::Configuration,
     n: Option<i32>,
     offset: Option<i32>,
+    user_id: Option<&str>,
     owner_id: Option<&str>,
 ) -> Result<Vec<models::FavoriteGroup>, Error<GetFavoriteGroupsError>> {
     let local_var_configuration = configuration;
@@ -226,6 +227,10 @@ pub async fn get_favorite_groups(
     if let Some(ref local_var_str) = offset {
         local_var_req_builder =
             local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = user_id {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("userId", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = owner_id {
         local_var_req_builder =

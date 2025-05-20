@@ -19,6 +19,14 @@ pub enum DeletePrintError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`edit_print`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum EditPrintError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_print`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -33,6 +41,14 @@ pub enum GetPrintError {
 pub enum GetUserPrintsError {
     Status401(models::Error),
     Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`upload_print`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UploadPrintError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -68,6 +84,56 @@ pub async fn delete_print(
         Ok(())
     } else {
         let local_var_entity: Option<DeletePrintError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Edits a print.
+pub async fn edit_print(
+    configuration: &configuration::Configuration,
+    print_id: &str,
+    image: std::path::PathBuf,
+    note: Option<&str>,
+) -> Result<models::Print, Error<EditPrintError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/prints/{printId}",
+        local_var_configuration.base_path,
+        printId = crate::apis::urlencode(print_id)
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    let mut local_var_form = reqwest::multipart::Form::new();
+    // TODO: support file upload for 'image' parameter
+    if let Some(local_var_param_value) = note {
+        local_var_form = local_var_form.text("note", local_var_param_value.to_string());
+    }
+    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<EditPrintError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -151,6 +217,61 @@ pub async fn get_user_prints(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<GetUserPrintsError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Uploads and creates a print.
+pub async fn upload_print(
+    configuration: &configuration::Configuration,
+    image: std::path::PathBuf,
+    timestamp: String,
+    note: Option<&str>,
+    world_id: Option<&str>,
+    world_name: Option<&str>,
+) -> Result<models::Print, Error<UploadPrintError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/prints", local_var_configuration.base_path);
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    let mut local_var_form = reqwest::multipart::Form::new();
+    // TODO: support file upload for 'image' parameter
+    local_var_form = local_var_form.text("timestamp", timestamp.to_string());
+    if let Some(local_var_param_value) = note {
+        local_var_form = local_var_form.text("note", local_var_param_value.to_string());
+    }
+    if let Some(local_var_param_value) = world_id {
+        local_var_form = local_var_form.text("worldId", local_var_param_value.to_string());
+    }
+    if let Some(local_var_param_value) = world_name {
+        local_var_form = local_var_form.text("worldName", local_var_param_value.to_string());
+    }
+    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<UploadPrintError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,

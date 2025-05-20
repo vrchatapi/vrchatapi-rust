@@ -12,9 +12,11 @@ Name | Type | Description | Notes
 **age_verification_status** | [**models::AgeVerificationStatus**](AgeVerificationStatus.md) |  | 
 **age_verified** | **bool** | `true` if, user is age verified (not 18+). | 
 **allow_avatar_copying** | **bool** |  | 
+**auth_token** | Option<**String**> | The auth token for NEWLY REGISTERED ACCOUNTS ONLY (/auth/register) | [optional]
 **badges** | Option<[**Vec<models::Badge>**](Badge.md)> |   | [optional]
 **bio** | **String** |  | 
 **bio_links** | **Vec<String>** |   | 
+**content_filters** | Option<**Vec<String>**> | These tags begin with `content_` and control content gating | [optional]
 **current_avatar** | **String** |  | 
 **current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 

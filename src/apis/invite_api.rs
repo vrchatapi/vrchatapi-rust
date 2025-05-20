@@ -47,10 +47,26 @@ pub enum InviteUserError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`invite_user_with_photo`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum InviteUserWithPhotoError {
+    Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`request_invite`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RequestInviteError {
+    Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`request_invite_with_photo`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RequestInviteWithPhotoError {
     Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -70,6 +86,14 @@ pub enum ResetInviteMessageError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RespondInviteError {
+    Status400(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`respond_invite_with_photo`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RespondInviteWithPhotoError {
     Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -262,6 +286,54 @@ pub async fn invite_user(
     }
 }
 
+/// Sends an photo invite to a user. Returns the Notification of type `invite` that was sent.
+pub async fn invite_user_with_photo(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    image: std::path::PathBuf,
+    data: models::InviteRequest,
+) -> Result<models::SentNotification, Error<InviteUserWithPhotoError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/invite/{userId}/photo",
+        local_var_configuration.base_path,
+        userId = crate::apis::urlencode(user_id)
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    let mut local_var_form = reqwest::multipart::Form::new();
+    // TODO: support file upload for 'image' parameter
+    local_var_form = local_var_form.text("data", serde_json::to_string_pretty(&data)?);
+    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<InviteUserWithPhotoError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Requests an invite from a user. Returns the Notification of type `requestInvite` that was sent.
 pub async fn request_invite(
     configuration: &configuration::Configuration,
@@ -296,6 +368,54 @@ pub async fn request_invite(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<RequestInviteError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Requests with photo an invite from a user. Returns the Notification of type `requestInvite` that was sent.
+pub async fn request_invite_with_photo(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    image: std::path::PathBuf,
+    data: models::RequestInviteRequest,
+) -> Result<models::Notification, Error<RequestInviteWithPhotoError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/requestInvite/{userId}/photo",
+        local_var_configuration.base_path,
+        userId = crate::apis::urlencode(user_id)
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    let mut local_var_form = reqwest::multipart::Form::new();
+    // TODO: support file upload for 'image' parameter
+    local_var_form = local_var_form.text("data", serde_json::to_string_pretty(&data)?);
+    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<RequestInviteWithPhotoError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -352,7 +472,7 @@ pub async fn reset_invite_message(
     }
 }
 
-/// Respond to an invite request by sending a world invite to the requesting user. `:notificationId` is the ID of the requesting notification.
+/// Respond to an invite or invite request without accepting it. `:notificationId` is the ID of the requesting notification.  In case the notification being replied to is an invite, the `responseSlot` refers to a response message from the the `message` collection. In case the notification is an invite request, it will refer to one from the `requestResponse` collection instead.
 pub async fn respond_invite(
     configuration: &configuration::Configuration,
     notification_id: &str,
@@ -386,6 +506,54 @@ pub async fn respond_invite(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<RespondInviteError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Respond with photo to an invite or invite request without accepting it. `:notificationId` is the ID of the requesting notification.  In case the notification being replied to is an invite, the `responseSlot` refers to a response message from the the `message` collection. In case the notification is an invite request, it will refer to one from the `requestResponse` collection instead.'
+pub async fn respond_invite_with_photo(
+    configuration: &configuration::Configuration,
+    notification_id: &str,
+    image: std::path::PathBuf,
+    data: models::InviteResponse,
+) -> Result<models::Notification, Error<RespondInviteWithPhotoError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/invite/{notificationId}/response/photo",
+        local_var_configuration.base_path,
+        notificationId = crate::apis::urlencode(notification_id)
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    let mut local_var_form = reqwest::multipart::Form::new();
+    // TODO: support file upload for 'image' parameter
+    local_var_form = local_var_form.text("data", serde_json::to_string_pretty(&data)?);
+    local_var_req_builder = local_var_req_builder.multipart(local_var_form);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<RespondInviteWithPhotoError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,

@@ -15,6 +15,10 @@ Name | Type | Description | Notes
 **can_request_invite** | Option<**bool**> | Only applies to invite type instances to make them invite+ | [optional][default to false]
 **hard_close** | Option<**bool**> | Currently unused, but will eventually be a flag to set if the closing of the instance should kick people. | [optional][default to false]
 **invite_only** | Option<**bool**> |  | [optional][default to false]
+**age_gate** | Option<**bool**> |  | [optional][default to false]
+**instance_persistence_enabled** | Option<**bool**> |  | [optional]
+**display_name** | Option<**String**> |  | [optional]
+**content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

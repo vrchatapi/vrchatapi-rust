@@ -14,10 +14,27 @@ use serde::{Deserialize, Serialize};
 pub struct TiliaStatus {
     #[serde(rename = "economyOnline")]
     pub economy_online: bool,
+    #[serde(rename = "economyState", skip_serializing_if = "Option::is_none")]
+    pub economy_state: Option<i32>,
+    #[serde(
+        rename = "plannedOfflineWindowStart",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub planned_offline_window_start: Option<String>,
+    #[serde(
+        rename = "plannedOfflineWindowEnd",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub planned_offline_window_end: Option<String>,
 }
 
 impl TiliaStatus {
     pub fn new(economy_online: bool) -> TiliaStatus {
-        TiliaStatus { economy_online }
+        TiliaStatus {
+            economy_online,
+            economy_state: None,
+            planned_offline_window_start: None,
+            planned_offline_window_end: None,
+        }
     }
 }

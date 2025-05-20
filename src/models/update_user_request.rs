@@ -13,6 +13,8 @@ use serde::{Deserialize, Serialize};
 pub struct UpdateUserRequest {
     #[serde(rename = "email", skip_serializing_if = "Option::is_none")]
     pub email: Option<String>,
+    #[serde(rename = "unsubscribe", skip_serializing_if = "Option::is_none")]
+    pub unsubscribe: Option<bool>,
     #[serde(rename = "birthday", skip_serializing_if = "Option::is_none")]
     pub birthday: Option<String>,
     #[serde(rename = "acceptedTOSVersion", skip_serializing_if = "Option::is_none")]
@@ -34,12 +36,27 @@ pub struct UpdateUserRequest {
     /// MUST be a valid VRChat /file/ url.
     #[serde(rename = "userIcon", skip_serializing_if = "Option::is_none")]
     pub user_icon: Option<String>,
+    /// These tags begin with `content_` and control content gating
+    #[serde(rename = "contentFilters", skip_serializing_if = "Option::is_none")]
+    pub content_filters: Option<Vec<String>>,
+    /// MUST specify currentPassword as well to change display name
+    #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
+    pub display_name: Option<String>,
+    /// MUST specify currentPassword as well to revert display name
+    #[serde(rename = "revertDisplayName", skip_serializing_if = "Option::is_none")]
+    pub revert_display_name: Option<bool>,
+    /// MUST specify currentPassword as well to change password
+    #[serde(rename = "password", skip_serializing_if = "Option::is_none")]
+    pub password: Option<String>,
+    #[serde(rename = "currentPassword", skip_serializing_if = "Option::is_none")]
+    pub current_password: Option<String>,
 }
 
 impl UpdateUserRequest {
     pub fn new() -> UpdateUserRequest {
         UpdateUserRequest {
             email: None,
+            unsubscribe: None,
             birthday: None,
             accepted_tos_version: None,
             tags: None,
@@ -50,6 +67,11 @@ impl UpdateUserRequest {
             pronouns: None,
             is_booping_enabled: None,
             user_icon: None,
+            content_filters: None,
+            display_name: None,
+            revert_display_name: None,
+            password: None,
+            current_password: None,
         }
     }
 }

@@ -28,6 +28,11 @@ pub struct FavoritedWorld {
     pub recommended_capacity: Option<i32>,
     #[serde(rename = "created_at")]
     pub created_at: String,
+    #[serde(
+        rename = "defaultContentSettings",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub default_content_settings: Option<models::InstanceContentSettings>,
     #[serde(rename = "favorites")]
     pub favorites: i32,
     #[serde(rename = "favoriteGroup")]
@@ -117,6 +122,7 @@ impl FavoritedWorld {
             description,
             recommended_capacity: None,
             created_at,
+            default_content_settings: None,
             favorites,
             favorite_group,
             favorite_id,

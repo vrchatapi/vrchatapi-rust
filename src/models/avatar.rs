@@ -12,10 +12,12 @@ use serde::{Deserialize, Serialize};
 /// Avatar :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Avatar {
-    /// Not present from general serach `/avatars`, only on specific requests `/avatars/{avatarId}`.
+    #[serde(rename = "acknowledgements", skip_serializing_if = "Option::is_none")]
+    pub acknowledgements: Option<String>,
+    /// Not present from general search `/avatars`, only on specific requests `/avatars/{avatarId}`.
     #[serde(rename = "assetUrl", skip_serializing_if = "Option::is_none")]
     pub asset_url: Option<String>,
-    /// Not present from general serach `/avatars`, only on specific requests `/avatars/{avatarId}`. **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead.
+    /// Not present from general search `/avatars`, only on specific requests `/avatars/{avatarId}`. **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead.
     #[serde(rename = "assetUrlObject", skip_serializing_if = "Option::is_none")]
     pub asset_url_object: Option<serde_json::Value>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
@@ -29,14 +31,26 @@ pub struct Avatar {
     pub description: String,
     #[serde(rename = "featured")]
     pub featured: bool,
+    #[serde(rename = "highestPrice", skip_serializing_if = "Option::is_none")]
+    pub highest_price: Option<i32>,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "imageUrl")]
     pub image_url: String,
+    #[serde(rename = "lock", skip_serializing_if = "Option::is_none")]
+    pub lock: Option<bool>,
+    #[serde(rename = "lowestPrice", skip_serializing_if = "Option::is_none")]
+    pub lowest_price: Option<i32>,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "productId", skip_serializing_if = "Option::is_none")]
+    pub product_id: Option<String>,
+    #[serde(rename = "publishedListings", skip_serializing_if = "Option::is_none")]
+    pub published_listings: Option<Vec<models::AvatarPublishedListingsInner>>,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
+    #[serde(rename = "searchable", skip_serializing_if = "Option::is_none")]
+    pub searchable: Option<bool>,
     #[serde(rename = "styles")]
     pub styles: models::AvatarStyles,
     #[serde(rename = "tags")]
@@ -76,6 +90,7 @@ impl Avatar {
         version: i32,
     ) -> Avatar {
         Avatar {
+            acknowledgements: None,
             asset_url: None,
             asset_url_object: None,
             author_id,
@@ -83,10 +98,16 @@ impl Avatar {
             created_at,
             description,
             featured,
+            highest_price: None,
             id,
             image_url,
+            lock: None,
+            lowest_price: None,
             name,
+            product_id: None,
+            published_listings: None,
             release_status,
+            searchable: None,
             styles,
             tags,
             thumbnail_image_url,

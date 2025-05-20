@@ -11,6 +11,14 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{Deserialize, Serialize};
 
+/// struct for typed errors of method [`cancel_pending2_fa`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CancelPending2FaError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`check_user_exists`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -19,10 +27,33 @@ pub enum CheckUserExistsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`confirm_email`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ConfirmEmailError {
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`delete_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteUserError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`disable2_fa`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum Disable2FaError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`enable2_fa`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum Enable2FaError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -35,10 +66,34 @@ pub enum GetCurrentUserError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_recovery_codes`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetRecoveryCodesError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`logout`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum LogoutError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`register_user_account`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RegisterUserAccountError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`resend_email_confirmation`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ResendEmailConfirmationError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -67,12 +122,67 @@ pub enum VerifyAuthTokenError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`verify_login_place`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum VerifyLoginPlaceError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`verify_pending2_fa`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum VerifyPending2FaError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`verify_recovery_code`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum VerifyRecoveryCodeError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
+}
+
+/// Cancels the sequence for enabling time-based 2FA.
+pub async fn cancel_pending2_fa(
+    configuration: &configuration::Configuration,
+) -> Result<models::Disable2FaResult, Error<CancelPending2FaError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/auth/twofactorauth/totp/pending",
+        local_var_configuration.base_path
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<CancelPending2FaError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
 }
 
 /// Checks if a user by a given `username`, `displayName` or `email` exist. This is used during registration to check if a username has already been taken, during change of displayName to check if a displayName is available, and during change of email to check if the email is already used. In the later two cases the `excludeUserId` is used to exclude oneself, otherwise the result would always be true.  It is **REQUIRED** to include **AT LEAST** `username`, `displayName` **or** `email` query parameter. Although they can be combined - in addition with `excludeUserId` (generally to exclude yourself) - to further fine-tune the search.
@@ -132,6 +242,48 @@ pub async fn check_user_exists(
     }
 }
 
+/// Confirms the email address for a user
+pub async fn confirm_email(
+    configuration: &configuration::Configuration,
+    id: &str,
+    verify_email: &str,
+) -> Result<(), Error<ConfirmEmailError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/auth/confirmEmail", local_var_configuration.base_path);
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    local_var_req_builder = local_var_req_builder.query(&[("id", &id.to_string())]);
+    local_var_req_builder =
+        local_var_req_builder.query(&[("verify_email", &verify_email.to_string())]);
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        Ok(())
+    } else {
+        let local_var_entity: Option<ConfirmEmailError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Deletes the account with given ID. Normal users only have permission to delete their own account. Account deletion is 14 days from this request, and will be cancelled if you do an authenticated request with the account afterwards.  **VRC+ NOTE:** Despite the 14-days cooldown, any VRC+ subscription will be cancelled **immediately**.  **METHOD NOTE:** Despite this being a Delete action, the method type required is PUT.
 pub async fn delete_user(
     configuration: &configuration::Configuration,
@@ -164,6 +316,83 @@ pub async fn delete_user(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<DeleteUserError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Disables 2FA for the currently logged in account
+pub async fn disable2_fa(
+    configuration: &configuration::Configuration,
+) -> Result<models::Disable2FaResult, Error<Disable2FaError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/auth/twofactorauth", local_var_configuration.base_path);
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::DELETE, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<Disable2FaError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Begins the sequence for enabling time-based 2FA.
+pub async fn enable2_fa(
+    configuration: &configuration::Configuration,
+) -> Result<models::Pending2FaResult, Error<Enable2FaError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/auth/twofactorauth/totp/pending",
+        local_var_configuration.base_path
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<Enable2FaError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
@@ -217,6 +446,46 @@ pub async fn get_current_user(
     }
 }
 
+/// Gets the OTP (One Time Password) recovery codes for accounts with 2FA-protection enabled.
+pub async fn get_recovery_codes(
+    configuration: &configuration::Configuration,
+) -> Result<models::TwoFactorRecoveryCodes, Error<GetRecoveryCodesError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/auth/user/twofactorauth/otp",
+        local_var_configuration.base_path
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<GetRecoveryCodesError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Invalidates the login session.
 pub async fn logout(
     configuration: &configuration::Configuration,
@@ -244,6 +513,85 @@ pub async fn logout(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<LogoutError> = serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// ~~Register a new user account.~~  **DEPRECATED:** Automated creation of accounts has no legitimate public third-party use case, and would be in violation of ToS §13.2: *By using the Platform, you agree not to: i. [...] use the Platform in a manner inconsistent with individual human usage* This endpoint is documented in the interest of completeness
+pub async fn register_user_account(
+    configuration: &configuration::Configuration,
+    register_user_account_request: models::RegisterUserAccountRequest,
+) -> Result<models::CurrentUser, Error<RegisterUserAccountError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!("{}/auth/register", local_var_configuration.base_path);
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    local_var_req_builder = local_var_req_builder.json(&register_user_account_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<RegisterUserAccountError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Requests a resend of pending email address confirmation email
+pub async fn resend_email_confirmation(
+    configuration: &configuration::Configuration,
+) -> Result<models::Success, Error<ResendEmailConfirmationError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/auth/user/resendEmail",
+        local_var_configuration.base_path
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<ResendEmailConfirmationError> =
+            serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,
             content: local_var_content,
@@ -364,6 +712,95 @@ pub async fn verify_auth_token(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<VerifyAuthTokenError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Verifies a login attempt for a user
+pub async fn verify_login_place(
+    configuration: &configuration::Configuration,
+    token: &str,
+    user_id: Option<&str>,
+) -> Result<(), Error<VerifyLoginPlaceError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/auth/verifyLoginPlace",
+        local_var_configuration.base_path
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_str) = user_id {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("userId", &local_var_str.to_string())]);
+    }
+    local_var_req_builder = local_var_req_builder.query(&[("token", &token.to_string())]);
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        Ok(())
+    } else {
+        let local_var_entity: Option<VerifyLoginPlaceError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Finishes sequence for enabling time-based 2FA.
+pub async fn verify_pending2_fa(
+    configuration: &configuration::Configuration,
+    two_factor_auth_code: models::TwoFactorAuthCode,
+) -> Result<models::Verify2FaResult, Error<VerifyPending2FaError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/auth/twofactorauth/totp/pending/verify",
+        local_var_configuration.base_path
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    local_var_req_builder = local_var_req_builder.json(&two_factor_auth_code);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<VerifyPending2FaError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,

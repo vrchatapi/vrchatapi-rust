@@ -15,6 +15,8 @@ pub struct FileAnalysis {
     pub avatar_stats: models::FileAnalysisAvatarStats,
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<String>,
+    #[serde(rename = "encryptionKey", skip_serializing_if = "Option::is_none")]
+    pub encryption_key: Option<String>,
     #[serde(rename = "fileSize")]
     pub file_size: i32,
     #[serde(rename = "performanceRating", skip_serializing_if = "Option::is_none")]
@@ -35,6 +37,7 @@ impl FileAnalysis {
         FileAnalysis {
             avatar_stats,
             created_at: None,
+            encryption_key: None,
             file_size,
             performance_rating: None,
             success,

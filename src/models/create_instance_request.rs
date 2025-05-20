@@ -44,6 +44,24 @@ pub struct CreateInstanceRequest {
     pub hard_close: Option<bool>,
     #[serde(rename = "inviteOnly", skip_serializing_if = "Option::is_none")]
     pub invite_only: Option<bool>,
+    #[serde(rename = "ageGate", skip_serializing_if = "Option::is_none")]
+    pub age_gate: Option<bool>,
+    #[serde(
+        rename = "instancePersistenceEnabled",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub instance_persistence_enabled: Option<Option<bool>>,
+    #[serde(
+        rename = "displayName",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub display_name: Option<Option<String>>,
+    #[serde(rename = "contentSettings", skip_serializing_if = "Option::is_none")]
+    pub content_settings: Option<models::InstanceContentSettings>,
 }
 
 impl CreateInstanceRequest {
@@ -64,6 +82,10 @@ impl CreateInstanceRequest {
             can_request_invite: None,
             hard_close: None,
             invite_only: None,
+            age_gate: None,
+            instance_persistence_enabled: None,
+            display_name: None,
+            content_settings: None,
         }
     }
 }

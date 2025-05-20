@@ -4,15 +4,51 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**cancel_pending2_fa**](AuthenticationApi.md#cancel_pending2_fa) | **DELETE** /auth/twofactorauth/totp/pending | Cancel pending enabling of time-based 2FA codes
 [**check_user_exists**](AuthenticationApi.md#check_user_exists) | **GET** /auth/exists | Check User Exists
+[**confirm_email**](AuthenticationApi.md#confirm_email) | **GET** /auth/confirmEmail | Confirm Email
 [**delete_user**](AuthenticationApi.md#delete_user) | **PUT** /users/{userId}/delete | Delete User
+[**disable2_fa**](AuthenticationApi.md#disable2_fa) | **DELETE** /auth/twofactorauth | Disable 2FA
+[**enable2_fa**](AuthenticationApi.md#enable2_fa) | **POST** /auth/twofactorauth/totp/pending | Enable time-based 2FA codes
 [**get_current_user**](AuthenticationApi.md#get_current_user) | **GET** /auth/user | Login and/or Get Current User Info
+[**get_recovery_codes**](AuthenticationApi.md#get_recovery_codes) | **GET** /auth/user/twofactorauth/otp | Get 2FA Recovery codes
 [**logout**](AuthenticationApi.md#logout) | **PUT** /logout | Logout
+[**register_user_account**](AuthenticationApi.md#register_user_account) | **POST** /auth/register | Register User Account
+[**resend_email_confirmation**](AuthenticationApi.md#resend_email_confirmation) | **POST** /auth/user/resendEmail | Resend Email Confirmation
 [**verify2_fa**](AuthenticationApi.md#verify2_fa) | **POST** /auth/twofactorauth/totp/verify | Verify 2FA code
 [**verify2_fa_email_code**](AuthenticationApi.md#verify2_fa_email_code) | **POST** /auth/twofactorauth/emailotp/verify | Verify 2FA email code
 [**verify_auth_token**](AuthenticationApi.md#verify_auth_token) | **GET** /auth | Verify Auth Token
+[**verify_login_place**](AuthenticationApi.md#verify_login_place) | **GET** /auth/verifyLoginPlace | Verify Login Place
+[**verify_pending2_fa**](AuthenticationApi.md#verify_pending2_fa) | **POST** /auth/twofactorauth/totp/pending/verify | Verify Pending 2FA code
 [**verify_recovery_code**](AuthenticationApi.md#verify_recovery_code) | **POST** /auth/twofactorauth/otp/verify | Verify 2FA code with Recovery code
 
+
+
+## cancel_pending2_fa
+
+> models::Disable2FaResult cancel_pending2_fa()
+Cancel pending enabling of time-based 2FA codes
+
+Cancels the sequence for enabling time-based 2FA.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::Disable2FaResult**](Disable2FAResult.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## check_user_exists
@@ -48,6 +84,37 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## confirm_email
+
+> confirm_email(id, verify_email)
+Confirm Email
+
+Confirms the email address for a user
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**id** | **String** | Target user for which to verify email. | [required] |
+**verify_email** | **String** | Token to verify email. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_user
 
 > models::CurrentUser delete_user(user_id)
@@ -65,6 +132,60 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::CurrentUser**](CurrentUser.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## disable2_fa
+
+> models::Disable2FaResult disable2_fa()
+Disable 2FA
+
+Disables 2FA for the currently logged in account
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::Disable2FaResult**](Disable2FAResult.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## enable2_fa
+
+> models::Pending2FaResult enable2_fa()
+Enable time-based 2FA codes
+
+Begins the sequence for enabling time-based 2FA.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::Pending2FaResult**](Pending2FAResult.md)
 
 ### Authorization
 
@@ -105,12 +226,96 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_recovery_codes
+
+> models::TwoFactorRecoveryCodes get_recovery_codes()
+Get 2FA Recovery codes
+
+Gets the OTP (One Time Password) recovery codes for accounts with 2FA-protection enabled.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::TwoFactorRecoveryCodes**](TwoFactorRecoveryCodes.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## logout
 
 > models::Success logout()
 Logout
 
 Invalidates the login session.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::Success**](Success.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## register_user_account
+
+> models::CurrentUser register_user_account(register_user_account_request)
+Register User Account
+
+~~Register a new user account.~~  **DEPRECATED:** Automated creation of accounts has no legitimate public third-party use case, and would be in violation of ToS §13.2: *By using the Platform, you agree not to: i. [...] use the Platform in a manner inconsistent with individual human usage* This endpoint is documented in the interest of completeness
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**register_user_account_request** | [**RegisterUserAccountRequest**](RegisterUserAccountRequest.md) |  | [required] |
+
+### Return type
+
+[**models::CurrentUser**](CurrentUser.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## resend_email_confirmation
+
+> models::Success resend_email_confirmation()
+Resend Email Confirmation
+
+Requests a resend of pending email address confirmation email
 
 ### Parameters
 
@@ -214,6 +419,67 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## verify_login_place
+
+> verify_login_place(token, user_id)
+Verify Login Place
+
+Verifies a login attempt for a user
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**token** | **String** | Token to verify login attempt. | [required] |
+**user_id** | Option<**String**> | Filter by UserID. |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: Not defined
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## verify_pending2_fa
+
+> models::Verify2FaResult verify_pending2_fa(two_factor_auth_code)
+Verify Pending 2FA code
+
+Finishes sequence for enabling time-based 2FA.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**two_factor_auth_code** | [**TwoFactorAuthCode**](TwoFactorAuthCode.md) |  | [required] |
+
+### Return type
+
+[**models::Verify2FaResult**](Verify2FAResult.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

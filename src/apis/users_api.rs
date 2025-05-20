@@ -143,6 +143,7 @@ pub enum UpdateBadgeError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateUserError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }

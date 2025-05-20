@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **capacity** | **i32** |  | 
 **recommended_capacity** | Option<**i32**> |  | [optional]
 **created_at** | **String** |  | 
+**default_content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
 **favorites** | **i32** |  | [default to 0]
 **visits** | Option<**i32**> |  | [optional][default to 0]
 **heat** | **i32** |  | [default to 0]
@@ -22,6 +23,7 @@ Name | Type | Description | Notes
 **preview_youtube_id** | Option<**String**> |  | [optional]
 **publication_date** | **String** |  | 
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
+**store_id** | Option<**String**> |  | [optional]
 **tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
 **unity_packages** | [**Vec<models::LimitedUnityPackage>**](LimitedUnityPackage.md) |   | 
