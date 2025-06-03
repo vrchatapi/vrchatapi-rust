@@ -1,17 +1,46 @@
-# \SystemApi
+# \MiscellaneousApi
 
 All URIs are relative to *https://api.vrchat.cloud/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_config**](SystemApi.md#get_config) | **GET** /config | Fetch API Config
-[**get_css**](SystemApi.md#get_css) | **GET** /css/app.css | Download CSS
-[**get_current_online_users**](SystemApi.md#get_current_online_users) | **GET** /visits | Current Online Users
-[**get_health**](SystemApi.md#get_health) | **GET** /health | Check API Health
-[**get_info_push**](SystemApi.md#get_info_push) | **GET** /infoPush | Show Information Notices
-[**get_java_script**](SystemApi.md#get_java_script) | **GET** /js/app.js | Download JavaScript
-[**get_system_time**](SystemApi.md#get_system_time) | **GET** /time | Current System Time
+[**get_assigned_permissions**](MiscellaneousApi.md#get_assigned_permissions) | **GET** /auth/permissions | Get Assigned Permissions
+[**get_config**](MiscellaneousApi.md#get_config) | **GET** /config | Fetch API Config
+[**get_css**](MiscellaneousApi.md#get_css) | **GET** /css/app.css | Download CSS
+[**get_current_online_users**](MiscellaneousApi.md#get_current_online_users) | **GET** /visits | Current Online Users
+[**get_health**](MiscellaneousApi.md#get_health) | **GET** /health | Check API Health
+[**get_info_push**](MiscellaneousApi.md#get_info_push) | **GET** /infoPush | Show Information Notices
+[**get_java_script**](MiscellaneousApi.md#get_java_script) | **GET** /js/app.js | Download JavaScript
+[**get_permission**](MiscellaneousApi.md#get_permission) | **GET** /permissions/{permissionId} | Get Permission
+[**get_system_time**](MiscellaneousApi.md#get_system_time) | **GET** /time | Current System Time
 
+
+
+## get_assigned_permissions
+
+> Vec<models::Permission> get_assigned_permissions()
+Get Assigned Permissions
+
+Returns a list of all permissions currently granted by the user. Permissions are assigned e.g. by subscribing to VRC+.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Vec<models::Permission>**](Permission.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## get_config
@@ -184,6 +213,36 @@ No authorization required
 
 - **Content-Type**: Not defined
 - **Accept**: application/javascript, application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_permission
+
+> models::Permission get_permission(permission_id)
+Get Permission
+
+Returns a single permission. This endpoint is pretty useless, as it returns the exact same information as `/auth/permissions`.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**permission_id** | **String** | Must be a valid permission ID. | [required] |
+
+### Return type
+
+[**models::Permission**](Permission.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

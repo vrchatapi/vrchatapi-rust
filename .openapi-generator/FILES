@@ -136,6 +136,7 @@ docs/LimitedUser.md
 docs/LimitedUserGroups.md
 docs/LimitedWorld.md
 docs/MimeType.md
+docs/MiscellaneousApi.md
 docs/ModerateUserRequest.md
 docs/Notification.md
 docs/NotificationDetailInvite.md
@@ -152,7 +153,6 @@ docs/Pending2FaResult.md
 docs/PerformanceLimiterInfo.md
 docs/PerformanceRatings.md
 docs/Permission.md
-docs/PermissionsApi.md
 docs/PlatformBuildInfo.md
 docs/PlayerModeration.md
 docs/PlayerModerationType.md
@@ -182,7 +182,6 @@ docs/Submission.md
 docs/Subscription.md
 docs/SubscriptionPeriod.md
 docs/Success.md
-docs/SystemApi.md
 docs/TiliaStatus.md
 docs/TiliaTos.md
 docs/TokenBundle.md
@@ -200,6 +199,7 @@ docs/UpdateAvatarRequest.md
 docs/UpdateFavoriteGroupRequest.md
 docs/UpdateGroupGalleryRequest.md
 docs/UpdateGroupMemberRequest.md
+docs/UpdateGroupRepresentationRequest.md
 docs/UpdateGroupRequest.md
 docs/UpdateGroupRoleRequest.md
 docs/UpdateInviteMessageRequest.md
@@ -234,12 +234,11 @@ src/apis/groups_api.rs
 src/apis/instances_api.rs
 src/apis/invite_api.rs
 src/apis/jams_api.rs
+src/apis/miscellaneous_api.rs
 src/apis/mod.rs
 src/apis/notifications_api.rs
-src/apis/permissions_api.rs
 src/apis/playermoderation_api.rs
 src/apis/prints_api.rs
-src/apis/system_api.rs
 src/apis/users_api.rs
 src/apis/worlds_api.rs
 src/lib.rs
@@ -429,6 +428,7 @@ src/models/update_avatar_request.rs
 src/models/update_favorite_group_request.rs
 src/models/update_group_gallery_request.rs
 src/models/update_group_member_request.rs
+src/models/update_group_representation_request.rs
 src/models/update_group_request.rs
 src/models/update_group_role_request.rs
 src/models/update_invite_message_request.rs

@@ -102,11 +102,10 @@ pub mod groups_api;
 pub mod instances_api;
 pub mod invite_api;
 pub mod jams_api;
+pub mod miscellaneous_api;
 pub mod notifications_api;
-pub mod permissions_api;
 pub mod playermoderation_api;
 pub mod prints_api;
-pub mod system_api;
 pub mod users_api;
 pub mod worlds_api;
 

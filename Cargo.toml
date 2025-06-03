@@ -1,6 +1,6 @@
 [package]
 name = "vrchatapi"
-version = "1.19.3"
+version = "1.19.4"
 authors = ["vrchatapi.lpv0t@aries.fyi"]
 description = "VRChat API Client for Rust"
 license = "MIT"

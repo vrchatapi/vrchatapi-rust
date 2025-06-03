@@ -368,6 +368,8 @@ pub mod update_group_gallery_request;
 pub use self::update_group_gallery_request::UpdateGroupGalleryRequest;
 pub mod update_group_member_request;
 pub use self::update_group_member_request::UpdateGroupMemberRequest;
+pub mod update_group_representation_request;
+pub use self::update_group_representation_request::UpdateGroupRepresentationRequest;
 pub mod update_group_request;
 pub use self::update_group_request::UpdateGroupRequest;
 pub mod update_group_role_request;
