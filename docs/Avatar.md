@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **lock** | Option<**bool**> |  | [optional]
 **lowest_price** | Option<**i32**> |  | [optional]
 **name** | **String** |  | 
+**performance** | [**models::AvatarPerformance**](Avatar_performance.md) |  | 
 **product_id** | Option<**String**> |  | [optional]
 **published_listings** | Option<[**Vec<models::AvatarPublishedListingsInner>**](Avatar_publishedListings_inner.md)> |  | [optional]
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 

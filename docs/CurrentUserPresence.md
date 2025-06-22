@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **avatar_thumbnail** | Option<**String**> |  | [optional]
 **current_avatar_tags** | Option<**String**> |  | [optional]
 **display_name** | Option<**String**> |  | [optional]
+**debugflag** | Option<**String**> |  | [optional]
 **groups** | Option<**Vec<String>**> |  | [optional]
 **id** | Option<**String**> | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | [optional]
 **instance** | Option<**String**> |  | [optional]

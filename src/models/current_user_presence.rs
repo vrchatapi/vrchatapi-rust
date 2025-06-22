@@ -22,6 +22,8 @@ pub struct CurrentUserPresence {
     pub current_avatar_tags: Option<String>,
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
     pub display_name: Option<String>,
+    #[serde(rename = "debugflag", skip_serializing_if = "Option::is_none")]
+    pub debugflag: Option<String>,
     #[serde(
         rename = "groups",
         default,
@@ -105,6 +107,7 @@ impl CurrentUserPresence {
             avatar_thumbnail: None,
             current_avatar_tags: None,
             display_name: None,
+            debugflag: None,
             groups: None,
             id: None,
             instance: None,

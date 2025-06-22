@@ -43,6 +43,8 @@ pub struct Avatar {
     pub lowest_price: Option<i32>,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "performance")]
+    pub performance: models::AvatarPerformance,
     #[serde(rename = "productId", skip_serializing_if = "Option::is_none")]
     pub product_id: Option<String>,
     #[serde(rename = "publishedListings", skip_serializing_if = "Option::is_none")]
@@ -79,6 +81,7 @@ impl Avatar {
         id: String,
         image_url: String,
         name: String,
+        performance: models::AvatarPerformance,
         release_status: models::ReleaseStatus,
         styles: models::AvatarStyles,
         tags: Vec<String>,
@@ -104,6 +107,7 @@ impl Avatar {
             lock: None,
             lowest_price: None,
             name,
+            performance,
             product_id: None,
             published_listings: None,
             release_status,

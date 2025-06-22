@@ -22,6 +22,8 @@ pub struct InstanceContentSettings {
     pub prints: Option<bool>,
     #[serde(rename = "stickers", skip_serializing_if = "Option::is_none")]
     pub stickers: Option<bool>,
+    #[serde(rename = "props", skip_serializing_if = "Option::is_none")]
+    pub props: Option<bool>,
 }
 
 impl InstanceContentSettings {
@@ -33,6 +35,7 @@ impl InstanceContentSettings {
             pedestals: None,
             prints: None,
             stickers: None,
+            props: None,
         }
     }
 }

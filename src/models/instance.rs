@@ -116,7 +116,7 @@ pub struct Instance {
     pub world: models::World,
     /// The users field is present on instances created by the requesting user.
     #[serde(rename = "users", skip_serializing_if = "Option::is_none")]
-    pub users: Option<Vec<models::LimitedUser>>,
+    pub users: Option<Vec<models::LimitedUserInstance>>,
     #[serde(rename = "groupAccessType", skip_serializing_if = "Option::is_none")]
     pub group_access_type: Option<models::GroupAccessType>,
     #[serde(rename = "hasCapacityForYou", skip_serializing_if = "Option::is_none")]

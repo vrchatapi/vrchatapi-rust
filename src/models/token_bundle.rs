@@ -17,6 +17,8 @@ pub struct TokenBundle {
     pub steam_item_id: String,
     #[serde(rename = "oculusSku")]
     pub oculus_sku: String,
+    #[serde(rename = "googleProductId", skip_serializing_if = "Option::is_none")]
+    pub google_product_id: Option<String>,
     /// price of the bundle
     #[serde(rename = "amount")]
     pub amount: i32,
@@ -44,6 +46,7 @@ impl TokenBundle {
             id,
             steam_item_id,
             oculus_sku,
+            google_product_id: None,
             amount,
             description,
             tokens,

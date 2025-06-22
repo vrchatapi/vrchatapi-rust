@@ -40,7 +40,7 @@ Name | Type | Description | Notes
 **strict** | **bool** |  | 
 **user_count** | **i32** |  | 
 **world** | [**models::World**](World.md) |  | 
-**users** | Option<[**Vec<models::LimitedUser>**](LimitedUser.md)> | The users field is present on instances created by the requesting user. | [optional]
+**users** | Option<[**Vec<models::LimitedUserInstance>**](LimitedUserInstance.md)> | The users field is present on instances created by the requesting user. | [optional]
 **group_access_type** | Option<[**models::GroupAccessType**](GroupAccessType.md)> |  | [optional]
 **has_capacity_for_you** | Option<**bool**> |  | [optional]
 **nonce** | Option<**String**> |  | [optional]

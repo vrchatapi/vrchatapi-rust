@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **google_product_id** | Option<**String**> |  | [optional]
 **google_plan_id** | Option<**String**> |  | [optional]
 **pico_sku** | Option<**String**> |  | [optional]
+**apple_product_id** | Option<**String**> |  | [optional]
 **amount** | **f64** |  | 
 **description** | **String** |  | 
 **period** | [**models::SubscriptionPeriod**](SubscriptionPeriod.md) |  | 

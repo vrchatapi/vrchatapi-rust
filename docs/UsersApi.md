@@ -424,7 +424,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_users
 
-> Vec<models::LimitedUser> search_users(search, developer_type, n, offset)
+> Vec<models::LimitedUserSearch> search_users(search, developer_type, n, offset)
 Search All Users
 
 Search and list any users by text query
@@ -441,7 +441,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<models::LimitedUser>**](LimitedUser.md)
+[**Vec<models::LimitedUserSearch>**](LimitedUserSearch.md)
 
 ### Authorization
 

@@ -30,6 +30,7 @@ docs/ApiConfigReportReasons.md
 docs/ApiHealth.md
 docs/AuthenticationApi.md
 docs/Avatar.md
+docs/AvatarPerformance.md
 docs/AvatarPublishedListingsInner.md
 docs/AvatarStyles.md
 docs/AvatarUnityPackageUrlObject.md
@@ -132,8 +133,10 @@ docs/LicenseGroup.md
 docs/LicenseType.md
 docs/LimitedGroup.md
 docs/LimitedUnityPackage.md
-docs/LimitedUser.md
+docs/LimitedUserFriend.md
 docs/LimitedUserGroups.md
+docs/LimitedUserInstance.md
+docs/LimitedUserSearch.md
 docs/LimitedWorld.md
 docs/MimeType.md
 docs/MiscellaneousApi.md
@@ -271,6 +274,7 @@ src/models/api_config_report_options_world.rs
 src/models/api_config_report_reasons.rs
 src/models/api_health.rs
 src/models/avatar.rs
+src/models/avatar_performance.rs
 src/models/avatar_published_listings_inner.rs
 src/models/avatar_styles.rs
 src/models/avatar_unity_package_url_object.rs
@@ -364,8 +368,10 @@ src/models/license_group.rs
 src/models/license_type.rs
 src/models/limited_group.rs
 src/models/limited_unity_package.rs
-src/models/limited_user.rs
+src/models/limited_user_friend.rs
 src/models/limited_user_groups.rs
+src/models/limited_user_instance.rs
+src/models/limited_user_search.rs
 src/models/limited_world.rs
 src/models/mime_type.rs
 src/models/mod.rs

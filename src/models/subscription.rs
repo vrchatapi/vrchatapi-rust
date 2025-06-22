@@ -24,6 +24,8 @@ pub struct Subscription {
     pub google_plan_id: Option<String>,
     #[serde(rename = "picoSku", skip_serializing_if = "Option::is_none")]
     pub pico_sku: Option<String>,
+    #[serde(rename = "appleProductId", skip_serializing_if = "Option::is_none")]
+    pub apple_product_id: Option<String>,
     #[serde(rename = "amount")]
     pub amount: f64,
     #[serde(rename = "description")]
@@ -50,6 +52,7 @@ impl Subscription {
             google_product_id: None,
             google_plan_id: None,
             pico_sku: None,
+            apple_product_id: None,
             amount,
             description,
             period,

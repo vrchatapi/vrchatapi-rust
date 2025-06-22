@@ -733,7 +733,7 @@ pub async fn search_users(
     developer_type: Option<&str>,
     n: Option<i32>,
     offset: Option<i32>,
-) -> Result<Vec<models::LimitedUser>, Error<SearchUsersError>> {
+) -> Result<Vec<models::LimitedUserSearch>, Error<SearchUsersError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;

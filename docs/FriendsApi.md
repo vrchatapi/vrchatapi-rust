@@ -104,7 +104,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_friends
 
-> Vec<models::LimitedUser> get_friends(offset, n, offline)
+> Vec<models::LimitedUserFriend> get_friends(offset, n, offline)
 List Friends
 
 List information about friends.
@@ -120,7 +120,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**Vec<models::LimitedUser>**](LimitedUser.md)
+[**Vec<models::LimitedUserFriend>**](LimitedUserFriend.md)
 
 ### Authorization
 

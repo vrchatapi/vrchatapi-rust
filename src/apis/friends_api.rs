@@ -186,7 +186,7 @@ pub async fn get_friends(
     offset: Option<i32>,
     n: Option<i32>,
     offline: Option<bool>,
-) -> Result<Vec<models::LimitedUser>, Error<GetFriendsError>> {
+) -> Result<Vec<models::LimitedUserFriend>, Error<GetFriendsError>> {
     let local_var_configuration = configuration;
 
     let local_var_client = &local_var_configuration.client;
