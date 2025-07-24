@@ -28,6 +28,7 @@
 | group_members_viewall | group-members-viewall |
 | group_roles_assign | group-roles-assign |
 | group_roles_manage | group-roles-manage |
+| group_calendar_manage | group-calendar-manage |
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

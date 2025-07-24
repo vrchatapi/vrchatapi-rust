@@ -11,12 +11,12 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RequestInviteRequest {
-    #[serde(rename = "messageSlot", skip_serializing_if = "Option::is_none")]
-    pub message_slot: Option<i32>,
+    #[serde(rename = "requestSlot", skip_serializing_if = "Option::is_none")]
+    pub request_slot: Option<i32>,
 }
 
 impl RequestInviteRequest {
     pub fn new() -> RequestInviteRequest {
-        RequestInviteRequest { message_slot: None }
+        RequestInviteRequest { request_slot: None }
     }
 }

@@ -190,7 +190,7 @@ Get user's submitted feedback
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**content_id** | Option<**bool**> | Filter for users' previously submitted feedback, e.g., a groupId, useeId, avatarId, etc. |  |
+**content_id** | Option<**bool**> | Filter for users' previously submitted feedback, e.g., a groupId, userId, avatarId, etc. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 

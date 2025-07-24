@@ -153,7 +153,7 @@ Name | Type | Description  | Required | Notes
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **hydrate** | Option<**bool**> | Populates some fields and changes types of others for certain objects. |  |
 **group_id** | Option<**String**> | Must be a valid group ID. |  |
-**active** | Option<**bool**> | Filter for users' listings. |  |
+**active** | Option<**bool**> | Filter for users' listings and inventory bundles. |  |
 
 ### Return type
 

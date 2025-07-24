@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**delete_impostor**](AvatarsApi.md#delete_impostor) | **DELETE** /avatars/{avatarId}/impostor | Delete generated Impostor
 [**enqueue_impostor**](AvatarsApi.md#enqueue_impostor) | **POST** /avatars/{avatarId}/impostor/enqueue | Enqueue Impostor generation
 [**get_avatar**](AvatarsApi.md#get_avatar) | **GET** /avatars/{avatarId} | Get Avatar
+[**get_avatar_styles**](AvatarsApi.md#get_avatar_styles) | **GET** /avatarStyles | Get Avatar Styles
 [**get_favorited_avatars**](AvatarsApi.md#get_favorited_avatars) | **GET** /avatars/favorites | List Favorited Avatars
 [**get_impostor_queue_stats**](AvatarsApi.md#get_impostor_queue_stats) | **GET** /avatars/impostor/queue/stats | Get Impostor Queue Stats
 [**get_licensed_avatars**](AvatarsApi.md#get_licensed_avatars) | **GET** /avatars/licensed | List Licensed Avatars
@@ -161,6 +162,33 @@ Name | Type | Description  | Required | Notes
 ### Authorization
 
 [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_avatar_styles
+
+> Vec<models::AvatarStyle> get_avatar_styles()
+Get Avatar Styles
+
+List avatar styles.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Vec<models::AvatarStyle>**](AvatarStyle.md)
+
+### Authorization
+
+No authorization required
 
 ### HTTP request headers
 

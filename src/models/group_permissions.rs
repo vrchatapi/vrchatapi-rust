@@ -59,6 +59,8 @@ pub enum GroupPermissions {
     group_roles_assign,
     #[serde(rename = "group-roles-manage")]
     group_roles_manage,
+    #[serde(rename = "group-calendar-manage")]
+    group_calendar_manage,
 }
 
 impl std::fmt::Display for GroupPermissions {
@@ -90,6 +92,7 @@ impl std::fmt::Display for GroupPermissions {
             Self::group_members_viewall => write!(f, "group-members-viewall"),
             Self::group_roles_assign => write!(f, "group-roles-assign"),
             Self::group_roles_manage => write!(f, "group-roles-manage"),
+            Self::group_calendar_manage => write!(f, "group-calendar-manage"),
         }
     }
 }

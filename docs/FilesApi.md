@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**delete_file_version**](FilesApi.md#delete_file_version) | **DELETE** /file/{fileId}/{versionId} | Delete File Version
 [**download_file_version**](FilesApi.md#download_file_version) | **GET** /file/{fileId}/{versionId} | Download File Version
 [**finish_file_data_upload**](FilesApi.md#finish_file_data_upload) | **PUT** /file/{fileId}/{versionId}/{fileType}/finish | Finish FileData Upload
+[**get_admin_asset_bundle**](FilesApi.md#get_admin_asset_bundle) | **GET** /adminassetbundles/{adminAssetBundleId} | Get AdminAssetBundle
 [**get_file**](FilesApi.md#get_file) | **GET** /file/{fileId} | Show File
 [**get_file_analysis**](FilesApi.md#get_file_analysis) | **GET** /analysis/{fileId}/{versionId} | Get File Version Analysis
 [**get_file_analysis_security**](FilesApi.md#get_file_analysis_security) | **GET** /analysis/{fileId}/{versionId}/security | Get File Version Analysis Security
@@ -204,6 +205,36 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_admin_asset_bundle
+
+> models::AdminAssetBundle get_admin_asset_bundle(admin_asset_bundle_id)
+Get AdminAssetBundle
+
+Returns an AdminAssetBundle
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**admin_asset_bundle_id** | **String** | Must be a valid admin asset bundle ID. | [required] |
+
+### Return type
+
+[**models::AdminAssetBundle**](AdminAssetBundle.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
