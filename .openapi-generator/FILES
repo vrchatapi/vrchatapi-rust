@@ -41,8 +41,12 @@ docs/AvatarsApi.md
 docs/Badge.md
 docs/Balance.md
 docs/BanGroupMemberRequest.md
+docs/CalendarApi.md
+docs/CalendarEvent.md
+docs/CalendarEventUserInterest.md
 docs/ChangeUserTagsRequest.md
 docs/CreateAvatarRequest.md
+docs/CreateCalendarEventRequest.md
 docs/CreateFileRequest.md
 docs/CreateFileVersionRequest.md
 docs/CreateGroupAnnouncementRequest.md
@@ -80,6 +84,7 @@ docs/FileVersion.md
 docs/FileVersionUploadStatus.md
 docs/FilesApi.md
 docs/FinishFileDataUploadRequest.md
+docs/FollowCalendarEventRequest.md
 docs/FriendStatus.md
 docs/FriendsApi.md
 docs/GetGroupPosts200Response.md
@@ -162,6 +167,7 @@ docs/NotificationDetailVoteToKick.md
 docs/NotificationType.md
 docs/NotificationsApi.md
 docs/OrderOption.md
+docs/PaginatedCalendarEventList.md
 docs/PaginatedGroupAuditLogEntryList.md
 docs/PastDisplayName.md
 docs/Pending2FaResult.md
@@ -214,6 +220,7 @@ docs/TwoFactorRecoveryCodes.md
 docs/TwoFactorRecoveryCodesOtpInner.md
 docs/UnityPackage.md
 docs/UpdateAvatarRequest.md
+docs/UpdateCalendarEventRequest.md
 docs/UpdateFavoriteGroupRequest.md
 docs/UpdateGroupGalleryRequest.md
 docs/UpdateGroupMemberRequest.md
@@ -243,6 +250,7 @@ docs/WorldsApi.md
 git_push.sh
 src/apis/authentication_api.rs
 src/apis/avatars_api.rs
+src/apis/calendar_api.rs
 src/apis/configuration.rs
 src/apis/economy_api.rs
 src/apis/favorites_api.rs
@@ -301,8 +309,11 @@ src/models/avatar_unity_package_url_object.rs
 src/models/badge.rs
 src/models/balance.rs
 src/models/ban_group_member_request.rs
+src/models/calendar_event.rs
+src/models/calendar_event_user_interest.rs
 src/models/change_user_tags_request.rs
 src/models/create_avatar_request.rs
+src/models/create_calendar_event_request.rs
 src/models/create_file_request.rs
 src/models/create_file_version_request.rs
 src/models/create_group_announcement_request.rs
@@ -337,6 +348,7 @@ src/models/file_upload_url.rs
 src/models/file_version.rs
 src/models/file_version_upload_status.rs
 src/models/finish_file_data_upload_request.rs
+src/models/follow_calendar_event_request.rs
 src/models/friend_status.rs
 src/models/get_group_posts_200_response.rs
 src/models/get_user_group_instances_200_response.rs
@@ -412,6 +424,7 @@ src/models/notification_detail_request_invite_response.rs
 src/models/notification_detail_vote_to_kick.rs
 src/models/notification_type.rs
 src/models/order_option.rs
+src/models/paginated_calendar_event_list.rs
 src/models/paginated_group_audit_log_entry_list.rs
 src/models/past_display_name.rs
 src/models/pending2_fa_result.rs
@@ -461,6 +474,7 @@ src/models/two_factor_recovery_codes.rs
 src/models/two_factor_recovery_codes_otp_inner.rs
 src/models/unity_package.rs
 src/models/update_avatar_request.rs
+src/models/update_calendar_event_request.rs
 src/models/update_favorite_group_request.rs
 src/models/update_group_gallery_request.rs
 src/models/update_group_member_request.rs
