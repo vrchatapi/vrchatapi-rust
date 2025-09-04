@@ -27,6 +27,8 @@ pub struct FileAnalysisAvatarStats {
     pub cloth_count: i32,
     #[serde(rename = "constraintCount")]
     pub constraint_count: i32,
+    #[serde(rename = "constraintDepth")]
+    pub constraint_depth: i32,
     #[serde(rename = "contactCount")]
     pub contact_count: i32,
     #[serde(rename = "customExpressions")]
@@ -108,6 +110,7 @@ impl FileAnalysisAvatarStats {
         bounds: Vec<f64>,
         cloth_count: i32,
         constraint_count: i32,
+        constraint_depth: i32,
         contact_count: i32,
         custom_expressions: bool,
         customize_animation_layers: bool,
@@ -153,6 +156,7 @@ impl FileAnalysisAvatarStats {
             camera_count: None,
             cloth_count,
             constraint_count,
+            constraint_depth,
             contact_count,
             custom_expressions,
             customize_animation_layers,

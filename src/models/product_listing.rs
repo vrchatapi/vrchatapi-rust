@@ -13,40 +13,60 @@ use serde::{Deserialize, Serialize};
 pub struct ProductListing {
     #[serde(rename = "active")]
     pub active: bool,
-    #[serde(rename = "archived")]
-    pub archived: bool,
     #[serde(rename = "buyerRefundable")]
     pub buyer_refundable: bool,
-    #[serde(rename = "created")]
-    pub created: String,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "displayName")]
     pub display_name: String,
-    #[serde(rename = "duration", skip_serializing_if = "Option::is_none")]
-    pub duration: Option<i32>,
-    #[serde(rename = "durationType", skip_serializing_if = "Option::is_none")]
-    pub duration_type: Option<String>,
-    #[serde(rename = "groupIcon")]
-    pub group_icon: String,
-    #[serde(rename = "groupId")]
-    pub group_id: String,
-    #[serde(rename = "groupName")]
-    pub group_name: String,
+    #[serde(
+        rename = "duration",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub duration: Option<Option<i32>>,
+    #[serde(
+        rename = "durationType",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub duration_type: Option<Option<String>>,
+    #[serde(rename = "groupIcon", skip_serializing_if = "Option::is_none")]
+    pub group_icon: Option<String>,
+    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
+    pub group_id: Option<String>,
+    #[serde(
+        rename = "groupName",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub group_name: Option<Option<String>>,
+    #[serde(rename = "hasAvatar")]
+    pub has_avatar: bool,
+    #[serde(rename = "hasUdon")]
+    pub has_udon: bool,
     #[serde(rename = "hydratedProducts", skip_serializing_if = "Option::is_none")]
     pub hydrated_products: Option<Vec<models::Product>>,
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "imageId")]
-    pub image_id: String,
-    #[serde(rename = "instant")]
-    pub instant: bool,
+    #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
+    pub image_id: Option<String>,
+    #[serde(
+        rename = "imageUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub image_url: Option<Option<String>>,
     #[serde(rename = "listingType")]
     pub listing_type: models::ProductListingType,
-    #[serde(rename = "listingVariants")]
-    pub listing_variants: Vec<models::ProductListingVariant>,
-    #[serde(rename = "permanent")]
-    pub permanent: bool,
+    #[serde(rename = "listingVariants", skip_serializing_if = "Option::is_none")]
+    pub listing_variants: Option<Vec<models::ProductListingVariant>>,
+    #[serde(rename = "permanent", skip_serializing_if = "Option::is_none")]
+    pub permanent: Option<bool>,
     #[serde(rename = "priceTokens")]
     pub price_tokens: i32,
     #[serde(rename = "productIds")]
@@ -69,29 +89,20 @@ pub struct ProductListing {
     pub stackable: bool,
     #[serde(rename = "storeIds")]
     pub store_ids: Vec<String>,
-    #[serde(rename = "tags")]
-    pub tags: Vec<String>,
-    #[serde(rename = "updated", deserialize_with = "Option::deserialize")]
-    pub updated: Option<String>,
+    #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
+    pub tags: Option<Vec<String>>,
 }
 
 impl ProductListing {
     pub fn new(
         active: bool,
-        archived: bool,
         buyer_refundable: bool,
-        created: String,
         description: String,
         display_name: String,
-        group_icon: String,
-        group_id: String,
-        group_name: String,
+        has_avatar: bool,
+        has_udon: bool,
         id: String,
-        image_id: String,
-        instant: bool,
         listing_type: models::ProductListingType,
-        listing_variants: Vec<models::ProductListingVariant>,
-        permanent: bool,
         price_tokens: i32,
         product_ids: Vec<String>,
         product_type: models::ProductType,
@@ -102,28 +113,26 @@ impl ProductListing {
         seller_id: String,
         stackable: bool,
         store_ids: Vec<String>,
-        tags: Vec<String>,
-        updated: Option<String>,
     ) -> ProductListing {
         ProductListing {
             active,
-            archived,
             buyer_refundable,
-            created,
             description,
             display_name,
             duration: None,
             duration_type: None,
-            group_icon,
-            group_id,
-            group_name,
+            group_icon: None,
+            group_id: None,
+            group_name: None,
+            has_avatar,
+            has_udon,
             hydrated_products: None,
             id,
-            image_id,
-            instant,
+            image_id: None,
+            image_url: None,
             listing_type,
-            listing_variants,
-            permanent,
+            listing_variants: None,
+            permanent: None,
             price_tokens,
             product_ids,
             product_type,
@@ -135,8 +144,7 @@ impl ProductListing {
             seller_id,
             stackable,
             store_ids,
-            tags,
-            updated,
+            tags: None,
         }
     }
 }

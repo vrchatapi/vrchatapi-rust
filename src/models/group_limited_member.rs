@@ -41,6 +41,11 @@ pub struct GroupLimitedMember {
         skip_serializing_if = "Option::is_none"
     )]
     pub is_subscribed_to_announcements: Option<bool>,
+    #[serde(
+        rename = "isSubscribedToEventAnnouncements",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub is_subscribed_to_event_announcements: Option<bool>,
     /// Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
     #[serde(
         rename = "createdAt",
@@ -92,6 +97,7 @@ impl GroupLimitedMember {
             membership_status: None,
             visibility: None,
             is_subscribed_to_announcements: None,
+            is_subscribed_to_event_announcements: None,
             created_at: None,
             banned_at: None,
             manager_notes: None,

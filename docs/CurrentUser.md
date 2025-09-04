@@ -60,6 +60,7 @@ Name | Type | Description | Notes
 **profile_pic_override** | **String** |  | 
 **profile_pic_override_thumbnail** | **String** |  | 
 **pronouns** | **String** |  | 
+**pronouns_history** | **Vec<String>** |  | 
 **queued_instance** | Option<**String**> |  | [optional]
 **receive_mobile_invitations** | Option<**bool**> |  | [optional]
 **state** | [**models::UserState**](UserState.md) |  | 

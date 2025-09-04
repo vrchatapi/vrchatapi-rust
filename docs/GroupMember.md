@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **membership_status** | Option<[**models::GroupMemberStatus**](GroupMemberStatus.md)> |  | [optional]
 **visibility** | Option<**String**> |  | [optional]
 **is_subscribed_to_announcements** | Option<**bool**> |  | [optional][default to false]
+**is_subscribed_to_event_announcements** | Option<**bool**> |  | [optional]
 **created_at** | Option<**String**> | Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user. | [optional]
 **banned_at** | Option<**String**> | Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user. | [optional]
 **manager_notes** | Option<**String**> | Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user. | [optional]

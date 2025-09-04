@@ -158,6 +158,8 @@ pub struct CurrentUser {
     pub profile_pic_override_thumbnail: String,
     #[serde(rename = "pronouns")]
     pub pronouns: String,
+    #[serde(rename = "pronounsHistory")]
+    pub pronouns_history: Vec<String>,
     #[serde(
         rename = "queuedInstance",
         default,
@@ -243,6 +245,7 @@ impl CurrentUser {
         profile_pic_override: String,
         profile_pic_override_thumbnail: String,
         pronouns: String,
+        pronouns_history: Vec<String>,
         state: models::UserState,
         status: models::UserStatus,
         status_description: String,
@@ -312,6 +315,7 @@ impl CurrentUser {
             profile_pic_override,
             profile_pic_override_thumbnail,
             pronouns,
+            pronouns_history,
             queued_instance: None,
             receive_mobile_invitations: None,
             state,

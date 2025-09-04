@@ -13,6 +13,8 @@ use serde::{Deserialize, Serialize};
 pub struct TokenBundle {
     #[serde(rename = "id")]
     pub id: String,
+    #[serde(rename = "appleProductId")]
+    pub apple_product_id: String,
     #[serde(rename = "steamItemId")]
     pub steam_item_id: String,
     #[serde(rename = "oculusSku")]
@@ -35,6 +37,7 @@ pub struct TokenBundle {
 impl TokenBundle {
     pub fn new(
         id: String,
+        apple_product_id: String,
         steam_item_id: String,
         oculus_sku: String,
         amount: i32,
@@ -44,6 +47,7 @@ impl TokenBundle {
     ) -> TokenBundle {
         TokenBundle {
             id,
+            apple_product_id,
             steam_item_id,
             oculus_sku,
             google_product_id: None,

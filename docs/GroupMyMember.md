@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **manager_notes** | Option<**String**> |  | [optional]
 **membership_status** | Option<**String**> |  | [optional]
 **is_subscribed_to_announcements** | Option<**bool**> |  | [optional][default to true]
+**is_subscribed_to_event_announcements** | Option<**bool**> |  | [optional]
 **visibility** | Option<**String**> |  | [optional]
 **is_representing** | Option<**bool**> |  | [optional][default to false]
 **joined_at** | Option<**String**> |  | [optional]

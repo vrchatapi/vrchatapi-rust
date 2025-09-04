@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **highest_price** | Option<**i32**> |  | [optional]
 **id** | **String** |  | 
 **image_url** | **String** |  | 
+**listing_date** | Option<**String**> |  | 
 **lock** | Option<**bool**> |  | [optional]
 **lowest_price** | Option<**i32**> |  | [optional]
 **name** | **String** |  | 

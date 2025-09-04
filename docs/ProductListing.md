@@ -5,23 +5,23 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** |  | 
-**archived** | **bool** |  | 
 **buyer_refundable** | **bool** |  | 
-**created** | **String** |  | 
 **description** | **String** |  | 
 **display_name** | **String** |  | 
 **duration** | Option<**i32**> |  | [optional]
 **duration_type** | Option<**String**> |  | [optional]
-**group_icon** | **String** |  | 
-**group_id** | **String** |  | 
-**group_name** | **String** |  | 
+**group_icon** | Option<**String**> |  | [optional]
+**group_id** | Option<**String**> |  | [optional]
+**group_name** | Option<**String**> |  | [optional]
+**has_avatar** | **bool** |  | 
+**has_udon** | **bool** |  | 
 **hydrated_products** | Option<[**Vec<models::Product>**](Product.md)> |  | [optional]
 **id** | **String** |  | 
-**image_id** | **String** |  | 
-**instant** | **bool** |  | 
+**image_id** | Option<**String**> |  | [optional]
+**image_url** | Option<**String**> |  | [optional]
 **listing_type** | [**models::ProductListingType**](ProductListingType.md) |  | 
-**listing_variants** | [**Vec<models::ProductListingVariant>**](ProductListingVariant.md) |  | 
-**permanent** | **bool** |  | 
+**listing_variants** | Option<[**Vec<models::ProductListingVariant>**](ProductListingVariant.md)> |  | [optional]
+**permanent** | Option<**bool**> |  | [optional]
 **price_tokens** | **i32** |  | 
 **product_ids** | **Vec<String>** |  | 
 **product_type** | [**models::ProductType**](ProductType.md) |  | 
@@ -33,8 +33,7 @@ Name | Type | Description | Notes
 **seller_id** | **String** |  | 
 **stackable** | **bool** |  | 
 **store_ids** | **Vec<String>** |  | 
-**tags** | **Vec<String>** |  | 
-**updated** | Option<**String**> |  | 
+**tags** | Option<**Vec<String>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

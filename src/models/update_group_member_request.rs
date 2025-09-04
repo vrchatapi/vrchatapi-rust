@@ -18,6 +18,11 @@ pub struct UpdateGroupMemberRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub is_subscribed_to_announcements: Option<bool>,
+    #[serde(
+        rename = "isSubscribedToEventAnnouncements",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub is_subscribed_to_event_announcements: Option<bool>,
     #[serde(rename = "managerNotes", skip_serializing_if = "Option::is_none")]
     pub manager_notes: Option<String>,
 }
@@ -27,6 +32,7 @@ impl UpdateGroupMemberRequest {
         UpdateGroupMemberRequest {
             visibility: None,
             is_subscribed_to_announcements: None,
+            is_subscribed_to_event_announcements: None,
             manager_notes: None,
         }
     }

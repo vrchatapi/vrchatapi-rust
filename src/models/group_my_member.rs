@@ -45,6 +45,11 @@ pub struct GroupMyMember {
         skip_serializing_if = "Option::is_none"
     )]
     pub is_subscribed_to_announcements: Option<bool>,
+    #[serde(
+        rename = "isSubscribedToEventAnnouncements",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub is_subscribed_to_event_announcements: Option<bool>,
     #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
     pub visibility: Option<String>,
     #[serde(rename = "isRepresenting", skip_serializing_if = "Option::is_none")]
@@ -91,6 +96,7 @@ impl GroupMyMember {
             manager_notes: None,
             membership_status: None,
             is_subscribed_to_announcements: None,
+            is_subscribed_to_event_announcements: None,
             visibility: None,
             is_representing: None,
             joined_at: None,

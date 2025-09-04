@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **String** |  | 
+**apple_product_id** | **String** |  | 
 **steam_item_id** | **String** |  | 
 **oculus_sku** | **String** |  | 
 **google_product_id** | Option<**String**> |  | [optional]

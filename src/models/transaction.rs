@@ -33,8 +33,8 @@ pub struct Transaction {
     pub steam: Option<models::TransactionSteamInfo>,
     #[serde(rename = "agreement", skip_serializing_if = "Option::is_none")]
     pub agreement: Option<models::TransactionAgreement>,
-    #[serde(rename = "error")]
-    pub error: String,
+    #[serde(rename = "error", deserialize_with = "Option::deserialize")]
+    pub error: Option<String>,
     #[serde(rename = "isGift", skip_serializing_if = "Option::is_none")]
     pub is_gift: Option<bool>,
     #[serde(rename = "isTokens", skip_serializing_if = "Option::is_none")]
@@ -49,7 +49,7 @@ impl Transaction {
         sandbox: bool,
         created_at: String,
         updated_at: String,
-        error: String,
+        error: Option<String>,
     ) -> Transaction {
         Transaction {
             id,

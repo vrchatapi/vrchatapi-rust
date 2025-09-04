@@ -12,6 +12,8 @@ use serde::{Deserialize, Serialize};
 /// LimitedUnityPackage :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedUnityPackage {
+    #[serde(rename = "created_at", deserialize_with = "Option::deserialize")]
+    pub created_at: Option<String>,
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "platform")]
     pub platform: String,
@@ -20,8 +22,13 @@ pub struct LimitedUnityPackage {
 }
 
 impl LimitedUnityPackage {
-    pub fn new(platform: String, unity_version: String) -> LimitedUnityPackage {
+    pub fn new(
+        created_at: Option<String>,
+        platform: String,
+        unity_version: String,
+    ) -> LimitedUnityPackage {
         LimitedUnityPackage {
+            created_at,
             platform,
             unity_version,
         }

@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **updated_at** | **String** |  | 
 **steam** | Option<[**models::TransactionSteamInfo**](TransactionSteamInfo.md)> |  | [optional]
 **agreement** | Option<[**models::TransactionAgreement**](TransactionAgreement.md)> |  | [optional]
-**error** | **String** |  | 
+**error** | Option<**String**> |  | 
 **is_gift** | Option<**bool**> |  | [optional][default to false]
 **is_tokens** | Option<**bool**> |  | [optional][default to false]
 
