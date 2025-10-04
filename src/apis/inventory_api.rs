@@ -43,10 +43,34 @@ pub enum GetOwnInventoryItemError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`share_inventory_item_direct`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ShareInventoryItemDirectError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`share_inventory_item_pedestal`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ShareInventoryItemPedestalError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`spawn_inventory_item`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SpawnInventoryItemError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`update_own_inventory_item`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UpdateOwnInventoryItemError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -56,8 +80,13 @@ pub async fn get_inventory(
     configuration: &configuration::Configuration,
     n: Option<i32>,
     offset: Option<i32>,
-    inventory_sort_order: Option<&str>,
-    inventory_item_type: Option<models::InventoryItemType>,
+    order: Option<&str>,
+    tags: Option<&str>,
+    types: Option<models::InventoryItemType>,
+    flags: Option<models::InventoryFlag>,
+    not_types: Option<models::InventoryItemType>,
+    not_flags: Option<models::InventoryFlag>,
+    archived: Option<bool>,
 ) -> Result<models::Inventory, Error<GetInventoryError>> {
     let local_var_configuration = configuration;
 
@@ -74,13 +103,33 @@ pub async fn get_inventory(
         local_var_req_builder =
             local_var_req_builder.query(&[("offset", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = inventory_sort_order {
+    if let Some(ref local_var_str) = order {
         local_var_req_builder =
-            local_var_req_builder.query(&[("inventorySortOrder", &local_var_str.to_string())]);
+            local_var_req_builder.query(&[("order", &local_var_str.to_string())]);
     }
-    if let Some(ref local_var_str) = inventory_item_type {
+    if let Some(ref local_var_str) = tags {
         local_var_req_builder =
-            local_var_req_builder.query(&[("inventoryItemType", &local_var_str.to_string())]);
+            local_var_req_builder.query(&[("tags", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = types {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("types", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = flags {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("flags", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = not_types {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("notTypes", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = not_flags {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("notFlags", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = archived {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("archived", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
         local_var_req_builder =
@@ -233,6 +282,96 @@ pub async fn get_own_inventory_item(
     }
 }
 
+/// Share content directly with other users.
+pub async fn share_inventory_item_direct(
+    configuration: &configuration::Configuration,
+    item_id: &str,
+    duration: i32,
+    share_inventory_item_direct_request: models::ShareInventoryItemDirectRequest,
+) -> Result<models::OkStatus, Error<ShareInventoryItemDirectError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/inventory/cloning/direct",
+        local_var_configuration.base_path
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::POST, local_var_uri_str.as_str());
+
+    local_var_req_builder = local_var_req_builder.query(&[("itemId", &item_id.to_string())]);
+    local_var_req_builder = local_var_req_builder.query(&[("duration", &duration.to_string())]);
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    local_var_req_builder = local_var_req_builder.json(&share_inventory_item_direct_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<ShareInventoryItemDirectError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Returns an InventorySpawn object.
+pub async fn share_inventory_item_pedestal(
+    configuration: &configuration::Configuration,
+    item_id: &str,
+    duration: i32,
+) -> Result<models::InventorySpawn, Error<ShareInventoryItemPedestalError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/inventory/cloning/pedestal",
+        local_var_configuration.base_path
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::GET, local_var_uri_str.as_str());
+
+    local_var_req_builder = local_var_req_builder.query(&[("itemId", &item_id.to_string())]);
+    local_var_req_builder = local_var_req_builder.query(&[("duration", &duration.to_string())]);
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<ShareInventoryItemPedestalError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
 /// Returns an InventorySpawn object.
 pub async fn spawn_inventory_item(
     configuration: &configuration::Configuration,
@@ -262,6 +401,50 @@ pub async fn spawn_inventory_item(
         serde_json::from_str(&local_var_content).map_err(Error::from)
     } else {
         let local_var_entity: Option<SpawnInventoryItemError> =
+            serde_json::from_str(&local_var_content).ok();
+        let local_var_error = ResponseContent {
+            status: local_var_status,
+            content: local_var_content,
+            entity: local_var_entity,
+        };
+        Err(Error::ResponseError(local_var_error))
+    }
+}
+
+/// Returns the modified InventoryItem object as held by the currently logged in user.
+pub async fn update_own_inventory_item(
+    configuration: &configuration::Configuration,
+    inventory_item_id: &str,
+    update_inventory_item_request: Option<models::UpdateInventoryItemRequest>,
+) -> Result<models::InventoryItem, Error<UpdateOwnInventoryItemError>> {
+    let local_var_configuration = configuration;
+
+    let local_var_client = &local_var_configuration.client;
+
+    let local_var_uri_str = format!(
+        "{}/inventory/{inventoryItemId}",
+        local_var_configuration.base_path,
+        inventoryItemId = crate::apis::urlencode(inventory_item_id)
+    );
+    let mut local_var_req_builder =
+        local_var_client.request(reqwest::Method::PUT, local_var_uri_str.as_str());
+
+    if let Some(ref local_var_user_agent) = local_var_configuration.user_agent {
+        local_var_req_builder =
+            local_var_req_builder.header(reqwest::header::USER_AGENT, local_var_user_agent.clone());
+    }
+    local_var_req_builder = local_var_req_builder.json(&update_inventory_item_request);
+
+    let local_var_req = local_var_req_builder.build()?;
+    let local_var_resp = local_var_client.execute(local_var_req).await?;
+
+    let local_var_status = local_var_resp.status();
+    let local_var_content = local_var_resp.text().await?;
+
+    if !local_var_status.is_client_error() && !local_var_status.is_server_error() {
+        serde_json::from_str(&local_var_content).map_err(Error::from)
+    } else {
+        let local_var_entity: Option<UpdateOwnInventoryItemError> =
             serde_json::from_str(&local_var_content).ok();
         let local_var_error = ResponseContent {
             status: local_var_status,

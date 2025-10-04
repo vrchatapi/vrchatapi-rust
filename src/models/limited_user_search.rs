@@ -36,8 +36,8 @@ pub struct LimitedUserSearch {
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
-    #[serde(rename = "profilePicOverride")]
-    pub profile_pic_override: String,
+    #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
+    pub profile_pic_override: Option<String>,
     #[serde(rename = "pronouns", skip_serializing_if = "Option::is_none")]
     pub pronouns: Option<String>,
     #[serde(rename = "status")]
@@ -47,8 +47,8 @@ pub struct LimitedUserSearch {
     /// <- Always empty.
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
-    #[serde(rename = "userIcon")]
-    pub user_icon: String,
+    #[serde(rename = "userIcon", skip_serializing_if = "Option::is_none")]
+    pub user_icon: Option<String>,
 }
 
 impl LimitedUserSearch {
@@ -62,11 +62,9 @@ impl LimitedUserSearch {
         id: String,
         is_friend: bool,
         last_platform: String,
-        profile_pic_override: String,
         status: models::UserStatus,
         status_description: String,
         tags: Vec<String>,
-        user_icon: String,
     ) -> LimitedUserSearch {
         LimitedUserSearch {
             bio: None,
@@ -79,12 +77,12 @@ impl LimitedUserSearch {
             id,
             is_friend,
             last_platform,
-            profile_pic_override,
+            profile_pic_override: None,
             pronouns: None,
             status,
             status_description,
             tags,
-            user_icon,
+            user_icon: None,
         }
     }
 }

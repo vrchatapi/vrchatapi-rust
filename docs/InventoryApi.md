@@ -8,13 +8,16 @@ Method | HTTP request | Description
 [**get_inventory_drops**](InventoryApi.md#get_inventory_drops) | **GET** /inventory/drops | List Inventory Drops
 [**get_inventory_template**](InventoryApi.md#get_inventory_template) | **GET** /inventory/template/{inventoryTemplateId} | Get Inventory Template
 [**get_own_inventory_item**](InventoryApi.md#get_own_inventory_item) | **GET** /inventory/{inventoryItemId} | Get Own Inventory Item
+[**share_inventory_item_direct**](InventoryApi.md#share_inventory_item_direct) | **POST** /inventory/cloning/direct | Share Inventory Item Direct
+[**share_inventory_item_pedestal**](InventoryApi.md#share_inventory_item_pedestal) | **GET** /inventory/cloning/pedestal | Share Inventory Item by Pedestal
 [**spawn_inventory_item**](InventoryApi.md#spawn_inventory_item) | **GET** /inventory/spawn | Spawn Inventory Item
+[**update_own_inventory_item**](InventoryApi.md#update_own_inventory_item) | **PUT** /inventory/{inventoryItemId} | Update Own Inventory Item
 
 
 
 ## get_inventory
 
-> models::Inventory get_inventory(n, offset, inventory_sort_order, inventory_item_type)
+> models::Inventory get_inventory(n, offset, order, tags, types, flags, not_types, not_flags, archived)
 Get Inventory
 
 Returns an Inventory object.
@@ -26,8 +29,13 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
-**inventory_sort_order** | Option<**String**> | Sort order for inventory retrieval. |  |
-**inventory_item_type** | Option<[**InventoryItemType**](.md)> | Filter for inventory retrieval. |  |
+**order** | Option<**String**> | Sort order for inventory retrieval. |  |
+**tags** | Option<**String**> | Filter tags for inventory retrieval (comma-separated). |  |
+**types** | Option<[**InventoryItemType**](.md)> | Filter for inventory retrieval. |  |
+**flags** | Option<[**InventoryFlag**](.md)> | Filter flags for inventory retrieval (comma-separated). |  |
+**not_types** | Option<[**InventoryItemType**](.md)> | Filter out types for inventory retrieval (comma-separated). |  |
+**not_flags** | Option<[**InventoryFlag**](.md)> | Filter out flags for inventory retrieval (comma-separated). |  |
+**archived** | Option<**bool**> | Filter archived status for inventory retrieval. |  |
 
 ### Return type
 
@@ -135,6 +143,69 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## share_inventory_item_direct
+
+> models::OkStatus share_inventory_item_direct(item_id, duration, share_inventory_item_direct_request)
+Share Inventory Item Direct
+
+Share content directly with other users.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**item_id** | **String** | Id for inventory item sharing. | [required] |
+**duration** | **i32** | The duration before the sharing pedestal despawns. | [required] |[default to 90]
+**share_inventory_item_direct_request** | [**ShareInventoryItemDirectRequest**](ShareInventoryItemDirectRequest.md) |  | [required] |
+
+### Return type
+
+[**models::OkStatus**](OkStatus.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## share_inventory_item_pedestal
+
+> models::InventorySpawn share_inventory_item_pedestal(item_id, duration)
+Share Inventory Item by Pedestal
+
+Returns an InventorySpawn object.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**item_id** | **String** | Id for inventory item sharing. | [required] |
+**duration** | **i32** | The duration before the sharing pedestal despawns. | [required] |[default to 90]
+
+### Return type
+
+[**models::InventorySpawn**](InventorySpawn.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## spawn_inventory_item
 
 > models::InventorySpawn spawn_inventory_item(id)
@@ -160,6 +231,37 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_own_inventory_item
+
+> models::InventoryItem update_own_inventory_item(inventory_item_id, update_inventory_item_request)
+Update Own Inventory Item
+
+Returns the modified InventoryItem object as held by the currently logged in user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**inventory_item_id** | **String** | Must be a valid inventory item ID. | [required] |
+**update_inventory_item_request** | Option<[**UpdateInventoryItemRequest**](UpdateInventoryItemRequest.md)> |  |  |
+
+### Return type
+
+[**models::InventoryItem**](InventoryItem.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

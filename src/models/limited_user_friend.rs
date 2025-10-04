@@ -53,10 +53,13 @@ pub struct LimitedUserFriend {
     pub last_mobile: Option<String>,
     #[serde(rename = "platform")]
     pub platform: String,
-    #[serde(rename = "profilePicOverride")]
-    pub profile_pic_override: String,
-    #[serde(rename = "profilePicOverrideThumbnail")]
-    pub profile_pic_override_thumbnail: String,
+    #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
+    pub profile_pic_override: Option<String>,
+    #[serde(
+        rename = "profilePicOverrideThumbnail",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub profile_pic_override_thumbnail: Option<String>,
     #[serde(rename = "status")]
     pub status: models::UserStatus,
     #[serde(rename = "statusDescription")]
@@ -64,8 +67,8 @@ pub struct LimitedUserFriend {
     /// <- Always empty.
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
-    #[serde(rename = "userIcon")]
-    pub user_icon: String,
+    #[serde(rename = "userIcon", skip_serializing_if = "Option::is_none")]
+    pub user_icon: Option<String>,
 }
 
 impl LimitedUserFriend {
@@ -84,12 +87,9 @@ impl LimitedUserFriend {
         last_activity: Option<String>,
         last_mobile: Option<String>,
         platform: String,
-        profile_pic_override: String,
-        profile_pic_override_thumbnail: String,
         status: models::UserStatus,
         status_description: String,
         tags: Vec<String>,
-        user_icon: String,
     ) -> LimitedUserFriend {
         LimitedUserFriend {
             bio: None,
@@ -109,12 +109,12 @@ impl LimitedUserFriend {
             last_activity,
             last_mobile,
             platform,
-            profile_pic_override,
-            profile_pic_override_thumbnail,
+            profile_pic_override: None,
+            profile_pic_override_thumbnail: None,
             status,
             status_description,
             tags,
-            user_icon,
+            user_icon: None,
         }
     }
 }

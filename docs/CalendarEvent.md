@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **access_type** | **String** |  | 
 **category** | Option<**String**> |  | [optional]
 **close_instance_after_end_minutes** | Option<**i32**> |  | [optional]
-**created_at** | **String** |  | 
+**created_at** | Option<**String**> |  | [optional]
 **deleted_at** | Option<**String**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
 **ends_at** | Option<**String**> |  | [optional]

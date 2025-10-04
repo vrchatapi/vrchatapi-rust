@@ -29,6 +29,7 @@
 | group_roles_assign | group-roles-assign |
 | group_roles_manage | group-roles-manage |
 | group_calendar_manage | group-calendar-manage |
+| group_instance_calendar_link | group-instance-calendar-link |
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

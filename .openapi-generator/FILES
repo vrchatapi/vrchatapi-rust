@@ -63,6 +63,7 @@ docs/CurrentUserPresence.md
 docs/DeveloperType.md
 docs/Disable2FaResult.md
 docs/DynamicContentRow.md
+docs/EconomyAccount.md
 docs/EconomyApi.md
 docs/Error.md
 docs/Favorite.md
@@ -130,6 +131,7 @@ docs/InstancesApi.md
 docs/Inventory.md
 docs/InventoryApi.md
 docs/InventoryDrop.md
+docs/InventoryFlag.md
 docs/InventoryItem.md
 docs/InventoryItemType.md
 docs/InventoryMetadata.md
@@ -166,6 +168,7 @@ docs/NotificationDetailRequestInviteResponse.md
 docs/NotificationDetailVoteToKick.md
 docs/NotificationType.md
 docs/NotificationsApi.md
+docs/OkStatus.md
 docs/OrderOption.md
 docs/PaginatedCalendarEventList.md
 docs/PaginatedGroupAuditLogEntryList.md
@@ -201,7 +204,12 @@ docs/Response.md
 docs/SentNotification.md
 docs/ServiceQueueStats.md
 docs/ServiceStatus.md
+docs/ShareInventoryItemDirectRequest.md
 docs/SortOption.md
+docs/Store.md
+docs/StoreShelf.md
+docs/StoreType.md
+docs/StoreView.md
 docs/Submission.md
 docs/Subscription.md
 docs/SubscriptionPeriod.md
@@ -227,6 +235,7 @@ docs/UpdateGroupMemberRequest.md
 docs/UpdateGroupRepresentationRequest.md
 docs/UpdateGroupRequest.md
 docs/UpdateGroupRoleRequest.md
+docs/UpdateInventoryItemRequest.md
 docs/UpdateInviteMessageRequest.md
 docs/UpdateUserBadgeRequest.md
 docs/UpdateUserNoteRequest.md
@@ -239,6 +248,7 @@ docs/UserNoteTargetUser.md
 docs/UserState.md
 docs/UserStatus.md
 docs/UserSubscription.md
+docs/UserSubscriptionEligible.md
 docs/UsersApi.md
 docs/Verify2FaEmailCodeResult.md
 docs/Verify2FaResult.md
@@ -330,6 +340,7 @@ src/models/current_user_presence.rs
 src/models/developer_type.rs
 src/models/disable2_fa_result.rs
 src/models/dynamic_content_row.rs
+src/models/economy_account.rs
 src/models/error.rs
 src/models/favorite.rs
 src/models/favorite_group.rs
@@ -390,6 +401,7 @@ src/models/instance_short_name_response.rs
 src/models/instance_type.rs
 src/models/inventory.rs
 src/models/inventory_drop.rs
+src/models/inventory_flag.rs
 src/models/inventory_item.rs
 src/models/inventory_item_type.rs
 src/models/inventory_metadata.rs
@@ -423,6 +435,7 @@ src/models/notification_detail_request_invite.rs
 src/models/notification_detail_request_invite_response.rs
 src/models/notification_detail_vote_to_kick.rs
 src/models/notification_type.rs
+src/models/ok_status.rs
 src/models/order_option.rs
 src/models/paginated_calendar_event_list.rs
 src/models/paginated_group_audit_log_entry_list.rs
@@ -455,7 +468,12 @@ src/models/response.rs
 src/models/sent_notification.rs
 src/models/service_queue_stats.rs
 src/models/service_status.rs
+src/models/share_inventory_item_direct_request.rs
 src/models/sort_option.rs
+src/models/store.rs
+src/models/store_shelf.rs
+src/models/store_type.rs
+src/models/store_view.rs
 src/models/submission.rs
 src/models/subscription.rs
 src/models/subscription_period.rs
@@ -481,6 +499,7 @@ src/models/update_group_member_request.rs
 src/models/update_group_representation_request.rs
 src/models/update_group_request.rs
 src/models/update_group_role_request.rs
+src/models/update_inventory_item_request.rs
 src/models/update_invite_message_request.rs
 src/models/update_user_badge_request.rs
 src/models/update_user_note_request.rs
@@ -493,6 +512,7 @@ src/models/user_note_target_user.rs
 src/models/user_state.rs
 src/models/user_status.rs
 src/models/user_subscription.rs
+src/models/user_subscription_eligible.rs
 src/models/verify2_fa_email_code_result.rs
 src/models/verify2_fa_result.rs
 src/models/verify_auth_token_result.rs

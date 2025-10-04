@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**get_group_calendar_event**](CalendarApi.md#get_group_calendar_event) | **GET** /calendar/{groupId}/{calendarId} | Get a calendar event
 [**get_group_calendar_event_ics**](CalendarApi.md#get_group_calendar_event_ics) | **GET** /calendar/{groupId}/{calendarId}.ics | Download calendar event as ICS
 [**get_group_calendar_events**](CalendarApi.md#get_group_calendar_events) | **GET** /calendar/{groupId} | List a group's calendar events
+[**search_calendar_events**](CalendarApi.md#search_calendar_events) | **GET** /calendar/search | Search for calendar events
 [**update_group_calendar_event**](CalendarApi.md#update_group_calendar_event) | **PUT** /calendar/{groupId}/{calendarId}/event | Update a calendar event
 
 
@@ -283,6 +284,39 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
 **date** | Option<**String**> | The month to search in. |  |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+
+### Return type
+
+[**models::PaginatedCalendarEventList**](PaginatedCalendarEventList.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## search_calendar_events
+
+> models::PaginatedCalendarEventList search_calendar_events(search_term, utc_offset, n, offset)
+Search for calendar events
+
+Get a list of calendar events by search terms
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**search_term** | **String** | Search term for calendar events. | [required] |
+**utc_offset** | Option<**i32**> | The offset from UTC in hours of the client or authenticated user. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 

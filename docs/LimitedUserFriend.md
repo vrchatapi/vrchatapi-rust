@@ -21,12 +21,12 @@ Name | Type | Description | Notes
 **last_activity** | Option<**String**> |  | 
 **last_mobile** | Option<**String**> |  | 
 **platform** | **String** |  | 
-**profile_pic_override** | **String** |  | 
-**profile_pic_override_thumbnail** | **String** |  | 
+**profile_pic_override** | Option<**String**> |  | [optional]
+**profile_pic_override_thumbnail** | Option<**String**> |  | [optional]
 **status** | [**models::UserStatus**](UserStatus.md) |  | 
 **status_description** | **String** |  | 
 **tags** | **Vec<String>** | <- Always empty. | 
-**user_icon** | **String** |  | 
+**user_icon** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

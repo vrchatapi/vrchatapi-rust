@@ -55,10 +55,13 @@ pub struct LimitedUserInstance {
     pub last_mobile: Option<String>,
     #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
     pub platform: Option<String>,
-    #[serde(rename = "profilePicOverride")]
-    pub profile_pic_override: String,
-    #[serde(rename = "profilePicOverrideThumbnail")]
-    pub profile_pic_override_thumbnail: String,
+    #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
+    pub profile_pic_override: Option<String>,
+    #[serde(
+        rename = "profilePicOverrideThumbnail",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub profile_pic_override_thumbnail: Option<String>,
     #[serde(rename = "pronouns")]
     pub pronouns: String,
     #[serde(rename = "state")]
@@ -69,8 +72,8 @@ pub struct LimitedUserInstance {
     pub status_description: String,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
-    #[serde(rename = "userIcon")]
-    pub user_icon: String,
+    #[serde(rename = "userIcon", skip_serializing_if = "Option::is_none")]
+    pub user_icon: Option<String>,
 }
 
 impl LimitedUserInstance {
@@ -91,14 +94,11 @@ impl LimitedUserInstance {
         last_platform: String,
         last_activity: Option<String>,
         last_mobile: Option<String>,
-        profile_pic_override: String,
-        profile_pic_override_thumbnail: String,
         pronouns: String,
         state: models::UserState,
         status: models::UserStatus,
         status_description: String,
         tags: Vec<String>,
-        user_icon: String,
     ) -> LimitedUserInstance {
         LimitedUserInstance {
             age_verification_status,
@@ -120,14 +120,14 @@ impl LimitedUserInstance {
             last_activity,
             last_mobile,
             platform: None,
-            profile_pic_override,
-            profile_pic_override_thumbnail,
+            profile_pic_override: None,
+            profile_pic_override_thumbnail: None,
             pronouns,
             state,
             status,
             status_description,
             tags,
-            user_icon,
+            user_icon: None,
         }
     }
 }

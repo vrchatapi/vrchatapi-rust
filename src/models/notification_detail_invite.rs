@@ -13,7 +13,7 @@ use serde::{Deserialize, Serialize};
 pub struct NotificationDetailInvite {
     #[serde(rename = "inviteMessage", skip_serializing_if = "Option::is_none")]
     pub invite_message: Option<String>,
-    /// WorldID be \"offline\" on User profiles if you are not friends with that user.
+    /// Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list.
     #[serde(rename = "worldId")]
     pub world_id: String,
     #[serde(rename = "worldName")]

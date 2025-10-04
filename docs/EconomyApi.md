@@ -4,18 +4,51 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**get_active_licenses**](EconomyApi.md#get_active_licenses) | **GET** /economy/licenses/active | Get Active Licenses
 [**get_balance**](EconomyApi.md#get_balance) | **GET** /user/{userId}/balance | Get Balance
+[**get_balance_earnings**](EconomyApi.md#get_balance_earnings) | **GET** /user/{userId}/balance/earnings | Get Balance Earnings
 [**get_current_subscriptions**](EconomyApi.md#get_current_subscriptions) | **GET** /auth/user/subscription | Get Current Subscriptions
+[**get_economy_account**](EconomyApi.md#get_economy_account) | **GET** /user/{userId}/economy/account | Get Economy Account
 [**get_license_group**](EconomyApi.md#get_license_group) | **GET** /licenseGroups/{licenseGroupId} | Get License Group
 [**get_product_listing**](EconomyApi.md#get_product_listing) | **GET** /listing/{productId} | Get Product Listing
 [**get_product_listings**](EconomyApi.md#get_product_listings) | **GET** /user/{userId}/listings | Get User Product Listings
 [**get_steam_transaction**](EconomyApi.md#get_steam_transaction) | **GET** /Steam/transactions/{transactionId} | Get Steam Transaction
 [**get_steam_transactions**](EconomyApi.md#get_steam_transactions) | **GET** /Steam/transactions | List Steam Transactions
+[**get_store**](EconomyApi.md#get_store) | **GET** /economy/store | Get Store
+[**get_store_shelves**](EconomyApi.md#get_store_shelves) | **GET** /economy/store/shelves | Get Store Shelves
 [**get_subscriptions**](EconomyApi.md#get_subscriptions) | **GET** /subscriptions | List Subscriptions
 [**get_tilia_status**](EconomyApi.md#get_tilia_status) | **GET** /tilia/status | Get Tilia Status
 [**get_tilia_tos**](EconomyApi.md#get_tilia_tos) | **GET** /user/{userId}/tilia/tos | Get Tilia TOS Agreement Status
 [**get_token_bundles**](EconomyApi.md#get_token_bundles) | **GET** /tokenBundles | List Token Bundles
+[**get_user_subscription_eligible**](EconomyApi.md#get_user_subscription_eligible) | **GET** /users/{userId}/subscription/eligible | Get User Subscription Eligiblity
 
+
+
+## get_active_licenses
+
+> Vec<models::License> get_active_licenses()
+Get Active Licenses
+
+Gets active licenses
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Vec<models::License>**](License.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## get_balance
@@ -24,6 +57,36 @@ Method | HTTP request | Description
 Get Balance
 
 Gets the balance of a user
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**models::Balance**](Balance.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_balance_earnings
+
+> models::Balance get_balance_earnings(user_id)
+Get Balance Earnings
+
+Gets the balance of a user from earnings
 
 ### Parameters
 
@@ -62,6 +125,36 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**Vec<models::UserSubscription>**](UserSubscription.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_economy_account
+
+> models::EconomyAccount get_economy_account(user_id)
+Get Economy Account
+
+Gets the economy account of a user
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**models::EconomyAccount**](EconomyAccount.md)
 
 ### Authorization
 
@@ -228,6 +321,70 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_store
+
+> models::Store get_store(store_id, hydrate_listings, hydrate_products)
+Get Store
+
+Gets a store
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**store_id** | **String** |  | [required] |
+**hydrate_listings** | Option<**bool**> | Listings fields will be populated. |  |
+**hydrate_products** | Option<**bool**> | Products fields will be populated. |  |
+
+### Return type
+
+[**models::Store**](Store.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_store_shelves
+
+> Vec<models::StoreShelf> get_store_shelves(store_id, hydrate_listings, fetch)
+Get Store Shelves
+
+Gets the shelves for a store
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**store_id** | **String** |  | [required] |
+**hydrate_listings** | Option<**bool**> | Listings fields will be populated. |  |
+**fetch** | Option<[**StoreView**](.md)> |  |  |
+
+### Return type
+
+[**Vec<models::StoreShelf>**](StoreShelf.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_subscriptions
 
 > Vec<models::Subscription> get_subscriptions()
@@ -326,6 +483,37 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**Vec<models::TokenBundle>**](TokenBundle.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_subscription_eligible
+
+> models::UserSubscriptionEligible get_user_subscription_eligible(user_id, steam_id)
+Get User Subscription Eligiblity
+
+Get the user's eligibility status for subscriptions.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**steam_id** | Option<**String**> | The Steam ID of the user. |  |
+
+### Return type
+
+[**models::UserSubscriptionEligible**](UserSubscriptionEligible.md)
 
 ### Authorization
 

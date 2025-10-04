@@ -21,8 +21,8 @@ pub struct CalendarEvent {
         skip_serializing_if = "Option::is_none"
     )]
     pub close_instance_after_end_minutes: Option<i32>,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
+    #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
+    pub created_at: Option<String>,
     #[serde(
         rename = "deletedAt",
         default,
@@ -97,17 +97,12 @@ pub struct CalendarEvent {
 }
 
 impl CalendarEvent {
-    pub fn new(
-        access_type: String,
-        created_at: String,
-        id: String,
-        title: String,
-    ) -> CalendarEvent {
+    pub fn new(access_type: String, id: String, title: String) -> CalendarEvent {
         CalendarEvent {
             access_type,
             category: None,
             close_instance_after_end_minutes: None,
-            created_at,
+            created_at: None,
             deleted_at: None,
             description: None,
             ends_at: None,
