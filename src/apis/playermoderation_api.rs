@@ -86,7 +86,8 @@ pub async fn clear_all_player_moderations(
 /// Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
 pub async fn get_player_moderations(
     configuration: &configuration::Configuration,
-    r#type: Option<&str>,
+    r#type: Option<models::PlayerModerationType>,
+    source_user_id: Option<&str>,
     target_user_id: Option<&str>,
 ) -> Result<Vec<models::PlayerModeration>, Error<GetPlayerModerationsError>> {
     let local_var_configuration = configuration;
@@ -103,6 +104,10 @@ pub async fn get_player_moderations(
     if let Some(ref local_var_str) = r#type {
         local_var_req_builder =
             local_var_req_builder.query(&[("type", &local_var_str.to_string())]);
+    }
+    if let Some(ref local_var_str) = source_user_id {
+        local_var_req_builder =
+            local_var_req_builder.query(&[("sourceUserId", &local_var_str.to_string())]);
     }
     if let Some(ref local_var_str) = target_user_id {
         local_var_req_builder =

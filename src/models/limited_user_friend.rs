@@ -17,8 +17,11 @@ pub struct LimitedUserFriend {
     #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
     pub bio_links: Option<Vec<String>>,
     /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarImageUrl")]
-    pub current_avatar_image_url: String,
+    #[serde(
+        rename = "currentAvatarImageUrl",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub current_avatar_image_url: Option<String>,
     /// When profilePicOverride is not empty, use it instead.
     #[serde(
         rename = "currentAvatarThumbnailImageUrl",
@@ -74,7 +77,6 @@ pub struct LimitedUserFriend {
 impl LimitedUserFriend {
     /// User object received when querying your friends list
     pub fn new(
-        current_avatar_image_url: String,
         developer_type: models::DeveloperType,
         display_name: String,
         friend_key: String,
@@ -94,7 +96,7 @@ impl LimitedUserFriend {
         LimitedUserFriend {
             bio: None,
             bio_links: None,
-            current_avatar_image_url,
+            current_avatar_image_url: None,
             current_avatar_thumbnail_image_url: None,
             current_avatar_tags: None,
             developer_type,

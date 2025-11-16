@@ -32,6 +32,8 @@ docs/ApiConfigReportReasons.md
 docs/ApiHealth.md
 docs/AuthenticationApi.md
 docs/Avatar.md
+docs/AvatarModeration.md
+docs/AvatarModerationType.md
 docs/AvatarPerformance.md
 docs/AvatarPublishedListingsInner.md
 docs/AvatarStyle.md
@@ -56,12 +58,14 @@ docs/CreateGroupPostRequest.md
 docs/CreateGroupRequest.md
 docs/CreateGroupRoleRequest.md
 docs/CreateInstanceRequest.md
+docs/CreatePermissionRequest.md
 docs/CreateWorldRequest.md
 docs/CurrentUser.md
 docs/CurrentUserPlatformHistoryInner.md
 docs/CurrentUserPresence.md
 docs/DeveloperType.md
 docs/Disable2FaResult.md
+docs/DiscordDetails.md
 docs/DynamicContentRow.md
 docs/EconomyAccount.md
 docs/EconomyApi.md
@@ -237,6 +241,7 @@ docs/UpdateGroupRequest.md
 docs/UpdateGroupRoleRequest.md
 docs/UpdateInventoryItemRequest.md
 docs/UpdateInviteMessageRequest.md
+docs/UpdatePermissionRequest.md
 docs/UpdateUserBadgeRequest.md
 docs/UpdateUserNoteRequest.md
 docs/UpdateUserRequest.md
@@ -311,6 +316,8 @@ src/models/api_config_report_options_world.rs
 src/models/api_config_report_reasons.rs
 src/models/api_health.rs
 src/models/avatar.rs
+src/models/avatar_moderation.rs
+src/models/avatar_moderation_type.rs
 src/models/avatar_performance.rs
 src/models/avatar_published_listings_inner.rs
 src/models/avatar_style.rs
@@ -333,12 +340,14 @@ src/models/create_group_post_request.rs
 src/models/create_group_request.rs
 src/models/create_group_role_request.rs
 src/models/create_instance_request.rs
+src/models/create_permission_request.rs
 src/models/create_world_request.rs
 src/models/current_user.rs
 src/models/current_user_platform_history_inner.rs
 src/models/current_user_presence.rs
 src/models/developer_type.rs
 src/models/disable2_fa_result.rs
+src/models/discord_details.rs
 src/models/dynamic_content_row.rs
 src/models/economy_account.rs
 src/models/error.rs
@@ -501,6 +510,7 @@ src/models/update_group_request.rs
 src/models/update_group_role_request.rs
 src/models/update_inventory_item_request.rs
 src/models/update_invite_message_request.rs
+src/models/update_permission_request.rs
 src/models/update_user_badge_request.rs
 src/models/update_user_note_request.rs
 src/models/update_user_request.rs

@@ -23,6 +23,8 @@ Name | Type | Description | Notes
 **current_avatar_tags** | **Vec<String>** |  | 
 **date_joined** | [**String**](string.md) |  | 
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 
+**discord_details** | Option<[**models::DiscordDetails**](DiscordDetails.md)> |  | [optional]
+**discord_id** | Option<**String**> | https://discord.com/developers/docs/reference#snowflakes | [optional]
 **display_name** | **String** |  | 
 **email_verified** | **bool** |  | 
 **fallback_avatar** | Option<**String**> |  | [optional]

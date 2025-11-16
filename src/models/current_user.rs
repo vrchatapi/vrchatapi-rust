@@ -67,6 +67,11 @@ pub struct CurrentUser {
     pub date_joined: String,
     #[serde(rename = "developerType")]
     pub developer_type: models::DeveloperType,
+    #[serde(rename = "discordDetails", skip_serializing_if = "Option::is_none")]
+    pub discord_details: Option<models::DiscordDetails>,
+    /// https://discord.com/developers/docs/reference#snowflakes
+    #[serde(rename = "discordId", skip_serializing_if = "Option::is_none")]
+    pub discord_id: Option<String>,
     #[serde(rename = "displayName")]
     pub display_name: String,
     #[serde(rename = "emailVerified")]
@@ -278,6 +283,8 @@ impl CurrentUser {
             current_avatar_tags,
             date_joined,
             developer_type,
+            discord_details: None,
+            discord_id: None,
             display_name,
             email_verified,
             fallback_avatar: None,

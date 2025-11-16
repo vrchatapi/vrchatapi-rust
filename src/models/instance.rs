@@ -28,10 +28,15 @@ pub struct Instance {
     /// Always returns \"unknown\".
     #[serde(rename = "clientNumber")]
     pub client_number: String,
-    #[serde(rename = "contentSettings")]
-    pub content_settings: models::InstanceContentSettings,
-    #[serde(rename = "displayName", deserialize_with = "Option::deserialize")]
-    pub display_name: Option<String>,
+    #[serde(rename = "contentSettings", skip_serializing_if = "Option::is_none")]
+    pub content_settings: Option<models::InstanceContentSettings>,
+    #[serde(
+        rename = "displayName",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub display_name: Option<Option<String>>,
     #[serde(rename = "full")]
     pub full: bool,
     #[serde(rename = "gameServerVersion", skip_serializing_if = "Option::is_none")]
@@ -44,9 +49,11 @@ pub struct Instance {
     pub instance_id: String,
     #[serde(
         rename = "instancePersistenceEnabled",
-        deserialize_with = "Option::deserialize"
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
     )]
-    pub instance_persistence_enabled: Option<String>,
+    pub instance_persistence_enabled: Option<Option<String>>,
     /// Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list.
     #[serde(rename = "location")]
     pub location: String,
@@ -70,9 +77,11 @@ pub struct Instance {
     pub platforms: models::InstancePlatforms,
     #[serde(
         rename = "playerPersistenceEnabled",
-        deserialize_with = "Option::deserialize"
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
     )]
-    pub player_persistence_enabled: Option<bool>,
+    pub player_persistence_enabled: Option<Option<bool>>,
     #[serde(rename = "region")]
     pub region: models::InstanceRegion,
     #[serde(rename = "secureName")]
@@ -147,19 +156,15 @@ impl Instance {
         can_request_invite: bool,
         capacity: i32,
         client_number: String,
-        content_settings: models::InstanceContentSettings,
-        display_name: Option<String>,
         full: bool,
         id: String,
         instance_id: String,
-        instance_persistence_enabled: Option<String>,
         location: String,
         n_users: i32,
         name: String,
         permanent: bool,
         photon_region: models::Region,
         platforms: models::InstancePlatforms,
-        player_persistence_enabled: Option<bool>,
         region: models::InstanceRegion,
         secure_name: String,
         tags: Vec<String>,
@@ -178,13 +183,13 @@ impl Instance {
             can_request_invite,
             capacity,
             client_number,
-            content_settings,
-            display_name,
+            content_settings: None,
+            display_name: None,
             full,
             game_server_version: None,
             id,
             instance_id,
-            instance_persistence_enabled,
+            instance_persistence_enabled: None,
             location,
             n_users,
             name,
@@ -192,7 +197,7 @@ impl Instance {
             permanent,
             photon_region,
             platforms,
-            player_persistence_enabled,
+            player_persistence_enabled: None,
             region,
             secure_name,
             short_name: None,

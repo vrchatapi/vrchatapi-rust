@@ -11,14 +11,20 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum PlayerModerationType {
-    #[serde(rename = "mute")]
-    Mute,
-    #[serde(rename = "unmute")]
-    Unmute,
     #[serde(rename = "block")]
     Block,
-    #[serde(rename = "unblock")]
-    Unblock,
+    #[serde(rename = "mute")]
+    Mute,
+    #[serde(rename = "muteChat")]
+    MuteChat,
+    #[serde(rename = "unmute")]
+    Unmute,
+    #[serde(rename = "unmuteChat")]
+    UnmuteChat,
+    #[serde(rename = "hideAvatar")]
+    HideAvatar,
+    #[serde(rename = "showAvatar")]
+    ShowAvatar,
     #[serde(rename = "interactOn")]
     InteractOn,
     #[serde(rename = "interactOff")]
@@ -28,10 +34,13 @@ pub enum PlayerModerationType {
 impl std::fmt::Display for PlayerModerationType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::Mute => write!(f, "mute"),
-            Self::Unmute => write!(f, "unmute"),
             Self::Block => write!(f, "block"),
-            Self::Unblock => write!(f, "unblock"),
+            Self::Mute => write!(f, "mute"),
+            Self::MuteChat => write!(f, "muteChat"),
+            Self::Unmute => write!(f, "unmute"),
+            Self::UnmuteChat => write!(f, "unmuteChat"),
+            Self::HideAvatar => write!(f, "hideAvatar"),
+            Self::ShowAvatar => write!(f, "showAvatar"),
             Self::InteractOn => write!(f, "interactOn"),
             Self::InteractOff => write!(f, "interactOff"),
         }
@@ -40,6 +49,6 @@ impl std::fmt::Display for PlayerModerationType {
 
 impl Default for PlayerModerationType {
     fn default() -> PlayerModerationType {
-        Self::Mute
+        Self::Block
     }
 }

@@ -5,12 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **access_type** | **String** |  | 
-**category** | Option<**String**> |  | [optional]
+**category** | **String** |  | 
 **close_instance_after_end_minutes** | Option<**i32**> |  | [optional]
 **created_at** | Option<**String**> |  | [optional]
 **deleted_at** | Option<**String**> |  | [optional]
-**description** | Option<**String**> |  | [optional]
-**ends_at** | Option<**String**> |  | [optional]
+**description** | **String** |  | 
+**ends_at** | **String** |  | 
 **featured** | Option<**bool**> |  | [optional]
 **guest_early_join_minutes** | Option<**i32**> |  | [optional]
 **host_early_join_minutes** | Option<**i32**> |  | [optional]
@@ -23,7 +23,7 @@ Name | Type | Description | Notes
 **owner_id** | Option<**String**> |  | [optional]
 **platforms** | Option<**Vec<String>**> |   | [optional]
 **role_ids** | Option<**Vec<String>**> |   | [optional]
-**starts_at** | Option<**String**> |  | [optional]
+**starts_at** | **String** |  | 
 **tags** | Option<**Vec<String>**> |   | [optional]
 **title** | **String** |  | 
 **r#type** | Option<**String**> |  | [optional]

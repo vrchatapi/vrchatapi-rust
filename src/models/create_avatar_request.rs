@@ -40,6 +40,9 @@ pub struct CreateAvatarRequest {
     pub release_status: Option<models::ReleaseStatus>,
     #[serde(rename = "version", skip_serializing_if = "Option::is_none")]
     pub version: Option<i32>,
+    /// Enabling featured tag requires Admin Credentials.
+    #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
+    pub featured: Option<bool>,
     #[serde(rename = "unityPackageUrl", skip_serializing_if = "Option::is_none")]
     pub unity_package_url: Option<String>,
     #[serde(rename = "unityVersion", skip_serializing_if = "Option::is_none")]
@@ -62,6 +65,7 @@ impl CreateAvatarRequest {
             thumbnail_image_url: None,
             release_status: None,
             version: None,
+            featured: None,
             unity_package_url: None,
             unity_version: None,
         }

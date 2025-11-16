@@ -14,8 +14,8 @@ use serde::{Deserialize, Serialize};
 pub struct CalendarEvent {
     #[serde(rename = "accessType")]
     pub access_type: String,
-    #[serde(rename = "category", skip_serializing_if = "Option::is_none")]
-    pub category: Option<String>,
+    #[serde(rename = "category")]
+    pub category: String,
     #[serde(
         rename = "closeInstanceAfterEndMinutes",
         skip_serializing_if = "Option::is_none"
@@ -30,10 +30,10 @@ pub struct CalendarEvent {
         skip_serializing_if = "Option::is_none"
     )]
     pub deleted_at: Option<Option<String>>,
-    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
-    #[serde(rename = "endsAt", skip_serializing_if = "Option::is_none")]
-    pub ends_at: Option<String>,
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "endsAt")]
+    pub ends_at: String,
     #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
     pub featured: Option<bool>,
     #[serde(
@@ -77,8 +77,8 @@ pub struct CalendarEvent {
         skip_serializing_if = "Option::is_none"
     )]
     pub role_ids: Option<Option<Vec<String>>>,
-    #[serde(rename = "startsAt", skip_serializing_if = "Option::is_none")]
-    pub starts_at: Option<String>,
+    #[serde(rename = "startsAt")]
+    pub starts_at: String,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     #[serde(rename = "title")]
@@ -97,15 +97,23 @@ pub struct CalendarEvent {
 }
 
 impl CalendarEvent {
-    pub fn new(access_type: String, id: String, title: String) -> CalendarEvent {
+    pub fn new(
+        access_type: String,
+        category: String,
+        description: String,
+        ends_at: String,
+        id: String,
+        starts_at: String,
+        title: String,
+    ) -> CalendarEvent {
         CalendarEvent {
             access_type,
-            category: None,
+            category,
             close_instance_after_end_minutes: None,
             created_at: None,
             deleted_at: None,
-            description: None,
-            ends_at: None,
+            description,
+            ends_at,
             featured: None,
             guest_early_join_minutes: None,
             host_early_join_minutes: None,
@@ -118,7 +126,7 @@ impl CalendarEvent {
             owner_id: None,
             platforms: None,
             role_ids: None,
-            starts_at: None,
+            starts_at,
             tags: None,
             title,
             r#type: None,

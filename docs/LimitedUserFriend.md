@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bio** | Option<**String**> |  | [optional]
 **bio_links** | Option<**Vec<String>**> |   | [optional]
-**current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
+**current_avatar_image_url** | Option<**String**> | When profilePicOverride is not empty, use it instead. | [optional]
 **current_avatar_thumbnail_image_url** | Option<**String**> | When profilePicOverride is not empty, use it instead. | [optional]
 **current_avatar_tags** | Option<**Vec<String>**> |  | [optional]
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 

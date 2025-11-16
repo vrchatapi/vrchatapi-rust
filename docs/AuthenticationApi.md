@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**disable2_fa**](AuthenticationApi.md#disable2_fa) | **DELETE** /auth/twofactorauth | Disable 2FA
 [**enable2_fa**](AuthenticationApi.md#enable2_fa) | **POST** /auth/twofactorauth/totp/pending | Enable time-based 2FA codes
 [**get_current_user**](AuthenticationApi.md#get_current_user) | **GET** /auth/user | Login and/or Get Current User Info
+[**get_global_avatar_moderations**](AuthenticationApi.md#get_global_avatar_moderations) | **GET** /auth/user/avatarmoderations | Get Global Avatar Moderations
 [**get_recovery_codes**](AuthenticationApi.md#get_recovery_codes) | **GET** /auth/user/twofactorauth/otp | Get 2FA Recovery codes
 [**logout**](AuthenticationApi.md#logout) | **PUT** /logout | Logout
 [**register_user_account**](AuthenticationApi.md#register_user_account) | **POST** /auth/register | Register User Account
@@ -217,6 +218,33 @@ This endpoint does not need any parameter.
 ### Authorization
 
 [authHeader](../README.md#authHeader), [twoFactorAuthCookie](../README.md#twoFactorAuthCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_global_avatar_moderations
+
+> Vec<models::AvatarModeration> get_global_avatar_moderations()
+Get Global Avatar Moderations
+
+Returns list of globally blocked avatars.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Vec<models::AvatarModeration>**](AvatarModeration.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
