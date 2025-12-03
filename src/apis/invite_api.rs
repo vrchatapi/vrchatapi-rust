@@ -323,7 +323,9 @@ pub async fn invite_user(
 pub async fn invite_user_with_photo(
     configuration: &configuration::Configuration,
     user_id: &str,
-    image: std::path::PathBuf,
+    image: impl Into<::std::borrow::Cow<'static, [u8]>>,
+    filename: impl Into<::std::borrow::Cow<'static, str>>,
+    mime_type: &str,
     data: models::InviteRequest,
 ) -> Result<models::SentNotification, Error<InviteUserWithPhotoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -344,7 +346,10 @@ pub async fn invite_user_with_photo(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    // TODO: support file upload for 'image' parameter
+    let part = reqwest::multipart::Part::bytes(p_form_image)
+        .file_name(filename)
+        .mime_str(mime_type)?;
+    multipart_form = multipart_form.part("image", part);
     multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
     req_builder = req_builder.multipart(multipart_form);
 
@@ -434,7 +439,9 @@ pub async fn request_invite(
 pub async fn request_invite_with_photo(
     configuration: &configuration::Configuration,
     user_id: &str,
-    image: std::path::PathBuf,
+    image: impl Into<::std::borrow::Cow<'static, [u8]>>,
+    filename: impl Into<::std::borrow::Cow<'static, str>>,
+    mime_type: &str,
     data: models::RequestInviteRequest,
 ) -> Result<models::Notification, Error<RequestInviteWithPhotoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -455,7 +462,10 @@ pub async fn request_invite_with_photo(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    // TODO: support file upload for 'image' parameter
+    let part = reqwest::multipart::Part::bytes(p_form_image)
+        .file_name(filename)
+        .mime_str(mime_type)?;
+    multipart_form = multipart_form.part("image", part);
     multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
     req_builder = req_builder.multipart(multipart_form);
 
@@ -601,7 +611,9 @@ pub async fn respond_invite(
 pub async fn respond_invite_with_photo(
     configuration: &configuration::Configuration,
     notification_id: &str,
-    image: std::path::PathBuf,
+    image: impl Into<::std::borrow::Cow<'static, [u8]>>,
+    filename: impl Into<::std::borrow::Cow<'static, str>>,
+    mime_type: &str,
     data: models::InviteResponse,
 ) -> Result<models::Notification, Error<RespondInviteWithPhotoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -622,7 +634,10 @@ pub async fn respond_invite_with_photo(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    // TODO: support file upload for 'image' parameter
+    let part = reqwest::multipart::Part::bytes(p_form_image)
+        .file_name(filename)
+        .mime_str(mime_type)?;
+    multipart_form = multipart_form.part("image", part);
     multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
     req_builder = req_builder.multipart(multipart_form);
 
