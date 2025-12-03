@@ -25,14 +25,10 @@ find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
 
 # Cookie storage
 sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
-sed -i 's/, features = \["json", "multipart"\]/, default-features = false, features = \["json", "cookies", "multipart"\]/g' Cargo.toml
+sed -i 's/, features = \["json", "multipart"\]/, features = \["json", "cookies", "multipart"\]/g' Cargo.toml
 
 #Fix example
 printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
-
-#Add feature section to Cargo.toml
-printf "\n[features]\ndefault = [\"reqwest/default\"]" >> Cargo.toml
-
 
 # https://github.com/vrchatapi/specification/issues/241
 cat patches/2FA_Current_User.rs >> src/models/current_user.rs
@@ -43,11 +39,11 @@ sed -i 's/Result<models::CurrentUser, Error<GetCurrentUserError>>/Result<models:
 sed -i "s/local_var_req_builder = local_var_req_builder.json(&\(.*\));/if let Some(\1) = \1 { \0 }/g" src/apis/files_api.rs
 
 #https://github.com/vrchatapi/vrchatapi-rust/pull/30
-perl -0pi -e 's|(fn\s+[^(]*\([^)]*)file:\s+:?:?std::path::PathBuf,?([^)]*)((?:(?!\/\/ TODO: support file upload for '\''file'\'' parameter)[\s\S])*)\/\/ TODO: support file upload for '\''file'\'' parameter|\1file: impl Into<::std::borrow::Cow<'\''static, [u8]>>,\n\tfilename: impl Into<::std::borrow::Cow<'\''static, str>>,\n\tmime_type: &str,\2\3let part = reqwest::multipart::Part::bytes(file).file_name(filename).mime_str(mime_type)?;\n\tlocal_var_form = local_var_form.part("file", part);|g' src/apis/files_api.rs
+perl -0pi -e 's|(fn\s+[^(]*\([^)]*)file:\s+:?:?std::path::PathBuf,?([^)]*)((?:(?!\/\/ TODO: support file upload for '\''file'\'' parameter)[\s\S])*)\/\/ TODO: support file upload for '\''file'\'' parameter|\1file: impl Into<::std::borrow::Cow<'\''static, [u8]>>,\n\tfilename: impl Into<::std::borrow::Cow<'\''static, str>>,\n\tmime_type: &str,\2\3let part = reqwest::multipart::Part::bytes(p_form_file).file_name(filename).mime_str(mime_type)?;\n\tmultipart_form = multipart_form.part("file", part);|g' src/apis/files_api.rs
 
 find src/ -type f -name "*.rs" -exec sed -i 's/models::models/models/g' {} +
 
-find src/ -type f -name "*.rs" -exec sed -i 's/local_var_form\.text("data", data\.to_string())/local_var_form.text("data", serde_json::to_string_pretty(\&data)?)/g' {} +
+find src/ -type f -name "*.rs" -exec sed -i 's/multipart_form\.text("data", p_form_data\.to_string())/multipart_form.text("data", serde_json::to_string_pretty(\&p_form_data)?)/g' {} +
 
 cargo fmt
 cargo build
