@@ -45,6 +45,9 @@ find src/ -type f -name "*.rs" -exec sed -i 's/models::models/models/g' {} +
 
 find src/ -type f -name "*.rs" -exec sed -i 's/multipart_form\.text("data", p_form_data\.to_string())/multipart_form.text("data", serde_json::to_string_pretty(\&p_form_data)?)/g' {} +
 
+#Hide warnings about unused variables and non-rusty type names
+sed -i 's/#!\[allow(unused_imports)\]/#![allow(unused_imports)]\n#![allow(non_camel_case_types)]/' src/lib.rs
+
 cargo fmt
 cargo build
 cargo test

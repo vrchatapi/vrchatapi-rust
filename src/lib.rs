@@ -1,4 +1,5 @@
 #![allow(unused_imports)]
+#![allow(non_camel_case_types)]
 #![allow(clippy::too_many_arguments)]
 
 extern crate reqwest;
