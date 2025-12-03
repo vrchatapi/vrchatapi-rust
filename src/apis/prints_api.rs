@@ -95,7 +95,9 @@ pub async fn delete_print(
 pub async fn edit_print(
     configuration: &configuration::Configuration,
     print_id: &str,
-    image: std::path::PathBuf,
+    image: impl Into<::std::borrow::Cow<'static, [u8]>>,
+    filename: impl Into<::std::borrow::Cow<'static, str>>,
+    mime_type: &str,
     note: Option<&str>,
 ) -> Result<models::Print, Error<EditPrintError>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -116,7 +118,10 @@ pub async fn edit_print(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    // TODO: support file upload for 'image' parameter
+    let part = reqwest::multipart::Part::bytes(p_form_image)
+        .file_name(filename)
+        .mime_str(mime_type)?;
+    multipart_form = multipart_form.part("image", part);
     if let Some(param_value) = p_form_note {
         multipart_form = multipart_form.text("note", param_value.to_string());
     }
@@ -250,7 +255,9 @@ pub async fn get_user_prints(
 /// Uploads and creates a print.
 pub async fn upload_print(
     configuration: &configuration::Configuration,
-    image: std::path::PathBuf,
+    image: impl Into<::std::borrow::Cow<'static, [u8]>>,
+    filename: impl Into<::std::borrow::Cow<'static, str>>,
+    mime_type: &str,
     timestamp: String,
     note: Option<&str>,
     world_id: Option<&str>,
@@ -272,7 +279,10 @@ pub async fn upload_print(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    // TODO: support file upload for 'image' parameter
+    let part = reqwest::multipart::Part::bytes(p_form_image)
+        .file_name(filename)
+        .mime_str(mime_type)?;
+    multipart_form = multipart_form.part("image", part);
     multipart_form = multipart_form.text("timestamp", p_form_timestamp.to_string());
     if let Some(param_value) = p_form_note {
         multipart_form = multipart_form.text("note", param_value.to_string());
