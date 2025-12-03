@@ -12,22 +12,22 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum GroupSearchSort {
     #[serde(rename = "joinedAt:asc")]
-    Asc,
+    JoinedAtColonAsc,
     #[serde(rename = "joinedAt:desc")]
-    Desc,
+    JoinedAtColonDesc,
 }
 
 impl std::fmt::Display for GroupSearchSort {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::Asc => write!(f, "joinedAt:asc"),
-            Self::Desc => write!(f, "joinedAt:desc"),
+            Self::JoinedAtColonAsc => write!(f, "joinedAt:asc"),
+            Self::JoinedAtColonDesc => write!(f, "joinedAt:desc"),
         }
     }
 }
 
 impl Default for GroupSearchSort {
     fn default() -> GroupSearchSort {
-        Self::Asc
+        Self::JoinedAtColonAsc
     }
 }
