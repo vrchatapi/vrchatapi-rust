@@ -16,12 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: moonrepo/setup-rust@v1
-      - name: Run sccache-cache
-        uses: mozilla-actions/sccache-action@v0.0.6
-      - name: Configure sccache env var and set build profile to ephemeral build
-        run: |
-          echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV
-          echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
       - run: cargo build --all
       - run: cargo test --all
 
