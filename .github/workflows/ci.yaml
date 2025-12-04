@@ -22,7 +22,7 @@ jobs:
     env:
       ARTIFACT_NAME: "openapi.json"
       INPUT: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json }}
-      SPEC_URL: ${{ fromJSON(github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json)['artifacts'][env.ARTIFACT_NAME] }}
+      SPEC_URL: ${{ fromJSON(github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json)['artifacts']['openapi.json'] }}
       PASSED_VERSION: ${{ fromJSON(github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json)['version'] }}
       VERSION_POSTPEND: ${{ github.event_name == 'workflow_dispatch' && inputs.version_postfix || '' }}
     steps:
