@@ -71,6 +71,8 @@ jobs:
             echo -e "Mismatch between actual and expected version!\nAborting Release." >&2
             exit 1
           fi
+      - name: Remove API Spec
+        run: unlink "${ARTIFACT_NAME}"
       - name: Deploy SDK back into main branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
