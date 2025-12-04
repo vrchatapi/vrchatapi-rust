@@ -53,9 +53,9 @@ jobs:
       - name: Check version number
         run: |
           set -euo pipefail
-          if [ "$(yq '.info.version' "${ARTIFACT_NAME}")" != ${PASSED_VERSION} ]
+          if [ "$(yq '--unwrapScalar' '.info.version' "${ARTIFACT_NAME}")" != ${PASSED_VERSION} ]
           then
-            echo "Mismatch between actual and expected version!\nAborting Release." >&2
+            echo -e "Mismatch between actual and expected version!\nAborting Release." >&2
             exit 1
           fi
       - name: Apply Version Postpend
@@ -66,9 +66,9 @@ jobs:
       - name: Check version number
         run: |
           set -euo pipefail
-          if [ "$(yq '--input-format=toml' '--output-format=toml' '.package.version' 'Cargo.toml')" != "${PASSED_VERSION}${VERSION_POSTPEND}" ]
+          if [ "$(yq '--unwrapScalar' '--input-format=toml' '--output-format=toml' '.package.version' 'Cargo.toml')" != "${PASSED_VERSION}${VERSION_POSTPEND}" ]
           then
-            echo "Mismatch between actual and expected version!\nAborting Release." >&2
+            echo -e "Mismatch between actual and expected version!\nAborting Release." >&2
             exit 1
           fi
       - name: Deploy SDK back into main branch
