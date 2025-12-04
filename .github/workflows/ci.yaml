@@ -20,8 +20,9 @@ jobs:
     runs-on: ubuntu-latest
     name: Generate VRChat API SDK
     env:
+      ARTIFACT_NAME: "openapi.json"
       INPUT: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json }}
-      SPEC_URL: ${{ fromJSON(github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json)['artifacts']['openapi.json'] }}
+      SPEC_URL: ${{ fromJSON(github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json)['artifacts'][env.ARTIFACT_NAME] }}
       PASSED_VERSION: ${{ fromJSON(github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json)['version'] }}
       VERSION_POSTPEND: ${{ github.event_name == 'workflow_dispatch' && inputs.version_postfix || '' }}
     steps:
@@ -47,20 +48,28 @@ jobs:
           distribution: 'adopt'
       - name: Install Rustup toolchain
         uses: moonrepo/setup-rust@v1
-      - name: Generate SDK Client
-        run: bash ./generate.sh ${SPEC_URL}
+      - name: Download Specification
+        run: wget "${SPEC_URL}"
       - name: Check version number
         run: |
           set -euo pipefail
-          VERSION=
-          if [ "$(tomlq .package.version Cargo.toml -r)" != ${PASSED_VERSION}]
+          if [ "$(yq '.info.version' "${ARTIFACT_NAME}")" != ${PASSED_VERSION} ]
           then
             echo "Mismatch between actual and expected version!\nAborting Release." >&2
             exit 1
           fi
-          if [ "${VERSION_POSTPEND}" != "" ]
+      - name: Apply Version Postpend
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.version_postfix != '' }}
+        run: yq '--inplace' ".info.version |= \"${PASSED_VERSION}${VERSION_POSTPEND}\"" "${ARTIFACT_NAME}"
+      - name: Generate SDK Client
+        run: bash ./generate.sh "${ARTIFACT_NAME}"
+      - name: Check version number
+        run: |
+          set -euo pipefail
+          if [ "$(yq '--input-format=toml' '--output-format=toml' '.package.version' 'Cargo.toml')" != "${PASSED_VERSION}${VERSION_POSTPEND}" ]
           then
-            tomlq '.package.version |= "${PASSED_VERSION}${VERSION_POSTPEND}"' Cargo.toml --toml-output --in-place
+            echo "Mismatch between actual and expected version!\nAborting Release." >&2
+            exit 1
           fi
       - name: Deploy SDK back into main branch
         uses: JamesIves/github-pages-deploy-action@v4
