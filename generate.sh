@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+set -euo pipefail
+
+if [ ${#} -le 0 ]
+then
+  echo "Usage: generate.sh <openapi.json>" >&2
+  exit 1
+fi
 
 # Generate Client
 rm src/apis src/models docs -rf
@@ -9,7 +16,7 @@ rm src/apis src/models docs -rf
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
--i https://raw.githubusercontent.com/vrchatapi/specification/gh-pages/openapi.yaml \
+-i "${1}" \
 --http-user-agent="vrchatapi-rust"
 #--global-property debugOperations=true
 

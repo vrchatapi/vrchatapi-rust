@@ -1,8 +1,17 @@
 on:
   repository_dispatch:
-    types: [spec_release]
+    types: [release]
   workflow_dispatch:
-#on: push
+    inputs:
+      json:
+        description: 'Passed json from repository_dispatch'
+        required: true
+        type: string
+      version_postfix:
+        description: 'Additional string to concatenate onto the existing version before release'
+        required: false
+        type: string
+        default: ''
 
 name: Generate VRChat API SDK
 
@@ -10,6 +19,11 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     name: Generate VRChat API SDK
+    env:
+      INPUT: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json }}
+      SPEC_URL: ${{ fromJSON(github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json)['artifacts']['openapi.json'] }}
+      PASSED_VERSION: ${{ fromJSON(github.event_name == 'repository_dispatch' && github.event.client_payload || inputs.json)['version'] }}
+      VERSION_POSTPEND: ${{ github.event_name == 'workflow_dispatch' && inputs.version_postfix || '' }}
     steps:
       - uses: actions/setup-node@v4
         with:
@@ -34,18 +48,26 @@ jobs:
       - name: Install Rustup toolchain
         uses: moonrepo/setup-rust@v1
       - name: Generate SDK Client
-        run: bash ./generate.sh
+        run: bash ./generate.sh ${SPEC_URL}
       - name: Check version number
         run: |
-          echo "spec_version=$(grep "^version" ./Cargo.toml | cut -d "\"" -f 2)" >> $GITHUB_ENV
-      - name: Print version number
-        run: echo ${{ env.spec_version }}
+          set -euo pipefail
+          VERSION=
+          if [ "$(tomlq .package.version Cargo.toml -r)" != ${PASSED_VERSION}]
+          then
+            echo "Mismatch between actual and expected version!\nAborting Release." >&2
+            exit 1
+          fi
+          if [ "${VERSION_POSTPEND}" != "" ]
+          then
+            tomlq '.package.version |= "${PASSED_VERSION}${VERSION_POSTPEND}"' Cargo.toml --toml-output --in-place
+          fi
       - name: Deploy SDK back into main branch
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: main
           folder: .
-          commit-message: "Upgrade Rust SDK to spec ${{ env.spec_version }}"
+          commit-message: "Upgrade Rust SDK to spec ${{ env.PASSED_VERSION }}${{env.VERSION_POSTPEND}}"
       - name: Deploy to Crates.io
         uses: katyo/publish-crates@v2
         with:
