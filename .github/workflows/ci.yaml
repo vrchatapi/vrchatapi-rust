@@ -9,7 +9,7 @@ on:
         type: string
       version_postfix:
         description: 'Additional string to concatenate onto the existing version before release'
-        required: true
+        required: false
         type: string
         default: ''
 
