@@ -22,6 +22,8 @@ rm src/apis src/models docs -rf
 
 # Update entire description (replace entire line, match the random data there) line in Cargo.toml
 sed -i 's/^description = ".*"/description = "VRChat API Client for Rust"/' Cargo.toml
+# Add repository link to Cargo.toml
+sed -i 's|\[package\]|[package]\nrepository="https://github.com/vrchatapi/vrchatapi-rust"|' Cargo.toml
 
 # Remove messily pasted markdown at top of every file
 find src -type f -exec sed -i '/VRChat API Banner/d' {} \;
