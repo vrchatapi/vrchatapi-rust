@@ -11,43 +11,43 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupGalleryImage {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
-    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
-    pub group_id: Option<String>,
-    #[serde(rename = "galleryId", skip_serializing_if = "Option::is_none")]
-    pub gallery_id: Option<String>,
-    #[serde(rename = "fileId", skip_serializing_if = "Option::is_none")]
-    pub file_id: Option<String>,
-    #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
-    pub image_url: Option<String>,
-    #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "submittedByUserId", skip_serializing_if = "Option::is_none")]
-    pub submitted_by_user_id: Option<String>,
     #[serde(rename = "approved", skip_serializing_if = "Option::is_none")]
     pub approved: Option<bool>,
+    #[serde(rename = "approvedAt", skip_serializing_if = "Option::is_none")]
+    pub approved_at: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "approvedByUserId", skip_serializing_if = "Option::is_none")]
     pub approved_by_user_id: Option<String>,
-    #[serde(rename = "approvedAt", skip_serializing_if = "Option::is_none")]
-    pub approved_at: Option<String>,
+    #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
+    pub created_at: Option<String>,
+    #[serde(rename = "fileId", skip_serializing_if = "Option::is_none")]
+    pub file_id: Option<String>,
+    #[serde(rename = "galleryId", skip_serializing_if = "Option::is_none")]
+    pub gallery_id: Option<String>,
+    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
+    pub group_id: Option<String>,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<String>,
+    #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
+    pub image_url: Option<String>,
+    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+    #[serde(rename = "submittedByUserId", skip_serializing_if = "Option::is_none")]
+    pub submitted_by_user_id: Option<String>,
 }
 
 impl GroupGalleryImage {
     pub fn new() -> GroupGalleryImage {
         GroupGalleryImage {
-            id: None,
-            group_id: None,
-            gallery_id: None,
-            file_id: None,
-            image_url: None,
-            created_at: None,
-            submitted_by_user_id: None,
             approved: None,
-            approved_by_user_id: None,
             approved_at: None,
+            approved_by_user_id: None,
+            created_at: None,
+            file_id: None,
+            gallery_id: None,
+            group_id: None,
+            id: None,
+            image_url: None,
+            submitted_by_user_id: None,
         }
     }
 }

@@ -11,14 +11,14 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum SubscriptionPeriod {
-    #[serde(rename = "hour")]
-    Hour,
     #[serde(rename = "day")]
     Day,
-    #[serde(rename = "week")]
-    Week,
+    #[serde(rename = "hour")]
+    Hour,
     #[serde(rename = "month")]
     Month,
+    #[serde(rename = "week")]
+    Week,
     #[serde(rename = "year")]
     Year,
 }
@@ -26,10 +26,10 @@ pub enum SubscriptionPeriod {
 impl std::fmt::Display for SubscriptionPeriod {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::Hour => write!(f, "hour"),
             Self::Day => write!(f, "day"),
-            Self::Week => write!(f, "week"),
+            Self::Hour => write!(f, "hour"),
             Self::Month => write!(f, "month"),
+            Self::Week => write!(f, "week"),
             Self::Year => write!(f, "year"),
         }
     }
@@ -37,6 +37,6 @@ impl std::fmt::Display for SubscriptionPeriod {
 
 impl Default for SubscriptionPeriod {
     fn default() -> SubscriptionPeriod {
-        Self::Hour
+        Self::Day
     }
 }

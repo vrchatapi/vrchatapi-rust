@@ -9,24 +9,26 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// PaginatedCalendarEventList : An offset-based list of CalendarEvents
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PaginatedCalendarEventList {
+    /// Whether there are more results after this page.
+    #[serde(rename = "hasNext", skip_serializing_if = "Option::is_none")]
+    pub has_next: Option<bool>,
     #[serde(rename = "results", skip_serializing_if = "Option::is_none")]
     pub results: Option<Vec<models::CalendarEvent>>,
     /// The total number of results that the query would return if there were no pagination.
     #[serde(rename = "totalCount", skip_serializing_if = "Option::is_none")]
     pub total_count: Option<i32>,
-    /// Whether there are more results after this page.
-    #[serde(rename = "hasNext", skip_serializing_if = "Option::is_none")]
-    pub has_next: Option<bool>,
 }
 
 impl PaginatedCalendarEventList {
+    /// An offset-based list of CalendarEvents
     pub fn new() -> PaginatedCalendarEventList {
         PaginatedCalendarEventList {
+            has_next: None,
             results: None,
             total_count: None,
-            has_next: None,
         }
     }
 }

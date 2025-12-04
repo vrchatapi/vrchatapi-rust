@@ -11,20 +11,20 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InfoPushDataArticleContent {
-    #[serde(rename = "text", skip_serializing_if = "Option::is_none")]
-    pub text: Option<String>,
     #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
     pub image_url: Option<String>,
     #[serde(rename = "onPressed", skip_serializing_if = "Option::is_none")]
     pub on_pressed: Option<models::InfoPushDataClickable>,
+    #[serde(rename = "text", skip_serializing_if = "Option::is_none")]
+    pub text: Option<String>,
 }
 
 impl InfoPushDataArticleContent {
     pub fn new() -> InfoPushDataArticleContent {
         InfoPushDataArticleContent {
-            text: None,
             image_url: None,
             on_pressed: None,
+            text: None,
         }
     }
 }

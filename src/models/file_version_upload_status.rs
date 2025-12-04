@@ -12,37 +12,37 @@ use serde::{Deserialize, Serialize};
 /// FileVersionUploadStatus :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileVersionUploadStatus {
-    #[serde(rename = "uploadId")]
-    pub upload_id: String,
-    #[serde(rename = "fileName")]
-    pub file_name: String,
-    #[serde(rename = "nextPartNumber")]
-    pub next_part_number: i32,
-    #[serde(rename = "maxParts")]
-    pub max_parts: i32,
-    #[serde(rename = "parts")]
-    pub parts: Vec<serde_json::Value>,
     /// Unknown
     #[serde(rename = "etags")]
     pub etags: Vec<serde_json::Value>,
+    #[serde(rename = "fileName")]
+    pub file_name: String,
+    #[serde(rename = "maxParts")]
+    pub max_parts: i32,
+    #[serde(rename = "nextPartNumber")]
+    pub next_part_number: i32,
+    #[serde(rename = "parts")]
+    pub parts: Vec<serde_json::Value>,
+    #[serde(rename = "uploadId")]
+    pub upload_id: String,
 }
 
 impl FileVersionUploadStatus {
     pub fn new(
-        upload_id: String,
-        file_name: String,
-        next_part_number: i32,
-        max_parts: i32,
-        parts: Vec<serde_json::Value>,
         etags: Vec<serde_json::Value>,
+        file_name: String,
+        max_parts: i32,
+        next_part_number: i32,
+        parts: Vec<serde_json::Value>,
+        upload_id: String,
     ) -> FileVersionUploadStatus {
         FileVersionUploadStatus {
-            upload_id,
-            file_name,
-            next_part_number,
-            max_parts,
-            parts,
             etags,
+            file_name,
+            max_parts,
+            next_part_number,
+            parts,
+            upload_id,
         }
     }
 }

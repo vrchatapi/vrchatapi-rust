@@ -22,14 +22,14 @@ pub struct LimitedUserFriend {
         skip_serializing_if = "Option::is_none"
     )]
     pub current_avatar_image_url: Option<String>,
+    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_tags: Option<Vec<String>>,
     /// When profilePicOverride is not empty, use it instead.
     #[serde(
         rename = "currentAvatarThumbnailImageUrl",
         skip_serializing_if = "Option::is_none"
     )]
     pub current_avatar_thumbnail_image_url: Option<String>,
-    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
-    pub current_avatar_tags: Option<Vec<String>>,
     #[serde(rename = "developerType")]
     pub developer_type: models::DeveloperType,
     #[serde(rename = "displayName")]
@@ -39,21 +39,21 @@ pub struct LimitedUserFriend {
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "isFriend")]
-    pub is_friend: bool,
     #[serde(rename = "imageUrl")]
     pub image_url: String,
+    #[serde(rename = "isFriend")]
+    pub is_friend: bool,
+    #[serde(rename = "last_activity", deserialize_with = "Option::deserialize")]
+    pub last_activity: Option<String>,
+    #[serde(rename = "last_login", deserialize_with = "Option::deserialize")]
+    pub last_login: Option<String>,
+    #[serde(rename = "last_mobile", deserialize_with = "Option::deserialize")]
+    pub last_mobile: Option<String>,
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
     #[serde(rename = "location")]
     pub location: String,
-    #[serde(rename = "last_login", deserialize_with = "Option::deserialize")]
-    pub last_login: Option<String>,
-    #[serde(rename = "last_activity", deserialize_with = "Option::deserialize")]
-    pub last_activity: Option<String>,
-    #[serde(rename = "last_mobile", deserialize_with = "Option::deserialize")]
-    pub last_mobile: Option<String>,
     #[serde(rename = "platform")]
     pub platform: String,
     #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
@@ -81,13 +81,13 @@ impl LimitedUserFriend {
         display_name: String,
         friend_key: String,
         id: String,
-        is_friend: bool,
         image_url: String,
+        is_friend: bool,
+        last_activity: Option<String>,
+        last_login: Option<String>,
+        last_mobile: Option<String>,
         last_platform: String,
         location: String,
-        last_login: Option<String>,
-        last_activity: Option<String>,
-        last_mobile: Option<String>,
         platform: String,
         status: models::UserStatus,
         status_description: String,
@@ -97,19 +97,19 @@ impl LimitedUserFriend {
             bio: None,
             bio_links: None,
             current_avatar_image_url: None,
-            current_avatar_thumbnail_image_url: None,
             current_avatar_tags: None,
+            current_avatar_thumbnail_image_url: None,
             developer_type,
             display_name,
             friend_key,
             id,
-            is_friend,
             image_url,
+            is_friend,
+            last_activity,
+            last_login,
+            last_mobile,
             last_platform,
             location,
-            last_login,
-            last_activity,
-            last_mobile,
             platform,
             profile_pic_override: None,
             profile_pic_override_thumbnail: None,

@@ -38,6 +38,30 @@ pub enum DeleteUserPersistenceError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_mutual_friends`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetMutualFriendsError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_mutual_groups`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetMutualGroupsError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_mutuals`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetMutualsError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -66,6 +90,15 @@ pub enum GetUserFeedbackError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetUserGroupInstancesError {
+    Status401(models::Error),
+    Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_user_group_instances_for_group`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetUserGroupInstancesForGroupError {
     Status401(models::Error),
     Status403(models::Error),
     UnknownValue(serde_json::Value),
@@ -291,6 +324,170 @@ pub async fn delete_user_persistence(
     }
 }
 
+/// Gets a list of mutual friends between the logged in user and the specified user
+pub async fn get_mutual_friends(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    n: Option<i32>,
+    offset: Option<i32>,
+) -> Result<Vec<models::MutualFriend>, Error<GetMutualFriendsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+    let p_query_n = n;
+    let p_query_offset = offset;
+
+    let uri_str = format!(
+        "{}/users/{userId}/mutuals/friends",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_n {
+        req_builder = req_builder.query(&[("n", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_offset {
+        req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::MutualFriend&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::MutualFriend&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetMutualFriendsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Gets a list of mutual groups between the logged in user and the specified user
+pub async fn get_mutual_groups(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    n: Option<i32>,
+    offset: Option<i32>,
+) -> Result<Vec<models::LimitedUserGroups>, Error<GetMutualGroupsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+    let p_query_n = n;
+    let p_query_offset = offset;
+
+    let uri_str = format!(
+        "{}/users/{userId}/mutuals/groups",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_n {
+        req_builder = req_builder.query(&[("n", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_offset {
+        req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::LimitedUserGroups&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::LimitedUserGroups&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetMutualGroupsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Gets the counts of mutuals between the logged in user and the specified user
+pub async fn get_mutuals(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+) -> Result<models::Mutuals, Error<GetMutualsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+
+    let uri_str = format!(
+        "{}/users/{userId}/mutuals",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Mutuals`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Mutuals`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetMutualsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Get public user information about a specific user using their ID.
 pub async fn get_user(
     configuration: &configuration::Configuration,
@@ -492,6 +689,58 @@ pub async fn get_user_group_instances(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetUserGroupInstancesError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns a list of a group's instances for a user
+pub async fn get_user_group_instances_for_group(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    group_id: &str,
+) -> Result<models::GetUserGroupInstances200Response, Error<GetUserGroupInstancesForGroupError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+    let p_path_group_id = group_id;
+
+    let uri_str = format!(
+        "{}/users/{userId}/instances/groups/{groupId}",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id),
+        groupId = crate::apis::urlencode(p_path_group_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetUserGroupInstances200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetUserGroupInstances200Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetUserGroupInstancesForGroupError> =
+            serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

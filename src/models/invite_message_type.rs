@@ -14,21 +14,21 @@ use serde::{Deserialize, Serialize};
 pub enum InviteMessageType {
     #[serde(rename = "message")]
     Message,
-    #[serde(rename = "response")]
-    Response,
     #[serde(rename = "request")]
     Request,
     #[serde(rename = "requestResponse")]
     RequestResponse,
+    #[serde(rename = "response")]
+    Response,
 }
 
 impl std::fmt::Display for InviteMessageType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::Message => write!(f, "message"),
-            Self::Response => write!(f, "response"),
             Self::Request => write!(f, "request"),
             Self::RequestResponse => write!(f, "requestResponse"),
+            Self::Response => write!(f, "response"),
         }
     }
 }

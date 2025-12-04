@@ -15,59 +15,55 @@ pub struct CreateAvatarRequest {
     pub asset_url: Option<String>,
     #[serde(rename = "assetVersion", skip_serializing_if = "Option::is_none")]
     pub asset_version: Option<String>,
-    /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
-    #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
-    pub platform: Option<String>,
     /// A date and time of the pattern `M/d/yyyy h:mm:ss tt` (see C Sharp `System.DateTime`)
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<String>,
-    /// A date and time of the pattern `M/d/yyyy h:mm:ss tt` (see C Sharp `System.DateTime`)
-    #[serde(rename = "updated_at", skip_serializing_if = "Option::is_none")]
-    pub updated_at: Option<String>,
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
-    #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
-    pub tags: Option<Vec<String>>,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<String>,
     #[serde(rename = "imageUrl")]
     pub image_url: String,
-    #[serde(rename = "thumbnailImageUrl", skip_serializing_if = "Option::is_none")]
-    pub thumbnail_image_url: Option<String>,
+    #[serde(rename = "name")]
+    pub name: String,
+    /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+    #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
+    pub platform: Option<String>,
     #[serde(rename = "releaseStatus", skip_serializing_if = "Option::is_none")]
     pub release_status: Option<models::ReleaseStatus>,
-    #[serde(rename = "version", skip_serializing_if = "Option::is_none")]
-    pub version: Option<i32>,
-    /// Enabling featured tag requires Admin Credentials.
-    #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
-    pub featured: Option<bool>,
+    #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
+    pub tags: Option<Vec<String>>,
+    #[serde(rename = "thumbnailImageUrl", skip_serializing_if = "Option::is_none")]
+    pub thumbnail_image_url: Option<String>,
     #[serde(rename = "unityPackageUrl", skip_serializing_if = "Option::is_none")]
     pub unity_package_url: Option<String>,
     #[serde(rename = "unityVersion", skip_serializing_if = "Option::is_none")]
     pub unity_version: Option<String>,
+    /// A date and time of the pattern `M/d/yyyy h:mm:ss tt` (see C Sharp `System.DateTime`)
+    #[serde(rename = "updated_at", skip_serializing_if = "Option::is_none")]
+    pub updated_at: Option<String>,
+    #[serde(rename = "version", skip_serializing_if = "Option::is_none")]
+    pub version: Option<i32>,
 }
 
 impl CreateAvatarRequest {
-    pub fn new(name: String, image_url: String) -> CreateAvatarRequest {
+    pub fn new(image_url: String, name: String) -> CreateAvatarRequest {
         CreateAvatarRequest {
             asset_url: None,
             asset_version: None,
-            platform: None,
             created_at: None,
-            updated_at: None,
-            id: None,
-            name,
             description: None,
-            tags: None,
+            id: None,
             image_url,
-            thumbnail_image_url: None,
+            name,
+            platform: None,
             release_status: None,
-            version: None,
-            featured: None,
+            tags: None,
+            thumbnail_image_url: None,
             unity_package_url: None,
             unity_version: None,
+            updated_at: None,
+            version: None,
         }
     }
 }

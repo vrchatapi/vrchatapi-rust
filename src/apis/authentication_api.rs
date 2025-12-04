@@ -34,6 +34,22 @@ pub enum ConfirmEmailError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`create_global_avatar_moderation`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CreateGlobalAvatarModerationError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`delete_global_avatar_moderation`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteGlobalAvatarModerationError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`delete_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -297,6 +313,106 @@ pub async fn confirm_email(
     }
 }
 
+/// Globally moderates an avatar.
+pub async fn create_global_avatar_moderation(
+    configuration: &configuration::Configuration,
+    create_avatar_moderation_request: models::CreateAvatarModerationRequest,
+) -> Result<models::AvatarModerationCreated, Error<CreateGlobalAvatarModerationError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_create_avatar_moderation_request = create_avatar_moderation_request;
+
+    let uri_str = format!("{}/auth/user/avatarmoderations", configuration.base_path);
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_create_avatar_moderation_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AvatarModerationCreated`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AvatarModerationCreated`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<CreateGlobalAvatarModerationError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Globally unmoderates an avatar.
+pub async fn delete_global_avatar_moderation(
+    configuration: &configuration::Configuration,
+    target_avatar_id: &str,
+    avatar_moderation_type: models::AvatarModerationType,
+) -> Result<models::OkStatus2, Error<DeleteGlobalAvatarModerationError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_target_avatar_id = target_avatar_id;
+    let p_query_avatar_moderation_type = avatar_moderation_type;
+
+    let uri_str = format!("{}/auth/user/avatarmoderations", configuration.base_path);
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    req_builder = req_builder.query(&[("targetAvatarId", &p_query_target_avatar_id.to_string())]);
+    req_builder = req_builder.query(&[(
+        "avatarModerationType",
+        &p_query_avatar_moderation_type.to_string(),
+    )]);
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OkStatus2`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OkStatus2`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<DeleteGlobalAvatarModerationError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Deletes the account with given ID. Normal users only have permission to delete their own account. Account deletion is 14 days from this request, and will be cancelled if you do an authenticated request with the account afterwards.  **VRC+ NOTE:** Despite the 14-days cooldown, any VRC+ subscription will be cancelled **immediately**.  **METHOD NOTE:** Despite this being a Delete action, the method type required is PUT.
 pub async fn delete_user(
     configuration: &configuration::Configuration,
@@ -432,7 +548,7 @@ pub async fn enable2_fa(
     }
 }
 
-/// This endpoint does the following two operations:   1) Checks if you are already logged in by looking for a valid `auth` cookie. If you are have a valid auth cookie then no additional auth-related actions are taken. If you are **not** logged in then it will log you in with the `Authorization` header and set the `auth` cookie. The `auth` cookie will only be sent once.   2) If logged in, this function will also return the CurrentUser object containing detailed information about the currently logged in user.  The auth string after `Authorization: Basic {string}` is a base64-encoded string of the username and password, both individually url-encoded, and then joined with a colon.    > base64(urlencode(username):urlencode(password))  **WARNING: Session Limit:** Each authentication with login credentials counts as a separate session, out of which you have a limited amount. Make sure to save and reuse the `auth` cookie if you are often restarting the program. The provided API libraries automatically save cookies during runtime, but does not persist during restart. While it can be fine to use username/password during development, expect in production to very fast run into the rate-limit and be temporarily blocked from making new sessions until older ones expire. The exact number of simultaneous sessions is unknown/undisclosed.
+/// This endpoint does the following two operations:   1) Checks if you are already logged in by looking for a valid `auth` cookie. If you are have a valid auth cookie then no additional auth-related actions are taken. If you are **not** logged in then it will log you in with the `Authorization` header and set the `auth` cookie. The `auth` cookie will only be sent once.   2) If logged in, this function will also return the CurrentUser object containing detailed information about the currently logged in user.  The auth string after `Authorization: Basic {string}` is a base64-encoded string of the username and password, both individually url-encoded, and then joined with a colon.  > base64(urlencode(username):urlencode(password))  **WARNING: Session Limit:** Each authentication with login credentials counts as a separate session, out of which you have a limited amount. Make sure to save and reuse the `auth` cookie if you are often restarting the program. The provided API libraries automatically save cookies during runtime, but does not persist during restart. While it can be fine to use username/password during development, expect in production to very fast run into the rate-limit and be temporarily blocked from making new sessions until older ones expire. The exact number of simultaneous sessions is unknown/undisclosed.
 pub async fn get_current_user(
     configuration: &configuration::Configuration,
 ) -> Result<models::EitherUserOrTwoFactor, Error<GetCurrentUserError>> {
@@ -475,7 +591,7 @@ pub async fn get_current_user(
     }
 }
 
-/// Returns list of globally blocked avatars.
+/// Returns list of globally moderated avatars.
 pub async fn get_global_avatar_moderations(
     configuration: &configuration::Configuration,
 ) -> Result<Vec<models::AvatarModeration>, Error<GetGlobalAvatarModerationsError>> {

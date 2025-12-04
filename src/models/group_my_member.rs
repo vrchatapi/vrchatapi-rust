@@ -11,15 +11,6 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupMyMember {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
-    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
-    pub group_id: Option<String>,
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "userId", skip_serializing_if = "Option::is_none")]
-    pub user_id: Option<String>,
-    #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
-    pub role_ids: Option<Vec<String>>,
     #[serde(
         rename = "acceptedByDisplayName",
         default,
@@ -34,12 +25,28 @@ pub struct GroupMyMember {
         skip_serializing_if = "Option::is_none"
     )]
     pub accepted_by_id: Option<Option<String>>,
+    #[serde(
+        rename = "bannedAt",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub banned_at: Option<Option<String>>,
     #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<String>,
-    #[serde(rename = "managerNotes", skip_serializing_if = "Option::is_none")]
-    pub manager_notes: Option<String>,
-    #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
-    pub membership_status: Option<String>,
+    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
+    pub group_id: Option<String>,
+    #[serde(rename = "has2FA", skip_serializing_if = "Option::is_none")]
+    pub has2_fa: Option<bool>,
+    #[serde(
+        rename = "hasJoinedFromPurchase",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub has_joined_from_purchase: Option<bool>,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<String>,
+    #[serde(rename = "isRepresenting", skip_serializing_if = "Option::is_none")]
+    pub is_representing: Option<bool>,
     #[serde(
         rename = "isSubscribedToAnnouncements",
         skip_serializing_if = "Option::is_none"
@@ -50,26 +57,8 @@ pub struct GroupMyMember {
         skip_serializing_if = "Option::is_none"
     )]
     pub is_subscribed_to_event_announcements: Option<bool>,
-    #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
-    pub visibility: Option<String>,
-    #[serde(rename = "isRepresenting", skip_serializing_if = "Option::is_none")]
-    pub is_representing: Option<bool>,
     #[serde(rename = "joinedAt", skip_serializing_if = "Option::is_none")]
     pub joined_at: Option<String>,
-    #[serde(
-        rename = "bannedAt",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub banned_at: Option<Option<String>>,
-    #[serde(rename = "has2FA", skip_serializing_if = "Option::is_none")]
-    pub has2_fa: Option<bool>,
-    #[serde(
-        rename = "hasJoinedFromPurchase",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub has_joined_from_purchase: Option<bool>,
     #[serde(
         rename = "lastPostReadAt",
         default,
@@ -79,33 +68,44 @@ pub struct GroupMyMember {
     pub last_post_read_at: Option<Option<String>>,
     #[serde(rename = "mRoleIds", skip_serializing_if = "Option::is_none")]
     pub m_role_ids: Option<Vec<String>>,
+    #[serde(rename = "managerNotes", skip_serializing_if = "Option::is_none")]
+    pub manager_notes: Option<String>,
+    #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
+    pub membership_status: Option<String>,
     #[serde(rename = "permissions", skip_serializing_if = "Option::is_none")]
     pub permissions: Option<Vec<models::GroupPermissions>>,
+    #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
+    pub role_ids: Option<Vec<String>>,
+    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+    #[serde(rename = "userId", skip_serializing_if = "Option::is_none")]
+    pub user_id: Option<String>,
+    #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
+    pub visibility: Option<String>,
 }
 
 impl GroupMyMember {
     pub fn new() -> GroupMyMember {
         GroupMyMember {
-            id: None,
-            group_id: None,
-            user_id: None,
-            role_ids: None,
             accepted_by_display_name: None,
             accepted_by_id: None,
-            created_at: None,
-            manager_notes: None,
-            membership_status: None,
-            is_subscribed_to_announcements: None,
-            is_subscribed_to_event_announcements: None,
-            visibility: None,
-            is_representing: None,
-            joined_at: None,
             banned_at: None,
+            created_at: None,
+            group_id: None,
             has2_fa: None,
             has_joined_from_purchase: None,
+            id: None,
+            is_representing: None,
+            is_subscribed_to_announcements: None,
+            is_subscribed_to_event_announcements: None,
+            joined_at: None,
             last_post_read_at: None,
             m_role_ids: None,
+            manager_notes: None,
+            membership_status: None,
             permissions: None,
+            role_ids: None,
+            user_id: None,
+            visibility: None,
         }
     }
 }

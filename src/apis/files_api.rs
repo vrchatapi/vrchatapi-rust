@@ -978,17 +978,17 @@ pub async fn upload_image(
     filename: impl Into<::std::borrow::Cow<'static, str>>,
     mime_type: &str,
     tag: &str,
+    animation_style: Option<&str>,
     frames: Option<i32>,
     frames_over_time: Option<i32>,
-    animation_style: Option<&str>,
     mask_tag: Option<&str>,
 ) -> Result<models::File, Error<UploadImageError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_form_file = file;
     let p_form_tag = tag;
+    let p_form_animation_style = animation_style;
     let p_form_frames = frames;
     let p_form_frames_over_time = frames_over_time;
-    let p_form_animation_style = animation_style;
     let p_form_mask_tag = mask_tag;
 
     let uri_str = format!("{}/file/image", configuration.base_path);
@@ -1000,23 +1000,23 @@ pub async fn upload_image(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
+    if let Some(param_value) = p_form_animation_style {
+        multipart_form = multipart_form.text("animationStyle", param_value.to_string());
+    }
     let part = reqwest::multipart::Part::bytes(p_form_file)
         .file_name(filename)
         .mime_str(mime_type)?;
     multipart_form = multipart_form.part("file", part);
-    multipart_form = multipart_form.text("tag", p_form_tag.to_string());
     if let Some(param_value) = p_form_frames {
         multipart_form = multipart_form.text("frames", param_value.to_string());
     }
     if let Some(param_value) = p_form_frames_over_time {
         multipart_form = multipart_form.text("framesOverTime", param_value.to_string());
     }
-    if let Some(param_value) = p_form_animation_style {
-        multipart_form = multipart_form.text("animationStyle", param_value.to_string());
-    }
     if let Some(param_value) = p_form_mask_tag {
         multipart_form = multipart_form.text("maskTag", param_value.to_string());
     }
+    multipart_form = multipart_form.text("tag", p_form_tag.to_string());
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;

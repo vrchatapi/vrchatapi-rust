@@ -12,55 +12,55 @@ use serde::{Deserialize, Serialize};
 /// InfoPush :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InfoPush {
+    #[serde(rename = "createdAt")]
+    pub created_at: String,
+    #[serde(rename = "data")]
+    pub data: models::InfoPushData,
+    #[serde(rename = "endDate", skip_serializing_if = "Option::is_none")]
+    pub end_date: Option<String>,
+    /// Unknown usage, MD5
+    #[serde(rename = "hash")]
+    pub hash: String,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "isEnabled")]
     pub is_enabled: bool,
-    #[serde(rename = "releaseStatus")]
-    pub release_status: models::ReleaseStatus,
     #[serde(rename = "priority")]
     pub priority: i32,
-    #[serde(rename = "tags")]
-    pub tags: Vec<String>,
-    #[serde(rename = "data")]
-    pub data: models::InfoPushData,
-    /// Unknown usage, MD5
-    #[serde(rename = "hash")]
-    pub hash: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: String,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: String,
+    #[serde(rename = "releaseStatus")]
+    pub release_status: models::ReleaseStatus,
     #[serde(rename = "startDate", skip_serializing_if = "Option::is_none")]
     pub start_date: Option<String>,
-    #[serde(rename = "endDate", skip_serializing_if = "Option::is_none")]
-    pub end_date: Option<String>,
+    #[serde(rename = "tags")]
+    pub tags: Vec<String>,
+    #[serde(rename = "updatedAt")]
+    pub updated_at: String,
 }
 
 impl InfoPush {
     pub fn new(
-        id: String,
-        is_enabled: bool,
-        release_status: models::ReleaseStatus,
-        priority: i32,
-        tags: Vec<String>,
+        created_at: String,
         data: models::InfoPushData,
         hash: String,
-        created_at: String,
+        id: String,
+        is_enabled: bool,
+        priority: i32,
+        release_status: models::ReleaseStatus,
+        tags: Vec<String>,
         updated_at: String,
     ) -> InfoPush {
         InfoPush {
+            created_at,
+            data,
+            end_date: None,
+            hash,
             id,
             is_enabled,
-            release_status,
             priority,
-            tags,
-            data,
-            hash,
-            created_at,
-            updated_at,
+            release_status,
             start_date: None,
-            end_date: None,
+            tags,
+            updated_at,
         }
     }
 }

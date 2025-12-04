@@ -4,6 +4,8 @@
 
 | Name | Value |
 |---- | -----|
+| Duration | duration |
+| Permanent | permanent |
 | Subscription | subscription |
 
 

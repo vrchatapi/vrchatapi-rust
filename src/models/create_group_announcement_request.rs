@@ -11,26 +11,26 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateGroupAnnouncementRequest {
-    /// Announcement title
-    #[serde(rename = "title")]
-    pub title: String,
-    /// Announcement text
-    #[serde(rename = "text", skip_serializing_if = "Option::is_none")]
-    pub text: Option<String>,
     #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
     pub image_id: Option<String>,
     /// Send notification to group members.
     #[serde(rename = "sendNotification", skip_serializing_if = "Option::is_none")]
     pub send_notification: Option<bool>,
+    /// Announcement text
+    #[serde(rename = "text", skip_serializing_if = "Option::is_none")]
+    pub text: Option<String>,
+    /// Announcement title
+    #[serde(rename = "title")]
+    pub title: String,
 }
 
 impl CreateGroupAnnouncementRequest {
     pub fn new(title: String) -> CreateGroupAnnouncementRequest {
         CreateGroupAnnouncementRequest {
-            title,
-            text: None,
             image_id: None,
             send_notification: None,
+            text: None,
+            title,
         }
     }
 }

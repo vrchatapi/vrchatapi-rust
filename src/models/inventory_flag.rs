@@ -11,35 +11,41 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum InventoryFlag {
-    #[serde(rename = "instantiatable")]
-    Instantiatable,
     #[serde(rename = "archivable")]
     Archivable,
-    #[serde(rename = "consumable")]
-    Consumable,
-    #[serde(rename = "trashable")]
-    Trashable,
     #[serde(rename = "cloneable")]
     Cloneable,
+    #[serde(rename = "consumable")]
+    Consumable,
+    #[serde(rename = "equippable")]
+    Equippable,
+    #[serde(rename = "instantiatable")]
+    Instantiatable,
+    #[serde(rename = "trashable")]
+    Trashable,
     #[serde(rename = "ugc")]
     Ugc,
+    #[serde(rename = "unique")]
+    Unique,
 }
 
 impl std::fmt::Display for InventoryFlag {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::Instantiatable => write!(f, "instantiatable"),
             Self::Archivable => write!(f, "archivable"),
-            Self::Consumable => write!(f, "consumable"),
-            Self::Trashable => write!(f, "trashable"),
             Self::Cloneable => write!(f, "cloneable"),
+            Self::Consumable => write!(f, "consumable"),
+            Self::Equippable => write!(f, "equippable"),
+            Self::Instantiatable => write!(f, "instantiatable"),
+            Self::Trashable => write!(f, "trashable"),
             Self::Ugc => write!(f, "ugc"),
+            Self::Unique => write!(f, "unique"),
         }
     }
 }
 
 impl Default for InventoryFlag {
     fn default() -> InventoryFlag {
-        Self::Instantiatable
+        Self::Archivable
     }
 }

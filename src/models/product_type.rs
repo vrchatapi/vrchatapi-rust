@@ -11,6 +11,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ProductType {
+    #[serde(rename = "inventory")]
+    Inventory,
     #[serde(rename = "listing")]
     Listing,
     #[serde(rename = "role")]
@@ -22,6 +24,7 @@ pub enum ProductType {
 impl std::fmt::Display for ProductType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
+            Self::Inventory => write!(f, "inventory"),
             Self::Listing => write!(f, "listing"),
             Self::Role => write!(f, "role"),
             Self::Udon => write!(f, "udon"),
@@ -31,6 +34,6 @@ impl std::fmt::Display for ProductType {
 
 impl Default for ProductType {
     fn default() -> ProductType {
-        Self::Listing
+        Self::Inventory
     }
 }

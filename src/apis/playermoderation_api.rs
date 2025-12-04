@@ -89,12 +89,10 @@ pub async fn clear_all_player_moderations(
 pub async fn get_player_moderations(
     configuration: &configuration::Configuration,
     r#type: Option<models::PlayerModerationType>,
-    source_user_id: Option<&str>,
     target_user_id: Option<&str>,
 ) -> Result<Vec<models::PlayerModeration>, Error<GetPlayerModerationsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_type = r#type;
-    let p_query_source_user_id = source_user_id;
     let p_query_target_user_id = target_user_id;
 
     let uri_str = format!("{}/auth/user/playermoderations", configuration.base_path);
@@ -102,9 +100,6 @@ pub async fn get_player_moderations(
 
     if let Some(ref param_value) = p_query_type {
         req_builder = req_builder.query(&[("type", &param_value.to_string())]);
-    }
-    if let Some(ref param_value) = p_query_source_user_id {
-        req_builder = req_builder.query(&[("sourceUserId", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_target_user_id {
         req_builder = req_builder.query(&[("targetUserId", &param_value.to_string())]);

@@ -324,6 +324,7 @@ pub async fn get_active_worlds(
     max_unity_version: Option<&str>,
     min_unity_version: Option<&str>,
     platform: Option<&str>,
+    noplatform: Option<&str>,
 ) -> Result<Vec<models::LimitedWorld>, Error<GetActiveWorldsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_featured = featured;
@@ -338,6 +339,7 @@ pub async fn get_active_worlds(
     let p_query_max_unity_version = max_unity_version;
     let p_query_min_unity_version = min_unity_version;
     let p_query_platform = platform;
+    let p_query_noplatform = noplatform;
 
     let uri_str = format!("{}/worlds/active", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -377,6 +379,9 @@ pub async fn get_active_worlds(
     }
     if let Some(ref param_value) = p_query_platform {
         req_builder = req_builder.query(&[("platform", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_noplatform {
+        req_builder = req_builder.query(&[("noplatform", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -875,7 +880,9 @@ pub async fn search_worlds(
     max_unity_version: Option<&str>,
     min_unity_version: Option<&str>,
     platform: Option<&str>,
+    noplatform: Option<&str>,
     fuzzy: Option<bool>,
+    avatar_specific: Option<bool>,
 ) -> Result<Vec<models::LimitedWorld>, Error<SearchWorldsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_featured = featured;
@@ -892,7 +899,9 @@ pub async fn search_worlds(
     let p_query_max_unity_version = max_unity_version;
     let p_query_min_unity_version = min_unity_version;
     let p_query_platform = platform;
+    let p_query_noplatform = noplatform;
     let p_query_fuzzy = fuzzy;
+    let p_query_avatar_specific = avatar_specific;
 
     let uri_str = format!("{}/worlds", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -939,8 +948,14 @@ pub async fn search_worlds(
     if let Some(ref param_value) = p_query_platform {
         req_builder = req_builder.query(&[("platform", &param_value.to_string())]);
     }
+    if let Some(ref param_value) = p_query_noplatform {
+        req_builder = req_builder.query(&[("noplatform", &param_value.to_string())]);
+    }
     if let Some(ref param_value) = p_query_fuzzy {
         req_builder = req_builder.query(&[("fuzzy", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_avatar_specific {
+        req_builder = req_builder.query(&[("avatarSpecific", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

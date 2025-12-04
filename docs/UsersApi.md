@@ -7,10 +7,14 @@ Method | HTTP request | Description
 [**add_tags**](UsersApi.md#add_tags) | **POST** /users/{userId}/addTags | Add User Tags
 [**check_user_persistence_exists**](UsersApi.md#check_user_persistence_exists) | **GET** /users/{userId}/{worldId}/persist/exists | Check User Persistence Exists
 [**delete_user_persistence**](UsersApi.md#delete_user_persistence) | **DELETE** /users/{userId}/{worldId}/persist | Delete User Persistence
+[**get_mutual_friends**](UsersApi.md#get_mutual_friends) | **GET** /users/{userId}/mutuals/friends | Get User Mutual Friends
+[**get_mutual_groups**](UsersApi.md#get_mutual_groups) | **GET** /users/{userId}/mutuals/groups | Get User Mutual Groups
+[**get_mutuals**](UsersApi.md#get_mutuals) | **GET** /users/{userId}/mutuals | Get User Mutuals
 [**get_user**](UsersApi.md#get_user) | **GET** /users/{userId} | Get User by ID
 [**get_user_by_name**](UsersApi.md#get_user_by_name) | **GET** /users/{username}/name | Get User by Username
 [**get_user_feedback**](UsersApi.md#get_user_feedback) | **GET** /users/{userId}/feedback | Get User Feedback
 [**get_user_group_instances**](UsersApi.md#get_user_group_instances) | **GET** /users/{userId}/instances/groups | Get User Group Instances
+[**get_user_group_instances_for_group**](UsersApi.md#get_user_group_instances_for_group) | **GET** /users/{userId}/instances/groups/{groupId} | Get User Group Instances for a specific Group
 [**get_user_group_requests**](UsersApi.md#get_user_group_requests) | **GET** /users/{userId}/groups/requested | Get User Group Requests
 [**get_user_groups**](UsersApi.md#get_user_groups) | **GET** /users/{userId}/groups | Get User Groups
 [**get_user_note**](UsersApi.md#get_user_note) | **GET** /userNotes/{userNoteId} | Get User Note
@@ -104,6 +108,100 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_mutual_friends
+
+> Vec<models::MutualFriend> get_mutual_friends(user_id, n, offset)
+Get User Mutual Friends
+
+Gets a list of mutual friends between the logged in user and the specified user
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+
+### Return type
+
+[**Vec<models::MutualFriend>**](MutualFriend.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_mutual_groups
+
+> Vec<models::LimitedUserGroups> get_mutual_groups(user_id, n, offset)
+Get User Mutual Groups
+
+Gets a list of mutual groups between the logged in user and the specified user
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+
+### Return type
+
+[**Vec<models::LimitedUserGroups>**](LimitedUserGroups.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_mutuals
+
+> models::Mutuals get_mutuals(user_id)
+Get User Mutuals
+
+Gets the counts of mutuals between the logged in user and the specified user
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**models::Mutuals**](Mutuals.md)
 
 ### Authorization
 
@@ -223,6 +321,37 @@ Returns a list of group instances for a user
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**models::GetUserGroupInstances200Response**](getUserGroupInstances_200_response.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_group_instances_for_group
+
+> models::GetUserGroupInstances200Response get_user_group_instances_for_group(user_id, group_id)
+Get User Group Instances for a specific Group
+
+Returns a list of a group's instances for a user
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**group_id** | **String** | Must be a valid group ID. | [required] |
 
 ### Return type
 

@@ -15,8 +15,15 @@ pub struct InventoryItem {
     pub collections: Vec<String>,
     #[serde(rename = "created_at")]
     pub created_at: String,
+    #[serde(rename = "defaultAttributes")]
+    pub default_attributes:
+        std::collections::HashMap<String, models::InventoryDefaultAttributesValue>,
     #[serde(rename = "description")]
     pub description: String,
+    #[serde(rename = "equipSlot", skip_serializing_if = "Option::is_none")]
+    pub equip_slot: Option<models::InventoryEquipSlot>,
+    #[serde(rename = "equipSlots", skip_serializing_if = "Option::is_none")]
+    pub equip_slots: Option<Vec<models::InventoryEquipSlot>>,
     #[serde(rename = "expiryDate", deserialize_with = "Option::deserialize")]
     pub expiry_date: Option<String>,
     #[serde(rename = "flags")]
@@ -50,12 +57,20 @@ pub struct InventoryItem {
     pub template_updated_at: String,
     #[serde(rename = "updated_at")]
     pub updated_at: String,
+    #[serde(rename = "userAttributes")]
+    pub user_attributes: models::InventoryUserAttributes,
+    #[serde(rename = "validateUserAttributes")]
+    pub validate_user_attributes: bool,
 }
 
 impl InventoryItem {
     pub fn new(
         collections: Vec<String>,
         created_at: String,
+        default_attributes: std::collections::HashMap<
+            String,
+            models::InventoryDefaultAttributesValue,
+        >,
         description: String,
         expiry_date: Option<String>,
         flags: Vec<String>,
@@ -73,11 +88,16 @@ impl InventoryItem {
         template_created_at: String,
         template_updated_at: String,
         updated_at: String,
+        user_attributes: models::InventoryUserAttributes,
+        validate_user_attributes: bool,
     ) -> InventoryItem {
         InventoryItem {
             collections,
             created_at,
+            default_attributes,
             description,
+            equip_slot: None,
+            equip_slots: None,
             expiry_date,
             flags,
             holder_id,
@@ -94,6 +114,8 @@ impl InventoryItem {
             template_created_at,
             template_updated_at,
             updated_at,
+            user_attributes,
+            validate_user_attributes,
         }
     }
 }

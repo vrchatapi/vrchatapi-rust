@@ -17,24 +17,24 @@ pub struct GroupInstance {
     /// Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list.
     #[serde(rename = "location")]
     pub location: String,
-    #[serde(rename = "world")]
-    pub world: models::World,
     #[serde(rename = "memberCount")]
     pub member_count: i32,
+    #[serde(rename = "world")]
+    pub world: models::World,
 }
 
 impl GroupInstance {
     pub fn new(
         instance_id: String,
         location: String,
-        world: models::World,
         member_count: i32,
+        world: models::World,
     ) -> GroupInstance {
         GroupInstance {
             instance_id,
             location,
-            world,
             member_count,
+            world,
         }
     }
 }

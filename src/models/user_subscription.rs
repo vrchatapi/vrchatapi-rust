@@ -12,79 +12,79 @@ use serde::{Deserialize, Serialize};
 /// UserSubscription :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UserSubscription {
+    #[serde(rename = "active")]
+    pub active: bool,
+    #[serde(rename = "amount")]
+    pub amount: f64,
+    #[serde(rename = "created_at")]
+    pub created_at: String,
+    #[serde(rename = "description")]
+    pub description: String,
+    #[serde(rename = "expires")]
+    pub expires: String,
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "transactionId")]
-    pub transaction_id: String,
+    #[serde(rename = "isBulkGift")]
+    pub is_bulk_gift: bool,
+    #[serde(rename = "isGift")]
+    pub is_gift: bool,
+    #[serde(rename = "licenseGroups")]
+    pub license_groups: Vec<String>,
+    #[serde(rename = "period")]
+    pub period: models::SubscriptionPeriod,
+    #[serde(rename = "starts", skip_serializing_if = "Option::is_none")]
+    pub starts: Option<String>,
+    #[serde(rename = "status")]
+    pub status: models::TransactionStatus,
+    #[serde(rename = "steamItemId", skip_serializing_if = "Option::is_none")]
+    pub steam_item_id: Option<String>,
     /// Which \"Store\" it came from. Right now only Stores are \"Steam\" and \"Admin\".
     #[serde(rename = "store")]
     pub store: String,
-    #[serde(rename = "steamItemId", skip_serializing_if = "Option::is_none")]
-    pub steam_item_id: Option<String>,
-    #[serde(rename = "amount")]
-    pub amount: f64,
-    #[serde(rename = "description")]
-    pub description: String,
-    #[serde(rename = "period")]
-    pub period: models::SubscriptionPeriod,
     #[serde(rename = "tier")]
     pub tier: i32,
-    #[serde(rename = "active")]
-    pub active: bool,
-    #[serde(rename = "status")]
-    pub status: models::TransactionStatus,
-    #[serde(rename = "starts", skip_serializing_if = "Option::is_none")]
-    pub starts: Option<String>,
-    #[serde(rename = "expires")]
-    pub expires: String,
-    #[serde(rename = "created_at")]
-    pub created_at: String,
+    #[serde(rename = "transactionId")]
+    pub transaction_id: String,
     #[serde(rename = "updated_at")]
     pub updated_at: String,
-    #[serde(rename = "licenseGroups")]
-    pub license_groups: Vec<String>,
-    #[serde(rename = "isGift")]
-    pub is_gift: bool,
-    #[serde(rename = "isBulkGift")]
-    pub is_bulk_gift: bool,
 }
 
 impl UserSubscription {
     pub fn new(
-        id: String,
-        transaction_id: String,
-        store: String,
-        amount: f64,
-        description: String,
-        period: models::SubscriptionPeriod,
-        tier: i32,
         active: bool,
-        status: models::TransactionStatus,
-        expires: String,
+        amount: f64,
         created_at: String,
-        updated_at: String,
-        license_groups: Vec<String>,
-        is_gift: bool,
+        description: String,
+        expires: String,
+        id: String,
         is_bulk_gift: bool,
+        is_gift: bool,
+        license_groups: Vec<String>,
+        period: models::SubscriptionPeriod,
+        status: models::TransactionStatus,
+        store: String,
+        tier: i32,
+        transaction_id: String,
+        updated_at: String,
     ) -> UserSubscription {
         UserSubscription {
-            id,
-            transaction_id,
-            store,
-            steam_item_id: None,
-            amount,
-            description,
-            period,
-            tier,
             active,
-            status,
-            starts: None,
-            expires,
+            amount,
             created_at,
-            updated_at,
-            license_groups,
-            is_gift,
+            description,
+            expires,
+            id,
             is_bulk_gift,
+            is_gift,
+            license_groups,
+            period,
+            starts: None,
+            status,
+            steam_item_id: None,
+            store,
+            tier,
+            transaction_id,
+            updated_at,
         }
     }
 }

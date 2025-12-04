@@ -20,10 +20,10 @@ pub struct InstanceContentSettings {
     pub pedestals: Option<bool>,
     #[serde(rename = "prints", skip_serializing_if = "Option::is_none")]
     pub prints: Option<bool>,
-    #[serde(rename = "stickers", skip_serializing_if = "Option::is_none")]
-    pub stickers: Option<bool>,
     #[serde(rename = "props", skip_serializing_if = "Option::is_none")]
     pub props: Option<bool>,
+    #[serde(rename = "stickers", skip_serializing_if = "Option::is_none")]
+    pub stickers: Option<bool>,
 }
 
 impl InstanceContentSettings {
@@ -34,8 +34,8 @@ impl InstanceContentSettings {
             emoji: None,
             pedestals: None,
             prints: None,
-            stickers: None,
             props: None,
+            stickers: None,
         }
     }
 }

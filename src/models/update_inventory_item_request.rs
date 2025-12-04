@@ -13,10 +13,18 @@ use serde::{Deserialize, Serialize};
 pub struct UpdateInventoryItemRequest {
     #[serde(rename = "isArchived", skip_serializing_if = "Option::is_none")]
     pub is_archived: Option<bool>,
+    #[serde(rename = "isSeen", skip_serializing_if = "Option::is_none")]
+    pub is_seen: Option<bool>,
+    #[serde(rename = "userAttributes", skip_serializing_if = "Option::is_none")]
+    pub user_attributes: Option<models::InventoryUserAttributes>,
 }
 
 impl UpdateInventoryItemRequest {
     pub fn new() -> UpdateInventoryItemRequest {
-        UpdateInventoryItemRequest { is_archived: None }
+        UpdateInventoryItemRequest {
+            is_archived: None,
+            is_seen: None,
+            user_attributes: None,
+        }
     }
 }

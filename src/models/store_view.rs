@@ -13,24 +13,24 @@ use serde::{Deserialize, Serialize};
 pub enum StoreView {
     #[serde(rename = "all")]
     All,
-    #[serde(rename = "publicPreview")]
-    PublicPreview,
-    #[serde(rename = "public")]
-    Public,
-    #[serde(rename = "preview")]
-    Preview,
     #[serde(rename = "draft")]
     Draft,
+    #[serde(rename = "preview")]
+    Preview,
+    #[serde(rename = "public")]
+    Public,
+    #[serde(rename = "publicPreview")]
+    PublicPreview,
 }
 
 impl std::fmt::Display for StoreView {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::All => write!(f, "all"),
-            Self::PublicPreview => write!(f, "publicPreview"),
-            Self::Public => write!(f, "public"),
-            Self::Preview => write!(f, "preview"),
             Self::Draft => write!(f, "draft"),
+            Self::Preview => write!(f, "preview"),
+            Self::Public => write!(f, "public"),
+            Self::PublicPreview => write!(f, "publicPreview"),
         }
     }
 }

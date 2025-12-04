@@ -11,8 +11,6 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateGroupMemberRequest {
-    #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
-    pub visibility: Option<models::GroupUserVisibility>,
     #[serde(
         rename = "isSubscribedToAnnouncements",
         skip_serializing_if = "Option::is_none"
@@ -25,15 +23,17 @@ pub struct UpdateGroupMemberRequest {
     pub is_subscribed_to_event_announcements: Option<bool>,
     #[serde(rename = "managerNotes", skip_serializing_if = "Option::is_none")]
     pub manager_notes: Option<String>,
+    #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
+    pub visibility: Option<models::GroupUserVisibility>,
 }
 
 impl UpdateGroupMemberRequest {
     pub fn new() -> UpdateGroupMemberRequest {
         UpdateGroupMemberRequest {
-            visibility: None,
             is_subscribed_to_announcements: None,
             is_subscribed_to_event_announcements: None,
             manager_notes: None,
+            visibility: None,
         }
     }
 }

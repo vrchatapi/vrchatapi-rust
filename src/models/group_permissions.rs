@@ -19,6 +19,8 @@ pub enum GroupPermissions {
     group_audit_view,
     #[serde(rename = "group-bans-manage")]
     group_bans_manage,
+    #[serde(rename = "group-calendar-manage")]
+    group_calendar_manage,
     #[serde(rename = "group-data-manage")]
     group_data_manage,
     #[serde(rename = "group-default-role-manage")]
@@ -27,6 +29,8 @@ pub enum GroupPermissions {
     group_galleries_manage,
     #[serde(rename = "group-instance-age-gated-create")]
     group_instance_age_gated_create,
+    #[serde(rename = "group-instance-calendar-link")]
+    group_instance_calendar_link,
     #[serde(rename = "group-instance-join")]
     group_instance_join,
     #[serde(rename = "group-instance-manage")]
@@ -59,10 +63,6 @@ pub enum GroupPermissions {
     group_roles_assign,
     #[serde(rename = "group-roles-manage")]
     group_roles_manage,
-    #[serde(rename = "group-calendar-manage")]
-    group_calendar_manage,
-    #[serde(rename = "group-instance-calendar-link")]
-    group_instance_calendar_link,
 }
 
 impl std::fmt::Display for GroupPermissions {
@@ -72,10 +72,12 @@ impl std::fmt::Display for GroupPermissions {
             Self::group_announcement_manage => write!(f, "group-announcement-manage"),
             Self::group_audit_view => write!(f, "group-audit-view"),
             Self::group_bans_manage => write!(f, "group-bans-manage"),
+            Self::group_calendar_manage => write!(f, "group-calendar-manage"),
             Self::group_data_manage => write!(f, "group-data-manage"),
             Self::group_default_role_manage => write!(f, "group-default-role-manage"),
             Self::group_galleries_manage => write!(f, "group-galleries-manage"),
             Self::group_instance_age_gated_create => write!(f, "group-instance-age-gated-create"),
+            Self::group_instance_calendar_link => write!(f, "group-instance-calendar-link"),
             Self::group_instance_join => write!(f, "group-instance-join"),
             Self::group_instance_manage => write!(f, "group-instance-manage"),
             Self::group_instance_moderate => write!(f, "group-instance-moderate"),
@@ -94,8 +96,6 @@ impl std::fmt::Display for GroupPermissions {
             Self::group_members_viewall => write!(f, "group-members-viewall"),
             Self::group_roles_assign => write!(f, "group-roles-assign"),
             Self::group_roles_manage => write!(f, "group-roles-manage"),
-            Self::group_calendar_manage => write!(f, "group-calendar-manage"),
-            Self::group_instance_calendar_link => write!(f, "group-instance-calendar-link"),
         }
     }
 }

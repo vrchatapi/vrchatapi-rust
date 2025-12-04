@@ -25,51 +25,6 @@ pub struct GroupMember {
         skip_serializing_if = "Option::is_none"
     )]
     pub accepted_by_id: Option<Option<String>>,
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
-    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
-    pub group_id: Option<String>,
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "userId", skip_serializing_if = "Option::is_none")]
-    pub user_id: Option<String>,
-    /// Whether the user is representing the group. This makes the group show up above the name tag in-game.
-    #[serde(rename = "isRepresenting", skip_serializing_if = "Option::is_none")]
-    pub is_representing: Option<bool>,
-    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
-    pub user: Option<models::GroupMemberLimitedUser>,
-    #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
-    pub role_ids: Option<Vec<String>>,
-    #[serde(rename = "mRoleIds", skip_serializing_if = "Option::is_none")]
-    pub m_role_ids: Option<Vec<String>>,
-    #[serde(
-        rename = "joinedAt",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub joined_at: Option<Option<String>>,
-    #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
-    pub membership_status: Option<models::GroupMemberStatus>,
-    #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
-    pub visibility: Option<String>,
-    #[serde(
-        rename = "isSubscribedToAnnouncements",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub is_subscribed_to_announcements: Option<bool>,
-    #[serde(
-        rename = "isSubscribedToEventAnnouncements",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub is_subscribed_to_event_announcements: Option<bool>,
-    /// Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
-    #[serde(
-        rename = "createdAt",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub created_at: Option<Option<String>>,
     /// Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
     #[serde(
         rename = "bannedAt",
@@ -80,12 +35,41 @@ pub struct GroupMember {
     pub banned_at: Option<Option<String>>,
     /// Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
     #[serde(
-        rename = "managerNotes",
+        rename = "createdAt",
         default,
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub manager_notes: Option<Option<String>>,
+    pub created_at: Option<Option<String>>,
+    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
+    pub group_id: Option<String>,
+    #[serde(
+        rename = "hasJoinedFromPurchase",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub has_joined_from_purchase: Option<bool>,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<String>,
+    /// Whether the user is representing the group. This makes the group show up above the name tag in-game.
+    #[serde(rename = "isRepresenting", skip_serializing_if = "Option::is_none")]
+    pub is_representing: Option<bool>,
+    #[serde(
+        rename = "isSubscribedToAnnouncements",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub is_subscribed_to_announcements: Option<bool>,
+    #[serde(
+        rename = "isSubscribedToEventAnnouncements",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub is_subscribed_to_event_announcements: Option<bool>,
+    #[serde(
+        rename = "joinedAt",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub joined_at: Option<Option<String>>,
     #[serde(
         rename = "lastPostReadAt",
         default,
@@ -93,11 +77,27 @@ pub struct GroupMember {
         skip_serializing_if = "Option::is_none"
     )]
     pub last_post_read_at: Option<Option<String>>,
+    #[serde(rename = "mRoleIds", skip_serializing_if = "Option::is_none")]
+    pub m_role_ids: Option<Vec<String>>,
+    /// Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
     #[serde(
-        rename = "hasJoinedFromPurchase",
+        rename = "managerNotes",
+        default,
+        with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub has_joined_from_purchase: Option<bool>,
+    pub manager_notes: Option<Option<String>>,
+    #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
+    pub membership_status: Option<models::GroupMemberStatus>,
+    #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
+    pub role_ids: Option<Vec<String>>,
+    #[serde(rename = "user", skip_serializing_if = "Option::is_none")]
+    pub user: Option<models::GroupMemberLimitedUser>,
+    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+    #[serde(rename = "userId", skip_serializing_if = "Option::is_none")]
+    pub user_id: Option<String>,
+    #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
+    pub visibility: Option<String>,
 }
 
 impl GroupMember {
@@ -105,23 +105,23 @@ impl GroupMember {
         GroupMember {
             accepted_by_display_name: None,
             accepted_by_id: None,
-            id: None,
+            banned_at: None,
+            created_at: None,
             group_id: None,
-            user_id: None,
+            has_joined_from_purchase: None,
+            id: None,
             is_representing: None,
-            user: None,
-            role_ids: None,
-            m_role_ids: None,
-            joined_at: None,
-            membership_status: None,
-            visibility: None,
             is_subscribed_to_announcements: None,
             is_subscribed_to_event_announcements: None,
-            created_at: None,
-            banned_at: None,
-            manager_notes: None,
+            joined_at: None,
             last_post_read_at: None,
-            has_joined_from_purchase: None,
+            m_role_ids: None,
+            manager_notes: None,
+            membership_status: None,
+            role_ids: None,
+            user: None,
+            user_id: None,
+            visibility: None,
         }
     }
 }

@@ -11,26 +11,26 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum FavoriteType {
-    #[serde(rename = "world")]
-    World,
-    #[serde(rename = "friend")]
-    Friend,
     #[serde(rename = "avatar")]
     Avatar,
+    #[serde(rename = "friend")]
+    Friend,
+    #[serde(rename = "world")]
+    World,
 }
 
 impl std::fmt::Display for FavoriteType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::World => write!(f, "world"),
-            Self::Friend => write!(f, "friend"),
             Self::Avatar => write!(f, "avatar"),
+            Self::Friend => write!(f, "friend"),
+            Self::World => write!(f, "world"),
         }
     }
 }
 
 impl Default for FavoriteType {
     fn default() -> FavoriteType {
-        Self::World
+        Self::Avatar
     }
 }

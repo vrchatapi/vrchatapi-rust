@@ -40,7 +40,7 @@ This endpoint does not need any parameter.
 
 ## get_player_moderations
 
-> Vec<models::PlayerModeration> get_player_moderations(r#type, source_user_id, target_user_id)
+> Vec<models::PlayerModeration> get_player_moderations(r#type, target_user_id)
 Search Player Moderations
 
 Returns a list of all player moderations made by **you**.  This endpoint does not have pagination, and will return *all* results. Use query parameters to limit your query if needed.
@@ -51,7 +51,6 @@ Returns a list of all player moderations made by **you**.  This endpoint does no
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **r#type** | Option<[**PlayerModerationType**](.md)> | Must be one of PlayerModerationType. |  |
-**source_user_id** | Option<**String**> | Must be valid UserID. Trying to view someone else's moderations results with \"Can't view someone else's player moderations\" error. |  |
 **target_user_id** | Option<**String**> | Must be valid UserID. |  |
 
 ### Return type

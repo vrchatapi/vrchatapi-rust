@@ -4,10 +4,10 @@
 
 | Name | Value |
 |---- | -----|
-| Hour | hour |
 | Day | day |
-| Week | week |
+| Hour | hour |
 | Month | month |
+| Week | week |
 | Year | year |
 
 

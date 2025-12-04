@@ -4,11 +4,11 @@
 
 | Name | Value |
 |---- | -----|
+| Banned | banned |
 | Inactive | inactive |
+| Invited | invited |
 | Member | member |
 | Requested | requested |
-| Invited | invited |
-| Banned | banned |
 | Userblocked | userblocked |
 
 

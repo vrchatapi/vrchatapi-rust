@@ -16,11 +16,11 @@ pub struct PropUnityPackage {
     pub asset_url: String,
     #[serde(rename = "assetVersion")]
     pub asset_version: i32,
-    #[serde(rename = "propSignature")]
-    pub prop_signature: String,
     /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "platform")]
     pub platform: String,
+    #[serde(rename = "propSignature")]
+    pub prop_signature: String,
     #[serde(rename = "unityVersion")]
     pub unity_version: String,
     #[serde(rename = "variant")]
@@ -31,16 +31,16 @@ impl PropUnityPackage {
     pub fn new(
         asset_url: String,
         asset_version: i32,
-        prop_signature: String,
         platform: String,
+        prop_signature: String,
         unity_version: String,
         variant: String,
     ) -> PropUnityPackage {
         PropUnityPackage {
             asset_url,
             asset_version,
-            prop_signature,
             platform,
+            prop_signature,
             unity_version,
             variant,
         }

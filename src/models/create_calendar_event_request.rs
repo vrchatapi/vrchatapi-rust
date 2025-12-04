@@ -11,105 +11,105 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateCalendarEventRequest {
-    /// Event title
-    #[serde(rename = "title")]
-    pub title: String,
-    /// Time the event starts at
-    #[serde(rename = "startsAt")]
-    pub starts_at: String,
+    #[serde(rename = "accessType")]
+    pub access_type: AccessType,
+    #[serde(rename = "category")]
+    pub category: String,
+    #[serde(
+        rename = "closeInstanceAfterEndMinutes",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub close_instance_after_end_minutes: Option<i32>,
     #[serde(rename = "description")]
     pub description: String,
     /// Time the event ends at
     #[serde(rename = "endsAt")]
     pub ends_at: String,
-    #[serde(rename = "category")]
-    pub category: String,
-    #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
-    pub tags: Option<Vec<String>>,
-    #[serde(rename = "isDraft", skip_serializing_if = "Option::is_none")]
-    pub is_draft: Option<bool>,
-    #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
-    pub image_id: Option<String>,
-    #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
-    pub role_ids: Option<Vec<String>>,
-    #[serde(rename = "parentId", skip_serializing_if = "Option::is_none")]
-    pub parent_id: Option<String>,
-    #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
-    pub platforms: Option<Vec<String>>,
-    #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
-    pub languages: Option<Vec<String>>,
-    /// Send notification to group members.
-    #[serde(rename = "sendCreationNotification")]
-    pub send_creation_notification: bool,
     #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
     pub featured: Option<bool>,
-    #[serde(
-        rename = "hostEarlyJoinMinutes",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub host_early_join_minutes: Option<i32>,
     #[serde(
         rename = "guestEarlyJoinMinutes",
         skip_serializing_if = "Option::is_none"
     )]
     pub guest_early_join_minutes: Option<i32>,
     #[serde(
-        rename = "closeInstanceAfterEndMinutes",
+        rename = "hostEarlyJoinMinutes",
         skip_serializing_if = "Option::is_none"
     )]
-    pub close_instance_after_end_minutes: Option<i32>,
+    pub host_early_join_minutes: Option<i32>,
+    #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
+    pub image_id: Option<String>,
+    #[serde(rename = "isDraft", skip_serializing_if = "Option::is_none")]
+    pub is_draft: Option<bool>,
+    #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
+    pub languages: Option<Vec<String>>,
+    #[serde(rename = "parentId", skip_serializing_if = "Option::is_none")]
+    pub parent_id: Option<String>,
+    #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
+    pub platforms: Option<Vec<String>>,
+    #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
+    pub role_ids: Option<Vec<String>>,
+    /// Send notification to group members.
+    #[serde(rename = "sendCreationNotification")]
+    pub send_creation_notification: bool,
+    /// Time the event starts at
+    #[serde(rename = "startsAt")]
+    pub starts_at: String,
+    #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
+    pub tags: Option<Vec<String>>,
+    /// Event title
+    #[serde(rename = "title")]
+    pub title: String,
     #[serde(
         rename = "usesInstanceOverflow",
         skip_serializing_if = "Option::is_none"
     )]
     pub uses_instance_overflow: Option<bool>,
-    #[serde(rename = "accessType")]
-    pub access_type: AccessType,
 }
 
 impl CreateCalendarEventRequest {
     pub fn new(
-        title: String,
-        starts_at: String,
+        access_type: AccessType,
+        category: String,
         description: String,
         ends_at: String,
-        category: String,
         send_creation_notification: bool,
-        access_type: AccessType,
+        starts_at: String,
+        title: String,
     ) -> CreateCalendarEventRequest {
         CreateCalendarEventRequest {
-            title,
-            starts_at,
+            access_type,
+            category,
+            close_instance_after_end_minutes: None,
             description,
             ends_at,
-            category,
-            tags: None,
-            is_draft: None,
+            featured: None,
+            guest_early_join_minutes: None,
+            host_early_join_minutes: None,
             image_id: None,
-            role_ids: None,
+            is_draft: None,
+            languages: None,
             parent_id: None,
             platforms: None,
-            languages: None,
+            role_ids: None,
             send_creation_notification,
-            featured: None,
-            host_early_join_minutes: None,
-            guest_early_join_minutes: None,
-            close_instance_after_end_minutes: None,
+            starts_at,
+            tags: None,
+            title,
             uses_instance_overflow: None,
-            access_type,
         }
     }
 }
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum AccessType {
-    #[serde(rename = "public")]
-    Public,
     #[serde(rename = "group")]
     Group,
+    #[serde(rename = "public")]
+    Public,
 }
 
 impl Default for AccessType {
     fn default() -> AccessType {
-        Self::Public
+        Self::Group
     }
 }

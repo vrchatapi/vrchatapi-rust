@@ -19,13 +19,6 @@ pub struct FavoritedWorld {
     pub author_name: String,
     #[serde(rename = "capacity")]
     pub capacity: i32,
-    #[serde(rename = "description")]
-    pub description: String,
-    #[serde(
-        rename = "recommendedCapacity",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub recommended_capacity: Option<i32>,
     #[serde(rename = "created_at")]
     pub created_at: String,
     #[serde(
@@ -33,16 +26,16 @@ pub struct FavoritedWorld {
         skip_serializing_if = "Option::is_none"
     )]
     pub default_content_settings: Option<models::InstanceContentSettings>,
-    #[serde(rename = "favorites")]
-    pub favorites: i32,
+    #[serde(rename = "description")]
+    pub description: String,
     #[serde(rename = "favoriteGroup")]
     pub favorite_group: String,
     #[serde(rename = "favoriteId")]
     pub favorite_id: String,
+    #[serde(rename = "favorites")]
+    pub favorites: i32,
     #[serde(rename = "featured")]
     pub featured: bool,
-    #[serde(rename = "visits", skip_serializing_if = "Option::is_none")]
-    pub visits: Option<i32>,
     #[serde(rename = "heat")]
     pub heat: i32,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
@@ -69,33 +62,40 @@ pub struct FavoritedWorld {
     pub preview_youtube_id: Option<Option<String>>,
     #[serde(rename = "publicationDate")]
     pub publication_date: String,
+    #[serde(
+        rename = "recommendedCapacity",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub recommended_capacity: Option<i32>,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "thumbnailImageUrl")]
     pub thumbnail_image_url: String,
+    #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
+    pub udon_products: Option<Vec<String>>,
     #[serde(rename = "unityPackages")]
     pub unity_packages: Vec<models::UnityPackage>,
     #[serde(rename = "updated_at")]
     pub updated_at: String,
     #[serde(rename = "urlList")]
     pub url_list: Vec<String>,
-    #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
-    pub udon_products: Option<Vec<String>>,
     #[serde(rename = "version")]
     pub version: i32,
+    #[serde(rename = "visits", skip_serializing_if = "Option::is_none")]
+    pub visits: Option<i32>,
 }
 
 impl FavoritedWorld {
     pub fn new(
         author_name: String,
         capacity: i32,
-        description: String,
         created_at: String,
-        favorites: i32,
+        description: String,
         favorite_group: String,
         favorite_id: String,
+        favorites: i32,
         featured: bool,
         heat: i32,
         id: String,
@@ -118,15 +118,13 @@ impl FavoritedWorld {
             author_id: None,
             author_name,
             capacity,
-            description,
-            recommended_capacity: None,
             created_at,
             default_content_settings: None,
-            favorites,
+            description,
             favorite_group,
             favorite_id,
+            favorites,
             featured,
-            visits: None,
             heat,
             id,
             image_url,
@@ -137,14 +135,16 @@ impl FavoritedWorld {
             popularity,
             preview_youtube_id: None,
             publication_date,
+            recommended_capacity: None,
             release_status,
             tags,
             thumbnail_image_url,
+            udon_products: None,
             unity_packages,
             updated_at,
             url_list,
-            udon_products: None,
             version,
+            visits: None,
         }
     }
 }

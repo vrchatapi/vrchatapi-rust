@@ -12,9 +12,9 @@ use serde::{Deserialize, Serialize};
 /// GroupPermission : A permission that can be granted to a role in a group.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupPermission {
-    /// The name of the permission.
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
+    /// Whether the user is allowed to add this permission to a role.
+    #[serde(rename = "allowedToAdd", skip_serializing_if = "Option::is_none")]
+    pub allowed_to_add: Option<bool>,
     /// The display name of the permission.
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
     pub display_name: Option<String>,
@@ -27,20 +27,20 @@ pub struct GroupPermission {
         skip_serializing_if = "Option::is_none"
     )]
     pub is_management_permission: Option<bool>,
-    /// Whether the user is allowed to add this permission to a role.
-    #[serde(rename = "allowedToAdd", skip_serializing_if = "Option::is_none")]
-    pub allowed_to_add: Option<bool>,
+    /// The name of the permission.
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
 }
 
 impl GroupPermission {
     /// A permission that can be granted to a role in a group.
     pub fn new() -> GroupPermission {
         GroupPermission {
-            name: None,
+            allowed_to_add: None,
             display_name: None,
             help: None,
             is_management_permission: None,
-            allowed_to_add: None,
+            name: None,
         }
     }
 }

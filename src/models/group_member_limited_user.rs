@@ -12,22 +12,8 @@ use serde::{Deserialize, Serialize};
 /// GroupMemberLimitedUser : Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberLimitedUser {
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
-    #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
-    pub display_name: Option<String>,
-    #[serde(
-        rename = "thumbnailUrl",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub thumbnail_url: Option<Option<String>>,
-    #[serde(rename = "iconUrl", skip_serializing_if = "Option::is_none")]
-    pub icon_url: Option<String>,
-    #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
-    pub profile_pic_override: Option<String>,
+    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_tags: Option<Vec<String>>,
     #[serde(
         rename = "currentAvatarThumbnailImageUrl",
         default,
@@ -35,21 +21,35 @@ pub struct GroupMemberLimitedUser {
         skip_serializing_if = "Option::is_none"
     )]
     pub current_avatar_thumbnail_image_url: Option<Option<String>>,
-    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
-    pub current_avatar_tags: Option<Vec<String>>,
+    #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
+    pub display_name: Option<String>,
+    #[serde(rename = "iconUrl", skip_serializing_if = "Option::is_none")]
+    pub icon_url: Option<String>,
+    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<String>,
+    #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
+    pub profile_pic_override: Option<String>,
+    #[serde(
+        rename = "thumbnailUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub thumbnail_url: Option<Option<String>>,
 }
 
 impl GroupMemberLimitedUser {
     /// Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
     pub fn new() -> GroupMemberLimitedUser {
         GroupMemberLimitedUser {
-            id: None,
-            display_name: None,
-            thumbnail_url: None,
-            icon_url: None,
-            profile_pic_override: None,
-            current_avatar_thumbnail_image_url: None,
             current_avatar_tags: None,
+            current_avatar_thumbnail_image_url: None,
+            display_name: None,
+            icon_url: None,
+            id: None,
+            profile_pic_override: None,
+            thumbnail_url: None,
         }
     }
 }

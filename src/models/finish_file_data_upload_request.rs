@@ -16,19 +16,19 @@ pub struct FinishFileDataUploadRequest {
     #[serde(rename = "etags", skip_serializing_if = "Option::is_none")]
     pub etags: Option<Vec<String>>,
     /// Always a zero in string form, despite how many parts uploaded.
-    #[serde(rename = "nextPartNumber")]
-    pub next_part_number: String,
-    /// Always a zero in string form, despite how many parts uploaded.
     #[serde(rename = "maxParts")]
     pub max_parts: String,
+    /// Always a zero in string form, despite how many parts uploaded.
+    #[serde(rename = "nextPartNumber")]
+    pub next_part_number: String,
 }
 
 impl FinishFileDataUploadRequest {
-    pub fn new(next_part_number: String, max_parts: String) -> FinishFileDataUploadRequest {
+    pub fn new(max_parts: String, next_part_number: String) -> FinishFileDataUploadRequest {
         FinishFileDataUploadRequest {
             etags: None,
-            next_part_number,
             max_parts,
+            next_part_number,
         }
     }
 }

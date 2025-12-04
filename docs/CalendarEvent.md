@@ -28,8 +28,8 @@ Name | Type | Description | Notes
 **title** | **String** |  | 
 **r#type** | Option<**String**> |  | [optional]
 **updated_at** | Option<**String**> |  | [optional]
-**uses_instance_overflow** | Option<**bool**> |  | [optional]
 **user_interest** | Option<[**models::CalendarEventUserInterest**](CalendarEvent_userInterest.md)> |  | [optional]
+**uses_instance_overflow** | Option<**bool**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

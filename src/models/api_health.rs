@@ -11,20 +11,20 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiHealth {
+    #[serde(rename = "buildVersionTag")]
+    pub build_version_tag: String,
     #[serde(rename = "ok")]
     pub ok: bool,
     #[serde(rename = "serverName")]
     pub server_name: String,
-    #[serde(rename = "buildVersionTag")]
-    pub build_version_tag: String,
 }
 
 impl ApiHealth {
-    pub fn new(ok: bool, server_name: String, build_version_tag: String) -> ApiHealth {
+    pub fn new(build_version_tag: String, ok: bool, server_name: String) -> ApiHealth {
         ApiHealth {
+            build_version_tag,
             ok,
             server_name,
-            build_version_tag,
         }
     }
 }

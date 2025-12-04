@@ -33,6 +33,7 @@ docs/ApiHealth.md
 docs/AuthenticationApi.md
 docs/Avatar.md
 docs/AvatarModeration.md
+docs/AvatarModerationCreated.md
 docs/AvatarModerationType.md
 docs/AvatarPerformance.md
 docs/AvatarPublishedListingsInner.md
@@ -43,10 +44,15 @@ docs/AvatarsApi.md
 docs/Badge.md
 docs/Balance.md
 docs/BanGroupMemberRequest.md
+docs/BoopRequest.md
 docs/CalendarApi.md
 docs/CalendarEvent.md
+docs/CalendarEventDiscovery.md
+docs/CalendarEventDiscoveryInclusion.md
+docs/CalendarEventDiscoveryScope.md
 docs/CalendarEventUserInterest.md
 docs/ChangeUserTagsRequest.md
+docs/CreateAvatarModerationRequest.md
 docs/CreateAvatarRequest.md
 docs/CreateCalendarEventRequest.md
 docs/CreateFileRequest.md
@@ -58,7 +64,6 @@ docs/CreateGroupPostRequest.md
 docs/CreateGroupRequest.md
 docs/CreateGroupRoleRequest.md
 docs/CreateInstanceRequest.md
-docs/CreatePermissionRequest.md
 docs/CreateWorldRequest.md
 docs/CurrentUser.md
 docs/CurrentUserPlatformHistoryInner.md
@@ -69,6 +74,7 @@ docs/DiscordDetails.md
 docs/DynamicContentRow.md
 docs/EconomyAccount.md
 docs/EconomyApi.md
+docs/EquipInventoryItemRequest.md
 docs/Error.md
 docs/Favorite.md
 docs/FavoriteGroup.md
@@ -134,7 +140,11 @@ docs/InstanceType.md
 docs/InstancesApi.md
 docs/Inventory.md
 docs/InventoryApi.md
+docs/InventoryConsumptionResults.md
+docs/InventoryDefaultAttributesValue.md
+docs/InventoryDefaultAttributesValueValidator.md
 docs/InventoryDrop.md
+docs/InventoryEquipSlot.md
 docs/InventoryFlag.md
 docs/InventoryItem.md
 docs/InventoryItemType.md
@@ -142,6 +152,7 @@ docs/InventoryMetadata.md
 docs/InventoryNotificationDetails.md
 docs/InventorySpawn.md
 docs/InventoryTemplate.md
+docs/InventoryUserAttributes.md
 docs/InviteApi.md
 docs/InviteMessage.md
 docs/InviteMessageType.md
@@ -164,6 +175,8 @@ docs/LimitedWorld.md
 docs/MimeType.md
 docs/MiscellaneousApi.md
 docs/ModerateUserRequest.md
+docs/MutualFriend.md
+docs/Mutuals.md
 docs/Notification.md
 docs/NotificationDetailInvite.md
 docs/NotificationDetailInviteResponse.md
@@ -173,7 +186,9 @@ docs/NotificationDetailVoteToKick.md
 docs/NotificationType.md
 docs/NotificationsApi.md
 docs/OkStatus.md
+docs/OkStatus2.md
 docs/OrderOption.md
+docs/OrderOptionShort.md
 docs/PaginatedCalendarEventList.md
 docs/PaginatedGroupAuditLogEntryList.md
 docs/PastDisplayName.md
@@ -192,10 +207,13 @@ docs/Product.md
 docs/ProductListing.md
 docs/ProductListingType.md
 docs/ProductListingVariant.md
+docs/ProductPurchase.md
+docs/ProductPurchasePurchaseContext.md
 docs/ProductType.md
 docs/Prop.md
 docs/PropUnityPackage.md
 docs/PropsApi.md
+docs/PurchaseProductListingRequest.md
 docs/Region.md
 docs/RegisterUserAccountRequest.md
 docs/ReleaseStatus.md
@@ -210,6 +228,7 @@ docs/ServiceQueueStats.md
 docs/ServiceStatus.md
 docs/ShareInventoryItemDirectRequest.md
 docs/SortOption.md
+docs/SortOptionProductPurchase.md
 docs/Store.md
 docs/StoreShelf.md
 docs/StoreType.md
@@ -218,6 +237,7 @@ docs/Submission.md
 docs/Subscription.md
 docs/SubscriptionPeriod.md
 docs/Success.md
+docs/SuccessFlag.md
 docs/TiliaStatus.md
 docs/TiliaTos.md
 docs/TokenBundle.md
@@ -241,12 +261,13 @@ docs/UpdateGroupRequest.md
 docs/UpdateGroupRoleRequest.md
 docs/UpdateInventoryItemRequest.md
 docs/UpdateInviteMessageRequest.md
-docs/UpdatePermissionRequest.md
+docs/UpdateTiliaTosRequest.md
 docs/UpdateUserBadgeRequest.md
 docs/UpdateUserNoteRequest.md
 docs/UpdateUserRequest.md
 docs/UpdateWorldRequest.md
 docs/User.md
+docs/UserCreditsEligible.md
 docs/UserExists.md
 docs/UserNote.md
 docs/UserNoteTargetUser.md
@@ -317,6 +338,7 @@ src/models/api_config_report_reasons.rs
 src/models/api_health.rs
 src/models/avatar.rs
 src/models/avatar_moderation.rs
+src/models/avatar_moderation_created.rs
 src/models/avatar_moderation_type.rs
 src/models/avatar_performance.rs
 src/models/avatar_published_listings_inner.rs
@@ -326,9 +348,14 @@ src/models/avatar_unity_package_url_object.rs
 src/models/badge.rs
 src/models/balance.rs
 src/models/ban_group_member_request.rs
+src/models/boop_request.rs
 src/models/calendar_event.rs
+src/models/calendar_event_discovery.rs
+src/models/calendar_event_discovery_inclusion.rs
+src/models/calendar_event_discovery_scope.rs
 src/models/calendar_event_user_interest.rs
 src/models/change_user_tags_request.rs
+src/models/create_avatar_moderation_request.rs
 src/models/create_avatar_request.rs
 src/models/create_calendar_event_request.rs
 src/models/create_file_request.rs
@@ -340,7 +367,6 @@ src/models/create_group_post_request.rs
 src/models/create_group_request.rs
 src/models/create_group_role_request.rs
 src/models/create_instance_request.rs
-src/models/create_permission_request.rs
 src/models/create_world_request.rs
 src/models/current_user.rs
 src/models/current_user_platform_history_inner.rs
@@ -350,6 +376,7 @@ src/models/disable2_fa_result.rs
 src/models/discord_details.rs
 src/models/dynamic_content_row.rs
 src/models/economy_account.rs
+src/models/equip_inventory_item_request.rs
 src/models/error.rs
 src/models/favorite.rs
 src/models/favorite_group.rs
@@ -409,7 +436,11 @@ src/models/instance_region.rs
 src/models/instance_short_name_response.rs
 src/models/instance_type.rs
 src/models/inventory.rs
+src/models/inventory_consumption_results.rs
+src/models/inventory_default_attributes_value.rs
+src/models/inventory_default_attributes_value_validator.rs
 src/models/inventory_drop.rs
+src/models/inventory_equip_slot.rs
 src/models/inventory_flag.rs
 src/models/inventory_item.rs
 src/models/inventory_item_type.rs
@@ -417,6 +448,7 @@ src/models/inventory_metadata.rs
 src/models/inventory_notification_details.rs
 src/models/inventory_spawn.rs
 src/models/inventory_template.rs
+src/models/inventory_user_attributes.rs
 src/models/invite_message.rs
 src/models/invite_message_type.rs
 src/models/invite_request.rs
@@ -437,6 +469,8 @@ src/models/limited_world.rs
 src/models/mime_type.rs
 src/models/mod.rs
 src/models/moderate_user_request.rs
+src/models/mutual_friend.rs
+src/models/mutuals.rs
 src/models/notification.rs
 src/models/notification_detail_invite.rs
 src/models/notification_detail_invite_response.rs
@@ -445,7 +479,9 @@ src/models/notification_detail_request_invite_response.rs
 src/models/notification_detail_vote_to_kick.rs
 src/models/notification_type.rs
 src/models/ok_status.rs
+src/models/ok_status2.rs
 src/models/order_option.rs
+src/models/order_option_short.rs
 src/models/paginated_calendar_event_list.rs
 src/models/paginated_group_audit_log_entry_list.rs
 src/models/past_display_name.rs
@@ -462,9 +498,12 @@ src/models/product.rs
 src/models/product_listing.rs
 src/models/product_listing_type.rs
 src/models/product_listing_variant.rs
+src/models/product_purchase.rs
+src/models/product_purchase_purchase_context.rs
 src/models/product_type.rs
 src/models/prop.rs
 src/models/prop_unity_package.rs
+src/models/purchase_product_listing_request.rs
 src/models/region.rs
 src/models/register_user_account_request.rs
 src/models/release_status.rs
@@ -479,6 +518,7 @@ src/models/service_queue_stats.rs
 src/models/service_status.rs
 src/models/share_inventory_item_direct_request.rs
 src/models/sort_option.rs
+src/models/sort_option_product_purchase.rs
 src/models/store.rs
 src/models/store_shelf.rs
 src/models/store_type.rs
@@ -487,6 +527,7 @@ src/models/submission.rs
 src/models/subscription.rs
 src/models/subscription_period.rs
 src/models/success.rs
+src/models/success_flag.rs
 src/models/tilia_status.rs
 src/models/tilia_tos.rs
 src/models/token_bundle.rs
@@ -510,12 +551,13 @@ src/models/update_group_request.rs
 src/models/update_group_role_request.rs
 src/models/update_inventory_item_request.rs
 src/models/update_invite_message_request.rs
-src/models/update_permission_request.rs
+src/models/update_tilia_tos_request.rs
 src/models/update_user_badge_request.rs
 src/models/update_user_note_request.rs
 src/models/update_user_request.rs
 src/models/update_world_request.rs
 src/models/user.rs
+src/models/user_credits_eligible.rs
 src/models/user_exists.rs
 src/models/user_note.rs
 src/models/user_note_target_user.rs

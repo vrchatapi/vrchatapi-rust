@@ -12,86 +12,86 @@ use serde::{Deserialize, Serialize};
 /// TransactionAgreement : Represents a single Transaction, which is likely between VRChat and Steam.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TransactionAgreement {
-    #[serde(rename = "agreementId")]
-    pub agreement_id: String,
-    #[serde(rename = "itemId")]
-    pub item_id: i32,
     #[serde(rename = "agreement")]
     pub agreement: String,
-    /// This is NOT TransactionStatus, but whatever Steam return.
-    #[serde(rename = "status")]
-    pub status: String,
-    #[serde(rename = "period")]
-    pub period: String,
-    #[serde(rename = "frequency")]
-    pub frequency: i32,
+    #[serde(rename = "agreementId")]
+    pub agreement_id: String,
     #[serde(rename = "billingType")]
     pub billing_type: String,
-    #[serde(rename = "startDate")]
-    pub start_date: String,
-    #[serde(rename = "endDate")]
-    pub end_date: String,
-    #[serde(rename = "recurringAmt")]
-    pub recurring_amt: f64,
     #[serde(rename = "currency")]
     pub currency: String,
-    #[serde(rename = "timeCreated")]
-    pub time_created: String,
-    #[serde(rename = "nextPayment")]
-    pub next_payment: String,
-    #[serde(rename = "lastPayment")]
-    pub last_payment: String,
+    #[serde(rename = "endDate")]
+    pub end_date: String,
+    #[serde(rename = "failedAttempts")]
+    pub failed_attempts: i32,
+    #[serde(rename = "frequency")]
+    pub frequency: i32,
+    #[serde(rename = "itemId")]
+    pub item_id: i32,
     #[serde(rename = "lastAmount")]
     pub last_amount: f64,
     #[serde(rename = "lastAmountVat")]
     pub last_amount_vat: f64,
+    #[serde(rename = "lastPayment")]
+    pub last_payment: String,
+    #[serde(rename = "nextPayment")]
+    pub next_payment: String,
     #[serde(rename = "outstanding")]
     pub outstanding: i32,
-    #[serde(rename = "failedAttempts")]
-    pub failed_attempts: i32,
+    #[serde(rename = "period")]
+    pub period: String,
+    #[serde(rename = "recurringAmt")]
+    pub recurring_amt: f64,
+    #[serde(rename = "startDate")]
+    pub start_date: String,
+    /// This is NOT TransactionStatus, but whatever Steam return.
+    #[serde(rename = "status")]
+    pub status: String,
+    #[serde(rename = "timeCreated")]
+    pub time_created: String,
 }
 
 impl TransactionAgreement {
     /// Represents a single Transaction, which is likely between VRChat and Steam.
     pub fn new(
-        agreement_id: String,
-        item_id: i32,
         agreement: String,
-        status: String,
-        period: String,
-        frequency: i32,
+        agreement_id: String,
         billing_type: String,
-        start_date: String,
-        end_date: String,
-        recurring_amt: f64,
         currency: String,
-        time_created: String,
-        next_payment: String,
-        last_payment: String,
+        end_date: String,
+        failed_attempts: i32,
+        frequency: i32,
+        item_id: i32,
         last_amount: f64,
         last_amount_vat: f64,
+        last_payment: String,
+        next_payment: String,
         outstanding: i32,
-        failed_attempts: i32,
+        period: String,
+        recurring_amt: f64,
+        start_date: String,
+        status: String,
+        time_created: String,
     ) -> TransactionAgreement {
         TransactionAgreement {
-            agreement_id,
-            item_id,
             agreement,
-            status,
-            period,
-            frequency,
+            agreement_id,
             billing_type,
-            start_date,
-            end_date,
-            recurring_amt,
             currency,
-            time_created,
-            next_payment,
-            last_payment,
+            end_date,
+            failed_attempts,
+            frequency,
+            item_id,
             last_amount,
             last_amount_vat,
+            last_payment,
+            next_payment,
             outstanding,
-            failed_attempts,
+            period,
+            recurring_amt,
+            start_date,
+            status,
+            time_created,
         }
     }
 }

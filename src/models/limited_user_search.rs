@@ -19,11 +19,11 @@ pub struct LimitedUserSearch {
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarImageUrl")]
     pub current_avatar_image_url: String,
+    #[serde(rename = "currentAvatarTags")]
+    pub current_avatar_tags: Vec<String>,
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarThumbnailImageUrl")]
     pub current_avatar_thumbnail_image_url: String,
-    #[serde(rename = "currentAvatarTags")]
-    pub current_avatar_tags: Vec<String>,
     #[serde(rename = "developerType")]
     pub developer_type: models::DeveloperType,
     #[serde(rename = "displayName")]
@@ -55,8 +55,8 @@ impl LimitedUserSearch {
     /// User object received when searching
     pub fn new(
         current_avatar_image_url: String,
-        current_avatar_thumbnail_image_url: String,
         current_avatar_tags: Vec<String>,
+        current_avatar_thumbnail_image_url: String,
         developer_type: models::DeveloperType,
         display_name: String,
         id: String,
@@ -70,8 +70,8 @@ impl LimitedUserSearch {
             bio: None,
             bio_links: None,
             current_avatar_image_url,
-            current_avatar_thumbnail_image_url,
             current_avatar_tags,
+            current_avatar_thumbnail_image_url,
             developer_type,
             display_name,
             id,

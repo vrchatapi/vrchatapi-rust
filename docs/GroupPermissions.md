@@ -8,10 +8,12 @@
 | group_announcement_manage | group-announcement-manage |
 | group_audit_view | group-audit-view |
 | group_bans_manage | group-bans-manage |
+| group_calendar_manage | group-calendar-manage |
 | group_data_manage | group-data-manage |
 | group_default_role_manage | group-default-role-manage |
 | group_galleries_manage | group-galleries-manage |
 | group_instance_age_gated_create | group-instance-age-gated-create |
+| group_instance_calendar_link | group-instance-calendar-link |
 | group_instance_join | group-instance-join |
 | group_instance_manage | group-instance-manage |
 | group_instance_moderate | group-instance-moderate |
@@ -28,8 +30,6 @@
 | group_members_viewall | group-members-viewall |
 | group_roles_assign | group-roles-assign |
 | group_roles_manage | group-roles-manage |
-| group_calendar_manage | group-calendar-manage |
-| group_instance_calendar_link | group-instance-calendar-link |
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

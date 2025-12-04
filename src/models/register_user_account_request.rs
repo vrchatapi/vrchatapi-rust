@@ -11,57 +11,57 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RegisterUserAccountRequest {
-    /// Display Name / Username (Username is a sanitized version)
-    #[serde(rename = "username")]
-    pub username: String,
-    /// Password
-    #[serde(rename = "password")]
-    pub password: String,
-    /// Email address
-    #[serde(rename = "email")]
-    pub email: String,
-    /// Birth year
-    #[serde(rename = "year")]
-    pub year: String,
-    /// Birth month of year
-    #[serde(rename = "month")]
-    pub month: String,
-    /// Birth day of month
-    #[serde(rename = "day")]
-    pub day: String,
-    /// Captcha code
-    #[serde(rename = "captchaCode")]
-    pub captcha_code: String,
-    /// Whether to recieve promotional emails
-    #[serde(rename = "subscribe")]
-    pub subscribe: bool,
     /// The most recent version of the TOS
     #[serde(rename = "acceptedTOSVersion")]
     pub accepted_tos_version: i32,
+    /// Captcha code
+    #[serde(rename = "captchaCode")]
+    pub captcha_code: String,
+    /// Birth day of month
+    #[serde(rename = "day")]
+    pub day: String,
+    /// Email address
+    #[serde(rename = "email")]
+    pub email: String,
+    /// Birth month of year
+    #[serde(rename = "month")]
+    pub month: String,
+    /// Password
+    #[serde(rename = "password")]
+    pub password: String,
+    /// Whether to recieve promotional emails
+    #[serde(rename = "subscribe")]
+    pub subscribe: bool,
+    /// Display Name / Username (Username is a sanitized version)
+    #[serde(rename = "username")]
+    pub username: String,
+    /// Birth year
+    #[serde(rename = "year")]
+    pub year: String,
 }
 
 impl RegisterUserAccountRequest {
     pub fn new(
-        username: String,
-        password: String,
-        email: String,
-        year: String,
-        month: String,
-        day: String,
-        captcha_code: String,
-        subscribe: bool,
         accepted_tos_version: i32,
+        captcha_code: String,
+        day: String,
+        email: String,
+        month: String,
+        password: String,
+        subscribe: bool,
+        username: String,
+        year: String,
     ) -> RegisterUserAccountRequest {
         RegisterUserAccountRequest {
-            username,
-            password,
-            email,
-            year,
-            month,
-            day,
-            captcha_code,
-            subscribe,
             accepted_tos_version,
+            captcha_code,
+            day,
+            email,
+            month,
+            password,
+            subscribe,
+            username,
+            year,
         }
     }
 }

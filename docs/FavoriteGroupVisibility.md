@@ -4,8 +4,8 @@
 
 | Name | Value |
 |---- | -----|
-| Private | private |
 | Friends | friends |
+| Private | private |
 | Public | public |
 
 

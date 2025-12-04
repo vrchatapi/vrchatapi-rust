@@ -13,14 +13,14 @@ use serde::{Deserialize, Serialize};
 /// Avatar Performance ratings.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum PerformanceRatings {
-    #[serde(rename = "None")]
-    None,
     #[serde(rename = "Excellent")]
     Excellent,
     #[serde(rename = "Good")]
     Good,
     #[serde(rename = "Medium")]
     Medium,
+    #[serde(rename = "None")]
+    None,
     #[serde(rename = "Poor")]
     Poor,
     #[serde(rename = "VeryPoor")]
@@ -30,10 +30,10 @@ pub enum PerformanceRatings {
 impl std::fmt::Display for PerformanceRatings {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::None => write!(f, "None"),
             Self::Excellent => write!(f, "Excellent"),
             Self::Good => write!(f, "Good"),
             Self::Medium => write!(f, "Medium"),
+            Self::None => write!(f, "None"),
             Self::Poor => write!(f, "Poor"),
             Self::VeryPoor => write!(f, "VeryPoor"),
         }
@@ -42,6 +42,6 @@ impl std::fmt::Display for PerformanceRatings {
 
 impl Default for PerformanceRatings {
     fn default() -> PerformanceRatings {
-        Self::None
+        Self::Excellent
     }
 }

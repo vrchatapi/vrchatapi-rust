@@ -11,12 +11,6 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InventoryMetadata {
-    /// Only in bundles
-    #[serde(
-        rename = "inventoryItemsToInstantiate",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub inventory_items_to_instantiate: Option<Vec<String>>,
     #[serde(rename = "animated", skip_serializing_if = "Option::is_none")]
     pub animated: Option<bool>,
     #[serde(rename = "animationStyle", skip_serializing_if = "Option::is_none")]
@@ -27,6 +21,12 @@ pub struct InventoryMetadata {
     pub file_id: Option<String>,
     #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
     pub image_url: Option<String>,
+    /// Only in bundles
+    #[serde(
+        rename = "inventoryItemsToInstantiate",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub inventory_items_to_instantiate: Option<Vec<String>>,
     #[serde(rename = "maskTag", skip_serializing_if = "Option::is_none")]
     pub mask_tag: Option<String>,
     #[serde(rename = "propId", skip_serializing_if = "Option::is_none")]
@@ -36,12 +36,12 @@ pub struct InventoryMetadata {
 impl InventoryMetadata {
     pub fn new() -> InventoryMetadata {
         InventoryMetadata {
-            inventory_items_to_instantiate: None,
             animated: None,
             animation_style: None,
             asset_bundle_id: None,
             file_id: None,
             image_url: None,
+            inventory_items_to_instantiate: None,
             mask_tag: None,
             prop_id: None,
         }

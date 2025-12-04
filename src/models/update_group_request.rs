@@ -11,21 +11,6 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateGroupRequest {
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(rename = "shortCode", skip_serializing_if = "Option::is_none")]
-    pub short_code: Option<String>,
-    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
-    #[serde(rename = "joinState", skip_serializing_if = "Option::is_none")]
-    pub join_state: Option<models::GroupJoinState>,
-    #[serde(
-        rename = "iconId",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub icon_id: Option<Option<String>>,
     #[serde(
         rename = "bannerId",
         default,
@@ -33,13 +18,28 @@ pub struct UpdateGroupRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub banner_id: Option<Option<String>>,
+    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
+    #[serde(
+        rename = "iconId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub icon_id: Option<Option<String>>,
+    #[serde(rename = "joinState", skip_serializing_if = "Option::is_none")]
+    pub join_state: Option<models::GroupJoinState>,
     /// 3 letter language code
     #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
     pub languages: Option<Vec<String>>,
     #[serde(rename = "links", skip_serializing_if = "Option::is_none")]
     pub links: Option<Vec<String>>,
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
     #[serde(rename = "rules", skip_serializing_if = "Option::is_none")]
     pub rules: Option<String>,
+    #[serde(rename = "shortCode", skip_serializing_if = "Option::is_none")]
+    pub short_code: Option<String>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
 }
@@ -47,15 +47,15 @@ pub struct UpdateGroupRequest {
 impl UpdateGroupRequest {
     pub fn new() -> UpdateGroupRequest {
         UpdateGroupRequest {
-            name: None,
-            short_code: None,
-            description: None,
-            join_state: None,
-            icon_id: None,
             banner_id: None,
+            description: None,
+            icon_id: None,
+            join_state: None,
             languages: None,
             links: None,
+            name: None,
             rules: None,
+            short_code: None,
             tags: None,
         }
     }

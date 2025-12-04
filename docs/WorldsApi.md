@@ -146,7 +146,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_active_worlds
 
-> Vec<models::LimitedWorld> get_active_worlds(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform)
+> Vec<models::LimitedWorld> get_active_worlds(featured, sort, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, noplatform)
 List Active Worlds
 
 Search and list currently Active worlds by query filters.
@@ -168,6 +168,7 @@ Name | Type | Description  | Required | Notes
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
+**noplatform** | Option<**String**> | The platform the asset does not support. |  |
 
 ### Return type
 
@@ -422,7 +423,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_worlds
 
-> Vec<models::LimitedWorld> search_worlds(featured, sort, user, user_id, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, fuzzy)
+> Vec<models::LimitedWorld> search_worlds(featured, sort, user, user_id, n, order, offset, search, tag, notag, release_status, max_unity_version, min_unity_version, platform, noplatform, fuzzy, avatar_specific)
 Search All Worlds
 
 Search and list any worlds by query filters.
@@ -446,7 +447,9 @@ Name | Type | Description  | Required | Notes
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
+**noplatform** | Option<**String**> | The platform the asset does not support. |  |
 **fuzzy** | Option<**bool**> |  |  |
+**avatar_specific** | Option<**bool**> | Only search for avatar worlds. |  |
 
 ### Return type
 

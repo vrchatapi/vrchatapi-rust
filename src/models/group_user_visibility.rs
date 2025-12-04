@@ -11,26 +11,26 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum GroupUserVisibility {
-    #[serde(rename = "visible")]
-    Visible,
-    #[serde(rename = "hidden")]
-    Hidden,
     #[serde(rename = "friends")]
     Friends,
+    #[serde(rename = "hidden")]
+    Hidden,
+    #[serde(rename = "visible")]
+    Visible,
 }
 
 impl std::fmt::Display for GroupUserVisibility {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::Visible => write!(f, "visible"),
-            Self::Hidden => write!(f, "hidden"),
             Self::Friends => write!(f, "friends"),
+            Self::Hidden => write!(f, "hidden"),
+            Self::Visible => write!(f, "visible"),
         }
     }
 }
 
 impl Default for GroupUserVisibility {
     fn default() -> GroupUserVisibility {
-        Self::Visible
+        Self::Friends
     }
 }

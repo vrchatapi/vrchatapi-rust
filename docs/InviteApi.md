@@ -145,7 +145,7 @@ Name | Type | Description  | Required | Notes
 
 ## invite_user_with_photo
 
-> models::SentNotification invite_user_with_photo(user_id, image, data)
+> models::SentNotification invite_user_with_photo(user_id, data, image)
 Invite User with photo
 
 Sends an photo invite to a user. Returns the Notification of type `invite` that was sent.
@@ -156,8 +156,8 @@ Sends an photo invite to a user. Returns the Notification of type `invite` that 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
 **data** | [**models::InviteRequest**](InviteRequest.md) |  | [required] |
+**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
 
 ### Return type
 
@@ -208,7 +208,7 @@ Name | Type | Description  | Required | Notes
 
 ## request_invite_with_photo
 
-> models::Notification request_invite_with_photo(user_id, image, data)
+> models::Notification request_invite_with_photo(user_id, data, image)
 Request Invite with photo
 
 Requests with photo an invite from a user. Returns the Notification of type `requestInvite` that was sent.
@@ -219,8 +219,8 @@ Requests with photo an invite from a user. Returns the Notification of type `req
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
 **data** | [**models::RequestInviteRequest**](RequestInviteRequest.md) |  | [required] |
+**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
 
 ### Return type
 
@@ -303,7 +303,7 @@ Name | Type | Description  | Required | Notes
 
 ## respond_invite_with_photo
 
-> models::Notification respond_invite_with_photo(notification_id, image, data)
+> models::Notification respond_invite_with_photo(notification_id, data, image)
 Respond Invite with photo
 
 Respond with photo to an invite or invite request without accepting it. `:notificationId` is the ID of the requesting notification.  In case the notification being replied to is an invite, the `responseSlot` refers to a response message from the the `message` collection. In case the notification is an invite request, it will refer to one from the `requestResponse` collection instead.'
@@ -314,8 +314,8 @@ Respond with photo to an invite or invite request without accepting it. `:notifi
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **notification_id** | **String** | Must be a valid notification ID. | [required] |
-**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
 **data** | [**models::InviteResponse**](InviteResponse.md) |  | [required] |
+**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
 
 ### Return type
 

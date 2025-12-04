@@ -19,11 +19,6 @@ pub struct LimitedWorld {
     pub author_name: String,
     #[serde(rename = "capacity")]
     pub capacity: i32,
-    #[serde(
-        rename = "recommendedCapacity",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub recommended_capacity: Option<i32>,
     #[serde(rename = "created_at")]
     pub created_at: String,
     #[serde(
@@ -33,8 +28,6 @@ pub struct LimitedWorld {
     pub default_content_settings: Option<models::InstanceContentSettings>,
     #[serde(rename = "favorites")]
     pub favorites: i32,
-    #[serde(rename = "visits", skip_serializing_if = "Option::is_none")]
-    pub visits: Option<i32>,
     #[serde(rename = "heat")]
     pub heat: i32,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
@@ -61,6 +54,11 @@ pub struct LimitedWorld {
     pub preview_youtube_id: Option<Option<String>>,
     #[serde(rename = "publicationDate")]
     pub publication_date: String,
+    #[serde(
+        rename = "recommendedCapacity",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub recommended_capacity: Option<i32>,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
     #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
@@ -69,12 +67,14 @@ pub struct LimitedWorld {
     pub tags: Vec<String>,
     #[serde(rename = "thumbnailImageUrl")]
     pub thumbnail_image_url: String,
+    #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
+    pub udon_products: Option<Vec<String>>,
     #[serde(rename = "unityPackages")]
     pub unity_packages: Vec<models::LimitedUnityPackage>,
     #[serde(rename = "updated_at")]
     pub updated_at: String,
-    #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
-    pub udon_products: Option<Vec<String>>,
+    #[serde(rename = "visits", skip_serializing_if = "Option::is_none")]
+    pub visits: Option<i32>,
 }
 
 impl LimitedWorld {
@@ -103,11 +103,9 @@ impl LimitedWorld {
             author_id,
             author_name,
             capacity,
-            recommended_capacity: None,
             created_at,
             default_content_settings: None,
             favorites,
-            visits: None,
             heat,
             id,
             image_url,
@@ -118,13 +116,15 @@ impl LimitedWorld {
             popularity,
             preview_youtube_id: None,
             publication_date,
+            recommended_capacity: None,
             release_status,
             store_id: None,
             tags,
             thumbnail_image_url,
+            udon_products: None,
             unity_packages,
             updated_at,
-            udon_products: None,
+            visits: None,
         }
     }
 }

@@ -11,13 +11,13 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CurrentUser {
-    #[serde(rename = "acceptedTOSVersion")]
-    pub accepted_tos_version: i32,
     #[serde(
         rename = "acceptedPrivacyVersion",
         skip_serializing_if = "Option::is_none"
     )]
     pub accepted_privacy_version: Option<i32>,
+    #[serde(rename = "acceptedTOSVersion")]
+    pub accepted_tos_version: i32,
     #[serde(
         rename = "accountDeletionDate",
         default,
@@ -58,11 +58,11 @@ pub struct CurrentUser {
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarImageUrl")]
     pub current_avatar_image_url: String,
+    #[serde(rename = "currentAvatarTags")]
+    pub current_avatar_tags: Vec<String>,
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarThumbnailImageUrl")]
     pub current_avatar_thumbnail_image_url: String,
-    #[serde(rename = "currentAvatarTags")]
-    pub current_avatar_tags: Vec<String>,
     #[serde(rename = "date_joined")]
     pub date_joined: String,
     #[serde(rename = "developerType")]
@@ -85,33 +85,23 @@ pub struct CurrentUser {
     pub friend_key: String,
     #[serde(rename = "friends")]
     pub friends: Vec<String>,
+    #[serde(rename = "googleDetails", skip_serializing_if = "Option::is_none")]
+    pub google_details: Option<serde_json::Value>,
+    #[serde(rename = "googleId", skip_serializing_if = "Option::is_none")]
+    pub google_id: Option<String>,
     #[serde(rename = "hasBirthday")]
     pub has_birthday: bool,
-    #[serde(
-        rename = "hideContentFilterSettings",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub hide_content_filter_settings: Option<bool>,
-    #[serde(
-        rename = "userLanguage",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub user_language: Option<Option<String>>,
-    #[serde(
-        rename = "userLanguageCode",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub user_language_code: Option<Option<String>>,
     #[serde(rename = "hasEmail")]
     pub has_email: bool,
     #[serde(rename = "hasLoggedInFromClient")]
     pub has_logged_in_from_client: bool,
     #[serde(rename = "hasPendingEmail")]
     pub has_pending_email: bool,
+    #[serde(
+        rename = "hideContentFilterSettings",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub hide_content_filter_settings: Option<bool>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "homeLocation")]
     pub home_location: String,
@@ -139,24 +129,18 @@ pub struct CurrentUser {
     pub obfuscated_pending_email: String,
     #[serde(rename = "oculusId")]
     pub oculus_id: String,
-    #[serde(rename = "googleId", skip_serializing_if = "Option::is_none")]
-    pub google_id: Option<String>,
-    #[serde(rename = "googleDetails", skip_serializing_if = "Option::is_none")]
-    pub google_details: Option<serde_json::Value>,
-    #[serde(rename = "picoId", skip_serializing_if = "Option::is_none")]
-    pub pico_id: Option<String>,
-    #[serde(rename = "viveId", skip_serializing_if = "Option::is_none")]
-    pub vive_id: Option<String>,
     #[serde(rename = "offlineFriends", skip_serializing_if = "Option::is_none")]
     pub offline_friends: Option<Vec<String>>,
     #[serde(rename = "onlineFriends", skip_serializing_if = "Option::is_none")]
     pub online_friends: Option<Vec<String>>,
     #[serde(rename = "pastDisplayNames")]
     pub past_display_names: Vec<models::PastDisplayName>,
-    #[serde(rename = "presence", skip_serializing_if = "Option::is_none")]
-    pub presence: Option<models::CurrentUserPresence>,
+    #[serde(rename = "picoId", skip_serializing_if = "Option::is_none")]
+    pub pico_id: Option<String>,
     #[serde(rename = "platform_history", skip_serializing_if = "Option::is_none")]
     pub platform_history: Option<Vec<models::CurrentUserPlatformHistoryInner>>,
+    #[serde(rename = "presence", skip_serializing_if = "Option::is_none")]
+    pub presence: Option<models::CurrentUserPresence>,
     #[serde(rename = "profilePicOverride")]
     pub profile_pic_override: String,
     #[serde(rename = "profilePicOverrideThumbnail")]
@@ -208,9 +192,25 @@ pub struct CurrentUser {
     pub updated_at: Option<String>,
     #[serde(rename = "userIcon")]
     pub user_icon: String,
+    #[serde(
+        rename = "userLanguage",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub user_language: Option<Option<String>>,
+    #[serde(
+        rename = "userLanguageCode",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub user_language_code: Option<Option<String>>,
     /// -| **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
     #[serde(rename = "username", skip_serializing_if = "Option::is_none")]
     pub username: Option<String>,
+    #[serde(rename = "viveId", skip_serializing_if = "Option::is_none")]
+    pub vive_id: Option<String>,
 }
 
 impl CurrentUser {
@@ -223,8 +223,8 @@ impl CurrentUser {
         bio_links: Vec<String>,
         current_avatar: String,
         current_avatar_image_url: String,
-        current_avatar_thumbnail_image_url: String,
         current_avatar_tags: Vec<String>,
+        current_avatar_thumbnail_image_url: String,
         date_joined: String,
         developer_type: models::DeveloperType,
         display_name: String,
@@ -264,8 +264,8 @@ impl CurrentUser {
         user_icon: String,
     ) -> CurrentUser {
         CurrentUser {
-            accepted_tos_version,
             accepted_privacy_version: None,
+            accepted_tos_version,
             account_deletion_date: None,
             account_deletion_log: None,
             active_friends: None,
@@ -279,8 +279,8 @@ impl CurrentUser {
             content_filters: None,
             current_avatar,
             current_avatar_image_url,
-            current_avatar_thumbnail_image_url,
             current_avatar_tags,
+            current_avatar_thumbnail_image_url,
             date_joined,
             developer_type,
             discord_details: None,
@@ -291,13 +291,13 @@ impl CurrentUser {
             friend_group_names,
             friend_key,
             friends,
+            google_details: None,
+            google_id: None,
             has_birthday,
-            hide_content_filter_settings: None,
-            user_language: None,
-            user_language_code: None,
             has_email,
             has_logged_in_from_client,
             has_pending_email,
+            hide_content_filter_settings: None,
             home_location,
             id,
             is_adult,
@@ -310,15 +310,12 @@ impl CurrentUser {
             obfuscated_email,
             obfuscated_pending_email,
             oculus_id,
-            google_id: None,
-            google_details: None,
-            pico_id: None,
-            vive_id: None,
             offline_friends: None,
             online_friends: None,
             past_display_names,
-            presence: None,
+            pico_id: None,
             platform_history: None,
+            presence: None,
             profile_pic_override,
             profile_pic_override_thumbnail,
             pronouns,
@@ -338,7 +335,10 @@ impl CurrentUser {
             unsubscribe,
             updated_at: None,
             user_icon,
+            user_language: None,
+            user_language_code: None,
             username: None,
+            vive_id: None,
         }
     }
 }

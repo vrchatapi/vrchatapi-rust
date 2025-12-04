@@ -4,10 +4,10 @@
 
 | Name | Value |
 |---- | -----|
-| None | None |
 | Excellent | Excellent |
 | Good | Good |
 | Medium | Medium |
+| None | None |
 | Poor | Poor |
 | VeryPoor | VeryPoor |
 

@@ -13,36 +13,36 @@ use serde::{Deserialize, Serialize};
 pub enum PlayerModerationType {
     #[serde(rename = "block")]
     Block,
+    #[serde(rename = "hideAvatar")]
+    HideAvatar,
+    #[serde(rename = "interactOff")]
+    InteractOff,
+    #[serde(rename = "interactOn")]
+    InteractOn,
     #[serde(rename = "mute")]
     Mute,
     #[serde(rename = "muteChat")]
     MuteChat,
+    #[serde(rename = "showAvatar")]
+    ShowAvatar,
     #[serde(rename = "unmute")]
     Unmute,
     #[serde(rename = "unmuteChat")]
     UnmuteChat,
-    #[serde(rename = "hideAvatar")]
-    HideAvatar,
-    #[serde(rename = "showAvatar")]
-    ShowAvatar,
-    #[serde(rename = "interactOn")]
-    InteractOn,
-    #[serde(rename = "interactOff")]
-    InteractOff,
 }
 
 impl std::fmt::Display for PlayerModerationType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::Block => write!(f, "block"),
+            Self::HideAvatar => write!(f, "hideAvatar"),
+            Self::InteractOff => write!(f, "interactOff"),
+            Self::InteractOn => write!(f, "interactOn"),
             Self::Mute => write!(f, "mute"),
             Self::MuteChat => write!(f, "muteChat"),
+            Self::ShowAvatar => write!(f, "showAvatar"),
             Self::Unmute => write!(f, "unmute"),
             Self::UnmuteChat => write!(f, "unmuteChat"),
-            Self::HideAvatar => write!(f, "hideAvatar"),
-            Self::ShowAvatar => write!(f, "showAvatar"),
-            Self::InteractOn => write!(f, "interactOn"),
-            Self::InteractOff => write!(f, "interactOff"),
         }
     }
 }

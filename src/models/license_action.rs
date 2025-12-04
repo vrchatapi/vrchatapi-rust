@@ -11,23 +11,23 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum LicenseAction {
-    #[serde(rename = "wear")]
-    Wear,
     #[serde(rename = "have")]
     Have,
+    #[serde(rename = "wear")]
+    Wear,
 }
 
 impl std::fmt::Display for LicenseAction {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::Wear => write!(f, "wear"),
             Self::Have => write!(f, "have"),
+            Self::Wear => write!(f, "wear"),
         }
     }
 }
 
 impl Default for LicenseAction {
     fn default() -> LicenseAction {
-        Self::Wear
+        Self::Have
     }
 }

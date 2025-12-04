@@ -323,15 +323,15 @@ pub async fn invite_user(
 pub async fn invite_user_with_photo(
     configuration: &configuration::Configuration,
     user_id: &str,
+    data: models::InviteRequest,
     image: impl Into<::std::borrow::Cow<'static, [u8]>>,
     filename: impl Into<::std::borrow::Cow<'static, str>>,
     mime_type: &str,
-    data: models::InviteRequest,
 ) -> Result<models::SentNotification, Error<InviteUserWithPhotoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
-    let p_form_image = image;
     let p_form_data = data;
+    let p_form_image = image;
 
     let uri_str = format!(
         "{}/invite/{userId}/photo",
@@ -346,11 +346,11 @@ pub async fn invite_user_with_photo(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
+    multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
     let part = reqwest::multipart::Part::bytes(p_form_image)
         .file_name(filename)
         .mime_str(mime_type)?;
     multipart_form = multipart_form.part("image", part);
-    multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;
@@ -439,15 +439,15 @@ pub async fn request_invite(
 pub async fn request_invite_with_photo(
     configuration: &configuration::Configuration,
     user_id: &str,
+    data: models::RequestInviteRequest,
     image: impl Into<::std::borrow::Cow<'static, [u8]>>,
     filename: impl Into<::std::borrow::Cow<'static, str>>,
     mime_type: &str,
-    data: models::RequestInviteRequest,
 ) -> Result<models::Notification, Error<RequestInviteWithPhotoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
-    let p_form_image = image;
     let p_form_data = data;
+    let p_form_image = image;
 
     let uri_str = format!(
         "{}/requestInvite/{userId}/photo",
@@ -462,11 +462,11 @@ pub async fn request_invite_with_photo(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
+    multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
     let part = reqwest::multipart::Part::bytes(p_form_image)
         .file_name(filename)
         .mime_str(mime_type)?;
     multipart_form = multipart_form.part("image", part);
-    multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;
@@ -611,15 +611,15 @@ pub async fn respond_invite(
 pub async fn respond_invite_with_photo(
     configuration: &configuration::Configuration,
     notification_id: &str,
+    data: models::InviteResponse,
     image: impl Into<::std::borrow::Cow<'static, [u8]>>,
     filename: impl Into<::std::borrow::Cow<'static, str>>,
     mime_type: &str,
-    data: models::InviteResponse,
 ) -> Result<models::Notification, Error<RespondInviteWithPhotoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_notification_id = notification_id;
-    let p_form_image = image;
     let p_form_data = data;
+    let p_form_image = image;
 
     let uri_str = format!(
         "{}/invite/{notificationId}/response/photo",
@@ -634,11 +634,11 @@ pub async fn respond_invite_with_photo(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
+    multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
     let part = reqwest::multipart::Part::bytes(p_form_image)
         .file_name(filename)
         .mime_str(mime_type)?;
     multipart_form = multipart_form.part("image", part);
-    multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;

@@ -9,7 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// CalendarEvent :
+/// CalendarEvent : An event scheduled on a group's calendar
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CalendarEvent {
     #[serde(rename = "accessType")]
@@ -87,16 +87,17 @@ pub struct CalendarEvent {
     pub r#type: Option<String>,
     #[serde(rename = "updatedAt", skip_serializing_if = "Option::is_none")]
     pub updated_at: Option<String>,
+    #[serde(rename = "userInterest", skip_serializing_if = "Option::is_none")]
+    pub user_interest: Option<models::CalendarEventUserInterest>,
     #[serde(
         rename = "usesInstanceOverflow",
         skip_serializing_if = "Option::is_none"
     )]
     pub uses_instance_overflow: Option<bool>,
-    #[serde(rename = "userInterest", skip_serializing_if = "Option::is_none")]
-    pub user_interest: Option<models::CalendarEventUserInterest>,
 }
 
 impl CalendarEvent {
+    /// An event scheduled on a group's calendar
     pub fn new(
         access_type: String,
         category: String,
@@ -131,8 +132,8 @@ impl CalendarEvent {
             title,
             r#type: None,
             updated_at: None,
-            uses_instance_overflow: None,
             user_interest: None,
+            uses_instance_overflow: None,
         }
     }
 }

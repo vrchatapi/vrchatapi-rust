@@ -11,29 +11,29 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct License {
+    #[serde(rename = "forAction")]
+    pub for_action: models::LicenseAction,
     /// Either a AvatarID, LicenseGroupID, PermissionID or ProductID. This depends on the `forType` field.
     #[serde(rename = "forId")]
     pub for_id: String,
-    #[serde(rename = "forType")]
-    pub for_type: models::LicenseType,
     #[serde(rename = "forName")]
     pub for_name: String,
-    #[serde(rename = "forAction")]
-    pub for_action: models::LicenseAction,
+    #[serde(rename = "forType")]
+    pub for_type: models::LicenseType,
 }
 
 impl License {
     pub fn new(
-        for_id: String,
-        for_type: models::LicenseType,
-        for_name: String,
         for_action: models::LicenseAction,
+        for_id: String,
+        for_name: String,
+        for_type: models::LicenseType,
     ) -> License {
         License {
-            for_id,
-            for_type,
-            for_name,
             for_action,
+            for_id,
+            for_name,
+            for_type,
         }
     }
 }

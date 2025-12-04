@@ -4,6 +4,7 @@
 
 | Name | Value |
 |---- | -----|
+| Boop | boop |
 | FriendRequest | friendRequest |
 | Invite | invite |
 | InviteResponse | inviteResponse |

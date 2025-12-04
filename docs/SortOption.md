@@ -4,24 +4,24 @@
 
 | Name | Value |
 |---- | -----|
-| Popularity | popularity |
-| Heat | heat |
-| Trust | trust |
-| Shuffle | shuffle |
-| Random | random |
-| Favorites | favorites |
-| ReportScore | reportScore |
-| ReportCount | reportCount |
-| PublicationDate | publicationDate |
-| LabsPublicationDate | labsPublicationDate |
-| Created | created |
 | CreatedAt | _created_at |
-| Updated | updated |
 | UpdatedAt | _updated_at |
-| Order | order |
-| Relevance | relevance |
+| Created | created |
+| Favorites | favorites |
+| Heat | heat |
+| LabsPublicationDate | labsPublicationDate |
 | Magic | magic |
 | Name | name |
+| Order | order |
+| Popularity | popularity |
+| PublicationDate | publicationDate |
+| Random | random |
+| Relevance | relevance |
+| ReportCount | reportCount |
+| ReportScore | reportScore |
+| Shuffle | shuffle |
+| Trust | trust |
+| Updated | updated |
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

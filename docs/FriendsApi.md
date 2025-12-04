@@ -4,12 +4,44 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**boop**](FriendsApi.md#boop) | **POST** /users/{userId}/boop | Send Boop
 [**delete_friend_request**](FriendsApi.md#delete_friend_request) | **DELETE** /user/{userId}/friendRequest | Delete Friend Request
 [**friend**](FriendsApi.md#friend) | **POST** /user/{userId}/friendRequest | Send Friend Request
 [**get_friend_status**](FriendsApi.md#get_friend_status) | **GET** /user/{userId}/friendStatus | Check Friend Status
 [**get_friends**](FriendsApi.md#get_friends) | **GET** /auth/user/friends | List Friends
 [**unfriend**](FriendsApi.md#unfriend) | **DELETE** /auth/user/friends/{userId} | Unfriend
 
+
+
+## boop
+
+> models::Success boop(user_id, boop_request)
+Send Boop
+
+Send a boop to another user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**boop_request** | [**BoopRequest**](BoopRequest.md) |  | [required] |
+
+### Return type
+
+[**models::Success**](Success.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## delete_friend_request

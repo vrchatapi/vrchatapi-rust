@@ -523,7 +523,7 @@ Name | Type | Description  | Required | Notes
 
 ## upload_image
 
-> models::File upload_image(file, tag, frames, frames_over_time, animation_style, mask_tag)
+> models::File upload_image(file, tag, animation_style, frames, frames_over_time, mask_tag)
 Upload gallery image, icon, emoji or sticker
 
 Upload an image, which can be an icon, gallery image, sticker or emoji
@@ -535,9 +535,9 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
 **tag** | **String** | Needs to be either icon, gallery, sticker, emoji, or emojianimated | [required] |
+**animation_style** | Option<**String**> | Animation style for sticker, required for emoji. |  |
 **frames** | Option<**i32**> | Required for emojianimated. Total number of frames to be animated (2-64) |  |
 **frames_over_time** | Option<**i32**> | Required for emojianimated. Animation frames per second (1-64) |  |
-**animation_style** | Option<**String**> | Animation style for sticker, required for emoji. |  |
 **mask_tag** | Option<**String**> | Mask of the sticker, optional for emoji. |  |
 
 ### Return type

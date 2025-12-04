@@ -11,71 +11,71 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum SortOption {
-    #[serde(rename = "popularity")]
-    Popularity,
-    #[serde(rename = "heat")]
-    Heat,
-    #[serde(rename = "trust")]
-    Trust,
-    #[serde(rename = "shuffle")]
-    Shuffle,
-    #[serde(rename = "random")]
-    Random,
-    #[serde(rename = "favorites")]
-    Favorites,
-    #[serde(rename = "reportScore")]
-    ReportScore,
-    #[serde(rename = "reportCount")]
-    ReportCount,
-    #[serde(rename = "publicationDate")]
-    PublicationDate,
-    #[serde(rename = "labsPublicationDate")]
-    LabsPublicationDate,
-    #[serde(rename = "created")]
-    Created,
     #[serde(rename = "_created_at")]
     CreatedAt,
-    #[serde(rename = "updated")]
-    Updated,
     #[serde(rename = "_updated_at")]
     UpdatedAt,
-    #[serde(rename = "order")]
-    Order,
-    #[serde(rename = "relevance")]
-    Relevance,
+    #[serde(rename = "created")]
+    Created,
+    #[serde(rename = "favorites")]
+    Favorites,
+    #[serde(rename = "heat")]
+    Heat,
+    #[serde(rename = "labsPublicationDate")]
+    LabsPublicationDate,
     #[serde(rename = "magic")]
     Magic,
     #[serde(rename = "name")]
     Name,
+    #[serde(rename = "order")]
+    Order,
+    #[serde(rename = "popularity")]
+    Popularity,
+    #[serde(rename = "publicationDate")]
+    PublicationDate,
+    #[serde(rename = "random")]
+    Random,
+    #[serde(rename = "relevance")]
+    Relevance,
+    #[serde(rename = "reportCount")]
+    ReportCount,
+    #[serde(rename = "reportScore")]
+    ReportScore,
+    #[serde(rename = "shuffle")]
+    Shuffle,
+    #[serde(rename = "trust")]
+    Trust,
+    #[serde(rename = "updated")]
+    Updated,
 }
 
 impl std::fmt::Display for SortOption {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::Popularity => write!(f, "popularity"),
-            Self::Heat => write!(f, "heat"),
-            Self::Trust => write!(f, "trust"),
-            Self::Shuffle => write!(f, "shuffle"),
-            Self::Random => write!(f, "random"),
-            Self::Favorites => write!(f, "favorites"),
-            Self::ReportScore => write!(f, "reportScore"),
-            Self::ReportCount => write!(f, "reportCount"),
-            Self::PublicationDate => write!(f, "publicationDate"),
-            Self::LabsPublicationDate => write!(f, "labsPublicationDate"),
-            Self::Created => write!(f, "created"),
             Self::CreatedAt => write!(f, "_created_at"),
-            Self::Updated => write!(f, "updated"),
             Self::UpdatedAt => write!(f, "_updated_at"),
-            Self::Order => write!(f, "order"),
-            Self::Relevance => write!(f, "relevance"),
+            Self::Created => write!(f, "created"),
+            Self::Favorites => write!(f, "favorites"),
+            Self::Heat => write!(f, "heat"),
+            Self::LabsPublicationDate => write!(f, "labsPublicationDate"),
             Self::Magic => write!(f, "magic"),
             Self::Name => write!(f, "name"),
+            Self::Order => write!(f, "order"),
+            Self::Popularity => write!(f, "popularity"),
+            Self::PublicationDate => write!(f, "publicationDate"),
+            Self::Random => write!(f, "random"),
+            Self::Relevance => write!(f, "relevance"),
+            Self::ReportCount => write!(f, "reportCount"),
+            Self::ReportScore => write!(f, "reportScore"),
+            Self::Shuffle => write!(f, "shuffle"),
+            Self::Trust => write!(f, "trust"),
+            Self::Updated => write!(f, "updated"),
         }
     }
 }
 
 impl Default for SortOption {
     fn default() -> SortOption {
-        Self::Popularity
+        Self::CreatedAt
     }
 }

@@ -19,11 +19,11 @@ pub struct CurrentUserPresence {
     )]
     pub avatar_thumbnail: Option<Option<String>>,
     #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
-    pub current_avatar_tags: Option<String>,
-    #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
-    pub display_name: Option<String>,
+    pub current_avatar_tags: Option<Vec<String>>,
     #[serde(rename = "debugflag", skip_serializing_if = "Option::is_none")]
     pub debugflag: Option<String>,
+    #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
+    pub display_name: Option<String>,
     #[serde(
         rename = "groups",
         default,
@@ -56,14 +56,9 @@ pub struct CurrentUserPresence {
         skip_serializing_if = "Option::is_none"
     )]
     pub is_rejoining: Option<Option<String>>,
-    /// either a Platform or an empty string
-    #[serde(
-        rename = "platform",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub platform: Option<Option<String>>,
+    /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+    #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
+    pub platform: Option<String>,
     #[serde(
         rename = "profilePicOverride",
         default,
@@ -106,8 +101,8 @@ impl CurrentUserPresence {
         CurrentUserPresence {
             avatar_thumbnail: None,
             current_avatar_tags: None,
-            display_name: None,
             debugflag: None,
+            display_name: None,
             groups: None,
             id: None,
             instance: None,

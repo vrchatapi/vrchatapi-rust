@@ -7,11 +7,15 @@ Method | HTTP request | Description
 [**get_active_licenses**](EconomyApi.md#get_active_licenses) | **GET** /economy/licenses/active | Get Active Licenses
 [**get_balance**](EconomyApi.md#get_balance) | **GET** /user/{userId}/balance | Get Balance
 [**get_balance_earnings**](EconomyApi.md#get_balance_earnings) | **GET** /user/{userId}/balance/earnings | Get Balance Earnings
+[**get_bulk_gift_purchases**](EconomyApi.md#get_bulk_gift_purchases) | **GET** /user/bulk/gift/purchases | Get Bulk Gift Purchases
 [**get_current_subscriptions**](EconomyApi.md#get_current_subscriptions) | **GET** /auth/user/subscription | Get Current Subscriptions
 [**get_economy_account**](EconomyApi.md#get_economy_account) | **GET** /user/{userId}/economy/account | Get Economy Account
 [**get_license_group**](EconomyApi.md#get_license_group) | **GET** /licenseGroups/{licenseGroupId} | Get License Group
 [**get_product_listing**](EconomyApi.md#get_product_listing) | **GET** /listing/{productId} | Get Product Listing
+[**get_product_listing_alternate**](EconomyApi.md#get_product_listing_alternate) | **GET** /products/{productId} | Get Product Listing (alternate)
 [**get_product_listings**](EconomyApi.md#get_product_listings) | **GET** /user/{userId}/listings | Get User Product Listings
+[**get_product_purchases**](EconomyApi.md#get_product_purchases) | **GET** /economy/purchases | Get Product Purchases
+[**get_recent_subscription**](EconomyApi.md#get_recent_subscription) | **GET** /user/subscription/recent | Get Recent Subscription
 [**get_steam_transaction**](EconomyApi.md#get_steam_transaction) | **GET** /Steam/transactions/{transactionId} | Get Steam Transaction
 [**get_steam_transactions**](EconomyApi.md#get_steam_transactions) | **GET** /Steam/transactions | List Steam Transactions
 [**get_store**](EconomyApi.md#get_store) | **GET** /economy/store | Get Store
@@ -20,7 +24,10 @@ Method | HTTP request | Description
 [**get_tilia_status**](EconomyApi.md#get_tilia_status) | **GET** /tilia/status | Get Tilia Status
 [**get_tilia_tos**](EconomyApi.md#get_tilia_tos) | **GET** /user/{userId}/tilia/tos | Get Tilia TOS Agreement Status
 [**get_token_bundles**](EconomyApi.md#get_token_bundles) | **GET** /tokenBundles | List Token Bundles
+[**get_user_credits_eligible**](EconomyApi.md#get_user_credits_eligible) | **GET** /users/{userId}/credits/eligible | Get User Credits Eligiblity
 [**get_user_subscription_eligible**](EconomyApi.md#get_user_subscription_eligible) | **GET** /users/{userId}/subscription/eligible | Get User Subscription Eligiblity
+[**purchase_product_listing**](EconomyApi.md#purchase_product_listing) | **POST** /economy/purchase/listing | Purchase Product Listing
+[**update_tilia_tos**](EconomyApi.md#update_tilia_tos) | **PUT** /user/{userId}/tilia/tos | Update Tilia TOS Agreement Status
 
 
 
@@ -98,6 +105,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::Balance**](Balance.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_bulk_gift_purchases
+
+> Vec<serde_json::Value> get_bulk_gift_purchases(most_recent)
+Get Bulk Gift Purchases
+
+Get bulk gift purchases made by the user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**most_recent** | Option<**bool**> |  |  |
+
+### Return type
+
+[**Vec<serde_json::Value>**](serde_json::Value.md)
 
 ### Authorization
 
@@ -229,6 +266,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_product_listing_alternate
+
+> models::ProductListing get_product_listing_alternate(product_id)
+Get Product Listing (alternate)
+
+Gets a product listing
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**product_id** | **String** | Must be a valid product ID. | [required] |
+
+### Return type
+
+[**models::ProductListing**](ProductListing.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_product_listings
 
 > Vec<models::ProductListing> get_product_listings(user_id, n, offset, hydrate, group_id, active)
@@ -251,6 +318,68 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<models::ProductListing>**](ProductListing.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_product_purchases
+
+> Vec<models::ProductPurchase> get_product_purchases(buyer_id, n, offset, most_recent, sort, order)
+Get Product Purchases
+
+Gets product purchases
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**buyer_id** | **String** | Must be a valid user ID. | [required] |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**most_recent** | Option<**bool**> |  |  |
+**sort** | Option<[**SortOptionProductPurchase**](.md)> | The sort order of the results. |  |
+**order** | Option<[**OrderOptionShort**](.md)> | Result ordering |  |
+
+### Return type
+
+[**Vec<models::ProductPurchase>**](ProductPurchase.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_recent_subscription
+
+> models::UserSubscription get_recent_subscription()
+Get Recent Subscription
+
+Get the most recent user subscription.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::UserSubscription**](UserSubscription.md)
 
 ### Authorization
 
@@ -496,6 +625,37 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_user_credits_eligible
+
+> models::UserCreditsEligible get_user_credits_eligible(user_id, subscription_id)
+Get User Credits Eligiblity
+
+Get the user's eligibility status for subscriptions based on available credits.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**subscription_id** | **String** |  | [required] |
+
+### Return type
+
+[**models::UserCreditsEligible**](UserCreditsEligible.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_user_subscription_eligible
 
 > models::UserSubscriptionEligible get_user_subscription_eligible(user_id, steam_id)
@@ -522,6 +682,67 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## purchase_product_listing
+
+> models::ProductPurchase purchase_product_listing(purchase_product_listing_request)
+Purchase Product Listing
+
+Purchases a product listing
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**purchase_product_listing_request** | Option<[**PurchaseProductListingRequest**](PurchaseProductListingRequest.md)> |  |  |
+
+### Return type
+
+[**models::ProductPurchase**](ProductPurchase.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_tilia_tos
+
+> serde_json::Value update_tilia_tos(user_id, update_tilia_tos_request)
+Update Tilia TOS Agreement Status
+
+Updates the status of the agreement of a user to the Tilia TOS
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**update_tilia_tos_request** | Option<[**UpdateTiliaTosRequest**](UpdateTiliaTosRequest.md)> |  |  |
+
+### Return type
+
+[**serde_json::Value**](serde_json::Value.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

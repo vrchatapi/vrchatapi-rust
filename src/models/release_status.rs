@@ -11,29 +11,29 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ReleaseStatus {
-    #[serde(rename = "public")]
-    Public,
-    #[serde(rename = "private")]
-    Private,
-    #[serde(rename = "hidden")]
-    Hidden,
     #[serde(rename = "all")]
     All,
+    #[serde(rename = "hidden")]
+    Hidden,
+    #[serde(rename = "private")]
+    Private,
+    #[serde(rename = "public")]
+    Public,
 }
 
 impl std::fmt::Display for ReleaseStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::Public => write!(f, "public"),
-            Self::Private => write!(f, "private"),
-            Self::Hidden => write!(f, "hidden"),
             Self::All => write!(f, "all"),
+            Self::Hidden => write!(f, "hidden"),
+            Self::Private => write!(f, "private"),
+            Self::Public => write!(f, "public"),
         }
     }
 }
 
 impl Default for ReleaseStatus {
     fn default() -> ReleaseStatus {
-        Self::Public
+        Self::All
     }
 }

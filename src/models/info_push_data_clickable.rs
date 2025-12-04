@@ -11,35 +11,35 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InfoPushDataClickable {
-    #[serde(rename = "command")]
-    pub command: Command,
     /// In case of OpenURL, this would contain the link.
     #[serde(rename = "parameters", skip_serializing_if = "Option::is_none")]
     pub parameters: Option<Vec<String>>,
+    #[serde(rename = "command")]
+    pub command: Command,
 }
 
 impl InfoPushDataClickable {
     pub fn new(command: Command) -> InfoPushDataClickable {
         InfoPushDataClickable {
-            command,
             parameters: None,
+            command,
         }
     }
 }
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Command {
+    #[serde(rename = "CannedWorldSearch")]
+    CannedWorldSearch,
+    #[serde(rename = "OpenSafetyMenu")]
+    OpenSafetyMenu,
     #[serde(rename = "OpenURL")]
     OpenUrl,
     #[serde(rename = "OpenVRCPlusMenu")]
     OpenVrcPlusMenu,
-    #[serde(rename = "OpenSafetyMenu")]
-    OpenSafetyMenu,
-    #[serde(rename = "CannedWorldSearch")]
-    CannedWorldSearch,
 }
 
 impl Default for Command {
     fn default() -> Command {
-        Self::OpenUrl
+        Self::CannedWorldSearch
     }
 }

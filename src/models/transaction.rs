@@ -12,59 +12,59 @@ use serde::{Deserialize, Serialize};
 /// Transaction :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Transaction {
-    #[serde(rename = "id")]
-    pub id: String,
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "userId", skip_serializing_if = "Option::is_none")]
-    pub user_id: Option<String>,
-    #[serde(rename = "userDisplayName", skip_serializing_if = "Option::is_none")]
-    pub user_display_name: Option<String>,
-    #[serde(rename = "status")]
-    pub status: models::TransactionStatus,
-    #[serde(rename = "subscription")]
-    pub subscription: models::Subscription,
-    #[serde(rename = "sandbox")]
-    pub sandbox: bool,
-    #[serde(rename = "created_at")]
-    pub created_at: String,
-    #[serde(rename = "updated_at")]
-    pub updated_at: String,
-    #[serde(rename = "steam", skip_serializing_if = "Option::is_none")]
-    pub steam: Option<models::TransactionSteamInfo>,
     #[serde(rename = "agreement", skip_serializing_if = "Option::is_none")]
     pub agreement: Option<models::TransactionAgreement>,
+    #[serde(rename = "created_at")]
+    pub created_at: String,
     #[serde(rename = "error", deserialize_with = "Option::deserialize")]
     pub error: Option<String>,
+    #[serde(rename = "id")]
+    pub id: String,
     #[serde(rename = "isGift", skip_serializing_if = "Option::is_none")]
     pub is_gift: Option<bool>,
     #[serde(rename = "isTokens", skip_serializing_if = "Option::is_none")]
     pub is_tokens: Option<bool>,
+    #[serde(rename = "sandbox")]
+    pub sandbox: bool,
+    #[serde(rename = "status")]
+    pub status: models::TransactionStatus,
+    #[serde(rename = "steam", skip_serializing_if = "Option::is_none")]
+    pub steam: Option<models::TransactionSteamInfo>,
+    #[serde(rename = "subscription")]
+    pub subscription: models::Subscription,
+    #[serde(rename = "updated_at")]
+    pub updated_at: String,
+    #[serde(rename = "userDisplayName", skip_serializing_if = "Option::is_none")]
+    pub user_display_name: Option<String>,
+    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+    #[serde(rename = "userId", skip_serializing_if = "Option::is_none")]
+    pub user_id: Option<String>,
 }
 
 impl Transaction {
     pub fn new(
+        created_at: String,
+        error: Option<String>,
         id: String,
+        sandbox: bool,
         status: models::TransactionStatus,
         subscription: models::Subscription,
-        sandbox: bool,
-        created_at: String,
         updated_at: String,
-        error: Option<String>,
     ) -> Transaction {
         Transaction {
-            id,
-            user_id: None,
-            user_display_name: None,
-            status,
-            subscription,
-            sandbox,
-            created_at,
-            updated_at,
-            steam: None,
             agreement: None,
+            created_at,
             error,
+            id,
             is_gift: None,
             is_tokens: None,
+            sandbox,
+            status,
+            steam: None,
+            subscription,
+            updated_at,
+            user_display_name: None,
+            user_id: None,
         }
     }
 }

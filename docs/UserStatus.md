@@ -5,9 +5,9 @@
 | Name | Value |
 |---- | -----|
 | Active | active |
-| JoinMe | join me |
 | AskMe | ask me |
 | Busy | busy |
+| JoinMe | join me |
 | Offline | offline |
 
 

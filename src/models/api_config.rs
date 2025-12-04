@@ -35,15 +35,15 @@ pub struct ApiConfig {
     /// Interval between retries for avatar analysis requests
     #[serde(rename = "analysisRetryInterval")]
     pub analysis_retry_interval: i32,
-    /// Public Announcements
-    #[serde(rename = "announcements")]
-    pub announcements: Vec<models::ApiConfigAnnouncement>,
     /// Unknown
     #[serde(rename = "analyticsSegment_NewUI_PctOfUsers")]
     pub analytics_segment_new_ui_pct_of_users: i32,
     /// Unknown
     #[serde(rename = "analyticsSegment_NewUI_Salt")]
     pub analytics_segment_new_ui_salt: String,
+    /// Public Announcements
+    #[serde(rename = "announcements")]
+    pub announcements: Vec<models::ApiConfigAnnouncement>,
     /// List of supported Languages
     #[serde(rename = "availableLanguageCodes")]
     pub available_language_codes: Vec<String>,
@@ -166,6 +166,9 @@ pub struct ApiConfig {
     /// Toggles if avatar gating should be disabled. Avatar gating restricts uploading of avatars to people with the `system_avatar_access` Tag or `admin_avatar_access` Tag
     #[serde(rename = "disableAvatarGating")]
     pub disable_avatar_gating: bool,
+    /// Unknown
+    #[serde(rename = "disableCaptcha", skip_serializing_if = "Option::is_none")]
+    pub disable_captcha: Option<bool>,
     /// Toggles if the Community Labs should be disabled
     #[serde(rename = "disableCommunityLabs")]
     pub disable_community_labs: bool,
@@ -175,9 +178,6 @@ pub struct ApiConfig {
     /// Unknown
     #[serde(rename = "disableEmail")]
     pub disable_email: bool,
-    /// Unknown
-    #[serde(rename = "disableCaptcha", skip_serializing_if = "Option::is_none")]
-    pub disable_captcha: Option<bool>,
     /// Toggles if Analytics should be disabled.
     #[serde(rename = "disableEventStream")]
     pub disable_event_stream: bool,
@@ -273,6 +273,15 @@ pub struct ApiConfig {
     /// Unknown
     #[serde(rename = "photonPublicKeys")]
     pub photon_public_keys: Vec<String>,
+    /// Currently used youtube-dl.exe hash in SHA1-delimited format
+    #[serde(rename = "player-url-resolver-sha1")]
+    pub player_url_resolver_sha1: String,
+    /// Currently used youtube-dl.exe version
+    #[serde(rename = "player-url-resolver-version")]
+    pub player_url_resolver_version: String,
+    /// Public key, hex encoded
+    #[serde(rename = "publicKey")]
+    pub public_key: String,
     #[serde(rename = "reportCategories")]
     pub report_categories: models::ApiConfigReportCategories,
     /// URL to the report form
@@ -305,12 +314,12 @@ pub struct ApiConfig {
     /// VRChat's support form
     #[serde(rename = "supportFormUrl")]
     pub support_form_url: String,
-    /// Unknown
-    #[serde(rename = "timekeeping")]
-    pub timekeeping: bool,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "timeOutWorldId")]
     pub time_out_world_id: String,
+    /// Unknown
+    #[serde(rename = "timekeeping")]
+    pub timekeeping: bool,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "tutorialWorldId")]
     pub tutorial_world_id: String,
@@ -338,18 +347,6 @@ pub struct ApiConfig {
     /// Download link for game on the Steam website.
     #[serde(rename = "viveWindowsUrl")]
     pub vive_windows_url: String,
-    /// List of allowed URLs that are allowed to host avatar assets
-    #[serde(rename = "whiteListedAssetUrls")]
-    pub white_listed_asset_urls: Vec<String>,
-    /// Currently used youtube-dl.exe version
-    #[serde(rename = "player-url-resolver-version")]
-    pub player_url_resolver_version: String,
-    /// Currently used youtube-dl.exe hash in SHA1-delimited format
-    #[serde(rename = "player-url-resolver-sha1")]
-    pub player_url_resolver_sha1: String,
-    /// Public key, hex encoded
-    #[serde(rename = "publicKey")]
-    pub public_key: String,
     /// Unknown
     #[serde(rename = "websocketMaxFriendsRefreshDelay")]
     pub websocket_max_friends_refresh_delay: i32,
@@ -359,6 +356,9 @@ pub struct ApiConfig {
     /// Unknown
     #[serde(rename = "websocketReconnectMaxDelay")]
     pub websocket_reconnect_max_delay: i32,
+    /// List of allowed URLs that are allowed to host avatar assets
+    #[serde(rename = "whiteListedAssetUrls")]
+    pub white_listed_asset_urls: Vec<String>,
 }
 
 impl ApiConfig {
@@ -372,9 +372,9 @@ impl ApiConfig {
         age_verification_status_visible: bool,
         analysis_max_retries: i32,
         analysis_retry_interval: i32,
-        announcements: Vec<models::ApiConfigAnnouncement>,
         analytics_segment_new_ui_pct_of_users: i32,
         analytics_segment_new_ui_salt: String,
+        announcements: Vec<models::ApiConfigAnnouncement>,
         available_language_codes: Vec<String>,
         available_languages: Vec<String>,
         avatar_perf_limiter: models::ApiConfigAvatarPerfLimiter,
@@ -429,6 +429,9 @@ impl ApiConfig {
         offline_analysis: models::ApiConfigOfflineAnalysis,
         photon_nameserver_overrides: Vec<String>,
         photon_public_keys: Vec<String>,
+        player_url_resolver_sha1: String,
+        player_url_resolver_version: String,
+        public_key: String,
         report_categories: models::ApiConfigReportCategories,
         report_form_url: String,
         report_options: models::ApiConfigReportOptions,
@@ -441,8 +444,8 @@ impl ApiConfig {
         string_host_url_list: Vec<String>,
         support_email: String,
         support_form_url: String,
-        timekeeping: bool,
         time_out_world_id: String,
+        timekeeping: bool,
         tutorial_world_id: String,
         update_rate_ms_maximum: i32,
         update_rate_ms_minimum: i32,
@@ -452,13 +455,10 @@ impl ApiConfig {
         url_list: Vec<String>,
         use_reliable_udp_for_voice: bool,
         vive_windows_url: String,
-        white_listed_asset_urls: Vec<String>,
-        player_url_resolver_version: String,
-        player_url_resolver_sha1: String,
-        public_key: String,
         websocket_max_friends_refresh_delay: i32,
         websocket_quick_reconnect_time: i32,
         websocket_reconnect_max_delay: i32,
+        white_listed_asset_urls: Vec<String>,
     ) -> ApiConfig {
         ApiConfig {
             voice_enable_degradation,
@@ -470,9 +470,9 @@ impl ApiConfig {
             age_verification_status_visible,
             analysis_max_retries,
             analysis_retry_interval,
-            announcements,
             analytics_segment_new_ui_pct_of_users,
             analytics_segment_new_ui_salt,
+            announcements,
             available_language_codes,
             available_languages,
             avatar_perf_limiter,
@@ -507,10 +507,10 @@ impl ApiConfig {
             disable_av_pro_in_proton: None,
             disable_avatar_copying,
             disable_avatar_gating,
+            disable_captcha: None,
             disable_community_labs,
             disable_community_labs_promotion,
             disable_email,
-            disable_captcha: None,
             disable_event_stream,
             disable_feedback_gating,
             disable_frontend_builds,
@@ -544,6 +544,9 @@ impl ApiConfig {
             offline_analysis,
             photon_nameserver_overrides,
             photon_public_keys,
+            player_url_resolver_sha1,
+            player_url_resolver_version,
+            public_key,
             report_categories,
             report_form_url,
             report_options,
@@ -556,8 +559,8 @@ impl ApiConfig {
             string_host_url_list,
             support_email,
             support_form_url,
-            timekeeping,
             time_out_world_id,
+            timekeeping,
             tutorial_world_id,
             update_rate_ms_maximum,
             update_rate_ms_minimum,
@@ -567,13 +570,10 @@ impl ApiConfig {
             url_list,
             use_reliable_udp_for_voice,
             vive_windows_url,
-            white_listed_asset_urls,
-            player_url_resolver_version,
-            player_url_resolver_sha1,
-            public_key,
             websocket_max_friends_refresh_delay,
             websocket_quick_reconnect_time,
             websocket_reconnect_max_delay,
+            white_listed_asset_urls,
         }
     }
 }

@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**description** | Option<**String**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
+**description** | Option<**String**> |  | [optional]
 **base_permissions** | Option<[**Vec<models::GroupPermissions>**](GroupPermissions.md)> |  | [optional]
 **is_added_on_join** | Option<**bool**> |  | [optional][default to false]
 

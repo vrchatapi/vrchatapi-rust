@@ -11,56 +11,56 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateCalendarEventRequest {
-    /// Event title
-    #[serde(rename = "title", skip_serializing_if = "Option::is_none")]
-    pub title: Option<String>,
-    /// Time the vent starts at
-    #[serde(rename = "startsAt", skip_serializing_if = "Option::is_none")]
-    pub starts_at: Option<String>,
+    #[serde(rename = "category", skip_serializing_if = "Option::is_none")]
+    pub category: Option<String>,
+    #[serde(
+        rename = "closeInstanceAfterEndMinutes",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub close_instance_after_end_minutes: Option<i32>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     /// Time the vent starts at
     #[serde(rename = "endsAt", skip_serializing_if = "Option::is_none")]
     pub ends_at: Option<String>,
-    #[serde(rename = "category", skip_serializing_if = "Option::is_none")]
-    pub category: Option<String>,
-    #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
-    pub tags: Option<Vec<String>>,
-    #[serde(rename = "isDraft", skip_serializing_if = "Option::is_none")]
-    pub is_draft: Option<bool>,
-    #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
-    pub image_id: Option<String>,
-    #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
-    pub role_ids: Option<Vec<String>>,
-    #[serde(rename = "parentId", skip_serializing_if = "Option::is_none")]
-    pub parent_id: Option<String>,
-    #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
-    pub platforms: Option<Vec<String>>,
-    #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
-    pub languages: Option<Vec<String>>,
-    /// Send notification to group members.
-    #[serde(
-        rename = "sendCreationNotification",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub send_creation_notification: Option<bool>,
     #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
     pub featured: Option<bool>,
-    #[serde(
-        rename = "hostEarlyJoinMinutes",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub host_early_join_minutes: Option<i32>,
     #[serde(
         rename = "guestEarlyJoinMinutes",
         skip_serializing_if = "Option::is_none"
     )]
     pub guest_early_join_minutes: Option<i32>,
     #[serde(
-        rename = "closeInstanceAfterEndMinutes",
+        rename = "hostEarlyJoinMinutes",
         skip_serializing_if = "Option::is_none"
     )]
-    pub close_instance_after_end_minutes: Option<i32>,
+    pub host_early_join_minutes: Option<i32>,
+    #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
+    pub image_id: Option<String>,
+    #[serde(rename = "isDraft", skip_serializing_if = "Option::is_none")]
+    pub is_draft: Option<bool>,
+    #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
+    pub languages: Option<Vec<String>>,
+    #[serde(rename = "parentId", skip_serializing_if = "Option::is_none")]
+    pub parent_id: Option<String>,
+    #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
+    pub platforms: Option<Vec<String>>,
+    #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
+    pub role_ids: Option<Vec<String>>,
+    /// Send notification to group members.
+    #[serde(
+        rename = "sendCreationNotification",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub send_creation_notification: Option<bool>,
+    /// Time the vent starts at
+    #[serde(rename = "startsAt", skip_serializing_if = "Option::is_none")]
+    pub starts_at: Option<String>,
+    #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
+    pub tags: Option<Vec<String>>,
+    /// Event title
+    #[serde(rename = "title", skip_serializing_if = "Option::is_none")]
+    pub title: Option<String>,
     #[serde(
         rename = "usesInstanceOverflow",
         skip_serializing_if = "Option::is_none"
@@ -71,23 +71,23 @@ pub struct UpdateCalendarEventRequest {
 impl UpdateCalendarEventRequest {
     pub fn new() -> UpdateCalendarEventRequest {
         UpdateCalendarEventRequest {
-            title: None,
-            starts_at: None,
+            category: None,
+            close_instance_after_end_minutes: None,
             description: None,
             ends_at: None,
-            category: None,
-            tags: None,
-            is_draft: None,
+            featured: None,
+            guest_early_join_minutes: None,
+            host_early_join_minutes: None,
             image_id: None,
-            role_ids: None,
+            is_draft: None,
+            languages: None,
             parent_id: None,
             platforms: None,
-            languages: None,
+            role_ids: None,
             send_creation_notification: None,
-            featured: None,
-            host_early_join_minutes: None,
-            guest_early_join_minutes: None,
-            close_instance_after_end_minutes: None,
+            starts_at: None,
+            tags: None,
+            title: None,
             uses_instance_overflow: None,
         }
     }

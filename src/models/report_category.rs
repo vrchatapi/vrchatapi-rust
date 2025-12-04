@@ -15,12 +15,12 @@ pub struct ReportCategory {
     /// The description of the report category
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
-    /// The title of the report category
-    #[serde(rename = "title", skip_serializing_if = "Option::is_none")]
-    pub title: Option<String>,
     /// The label of the report category
     #[serde(rename = "text")]
     pub text: String,
+    /// The title of the report category
+    #[serde(rename = "title", skip_serializing_if = "Option::is_none")]
+    pub title: Option<String>,
     /// The tooltip that describes the category
     #[serde(rename = "tooltip")]
     pub tooltip: String,
@@ -31,8 +31,8 @@ impl ReportCategory {
     pub fn new(text: String, tooltip: String) -> ReportCategory {
         ReportCategory {
             description: None,
-            title: None,
             text,
+            title: None,
             tooltip,
         }
     }

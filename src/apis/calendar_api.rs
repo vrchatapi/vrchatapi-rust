@@ -27,6 +27,14 @@ pub enum DeleteGroupCalendarEventError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`discover_calendar_events`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DiscoverCalendarEventsError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`follow_group_calendar_event`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -198,6 +206,103 @@ pub async fn delete_group_calendar_event(
     } else {
         let content = resp.text().await?;
         let entity: Option<DeleteGroupCalendarEventError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get a list of calendar events Initially, call without a `nextCursor` parameter For every successive call, use the `nextCursor` property returned in the previous call & the `number` of entries desired for this call The `nextCursor` internally keeps track of the `offset` of the results, the initial request parameters, and accounts for discrepancies that might arise from time elapsed between calls
+pub async fn discover_calendar_events(
+    configuration: &configuration::Configuration,
+    scope: Option<models::CalendarEventDiscoveryScope>,
+    categories: Option<&str>,
+    tags: Option<&str>,
+    featured_results: Option<models::CalendarEventDiscoveryInclusion>,
+    non_featured_results: Option<models::CalendarEventDiscoveryInclusion>,
+    personalized_results: Option<models::CalendarEventDiscoveryInclusion>,
+    minimum_interest_count: Option<i32>,
+    minimum_remaining_minutes: Option<i32>,
+    upcoming_offset_minutes: Option<i32>,
+    n: Option<i32>,
+    next_cursor: Option<&str>,
+) -> Result<models::CalendarEventDiscovery, Error<DiscoverCalendarEventsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_scope = scope;
+    let p_query_categories = categories;
+    let p_query_tags = tags;
+    let p_query_featured_results = featured_results;
+    let p_query_non_featured_results = non_featured_results;
+    let p_query_personalized_results = personalized_results;
+    let p_query_minimum_interest_count = minimum_interest_count;
+    let p_query_minimum_remaining_minutes = minimum_remaining_minutes;
+    let p_query_upcoming_offset_minutes = upcoming_offset_minutes;
+    let p_query_n = n;
+    let p_query_next_cursor = next_cursor;
+
+    let uri_str = format!("{}/calendar/discover", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_scope {
+        req_builder = req_builder.query(&[("scope", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_categories {
+        req_builder = req_builder.query(&[("categories", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_tags {
+        req_builder = req_builder.query(&[("tags", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_featured_results {
+        req_builder = req_builder.query(&[("featuredResults", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_non_featured_results {
+        req_builder = req_builder.query(&[("nonFeaturedResults", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_personalized_results {
+        req_builder = req_builder.query(&[("personalizedResults", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_minimum_interest_count {
+        req_builder = req_builder.query(&[("minimumInterestCount", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_minimum_remaining_minutes {
+        req_builder = req_builder.query(&[("minimumRemainingMinutes", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_upcoming_offset_minutes {
+        req_builder = req_builder.query(&[("upcomingOffsetMinutes", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_n {
+        req_builder = req_builder.query(&[("n", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_next_cursor {
+        req_builder = req_builder.query(&[("nextCursor", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CalendarEventDiscovery`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CalendarEventDiscovery`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<DiscoverCalendarEventsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

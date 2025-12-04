@@ -12,6 +12,9 @@ use serde::{Deserialize, Serialize};
 /// ApiConfigDownloadUrlList : Download links for various development assets.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigDownloadUrlList {
+    /// Download link for ???
+    #[serde(rename = "bootstrap")]
+    pub bootstrap: String,
     /// Download link for legacy SDK2
     #[serde(rename = "sdk2")]
     pub sdk2: String,
@@ -24,26 +27,23 @@ pub struct ApiConfigDownloadUrlList {
     /// Download link for the Creator Companion
     #[serde(rename = "vcc")]
     pub vcc: String,
-    /// Download link for ???
-    #[serde(rename = "bootstrap")]
-    pub bootstrap: String,
 }
 
 impl ApiConfigDownloadUrlList {
     /// Download links for various development assets.
     pub fn new(
+        bootstrap: String,
         sdk2: String,
         sdk3_avatars: String,
         sdk3_worlds: String,
         vcc: String,
-        bootstrap: String,
     ) -> ApiConfigDownloadUrlList {
         ApiConfigDownloadUrlList {
+            bootstrap,
             sdk2,
             sdk3_avatars,
             sdk3_worlds,
             vcc,
-            bootstrap,
         }
     }
 }

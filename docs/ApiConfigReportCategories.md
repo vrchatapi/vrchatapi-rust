@@ -12,8 +12,8 @@ Name | Type | Description | Notes
 **environment** | [**models::ReportCategory**](ReportCategory.md) |  | 
 **groupstore** | [**models::ReportCategory**](ReportCategory.md) |  | 
 **image** | [**models::ReportCategory**](ReportCategory.md) |  | 
-**text** | [**models::ReportCategory**](ReportCategory.md) |  | 
 **sticker** | Option<[**models::ReportCategory**](ReportCategory.md)> |  | [optional]
+**text** | [**models::ReportCategory**](ReportCategory.md) |  | 
 **warnings** | [**models::ReportCategory**](ReportCategory.md) |  | 
 **worldimage** | [**models::ReportCategory**](ReportCategory.md) |  | 
 **worldstore** | [**models::ReportCategory**](ReportCategory.md) |  | 

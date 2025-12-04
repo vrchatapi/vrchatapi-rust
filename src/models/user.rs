@@ -27,11 +27,11 @@ pub struct User {
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarImageUrl")]
     pub current_avatar_image_url: String,
+    #[serde(rename = "currentAvatarTags")]
+    pub current_avatar_tags: Vec<String>,
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarThumbnailImageUrl")]
     pub current_avatar_thumbnail_image_url: String,
-    #[serde(rename = "currentAvatarTags")]
-    pub current_avatar_tags: Vec<String>,
     #[serde(rename = "date_joined")]
     pub date_joined: String,
     #[serde(rename = "developerType")]
@@ -122,8 +122,8 @@ impl User {
         bio: String,
         bio_links: Vec<String>,
         current_avatar_image_url: String,
-        current_avatar_thumbnail_image_url: String,
         current_avatar_tags: Vec<String>,
+        current_avatar_thumbnail_image_url: String,
         date_joined: String,
         developer_type: models::DeveloperType,
         display_name: String,
@@ -150,8 +150,8 @@ impl User {
             bio,
             bio_links,
             current_avatar_image_url,
-            current_avatar_thumbnail_image_url,
             current_avatar_tags,
+            current_avatar_thumbnail_image_url,
             date_joined,
             developer_type,
             display_name,

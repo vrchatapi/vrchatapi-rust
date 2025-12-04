@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create_group_calendar_event**](CalendarApi.md#create_group_calendar_event) | **POST** /calendar/{groupId}/event | Create a calendar event
 [**delete_group_calendar_event**](CalendarApi.md#delete_group_calendar_event) | **DELETE** /calendar/{groupId}/{calendarId} | Delete a calendar event
+[**discover_calendar_events**](CalendarApi.md#discover_calendar_events) | **GET** /calendar/discover | Discover calendar events
 [**follow_group_calendar_event**](CalendarApi.md#follow_group_calendar_event) | **POST** /calendar/{groupId}/{calendarId}/follow | Follow a calendar event
 [**get_calendar_events**](CalendarApi.md#get_calendar_events) | **GET** /calendar | List calendar events
 [**get_featured_calendar_events**](CalendarApi.md#get_featured_calendar_events) | **GET** /calendar/featured | List featured calendar events
@@ -67,6 +68,46 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::Success**](Success.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## discover_calendar_events
+
+> models::CalendarEventDiscovery discover_calendar_events(scope, categories, tags, featured_results, non_featured_results, personalized_results, minimum_interest_count, minimum_remaining_minutes, upcoming_offset_minutes, n, next_cursor)
+Discover calendar events
+
+Get a list of calendar events Initially, call without a `nextCursor` parameter For every successive call, use the `nextCursor` property returned in the previous call & the `number` of entries desired for this call The `nextCursor` internally keeps track of the `offset` of the results, the initial request parameters, and accounts for discrepancies that might arise from time elapsed between calls
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**scope** | Option<[**CalendarEventDiscoveryScope**](.md)> | Scope for calendar event discovery. |  |
+**categories** | Option<**String**> | Filter for calendar event discovery. |  |
+**tags** | Option<**String**> | Filter for calendar event discovery. |  |
+**featured_results** | Option<[**CalendarEventDiscoveryInclusion**](.md)> | Filter for calendar event discovery. |  |
+**non_featured_results** | Option<[**CalendarEventDiscoveryInclusion**](.md)> | Filter for calendar event discovery. |  |
+**personalized_results** | Option<[**CalendarEventDiscoveryInclusion**](.md)> | Filter for calendar event discovery. |  |
+**minimum_interest_count** | Option<**i32**> | Filter for calendar event discovery. |  |
+**minimum_remaining_minutes** | Option<**i32**> | Filter for calendar event discovery. |  |
+**upcoming_offset_minutes** | Option<**i32**> | Filter for calendar event discovery. |  |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**next_cursor** | Option<**String**> | Cursor returned from previous calendar discovery queries (see nextCursor property of the schema CalendarEventDiscovery). |  |
+
+### Return type
+
+[**models::CalendarEventDiscovery**](CalendarEventDiscovery.md)
 
 ### Authorization
 

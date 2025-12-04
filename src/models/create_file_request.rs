@@ -11,22 +11,22 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateFileRequest {
-    #[serde(rename = "name")]
-    pub name: String,
-    #[serde(rename = "mimeType")]
-    pub mime_type: models::MimeType,
     #[serde(rename = "extension")]
     pub extension: String,
+    #[serde(rename = "mimeType")]
+    pub mime_type: models::MimeType,
+    #[serde(rename = "name")]
+    pub name: String,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
 }
 
 impl CreateFileRequest {
-    pub fn new(name: String, mime_type: models::MimeType, extension: String) -> CreateFileRequest {
+    pub fn new(extension: String, mime_type: models::MimeType, name: String) -> CreateFileRequest {
         CreateFileRequest {
-            name,
-            mime_type,
             extension,
+            mime_type,
+            name,
             tags: None,
         }
     }

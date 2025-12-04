@@ -11,10 +11,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupRoleTemplateValuesRoles {
-    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
+    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     #[serde(rename = "basePermissions", skip_serializing_if = "Option::is_none")]
     pub base_permissions: Option<Vec<models::GroupPermissions>>,
     #[serde(rename = "isAddedOnJoin", skip_serializing_if = "Option::is_none")]
@@ -24,8 +24,8 @@ pub struct GroupRoleTemplateValuesRoles {
 impl GroupRoleTemplateValuesRoles {
     pub fn new() -> GroupRoleTemplateValuesRoles {
         GroupRoleTemplateValuesRoles {
-            description: None,
             name: None,
+            description: None,
             base_permissions: None,
             is_added_on_join: None,
         }

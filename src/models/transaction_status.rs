@@ -13,21 +13,21 @@ use serde::{Deserialize, Serialize};
 pub enum TransactionStatus {
     #[serde(rename = "active")]
     Active,
-    #[serde(rename = "failed")]
-    Failed,
-    #[serde(rename = "expired")]
-    Expired,
     #[serde(rename = "chargeback")]
     Chargeback,
+    #[serde(rename = "expired")]
+    Expired,
+    #[serde(rename = "failed")]
+    Failed,
 }
 
 impl std::fmt::Display for TransactionStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::Active => write!(f, "active"),
-            Self::Failed => write!(f, "failed"),
-            Self::Expired => write!(f, "expired"),
             Self::Chargeback => write!(f, "chargeback"),
+            Self::Expired => write!(f, "expired"),
+            Self::Failed => write!(f, "failed"),
         }
     }
 }

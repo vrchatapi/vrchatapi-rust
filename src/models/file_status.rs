@@ -11,29 +11,29 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum FileStatus {
-    #[serde(rename = "waiting")]
-    Waiting,
     #[serde(rename = "complete")]
     Complete,
     #[serde(rename = "none")]
     None,
     #[serde(rename = "queued")]
     Queued,
+    #[serde(rename = "waiting")]
+    Waiting,
 }
 
 impl std::fmt::Display for FileStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::Waiting => write!(f, "waiting"),
             Self::Complete => write!(f, "complete"),
             Self::None => write!(f, "none"),
             Self::Queued => write!(f, "queued"),
+            Self::Waiting => write!(f, "waiting"),
         }
     }
 }
 
 impl Default for FileStatus {
     fn default() -> FileStatus {
-        Self::Waiting
+        Self::Complete
     }
 }

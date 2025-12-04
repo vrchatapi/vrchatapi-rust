@@ -283,10 +283,10 @@ pub async fn upload_print(
         .file_name(filename)
         .mime_str(mime_type)?;
     multipart_form = multipart_form.part("image", part);
-    multipart_form = multipart_form.text("timestamp", p_form_timestamp.to_string());
     if let Some(param_value) = p_form_note {
         multipart_form = multipart_form.text("note", param_value.to_string());
     }
+    multipart_form = multipart_form.text("timestamp", p_form_timestamp.to_string());
     if let Some(param_value) = p_form_world_id {
         multipart_form = multipart_form.text("worldId", param_value.to_string());
     }

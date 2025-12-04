@@ -11,11 +11,38 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for typed errors of method [`consume_own_inventory_item`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ConsumeOwnInventoryItemError {
+    Status400(models::Error),
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`delete_own_inventory_item`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteOwnInventoryItemError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`equip_own_inventory_item`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum EquipOwnInventoryItemError {
+    Status400(models::Error),
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_inventory`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInventoryError {
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -67,6 +94,14 @@ pub enum SpawnInventoryItemError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`unequip_own_inventory_slot`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UnequipOwnInventorySlotError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`update_own_inventory_item`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -75,11 +110,162 @@ pub enum UpdateOwnInventoryItemError {
     UnknownValue(serde_json::Value),
 }
 
+/// Returns the modified InventoryItem object as held by the currently logged in user.
+pub async fn consume_own_inventory_item(
+    configuration: &configuration::Configuration,
+    inventory_item_id: &str,
+) -> Result<models::InventoryConsumptionResults, Error<ConsumeOwnInventoryItemError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_inventory_item_id = inventory_item_id;
+
+    let uri_str = format!(
+        "{}/inventory/{inventoryItemId}/consume",
+        configuration.base_path,
+        inventoryItemId = crate::apis::urlencode(p_path_inventory_item_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventoryConsumptionResults`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::InventoryConsumptionResults`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ConsumeOwnInventoryItemError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Deletes an InventoryItem from the inventory of the currently logged in user.
+pub async fn delete_own_inventory_item(
+    configuration: &configuration::Configuration,
+    inventory_item_id: &str,
+) -> Result<models::SuccessFlag, Error<DeleteOwnInventoryItemError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_inventory_item_id = inventory_item_id;
+
+    let uri_str = format!(
+        "{}/inventory/{inventoryItemId}",
+        configuration.base_path,
+        inventoryItemId = crate::apis::urlencode(p_path_inventory_item_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SuccessFlag`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SuccessFlag`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<DeleteOwnInventoryItemError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns the modified InventoryItem object as held by the currently logged in user.
+pub async fn equip_own_inventory_item(
+    configuration: &configuration::Configuration,
+    inventory_item_id: &str,
+    equip_inventory_item_request: Option<models::EquipInventoryItemRequest>,
+) -> Result<models::InventoryItem, Error<EquipOwnInventoryItemError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_inventory_item_id = inventory_item_id;
+    let p_body_equip_inventory_item_request = equip_inventory_item_request;
+
+    let uri_str = format!(
+        "{}/inventory/{inventoryItemId}/equip",
+        configuration.base_path,
+        inventoryItemId = crate::apis::urlencode(p_path_inventory_item_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_equip_inventory_item_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventoryItem`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::InventoryItem`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<EquipOwnInventoryItemError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Returns an Inventory object.
 pub async fn get_inventory(
     configuration: &configuration::Configuration,
     n: Option<i32>,
     offset: Option<i32>,
+    holder_id: Option<&str>,
+    equip_slot: Option<models::InventoryEquipSlot>,
     order: Option<&str>,
     tags: Option<&str>,
     types: Option<models::InventoryItemType>,
@@ -91,6 +277,8 @@ pub async fn get_inventory(
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_n = n;
     let p_query_offset = offset;
+    let p_query_holder_id = holder_id;
+    let p_query_equip_slot = equip_slot;
     let p_query_order = order;
     let p_query_tags = tags;
     let p_query_types = types;
@@ -107,6 +295,12 @@ pub async fn get_inventory(
     }
     if let Some(ref param_value) = p_query_offset {
         req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_holder_id {
+        req_builder = req_builder.query(&[("holderId", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_equip_slot {
+        req_builder = req_builder.query(&[("equipSlot", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_order {
         req_builder = req_builder.query(&[("order", &param_value.to_string())]);
@@ -443,6 +637,56 @@ pub async fn spawn_inventory_item(
     } else {
         let content = resp.text().await?;
         let entity: Option<SpawnInventoryItemError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Unequips the InventoryItem in the given slot of the inventory of the currently logged in user.
+pub async fn unequip_own_inventory_slot(
+    configuration: &configuration::Configuration,
+    inventory_item_id: models::InventoryEquipSlot,
+) -> Result<String, Error<UnequipOwnInventorySlotError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_inventory_item_id = inventory_item_id;
+
+    let uri_str = format!(
+        "{}/inventory/{inventoryItemId}/equip",
+        configuration.base_path,
+        inventoryItemId = p_path_inventory_item_id.to_string()
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `String`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `String`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<UnequipOwnInventorySlotError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

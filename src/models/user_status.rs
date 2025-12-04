@@ -15,12 +15,12 @@ use serde::{Deserialize, Serialize};
 pub enum UserStatus {
     #[serde(rename = "active")]
     Active,
-    #[serde(rename = "join me")]
-    JoinMe,
     #[serde(rename = "ask me")]
     AskMe,
     #[serde(rename = "busy")]
     Busy,
+    #[serde(rename = "join me")]
+    JoinMe,
     #[serde(rename = "offline")]
     Offline,
 }
@@ -29,9 +29,9 @@ impl std::fmt::Display for UserStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::Active => write!(f, "active"),
-            Self::JoinMe => write!(f, "join me"),
             Self::AskMe => write!(f, "ask me"),
             Self::Busy => write!(f, "busy"),
+            Self::JoinMe => write!(f, "join me"),
             Self::Offline => write!(f, "offline"),
         }
     }

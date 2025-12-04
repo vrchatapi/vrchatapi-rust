@@ -12,32 +12,32 @@ use serde::{Deserialize, Serialize};
 /// InstanceType :
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum InstanceType {
-    #[serde(rename = "public")]
-    Public,
-    #[serde(rename = "hidden")]
-    Hidden,
     #[serde(rename = "friends")]
     Friends,
-    #[serde(rename = "private")]
-    Private,
     #[serde(rename = "group")]
     Group,
+    #[serde(rename = "hidden")]
+    Hidden,
+    #[serde(rename = "private")]
+    Private,
+    #[serde(rename = "public")]
+    Public,
 }
 
 impl std::fmt::Display for InstanceType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::Public => write!(f, "public"),
-            Self::Hidden => write!(f, "hidden"),
             Self::Friends => write!(f, "friends"),
-            Self::Private => write!(f, "private"),
             Self::Group => write!(f, "group"),
+            Self::Hidden => write!(f, "hidden"),
+            Self::Private => write!(f, "private"),
+            Self::Public => write!(f, "public"),
         }
     }
 }
 
 impl Default for InstanceType {
     fn default() -> InstanceType {
-        Self::Public
+        Self::Friends
     }
 }

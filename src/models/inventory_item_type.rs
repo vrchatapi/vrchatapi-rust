@@ -13,21 +13,30 @@ use serde::{Deserialize, Serialize};
 pub enum InventoryItemType {
     #[serde(rename = "bundle")]
     Bundle,
-    #[serde(rename = "prop")]
-    Prop,
+    #[serde(rename = "droneskin")]
+    Droneskin,
     #[serde(rename = "emoji")]
     Emoji,
+    #[serde(rename = "portalskin")]
+    Portalskin,
+    #[serde(rename = "prop")]
+    Prop,
     #[serde(rename = "sticker")]
     Sticker,
+    #[serde(rename = "warpeffect")]
+    Warpeffect,
 }
 
 impl std::fmt::Display for InventoryItemType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::Bundle => write!(f, "bundle"),
-            Self::Prop => write!(f, "prop"),
+            Self::Droneskin => write!(f, "droneskin"),
             Self::Emoji => write!(f, "emoji"),
+            Self::Portalskin => write!(f, "portalskin"),
+            Self::Prop => write!(f, "prop"),
             Self::Sticker => write!(f, "sticker"),
+            Self::Warpeffect => write!(f, "warpeffect"),
         }
     }
 }

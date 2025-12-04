@@ -11,50 +11,50 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TokenBundle {
-    #[serde(rename = "id")]
-    pub id: String,
-    #[serde(rename = "appleProductId")]
-    pub apple_product_id: String,
-    #[serde(rename = "steamItemId")]
-    pub steam_item_id: String,
-    #[serde(rename = "oculusSku")]
-    pub oculus_sku: String,
-    #[serde(rename = "googleProductId", skip_serializing_if = "Option::is_none")]
-    pub google_product_id: Option<String>,
     /// price of the bundle
     #[serde(rename = "amount")]
     pub amount: i32,
+    #[serde(rename = "appleProductId")]
+    pub apple_product_id: String,
     #[serde(rename = "description")]
     pub description: String,
-    /// number of tokens received
-    #[serde(rename = "tokens")]
-    pub tokens: i32,
+    #[serde(rename = "googleProductId", skip_serializing_if = "Option::is_none")]
+    pub google_product_id: Option<String>,
+    #[serde(rename = "id")]
+    pub id: String,
     /// direct url to image
     #[serde(rename = "imageUrl")]
     pub image_url: String,
+    #[serde(rename = "oculusSku")]
+    pub oculus_sku: String,
+    #[serde(rename = "steamItemId")]
+    pub steam_item_id: String,
+    /// number of tokens received
+    #[serde(rename = "tokens")]
+    pub tokens: i32,
 }
 
 impl TokenBundle {
     pub fn new(
-        id: String,
-        apple_product_id: String,
-        steam_item_id: String,
-        oculus_sku: String,
         amount: i32,
+        apple_product_id: String,
         description: String,
-        tokens: i32,
+        id: String,
         image_url: String,
+        oculus_sku: String,
+        steam_item_id: String,
+        tokens: i32,
     ) -> TokenBundle {
         TokenBundle {
-            id,
-            apple_product_id,
-            steam_item_id,
-            oculus_sku,
-            google_product_id: None,
             amount,
+            apple_product_id,
             description,
-            tokens,
+            google_product_id: None,
+            id,
             image_url,
+            oculus_sku,
+            steam_item_id,
+            tokens,
         }
     }
 }

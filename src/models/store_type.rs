@@ -11,26 +11,26 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum StoreType {
+    #[serde(rename = "group")]
+    Group,
     #[serde(rename = "house")]
     House,
     #[serde(rename = "world")]
     World,
-    #[serde(rename = "group")]
-    Group,
 }
 
 impl std::fmt::Display for StoreType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
+            Self::Group => write!(f, "group"),
             Self::House => write!(f, "house"),
             Self::World => write!(f, "world"),
-            Self::Group => write!(f, "group"),
         }
     }
 }
 
 impl Default for StoreType {
     fn default() -> StoreType {
-        Self::House
+        Self::Group
     }
 }

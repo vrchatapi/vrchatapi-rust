@@ -7,6 +7,8 @@ Method | HTTP request | Description
 [**cancel_pending2_fa**](AuthenticationApi.md#cancel_pending2_fa) | **DELETE** /auth/twofactorauth/totp/pending | Cancel pending enabling of time-based 2FA codes
 [**check_user_exists**](AuthenticationApi.md#check_user_exists) | **GET** /auth/exists | Check User Exists
 [**confirm_email**](AuthenticationApi.md#confirm_email) | **GET** /auth/confirmEmail | Confirm Email
+[**create_global_avatar_moderation**](AuthenticationApi.md#create_global_avatar_moderation) | **POST** /auth/user/avatarmoderations | Create Global Avatar Moderation
+[**delete_global_avatar_moderation**](AuthenticationApi.md#delete_global_avatar_moderation) | **DELETE** /auth/user/avatarmoderations | Delete Global Avatar Moderation
 [**delete_user**](AuthenticationApi.md#delete_user) | **PUT** /users/{userId}/delete | Delete User
 [**disable2_fa**](AuthenticationApi.md#disable2_fa) | **DELETE** /auth/twofactorauth | Disable 2FA
 [**enable2_fa**](AuthenticationApi.md#enable2_fa) | **POST** /auth/twofactorauth/totp/pending | Enable time-based 2FA codes
@@ -116,6 +118,67 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## create_global_avatar_moderation
+
+> models::AvatarModerationCreated create_global_avatar_moderation(create_avatar_moderation_request)
+Create Global Avatar Moderation
+
+Globally moderates an avatar.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**create_avatar_moderation_request** | [**CreateAvatarModerationRequest**](CreateAvatarModerationRequest.md) |  | [required] |
+
+### Return type
+
+[**models::AvatarModerationCreated**](AvatarModerationCreated.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_global_avatar_moderation
+
+> models::OkStatus2 delete_global_avatar_moderation(target_avatar_id, avatar_moderation_type)
+Delete Global Avatar Moderation
+
+Globally unmoderates an avatar.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**target_avatar_id** | **String** | Must be a valid avatar ID. | [required] |
+**avatar_moderation_type** | [**AvatarModerationType**](.md) | The avatar moderation type associated with the avatar. | [required] |
+
+### Return type
+
+[**models::OkStatus2**](OkStatus2.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_user
 
 > models::CurrentUser delete_user(user_id)
@@ -205,7 +268,7 @@ This endpoint does not need any parameter.
 > models::CurrentUser get_current_user()
 Login and/or Get Current User Info
 
-This endpoint does the following two operations:   1) Checks if you are already logged in by looking for a valid `auth` cookie. If you are have a valid auth cookie then no additional auth-related actions are taken. If you are **not** logged in then it will log you in with the `Authorization` header and set the `auth` cookie. The `auth` cookie will only be sent once.   2) If logged in, this function will also return the CurrentUser object containing detailed information about the currently logged in user.  The auth string after `Authorization: Basic {string}` is a base64-encoded string of the username and password, both individually url-encoded, and then joined with a colon.    > base64(urlencode(username):urlencode(password))  **WARNING: Session Limit:** Each authentication with login credentials counts as a separate session, out of which you have a limited amount. Make sure to save and reuse the `auth` cookie if you are often restarting the program. The provided API libraries automatically save cookies during runtime, but does not persist during restart. While it can be fine to use username/password during development, expect in production to very fast run into the rate-limit and be temporarily blocked from making new sessions until older ones expire. The exact number of simultaneous sessions is unknown/undisclosed.
+This endpoint does the following two operations:   1) Checks if you are already logged in by looking for a valid `auth` cookie. If you are have a valid auth cookie then no additional auth-related actions are taken. If you are **not** logged in then it will log you in with the `Authorization` header and set the `auth` cookie. The `auth` cookie will only be sent once.   2) If logged in, this function will also return the CurrentUser object containing detailed information about the currently logged in user.  The auth string after `Authorization: Basic {string}` is a base64-encoded string of the username and password, both individually url-encoded, and then joined with a colon.  > base64(urlencode(username):urlencode(password))  **WARNING: Session Limit:** Each authentication with login credentials counts as a separate session, out of which you have a limited amount. Make sure to save and reuse the `auth` cookie if you are often restarting the program. The provided API libraries automatically save cookies during runtime, but does not persist during restart. While it can be fine to use username/password during development, expect in production to very fast run into the rate-limit and be temporarily blocked from making new sessions until older ones expire. The exact number of simultaneous sessions is unknown/undisclosed.
 
 ### Parameters
 
@@ -232,7 +295,7 @@ This endpoint does not need any parameter.
 > Vec<models::AvatarModeration> get_global_avatar_moderations()
 Get Global Avatar Moderations
 
-Returns list of globally blocked avatars.
+Returns list of globally moderated avatars.
 
 ### Parameters
 

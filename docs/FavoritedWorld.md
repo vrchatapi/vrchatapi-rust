@@ -7,15 +7,13 @@ Name | Type | Description | Notes
 **author_id** | Option<**String**> | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | [optional]
 **author_name** | **String** |  | 
 **capacity** | **i32** |  | 
-**description** | **String** |  | 
-**recommended_capacity** | Option<**i32**> |  | [optional]
 **created_at** | **String** |  | 
 **default_content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
-**favorites** | **i32** |  | [default to 0]
+**description** | **String** |  | 
 **favorite_group** | **String** |  | 
 **favorite_id** | **String** |  | 
+**favorites** | **i32** |  | [default to 0]
 **featured** | **bool** |  | [default to false]
-**visits** | Option<**i32**> |  | [optional][default to 0]
 **heat** | **i32** |  | [default to 0]
 **id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **image_url** | **String** |  | 
@@ -26,14 +24,16 @@ Name | Type | Description | Notes
 **popularity** | **i32** |  | [default to 0]
 **preview_youtube_id** | Option<**String**> |  | [optional]
 **publication_date** | **String** |  | 
+**recommended_capacity** | Option<**i32**> |  | [optional]
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **tags** | **Vec<String>** |   | 
 **thumbnail_image_url** | **String** |  | 
+**udon_products** | Option<**Vec<String>**> |  | [optional]
 **unity_packages** | [**Vec<models::UnityPackage>**](UnityPackage.md) |   | 
 **updated_at** | **String** |  | 
 **url_list** | **Vec<String>** |  | 
-**udon_products** | Option<**Vec<String>**> |  | [optional]
 **version** | **i32** |  | 
+**visits** | Option<**i32**> |  | [optional][default to 0]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

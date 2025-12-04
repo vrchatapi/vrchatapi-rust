@@ -11,6 +11,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UserNoteTargetUser {
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<String>,
     #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
     pub current_avatar_tags: Option<Vec<String>>,
     /// When profilePicOverride is not empty, use it instead.
@@ -21,8 +23,6 @@ pub struct UserNoteTargetUser {
     pub current_avatar_thumbnail_image_url: Option<String>,
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
     pub display_name: Option<String>,
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
     #[serde(
         rename = "profilePicOverride",
         default,
@@ -37,10 +37,10 @@ pub struct UserNoteTargetUser {
 impl UserNoteTargetUser {
     pub fn new() -> UserNoteTargetUser {
         UserNoteTargetUser {
+            id: None,
             current_avatar_tags: None,
             current_avatar_thumbnail_image_url: None,
             display_name: None,
-            id: None,
             profile_pic_override: None,
             user_icon: None,
         }

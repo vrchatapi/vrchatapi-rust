@@ -13,9 +13,9 @@ Name | Type | Description | Notes
 **age_verification_status_visible** | **bool** |  | 
 **analysis_max_retries** | **i32** | Max retries for avatar analysis requests | 
 **analysis_retry_interval** | **i32** | Interval between retries for avatar analysis requests | 
-**announcements** | [**Vec<models::ApiConfigAnnouncement>**](APIConfigAnnouncement.md) | Public Announcements | 
 **analytics_segment_new_ui_pct_of_users** | **i32** | Unknown | 
 **analytics_segment_new_ui_salt** | **String** | Unknown | 
+**announcements** | [**Vec<models::ApiConfigAnnouncement>**](APIConfigAnnouncement.md) | Public Announcements | 
 **available_language_codes** | **Vec<String>** | List of supported Languages | 
 **available_languages** | **Vec<String>** | List of supported Languages | 
 **avatar_perf_limiter** | [**models::ApiConfigAvatarPerfLimiter**](APIConfig_avatarPerfLimiter.md) |  | 
@@ -50,10 +50,10 @@ Name | Type | Description | Notes
 **disable_av_pro_in_proton** | Option<**bool**> | Unknown | [optional][default to false]
 **disable_avatar_copying** | **bool** | Toggles if copying avatars should be disabled | [default to false]
 **disable_avatar_gating** | **bool** | Toggles if avatar gating should be disabled. Avatar gating restricts uploading of avatars to people with the `system_avatar_access` Tag or `admin_avatar_access` Tag | [default to false]
+**disable_captcha** | Option<**bool**> | Unknown | [optional][default to true]
 **disable_community_labs** | **bool** | Toggles if the Community Labs should be disabled | [default to false]
 **disable_community_labs_promotion** | **bool** | Toggles if promotion out of Community Labs should be disabled | [default to false]
 **disable_email** | **bool** | Unknown | [default to false]
-**disable_captcha** | Option<**bool**> | Unknown | [optional][default to true]
 **disable_event_stream** | **bool** | Toggles if Analytics should be disabled. | [default to false]
 **disable_feedback_gating** | **bool** | Toggles if feedback gating should be disabled. Feedback gating restricts submission of feedback (reporting a World or User) to people with the `system_feedback_access` Tag. | [default to false]
 **disable_frontend_builds** | **bool** | Unknown, probably toggles compilation of frontend web builds? So internal flag? | [default to false]
@@ -87,6 +87,9 @@ Name | Type | Description | Notes
 **offline_analysis** | [**models::ApiConfigOfflineAnalysis**](APIConfig_offlineAnalysis.md) |  | 
 **photon_nameserver_overrides** | **Vec<String>** | Unknown | 
 **photon_public_keys** | **Vec<String>** | Unknown | 
+**player_url_resolver_sha1** | **String** | Currently used youtube-dl.exe hash in SHA1-delimited format | 
+**player_url_resolver_version** | **String** | Currently used youtube-dl.exe version | 
+**public_key** | **String** | Public key, hex encoded | 
 **report_categories** | [**models::ApiConfigReportCategories**](APIConfig_reportCategories.md) |  | 
 **report_form_url** | **String** | URL to the report form | [default to https://help.vrchat.com/hc/en-us/requests/new?ticket_form_id=1500000182242&tf_360056455174=user_report&tf_360057451993={userId}&tf_1500001445142={reportedId}&tf_subject={reason} {category} By {contentType} {reportedName}&tf_description={description}]
 **report_options** | [**models::ApiConfigReportOptions**](APIConfig_reportOptions.md) |  | 
@@ -99,8 +102,8 @@ Name | Type | Description | Notes
 **string_host_url_list** | **Vec<String>** | A list of explicitly allowed origins that worlds can request strings from via the Udon's [VRCStringDownloader.LoadUrl](https://creators.vrchat.com/worlds/udon/string-loading/#ivrcstringdownload). | 
 **support_email** | **String** | VRChat's support email | 
 **support_form_url** | **String** | VRChat's support form | 
-**timekeeping** | **bool** | Unknown | [default to true]
 **time_out_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
+**timekeeping** | **bool** | Unknown | [default to true]
 **tutorial_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **update_rate_ms_maximum** | **i32** | Unknown | 
 **update_rate_ms_minimum** | **i32** | Unknown | 
@@ -110,13 +113,10 @@ Name | Type | Description | Notes
 **url_list** | **Vec<String>** | List of allowed URLs that bypass the \"Allow untrusted URL's\" setting in-game | 
 **use_reliable_udp_for_voice** | **bool** | Unknown | [default to false]
 **vive_windows_url** | **String** | Download link for game on the Steam website. | 
-**white_listed_asset_urls** | **Vec<String>** | List of allowed URLs that are allowed to host avatar assets | 
-**player_url_resolver_version** | **String** | Currently used youtube-dl.exe version | 
-**player_url_resolver_sha1** | **String** | Currently used youtube-dl.exe hash in SHA1-delimited format | 
-**public_key** | **String** | Public key, hex encoded | 
 **websocket_max_friends_refresh_delay** | **i32** | Unknown | [default to 900]
 **websocket_quick_reconnect_time** | **i32** | Unknown | [default to 2]
 **websocket_reconnect_max_delay** | **i32** | Unknown | [default to 2]
+**white_listed_asset_urls** | **Vec<String>** | List of allowed URLs that are allowed to host avatar assets | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

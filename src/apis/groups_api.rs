@@ -1327,7 +1327,7 @@ pub async fn get_group(
     }
 }
 
-/// Returns the announcement for a Group. If no announcement has been made, then it returns **empty object**.  If an announcement exists, then it will always return all fields except `imageId` and `imageUrl` which may be null.
+/// Returns the announcement for a Group. If no announcement has been made, then it returns **empty object**. If an announcement exists, then it will always return all fields except `imageId` and `imageUrl` which may be null.
 pub async fn get_group_announcements(
     configuration: &configuration::Configuration,
     group_id: &str,

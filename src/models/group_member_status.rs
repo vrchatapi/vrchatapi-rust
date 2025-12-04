@@ -11,16 +11,16 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum GroupMemberStatus {
+    #[serde(rename = "banned")]
+    Banned,
     #[serde(rename = "inactive")]
     Inactive,
+    #[serde(rename = "invited")]
+    Invited,
     #[serde(rename = "member")]
     Member,
     #[serde(rename = "requested")]
     Requested,
-    #[serde(rename = "invited")]
-    Invited,
-    #[serde(rename = "banned")]
-    Banned,
     #[serde(rename = "userblocked")]
     Userblocked,
 }
@@ -28,11 +28,11 @@ pub enum GroupMemberStatus {
 impl std::fmt::Display for GroupMemberStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
+            Self::Banned => write!(f, "banned"),
             Self::Inactive => write!(f, "inactive"),
+            Self::Invited => write!(f, "invited"),
             Self::Member => write!(f, "member"),
             Self::Requested => write!(f, "requested"),
-            Self::Invited => write!(f, "invited"),
-            Self::Banned => write!(f, "banned"),
             Self::Userblocked => write!(f, "userblocked"),
         }
     }
@@ -40,6 +40,6 @@ impl std::fmt::Display for GroupMemberStatus {
 
 impl Default for GroupMemberStatus {
     fn default() -> GroupMemberStatus {
-        Self::Inactive
+        Self::Banned
     }
 }

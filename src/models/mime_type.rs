@@ -11,59 +11,59 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum MimeType {
+    #[serde(rename = "application/gzip")]
+    ApplicationSlashGzip,
+    #[serde(rename = "application/octet-stream")]
+    ApplicationSlashOctetStream,
+    #[serde(rename = "application/x-avatar")]
+    ApplicationSlashXAvatar,
+    #[serde(rename = "application/x-rsync-delta")]
+    ApplicationSlashXRsyncDelta,
+    #[serde(rename = "application/x-rsync-signature")]
+    ApplicationSlashXRsyncSignature,
+    #[serde(rename = "application/x-world")]
+    ApplicationSlashXWorld,
+    #[serde(rename = "image/bmp")]
+    ImageSlashBmp,
+    #[serde(rename = "image/gif")]
+    ImageSlashGif,
     #[serde(rename = "image/jpeg")]
     ImageSlashJpeg,
     #[serde(rename = "image/jpg")]
     ImageSlashJpg,
     #[serde(rename = "image/png")]
     ImageSlashPng,
-    #[serde(rename = "image/webp")]
-    ImageSlashWebp,
-    #[serde(rename = "image/gif")]
-    ImageSlashGif,
-    #[serde(rename = "image/bmp")]
-    ImageSlashBmp,
     #[serde(rename = "image/svg＋xml")]
     ImageSlashSvgxml,
     #[serde(rename = "image/tiff")]
     ImageSlashTiff,
-    #[serde(rename = "application/x-avatar")]
-    ApplicationSlashXAvatar,
-    #[serde(rename = "application/x-world")]
-    ApplicationSlashXWorld,
-    #[serde(rename = "application/gzip")]
-    ApplicationSlashGzip,
-    #[serde(rename = "application/x-rsync-signature")]
-    ApplicationSlashXRsyncSignature,
-    #[serde(rename = "application/x-rsync-delta")]
-    ApplicationSlashXRsyncDelta,
-    #[serde(rename = "application/octet-stream")]
-    ApplicationSlashOctetStream,
+    #[serde(rename = "image/webp")]
+    ImageSlashWebp,
 }
 
 impl std::fmt::Display for MimeType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
+            Self::ApplicationSlashGzip => write!(f, "application/gzip"),
+            Self::ApplicationSlashOctetStream => write!(f, "application/octet-stream"),
+            Self::ApplicationSlashXAvatar => write!(f, "application/x-avatar"),
+            Self::ApplicationSlashXRsyncDelta => write!(f, "application/x-rsync-delta"),
+            Self::ApplicationSlashXRsyncSignature => write!(f, "application/x-rsync-signature"),
+            Self::ApplicationSlashXWorld => write!(f, "application/x-world"),
+            Self::ImageSlashBmp => write!(f, "image/bmp"),
+            Self::ImageSlashGif => write!(f, "image/gif"),
             Self::ImageSlashJpeg => write!(f, "image/jpeg"),
             Self::ImageSlashJpg => write!(f, "image/jpg"),
             Self::ImageSlashPng => write!(f, "image/png"),
-            Self::ImageSlashWebp => write!(f, "image/webp"),
-            Self::ImageSlashGif => write!(f, "image/gif"),
-            Self::ImageSlashBmp => write!(f, "image/bmp"),
             Self::ImageSlashSvgxml => write!(f, "image/svg＋xml"),
             Self::ImageSlashTiff => write!(f, "image/tiff"),
-            Self::ApplicationSlashXAvatar => write!(f, "application/x-avatar"),
-            Self::ApplicationSlashXWorld => write!(f, "application/x-world"),
-            Self::ApplicationSlashGzip => write!(f, "application/gzip"),
-            Self::ApplicationSlashXRsyncSignature => write!(f, "application/x-rsync-signature"),
-            Self::ApplicationSlashXRsyncDelta => write!(f, "application/x-rsync-delta"),
-            Self::ApplicationSlashOctetStream => write!(f, "application/octet-stream"),
+            Self::ImageSlashWebp => write!(f, "image/webp"),
         }
     }
 }
 
 impl Default for MimeType {
     fn default() -> MimeType {
-        Self::ImageSlashJpeg
+        Self::ApplicationSlashGzip
     }
 }

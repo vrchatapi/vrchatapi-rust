@@ -4,9 +4,9 @@
 
 | Name | Value |
 |---- | -----|
-| hidden | hidden |
+| hidden | 18+ |
+| plus18 | hidden |
 | verified | verified |
-| plus18 | 18+ |
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

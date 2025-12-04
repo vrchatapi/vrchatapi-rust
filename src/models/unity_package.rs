@@ -12,8 +12,6 @@ use serde::{Deserialize, Serialize};
 /// UnityPackage :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UnityPackage {
-    #[serde(rename = "id")]
-    pub id: String,
     #[serde(
         rename = "assetUrl",
         default,
@@ -27,6 +25,15 @@ pub struct UnityPackage {
     pub asset_version: i32,
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<String>,
+    #[serde(rename = "id")]
+    pub id: String,
+    #[serde(
+        rename = "impostorUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub impostor_url: Option<Option<String>>,
     #[serde(
         rename = "impostorizerVersion",
         skip_serializing_if = "Option::is_none"
@@ -41,10 +48,14 @@ pub struct UnityPackage {
     pub plugin_url: Option<String>,
     #[serde(rename = "pluginUrlObject", skip_serializing_if = "Option::is_none")]
     pub plugin_url_object: Option<serde_json::Value>,
+    #[serde(rename = "scanStatus", skip_serializing_if = "Option::is_none")]
+    pub scan_status: Option<String>,
     #[serde(rename = "unitySortNumber", skip_serializing_if = "Option::is_none")]
     pub unity_sort_number: Option<i64>,
     #[serde(rename = "unityVersion")]
     pub unity_version: String,
+    #[serde(rename = "variant", skip_serializing_if = "Option::is_none")]
+    pub variant: Option<String>,
     #[serde(
         rename = "worldSignature",
         default,
@@ -52,43 +63,32 @@ pub struct UnityPackage {
         skip_serializing_if = "Option::is_none"
     )]
     pub world_signature: Option<Option<String>>,
-    #[serde(
-        rename = "impostorUrl",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub impostor_url: Option<Option<String>>,
-    #[serde(rename = "scanStatus", skip_serializing_if = "Option::is_none")]
-    pub scan_status: Option<String>,
-    #[serde(rename = "variant", skip_serializing_if = "Option::is_none")]
-    pub variant: Option<String>,
 }
 
 impl UnityPackage {
     pub fn new(
-        id: String,
         asset_version: i32,
+        id: String,
         platform: String,
         unity_version: String,
     ) -> UnityPackage {
         UnityPackage {
-            id,
             asset_url: None,
             asset_url_object: None,
             asset_version,
             created_at: None,
+            id,
+            impostor_url: None,
             impostorizer_version: None,
             performance_rating: None,
             platform,
             plugin_url: None,
             plugin_url_object: None,
+            scan_status: None,
             unity_sort_number: None,
             unity_version,
-            world_signature: None,
-            impostor_url: None,
-            scan_status: None,
             variant: None,
+            world_signature: None,
         }
     }
 }

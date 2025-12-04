@@ -11,28 +11,28 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupRole {
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
-    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
-    pub group_id: Option<String>,
-    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<String>,
-    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
-    #[serde(rename = "isSelfAssignable", skip_serializing_if = "Option::is_none")]
-    pub is_self_assignable: Option<bool>,
-    #[serde(rename = "permissions", skip_serializing_if = "Option::is_none")]
-    pub permissions: Option<Vec<models::GroupPermissions>>,
-    #[serde(rename = "isManagementRole", skip_serializing_if = "Option::is_none")]
-    pub is_management_role: Option<bool>,
-    #[serde(rename = "requiresTwoFactor", skip_serializing_if = "Option::is_none")]
-    pub requires_two_factor: Option<bool>,
-    #[serde(rename = "requiresPurchase", skip_serializing_if = "Option::is_none")]
-    pub requires_purchase: Option<bool>,
-    #[serde(rename = "order", skip_serializing_if = "Option::is_none")]
-    pub order: Option<i32>,
     #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
     pub created_at: Option<String>,
+    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
+    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
+    pub group_id: Option<String>,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<String>,
+    #[serde(rename = "isManagementRole", skip_serializing_if = "Option::is_none")]
+    pub is_management_role: Option<bool>,
+    #[serde(rename = "isSelfAssignable", skip_serializing_if = "Option::is_none")]
+    pub is_self_assignable: Option<bool>,
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
+    #[serde(rename = "order", skip_serializing_if = "Option::is_none")]
+    pub order: Option<i32>,
+    #[serde(rename = "permissions", skip_serializing_if = "Option::is_none")]
+    pub permissions: Option<Vec<models::GroupPermissions>>,
+    #[serde(rename = "requiresPurchase", skip_serializing_if = "Option::is_none")]
+    pub requires_purchase: Option<bool>,
+    #[serde(rename = "requiresTwoFactor", skip_serializing_if = "Option::is_none")]
+    pub requires_two_factor: Option<bool>,
     #[serde(rename = "updatedAt", skip_serializing_if = "Option::is_none")]
     pub updated_at: Option<String>,
 }
@@ -40,17 +40,17 @@ pub struct GroupRole {
 impl GroupRole {
     pub fn new() -> GroupRole {
         GroupRole {
-            id: None,
-            group_id: None,
-            name: None,
-            description: None,
-            is_self_assignable: None,
-            permissions: None,
-            is_management_role: None,
-            requires_two_factor: None,
-            requires_purchase: None,
-            order: None,
             created_at: None,
+            description: None,
+            group_id: None,
+            id: None,
+            is_management_role: None,
+            is_self_assignable: None,
+            name: None,
+            order: None,
+            permissions: None,
+            requires_purchase: None,
+            requires_two_factor: None,
             updated_at: None,
         }
     }

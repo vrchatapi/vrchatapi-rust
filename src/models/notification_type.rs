@@ -11,6 +11,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum NotificationType {
+    #[serde(rename = "boop")]
+    Boop,
     #[serde(rename = "friendRequest")]
     FriendRequest,
     #[serde(rename = "invite")]
@@ -30,6 +32,7 @@ pub enum NotificationType {
 impl std::fmt::Display for NotificationType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
+            Self::Boop => write!(f, "boop"),
             Self::FriendRequest => write!(f, "friendRequest"),
             Self::Invite => write!(f, "invite"),
             Self::InviteResponse => write!(f, "inviteResponse"),
@@ -43,6 +46,6 @@ impl std::fmt::Display for NotificationType {
 
 impl Default for NotificationType {
     fn default() -> NotificationType {
-        Self::FriendRequest
+        Self::Boop
     }
 }

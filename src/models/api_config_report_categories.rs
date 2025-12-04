@@ -28,10 +28,10 @@ pub struct ApiConfigReportCategories {
     pub groupstore: models::ReportCategory,
     #[serde(rename = "image")]
     pub image: models::ReportCategory,
-    #[serde(rename = "text")]
-    pub text: models::ReportCategory,
     #[serde(rename = "sticker", skip_serializing_if = "Option::is_none")]
     pub sticker: Option<models::ReportCategory>,
+    #[serde(rename = "text")]
+    pub text: models::ReportCategory,
     #[serde(rename = "warnings")]
     pub warnings: models::ReportCategory,
     #[serde(rename = "worldimage")]
@@ -63,8 +63,8 @@ impl ApiConfigReportCategories {
             environment,
             groupstore,
             image,
-            text,
             sticker: None,
+            text,
             warnings,
             worldimage,
             worldstore,

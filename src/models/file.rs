@@ -14,12 +14,12 @@ use serde::{Deserialize, Serialize};
 pub struct File {
     #[serde(rename = "animationStyle", skip_serializing_if = "Option::is_none")]
     pub animation_style: Option<String>,
-    #[serde(rename = "maskTag", skip_serializing_if = "Option::is_none")]
-    pub mask_tag: Option<String>,
     #[serde(rename = "extension")]
     pub extension: String,
     #[serde(rename = "id")]
     pub id: String,
+    #[serde(rename = "maskTag", skip_serializing_if = "Option::is_none")]
+    pub mask_tag: Option<String>,
     #[serde(rename = "mimeType")]
     pub mime_type: models::MimeType,
     #[serde(rename = "name")]
@@ -45,9 +45,9 @@ impl File {
     ) -> File {
         File {
             animation_style: None,
-            mask_tag: None,
             extension,
             id,
+            mask_tag: None,
             mime_type,
             name,
             owner_id,

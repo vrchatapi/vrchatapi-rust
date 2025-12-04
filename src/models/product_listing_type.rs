@@ -11,6 +11,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ProductListingType {
+    #[serde(rename = "duration")]
+    Duration,
+    #[serde(rename = "permanent")]
+    Permanent,
     #[serde(rename = "subscription")]
     Subscription,
 }
@@ -18,6 +22,8 @@ pub enum ProductListingType {
 impl std::fmt::Display for ProductListingType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
+            Self::Duration => write!(f, "duration"),
+            Self::Permanent => write!(f, "permanent"),
             Self::Subscription => write!(f, "subscription"),
         }
     }
@@ -25,6 +31,6 @@ impl std::fmt::Display for ProductListingType {
 
 impl Default for ProductListingType {
     fn default() -> ProductListingType {
-        Self::Subscription
+        Self::Duration
     }
 }

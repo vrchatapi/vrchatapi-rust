@@ -12,27 +12,27 @@ use serde::{Deserialize, Serialize};
 /// TransactionSteamWalletInfo :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSteamWalletInfo {
-    #[serde(rename = "state")]
-    pub state: String,
     #[serde(rename = "country")]
     pub country: String,
     #[serde(rename = "currency")]
     pub currency: String,
+    #[serde(rename = "state")]
+    pub state: String,
     #[serde(rename = "status")]
     pub status: String,
 }
 
 impl TransactionSteamWalletInfo {
     pub fn new(
-        state: String,
         country: String,
         currency: String,
+        state: String,
         status: String,
     ) -> TransactionSteamWalletInfo {
         TransactionSteamWalletInfo {
-            state,
             country,
             currency,
+            state,
             status,
         }
     }

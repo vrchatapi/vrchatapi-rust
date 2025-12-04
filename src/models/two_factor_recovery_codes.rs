@@ -11,20 +11,20 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TwoFactorRecoveryCodes {
+    #[serde(rename = "otp", skip_serializing_if = "Option::is_none")]
+    pub otp: Option<Vec<models::TwoFactorRecoveryCodesOtpInner>>,
     #[serde(
         rename = "requiresTwoFactorAuth",
         skip_serializing_if = "Option::is_none"
     )]
     pub requires_two_factor_auth: Option<Vec<String>>,
-    #[serde(rename = "otp", skip_serializing_if = "Option::is_none")]
-    pub otp: Option<Vec<models::TwoFactorRecoveryCodesOtpInner>>,
 }
 
 impl TwoFactorRecoveryCodes {
     pub fn new() -> TwoFactorRecoveryCodes {
         TwoFactorRecoveryCodes {
-            requires_two_factor_auth: None,
             otp: None,
+            requires_two_factor_auth: None,
         }
     }
 }

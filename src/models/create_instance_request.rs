@@ -11,13 +11,37 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateInstanceRequest {
-    /// WorldID be \"offline\" on User profiles if you are not friends with that user.
-    #[serde(rename = "worldId")]
-    pub world_id: String,
-    #[serde(rename = "type")]
-    pub r#type: models::InstanceType,
-    #[serde(rename = "region")]
-    pub region: models::InstanceRegion,
+    #[serde(rename = "ageGate", skip_serializing_if = "Option::is_none")]
+    pub age_gate: Option<bool>,
+    /// Only applies to invite type instances to make them invite+
+    #[serde(rename = "canRequestInvite", skip_serializing_if = "Option::is_none")]
+    pub can_request_invite: Option<bool>,
+    /// The time after which users won't be allowed to join the instance. This doesn't work for public instances.
+    #[serde(rename = "closedAt", skip_serializing_if = "Option::is_none")]
+    pub closed_at: Option<String>,
+    #[serde(rename = "contentSettings", skip_serializing_if = "Option::is_none")]
+    pub content_settings: Option<models::InstanceContentSettings>,
+    #[serde(
+        rename = "displayName",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub display_name: Option<Option<String>>,
+    #[serde(rename = "groupAccessType", skip_serializing_if = "Option::is_none")]
+    pub group_access_type: Option<models::GroupAccessType>,
+    /// Currently unused, but will eventually be a flag to set if the closing of the instance should kick people.
+    #[serde(rename = "hardClose", skip_serializing_if = "Option::is_none")]
+    pub hard_close: Option<bool>,
+    #[serde(
+        rename = "instancePersistenceEnabled",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub instance_persistence_enabled: Option<Option<bool>>,
+    #[serde(rename = "inviteOnly", skip_serializing_if = "Option::is_none")]
+    pub invite_only: Option<bool>,
     /// A groupId if the instance type is \"group\", null if instance type is public, or a userId otherwise
     #[serde(
         rename = "ownerId",
@@ -26,66 +50,42 @@ pub struct CreateInstanceRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub owner_id: Option<Option<String>>,
+    #[serde(rename = "queueEnabled", skip_serializing_if = "Option::is_none")]
+    pub queue_enabled: Option<bool>,
+    #[serde(rename = "region")]
+    pub region: models::InstanceRegion,
     /// Group roleIds that are allowed to join if the type is \"group\" and groupAccessType is \"member\"
     #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
     pub role_ids: Option<Vec<String>>,
-    #[serde(rename = "groupAccessType", skip_serializing_if = "Option::is_none")]
-    pub group_access_type: Option<models::GroupAccessType>,
-    #[serde(rename = "queueEnabled", skip_serializing_if = "Option::is_none")]
-    pub queue_enabled: Option<bool>,
-    /// The time after which users won't be allowed to join the instance. This doesn't work for public instances.
-    #[serde(rename = "closedAt", skip_serializing_if = "Option::is_none")]
-    pub closed_at: Option<String>,
-    /// Only applies to invite type instances to make them invite+
-    #[serde(rename = "canRequestInvite", skip_serializing_if = "Option::is_none")]
-    pub can_request_invite: Option<bool>,
-    /// Currently unused, but will eventually be a flag to set if the closing of the instance should kick people.
-    #[serde(rename = "hardClose", skip_serializing_if = "Option::is_none")]
-    pub hard_close: Option<bool>,
-    #[serde(rename = "inviteOnly", skip_serializing_if = "Option::is_none")]
-    pub invite_only: Option<bool>,
-    #[serde(rename = "ageGate", skip_serializing_if = "Option::is_none")]
-    pub age_gate: Option<bool>,
-    #[serde(
-        rename = "instancePersistenceEnabled",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub instance_persistence_enabled: Option<Option<bool>>,
-    #[serde(
-        rename = "displayName",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub display_name: Option<Option<String>>,
-    #[serde(rename = "contentSettings", skip_serializing_if = "Option::is_none")]
-    pub content_settings: Option<models::InstanceContentSettings>,
+    #[serde(rename = "type")]
+    pub r#type: models::InstanceType,
+    /// WorldID be \"offline\" on User profiles if you are not friends with that user.
+    #[serde(rename = "worldId")]
+    pub world_id: String,
 }
 
 impl CreateInstanceRequest {
     pub fn new(
-        world_id: String,
-        r#type: models::InstanceType,
         region: models::InstanceRegion,
+        r#type: models::InstanceType,
+        world_id: String,
     ) -> CreateInstanceRequest {
         CreateInstanceRequest {
-            world_id,
-            r#type,
-            region,
-            owner_id: None,
-            role_ids: None,
-            group_access_type: None,
-            queue_enabled: None,
-            closed_at: None,
-            can_request_invite: None,
-            hard_close: None,
-            invite_only: None,
             age_gate: None,
-            instance_persistence_enabled: None,
-            display_name: None,
+            can_request_invite: None,
+            closed_at: None,
             content_settings: None,
+            display_name: None,
+            group_access_type: None,
+            hard_close: None,
+            instance_persistence_enabled: None,
+            invite_only: None,
+            owner_id: None,
+            queue_enabled: None,
+            region,
+            role_ids: None,
+            r#type,
+            world_id,
         }
     }
 }

@@ -12,28 +12,28 @@ use serde::{Deserialize, Serialize};
 /// LicenseGroup :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LicenseGroup {
-    #[serde(rename = "id")]
-    pub id: String,
-    #[serde(rename = "name")]
-    pub name: String,
     #[serde(rename = "description")]
     pub description: String,
+    #[serde(rename = "id")]
+    pub id: String,
     #[serde(rename = "licenses")]
     pub licenses: Vec<models::License>,
+    #[serde(rename = "name")]
+    pub name: String,
 }
 
 impl LicenseGroup {
     pub fn new(
-        id: String,
-        name: String,
         description: String,
+        id: String,
         licenses: Vec<models::License>,
+        name: String,
     ) -> LicenseGroup {
         LicenseGroup {
-            id,
-            name,
             description,
+            id,
             licenses,
+            name,
         }
     }
 }

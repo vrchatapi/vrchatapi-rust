@@ -19,8 +19,6 @@ pub struct World {
     pub author_name: String,
     #[serde(rename = "capacity")]
     pub capacity: i32,
-    #[serde(rename = "recommendedCapacity")]
-    pub recommended_capacity: i32,
     #[serde(rename = "created_at")]
     pub created_at: String,
     #[serde(
@@ -72,6 +70,8 @@ pub struct World {
     pub public_occupants: Option<i32>,
     #[serde(rename = "publicationDate")]
     pub publication_date: String,
+    #[serde(rename = "recommendedCapacity")]
+    pub recommended_capacity: i32,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
     #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
@@ -80,6 +80,8 @@ pub struct World {
     pub tags: Vec<String>,
     #[serde(rename = "thumbnailImageUrl")]
     pub thumbnail_image_url: String,
+    #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
+    pub udon_products: Option<Vec<String>>,
     /// Empty if unauthenticated.
     #[serde(rename = "unityPackages", skip_serializing_if = "Option::is_none")]
     pub unity_packages: Option<Vec<models::UnityPackage>>,
@@ -91,8 +93,6 @@ pub struct World {
     pub version: i32,
     #[serde(rename = "visits")]
     pub visits: i32,
-    #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
-    pub udon_products: Option<Vec<String>>,
 }
 
 impl World {
@@ -100,7 +100,6 @@ impl World {
         author_id: String,
         author_name: String,
         capacity: i32,
-        recommended_capacity: i32,
         created_at: String,
         description: String,
         featured: bool,
@@ -112,6 +111,7 @@ impl World {
         organization: String,
         popularity: i32,
         publication_date: String,
+        recommended_capacity: i32,
         release_status: models::ReleaseStatus,
         tags: Vec<String>,
         thumbnail_image_url: String,
@@ -123,7 +123,6 @@ impl World {
             author_id,
             author_name,
             capacity,
-            recommended_capacity,
             created_at,
             default_content_settings: None,
             description,
@@ -143,16 +142,17 @@ impl World {
             private_occupants: None,
             public_occupants: None,
             publication_date,
+            recommended_capacity,
             release_status,
             store_id: None,
             tags,
             thumbnail_image_url,
+            udon_products: None,
             unity_packages: None,
             updated_at,
             url_list: None,
             version,
             visits,
-            udon_products: None,
         }
     }
 }

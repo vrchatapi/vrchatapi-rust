@@ -4,6 +4,7 @@
 
 | Name | Value |
 |---- | -----|
+| Inventory | inventory |
 | Listing | listing |
 | Role | role |
 | Udon | udon |

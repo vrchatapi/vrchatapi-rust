@@ -11,22 +11,22 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PaginatedGroupAuditLogEntryList {
+    /// Whether there are more results after this page.
+    #[serde(rename = "hasNext", skip_serializing_if = "Option::is_none")]
+    pub has_next: Option<bool>,
     #[serde(rename = "results", skip_serializing_if = "Option::is_none")]
     pub results: Option<Vec<models::GroupAuditLogEntry>>,
     /// The total number of results that the query would return if there were no pagination.
     #[serde(rename = "totalCount", skip_serializing_if = "Option::is_none")]
     pub total_count: Option<i32>,
-    /// Whether there are more results after this page.
-    #[serde(rename = "hasNext", skip_serializing_if = "Option::is_none")]
-    pub has_next: Option<bool>,
 }
 
 impl PaginatedGroupAuditLogEntryList {
     pub fn new() -> PaginatedGroupAuditLogEntryList {
         PaginatedGroupAuditLogEntryList {
+            has_next: None,
             results: None,
             total_count: None,
-            has_next: None,
         }
     }
 }

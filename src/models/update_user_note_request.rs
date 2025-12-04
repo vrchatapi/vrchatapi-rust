@@ -11,18 +11,18 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateUserNoteRequest {
+    #[serde(rename = "note")]
+    pub note: String,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "targetUserId")]
     pub target_user_id: String,
-    #[serde(rename = "note")]
-    pub note: String,
 }
 
 impl UpdateUserNoteRequest {
-    pub fn new(target_user_id: String, note: String) -> UpdateUserNoteRequest {
+    pub fn new(note: String, target_user_id: String) -> UpdateUserNoteRequest {
         UpdateUserNoteRequest {
-            target_user_id,
             note,
+            target_user_id,
         }
     }
 }

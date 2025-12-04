@@ -11,26 +11,26 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AddFavoriteRequest {
-    #[serde(rename = "type")]
-    pub r#type: models::FavoriteType,
     /// Must be either AvatarID, WorldID or UserID.
     #[serde(rename = "favoriteId")]
     pub favorite_id: String,
     /// Tags indicate which group this favorite belongs to. Adding multiple groups makes it show up in all. Removing it from one in that case removes it from all.
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
+    #[serde(rename = "type")]
+    pub r#type: models::FavoriteType,
 }
 
 impl AddFavoriteRequest {
     pub fn new(
-        r#type: models::FavoriteType,
         favorite_id: String,
         tags: Vec<String>,
+        r#type: models::FavoriteType,
     ) -> AddFavoriteRequest {
         AddFavoriteRequest {
-            r#type,
             favorite_id,
             tags,
+            r#type,
         }
     }
 }

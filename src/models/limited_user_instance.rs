@@ -26,11 +26,11 @@ pub struct LimitedUserInstance {
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarImageUrl")]
     pub current_avatar_image_url: String,
+    #[serde(rename = "currentAvatarTags")]
+    pub current_avatar_tags: Vec<String>,
     /// When profilePicOverride is not empty, use it instead.
     #[serde(rename = "currentAvatarThumbnailImageUrl")]
     pub current_avatar_thumbnail_image_url: String,
-    #[serde(rename = "currentAvatarTags")]
-    pub current_avatar_tags: Vec<String>,
     #[serde(rename = "date_joined", deserialize_with = "Option::deserialize")]
     pub date_joined: Option<String>,
     #[serde(rename = "developerType")]
@@ -42,17 +42,18 @@ pub struct LimitedUserInstance {
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "isFriend")]
-    pub is_friend: bool,
     #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
     pub image_url: Option<String>,
-    /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
-    #[serde(rename = "last_platform")]
-    pub last_platform: String,
+    #[serde(rename = "isFriend")]
+    pub is_friend: bool,
     #[serde(rename = "last_activity", deserialize_with = "Option::deserialize")]
     pub last_activity: Option<String>,
     #[serde(rename = "last_mobile", deserialize_with = "Option::deserialize")]
     pub last_mobile: Option<String>,
+    /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+    #[serde(rename = "last_platform")]
+    pub last_platform: String,
+    /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
     pub platform: Option<String>,
     #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
@@ -83,17 +84,17 @@ impl LimitedUserInstance {
         age_verified: bool,
         allow_avatar_copying: bool,
         current_avatar_image_url: String,
-        current_avatar_thumbnail_image_url: String,
         current_avatar_tags: Vec<String>,
+        current_avatar_thumbnail_image_url: String,
         date_joined: Option<String>,
         developer_type: models::DeveloperType,
         display_name: String,
         friend_key: String,
         id: String,
         is_friend: bool,
-        last_platform: String,
         last_activity: Option<String>,
         last_mobile: Option<String>,
+        last_platform: String,
         pronouns: String,
         state: models::UserState,
         status: models::UserStatus,
@@ -107,18 +108,18 @@ impl LimitedUserInstance {
             bio: None,
             bio_links: None,
             current_avatar_image_url,
-            current_avatar_thumbnail_image_url,
             current_avatar_tags,
+            current_avatar_thumbnail_image_url,
             date_joined,
             developer_type,
             display_name,
             friend_key,
             id,
-            is_friend,
             image_url: None,
-            last_platform,
+            is_friend,
             last_activity,
             last_mobile,
+            last_platform,
             platform: None,
             profile_pic_override: None,
             profile_pic_override_thumbnail: None,

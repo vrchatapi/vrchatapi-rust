@@ -13,29 +13,29 @@ use serde::{Deserialize, Serialize};
 /// \"none\" User is a normal user \"trusted\" Unknown \"internal\" Is a VRChat Developer \"moderator\" Is a VRChat Moderator  Staff can hide their developerType at will.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum DeveloperType {
-    #[serde(rename = "none")]
-    None,
-    #[serde(rename = "trusted")]
-    Trusted,
     #[serde(rename = "internal")]
     Internal,
     #[serde(rename = "moderator")]
     Moderator,
+    #[serde(rename = "none")]
+    None,
+    #[serde(rename = "trusted")]
+    Trusted,
 }
 
 impl std::fmt::Display for DeveloperType {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::None => write!(f, "none"),
-            Self::Trusted => write!(f, "trusted"),
             Self::Internal => write!(f, "internal"),
             Self::Moderator => write!(f, "moderator"),
+            Self::None => write!(f, "none"),
+            Self::Trusted => write!(f, "trusted"),
         }
     }
 }
 
 impl Default for DeveloperType {
     fn default() -> DeveloperType {
-        Self::None
+        Self::Internal
     }
 }

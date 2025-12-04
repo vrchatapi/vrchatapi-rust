@@ -12,41 +12,41 @@ use serde::{Deserialize, Serialize};
 /// Permission :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Permission {
-    #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
-    pub display_name: Option<String>,
+    #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
+    pub data: Option<serde_json::Value>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
+    pub display_name: Option<String>,
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "ownerDisplayName")]
-    pub owner_display_name: String,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "ownerDisplayName")]
+    pub owner_display_name: String,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "ownerId")]
     pub owner_id: String,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<String>,
-    #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
-    pub data: Option<serde_json::Value>,
 }
 
 impl Permission {
     pub fn new(
         id: String,
-        owner_display_name: String,
         name: String,
+        owner_display_name: String,
         owner_id: String,
     ) -> Permission {
         Permission {
-            display_name: None,
+            data: None,
             description: None,
+            display_name: None,
             id,
-            owner_display_name,
             name,
+            owner_display_name,
             owner_id,
             r#type: None,
-            data: None,
         }
     }
 }

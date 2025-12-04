@@ -15,10 +15,10 @@ pub enum GroupJoinState {
     Closed,
     #[serde(rename = "invite")]
     Invite,
-    #[serde(rename = "request")]
-    Request,
     #[serde(rename = "open")]
     Open,
+    #[serde(rename = "request")]
+    Request,
 }
 
 impl std::fmt::Display for GroupJoinState {
@@ -26,8 +26,8 @@ impl std::fmt::Display for GroupJoinState {
         match self {
             Self::Closed => write!(f, "closed"),
             Self::Invite => write!(f, "invite"),
-            Self::Request => write!(f, "request"),
             Self::Open => write!(f, "open"),
+            Self::Request => write!(f, "request"),
         }
     }
 }

@@ -13,19 +13,19 @@ use serde::{Deserialize, Serialize};
 pub struct UpdateFavoriteGroupRequest {
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
     pub display_name: Option<String>,
-    #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
-    pub visibility: Option<models::FavoriteGroupVisibility>,
     /// Tags on FavoriteGroups are believed to do nothing.
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
+    #[serde(rename = "visibility", skip_serializing_if = "Option::is_none")]
+    pub visibility: Option<models::FavoriteGroupVisibility>,
 }
 
 impl UpdateFavoriteGroupRequest {
     pub fn new() -> UpdateFavoriteGroupRequest {
         UpdateFavoriteGroupRequest {
             display_name: None,
-            visibility: None,
             tags: None,
+            visibility: None,
         }
     }
 }
