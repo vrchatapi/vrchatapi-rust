@@ -60,7 +60,7 @@ jobs:
           fi
           if [ "${VERSION_POSTPEND}" != "" ]
           then
-            tomlq '.package.version |= "${PASSED_VERSION}${VERSION_POSTPEND}"' Cargo.toml --toml-output
+            tomlq '.package.version |= "${PASSED_VERSION}${VERSION_POSTPEND}"' Cargo.toml --toml-output --in-place
           fi
       - name: Deploy SDK back into main branch
         uses: JamesIves/github-pages-deploy-action@v4
