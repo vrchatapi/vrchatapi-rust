@@ -4,13 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**active** | **bool** |  | [default to true]
+**active** | Option<**bool**> |  | [optional][default to true]
 **age_gate** | Option<**bool**> |  | [optional]
-**can_request_invite** | **bool** |  | [default to true]
-**capacity** | **i32** |  | 
+**calendar_entry_id** | Option<**String**> |  | [optional]
+**can_request_invite** | Option<**bool**> |  | [optional][default to true]
+**capacity** | Option<**i32**> |  | [optional]
 **client_number** | **String** | Always returns \"unknown\". | 
 **closed_at** | Option<**String**> |  | [optional]
 **content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
+**creator_id** | Option<**String**> | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | [optional]
 **display_name** | Option<**String**> |  | [optional]
 **friends** | Option<**String**> | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | [optional]
 **full** | **bool** |  | [default to false]
@@ -21,7 +23,7 @@ Name | Type | Description | Notes
 **hidden** | Option<**String**> | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | [optional]
 **id** | **String** | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | 
 **instance_id** | **String** | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | 
-**instance_persistence_enabled** | Option<**String**> |  | [optional]
+**instance_persistence_enabled** | Option<**bool**> |  | [optional]
 **location** | **String** | Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list. | 
 **n_users** | **i32** |  | 
 **name** | **String** |  | 

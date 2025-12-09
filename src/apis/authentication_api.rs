@@ -50,6 +50,15 @@ pub enum DeleteGlobalAvatarModerationError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`delete_moderation_report`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteModerationReportError {
+    Status401(models::Error),
+    Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`delete_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -90,6 +99,15 @@ pub enum GetGlobalAvatarModerationsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_moderation_reports`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetModerationReportsError {
+    Status401(models::Error),
+    Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_recovery_codes`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -118,6 +136,14 @@ pub enum RegisterUserAccountError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ResendEmailConfirmationError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`submit_moderation_report`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SubmitModerationReportError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -413,6 +439,56 @@ pub async fn delete_global_avatar_moderation(
     }
 }
 
+/// Delete a moderation report
+pub async fn delete_moderation_report(
+    configuration: &configuration::Configuration,
+    moderation_report_id: &str,
+) -> Result<models::SuccessFlag, Error<DeleteModerationReportError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_moderation_report_id = moderation_report_id;
+
+    let uri_str = format!(
+        "{}/moderationReports/{moderationReportId}",
+        configuration.base_path,
+        moderationReportId = crate::apis::urlencode(p_path_moderation_report_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SuccessFlag`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SuccessFlag`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<DeleteModerationReportError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Deletes the account with given ID. Normal users only have permission to delete their own account. Account deletion is 14 days from this request, and will be cancelled if you do an authenticated request with the account afterwards.  **VRC+ NOTE:** Despite the 14-days cooldown, any VRC+ subscription will be cancelled **immediately**.  **METHOD NOTE:** Despite this being a Delete action, the method type required is PUT.
 pub async fn delete_user(
     configuration: &configuration::Configuration,
@@ -631,6 +707,73 @@ pub async fn get_global_avatar_moderations(
     }
 }
 
+/// Get submitted moderation reports
+pub async fn get_moderation_reports(
+    configuration: &configuration::Configuration,
+    offset: Option<i32>,
+    n: Option<i32>,
+    reporting_user_id: Option<&str>,
+    status: Option<&str>,
+    r#type: Option<&str>,
+) -> Result<models::PaginatedModerationReportList, Error<GetModerationReportsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_offset = offset;
+    let p_query_n = n;
+    let p_query_reporting_user_id = reporting_user_id;
+    let p_query_status = status;
+    let p_query_type = r#type;
+
+    let uri_str = format!("{}/moderationReports", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_offset {
+        req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_n {
+        req_builder = req_builder.query(&[("n", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_reporting_user_id {
+        req_builder = req_builder.query(&[("reportingUserId", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_status {
+        req_builder = req_builder.query(&[("status", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_type {
+        req_builder = req_builder.query(&[("type", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedModerationReportList`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedModerationReportList`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetModerationReportsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Gets the OTP (One Time Password) recovery codes for accounts with 2FA-protection enabled.
 pub async fn get_recovery_codes(
     configuration: &configuration::Configuration,
@@ -793,6 +936,53 @@ pub async fn resend_email_confirmation(
     } else {
         let content = resp.text().await?;
         let entity: Option<ResendEmailConfirmationError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Submit a moderation report
+pub async fn submit_moderation_report(
+    configuration: &configuration::Configuration,
+    submit_moderation_report_request: models::SubmitModerationReportRequest,
+) -> Result<models::ModerationReport, Error<SubmitModerationReportError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_submit_moderation_report_request = submit_moderation_report_request;
+
+    let uri_str = format!("{}/moderationReports", configuration.base_path);
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_submit_moderation_report_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ModerationReport`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ModerationReport`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<SubmitModerationReportError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

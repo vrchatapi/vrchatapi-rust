@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**highlight_listing** | Option<[**models::ProductListing**](ProductListing.md)> |  | [optional]
+**highlight_listing_id** | Option<**String**> |  | [optional]
 **id** | **String** |  | 
 **listing_ids** | **Vec<String>** |  | 
 **listings** | Option<[**Vec<models::ProductListing>**](ProductListing.md)> |  | [optional]

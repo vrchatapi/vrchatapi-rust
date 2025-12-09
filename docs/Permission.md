@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | Option<[**serde_json::Value**](.md)> |  | [optional]
+**data** | Option<[**models::PermissionData**](Permission_data.md)> |  | [optional]
 **description** | Option<**String**> |  | [optional]
 **display_name** | Option<**String**> |  | [optional]
 **id** | **String** |  | 

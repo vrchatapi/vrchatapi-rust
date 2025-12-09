@@ -15,7 +15,9 @@ use serde::{de::Error as _, Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupCalendarEventError {
+    Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -24,6 +26,7 @@ pub enum CreateGroupCalendarEventError {
 #[serde(untagged)]
 pub enum DeleteGroupCalendarEventError {
     Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -89,6 +92,15 @@ pub enum GetGroupCalendarEventIcsError {
 #[serde(untagged)]
 pub enum GetGroupCalendarEventsError {
     Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_group_next_calendar_event`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetGroupNextCalendarEventError {
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -684,6 +696,54 @@ pub async fn get_group_calendar_events(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetGroupCalendarEventsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get the closest future calendar event scheduled for a group
+pub async fn get_group_next_calendar_event(
+    configuration: &configuration::Configuration,
+    group_id: &str,
+) -> Result<models::CalendarEvent, Error<GetGroupNextCalendarEventError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_group_id = group_id;
+
+    let uri_str = format!(
+        "{}/calendar/{groupId}/next",
+        configuration.base_path,
+        groupId = crate::apis::urlencode(p_path_group_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CalendarEvent`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CalendarEvent`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetGroupNextCalendarEventError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

@@ -8,9 +8,11 @@ Method | HTTP request | Description
 [**delete_own_inventory_item**](InventoryApi.md#delete_own_inventory_item) | **DELETE** /inventory/{inventoryItemId} | Delete Own Inventory Item
 [**equip_own_inventory_item**](InventoryApi.md#equip_own_inventory_item) | **PUT** /inventory/{inventoryItemId}/equip | Equip Own Inventory Item
 [**get_inventory**](InventoryApi.md#get_inventory) | **GET** /inventory | Get Inventory
+[**get_inventory_collections**](InventoryApi.md#get_inventory_collections) | **GET** /inventory/collections | List Inventory Collections
 [**get_inventory_drops**](InventoryApi.md#get_inventory_drops) | **GET** /inventory/drops | List Inventory Drops
 [**get_inventory_template**](InventoryApi.md#get_inventory_template) | **GET** /inventory/template/{inventoryTemplateId} | Get Inventory Template
 [**get_own_inventory_item**](InventoryApi.md#get_own_inventory_item) | **GET** /inventory/{inventoryItemId} | Get Own Inventory Item
+[**get_user_inventory_item**](InventoryApi.md#get_user_inventory_item) | **GET** /user/{userId}/inventory/{inventoryItemId} | Get User Inventory Item
 [**share_inventory_item_direct**](InventoryApi.md#share_inventory_item_direct) | **POST** /inventory/cloning/direct | Share Inventory Item Direct
 [**share_inventory_item_pedestal**](InventoryApi.md#share_inventory_item_pedestal) | **GET** /inventory/cloning/pedestal | Share Inventory Item by Pedestal
 [**spawn_inventory_item**](InventoryApi.md#spawn_inventory_item) | **GET** /inventory/spawn | Spawn Inventory Item
@@ -150,6 +152,33 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_inventory_collections
+
+> Vec<String> get_inventory_collections()
+List Inventory Collections
+
+Returns a list of collection names.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+**Vec<String>**
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_inventory_drops
 
 > Vec<models::InventoryDrop> get_inventory_drops(active)
@@ -222,6 +251,37 @@ Returns an InventoryItem object held by the currently logged in user.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
+**inventory_item_id** | **String** | Must be a valid inventory item ID. | [required] |
+
+### Return type
+
+[**models::InventoryItem**](InventoryItem.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_inventory_item
+
+> models::InventoryItem get_user_inventory_item(user_id, inventory_item_id)
+Get User Inventory Item
+
+Returns an InventoryItem object held by the given user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
 **inventory_item_id** | **String** | Must be a valid inventory item ID. | [required] |
 
 ### Return type

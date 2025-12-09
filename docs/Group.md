@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **age_verification_beta_code** | Option<**String**> |  | [optional]
 **age_verification_beta_slots** | Option<**f64**> |  | [optional]
 **age_verification_slots_available** | Option<**bool**> |  | [optional]
+**allow_group_join_prompt** | Option<**bool**> |  | [optional]
 **badges** | Option<**Vec<String>**> |  | [optional]
 **banner_id** | Option<**String**> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]

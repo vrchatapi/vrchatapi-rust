@@ -13,9 +13,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CalendarEvent {
     #[serde(rename = "accessType")]
-    pub access_type: String,
+    pub access_type: models::CalendarEventAccess,
     #[serde(rename = "category")]
-    pub category: String,
+    pub category: models::CalendarEventCategory,
     #[serde(
         rename = "closeInstanceAfterEndMinutes",
         skip_serializing_if = "Option::is_none"
@@ -32,6 +32,8 @@ pub struct CalendarEvent {
     pub deleted_at: Option<Option<String>>,
     #[serde(rename = "description")]
     pub description: String,
+    #[serde(rename = "durationInMs")]
+    pub duration_in_ms: i32,
     #[serde(rename = "endsAt")]
     pub ends_at: String,
     #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
@@ -64,12 +66,14 @@ pub struct CalendarEvent {
     pub interested_user_count: Option<i32>,
     #[serde(rename = "isDraft", skip_serializing_if = "Option::is_none")]
     pub is_draft: Option<bool>,
+    /// Languages that might be spoken at this event
     #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
     pub languages: Option<Vec<String>>,
     #[serde(rename = "ownerId", skip_serializing_if = "Option::is_none")]
     pub owner_id: Option<String>,
     #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
-    pub platforms: Option<Vec<String>>,
+    pub platforms: Option<Vec<models::CalendarEventPlatform>>,
+    /// Group roles that may join this event
     #[serde(
         rename = "roleIds",
         default,
@@ -79,6 +83,7 @@ pub struct CalendarEvent {
     pub role_ids: Option<Option<Vec<String>>>,
     #[serde(rename = "startsAt")]
     pub starts_at: String,
+    /// Custom tags for this event
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     #[serde(rename = "title")]
@@ -99,9 +104,10 @@ pub struct CalendarEvent {
 impl CalendarEvent {
     /// An event scheduled on a group's calendar
     pub fn new(
-        access_type: String,
-        category: String,
+        access_type: models::CalendarEventAccess,
+        category: models::CalendarEventCategory,
         description: String,
+        duration_in_ms: i32,
         ends_at: String,
         id: String,
         starts_at: String,
@@ -114,6 +120,7 @@ impl CalendarEvent {
             created_at: None,
             deleted_at: None,
             description,
+            duration_in_ms,
             ends_at,
             featured: None,
             guest_early_join_minutes: None,

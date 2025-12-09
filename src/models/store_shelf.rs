@@ -11,6 +11,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct StoreShelf {
+    #[serde(rename = "highlightListing", skip_serializing_if = "Option::is_none")]
+    pub highlight_listing: Option<models::ProductListing>,
+    #[serde(rename = "highlightListingId", skip_serializing_if = "Option::is_none")]
+    pub highlight_listing_id: Option<String>,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "listingIds")]
@@ -37,6 +41,8 @@ impl StoreShelf {
         updated_at: String,
     ) -> StoreShelf {
         StoreShelf {
+            highlight_listing: None,
+            highlight_listing_id: None,
             id,
             listing_ids,
             listings: None,

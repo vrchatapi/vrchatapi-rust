@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access_type** | **String** |  | 
-**category** | **String** |  | 
+**access_type** | [**models::CalendarEventAccess**](CalendarEventAccess.md) |  | 
+**category** | [**models::CalendarEventCategory**](CalendarEventCategory.md) |  | 
 **close_instance_after_end_minutes** | Option<**i32**> |  | [optional]
 **description** | **String** |  | 
 **ends_at** | **String** | Time the event ends at | 
@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **is_draft** | Option<**bool**> |  | [optional]
 **languages** | Option<**Vec<String>**> |  | [optional]
 **parent_id** | Option<**String**> |  | [optional]
-**platforms** | Option<**Vec<String>**> |  | [optional]
+**platforms** | Option<[**Vec<models::CalendarEventPlatform>**](CalendarEventPlatform.md)> |  | [optional]
 **role_ids** | Option<**Vec<String>**> |  | [optional]
 **send_creation_notification** | **bool** | Send notification to group members. | 
 **starts_at** | **String** | Time the event starts at | 

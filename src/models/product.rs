@@ -11,10 +11,10 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Product {
-    #[serde(rename = "archived")]
-    pub archived: bool,
-    #[serde(rename = "created")]
-    pub created: String,
+    #[serde(rename = "archived", skip_serializing_if = "Option::is_none")]
+    pub archived: Option<bool>,
+    #[serde(rename = "created", skip_serializing_if = "Option::is_none")]
+    pub created: Option<String>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "displayName")]
@@ -41,8 +41,13 @@ pub struct Product {
     pub seller_id: String,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
-    #[serde(rename = "updated", deserialize_with = "Option::deserialize")]
-    pub updated: Option<String>,
+    #[serde(
+        rename = "updated",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub updated: Option<Option<String>>,
     #[serde(
         rename = "useForSubscriberList",
         skip_serializing_if = "Option::is_none"
@@ -52,8 +57,6 @@ pub struct Product {
 
 impl Product {
     pub fn new(
-        archived: bool,
-        created: String,
         description: String,
         display_name: String,
         id: String,
@@ -63,11 +66,10 @@ impl Product {
         seller_display_name: String,
         seller_id: String,
         tags: Vec<String>,
-        updated: Option<String>,
     ) -> Product {
         Product {
-            archived,
-            created,
+            archived: None,
+            created: None,
             description,
             display_name,
             group_access: None,
@@ -81,7 +83,7 @@ impl Product {
             seller_display_name,
             seller_id,
             tags,
-            updated,
+            updated: None,
             use_for_subscriber_list: None,
         }
     }

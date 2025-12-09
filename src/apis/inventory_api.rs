@@ -46,6 +46,14 @@ pub enum GetInventoryError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_inventory_collections`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetInventoryCollectionsError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_inventory_drops`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -66,6 +74,14 @@ pub enum GetInventoryTemplateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetOwnInventoryItemError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_user_inventory_item`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetUserInventoryItemError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -356,6 +372,46 @@ pub async fn get_inventory(
     }
 }
 
+/// Returns a list of collection names.
+pub async fn get_inventory_collections(
+    configuration: &configuration::Configuration,
+) -> Result<Vec<String>, Error<GetInventoryCollectionsError>> {
+    let uri_str = format!("{}/inventory/collections", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;String&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;String&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetInventoryCollectionsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Returns a list of InventoryDrop objects.
 pub async fn get_inventory_drops(
     configuration: &configuration::Configuration,
@@ -491,6 +547,57 @@ pub async fn get_own_inventory_item(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetOwnInventoryItemError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns an InventoryItem object held by the given user.
+pub async fn get_user_inventory_item(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    inventory_item_id: &str,
+) -> Result<models::InventoryItem, Error<GetUserInventoryItemError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+    let p_path_inventory_item_id = inventory_item_id;
+
+    let uri_str = format!(
+        "{}/user/{userId}/inventory/{inventoryItemId}",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id),
+        inventoryItemId = crate::apis::urlencode(p_path_inventory_item_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventoryItem`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::InventoryItem`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetUserInventoryItemError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

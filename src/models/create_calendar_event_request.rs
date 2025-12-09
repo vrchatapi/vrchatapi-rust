@@ -12,9 +12,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateCalendarEventRequest {
     #[serde(rename = "accessType")]
-    pub access_type: AccessType,
+    pub access_type: models::CalendarEventAccess,
     #[serde(rename = "category")]
-    pub category: String,
+    pub category: models::CalendarEventCategory,
     #[serde(
         rename = "closeInstanceAfterEndMinutes",
         skip_serializing_if = "Option::is_none"
@@ -46,7 +46,7 @@ pub struct CreateCalendarEventRequest {
     #[serde(rename = "parentId", skip_serializing_if = "Option::is_none")]
     pub parent_id: Option<String>,
     #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
-    pub platforms: Option<Vec<String>>,
+    pub platforms: Option<Vec<models::CalendarEventPlatform>>,
     #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
     pub role_ids: Option<Vec<String>>,
     /// Send notification to group members.
@@ -69,8 +69,8 @@ pub struct CreateCalendarEventRequest {
 
 impl CreateCalendarEventRequest {
     pub fn new(
-        access_type: AccessType,
-        category: String,
+        access_type: models::CalendarEventAccess,
+        category: models::CalendarEventCategory,
         description: String,
         ends_at: String,
         send_creation_notification: bool,
@@ -98,18 +98,5 @@ impl CreateCalendarEventRequest {
             title,
             uses_instance_overflow: None,
         }
-    }
-}
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum AccessType {
-    #[serde(rename = "group")]
-    Group,
-    #[serde(rename = "public")]
-    Public,
-}
-
-impl Default for AccessType {
-    fn default() -> AccessType {
-        Self::Group
     }
 }

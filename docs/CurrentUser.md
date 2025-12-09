@@ -46,7 +46,7 @@ Name | Type | Description | Notes
 **last_activity** | Option<**String**> |  | [optional]
 **last_login** | **String** |  | 
 **last_mobile** | Option<**String**> |  | 
-**last_platform** | **String** | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
+**last_platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **obfuscated_email** | **String** |  | 
 **obfuscated_pending_email** | **String** |  | 
 **oculus_id** | **String** |  | 
@@ -78,6 +78,7 @@ Name | Type | Description | Notes
 **user_language** | Option<**String**> |  | [optional]
 **user_language_code** | Option<**String**> |  | [optional]
 **username** | Option<**String**> | -| **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). | [optional]
+**uses_generated_password** | **bool** |  | 
 **vive_id** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

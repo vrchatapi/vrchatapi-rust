@@ -21,7 +21,7 @@ pub struct UpdateUserRequest {
     pub birthday: Option<String>,
     /// These tags begin with `content_` and control content gating
     #[serde(rename = "contentFilters", skip_serializing_if = "Option::is_none")]
-    pub content_filters: Option<Vec<String>>,
+    pub content_filters: Option<Vec<models::ContentFilter>>,
     #[serde(rename = "currentPassword", skip_serializing_if = "Option::is_none")]
     pub current_password: Option<String>,
     /// MUST specify currentPassword as well to change display name
@@ -29,6 +29,12 @@ pub struct UpdateUserRequest {
     pub display_name: Option<String>,
     #[serde(rename = "email", skip_serializing_if = "Option::is_none")]
     pub email: Option<String>,
+    /// Opt out of the Mutuals feature
+    #[serde(
+        rename = "hasSharedConnectionsOptOut",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub has_shared_connections_opt_out: Option<bool>,
     #[serde(rename = "isBoopingEnabled", skip_serializing_if = "Option::is_none")]
     pub is_booping_enabled: Option<bool>,
     /// MUST specify currentPassword as well to change password
@@ -63,6 +69,7 @@ impl UpdateUserRequest {
             current_password: None,
             display_name: None,
             email: None,
+            has_shared_connections_opt_out: None,
             is_booping_enabled: None,
             password: None,
             pronouns: None,

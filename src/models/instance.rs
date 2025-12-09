@@ -12,8 +12,8 @@ use serde::{Deserialize, Serialize};
 /// Instance : * `hidden` field is only present if InstanceType is `hidden` aka \"Friends+\", and is instance creator. * `friends` field is only present if InstanceType is `friends` aka \"Friends\", and is instance creator. * `private` field is only present if InstanceType is `private` aka \"Invite\" or \"Invite+\", and is instance creator.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Instance {
-    #[serde(rename = "active")]
-    pub active: bool,
+    #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
+    pub active: Option<bool>,
     #[serde(
         rename = "ageGate",
         default,
@@ -21,10 +21,17 @@ pub struct Instance {
         skip_serializing_if = "Option::is_none"
     )]
     pub age_gate: Option<Option<bool>>,
-    #[serde(rename = "canRequestInvite")]
-    pub can_request_invite: bool,
-    #[serde(rename = "capacity")]
-    pub capacity: i32,
+    #[serde(
+        rename = "calendarEntryId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub calendar_entry_id: Option<Option<String>>,
+    #[serde(rename = "canRequestInvite", skip_serializing_if = "Option::is_none")]
+    pub can_request_invite: Option<bool>,
+    #[serde(rename = "capacity", skip_serializing_if = "Option::is_none")]
+    pub capacity: Option<i32>,
     /// Always returns \"unknown\".
     #[serde(rename = "clientNumber")]
     pub client_number: String,
@@ -37,6 +44,9 @@ pub struct Instance {
     pub closed_at: Option<Option<String>>,
     #[serde(rename = "contentSettings", skip_serializing_if = "Option::is_none")]
     pub content_settings: Option<models::InstanceContentSettings>,
+    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+    #[serde(rename = "creatorId", skip_serializing_if = "Option::is_none")]
+    pub creator_id: Option<String>,
     #[serde(
         rename = "displayName",
         default,
@@ -77,7 +87,7 @@ pub struct Instance {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub instance_persistence_enabled: Option<Option<String>>,
+    pub instance_persistence_enabled: Option<Option<bool>>,
     /// Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list.
     #[serde(rename = "location")]
     pub location: String,
@@ -152,9 +162,6 @@ pub struct Instance {
 impl Instance {
     /// * `hidden` field is only present if InstanceType is `hidden` aka \"Friends+\", and is instance creator. * `friends` field is only present if InstanceType is `friends` aka \"Friends\", and is instance creator. * `private` field is only present if InstanceType is `private` aka \"Invite\" or \"Invite+\", and is instance creator.
     pub fn new(
-        active: bool,
-        can_request_invite: bool,
-        capacity: i32,
         client_number: String,
         full: bool,
         id: String,
@@ -178,13 +185,15 @@ impl Instance {
         world_id: String,
     ) -> Instance {
         Instance {
-            active,
+            active: None,
             age_gate: None,
-            can_request_invite,
-            capacity,
+            calendar_entry_id: None,
+            can_request_invite: None,
+            capacity: None,
             client_number,
             closed_at: None,
             content_settings: None,
+            creator_id: None,
             display_name: None,
             friends: None,
             full,

@@ -85,12 +85,28 @@ pub struct ProductListing {
     pub seller_display_name: String,
     #[serde(rename = "sellerId")]
     pub seller_id: String,
+    #[serde(rename = "soldByVrc", skip_serializing_if = "Option::is_none")]
+    pub sold_by_vrc: Option<bool>,
     #[serde(rename = "stackable")]
     pub stackable: bool,
     #[serde(rename = "storeIds")]
     pub store_ids: Vec<String>,
+    #[serde(rename = "subtitle", skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<String>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
+    #[serde(
+        rename = "vrcPlusDiscountPrice",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub vrc_plus_discount_price: Option<i32>,
+    #[serde(
+        rename = "whenToExpire",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub when_to_expire: Option<Option<String>>,
 }
 
 impl ProductListing {
@@ -142,9 +158,13 @@ impl ProductListing {
             refundable,
             seller_display_name,
             seller_id,
+            sold_by_vrc: None,
             stackable,
             store_ids,
+            subtitle: None,
             tags: None,
+            vrc_plus_discount_price: None,
+            when_to_expire: None,
         }
     }
 }

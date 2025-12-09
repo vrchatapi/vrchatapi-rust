@@ -18,8 +18,12 @@ pub struct InventoryTemplate {
     pub collections: Vec<String>,
     #[serde(rename = "created_at")]
     pub created_at: String,
+    #[serde(rename = "defaultAttributes")]
+    pub default_attributes: serde_json::Value,
     #[serde(rename = "description")]
     pub description: String,
+    #[serde(rename = "equipSlots")]
+    pub equip_slots: Vec<String>,
     #[serde(rename = "flags")]
     pub flags: Vec<String>,
     #[serde(rename = "id")]
@@ -45,6 +49,8 @@ pub struct InventoryTemplate {
     pub tags: Vec<String>,
     #[serde(rename = "updated_at")]
     pub updated_at: String,
+    #[serde(rename = "validateUserAttributes")]
+    pub validate_user_attributes: bool,
 }
 
 impl InventoryTemplate {
@@ -52,7 +58,9 @@ impl InventoryTemplate {
         author_id: String,
         collections: Vec<String>,
         created_at: String,
+        default_attributes: serde_json::Value,
         description: String,
+        equip_slots: Vec<String>,
         flags: Vec<String>,
         id: String,
         image_url: String,
@@ -62,12 +70,15 @@ impl InventoryTemplate {
         status: String,
         tags: Vec<String>,
         updated_at: String,
+        validate_user_attributes: bool,
     ) -> InventoryTemplate {
         InventoryTemplate {
             author_id,
             collections,
             created_at,
+            default_attributes,
             description,
+            equip_slots,
             flags,
             id,
             image_url,
@@ -79,6 +90,7 @@ impl InventoryTemplate {
             status,
             tags,
             updated_at,
+            validate_user_attributes,
         }
     }
 }

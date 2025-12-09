@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **description** | Option<**String**> |  | [optional]
 **image_url** | Option<**String**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
-**platform** | Option<**String**> | This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | [optional]
+**platform** | Option<**String**> | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | [optional]
 **release_status** | Option<[**models::ReleaseStatus**](ReleaseStatus.md)> |  | [optional]
 **tags** | Option<**Vec<String>**> |   | [optional]
 **unity_package_url** | Option<**String**> |  | [optional]

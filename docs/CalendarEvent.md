@@ -4,12 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**access_type** | **String** |  | 
-**category** | **String** |  | 
+**access_type** | [**models::CalendarEventAccess**](CalendarEventAccess.md) |  | 
+**category** | [**models::CalendarEventCategory**](CalendarEventCategory.md) |  | 
 **close_instance_after_end_minutes** | Option<**i32**> |  | [optional]
 **created_at** | Option<**String**> |  | [optional]
 **deleted_at** | Option<**String**> |  | [optional]
 **description** | **String** |  | 
+**duration_in_ms** | **i32** |  | 
 **ends_at** | **String** |  | 
 **featured** | Option<**bool**> |  | [optional]
 **guest_early_join_minutes** | Option<**i32**> |  | [optional]
@@ -19,12 +20,12 @@ Name | Type | Description | Notes
 **image_url** | Option<**String**> |  | [optional]
 **interested_user_count** | Option<**i32**> |  | [optional]
 **is_draft** | Option<**bool**> |  | [optional]
-**languages** | Option<**Vec<String>**> |   | [optional]
+**languages** | Option<**Vec<String>**> | Languages that might be spoken at this event | [optional]
 **owner_id** | Option<**String**> |  | [optional]
-**platforms** | Option<**Vec<String>**> |   | [optional]
-**role_ids** | Option<**Vec<String>**> |   | [optional]
+**platforms** | Option<[**Vec<models::CalendarEventPlatform>**](CalendarEventPlatform.md)> |  | [optional]
+**role_ids** | Option<**Vec<String>**> | Group roles that may join this event | [optional]
 **starts_at** | **String** |  | 
-**tags** | Option<**Vec<String>**> |   | [optional]
+**tags** | Option<**Vec<String>**> | Custom tags for this event | [optional]
 **title** | **String** |  | 
 **r#type** | Option<**String**> |  | [optional]
 **updated_at** | Option<**String**> |  | [optional]

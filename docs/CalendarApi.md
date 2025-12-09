@@ -14,6 +14,7 @@ Method | HTTP request | Description
 [**get_group_calendar_event**](CalendarApi.md#get_group_calendar_event) | **GET** /calendar/{groupId}/{calendarId} | Get a calendar event
 [**get_group_calendar_event_ics**](CalendarApi.md#get_group_calendar_event_ics) | **GET** /calendar/{groupId}/{calendarId}.ics | Download calendar event as ICS
 [**get_group_calendar_events**](CalendarApi.md#get_group_calendar_events) | **GET** /calendar/{groupId} | List a group's calendar events
+[**get_group_next_calendar_event**](CalendarApi.md#get_group_next_calendar_event) | **GET** /calendar/{groupId}/next | Get next calendar event
 [**search_calendar_events**](CalendarApi.md#search_calendar_events) | **GET** /calendar/search | Search for calendar events
 [**update_group_calendar_event**](CalendarApi.md#update_group_calendar_event) | **PUT** /calendar/{groupId}/{calendarId}/event | Update a calendar event
 
@@ -331,6 +332,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::PaginatedCalendarEventList**](PaginatedCalendarEventList.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_group_next_calendar_event
+
+> models::CalendarEvent get_group_next_calendar_event(group_id)
+Get next calendar event
+
+Get the closest future calendar event scheduled for a group
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+
+### Return type
+
+[**models::CalendarEvent**](CalendarEvent.md)
 
 ### Authorization
 

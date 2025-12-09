@@ -120,7 +120,7 @@ pub struct CurrentUser {
     pub last_login: String,
     #[serde(rename = "last_mobile", deserialize_with = "Option::deserialize")]
     pub last_mobile: Option<String>,
-    /// This can be `standalonewindows` or `android`, but can also pretty much be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+    /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
     #[serde(rename = "obfuscatedEmail")]
@@ -209,6 +209,8 @@ pub struct CurrentUser {
     /// -| **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
     #[serde(rename = "username", skip_serializing_if = "Option::is_none")]
     pub username: Option<String>,
+    #[serde(rename = "usesGeneratedPassword")]
+    pub uses_generated_password: bool,
     #[serde(rename = "viveId", skip_serializing_if = "Option::is_none")]
     pub vive_id: Option<String>,
 }
@@ -262,6 +264,7 @@ impl CurrentUser {
         two_factor_auth_enabled: bool,
         unsubscribe: bool,
         user_icon: String,
+        uses_generated_password: bool,
     ) -> CurrentUser {
         CurrentUser {
             accepted_privacy_version: None,
@@ -338,6 +341,7 @@ impl CurrentUser {
             user_language: None,
             user_language_code: None,
             username: None,
+            uses_generated_password,
             vive_id: None,
         }
     }

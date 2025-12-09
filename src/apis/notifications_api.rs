@@ -20,10 +20,27 @@ pub enum AcceptFriendRequestError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`acknowledge_notification_v2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AcknowledgeNotificationV2Error {
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`clear_notifications`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ClearNotificationsError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`delete_all_notification_v2s`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteAllNotificationV2sError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -36,12 +53,40 @@ pub enum DeleteNotificationError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`delete_notification_v2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteNotificationV2Error {
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_notification`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetNotificationError {
     Status401(models::Error),
     Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_notification_v2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetNotificationV2Error {
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_notification_v2s`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetNotificationV2sError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -58,6 +103,26 @@ pub enum GetNotificationsError {
 #[serde(untagged)]
 pub enum MarkNotificationAsReadError {
     Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`reply_notification_v2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ReplyNotificationV2Error {
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`respond_notification_v2`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RespondNotificationV2Error {
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -109,6 +174,56 @@ pub async fn accept_friend_request(
     }
 }
 
+/// Acknowledge a specific notification
+pub async fn acknowledge_notification_v2(
+    configuration: &configuration::Configuration,
+    notification_id: &str,
+) -> Result<models::NotificationV2, Error<AcknowledgeNotificationV2Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_notification_id = notification_id;
+
+    let uri_str = format!(
+        "{}/notifications/{notificationId}/see",
+        configuration.base_path,
+        notificationId = crate::apis::urlencode(p_path_notification_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationV2`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationV2`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<AcknowledgeNotificationV2Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Clear **all** notifications.
 pub async fn clear_notifications(
     configuration: &configuration::Configuration,
@@ -141,6 +256,48 @@ pub async fn clear_notifications(
     } else {
         let content = resp.text().await?;
         let entity: Option<ClearNotificationsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Delete all of the current user's notifications.
+pub async fn delete_all_notification_v2s(
+    configuration: &configuration::Configuration,
+) -> Result<models::Success, Error<DeleteAllNotificationV2sError>> {
+    let uri_str = format!("{}/notifications", configuration.base_path);
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<DeleteAllNotificationV2sError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -197,6 +354,56 @@ pub async fn delete_notification(
     }
 }
 
+/// Delete a specific notification
+pub async fn delete_notification_v2(
+    configuration: &configuration::Configuration,
+    notification_id: &str,
+) -> Result<models::Success, Error<DeleteNotificationV2Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_notification_id = notification_id;
+
+    let uri_str = format!(
+        "{}/notifications/{notificationId}",
+        configuration.base_path,
+        notificationId = crate::apis::urlencode(p_path_notification_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<DeleteNotificationV2Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Get a notification by notification `not_` ID.
 pub async fn get_notification(
     configuration: &configuration::Configuration,
@@ -237,6 +444,102 @@ pub async fn get_notification(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetNotificationError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get a specific notification. Appears to require admin credentials by default. Expect a 403 Forbidden error response for normal users.
+#[deprecated]
+pub async fn get_notification_v2(
+    configuration: &configuration::Configuration,
+    notification_id: &str,
+) -> Result<models::NotificationV2, Error<GetNotificationV2Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_notification_id = notification_id;
+
+    let uri_str = format!(
+        "{}/notifications/{notificationId}",
+        configuration.base_path,
+        notificationId = crate::apis::urlencode(p_path_notification_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationV2`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationV2`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetNotificationV2Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Retrieve all of the current user's notifications.
+pub async fn get_notification_v2s(
+    configuration: &configuration::Configuration,
+    limit: Option<i32>,
+) -> Result<Vec<models::NotificationV2>, Error<GetNotificationV2sError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_limit = limit;
+
+    let uri_str = format!("{}/notifications", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_limit {
+        req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::NotificationV2&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::NotificationV2&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetNotificationV2sError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -357,6 +660,112 @@ pub async fn mark_notification_as_read(
     } else {
         let content = resp.text().await?;
         let entity: Option<MarkNotificationAsReadError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Reply to a specific notification
+pub async fn reply_notification_v2(
+    configuration: &configuration::Configuration,
+    notification_id: &str,
+    body: serde_json::Value,
+) -> Result<models::NotificationV2, Error<ReplyNotificationV2Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_notification_id = notification_id;
+    let p_body_body = body;
+
+    let uri_str = format!(
+        "{}/notifications/{notificationId}/reply",
+        configuration.base_path,
+        notificationId = crate::apis::urlencode(p_path_notification_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_body);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationV2`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationV2`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<ReplyNotificationV2Error> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Respond to a specific notification
+pub async fn respond_notification_v2(
+    configuration: &configuration::Configuration,
+    notification_id: &str,
+    respond_notification_v2_request: models::RespondNotificationV2Request,
+) -> Result<models::NotificationV2, Error<RespondNotificationV2Error>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_notification_id = notification_id;
+    let p_body_respond_notification_v2_request = respond_notification_v2_request;
+
+    let uri_str = format!(
+        "{}/notifications/{notificationId}/respond",
+        configuration.base_path,
+        notificationId = crate::apis::urlencode(p_path_notification_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_respond_notification_v2_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationV2`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::NotificationV2`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RespondNotificationV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

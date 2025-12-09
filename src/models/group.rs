@@ -26,6 +26,11 @@ pub struct Group {
         skip_serializing_if = "Option::is_none"
     )]
     pub age_verification_slots_available: Option<bool>,
+    #[serde(
+        rename = "allowGroupJoinPrompt",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub allow_group_join_prompt: Option<bool>,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
     pub badges: Option<Vec<String>>,
     #[serde(
@@ -133,6 +138,7 @@ impl Group {
             age_verification_beta_code: None,
             age_verification_beta_slots: None,
             age_verification_slots_available: None,
+            allow_group_join_prompt: None,
             badges: None,
             banner_id: None,
             banner_url: None,

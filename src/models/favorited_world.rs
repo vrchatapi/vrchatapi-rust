@@ -19,40 +19,43 @@ pub struct FavoritedWorld {
     pub author_name: String,
     #[serde(rename = "capacity")]
     pub capacity: i32,
-    #[serde(rename = "created_at")]
-    pub created_at: String,
+    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
+    pub created_at: Option<String>,
     #[serde(
         rename = "defaultContentSettings",
         skip_serializing_if = "Option::is_none"
     )]
     pub default_content_settings: Option<models::InstanceContentSettings>,
-    #[serde(rename = "description")]
-    pub description: String,
+    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
     #[serde(rename = "favoriteGroup")]
     pub favorite_group: String,
     #[serde(rename = "favoriteId")]
     pub favorite_id: String,
-    #[serde(rename = "favorites")]
-    pub favorites: i32,
-    #[serde(rename = "featured")]
-    pub featured: bool,
-    #[serde(rename = "heat")]
-    pub heat: i32,
+    #[serde(rename = "favorites", skip_serializing_if = "Option::is_none")]
+    pub favorites: Option<i32>,
+    #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
+    pub featured: Option<bool>,
+    #[serde(rename = "heat", skip_serializing_if = "Option::is_none")]
+    pub heat: Option<i32>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "imageUrl")]
     pub image_url: String,
-    #[serde(rename = "labsPublicationDate")]
-    pub labs_publication_date: String,
+    #[serde(
+        rename = "labsPublicationDate",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub labs_publication_date: Option<String>,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "occupants")]
     pub occupants: i32,
-    #[serde(rename = "organization")]
-    pub organization: String,
-    #[serde(rename = "popularity")]
-    pub popularity: i32,
+    #[serde(rename = "organization", skip_serializing_if = "Option::is_none")]
+    pub organization: Option<String>,
+    #[serde(rename = "popularity", skip_serializing_if = "Option::is_none")]
+    pub popularity: Option<i32>,
     #[serde(
         rename = "previewYoutubeId",
         default,
@@ -60,8 +63,8 @@ pub struct FavoritedWorld {
         skip_serializing_if = "Option::is_none"
     )]
     pub preview_youtube_id: Option<Option<String>>,
-    #[serde(rename = "publicationDate")]
-    pub publication_date: String,
+    #[serde(rename = "publicationDate", skip_serializing_if = "Option::is_none")]
+    pub publication_date: Option<String>,
     #[serde(
         rename = "recommendedCapacity",
         skip_serializing_if = "Option::is_none"
@@ -69,20 +72,20 @@ pub struct FavoritedWorld {
     pub recommended_capacity: Option<i32>,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
-    #[serde(rename = "tags")]
-    pub tags: Vec<String>,
+    #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
+    pub tags: Option<Vec<String>>,
     #[serde(rename = "thumbnailImageUrl")]
     pub thumbnail_image_url: String,
     #[serde(rename = "udonProducts", skip_serializing_if = "Option::is_none")]
     pub udon_products: Option<Vec<String>>,
-    #[serde(rename = "unityPackages")]
-    pub unity_packages: Vec<models::UnityPackage>,
-    #[serde(rename = "updated_at")]
-    pub updated_at: String,
-    #[serde(rename = "urlList")]
-    pub url_list: Vec<String>,
-    #[serde(rename = "version")]
-    pub version: i32,
+    #[serde(rename = "unityPackages", skip_serializing_if = "Option::is_none")]
+    pub unity_packages: Option<Vec<models::UnityPackage>>,
+    #[serde(rename = "updated_at", skip_serializing_if = "Option::is_none")]
+    pub updated_at: Option<String>,
+    #[serde(rename = "urlList", skip_serializing_if = "Option::is_none")]
+    pub url_list: Option<Vec<String>>,
+    #[serde(rename = "version", skip_serializing_if = "Option::is_none")]
+    pub version: Option<i32>,
     #[serde(rename = "visits", skip_serializing_if = "Option::is_none")]
     pub visits: Option<i32>,
 }
@@ -91,59 +94,45 @@ impl FavoritedWorld {
     pub fn new(
         author_name: String,
         capacity: i32,
-        created_at: String,
-        description: String,
         favorite_group: String,
         favorite_id: String,
-        favorites: i32,
-        featured: bool,
-        heat: i32,
         id: String,
         image_url: String,
-        labs_publication_date: String,
         name: String,
         occupants: i32,
-        organization: String,
-        popularity: i32,
-        publication_date: String,
         release_status: models::ReleaseStatus,
-        tags: Vec<String>,
         thumbnail_image_url: String,
-        unity_packages: Vec<models::UnityPackage>,
-        updated_at: String,
-        url_list: Vec<String>,
-        version: i32,
     ) -> FavoritedWorld {
         FavoritedWorld {
             author_id: None,
             author_name,
             capacity,
-            created_at,
+            created_at: None,
             default_content_settings: None,
-            description,
+            description: None,
             favorite_group,
             favorite_id,
-            favorites,
-            featured,
-            heat,
+            favorites: None,
+            featured: None,
+            heat: None,
             id,
             image_url,
-            labs_publication_date,
+            labs_publication_date: None,
             name,
             occupants,
-            organization,
-            popularity,
+            organization: None,
+            popularity: None,
             preview_youtube_id: None,
-            publication_date,
+            publication_date: None,
             recommended_capacity: None,
             release_status,
-            tags,
+            tags: None,
             thumbnail_image_url,
             udon_products: None,
-            unity_packages,
-            updated_at,
-            url_list,
-            version,
+            unity_packages: None,
+            updated_at: None,
+            url_list: None,
+            version: None,
             visits: None,
         }
     }

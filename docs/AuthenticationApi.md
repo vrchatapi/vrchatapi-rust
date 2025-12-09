@@ -9,15 +9,18 @@ Method | HTTP request | Description
 [**confirm_email**](AuthenticationApi.md#confirm_email) | **GET** /auth/confirmEmail | Confirm Email
 [**create_global_avatar_moderation**](AuthenticationApi.md#create_global_avatar_moderation) | **POST** /auth/user/avatarmoderations | Create Global Avatar Moderation
 [**delete_global_avatar_moderation**](AuthenticationApi.md#delete_global_avatar_moderation) | **DELETE** /auth/user/avatarmoderations | Delete Global Avatar Moderation
+[**delete_moderation_report**](AuthenticationApi.md#delete_moderation_report) | **DELETE** /moderationReports/{moderationReportId} | Delete Moderation Report
 [**delete_user**](AuthenticationApi.md#delete_user) | **PUT** /users/{userId}/delete | Delete User
 [**disable2_fa**](AuthenticationApi.md#disable2_fa) | **DELETE** /auth/twofactorauth | Disable 2FA
 [**enable2_fa**](AuthenticationApi.md#enable2_fa) | **POST** /auth/twofactorauth/totp/pending | Enable time-based 2FA codes
 [**get_current_user**](AuthenticationApi.md#get_current_user) | **GET** /auth/user | Login and/or Get Current User Info
 [**get_global_avatar_moderations**](AuthenticationApi.md#get_global_avatar_moderations) | **GET** /auth/user/avatarmoderations | Get Global Avatar Moderations
+[**get_moderation_reports**](AuthenticationApi.md#get_moderation_reports) | **GET** /moderationReports | Get Moderation Reports
 [**get_recovery_codes**](AuthenticationApi.md#get_recovery_codes) | **GET** /auth/user/twofactorauth/otp | Get 2FA Recovery codes
 [**logout**](AuthenticationApi.md#logout) | **PUT** /logout | Logout
 [**register_user_account**](AuthenticationApi.md#register_user_account) | **POST** /auth/register | Register User Account
 [**resend_email_confirmation**](AuthenticationApi.md#resend_email_confirmation) | **POST** /auth/user/resendEmail | Resend Email Confirmation
+[**submit_moderation_report**](AuthenticationApi.md#submit_moderation_report) | **POST** /moderationReports | Submit Moderation Report
 [**verify2_fa**](AuthenticationApi.md#verify2_fa) | **POST** /auth/twofactorauth/totp/verify | Verify 2FA code
 [**verify2_fa_email_code**](AuthenticationApi.md#verify2_fa_email_code) | **POST** /auth/twofactorauth/emailotp/verify | Verify 2FA email code
 [**verify_auth_token**](AuthenticationApi.md#verify_auth_token) | **GET** /auth | Verify Auth Token
@@ -179,6 +182,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## delete_moderation_report
+
+> models::SuccessFlag delete_moderation_report(moderation_report_id)
+Delete Moderation Report
+
+Delete a moderation report
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**moderation_report_id** | **String** | The moderation report id. | [required] |
+
+### Return type
+
+[**models::SuccessFlag**](SuccessFlag.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_user
 
 > models::CurrentUser delete_user(user_id)
@@ -317,6 +350,40 @@ This endpoint does not need any parameter.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_moderation_reports
+
+> models::PaginatedModerationReportList get_moderation_reports(offset, n, reporting_user_id, status, r#type)
+Get Moderation Reports
+
+Get submitted moderation reports
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**reporting_user_id** | Option<**String**> | Filter for moderation reports. |  |
+**status** | Option<**String**> | Filter for moderation reports. One of: `closed`... |  |
+**r#type** | Option<**String**> | Filter for moderation reports. One of: `avatar`, `group`, `user`, `world`... |  |
+
+### Return type
+
+[**models::PaginatedModerationReportList**](PaginatedModerationReportList.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_recovery_codes
 
 > models::TwoFactorRecoveryCodes get_recovery_codes()
@@ -423,6 +490,36 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## submit_moderation_report
+
+> models::ModerationReport submit_moderation_report(submit_moderation_report_request)
+Submit Moderation Report
+
+Submit a moderation report
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**submit_moderation_report_request** | [**SubmitModerationReportRequest**](SubmitModerationReportRequest.md) |  | [required] |
+
+### Return type
+
+[**models::ModerationReport**](ModerationReport.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -1,7 +1,7 @@
 [package]
 repository="https://github.com/vrchatapi/vrchatapi-rust"
 name = "vrchatapi"
-version = "1.20.7-nightly.3.1"
+version = "1.20.7-nightly.16"
 authors = ["vrchatapi.lpv0t@aries.fyi"]
 description = "VRChat API Client for Rust"
 license = "MIT"

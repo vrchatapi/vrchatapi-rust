@@ -9,6 +9,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// GroupLimitedMember : May be null when attempting to retrieve group membership for a user who is not part of the group
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupLimitedMember {
     /// Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
@@ -85,6 +86,7 @@ pub struct GroupLimitedMember {
 }
 
 impl GroupLimitedMember {
+    /// May be null when attempting to retrieve group membership for a user who is not part of the group
     pub fn new() -> GroupLimitedMember {
         GroupLimitedMember {
             banned_at: None,
