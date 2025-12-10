@@ -1,0 +1,2 @@
+#[deprecated(since= "1.20.7-nightly.28", note= "Use RegisterUserAccount200Response directly. This re-export is only provided as a transition-help!")]
+pub use self::RegisterUserAccount200Response as EitherUserOrTwoFactor;

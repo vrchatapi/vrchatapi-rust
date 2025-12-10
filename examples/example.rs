@@ -1,28 +1,27 @@
-use std::io::{self, Write};
-pub use vrchatapi::apis;
-use vrchatapi::models::{EitherUserOrTwoFactor, TwoFactorAuthCode, TwoFactorEmailCode};
-
 #[tokio::main]
 async fn main() {
-    let mut config = apis::configuration::Configuration::default();
+    let mut config = ::vrchatapi::apis::configuration::Configuration::default();
     config.basic_auth = Some((String::from("username"), Some(String::from("password"))));
     config.user_agent = Some(String::from("ExampleProgram/0.0.1 my@email.com"));
-    match apis::authentication_api::get_current_user(&config)
+    match ::vrchatapi::apis::authentication_api::get_current_user(&config)
         .await
         .unwrap()
     {
-        vrchatapi::models::EitherUserOrTwoFactor::CurrentUser(me) => {
+        ::vrchatapi::models::EitherUserOrTwoFactor::CurrentUser(me) => {
             println!("Username: {}", me.username.unwrap())
         }
-        vrchatapi::models::EitherUserOrTwoFactor::RequiresTwoFactorAuth(requires_auth) => {
+        ::vrchatapi::models::RegisterUserAccount200Response::RequiresTwoFactorAuth(
+            requires_auth,
+        ) => {
             if requires_auth
                 .requires_two_factor_auth
-                .contains(&String::from("emailOtp"))
+                .unwrap_or_default()
+                .contains(&::vrchatapi::models::TwoFactorAuthType::EmailOtp)
             {
                 let code = read_user_input("Please enter your Email 2fa code: ");
-                if let Err(err) = apis::authentication_api::verify2_fa_email_code(
+                if let Err(err) = ::vrchatapi::apis::authentication_api::verify2_fa_email_code(
                     &config,
-                    TwoFactorEmailCode::new(code),
+                    ::vrchatapi::models::TwoFactorEmailCode::new(code),
                 )
                 .await
                 {
@@ -30,9 +29,11 @@ async fn main() {
                 }
             } else {
                 let code = read_user_input("Please enter your Authenticator 2fa code: ");
-                if let Err(err) =
-                    apis::authentication_api::verify2_fa(&config, TwoFactorAuthCode::new(code))
-                        .await
+                if let Err(err) = ::vrchatapi::apis::authentication_api::verify2_fa(
+                    &config,
+                    ::vrchatapi::models::TwoFactorAuthCode::new(code),
+                )
+                .await
                 {
                     eprintln!("Error verifying 2FA auth code: {}", err);
                 }
@@ -40,22 +41,27 @@ async fn main() {
         }
     }
 
-    let user = apis::authentication_api::get_current_user(&config)
+    let user = ::vrchatapi::apis::authentication_api::get_current_user(&config)
         .await
         .unwrap();
 
     match user {
-        EitherUserOrTwoFactor::CurrentUser(user) => println!("Current user: {}", user.display_name),
-        EitherUserOrTwoFactor::RequiresTwoFactorAuth(_) => println!("cookie invalid"),
+        ::vrchatapi::models::RegisterUserAccount200Response::CurrentUser(user) => {
+            println!("Current user: {}", user.display_name)
+        }
+        ::vrchatapi::models::RegisterUserAccount200Response::RequiresTwoFactorAuth(_) => {
+            println!("cookie invalid")
+        }
     }
 }
 
 fn read_user_input(prompt: &str) -> String {
+    use ::std::io::Write;
     print!("{}", prompt);
-    io::stdout().flush().expect("Failed to flush stdout");
+    ::std::io::stdout().flush().expect("Failed to flush stdout");
 
     let mut input = String::new();
-    io::stdin()
+    ::std::io::stdin()
         .read_line(&mut input)
         .expect("Failed to read line");
 

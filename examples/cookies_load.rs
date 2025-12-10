@@ -2,12 +2,10 @@ use reqwest::cookie::CookieStore;
 use reqwest::header::HeaderValue;
 use std::str::FromStr;
 use std::sync::Arc;
-pub use vrchatapi::apis;
-use vrchatapi::models::EitherUserOrTwoFactor;
 
 #[tokio::main]
 async fn main() {
-    let mut config = apis::configuration::Configuration::default();
+    let mut config = ::vrchatapi::apis::configuration::Configuration::default();
     config.basic_auth = Some((String::from("username"), Some(String::from("password"))));
     config.user_agent = Some(String::from("ExampleProgram/0.0.1 my@email.com"));
 
@@ -27,12 +25,16 @@ async fn main() {
         .build()
         .unwrap();
 
-    let user = apis::authentication_api::get_current_user(&config)
+    let user = ::vrchatapi::apis::authentication_api::get_current_user(&config)
         .await
         .unwrap();
 
     match user {
-        EitherUserOrTwoFactor::CurrentUser(user) => println!("Current user: {}", user.display_name),
-        EitherUserOrTwoFactor::RequiresTwoFactorAuth(_) => println!("cookie invalid"),
+        ::vrchatapi::models::RegisterUserAccount200Response::CurrentUser(user) => {
+            println!("Current user: {}", user.display_name)
+        }
+        ::vrchatapi::models::RegisterUserAccount200Response::RequiresTwoFactorAuth(_) => {
+            println!("cookie invalid")
+        }
     }
 }
