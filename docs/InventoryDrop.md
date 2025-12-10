@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **drop_expiry_date** | Option<**String**> |  | 
 **end_drop_date** | **String** |  | 
 **id** | **String** |  | 
+**is_disabled** | **bool** |  | 
 **name** | **String** |  | 
 **notification_details** | [**models::InventoryNotificationDetails**](InventoryNotificationDetails.md) |  | 
 **start_drop_date** | **String** |  | 

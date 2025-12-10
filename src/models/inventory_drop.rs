@@ -22,6 +22,8 @@ pub struct InventoryDrop {
     pub end_drop_date: String,
     #[serde(rename = "id")]
     pub id: String,
+    #[serde(rename = "isDisabled")]
+    pub is_disabled: bool,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "notificationDetails")]
@@ -47,6 +49,7 @@ impl InventoryDrop {
         drop_expiry_date: Option<String>,
         end_drop_date: String,
         id: String,
+        is_disabled: bool,
         name: String,
         notification_details: models::InventoryNotificationDetails,
         start_drop_date: String,
@@ -62,6 +65,7 @@ impl InventoryDrop {
             drop_expiry_date,
             end_drop_date,
             id,
+            is_disabled,
             name,
             notification_details,
             start_drop_date,

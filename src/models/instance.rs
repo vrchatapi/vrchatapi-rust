@@ -59,8 +59,13 @@ pub struct Instance {
     pub friends: Option<String>,
     #[serde(rename = "full")]
     pub full: bool,
-    #[serde(rename = "gameServerVersion", skip_serializing_if = "Option::is_none")]
-    pub game_server_version: Option<i32>,
+    #[serde(
+        rename = "gameServerVersion",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub game_server_version: Option<Option<i32>>,
     #[serde(rename = "groupAccessType", skip_serializing_if = "Option::is_none")]
     pub group_access_type: Option<models::GroupAccessType>,
     #[serde(

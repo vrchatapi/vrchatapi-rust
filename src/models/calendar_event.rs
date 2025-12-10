@@ -32,8 +32,8 @@ pub struct CalendarEvent {
     pub deleted_at: Option<Option<String>>,
     #[serde(rename = "description")]
     pub description: String,
-    #[serde(rename = "durationInMs")]
-    pub duration_in_ms: i32,
+    #[serde(rename = "durationInMs", skip_serializing_if = "Option::is_none")]
+    pub duration_in_ms: Option<i32>,
     #[serde(rename = "endsAt")]
     pub ends_at: String,
     #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
@@ -107,7 +107,6 @@ impl CalendarEvent {
         access_type: models::CalendarEventAccess,
         category: models::CalendarEventCategory,
         description: String,
-        duration_in_ms: i32,
         ends_at: String,
         id: String,
         starts_at: String,
@@ -120,7 +119,7 @@ impl CalendarEvent {
             created_at: None,
             deleted_at: None,
             description,
-            duration_in_ms,
+            duration_in_ms: None,
             ends_at,
             featured: None,
             guest_early_join_minutes: None,

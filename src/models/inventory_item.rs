@@ -24,8 +24,13 @@ pub struct InventoryItem {
     pub equip_slot: Option<models::InventoryEquipSlot>,
     #[serde(rename = "equipSlots", skip_serializing_if = "Option::is_none")]
     pub equip_slots: Option<Vec<models::InventoryEquipSlot>>,
-    #[serde(rename = "expiryDate", deserialize_with = "Option::deserialize")]
-    pub expiry_date: Option<String>,
+    #[serde(
+        rename = "expiryDate",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub expiry_date: Option<Option<String>>,
     #[serde(rename = "flags")]
     pub flags: Vec<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
@@ -47,6 +52,8 @@ pub struct InventoryItem {
     pub metadata: models::InventoryMetadata,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "quantifiable")]
+    pub quantifiable: bool,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "templateId")]
@@ -72,7 +79,6 @@ impl InventoryItem {
             models::InventoryDefaultAttributesValue,
         >,
         description: String,
-        expiry_date: Option<String>,
         flags: Vec<String>,
         holder_id: String,
         id: String,
@@ -83,6 +89,7 @@ impl InventoryItem {
         item_type_label: String,
         metadata: models::InventoryMetadata,
         name: String,
+        quantifiable: bool,
         tags: Vec<String>,
         template_id: String,
         template_created_at: String,
@@ -98,7 +105,7 @@ impl InventoryItem {
             description,
             equip_slot: None,
             equip_slots: None,
-            expiry_date,
+            expiry_date: None,
             flags,
             holder_id,
             id,
@@ -109,6 +116,7 @@ impl InventoryItem {
             item_type_label,
             metadata,
             name,
+            quantifiable,
             tags,
             template_id,
             template_created_at,
