@@ -131,7 +131,7 @@ pub use self::create_instance_request::CreateInstanceRequest;
 pub mod create_world_request;
 pub use self::create_world_request::CreateWorldRequest;
 pub mod current_user;
-pub use self::current_user::{CurrentUser, EitherUserOrTwoFactor};
+pub use self::current_user::CurrentUser;
 pub mod current_user_platform_history_inner;
 pub use self::current_user_platform_history_inner::CurrentUserPlatformHistoryInner;
 pub mod current_user_presence;
@@ -414,6 +414,8 @@ pub mod purchase_product_listing_request;
 pub use self::purchase_product_listing_request::PurchaseProductListingRequest;
 pub mod region;
 pub use self::region::Region;
+pub mod register_user_account_200_response;
+pub use self::register_user_account_200_response::RegisterUserAccount200Response;
 pub mod register_user_account_request;
 pub use self::register_user_account_request::RegisterUserAccountRequest;
 pub mod release_status;
@@ -426,6 +428,8 @@ pub mod represented_group;
 pub use self::represented_group::RepresentedGroup;
 pub mod request_invite_request;
 pub use self::request_invite_request::RequestInviteRequest;
+pub mod requires_two_factor_auth;
+pub use self::requires_two_factor_auth::RequiresTwoFactorAuth;
 pub mod respond_group_join_request;
 pub use self::respond_group_join_request::RespondGroupJoinRequest;
 pub mod respond_notification_v2_request;
@@ -484,6 +488,8 @@ pub mod transaction_steam_wallet_info;
 pub use self::transaction_steam_wallet_info::TransactionSteamWalletInfo;
 pub mod two_factor_auth_code;
 pub use self::two_factor_auth_code::TwoFactorAuthCode;
+pub mod two_factor_auth_type;
+pub use self::two_factor_auth_type::TwoFactorAuthType;
 pub mod two_factor_email_code;
 pub use self::two_factor_email_code::TwoFactorEmailCode;
 pub mod two_factor_recovery_codes;
@@ -552,3 +558,8 @@ pub mod world_metadata;
 pub use self::world_metadata::WorldMetadata;
 pub mod world_publish_status;
 pub use self::world_publish_status::WorldPublishStatus;
+#[deprecated(
+    since = "1.20.7-nightly.28",
+    note = "Use RegisterUserAccount200Response directly. This re-export is only provided as a transition-help!"
+)]
+pub use self::RegisterUserAccount200Response as EitherUserOrTwoFactor;

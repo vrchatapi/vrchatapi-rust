@@ -225,12 +225,14 @@ docs/PropUnityPackage.md
 docs/PropsApi.md
 docs/PurchaseProductListingRequest.md
 docs/Region.md
+docs/RegisterUserAccount200Response.md
 docs/RegisterUserAccountRequest.md
 docs/ReleaseStatus.md
 docs/ReportCategory.md
 docs/ReportReason.md
 docs/RepresentedGroup.md
 docs/RequestInviteRequest.md
+docs/RequiresTwoFactorAuth.md
 docs/RespondGroupJoinRequest.md
 docs/RespondNotificationV2Request.md
 docs/Response.md
@@ -260,6 +262,7 @@ docs/TransactionStatus.md
 docs/TransactionSteamInfo.md
 docs/TransactionSteamWalletInfo.md
 docs/TwoFactorAuthCode.md
+docs/TwoFactorAuthType.md
 docs/TwoFactorEmailCode.md
 docs/TwoFactorRecoveryCodes.md
 docs/TwoFactorRecoveryCodesOtpInner.md
@@ -528,12 +531,14 @@ src/models/prop.rs
 src/models/prop_unity_package.rs
 src/models/purchase_product_listing_request.rs
 src/models/region.rs
+src/models/register_user_account_200_response.rs
 src/models/register_user_account_request.rs
 src/models/release_status.rs
 src/models/report_category.rs
 src/models/report_reason.rs
 src/models/represented_group.rs
 src/models/request_invite_request.rs
+src/models/requires_two_factor_auth.rs
 src/models/respond_group_join_request.rs
 src/models/respond_notification_v2_request.rs
 src/models/response.rs
@@ -563,6 +568,7 @@ src/models/transaction_status.rs
 src/models/transaction_steam_info.rs
 src/models/transaction_steam_wallet_info.rs
 src/models/two_factor_auth_code.rs
+src/models/two_factor_auth_type.rs
 src/models/two_factor_email_code.rs
 src/models/two_factor_recovery_codes.rs
 src/models/two_factor_recovery_codes_otp_inner.rs

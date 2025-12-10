@@ -298,7 +298,7 @@ This endpoint does not need any parameter.
 
 ## get_current_user
 
-> models::CurrentUser get_current_user()
+> models::RegisterUserAccount200Response get_current_user()
 Login and/or Get Current User Info
 
 This endpoint does the following two operations:   1) Checks if you are already logged in by looking for a valid `auth` cookie. If you are have a valid auth cookie then no additional auth-related actions are taken. If you are **not** logged in then it will log you in with the `Authorization` header and set the `auth` cookie. The `auth` cookie will only be sent once.   2) If logged in, this function will also return the CurrentUser object containing detailed information about the currently logged in user.  The auth string after `Authorization: Basic {string}` is a base64-encoded string of the username and password, both individually url-encoded, and then joined with a colon.  > base64(urlencode(username):urlencode(password))  **WARNING: Session Limit:** Each authentication with login credentials counts as a separate session, out of which you have a limited amount. Make sure to save and reuse the `auth` cookie if you are often restarting the program. The provided API libraries automatically save cookies during runtime, but does not persist during restart. While it can be fine to use username/password during development, expect in production to very fast run into the rate-limit and be temporarily blocked from making new sessions until older ones expire. The exact number of simultaneous sessions is unknown/undisclosed.
@@ -309,7 +309,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**models::CurrentUser**](CurrentUser.md)
+[**models::RegisterUserAccount200Response**](registerUserAccount_200_response.md)
 
 ### Authorization
 
@@ -440,7 +440,7 @@ This endpoint does not need any parameter.
 
 ## register_user_account
 
-> models::CurrentUser register_user_account(register_user_account_request)
+> models::RegisterUserAccount200Response register_user_account(register_user_account_request)
 Register User Account
 
 ~~Register a new user account.~~  **DEPRECATED:** Automated creation of accounts has no legitimate public third-party use case, and would be in violation of ToS §13.2: *By using the Platform, you agree not to: i. [...] use the Platform in a manner inconsistent with individual human usage* This endpoint is documented in the interest of completeness
@@ -454,7 +454,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::CurrentUser**](CurrentUser.md)
+[**models::RegisterUserAccount200Response**](registerUserAccount_200_response.md)
 
 ### Authorization
 

@@ -627,7 +627,7 @@ pub async fn enable2_fa(
 /// This endpoint does the following two operations:   1) Checks if you are already logged in by looking for a valid `auth` cookie. If you are have a valid auth cookie then no additional auth-related actions are taken. If you are **not** logged in then it will log you in with the `Authorization` header and set the `auth` cookie. The `auth` cookie will only be sent once.   2) If logged in, this function will also return the CurrentUser object containing detailed information about the currently logged in user.  The auth string after `Authorization: Basic {string}` is a base64-encoded string of the username and password, both individually url-encoded, and then joined with a colon.  > base64(urlencode(username):urlencode(password))  **WARNING: Session Limit:** Each authentication with login credentials counts as a separate session, out of which you have a limited amount. Make sure to save and reuse the `auth` cookie if you are often restarting the program. The provided API libraries automatically save cookies during runtime, but does not persist during restart. While it can be fine to use username/password during development, expect in production to very fast run into the rate-limit and be temporarily blocked from making new sessions until older ones expire. The exact number of simultaneous sessions is unknown/undisclosed.
 pub async fn get_current_user(
     configuration: &configuration::Configuration,
-) -> Result<models::EitherUserOrTwoFactor, Error<GetCurrentUserError>> {
+) -> Result<models::RegisterUserAccount200Response, Error<GetCurrentUserError>> {
     let uri_str = format!("{}/auth/user", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -653,8 +653,8 @@ pub async fn get_current_user(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CurrentUser`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CurrentUser`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RegisterUserAccount200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RegisterUserAccount200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -859,7 +859,7 @@ pub async fn logout(
 pub async fn register_user_account(
     configuration: &configuration::Configuration,
     register_user_account_request: models::RegisterUserAccountRequest,
-) -> Result<models::CurrentUser, Error<RegisterUserAccountError>> {
+) -> Result<models::RegisterUserAccount200Response, Error<RegisterUserAccountError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_register_user_account_request = register_user_account_request;
 
@@ -888,8 +888,8 @@ pub async fn register_user_account(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CurrentUser`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CurrentUser`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RegisterUserAccount200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RegisterUserAccount200Response`")))),
         }
     } else {
         let content = resp.text().await?;
