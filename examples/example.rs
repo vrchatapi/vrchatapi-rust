@@ -15,7 +15,6 @@ async fn main() {
         ) => {
             if requires_auth
                 .requires_two_factor_auth
-                .unwrap_or_default()
                 .contains(&::vrchatapi::models::TwoFactorAuthType::EmailOtp)
             {
                 let code = read_user_input("Please enter your Email 2fa code: ");
