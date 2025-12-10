@@ -11,17 +11,14 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RequiresTwoFactorAuth {
-    #[serde(
-        rename = "requiresTwoFactorAuth",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub requires_two_factor_auth: Option<Vec<models::TwoFactorAuthType>>,
+    #[serde(rename = "requiresTwoFactorAuth")]
+    pub requires_two_factor_auth: Vec<models::TwoFactorAuthType>,
 }
 
 impl RequiresTwoFactorAuth {
-    pub fn new() -> RequiresTwoFactorAuth {
+    pub fn new(requires_two_factor_auth: Vec<models::TwoFactorAuthType>) -> RequiresTwoFactorAuth {
         RequiresTwoFactorAuth {
-            requires_two_factor_auth: None,
+            requires_two_factor_auth,
         }
     }
 }
