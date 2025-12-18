@@ -20,13 +20,13 @@ Name | Type | Description | Notes
 **image_url** | Option<**String**> |  | [optional]
 **is_friend** | **bool** |  | 
 **last_activity** | Option<**String**> |  | 
-**last_mobile** | Option<**String**> |  | 
+**last_mobile** | Option<**String**> |  | [optional]
 **last_platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **platform** | Option<**String**> | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | [optional]
 **profile_pic_override** | Option<**String**> |  | [optional]
 **profile_pic_override_thumbnail** | Option<**String**> |  | [optional]
 **pronouns** | **String** |  | 
-**state** | [**models::UserState**](UserState.md) |  | 
+**state** | Option<[**models::UserState**](UserState.md)> |  | [optional]
 **status** | [**models::UserStatus**](UserStatus.md) |  | 
 **status_description** | **String** |  | 
 **tags** | **Vec<String>** |  | 

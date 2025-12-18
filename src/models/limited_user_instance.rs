@@ -48,8 +48,13 @@ pub struct LimitedUserInstance {
     pub is_friend: bool,
     #[serde(rename = "last_activity", deserialize_with = "Option::deserialize")]
     pub last_activity: Option<String>,
-    #[serde(rename = "last_mobile", deserialize_with = "Option::deserialize")]
-    pub last_mobile: Option<String>,
+    #[serde(
+        rename = "last_mobile",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub last_mobile: Option<Option<String>>,
     /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
@@ -65,8 +70,8 @@ pub struct LimitedUserInstance {
     pub profile_pic_override_thumbnail: Option<String>,
     #[serde(rename = "pronouns")]
     pub pronouns: String,
-    #[serde(rename = "state")]
-    pub state: models::UserState,
+    #[serde(rename = "state", skip_serializing_if = "Option::is_none")]
+    pub state: Option<models::UserState>,
     #[serde(rename = "status")]
     pub status: models::UserStatus,
     #[serde(rename = "statusDescription")]
@@ -93,10 +98,8 @@ impl LimitedUserInstance {
         id: String,
         is_friend: bool,
         last_activity: Option<String>,
-        last_mobile: Option<String>,
         last_platform: String,
         pronouns: String,
-        state: models::UserState,
         status: models::UserStatus,
         status_description: String,
         tags: Vec<String>,
@@ -118,13 +121,13 @@ impl LimitedUserInstance {
             image_url: None,
             is_friend,
             last_activity,
-            last_mobile,
+            last_mobile: None,
             last_platform,
             platform: None,
             profile_pic_override: None,
             profile_pic_override_thumbnail: None,
             pronouns,
-            state,
+            state: None,
             status,
             status_description,
             tags,
