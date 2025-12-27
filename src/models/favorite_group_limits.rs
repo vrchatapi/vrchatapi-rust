@@ -15,15 +15,18 @@ pub struct FavoriteGroupLimits {
     pub avatar: i32,
     #[serde(rename = "friend")]
     pub friend: i32,
+    #[serde(rename = "vrcPlusWorld")]
+    pub vrc_plus_world: i32,
     #[serde(rename = "world")]
     pub world: i32,
 }
 
 impl FavoriteGroupLimits {
-    pub fn new(avatar: i32, friend: i32, world: i32) -> FavoriteGroupLimits {
+    pub fn new(avatar: i32, friend: i32, vrc_plus_world: i32, world: i32) -> FavoriteGroupLimits {
         FavoriteGroupLimits {
             avatar,
             friend,
+            vrc_plus_world,
             world,
         }
     }

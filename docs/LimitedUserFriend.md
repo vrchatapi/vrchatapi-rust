@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **last_activity** | Option<**String**> |  | 
 **last_login** | Option<**String**> |  | 
 **last_mobile** | Option<**String**> |  | 
-**last_platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
+**last_platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **location** | **String** |  | 
 **platform** | **String** |  | 
 **profile_pic_override** | Option<**String**> |  | [optional]

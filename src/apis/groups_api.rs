@@ -47,12 +47,33 @@ pub enum BanGroupMemberError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`block_group`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum BlockGroupError {
+    Status400(models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`cancel_group_request`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CancelGroupRequestError {
     Status400(),
     Status403(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`cancel_group_transfer`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CancelGroupTransferError {
+    Status400(models::Error),
+    Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -98,6 +119,16 @@ pub enum CreateGroupInviteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupRoleError {
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`decline_group_invite`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeclineGroupInviteError {
+    Status400(models::Error),
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
@@ -180,6 +211,15 @@ pub enum GetGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetGroupAnnouncementsError {
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_group_audit_log_entry_types`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetGroupAuditLogEntryTypesError {
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
@@ -297,6 +337,26 @@ pub enum GetGroupRolesError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_group_transferability`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetGroupTransferabilityError {
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`initiate_or_accept_group_transfer`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum InitiateOrAcceptGroupTransferError {
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`join_group`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -339,6 +399,16 @@ pub enum RemoveGroupMemberRoleError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RespondGroupJoinRequestError {
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`search_group_members`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SearchGroupMembersError {
+    Status400(models::Error),
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
@@ -630,6 +700,56 @@ pub async fn ban_group_member(
     }
 }
 
+/// Blocks a Group for the current user. To unblock a group, call kickGroupMember (DELETE /groups/{groupId}/members/{userId}).
+pub async fn block_group(
+    configuration: &configuration::Configuration,
+    group_id: &str,
+) -> Result<models::Success, Error<BlockGroupError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_group_id = group_id;
+
+    let uri_str = format!(
+        "{}/groups/{groupId}/block",
+        configuration.base_path,
+        groupId = crate::apis::urlencode(p_path_group_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<BlockGroupError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Cancels a request sent to join the group.
 pub async fn cancel_group_request(
     configuration: &configuration::Configuration,
@@ -661,6 +781,56 @@ pub async fn cancel_group_request(
     } else {
         let content = resp.text().await?;
         let entity: Option<CancelGroupRequestError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Cancel a Group Transfer.
+pub async fn cancel_group_transfer(
+    configuration: &configuration::Configuration,
+    group_id: &str,
+) -> Result<models::Success, Error<CancelGroupTransferError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_group_id = group_id;
+
+    let uri_str = format!(
+        "{}/groups/{groupId}/transfer",
+        configuration.base_path,
+        groupId = crate::apis::urlencode(p_path_group_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<CancelGroupTransferError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -917,13 +1087,66 @@ pub async fn create_group_role(
     }
 }
 
+/// Declines an invite to the user from a group.
+pub async fn decline_group_invite(
+    configuration: &configuration::Configuration,
+    group_id: &str,
+    decline_group_invite_request: Option<models::DeclineGroupInviteRequest>,
+) -> Result<models::Success, Error<DeclineGroupInviteError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_group_id = group_id;
+    let p_body_decline_group_invite_request = decline_group_invite_request;
+
+    let uri_str = format!(
+        "{}/groups/{groupId}/invites",
+        configuration.base_path,
+        groupId = crate::apis::urlencode(p_path_group_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_decline_group_invite_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<DeclineGroupInviteError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Deletes a Group.
 pub async fn delete_group(
     configuration: &configuration::Configuration,
     group_id: &str,
+    hard_delete: Option<bool>,
 ) -> Result<models::Success, Error<DeleteGroupError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
+    let p_query_hard_delete = hard_delete;
 
     let uri_str = format!(
         "{}/groups/{groupId}",
@@ -934,6 +1157,9 @@ pub async fn delete_group(
         .client
         .request(reqwest::Method::DELETE, &uri_str);
 
+    if let Some(ref param_value) = p_query_hard_delete {
+        req_builder = req_builder.query(&[("hardDelete", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -1367,6 +1593,54 @@ pub async fn get_group_announcements(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetGroupAnnouncementsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns a list of audit log entry types for which the group has entries.
+pub async fn get_group_audit_log_entry_types(
+    configuration: &configuration::Configuration,
+    group_id: &str,
+) -> Result<Vec<String>, Error<GetGroupAuditLogEntryTypesError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_group_id = group_id;
+
+    let uri_str = format!(
+        "{}/groups/{groupId}/auditLogTypes",
+        configuration.base_path,
+        groupId = crate::apis::urlencode(p_path_group_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;String&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;String&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetGroupAuditLogEntryTypesError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -2072,16 +2346,71 @@ pub async fn get_group_roles(
     }
 }
 
-/// Join a Group by ID and returns the member object.
-pub async fn join_group(
+/// Returns the transferability of the group to a given user.
+pub async fn get_group_transferability(
     configuration: &configuration::Configuration,
     group_id: &str,
-) -> Result<models::GroupMember, Error<JoinGroupError>> {
+    transfer_target_id: Option<&str>,
+) -> Result<models::GroupTransferable, Error<GetGroupTransferabilityError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
+    let p_query_transfer_target_id = transfer_target_id;
 
     let uri_str = format!(
-        "{}/groups/{groupId}/join",
+        "{}/groups/{groupId}/transfer",
+        configuration.base_path,
+        groupId = crate::apis::urlencode(p_path_group_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_transfer_target_id {
+        req_builder = req_builder.query(&[("transferTargetId", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupTransferable`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupTransferable`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetGroupTransferabilityError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// To initiate, must be logged in as the current owner and specify the transferTargetId in the body. To accept, must be logged in as the user targetted by a pending transfer, no body is required.
+pub async fn initiate_or_accept_group_transfer(
+    configuration: &configuration::Configuration,
+    group_id: &str,
+    transfer_group_request: Option<models::TransferGroupRequest>,
+) -> Result<models::Success, Error<InitiateOrAcceptGroupTransferError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_group_id = group_id;
+    let p_body_transfer_group_request = transfer_group_request;
+
+    let uri_str = format!(
+        "{}/groups/{groupId}/transfer",
         configuration.base_path,
         groupId = crate::apis::urlencode(p_path_group_id)
     );
@@ -2092,6 +2421,66 @@ pub async fn join_group(
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
+    req_builder = req_builder.json(&p_body_transfer_group_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<InitiateOrAcceptGroupTransferError> =
+            serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Join a Group by ID and returns the member object.
+pub async fn join_group(
+    configuration: &configuration::Configuration,
+    group_id: &str,
+    confirm_override_block: Option<bool>,
+    join_group_request: Option<models::JoinGroupRequest>,
+) -> Result<models::GroupMember, Error<JoinGroupError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_group_id = group_id;
+    let p_query_confirm_override_block = confirm_override_block;
+    let p_body_join_group_request = join_group_request;
+
+    let uri_str = format!(
+        "{}/groups/{groupId}/join",
+        configuration.base_path,
+        groupId = crate::apis::urlencode(p_path_group_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref param_value) = p_query_confirm_override_block {
+        req_builder = req_builder.query(&[("confirmOverrideBlock", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_join_group_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2122,12 +2511,12 @@ pub async fn join_group(
     }
 }
 
-/// Kicks a Group Member from the Group. The current user must have the \"Remove Group Members\" permission.
+/// Kicks a Group Member from the Group. The current user must have the \"Remove Group Members\" permission. Also used for unblocking groups.
 pub async fn kick_group_member(
     configuration: &configuration::Configuration,
     group_id: &str,
     user_id: &str,
-) -> Result<(), Error<KickGroupMemberError>> {
+) -> Result<models::Success, Error<KickGroupMemberError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_path_user_id = user_id;
@@ -2150,9 +2539,20 @@ pub async fn kick_group_member(
     let resp = configuration.client.execute(req).await?;
 
     let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
 
     if !status.is_client_error() && !status.is_server_error() {
-        Ok(())
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
     } else {
         let content = resp.text().await?;
         let entity: Option<KickGroupMemberError> = serde_json::from_str(&content).ok();
@@ -2294,6 +2694,67 @@ pub async fn respond_group_join_request(
     } else {
         let content = resp.text().await?;
         let entity: Option<RespondGroupJoinRequestError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Search for members in the group by displayName.
+pub async fn search_group_members(
+    configuration: &configuration::Configuration,
+    group_id: &str,
+    query: &str,
+    n: Option<i32>,
+    offset: Option<i32>,
+) -> Result<models::SearchGroupMembers200Response, Error<SearchGroupMembersError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_group_id = group_id;
+    let p_query_query = query;
+    let p_query_n = n;
+    let p_query_offset = offset;
+
+    let uri_str = format!(
+        "{}/groups/{groupId}/members/search",
+        configuration.base_path,
+        groupId = crate::apis::urlencode(p_path_group_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_n {
+        req_builder = req_builder.query(&[("n", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_offset {
+        req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    req_builder = req_builder.query(&[("query", &p_query_query.to_string())]);
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SearchGroupMembers200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SearchGroupMembers200Response`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<SearchGroupMembersError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

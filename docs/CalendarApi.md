@@ -377,7 +377,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_calendar_events
 
-> models::PaginatedCalendarEventList search_calendar_events(search_term, utc_offset, n, offset)
+> models::PaginatedCalendarEventList search_calendar_events(search_term, utc_offset, n, offset, is_internal_variant)
 Search for calendar events
 
 Get a list of calendar events by search terms
@@ -391,6 +391,7 @@ Name | Type | Description  | Required | Notes
 **utc_offset** | Option<**i32**> | The offset from UTC in hours of the client or authenticated user. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**is_internal_variant** | Option<**bool**> | Not quite sure what this actually does (exists on the website but doesn't seem to be used) |  |
 
 ### Return type
 

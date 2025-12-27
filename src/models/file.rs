@@ -13,15 +13,28 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct File {
     #[serde(rename = "animationStyle", skip_serializing_if = "Option::is_none")]
-    pub animation_style: Option<String>,
+    pub animation_style: Option<models::ImageAnimationStyle>,
     #[serde(rename = "extension")]
     pub extension: String,
+    /// The number of frames for animated spritesheet images.
+    #[serde(rename = "frames", skip_serializing_if = "Option::is_none")]
+    pub frames: Option<i32>,
+    /// The frames per second for animated spritesheet images.
+    #[serde(rename = "framesOverTime", skip_serializing_if = "Option::is_none")]
+    pub frames_over_time: Option<i32>,
     #[serde(rename = "id")]
     pub id: String,
+    #[serde(rename = "loopStyle", skip_serializing_if = "Option::is_none")]
+    pub loop_style: Option<models::ImageLoopStyle>,
     #[serde(rename = "maskTag", skip_serializing_if = "Option::is_none")]
-    pub mask_tag: Option<String>,
+    pub mask_tag: Option<models::ImageMask>,
     #[serde(rename = "mimeType")]
     pub mime_type: models::MimeType,
+    #[serde(
+        rename = "modifiedThumbnailFileName",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub modified_thumbnail_file_name: Option<String>,
     #[serde(rename = "name")]
     pub name: String,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
@@ -46,9 +59,13 @@ impl File {
         File {
             animation_style: None,
             extension,
+            frames: None,
+            frames_over_time: None,
             id,
+            loop_style: None,
             mask_tag: None,
             mime_type,
+            modified_thumbnail_file_name: None,
             name,
             owner_id,
             tags,

@@ -8,12 +8,15 @@ Method | HTTP request | Description
 [**add_group_member_role**](GroupsApi.md#add_group_member_role) | **PUT** /groups/{groupId}/members/{userId}/roles/{groupRoleId} | Add Role to GroupMember
 [**add_group_post**](GroupsApi.md#add_group_post) | **POST** /groups/{groupId}/posts | Create a post in a Group
 [**ban_group_member**](GroupsApi.md#ban_group_member) | **POST** /groups/{groupId}/bans | Ban Group Member
+[**block_group**](GroupsApi.md#block_group) | **POST** /groups/{groupId}/block | Block Group
 [**cancel_group_request**](GroupsApi.md#cancel_group_request) | **DELETE** /groups/{groupId}/requests | Cancel Group Join Request
+[**cancel_group_transfer**](GroupsApi.md#cancel_group_transfer) | **DELETE** /groups/{groupId}/transfer | Cancel Group Transfer
 [**create_group**](GroupsApi.md#create_group) | **POST** /groups | Create Group
 [**create_group_announcement**](GroupsApi.md#create_group_announcement) | **POST** /groups/{groupId}/announcement | Create Group Announcement
 [**create_group_gallery**](GroupsApi.md#create_group_gallery) | **POST** /groups/{groupId}/galleries | Create Group Gallery
 [**create_group_invite**](GroupsApi.md#create_group_invite) | **POST** /groups/{groupId}/invites | Invite User to Group
 [**create_group_role**](GroupsApi.md#create_group_role) | **POST** /groups/{groupId}/roles | Create GroupRole
+[**decline_group_invite**](GroupsApi.md#decline_group_invite) | **PUT** /groups/{groupId}/invites | Decline Invite from Group
 [**delete_group**](GroupsApi.md#delete_group) | **DELETE** /groups/{groupId} | Delete Group
 [**delete_group_announcement**](GroupsApi.md#delete_group_announcement) | **DELETE** /groups/{groupId}/announcement | Delete Group Announcement
 [**delete_group_gallery**](GroupsApi.md#delete_group_gallery) | **DELETE** /groups/{groupId}/galleries/{groupGalleryId} | Delete Group Gallery
@@ -23,6 +26,7 @@ Method | HTTP request | Description
 [**delete_group_role**](GroupsApi.md#delete_group_role) | **DELETE** /groups/{groupId}/roles/{groupRoleId} | Delete Group Role
 [**get_group**](GroupsApi.md#get_group) | **GET** /groups/{groupId} | Get Group by ID
 [**get_group_announcements**](GroupsApi.md#get_group_announcements) | **GET** /groups/{groupId}/announcement | Get Group Announcement
+[**get_group_audit_log_entry_types**](GroupsApi.md#get_group_audit_log_entry_types) | **GET** /groups/{groupId}/auditLogTypes | Get Group Audit Log Entry Types
 [**get_group_audit_logs**](GroupsApi.md#get_group_audit_logs) | **GET** /groups/{groupId}/auditLogs | Get Group Audit Logs
 [**get_group_bans**](GroupsApi.md#get_group_bans) | **GET** /groups/{groupId}/bans | Get Group Bans
 [**get_group_gallery_images**](GroupsApi.md#get_group_gallery_images) | **GET** /groups/{groupId}/galleries/{groupGalleryId} | Get Group Gallery Images
@@ -35,11 +39,14 @@ Method | HTTP request | Description
 [**get_group_requests**](GroupsApi.md#get_group_requests) | **GET** /groups/{groupId}/requests | Get Group Join Requests
 [**get_group_role_templates**](GroupsApi.md#get_group_role_templates) | **GET** /groups/roleTemplates | Get Group Role Templates
 [**get_group_roles**](GroupsApi.md#get_group_roles) | **GET** /groups/{groupId}/roles | Get Group Roles
+[**get_group_transferability**](GroupsApi.md#get_group_transferability) | **GET** /groups/{groupId}/transfer | Get Group Transferability
+[**initiate_or_accept_group_transfer**](GroupsApi.md#initiate_or_accept_group_transfer) | **POST** /groups/{groupId}/transfer | Initiate or Accept Group Transfer
 [**join_group**](GroupsApi.md#join_group) | **POST** /groups/{groupId}/join | Join Group
 [**kick_group_member**](GroupsApi.md#kick_group_member) | **DELETE** /groups/{groupId}/members/{userId} | Kick Group Member
 [**leave_group**](GroupsApi.md#leave_group) | **POST** /groups/{groupId}/leave | Leave Group
 [**remove_group_member_role**](GroupsApi.md#remove_group_member_role) | **DELETE** /groups/{groupId}/members/{userId}/roles/{groupRoleId} | Remove Role from GroupMember
 [**respond_group_join_request**](GroupsApi.md#respond_group_join_request) | **PUT** /groups/{groupId}/requests/{userId} | Respond Group Join request
+[**search_group_members**](GroupsApi.md#search_group_members) | **GET** /groups/{groupId}/members/search | Search Group Members
 [**search_groups**](GroupsApi.md#search_groups) | **GET** /groups | Search Group
 [**unban_group_member**](GroupsApi.md#unban_group_member) | **DELETE** /groups/{groupId}/bans/{userId} | Unban Group Member
 [**update_group**](GroupsApi.md#update_group) | **PUT** /groups/{groupId} | Update Group
@@ -177,6 +184,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## block_group
+
+> models::Success block_group(group_id)
+Block Group
+
+Blocks a Group for the current user. To unblock a group, call kickGroupMember (DELETE /groups/{groupId}/members/{userId}).
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+
+### Return type
+
+[**models::Success**](Success.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## cancel_group_request
 
 > cancel_group_request(group_id)
@@ -194,6 +231,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## cancel_group_transfer
+
+> models::Success cancel_group_transfer(group_id)
+Cancel Group Transfer
+
+Cancel a Group Transfer.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+
+### Return type
+
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -361,9 +428,40 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## decline_group_invite
+
+> models::Success decline_group_invite(group_id, decline_group_invite_request)
+Decline Invite from Group
+
+Declines an invite to the user from a group.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+**decline_group_invite_request** | Option<[**DeclineGroupInviteRequest**](DeclineGroupInviteRequest.md)> |  |  |
+
+### Return type
+
+[**models::Success**](Success.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_group
 
-> models::Success delete_group(group_id)
+> models::Success delete_group(group_id, hard_delete)
 Delete Group
 
 Deletes a Group.
@@ -374,6 +472,7 @@ Deletes a Group.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
+**hard_delete** | Option<**bool**> |  |  |
 
 ### Return type
 
@@ -625,6 +724,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::GroupAnnouncement**](GroupAnnouncement.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_group_audit_log_entry_types
+
+> Vec<String> get_group_audit_log_entry_types(group_id)
+Get Group Audit Log Entry Types
+
+Returns a list of audit log entry types for which the group has entries.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+
+### Return type
+
+**Vec<String>**
 
 ### Authorization
 
@@ -1021,12 +1150,12 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## join_group
+## get_group_transferability
 
-> models::GroupMember join_group(group_id)
-Join Group
+> models::GroupTransferable get_group_transferability(group_id, transfer_target_id)
+Get Group Transferability
 
-Join a Group by ID and returns the member object.
+Returns the transferability of the group to a given user.
 
 ### Parameters
 
@@ -1034,10 +1163,11 @@ Join a Group by ID and returns the member object.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
+**transfer_target_id** | Option<**String**> | The UserID of the prospective transferee. |  |
 
 ### Return type
 
-[**models::GroupMember**](GroupMember.md)
+[**models::GroupTransferable**](GroupTransferable.md)
 
 ### Authorization
 
@@ -1051,12 +1181,75 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## initiate_or_accept_group_transfer
+
+> models::Success initiate_or_accept_group_transfer(group_id, transfer_group_request)
+Initiate or Accept Group Transfer
+
+To initiate, must be logged in as the current owner and specify the transferTargetId in the body. To accept, must be logged in as the user targetted by a pending transfer, no body is required.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+**transfer_group_request** | Option<[**TransferGroupRequest**](TransferGroupRequest.md)> |  |  |
+
+### Return type
+
+[**models::Success**](Success.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## join_group
+
+> models::GroupMember join_group(group_id, confirm_override_block, join_group_request)
+Join Group
+
+Join a Group by ID and returns the member object.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+**confirm_override_block** | Option<**bool**> | Manually override the failure that would occur if the user has blocked the group. |  |
+**join_group_request** | Option<[**JoinGroupRequest**](JoinGroupRequest.md)> |  |  |
+
+### Return type
+
+[**models::GroupMember**](GroupMember.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## kick_group_member
 
-> kick_group_member(group_id, user_id)
+> models::Success kick_group_member(group_id, user_id)
 Kick Group Member
 
-Kicks a Group Member from the Group. The current user must have the \"Remove Group Members\" permission.
+Kicks a Group Member from the Group. The current user must have the \"Remove Group Members\" permission. Also used for unblocking groups.
 
 ### Parameters
 
@@ -1068,7 +1261,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -1171,6 +1364,39 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## search_group_members
+
+> models::SearchGroupMembers200Response search_group_members(group_id, query, n, offset)
+Search Group Members
+
+Search for members in the group by displayName.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_id** | **String** | Must be a valid group ID. | [required] |
+**query** | **String** | Filter for member displayName. | [required] |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+
+### Return type
+
+[**models::SearchGroupMembers200Response**](searchGroupMembers_200_response.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

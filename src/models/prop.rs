@@ -33,6 +33,7 @@ pub struct Prop {
     pub name: String,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
+    /// How a prop is summoned and interacted with. 0: the prop fixed to some surface in the world 1: the prop is a pickup and may be held by users 2: ???
     #[serde(rename = "spawnType")]
     pub spawn_type: i32,
     #[serde(rename = "tags")]
@@ -43,6 +44,7 @@ pub struct Prop {
     pub unity_package_url: Option<String>,
     #[serde(rename = "unityPackages")]
     pub unity_packages: Vec<models::PropUnityPackage>,
+    /// Bitmask for restrictions on what world surfaces a prop may be summoned. 0: no restrictions 1: floors 2: walls 4: ceilings
     #[serde(rename = "worldPlacementMask")]
     pub world_placement_mask: i32,
 }

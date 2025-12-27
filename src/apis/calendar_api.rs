@@ -759,12 +759,14 @@ pub async fn search_calendar_events(
     utc_offset: Option<i32>,
     n: Option<i32>,
     offset: Option<i32>,
+    is_internal_variant: Option<bool>,
 ) -> Result<models::PaginatedCalendarEventList, Error<SearchCalendarEventsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_search_term = search_term;
     let p_query_utc_offset = utc_offset;
     let p_query_n = n;
     let p_query_offset = offset;
+    let p_query_is_internal_variant = is_internal_variant;
 
     let uri_str = format!("{}/calendar/search", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -778,6 +780,9 @@ pub async fn search_calendar_events(
     }
     if let Some(ref param_value) = p_query_offset {
         req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_is_internal_variant {
+        req_builder = req_builder.query(&[("isInternalVariant", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

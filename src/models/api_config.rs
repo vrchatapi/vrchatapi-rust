@@ -9,9 +9,18 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ApiConfig :
+/// ApiConfig : Global configuration for various features.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfig {
+    /// The current platform-wide event taking place
+    #[serde(rename = "CampaignStatus")]
+    pub campaign_status: String,
+    /// Toggles if certain assets are preloaded in the background
+    #[serde(rename = "DisableBackgroundPreloads")]
+    pub disable_background_preloads: bool,
+    /// Toggles whether users without a current VRC+ subscription are priority recipients for gift drops
+    #[serde(rename = "LocationGiftingNonSubPrioEnabled")]
+    pub location_gifting_non_sub_prio_enabled: bool,
     /// Unknown, probably voice optimization testing
     #[serde(rename = "VoiceEnableDegradation")]
     pub voice_enable_degradation: bool,
@@ -44,6 +53,8 @@ pub struct ApiConfig {
     /// Public Announcements
     #[serde(rename = "announcements")]
     pub announcements: Vec<models::ApiConfigAnnouncement>,
+    #[serde(rename = "audioConfig", skip_serializing_if = "Option::is_none")]
+    pub audio_config: Option<models::ApiConfigAudioConfig>,
     /// List of supported Languages
     #[serde(rename = "availableLanguageCodes")]
     pub available_language_codes: Vec<String>,
@@ -129,12 +140,12 @@ pub struct ApiConfig {
     /// VRChat's copyright-issues-related email
     #[serde(rename = "copyrightEmail")]
     pub copyright_email: String,
+    /// VRChat's DMCA claim webform url
+    #[serde(rename = "copyrightFormUrl")]
+    pub copyright_form_url: String,
     /// Current version number of the Privacy Agreement
-    #[serde(
-        rename = "currentPrivacyVersion",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub current_privacy_version: Option<i32>,
+    #[serde(rename = "currentPrivacyVersion")]
+    pub current_privacy_version: i32,
     /// Current version number of the Terms of Service
     #[serde(rename = "currentTOSVersion")]
     pub current_tos_version: i32,
@@ -220,14 +231,26 @@ pub struct ApiConfig {
     #[serde(rename = "dynamicWorldRows")]
     pub dynamic_world_rows: Vec<models::DynamicContentRow>,
     /// Unknown
-    #[serde(rename = "economyPauseEnd", skip_serializing_if = "Option::is_none")]
-    pub economy_pause_end: Option<String>,
+    #[serde(rename = "economyLedgerBackfill")]
+    pub economy_ledger_backfill: bool,
     /// Unknown
-    #[serde(rename = "economyPauseStart", skip_serializing_if = "Option::is_none")]
-    pub economy_pause_start: Option<String>,
+    #[serde(rename = "economyLedgerMigrationStop")]
+    pub economy_ledger_migration_stop: String,
     /// Unknown
-    #[serde(rename = "economyState", skip_serializing_if = "Option::is_none")]
-    pub economy_state: Option<i32>,
+    #[serde(rename = "economyLedgerMode")]
+    pub economy_ledger_mode: String,
+    /// Unknown
+    #[serde(rename = "economyPauseEnd")]
+    pub economy_pause_end: String,
+    /// Unknown
+    #[serde(rename = "economyPauseStart")]
+    pub economy_pause_start: String,
+    /// Unknown
+    #[serde(rename = "economyPurchaseRepairEnabled")]
+    pub economy_purchase_repair_enabled: bool,
+    /// Unknown
+    #[serde(rename = "economyState")]
+    pub economy_state: i32,
     #[serde(rename = "events")]
     pub events: models::ApiConfigEvents,
     /// Unknown
@@ -251,9 +274,20 @@ pub struct ApiConfig {
     /// A list of explicitly allowed origins that worlds can request images from via the Udon's [VRCImageDownloader#DownloadImage](https://creators.vrchat.com/worlds/udon/image-loading/#downloadimage).
     #[serde(rename = "imageHostUrlList")]
     pub image_host_url_list: Vec<String>,
+    /// Current app version for iOS
+    #[serde(rename = "iosAppVersion")]
+    pub ios_app_version: Vec<String>,
+    #[serde(rename = "iosVersion")]
+    pub ios_version: models::ApiConfigIosVersion,
     /// VRChat's job application email
     #[serde(rename = "jobsEmail")]
     pub jobs_email: String,
+    /// The maximum number of custom emoji each user may have at a given time.
+    #[serde(rename = "maxUserEmoji")]
+    pub max_user_emoji: i32,
+    /// The maximum number of custom stickers each user may have at a given time.
+    #[serde(rename = "maxUserStickers")]
+    pub max_user_stickers: i32,
     #[serde(rename = "minSupportedClientBuildNumber")]
     pub min_supported_client_build_number: models::ApiConfigMinSupportedClientBuildNumber,
     /// Minimum Unity version required for uploading assets
@@ -282,15 +316,19 @@ pub struct ApiConfig {
     /// Public key, hex encoded
     #[serde(rename = "publicKey")]
     pub public_key: String,
+    /// Categories available for reporting objectionable content
     #[serde(rename = "reportCategories")]
-    pub report_categories: models::ApiConfigReportCategories,
+    pub report_categories: std::collections::HashMap<String, models::ReportCategory>,
     /// URL to the report form
     #[serde(rename = "reportFormUrl")]
     pub report_form_url: String,
+    /// Options for reporting content. Select a key+value from this mapping as the `type` of the report. Select one key+value from the object at reportOptions[type] as the `category` of the report. reportCategories[category] contains user-facing text to display for all possible categories. Select one value from the array at reportOptions[type][category] as the `reason` of the report. reportReasons[reason] contains user-facing text to display for all possible categories.
     #[serde(rename = "reportOptions")]
-    pub report_options: models::ApiConfigReportOptions,
+    pub report_options:
+        std::collections::HashMap<String, std::collections::HashMap<String, Vec<String>>>,
+    /// Reasons available for submitting a report
     #[serde(rename = "reportReasons")]
-    pub report_reasons: models::ApiConfigReportReasons,
+    pub report_reasons: std::collections::HashMap<String, models::ReportReason>,
     #[serde(rename = "requireAgeVerificationBetaTag")]
     pub require_age_verification_beta_tag: bool,
     /// Link to the developer FAQ
@@ -362,7 +400,11 @@ pub struct ApiConfig {
 }
 
 impl ApiConfig {
+    /// Global configuration for various features.
     pub fn new(
+        campaign_status: String,
+        disable_background_preloads: bool,
+        location_gifting_non_sub_prio_enabled: bool,
         voice_enable_degradation: bool,
         voice_enable_receiver_limiting: bool,
         access_logs_urls: models::ApiConfigAccessLogsUrls,
@@ -388,6 +430,8 @@ impl ApiConfig {
         constants: models::ApiConfigConstants,
         contact_email: String,
         copyright_email: String,
+        copyright_form_url: String,
+        current_privacy_version: i32,
         current_tos_version: i32,
         default_avatar: String,
         default_sticker_set: String,
@@ -413,6 +457,13 @@ impl ApiConfig {
         download_link_windows: String,
         download_urls: models::ApiConfigDownloadUrlList,
         dynamic_world_rows: Vec<models::DynamicContentRow>,
+        economy_ledger_backfill: bool,
+        economy_ledger_migration_stop: String,
+        economy_ledger_mode: String,
+        economy_pause_end: String,
+        economy_pause_start: String,
+        economy_purchase_repair_enabled: bool,
+        economy_state: i32,
         events: models::ApiConfigEvents,
         force_use_latest_world: bool,
         gift_display_type: String,
@@ -421,7 +472,11 @@ impl ApiConfig {
         homepage_redirect_target: String,
         hub_world_id: String,
         image_host_url_list: Vec<String>,
+        ios_app_version: Vec<String>,
+        ios_version: models::ApiConfigIosVersion,
         jobs_email: String,
+        max_user_emoji: i32,
+        max_user_stickers: i32,
         min_supported_client_build_number: models::ApiConfigMinSupportedClientBuildNumber,
         minimum_unity_version_for_uploads: String,
         moderation_email: String,
@@ -432,10 +487,13 @@ impl ApiConfig {
         player_url_resolver_sha1: String,
         player_url_resolver_version: String,
         public_key: String,
-        report_categories: models::ApiConfigReportCategories,
+        report_categories: std::collections::HashMap<String, models::ReportCategory>,
         report_form_url: String,
-        report_options: models::ApiConfigReportOptions,
-        report_reasons: models::ApiConfigReportReasons,
+        report_options: std::collections::HashMap<
+            String,
+            std::collections::HashMap<String, Vec<String>>,
+        >,
+        report_reasons: std::collections::HashMap<String, models::ReportReason>,
         require_age_verification_beta_tag: bool,
         sdk_developer_faq_url: String,
         sdk_discord_url: String,
@@ -461,6 +519,9 @@ impl ApiConfig {
         white_listed_asset_urls: Vec<String>,
     ) -> ApiConfig {
         ApiConfig {
+            campaign_status,
+            disable_background_preloads,
+            location_gifting_non_sub_prio_enabled,
             voice_enable_degradation,
             voice_enable_receiver_limiting,
             access_logs_urls,
@@ -473,6 +534,7 @@ impl ApiConfig {
             analytics_segment_new_ui_pct_of_users,
             analytics_segment_new_ui_salt,
             announcements,
+            audio_config: None,
             available_language_codes,
             available_languages,
             avatar_perf_limiter,
@@ -496,7 +558,8 @@ impl ApiConfig {
             constants,
             contact_email,
             copyright_email,
-            current_privacy_version: None,
+            copyright_form_url,
+            current_privacy_version,
             current_tos_version,
             default_avatar,
             default_sticker_set,
@@ -525,9 +588,13 @@ impl ApiConfig {
             download_link_windows,
             download_urls,
             dynamic_world_rows,
-            economy_pause_end: None,
-            economy_pause_start: None,
-            economy_state: None,
+            economy_ledger_backfill,
+            economy_ledger_migration_stop,
+            economy_ledger_mode,
+            economy_pause_end,
+            economy_pause_start,
+            economy_purchase_repair_enabled,
+            economy_state,
             events,
             force_use_latest_world,
             gift_display_type,
@@ -536,7 +603,11 @@ impl ApiConfig {
             homepage_redirect_target,
             hub_world_id,
             image_host_url_list,
+            ios_app_version,
+            ios_version,
             jobs_email,
+            max_user_emoji,
+            max_user_stickers,
             min_supported_client_build_number,
             minimum_unity_version_for_uploads,
             moderation_email,

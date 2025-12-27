@@ -15,7 +15,7 @@ pub struct SentNotification {
     #[serde(rename = "created_at")]
     pub created_at: String,
     #[serde(rename = "details")]
-    pub details: serde_json::Value,
+    pub details: models::SentNotificationDetails,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "message")]
@@ -36,7 +36,7 @@ pub struct SentNotification {
 impl SentNotification {
     pub fn new(
         created_at: String,
-        details: serde_json::Value,
+        details: models::SentNotificationDetails,
         id: String,
         message: String,
         receiver_user_id: String,

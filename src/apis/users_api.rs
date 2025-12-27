@@ -29,12 +29,36 @@ pub enum CheckUserPersistenceExistsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`delete_all_user_persistence_data`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteAllUserPersistenceDataError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`delete_user_persistence`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteUserPersistenceError {
     Status401(models::Error),
     Status404(),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_blocked_groups`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetBlockedGroupsError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_invited_groups`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetInvitedGroupsError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -66,6 +90,14 @@ pub enum GetMutualsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetUserError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_user_all_group_permissions`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetUserAllGroupPermissionsError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -282,6 +314,45 @@ pub async fn check_user_persistence_exists(
     }
 }
 
+/// Deletes all of the user's persistence data for every world.
+pub async fn delete_all_user_persistence_data(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+) -> Result<(), Error<DeleteAllUserPersistenceDataError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+
+    let uri_str = format!(
+        "{}/users/{userId}/persist",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<DeleteAllUserPersistenceDataError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Deletes the user's persistence data for a given world
 pub async fn delete_user_persistence(
     configuration: &configuration::Configuration,
@@ -316,6 +387,102 @@ pub async fn delete_user_persistence(
     } else {
         let content = resp.text().await?;
         let entity: Option<DeleteUserPersistenceError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns a list of Groups the user has blocked.
+pub async fn get_blocked_groups(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+) -> Result<Vec<models::Group>, Error<GetBlockedGroupsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+
+    let uri_str = format!(
+        "{}/users/{userId}/groups/userblocked",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Group&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::Group&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetBlockedGroupsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns a list of Groups the user has been invited to.
+pub async fn get_invited_groups(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+) -> Result<Vec<models::Group>, Error<GetInvitedGroupsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+
+    let uri_str = format!(
+        "{}/users/{userId}/groups/invited",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Group&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::Group&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetInvitedGroupsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -528,6 +695,62 @@ pub async fn get_user(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetUserError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns a mapping of GroupIDs to arrays of GroupPermissions.
+pub async fn get_user_all_group_permissions(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    group_ids: Option<&str>,
+) -> Result<
+    std::collections::HashMap<String, Vec<models::GroupPermissions>>,
+    Error<GetUserAllGroupPermissionsError>,
+> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+    let p_query_group_ids = group_ids;
+
+    let uri_str = format!(
+        "{}/users/{userId}/groups/permissions",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_group_ids {
+        req_builder = req_builder.query(&[("groupIds", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `std::collections::HashMap&lt;String, Vec&lt;models::GroupPermissions&gt;&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `std::collections::HashMap&lt;String, Vec&lt;models::GroupPermissions&gt;&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetUserAllGroupPermissionsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -1053,12 +1276,14 @@ pub async fn search_users(
     developer_type: Option<&str>,
     n: Option<i32>,
     offset: Option<i32>,
+    is_internal_variant: Option<bool>,
 ) -> Result<Vec<models::LimitedUserSearch>, Error<SearchUsersError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_search = search;
     let p_query_developer_type = developer_type;
     let p_query_n = n;
     let p_query_offset = offset;
+    let p_query_is_internal_variant = is_internal_variant;
 
     let uri_str = format!("{}/users", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -1074,6 +1299,9 @@ pub async fn search_users(
     }
     if let Some(ref param_value) = p_query_offset {
         req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_is_internal_variant {
+        req_builder = req_builder.query(&[("isInternalVariant", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

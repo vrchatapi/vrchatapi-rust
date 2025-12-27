@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **player_order_bucket_size** | **i32** | Unknown | 
 **player_order_factor** | **i32** | Unknown | 
 **slow_update_factor_threshold** | **i32** | Unknown | 
+**use_direct_player_serialization** | **bool** | Unknown | 
 **view_segment_length** | **i32** | Unknown | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

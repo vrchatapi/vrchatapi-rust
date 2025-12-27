@@ -6,11 +6,15 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_tags**](UsersApi.md#add_tags) | **POST** /users/{userId}/addTags | Add User Tags
 [**check_user_persistence_exists**](UsersApi.md#check_user_persistence_exists) | **GET** /users/{userId}/{worldId}/persist/exists | Check User Persistence Exists
+[**delete_all_user_persistence_data**](UsersApi.md#delete_all_user_persistence_data) | **DELETE** /users/{userId}/persist | Delete All User Persistence Data
 [**delete_user_persistence**](UsersApi.md#delete_user_persistence) | **DELETE** /users/{userId}/{worldId}/persist | Delete User Persistence
+[**get_blocked_groups**](UsersApi.md#get_blocked_groups) | **GET** /users/{userId}/groups/userblocked | Get User Group Blocks
+[**get_invited_groups**](UsersApi.md#get_invited_groups) | **GET** /users/{userId}/groups/invited | Get User Group Invited
 [**get_mutual_friends**](UsersApi.md#get_mutual_friends) | **GET** /users/{userId}/mutuals/friends | Get User Mutual Friends
 [**get_mutual_groups**](UsersApi.md#get_mutual_groups) | **GET** /users/{userId}/mutuals/groups | Get User Mutual Groups
 [**get_mutuals**](UsersApi.md#get_mutuals) | **GET** /users/{userId}/mutuals | Get User Mutuals
 [**get_user**](UsersApi.md#get_user) | **GET** /users/{userId} | Get User by ID
+[**get_user_all_group_permissions**](UsersApi.md#get_user_all_group_permissions) | **GET** /users/{userId}/groups/permissions | Get user's permissions for all joined groups.
 [**get_user_by_name**](UsersApi.md#get_user_by_name) | **GET** /users/{username}/name | Get User by Username
 [**get_user_feedback**](UsersApi.md#get_user_feedback) | **GET** /users/{userId}/feedback | Get User Feedback
 [**get_user_group_instances**](UsersApi.md#get_user_group_instances) | **GET** /users/{userId}/instances/groups | Get User Group Instances
@@ -90,6 +94,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## delete_all_user_persistence_data
+
+> delete_all_user_persistence_data(user_id)
+Delete All User Persistence Data
+
+Deletes all of the user's persistence data for every world.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_user_persistence
 
 > delete_user_persistence(user_id, world_id)
@@ -108,6 +142,66 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_blocked_groups
+
+> Vec<models::Group> get_blocked_groups(user_id)
+Get User Group Blocks
+
+Returns a list of Groups the user has blocked.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**Vec<models::Group>**](Group.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_invited_groups
+
+> Vec<models::Group> get_invited_groups(user_id)
+Get User Group Invited
+
+Returns a list of Groups the user has been invited to.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**Vec<models::Group>**](Group.md)
 
 ### Authorization
 
@@ -232,6 +326,37 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::User**](User.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_all_group_permissions
+
+> std::collections::HashMap<String, Vec<models::GroupPermissions>> get_user_all_group_permissions(user_id, group_ids)
+Get user's permissions for all joined groups.
+
+Returns a mapping of GroupIDs to arrays of GroupPermissions.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**group_ids** | Option<**String**> | Comma-separated (no spaces!) list of GroupIDs to retrieve permissions for. |  |
+
+### Return type
+
+[**std::collections::HashMap<String, Vec<models::GroupPermissions>>**](Vec.md)
 
 ### Authorization
 
@@ -553,7 +678,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_users
 
-> Vec<models::LimitedUserSearch> search_users(search, developer_type, n, offset)
+> Vec<models::LimitedUserSearch> search_users(search, developer_type, n, offset, is_internal_variant)
 Search All Users
 
 Search and list any users by text query
@@ -567,6 +692,7 @@ Name | Type | Description  | Required | Notes
 **developer_type** | Option<**String**> | Active user by developer type, none for normal users and internal for moderators |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**is_internal_variant** | Option<**bool**> | Not quite sure what this actually does (exists on the website but doesn't seem to be used) |  |
 
 ### Return type
 

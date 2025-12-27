@@ -46,7 +46,7 @@ Name | Type | Description | Notes
 **last_activity** | Option<**String**> |  | [optional]
 **last_login** | **String** |  | 
 **last_mobile** | Option<**String**> |  | 
-**last_platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
+**last_platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **obfuscated_email** | **String** |  | 
 **obfuscated_pending_email** | **String** |  | 
 **oculus_id** | **String** |  | 

@@ -64,6 +64,14 @@ pub enum GetAdminAssetBundleError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_content_agreement_status`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetContentAgreementStatusError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_file`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -110,11 +118,35 @@ pub enum GetFilesError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`set_group_gallery_file_order`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SetGroupGalleryFileOrderError {
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`start_file_data_upload`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum StartFileDataUploadError {
     Status400(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`submit_content_agreement`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SubmitContentAgreementError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`update_asset_review_notes`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UpdateAssetReviewNotesError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -487,6 +519,57 @@ pub async fn get_admin_asset_bundle(
     }
 }
 
+/// Returns the agreement status of the currently authenticated user for the given agreementCode, contentId, and version.
+pub async fn get_content_agreement_status(
+    configuration: &configuration::Configuration,
+    agreement_code: models::AgreementCode,
+    content_id: &str,
+    version: i32,
+) -> Result<models::AgreementStatus, Error<GetContentAgreementStatusError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_agreement_code = agreement_code;
+    let p_query_content_id = content_id;
+    let p_query_version = version;
+
+    let uri_str = format!("{}/agreement", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    req_builder = req_builder.query(&[("agreementCode", &p_query_agreement_code.to_string())]);
+    req_builder = req_builder.query(&[("contentId", &p_query_content_id.to_string())]);
+    req_builder = req_builder.query(&[("version", &p_query_version.to_string())]);
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgreementStatus`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgreementStatus`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetContentAgreementStatusError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Shows general information about the \"File\" object. Each File can have several \"Version\"'s, and each Version can have multiple real files or \"Data\" blobs.
 pub async fn get_file(
     configuration: &configuration::Configuration,
@@ -804,6 +887,51 @@ pub async fn get_files(
     }
 }
 
+/// Set the order of the files in a group gallery
+pub async fn set_group_gallery_file_order(
+    configuration: &configuration::Configuration,
+    group_gallery_file_order_request: Option<models::GroupGalleryFileOrderRequest>,
+) -> Result<models::GroupGalleryFileOrder, Error<SetGroupGalleryFileOrderError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_group_gallery_file_order_request = group_gallery_file_order_request;
+
+    let uri_str = format!("{}/files/order", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_group_gallery_file_order_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupGalleryFileOrder`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupGalleryFileOrder`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<SetGroupGalleryFileOrderError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Starts an upload of a specific FilePart. This endpoint will return an AWS URL which you can PUT data to. You need to call this and receive a new AWS API URL for each `partNumber`. Please see AWS's REST documentation on \"PUT Object to S3\" on how to upload. Once all parts has been uploaded, proceed to `/finish` endpoint.  **Note:** `nextPartNumber` seems like it is always ignored. Despite it returning 0, first partNumber is always 1.
 pub async fn start_file_data_upload(
     configuration: &configuration::Configuration,
@@ -855,6 +983,93 @@ pub async fn start_file_data_upload(
     } else {
         let content = resp.text().await?;
         let entity: Option<StartFileDataUploadError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns the agreement of the currently authenticated user for the given agreementCode, contentId, and version.
+pub async fn submit_content_agreement(
+    configuration: &configuration::Configuration,
+    agreement_request: Option<models::AgreementRequest>,
+) -> Result<models::Agreement, Error<SubmitContentAgreementError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_agreement_request = agreement_request;
+
+    let uri_str = format!("{}/agreement", configuration.base_path);
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_agreement_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Agreement`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Agreement`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<SubmitContentAgreementError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Update notes regarding an asset review.
+pub async fn update_asset_review_notes(
+    configuration: &configuration::Configuration,
+    asset_review_id: &str,
+    update_asset_review_notes_request: Option<models::UpdateAssetReviewNotesRequest>,
+) -> Result<(), Error<UpdateAssetReviewNotesError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_asset_review_id = asset_review_id;
+    let p_body_update_asset_review_notes_request = update_asset_review_notes_request;
+
+    let uri_str = format!(
+        "{}/assetReview/{assetReviewId}/notes",
+        configuration.base_path,
+        assetReviewId = crate::apis::urlencode(p_path_asset_review_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_update_asset_review_notes_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<UpdateAssetReviewNotesError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -977,11 +1192,12 @@ pub async fn upload_image(
     file: impl Into<::std::borrow::Cow<'static, [u8]>>,
     filename: impl Into<::std::borrow::Cow<'static, str>>,
     mime_type: &str,
-    tag: &str,
-    animation_style: Option<&str>,
+    tag: models::ImagePurpose,
+    animation_style: Option<models::ImageAnimationStyle>,
     frames: Option<i32>,
     frames_over_time: Option<i32>,
-    mask_tag: Option<&str>,
+    loop_style: Option<models::ImageLoopStyle>,
+    mask_tag: Option<models::ImageMask>,
 ) -> Result<models::File, Error<UploadImageError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_form_file = file;
@@ -989,6 +1205,7 @@ pub async fn upload_image(
     let p_form_animation_style = animation_style;
     let p_form_frames = frames;
     let p_form_frames_over_time = frames_over_time;
+    let p_form_loop_style = loop_style;
     let p_form_mask_tag = mask_tag;
 
     let uri_str = format!("{}/file/image", configuration.base_path);
@@ -1012,6 +1229,9 @@ pub async fn upload_image(
     }
     if let Some(param_value) = p_form_frames_over_time {
         multipart_form = multipart_form.text("framesOverTime", param_value.to_string());
+    }
+    if let Some(param_value) = p_form_loop_style {
+        multipart_form = multipart_form.text("loopStyle", param_value.to_string());
     }
     if let Some(param_value) = p_form_mask_tag {
         multipart_form = multipart_form.text("maskTag", param_value.to_string());

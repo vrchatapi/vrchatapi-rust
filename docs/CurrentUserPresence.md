@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **instance** | Option<**String**> |  | [optional]
 **instance_type** | Option<**String**> | either an InstanceType or an empty string | [optional]
 **is_rejoining** | Option<**String**> |  | [optional]
-**platform** | Option<**String**> | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity verison such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | [optional]
+**platform** | Option<**String**> | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | [optional]
 **profile_pic_override** | Option<**String**> |  | [optional]
 **status** | Option<**String**> | either a UserStatus or empty string | [optional]
 **traveling_to_instance** | Option<**String**> |  | [optional]

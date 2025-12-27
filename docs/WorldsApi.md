@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**check_user_persistence_exists**](WorldsApi.md#check_user_persistence_exists) | **GET** /users/{userId}/{worldId}/persist/exists | Check User Persistence Exists
 [**create_world**](WorldsApi.md#create_world) | **POST** /worlds | Create World
+[**delete_all_user_persistence_data**](WorldsApi.md#delete_all_user_persistence_data) | **DELETE** /users/{userId}/persist | Delete All User Persistence Data
 [**delete_user_persistence**](WorldsApi.md#delete_user_persistence) | **DELETE** /users/{userId}/{worldId}/persist | Delete User Persistence
 [**delete_world**](WorldsApi.md#delete_world) | **DELETE** /worlds/{worldId} | Delete World
 [**get_active_worlds**](WorldsApi.md#get_active_worlds) | **GET** /worlds/active | List Active Worlds
@@ -78,6 +79,36 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_all_user_persistence_data
+
+> delete_all_user_persistence_data(user_id)
+Delete All User Persistence Data
+
+Deletes all of the user's persistence data for every world.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

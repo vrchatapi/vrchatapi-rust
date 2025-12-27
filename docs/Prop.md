@@ -14,12 +14,12 @@ Name | Type | Description | Notes
 **max_count_per_user** | **i32** |  | [default to 1]
 **name** | **String** |  | 
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
-**spawn_type** | **i32** |  | [default to 0]
+**spawn_type** | **i32** | How a prop is summoned and interacted with. 0: the prop fixed to some surface in the world 1: the prop is a pickup and may be held by users 2: ??? | [default to 1]
 **tags** | **Vec<String>** |  | 
 **thumbnail_image_url** | **String** |  | 
 **unity_package_url** | Option<**String**> |  | 
 **unity_packages** | [**Vec<models::PropUnityPackage>**](PropUnityPackage.md) |  | 
-**world_placement_mask** | **i32** |  | [default to 1]
+**world_placement_mask** | **i32** | Bitmask for restrictions on what world surfaces a prop may be summoned. 0: no restrictions 1: floors 2: walls 4: ceilings | [default to 1]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

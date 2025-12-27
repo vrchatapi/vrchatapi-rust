@@ -7,7 +7,8 @@ Name | Type | Description | Notes
 **can_delete** | **bool** |  | 
 **category** | **String** |  | 
 **created_at** | **String** |  | 
-**data** | [**serde_json::Value**](.md) |  | 
+**data** | [**models::NotificationV2Data**](NotificationV2_data.md) |  | 
+**details** | Option<[**models::NotificationV2DetailsBoop**](NotificationV2DetailsBoop.md)> |  | [optional]
 **expires_at** | **String** |  | 
 **expiry_after_seen** | Option<**i32**> |  | 
 **id** | **String** |  | 

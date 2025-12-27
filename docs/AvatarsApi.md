@@ -330,7 +330,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_avatars
 
-> Vec<models::Avatar> search_avatars(featured, sort, user, user_id, n, order, offset, tag, notag, release_status, max_unity_version, min_unity_version, platform)
+> Vec<models::Avatar> search_avatars(featured, sort, user, user_id, n, order, offset, tag, notag, release_status, max_unity_version, min_unity_version, platform, is_internal_variant)
 Search Avatars
 
 Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
@@ -353,6 +353,7 @@ Name | Type | Description  | Required | Notes
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
+**is_internal_variant** | Option<**bool**> | Not quite sure what this actually does (exists on the website but doesn't seem to be used) |  |
 
 ### Return type
 

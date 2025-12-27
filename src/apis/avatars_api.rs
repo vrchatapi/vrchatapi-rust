@@ -670,6 +670,7 @@ pub async fn search_avatars(
     max_unity_version: Option<&str>,
     min_unity_version: Option<&str>,
     platform: Option<&str>,
+    is_internal_variant: Option<bool>,
 ) -> Result<Vec<models::Avatar>, Error<SearchAvatarsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_featured = featured;
@@ -685,6 +686,7 @@ pub async fn search_avatars(
     let p_query_max_unity_version = max_unity_version;
     let p_query_min_unity_version = min_unity_version;
     let p_query_platform = platform;
+    let p_query_is_internal_variant = is_internal_variant;
 
     let uri_str = format!("{}/avatars", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -727,6 +729,9 @@ pub async fn search_avatars(
     }
     if let Some(ref param_value) = p_query_platform {
         req_builder = req_builder.query(&[("platform", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_is_internal_variant {
+        req_builder = req_builder.query(&[("isInternalVariant", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

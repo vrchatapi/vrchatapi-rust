@@ -19,7 +19,9 @@ pub struct NotificationV2 {
     #[serde(rename = "createdAt")]
     pub created_at: String,
     #[serde(rename = "data")]
-    pub data: serde_json::Value,
+    pub data: models::NotificationV2Data,
+    #[serde(rename = "details", skip_serializing_if = "Option::is_none")]
+    pub details: Option<models::NotificationV2DetailsBoop>,
     #[serde(rename = "expiresAt")]
     pub expires_at: String,
     #[serde(rename = "expiryAfterSeen", deserialize_with = "Option::deserialize")]
@@ -83,7 +85,7 @@ impl NotificationV2 {
         can_delete: bool,
         category: String,
         created_at: String,
-        data: serde_json::Value,
+        data: models::NotificationV2Data,
         expires_at: String,
         expiry_after_seen: Option<i32>,
         id: String,
@@ -112,6 +114,7 @@ impl NotificationV2 {
             category,
             created_at,
             data,
+            details: None,
             expires_at,
             expiry_after_seen,
             id,

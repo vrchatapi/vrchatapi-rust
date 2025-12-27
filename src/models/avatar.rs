@@ -14,6 +14,12 @@ use serde::{Deserialize, Serialize};
 pub struct Avatar {
     #[serde(rename = "acknowledgements", skip_serializing_if = "Option::is_none")]
     pub acknowledgements: Option<String>,
+    /// Only present for the avatar author on avatars under active review.
+    #[serde(
+        rename = "activeAssetReviewId",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub active_asset_review_id: Option<String>,
     /// Not present from general search `/avatars`, only on specific requests `/avatars/{avatarId}`.
     #[serde(rename = "assetUrl", skip_serializing_if = "Option::is_none")]
     pub asset_url: Option<String>,
@@ -45,6 +51,8 @@ pub struct Avatar {
     pub lowest_price: Option<i32>,
     #[serde(rename = "name")]
     pub name: String,
+    #[serde(rename = "pendingUpload", skip_serializing_if = "Option::is_none")]
+    pub pending_upload: Option<bool>,
     #[serde(rename = "performance")]
     pub performance: models::AvatarPerformance,
     #[serde(rename = "productId", skip_serializing_if = "Option::is_none")]
@@ -97,6 +105,7 @@ impl Avatar {
     ) -> Avatar {
         Avatar {
             acknowledgements: None,
+            active_asset_review_id: None,
             asset_url: None,
             asset_url_object: None,
             author_id,
@@ -111,6 +120,7 @@ impl Avatar {
             lock: None,
             lowest_price: None,
             name,
+            pending_upload: None,
             performance,
             product_id: None,
             published_listings: None,

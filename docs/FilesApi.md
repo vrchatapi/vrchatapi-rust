@@ -11,13 +11,17 @@ Method | HTTP request | Description
 [**download_file_version**](FilesApi.md#download_file_version) | **GET** /file/{fileId}/{versionId} | Download File Version
 [**finish_file_data_upload**](FilesApi.md#finish_file_data_upload) | **PUT** /file/{fileId}/{versionId}/{fileType}/finish | Finish FileData Upload
 [**get_admin_asset_bundle**](FilesApi.md#get_admin_asset_bundle) | **GET** /adminassetbundles/{adminAssetBundleId} | Get AdminAssetBundle
+[**get_content_agreement_status**](FilesApi.md#get_content_agreement_status) | **GET** /agreement | Get Content Agreement Status
 [**get_file**](FilesApi.md#get_file) | **GET** /file/{fileId} | Show File
 [**get_file_analysis**](FilesApi.md#get_file_analysis) | **GET** /analysis/{fileId}/{versionId} | Get File Version Analysis
 [**get_file_analysis_security**](FilesApi.md#get_file_analysis_security) | **GET** /analysis/{fileId}/{versionId}/security | Get File Version Analysis Security
 [**get_file_analysis_standard**](FilesApi.md#get_file_analysis_standard) | **GET** /analysis/{fileId}/{versionId}/standard | Get File Version Analysis Standard
 [**get_file_data_upload_status**](FilesApi.md#get_file_data_upload_status) | **GET** /file/{fileId}/{versionId}/{fileType}/status | Check FileData Upload Status
 [**get_files**](FilesApi.md#get_files) | **GET** /files | List Files
+[**set_group_gallery_file_order**](FilesApi.md#set_group_gallery_file_order) | **PUT** /files/order | Set Group Gallery File Order
 [**start_file_data_upload**](FilesApi.md#start_file_data_upload) | **PUT** /file/{fileId}/{versionId}/{fileType}/start | Start FileData Upload
+[**submit_content_agreement**](FilesApi.md#submit_content_agreement) | **POST** /agreement | Submit Content Agreement
+[**update_asset_review_notes**](FilesApi.md#update_asset_review_notes) | **PUT** /assetReview/{assetReviewId}/notes | Update Asset Review Notes
 [**upload_gallery_image**](FilesApi.md#upload_gallery_image) | **POST** /gallery | Upload gallery image
 [**upload_icon**](FilesApi.md#upload_icon) | **POST** /icon | Upload icon
 [**upload_image**](FilesApi.md#upload_image) | **POST** /file/image | Upload gallery image, icon, emoji or sticker
@@ -240,6 +244,38 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_content_agreement_status
+
+> models::AgreementStatus get_content_agreement_status(agreement_code, content_id, version)
+Get Content Agreement Status
+
+Returns the agreement status of the currently authenticated user for the given agreementCode, contentId, and version.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**agreement_code** | [**AgreementCode**](.md) | The type of agreement (currently content.copyright.owned) | [required] |
+**content_id** | **String** | The id of the content being uploaded, such as a WorldID, AvatarID, or PropID | [required] |
+**version** | **i32** | The version of the agreement (currently 1) | [required] |
+
+### Return type
+
+[**models::AgreementStatus**](AgreementStatus.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_file
 
 > models::File get_file(file_id)
@@ -428,6 +464,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## set_group_gallery_file_order
+
+> models::GroupGalleryFileOrder set_group_gallery_file_order(group_gallery_file_order_request)
+Set Group Gallery File Order
+
+Set the order of the files in a group gallery
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**group_gallery_file_order_request** | Option<[**GroupGalleryFileOrderRequest**](GroupGalleryFileOrderRequest.md)> |  |  |
+
+### Return type
+
+[**models::GroupGalleryFileOrder**](GroupGalleryFileOrder.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## start_file_data_upload
 
 > models::FileUploadUrl start_file_data_upload(file_id, version_id, file_type, part_number)
@@ -456,6 +522,67 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## submit_content_agreement
+
+> models::Agreement submit_content_agreement(agreement_request)
+Submit Content Agreement
+
+Returns the agreement of the currently authenticated user for the given agreementCode, contentId, and version.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**agreement_request** | Option<[**AgreementRequest**](AgreementRequest.md)> |  |  |
+
+### Return type
+
+[**models::Agreement**](Agreement.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_asset_review_notes
+
+> update_asset_review_notes(asset_review_id, update_asset_review_notes_request)
+Update Asset Review Notes
+
+Update notes regarding an asset review.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**asset_review_id** | **String** | Must be an valid asset review ID. | [required] |
+**update_asset_review_notes_request** | Option<[**UpdateAssetReviewNotesRequest**](UpdateAssetReviewNotesRequest.md)> |  |  |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -523,7 +650,7 @@ Name | Type | Description  | Required | Notes
 
 ## upload_image
 
-> models::File upload_image(file, tag, animation_style, frames, frames_over_time, mask_tag)
+> models::File upload_image(file, tag, animation_style, frames, frames_over_time, loop_style, mask_tag)
 Upload gallery image, icon, emoji or sticker
 
 Upload an image, which can be an icon, gallery image, sticker or emoji
@@ -534,11 +661,12 @@ Upload an image, which can be an icon, gallery image, sticker or emoji
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
-**tag** | **String** | Needs to be either icon, gallery, sticker, emoji, or emojianimated | [required] |
-**animation_style** | Option<**String**> | Animation style for sticker, required for emoji. |  |
-**frames** | Option<**i32**> | Required for emojianimated. Total number of frames to be animated (2-64) |  |
-**frames_over_time** | Option<**i32**> | Required for emojianimated. Animation frames per second (1-64) |  |
-**mask_tag** | Option<**String**> | Mask of the sticker, optional for emoji. |  |
+**tag** | [**models::ImagePurpose**](ImagePurpose.md) |  | [required] |
+**animation_style** | Option<[**models::ImageAnimationStyle**](ImageAnimationStyle.md)> |  |  |
+**frames** | Option<**i32**> | Required for animated images. Total number of frames of the spritesheet to be animated. |  |
+**frames_over_time** | Option<**i32**> | Required for animated images. Animation frames per second. |  |
+**loop_style** | Option<[**models::ImageLoopStyle**](ImageLoopStyle.md)> |  |  |
+**mask_tag** | Option<[**models::ImageMask**](ImageMask.md)> |  |  |
 
 ### Return type
 

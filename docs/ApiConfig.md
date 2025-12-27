@@ -4,6 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**campaign_status** | **String** | The current platform-wide event taking place | 
+**disable_background_preloads** | **bool** | Toggles if certain assets are preloaded in the background | [default to true]
+**location_gifting_non_sub_prio_enabled** | **bool** | Toggles whether users without a current VRC+ subscription are priority recipients for gift drops | [default to true]
 **voice_enable_degradation** | **bool** | Unknown, probably voice optimization testing | [default to false]
 **voice_enable_receiver_limiting** | **bool** | Unknown, probably voice optimization testing | [default to true]
 **access_logs_urls** | [**models::ApiConfigAccessLogsUrls**](APIConfig_accessLogsUrls.md) |  | 
@@ -16,6 +19,7 @@ Name | Type | Description | Notes
 **analytics_segment_new_ui_pct_of_users** | **i32** | Unknown | 
 **analytics_segment_new_ui_salt** | **String** | Unknown | 
 **announcements** | [**Vec<models::ApiConfigAnnouncement>**](APIConfigAnnouncement.md) | Public Announcements | 
+**audio_config** | Option<[**models::ApiConfigAudioConfig**](APIConfigAudioConfig.md)> |  | [optional]
 **available_language_codes** | **Vec<String>** | List of supported Languages | 
 **available_languages** | **Vec<String>** | List of supported Languages | 
 **avatar_perf_limiter** | [**models::ApiConfigAvatarPerfLimiter**](APIConfig_avatarPerfLimiter.md) |  | 
@@ -39,7 +43,8 @@ Name | Type | Description | Notes
 **constants** | [**models::ApiConfigConstants**](APIConfigConstants.md) |  | 
 **contact_email** | **String** | VRChat's contact email | 
 **copyright_email** | **String** | VRChat's copyright-issues-related email | 
-**current_privacy_version** | Option<**i32**> | Current version number of the Privacy Agreement | [optional][default to 1]
+**copyright_form_url** | **String** | VRChat's DMCA claim webform url | 
+**current_privacy_version** | **i32** | Current version number of the Privacy Agreement | [default to 1]
 **current_tos_version** | **i32** | Current version number of the Terms of Service | 
 **default_avatar** | **String** |  | 
 **default_sticker_set** | **String** |  | 
@@ -68,9 +73,13 @@ Name | Type | Description | Notes
 **download_link_windows** | **String** | Download link for game on the Oculus Rift website. | 
 **download_urls** | [**models::ApiConfigDownloadUrlList**](APIConfigDownloadURLList.md) |  | 
 **dynamic_world_rows** | [**Vec<models::DynamicContentRow>**](DynamicContentRow.md) | Array of DynamicWorldRow objects, used by the game to display the list of world rows | 
-**economy_pause_end** | Option<**String**> | Unknown | [optional]
-**economy_pause_start** | Option<**String**> | Unknown | [optional]
-**economy_state** | Option<**i32**> | Unknown | [optional][default to 1]
+**economy_ledger_backfill** | **bool** | Unknown | 
+**economy_ledger_migration_stop** | **String** | Unknown | 
+**economy_ledger_mode** | **String** | Unknown | 
+**economy_pause_end** | **String** | Unknown | 
+**economy_pause_start** | **String** | Unknown | 
+**economy_purchase_repair_enabled** | **bool** | Unknown | 
+**economy_state** | **i32** | Unknown | [default to 1]
 **events** | [**models::ApiConfigEvents**](APIConfigEvents.md) |  | 
 **force_use_latest_world** | **bool** | Unknown | [default to true]
 **gift_display_type** | **String** | Display type of gifts | 
@@ -79,7 +88,11 @@ Name | Type | Description | Notes
 **homepage_redirect_target** | **String** | Redirect target if you try to open the base API domain in your browser | [default to https://hello.vrchat.com]
 **hub_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **image_host_url_list** | **Vec<String>** | A list of explicitly allowed origins that worlds can request images from via the Udon's [VRCImageDownloader#DownloadImage](https://creators.vrchat.com/worlds/udon/image-loading/#downloadimage). | 
+**ios_app_version** | **Vec<String>** | Current app version for iOS | 
+**ios_version** | [**models::ApiConfigIosVersion**](APIConfig_iosVersion.md) |  | 
 **jobs_email** | **String** | VRChat's job application email | 
+**max_user_emoji** | **i32** | The maximum number of custom emoji each user may have at a given time. | [default to 18]
+**max_user_stickers** | **i32** | The maximum number of custom stickers each user may have at a given time. | [default to 18]
 **min_supported_client_build_number** | [**models::ApiConfigMinSupportedClientBuildNumber**](APIConfig_minSupportedClientBuildNumber.md) |  | 
 **minimum_unity_version_for_uploads** | **String** | Minimum Unity version required for uploading assets | [default to 2019.0.0f1]
 **moderation_email** | **String** | VRChat's moderation related email | 
@@ -90,10 +103,10 @@ Name | Type | Description | Notes
 **player_url_resolver_sha1** | **String** | Currently used youtube-dl.exe hash in SHA1-delimited format | 
 **player_url_resolver_version** | **String** | Currently used youtube-dl.exe version | 
 **public_key** | **String** | Public key, hex encoded | 
-**report_categories** | [**models::ApiConfigReportCategories**](APIConfig_reportCategories.md) |  | 
+**report_categories** | [**std::collections::HashMap<String, models::ReportCategory>**](ReportCategory.md) | Categories available for reporting objectionable content | 
 **report_form_url** | **String** | URL to the report form | [default to https://help.vrchat.com/hc/en-us/requests/new?ticket_form_id=1500000182242&tf_360056455174=user_report&tf_360057451993={userId}&tf_1500001445142={reportedId}&tf_subject={reason} {category} By {contentType} {reportedName}&tf_description={description}]
-**report_options** | [**models::ApiConfigReportOptions**](APIConfig_reportOptions.md) |  | 
-**report_reasons** | [**models::ApiConfigReportReasons**](APIConfig_reportReasons.md) |  | 
+**report_options** | [**std::collections::HashMap<String, std::collections::HashMap<String, Vec<String>>>**](std::collections::HashMap.md) | Options for reporting content. Select a key+value from this mapping as the `type` of the report. Select one key+value from the object at reportOptions[type] as the `category` of the report. reportCategories[category] contains user-facing text to display for all possible categories. Select one value from the array at reportOptions[type][category] as the `reason` of the report. reportReasons[reason] contains user-facing text to display for all possible categories. | 
+**report_reasons** | [**std::collections::HashMap<String, models::ReportReason>**](ReportReason.md) | Reasons available for submitting a report | 
 **require_age_verification_beta_tag** | **bool** |  | 
 **sdk_developer_faq_url** | **String** | Link to the developer FAQ | 
 **sdk_discord_url** | **String** | Link to the official VRChat Discord | 

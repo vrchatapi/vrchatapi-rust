@@ -9,14 +9,38 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// PermissionData : Specific values afforded the user by this permission
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PermissionData {
+    /// Badges afforded the user by this permission
+    #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
+    pub badges: Option<Vec<String>>,
+    /// Maximum value afforded the user by this permission
     #[serde(rename = "max", skip_serializing_if = "Option::is_none")]
     pub max: Option<i32>,
+    /// Maximum favorite groups afforded the user by this permission
+    #[serde(rename = "maxFavoriteGroups", skip_serializing_if = "Option::is_none")]
+    pub max_favorite_groups: Option<std::collections::HashMap<String, i32>>,
+    /// Maximum favorites per group afforded the user by this permission
+    #[serde(
+        rename = "maxFavoritesPerGroup",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub max_favorites_per_group: Option<std::collections::HashMap<String, i32>>,
+    /// Tags afforded the user by this permission
+    #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
+    pub tags: Option<Vec<String>>,
 }
 
 impl PermissionData {
+    /// Specific values afforded the user by this permission
     pub fn new() -> PermissionData {
-        PermissionData { max: None }
+        PermissionData {
+            badges: None,
+            max: None,
+            max_favorite_groups: None,
+            max_favorites_per_group: None,
+            tags: None,
+        }
     }
 }

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **age_gate** | Option<**bool**> |  | [optional][default to false]
+**calendar_entry_id** | Option<**String**> |  | [optional]
 **can_request_invite** | Option<**bool**> | Only applies to invite type instances to make them invite+ | [optional][default to false]
 **closed_at** | Option<**String**> | The time after which users won't be allowed to join the instance. This doesn't work for public instances. | [optional]
 **content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **instance_persistence_enabled** | Option<**bool**> |  | [optional]
 **invite_only** | Option<**bool**> |  | [optional][default to false]
 **owner_id** | Option<**String**> | A groupId if the instance type is \"group\", null if instance type is public, or a userId otherwise | [optional]
+**player_persistence_enabled** | Option<**bool**> |  | [optional]
 **queue_enabled** | Option<**bool**> |  | [optional][default to false]
 **region** | [**models::InstanceRegion**](InstanceRegion.md) |  | 
 **role_ids** | Option<**Vec<String>**> | Group roleIds that are allowed to join if the type is \"group\" and groupAccessType is \"member\" | [optional]

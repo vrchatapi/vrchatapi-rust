@@ -39,6 +39,9 @@ pub struct ApiConfigEvents {
     #[serde(rename = "slowUpdateFactorThreshold")]
     pub slow_update_factor_threshold: i32,
     /// Unknown
+    #[serde(rename = "useDirectPlayerSerialization")]
+    pub use_direct_player_serialization: bool,
+    /// Unknown
     #[serde(rename = "viewSegmentLength")]
     pub view_segment_length: i32,
 }
@@ -54,6 +57,7 @@ impl ApiConfigEvents {
         player_order_bucket_size: i32,
         player_order_factor: i32,
         slow_update_factor_threshold: i32,
+        use_direct_player_serialization: bool,
         view_segment_length: i32,
     ) -> ApiConfigEvents {
         ApiConfigEvents {
@@ -66,6 +70,7 @@ impl ApiConfigEvents {
             player_order_bucket_size,
             player_order_factor,
             slow_update_factor_threshold,
+            use_direct_player_serialization,
             view_segment_length,
         }
     }

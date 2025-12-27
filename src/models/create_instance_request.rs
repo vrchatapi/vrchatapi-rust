@@ -13,6 +13,8 @@ use serde::{Deserialize, Serialize};
 pub struct CreateInstanceRequest {
     #[serde(rename = "ageGate", skip_serializing_if = "Option::is_none")]
     pub age_gate: Option<bool>,
+    #[serde(rename = "calendarEntryId", skip_serializing_if = "Option::is_none")]
+    pub calendar_entry_id: Option<String>,
     /// Only applies to invite type instances to make them invite+
     #[serde(rename = "canRequestInvite", skip_serializing_if = "Option::is_none")]
     pub can_request_invite: Option<bool>,
@@ -50,6 +52,13 @@ pub struct CreateInstanceRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub owner_id: Option<Option<String>>,
+    #[serde(
+        rename = "playerPersistenceEnabled",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub player_persistence_enabled: Option<Option<bool>>,
     #[serde(rename = "queueEnabled", skip_serializing_if = "Option::is_none")]
     pub queue_enabled: Option<bool>,
     #[serde(rename = "region")]
@@ -72,6 +81,7 @@ impl CreateInstanceRequest {
     ) -> CreateInstanceRequest {
         CreateInstanceRequest {
             age_gate: None,
+            calendar_entry_id: None,
             can_request_invite: None,
             closed_at: None,
             content_settings: None,
@@ -81,6 +91,7 @@ impl CreateInstanceRequest {
             instance_persistence_enabled: None,
             invite_only: None,
             owner_id: None,
+            player_persistence_enabled: None,
             queue_enabled: None,
             region,
             role_ids: None,

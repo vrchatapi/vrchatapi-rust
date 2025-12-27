@@ -27,6 +27,10 @@ pub enum NotificationV2Type {
     EventAnnouncement,
     #[serde(rename = "group.announcement")]
     GroupAnnouncement,
+    #[serde(rename = "group.event.created")]
+    GroupEventCreated,
+    #[serde(rename = "group.event.starting")]
+    GroupEventStarting,
     #[serde(rename = "group.informative")]
     GroupInformative,
     #[serde(rename = "group.invite")]
@@ -35,6 +39,8 @@ pub enum NotificationV2Type {
     GroupJoinRequest,
     #[serde(rename = "group.post")]
     GroupPost,
+    #[serde(rename = "group.transfer")]
+    GroupTransfer,
     #[serde(rename = "invite.instance.contentGated")]
     InviteInstanceContentGated,
     #[serde(rename = "moderation.contentrestriction")]
@@ -64,10 +70,13 @@ impl std::fmt::Display for NotificationV2Type {
             Self::EconomyReceivedGift => write!(f, "economy.received.gift"),
             Self::EventAnnouncement => write!(f, "event.announcement"),
             Self::GroupAnnouncement => write!(f, "group.announcement"),
+            Self::GroupEventCreated => write!(f, "group.event.created"),
+            Self::GroupEventStarting => write!(f, "group.event.starting"),
             Self::GroupInformative => write!(f, "group.informative"),
             Self::GroupInvite => write!(f, "group.invite"),
             Self::GroupJoinRequest => write!(f, "group.joinRequest"),
             Self::GroupPost => write!(f, "group.post"),
+            Self::GroupTransfer => write!(f, "group.transfer"),
             Self::InviteInstanceContentGated => write!(f, "invite.instance.contentGated"),
             Self::ModerationContentrestriction => write!(f, "moderation.contentrestriction"),
             Self::ModerationNotice => write!(f, "moderation.notice"),

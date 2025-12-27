@@ -12,10 +12,13 @@
 | EconomyReceivedGift | economy.received.gift |
 | EventAnnouncement | event.announcement |
 | GroupAnnouncement | group.announcement |
+| GroupEventCreated | group.event.created |
+| GroupEventStarting | group.event.starting |
 | GroupInformative | group.informative |
 | GroupInvite | group.invite |
 | GroupJoinRequest | group.joinRequest |
 | GroupPost | group.post |
+| GroupTransfer | group.transfer |
 | InviteInstanceContentGated | invite.instance.contentGated |
 | ModerationContentrestriction | moderation.contentrestriction |
 | ModerationNotice | moderation.notice |
