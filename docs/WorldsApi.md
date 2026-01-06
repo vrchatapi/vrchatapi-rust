@@ -382,7 +382,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-[authCookie](../README.md#authCookie)
+No authorization required
 
 ### HTTP request headers
 
