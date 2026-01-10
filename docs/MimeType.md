@@ -7,6 +7,7 @@
 | ApplicationSlashGzip | application/gzip |
 | ApplicationSlashOctetStream | application/octet-stream |
 | ApplicationSlashXAvatar | application/x-avatar |
+| ApplicationSlashXProp | application/x-prop |
 | ApplicationSlashXRsyncDelta | application/x-rsync-delta |
 | ApplicationSlashXRsyncSignature | application/x-rsync-signature |
 | ApplicationSlashXWorld | application/x-world |

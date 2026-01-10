@@ -17,6 +17,8 @@ pub enum MimeType {
     ApplicationSlashOctetStream,
     #[serde(rename = "application/x-avatar")]
     ApplicationSlashXAvatar,
+    #[serde(rename = "application/x-prop")]
+    ApplicationSlashXProp,
     #[serde(rename = "application/x-rsync-delta")]
     ApplicationSlashXRsyncDelta,
     #[serde(rename = "application/x-rsync-signature")]
@@ -47,6 +49,7 @@ impl std::fmt::Display for MimeType {
             Self::ApplicationSlashGzip => write!(f, "application/gzip"),
             Self::ApplicationSlashOctetStream => write!(f, "application/octet-stream"),
             Self::ApplicationSlashXAvatar => write!(f, "application/x-avatar"),
+            Self::ApplicationSlashXProp => write!(f, "application/x-prop"),
             Self::ApplicationSlashXRsyncDelta => write!(f, "application/x-rsync-delta"),
             Self::ApplicationSlashXRsyncSignature => write!(f, "application/x-rsync-signature"),
             Self::ApplicationSlashXWorld => write!(f, "application/x-world"),
