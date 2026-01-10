@@ -1962,12 +1962,12 @@ pub async fn get_group_invites(
     }
 }
 
-/// Returns a LimitedGroup Member.
+/// Returns a GroupMember.
 pub async fn get_group_member(
     configuration: &configuration::Configuration,
     group_id: &str,
     user_id: &str,
-) -> Result<models::GroupLimitedMember, Error<GetGroupMemberError>> {
+) -> Result<models::GroupMember, Error<GetGroupMemberError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_path_user_id = user_id;
@@ -1999,8 +1999,8 @@ pub async fn get_group_member(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupLimitedMember`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupLimitedMember`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupMember`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupMember`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -2984,7 +2984,7 @@ pub async fn update_group_member(
     group_id: &str,
     user_id: &str,
     update_group_member_request: Option<models::UpdateGroupMemberRequest>,
-) -> Result<models::GroupLimitedMember, Error<UpdateGroupMemberError>> {
+) -> Result<models::GroupMember, Error<UpdateGroupMemberError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_path_user_id = user_id;
@@ -3018,8 +3018,8 @@ pub async fn update_group_member(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupLimitedMember`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupLimitedMember`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupMember`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupMember`")))),
         }
     } else {
         let content = resp.text().await?;

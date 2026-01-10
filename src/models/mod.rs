@@ -216,8 +216,6 @@ pub mod group_join_request_action;
 pub use self::group_join_request_action::GroupJoinRequestAction;
 pub mod group_join_state;
 pub use self::group_join_state::GroupJoinState;
-pub mod group_limited_member;
-pub use self::group_limited_member::GroupLimitedMember;
 pub mod group_member;
 pub use self::group_member::GroupMember;
 pub mod group_member_limited_user;

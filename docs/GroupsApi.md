@@ -934,10 +934,10 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_member
 
-> models::GroupLimitedMember get_group_member(group_id, user_id)
+> models::GroupMember get_group_member(group_id, user_id)
 Get Group Member
 
-Returns a LimitedGroup Member.
+Returns a GroupMember.
 
 ### Parameters
 
@@ -949,7 +949,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::GroupLimitedMember**](GroupLimitedMember.md)
+[**models::GroupMember**](GroupMember.md)
 
 ### Authorization
 
@@ -1530,7 +1530,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_group_member
 
-> models::GroupLimitedMember update_group_member(group_id, user_id, update_group_member_request)
+> models::GroupMember update_group_member(group_id, user_id, update_group_member_request)
 Update Group Member
 
 Updates a Group Member
@@ -1546,7 +1546,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::GroupLimitedMember**](GroupLimitedMember.md)
+[**models::GroupMember**](GroupMember.md)
 
 ### Authorization
 

@@ -116,7 +116,6 @@ docs/GroupGalleryImage.md
 docs/GroupInstance.md
 docs/GroupJoinRequestAction.md
 docs/GroupJoinState.md
-docs/GroupLimitedMember.md
 docs/GroupMember.md
 docs/GroupMemberLimitedUser.md
 docs/GroupMemberStatus.md
@@ -456,7 +455,6 @@ src/models/group_gallery_image.rs
 src/models/group_instance.rs
 src/models/group_join_request_action.rs
 src/models/group_join_state.rs
-src/models/group_limited_member.rs
 src/models/group_member.rs
 src/models/group_member_limited_user.rs
 src/models/group_member_status.rs
