@@ -4,8 +4,8 @@
 
 | Name | Value |
 |---- | -----|
-| hidden | 18+ |
-| plus18 | hidden |
+| plus18 | 18+ |
+| hidden | hidden |
 | verified | verified |
 
 

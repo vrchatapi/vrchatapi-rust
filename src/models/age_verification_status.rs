@@ -14,9 +14,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum AgeVerificationStatus {
     #[serde(rename = "18+")]
-    hidden,
-    #[serde(rename = "hidden")]
     plus18,
+    #[serde(rename = "hidden")]
+    hidden,
     #[serde(rename = "verified")]
     verified,
 }
@@ -24,8 +24,8 @@ pub enum AgeVerificationStatus {
 impl std::fmt::Display for AgeVerificationStatus {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
-            Self::hidden => write!(f, "18+"),
-            Self::plus18 => write!(f, "hidden"),
+            Self::plus18 => write!(f, "18+"),
+            Self::hidden => write!(f, "hidden"),
             Self::verified => write!(f, "verified"),
         }
     }
@@ -33,6 +33,6 @@ impl std::fmt::Display for AgeVerificationStatus {
 
 impl Default for AgeVerificationStatus {
     fn default() -> AgeVerificationStatus {
-        Self::hidden
+        Self::plus18
     }
 }
