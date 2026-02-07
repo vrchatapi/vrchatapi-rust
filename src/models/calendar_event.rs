@@ -33,7 +33,7 @@ pub struct CalendarEvent {
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "durationInMs", skip_serializing_if = "Option::is_none")]
-    pub duration_in_ms: Option<i32>,
+    pub duration_in_ms: Option<i64>,
     #[serde(rename = "endsAt")]
     pub ends_at: String,
     #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]

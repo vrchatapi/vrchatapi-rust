@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **created_at** | Option<**String**> |  | [optional]
 **deleted_at** | Option<**String**> |  | [optional]
 **description** | **String** |  | 
-**duration_in_ms** | Option<**i32**> |  | [optional]
+**duration_in_ms** | Option<**i64**> |  | [optional]
 **ends_at** | **String** |  | 
 **featured** | Option<**bool**> |  | [optional]
 **guest_early_join_minutes** | Option<**i32**> |  | [optional]
