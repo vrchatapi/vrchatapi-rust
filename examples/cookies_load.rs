@@ -23,7 +23,8 @@ async fn main() {
     config.client = reqwest::Client::builder()
         .cookie_provider(jar)
         .build()
-        .unwrap();
+        .unwrap()
+        .into();
 
     let user = ::vrchatapi::apis::authentication_api::get_current_user(&config)
         .await
