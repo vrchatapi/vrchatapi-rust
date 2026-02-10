@@ -12,7 +12,7 @@ rm src/apis src/models docs -rf
 
 ./node_modules/\@openapitools/openapi-generator-cli/main.js generate \
 -g rust \
---additional-properties=packageName=vrchatapi,supportAsync=true,avoidBoxedModels=true \
+--additional-properties=packageName=vrchatapi,supportAsync=true,avoidBoxedModels=true,library=reqwest,reqwestDefaultFeatures=reqwest/cookies,supportMiddleware=true \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
@@ -34,7 +34,7 @@ find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
 
 # Cookie storage
 sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g' src/apis/configuration.rs
-sed -i 's/, features = \["json", "multipart"\]/, features = \["json", "cookies", "multipart"\]/g' Cargo.toml
+#sed -i 's/, features = \["json", "multipart"\]/, features = \["json", "cookies", "multipart"\]/g' Cargo.toml
 
 #Fix example
 printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
