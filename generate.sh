@@ -37,7 +37,7 @@ sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g'
 sed -i 's/, features = \["json", "multipart"\]/, features = \["json", "cookies", "multipart"\]/g' Cargo.toml
 
 #Fix example
-printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
+cat patches/Cargo.toml >> Cargo.toml
 
 #Transition help from old EitherUserOrTwoFactor
 cat patches/2fa-reexport.rs >> src/models/mod.rs
