@@ -40,9 +40,6 @@ sed -i 's/Client::new()/Client::builder().cookie_store(true).build().unwrap()/g'
 #Fix example
 printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
 
-#Transition help from old EitherUserOrTwoFactor
-cat patches/2fa-reexport.rs >> src/models/mod.rs
-
 # https://github.com/vrchatapi/vrchatapi-rust/pull/29
 sed -i "s/local_var_req_builder = local_var_req_builder.json(&\(.*\));/if let Some(\1) = \1 { \0 }/g" src/apis/files_api.rs
 
