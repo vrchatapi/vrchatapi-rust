@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **is_visible** | **bool** |  | 
 **more_info** | **String** |  | 
 **state** | **String** | One of: - submissions_open - closed | 
-**state_change_dates** | [**models::JamStateChangeDates**](Jam_stateChangeDates.md) |  | 
+**state_change_dates** | [**models::JamStateChangeDates**](JamStateChangeDates.md) |  | 
 **submission_content_gate_date** | Option<**String**> |  | 
 **submission_content_gated** | **bool** |  | 
 **title** | **String** |  | 

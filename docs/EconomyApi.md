@@ -347,8 +347,8 @@ Name | Type | Description  | Required | Notes
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **most_recent** | Option<**bool**> |  |  |
-**sort** | Option<[**SortOptionProductPurchase**](.md)> | The sort order of the results. |  |
-**order** | Option<[**OrderOptionShort**](.md)> | Result ordering |  |
+**sort** | Option<[**SortOptionProductPurchase**](SortOptionProductPurchase.md)> | The sort order of the results. |  |
+**order** | Option<[**OrderOptionShort**](OrderOptionShort.md)> | Result ordering |  |
 
 ### Return type
 
@@ -496,7 +496,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **store_id** | **String** |  | [required] |
 **hydrate_listings** | Option<**bool**> | Listings fields will be populated. |  |
-**fetch** | Option<[**StoreView**](.md)> |  |  |
+**fetch** | Option<[**StoreView**](StoreView.md)> |  |  |
 
 ### Return type
 

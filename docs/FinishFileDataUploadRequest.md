@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**etags** | Option<**Vec<String>**> | Array of ETags uploaded. | [optional]
+**etags** | Option<**HashSet<String>**> | Array of ETags uploaded. | [optional]
 **max_parts** | **String** | Always a zero in string form, despite how many parts uploaded. | [default to 0]
 **next_part_number** | **String** | Always a zero in string form, despite how many parts uploaded. | [default to 0]
 

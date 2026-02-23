@@ -256,7 +256,7 @@ Returns the agreement status of the currently authenticated user for the given a
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**agreement_code** | [**AgreementCode**](.md) | The type of agreement (currently content.copyright.owned) | [required] |
+**agreement_code** | [**AgreementCode**](AgreementCode.md) | The type of agreement (currently content.copyright.owned) | [required] |
 **content_id** | **String** | The id of the content being uploaded, such as a WorldID, AvatarID, or PropID | [required] |
 **version** | **i32** | The version of the agreement (currently 1) | [required] |
 

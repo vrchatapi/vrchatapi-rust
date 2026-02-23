@@ -606,8 +606,3 @@ pub mod world_metadata;
 pub use self::world_metadata::WorldMetadata;
 pub mod world_publish_status;
 pub use self::world_publish_status::WorldPublishStatus;
-#[deprecated(
-    since = "1.20.7-nightly.28",
-    note = "Use RegisterUserAccount200Response directly. This re-export is only provided as a transition-help!"
-)]
-pub use self::RegisterUserAccount200Response as EitherUserOrTwoFactor;

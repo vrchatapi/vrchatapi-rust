@@ -164,7 +164,7 @@ Globally unmoderates an avatar.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **target_avatar_id** | **String** | Must be a valid avatar ID. | [required] |
-**avatar_moderation_type** | [**AvatarModerationType**](.md) | The avatar moderation type associated with the avatar. | [required] |
+**avatar_moderation_type** | [**AvatarModerationType**](AvatarModerationType.md) | The avatar moderation type associated with the avatar. | [required] |
 
 ### Return type
 

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**errors** | [**Vec<serde_json::Value>**](serde_json::Value.md) |  | 
+**errors** | **Vec<serde_json::Value>** |  | 
 **inventory_items** | [**Vec<models::InventoryItem>**](InventoryItem.md) |  | 
 **inventory_items_created** | **i32** |  | 
 

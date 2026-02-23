@@ -7,7 +7,7 @@ async fn main() {
         .await
         .unwrap()
     {
-        ::vrchatapi::models::EitherUserOrTwoFactor::CurrentUser(me) => {
+        ::vrchatapi::models::RegisterUserAccount200Response::CurrentUser(me) => {
             println!("Username: {}", me.username.unwrap())
         }
         ::vrchatapi::models::RegisterUserAccount200Response::RequiresTwoFactorAuth(

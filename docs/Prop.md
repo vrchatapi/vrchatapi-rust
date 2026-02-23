@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **tags** | **Vec<String>** |  | 
 **thumbnail_image_url** | **String** |  | 
 **unity_package_url** | Option<**String**> |  | 
-**unity_packages** | [**Vec<models::PropUnityPackage>**](PropUnityPackage.md) |  | 
+**unity_packages** | [**HashSet<models::PropUnityPackage>**](PropUnityPackage.md) |  | 
 **world_placement_mask** | **i32** | Bitmask for restrictions on what world surfaces a prop may be summoned. 0: no restrictions 1: floors 2: walls 4: ceilings | [default to 1]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

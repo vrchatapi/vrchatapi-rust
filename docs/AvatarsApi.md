@@ -211,14 +211,14 @@ Search and list favorited avatars by query filters.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
-**sort** | Option<[**SortOption**](.md)> | The sort order of the results. |  |
+**sort** | Option<[**SortOption**](SortOption.md)> | The sort order of the results. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
-**order** | Option<[**OrderOption**](.md)> | Result ordering |  |
+**order** | Option<[**OrderOption**](OrderOption.md)> | Result ordering |  |
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **search** | Option<**String**> | Filters by world name. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<[**ReleaseStatus**](.md)> | Filter by ReleaseStatus. |  |
+**release_status** | Option<[**ReleaseStatus**](ReleaseStatus.md)> | Filter by ReleaseStatus. |  |
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
@@ -341,15 +341,15 @@ Search and list avatars by query filters. You can only search your own or featur
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
-**sort** | Option<[**SortOption**](.md)> | The sort order of the results. |  |
+**sort** | Option<[**SortOption**](SortOption.md)> | The sort order of the results. |  |
 **user** | Option<**String**> | Set to `me` for searching own avatars. |  |
 **user_id** | Option<**String**> | Filter by UserID. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
-**order** | Option<[**OrderOption**](.md)> | Result ordering |  |
+**order** | Option<[**OrderOption**](OrderOption.md)> | Result ordering |  |
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **tag** | Option<**String**> | Tags to include (comma-separated). Any of the tags needs to be present. |  |
 **notag** | Option<**String**> | Tags to exclude (comma-separated). |  |
-**release_status** | Option<[**ReleaseStatus**](.md)> | Filter by ReleaseStatus. |  |
+**release_status** | Option<[**ReleaseStatus**](ReleaseStatus.md)> | Filter by ReleaseStatus. |  |
 **max_unity_version** | Option<**String**> | The maximum Unity version supported by the asset. |  |
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |

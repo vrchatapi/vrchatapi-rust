@@ -978,7 +978,7 @@ Name | Type | Description  | Required | Notes
 **group_id** | **String** | Must be a valid group ID. | [required] |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
-**sort** | Option<[**GroupSearchSort**](.md)> | The sort order of Group Member results |  |
+**sort** | Option<[**GroupSearchSort**](GroupSearchSort.md)> | The sort order of Group Member results |  |
 **role_id** | Option<**String**> | Only returns members with a specific groupRoleId |  |
 
 ### Return type

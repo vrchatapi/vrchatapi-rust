@@ -17,9 +17,9 @@ Name | Type | Description | Notes
 **listing_image_id** | **String** |  | 
 **listing_subtitle** | **String** |  | 
 **listing_type** | [**models::ProductListingType**](ProductListingType.md) |  | 
-**products** | [**Vec<serde_json::Value>**](serde_json::Value.md) |  | 
+**products** | **Vec<serde_json::Value>** |  | 
 **purchase_active** | **bool** |  | 
-**purchase_context** | [**models::ProductPurchasePurchaseContext**](ProductPurchase_purchaseContext.md) |  | 
+**purchase_context** | [**models::ProductPurchasePurchaseContext**](ProductPurchasePurchaseContext.md) |  | 
 **purchase_current_status** | **String** |  | 
 **purchase_date** | **String** |  | 
 **purchase_duration** | Option<**i32**> |  | [optional]
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 **purchase_price** | **i32** |  | 
 **purchase_quantity** | **i32** |  | 
 **purchase_start_date** | **String** |  | 
-**purchase_token** | Option<[**serde_json::Value**](.md)> |  | 
+**purchase_token** | Option<**serde_json::Value**> |  | 
 **purchase_type** | **String** |  | 
 **purchase_unit_price** | **i32** |  | 
 **receiver_display_name** | **String** |  | 
