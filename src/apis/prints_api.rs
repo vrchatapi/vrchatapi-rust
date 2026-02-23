@@ -294,7 +294,8 @@ pub async fn upload_print(
     if let Some(param_value) = p_form_note {
         multipart_form = multipart_form.text("note", param_value.to_string());
     }
-    multipart_form = multipart_form.text("timestamp", p_form_timestamp.to_string());
+    multipart_form = multipart_form.text("timestamp", serde_json::to_string(&p_form_timestamp)?);
+    //Replaced:    multipart_form = multipart_form.text("timestamp", p_form_timestamp.to_string());
     if let Some(param_value) = p_form_world_id {
         multipart_form = multipart_form.text("worldId", param_value.to_string());
     }

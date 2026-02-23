@@ -346,7 +346,8 @@ pub async fn invite_user_with_photo(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
+    multipart_form = multipart_form.text("data", serde_json::to_string(&p_form_data)?);
+    //Replaced:    multipart_form = multipart_form.text("data", p_form_data.to_string());
     let file = TokioFile::open(&p_form_image).await?;
     let stream = FramedRead::new(file, BytesCodec::new());
     let file_name = p_form_image
@@ -465,7 +466,8 @@ pub async fn request_invite_with_photo(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
+    multipart_form = multipart_form.text("data", serde_json::to_string(&p_form_data)?);
+    //Replaced:    multipart_form = multipart_form.text("data", p_form_data.to_string());
     let file = TokioFile::open(&p_form_image).await?;
     let stream = FramedRead::new(file, BytesCodec::new());
     let file_name = p_form_image
@@ -640,7 +642,8 @@ pub async fn respond_invite_with_photo(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
+    multipart_form = multipart_form.text("data", serde_json::to_string(&p_form_data)?);
+    //Replaced:    multipart_form = multipart_form.text("data", p_form_data.to_string());
     let file = TokioFile::open(&p_form_image).await?;
     let stream = FramedRead::new(file, BytesCodec::new());
     let file_name = p_form_image

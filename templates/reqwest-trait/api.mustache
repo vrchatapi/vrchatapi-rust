@@ -90,9 +90,6 @@ impl {{classname}}Client {
 {{/useBonBuilder}}
 pub struct {{{operationIdCamelCase}}}Params {
 {{/-first}}
-    {{#description}}
-    /// {{{.}}}
-    {{/description}}
     pub {{{paramName}}}: {{!
     ### Option Start
     }}{{^required}}Option<{{/required}}{{#required}}{{#isNullable}}Option<{{/isNullable}}{{/required}}{{!
@@ -119,9 +116,6 @@ pub struct {{{operationIdCamelCase}}}Params {
 impl {{classname}} for {{classname}}Client {
     {{#operations}}
     {{#operation}}
-    {{#description}}
-    /// {{{.}}}
-    {{/description}}
     {{#notes}}
     /// {{{.}}}
     {{/notes}}
@@ -468,8 +462,14 @@ impl {{classname}} for {{classname}}Client {
         {{/isMultipart}}
         {{#hasBodyParam}}
         {{#bodyParams}}
+        {{^required}}
+        if let Some({{{paramName}}}) = {{{paramName}}} {
+        {{/required}}
         local_var_req_builder = local_var_req_builder.json(&{{{paramName}}});
         {{/bodyParams}}
+        {{^required}}
+        }
+        {{/required}}
         {{/hasBodyParam}}
 
         let local_var_req = local_var_req_builder.build()?;

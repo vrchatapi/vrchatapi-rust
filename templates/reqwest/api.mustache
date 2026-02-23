@@ -22,9 +22,6 @@ use tokio_util::codec::{BytesCodec, FramedRead};
 #[derive(Clone, Debug)]
 pub struct {{{operationIdCamelCase}}}Params {
 {{/-first}}
-    {{#description}}
-    /// {{{.}}}
-    {{/description}}
     pub {{{paramName}}}: {{!
     ### Option Start
     }}{{^required}}Option<{{/required}}{{#required}}{{#isNullable}}Option<{{/isNullable}}{{/required}}{{!
@@ -93,9 +90,6 @@ pub enum {{{operationIdCamelCase}}}Error {
 
 {{#operations}}
 {{#operation}}
-{{#description}}
-/// {{{.}}}
-{{/description}}
 {{#notes}}
 /// {{{.}}}
 {{/notes}}
@@ -489,7 +483,8 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: 
     {{^isFile}}
     {{#required}}
     {{^isNullable}}
-    multipart_form = multipart_form.text("{{{baseName}}}", {{{vendorExtensions.x-rust-param-identifier}}}{{#isArray}}.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(","){{/isArray}}.to_string());
+    multipart_form = multipart_form.text("{{{baseName}}}", serde_json::to_string(&{{{vendorExtensions.x-rust-param-identifier}}})?);
+//Replaced:    multipart_form = multipart_form.text("{{{baseName}}}", {{{vendorExtensions.x-rust-param-identifier}}}{{#isArray}}.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(","){{/isArray}}.to_string());
     {{/isNullable}}
     {{#isNullable}}
     match {{{vendorExtensions.x-rust-param-identifier}}} {

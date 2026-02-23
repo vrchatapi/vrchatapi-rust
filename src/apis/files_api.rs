@@ -1248,7 +1248,8 @@ pub async fn upload_image(
     if let Some(param_value) = p_form_mask_tag {
         multipart_form = multipart_form.text("maskTag", serde_json::to_string(&param_value)?);
     }
-    multipart_form = multipart_form.text("tag", p_form_tag.to_string());
+    multipart_form = multipart_form.text("tag", serde_json::to_string(&p_form_tag)?);
+    //Replaced:    multipart_form = multipart_form.text("tag", p_form_tag.to_string());
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;
