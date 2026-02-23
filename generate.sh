@@ -24,10 +24,6 @@ rm src/apis src/models docs -rf
 # Update entire description (replace entire line, match the random data there) line in Cargo.toml
 sed -i 's/^description = ".*"/description = "VRChat API Client for Rust"/' Cargo.toml
 
-# Remove messily pasted markdown at top of every file
-find src -type f -exec sed -i '/VRChat API Banner/d' {} \;
-# Remove openapi version in every file
-find src -type f -exec sed -i '/The version of the OpenAPI document/d' {} \;
 # Remove empty doc comments
 find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
 
