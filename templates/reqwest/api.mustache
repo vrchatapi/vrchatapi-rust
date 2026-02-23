@@ -483,8 +483,15 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: 
     {{^isFile}}
     {{#required}}
     {{^isNullable}}
-    multipart_form = multipart_form.text("{{{baseName}}}", serde_json::to_string(&{{{vendorExtensions.x-rust-param-identifier}}})?);
-//Replaced:    multipart_form = multipart_form.text("{{{baseName}}}", {{{vendorExtensions.x-rust-param-identifier}}}{{#isArray}}.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(","){{/isArray}}.to_string());
+    macro_rules! serialize {
+        ($form:ident, data, $data:ident) => {
+            $form = $form.text("data", serde_json::to_string(&$data)?);
+        };
+        ($form:ident, $tag:ident, $data:ident) => {
+            $form = $form.text(stringify!($tag), $data{{#isArray}}.into_iter().map(|p| p.to_string()).collect::<Vec<String>>().join(","){{/isArray}}.to_string());
+        };
+    }
+    serialize!(multipart_form, {{{baseName}}}, {{{vendorExtensions.x-rust-param-identifier}}});
     {{/isNullable}}
     {{#isNullable}}
     match {{{vendorExtensions.x-rust-param-identifier}}} {

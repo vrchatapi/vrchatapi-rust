@@ -294,8 +294,15 @@ pub async fn upload_print(
     if let Some(param_value) = p_form_note {
         multipart_form = multipart_form.text("note", param_value.to_string());
     }
-    multipart_form = multipart_form.text("timestamp", serde_json::to_string(&p_form_timestamp)?);
-    //Replaced:    multipart_form = multipart_form.text("timestamp", p_form_timestamp.to_string());
+    macro_rules! serialize {
+        ($form:ident, data, $data:ident) => {
+            $form = $form.text("data", serde_json::to_string(&$data)?);
+        };
+        ($form:ident, $tag:ident, $data:ident) => {
+            $form = $form.text(stringify!($tag), $data.to_string());
+        };
+    }
+    serialize!(multipart_form, timestamp, p_form_timestamp);
     if let Some(param_value) = p_form_world_id {
         multipart_form = multipart_form.text("worldId", param_value.to_string());
     }
