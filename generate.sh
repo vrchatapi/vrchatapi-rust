@@ -35,6 +35,11 @@ find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
 printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
 
 find src/ -type f -name "*.rs" -exec sed -i 's/models::models/models/g' {} +
+find src/ -type f -name "*.rs" -exec sed -i -E "s/(::)?std::path::PathBuf/crate::patches::better_file_upload::File<'_>/g" {} +
+
+rm -r src/patches
+cp -r patches src/patches
+printf "\npub mod patches;" >> src/lib.rs
 
 cargo fmt
 cargo build

@@ -444,38 +444,22 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: 
     if let Some(ref param_value) = {{{vendorExtensions.x-rust-param-identifier}}} {
         {{#isArray}}
                 for value in param_value {
-                let file = TokioFile::open(value).await?;
-                let stream = FramedRead::new(file, BytesCodec::new());
-                let file_name = value.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
-                let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
-                multipart_form = multipart_form.part("{{{baseName}}}", file_part);
+                multipart_form = multipart_form.part("{{{baseName}}}", value.get_multipart().await?);
                 }
         {{/isArray}}
         {{^isArray}}
-                let file = TokioFile::open(param_value).await?;
-                let stream = FramedRead::new(file, BytesCodec::new());
-                let file_name = param_value.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
-                let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
-                multipart_form = multipart_form.part("{{{baseName}}}", file_part);
+                multipart_form = multipart_form.part("{{{baseName}}}", param_value.get_multipart().await?);
         {{/isArray}}
     }
     {{/required}}
     {{#required}}
     {{#isArray}}
-    for value in &{{{vendorExtensions.x-rust-param-identifier}}} {
-        let file = TokioFile::open(value).await?;
-        let stream = FramedRead::new(file, BytesCodec::new());
-        let file_name = value.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
-        let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
-        multipart_form = multipart_form.part("{{{baseName}}}", file_part);
+    for value in {{{vendorExtensions.x-rust-param-identifier}}} {
+        multipart_form = multipart_form.part("{{{baseName}}}", value.get_multipart().await?);
     }
     {{/isArray}}
     {{^isArray}}
-    let file = TokioFile::open(&{{{vendorExtensions.x-rust-param-identifier}}}).await?;
-    let stream = FramedRead::new(file, BytesCodec::new());
-    let file_name = {{{vendorExtensions.x-rust-param-identifier}}}.file_name().map(|n| n.to_string_lossy().to_string()).unwrap_or_default();
-    let file_part = reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
-    multipart_form = multipart_form.part("{{{baseName}}}", file_part);
+    multipart_form = multipart_form.part("{{{baseName}}}", {{{vendorExtensions.x-rust-param-identifier}}}.get_multipart().await?);
     {{/isArray}}
     {{/required}}
     {{/supportAsync}}

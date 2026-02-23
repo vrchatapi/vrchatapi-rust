@@ -1083,7 +1083,7 @@ pub async fn update_asset_review_notes(
 /// Upload a gallery image
 pub async fn upload_gallery_image(
     configuration: &configuration::Configuration,
-    file: std::path::PathBuf,
+    file: crate::patches::better_file_upload::File<'_>,
 ) -> Result<models::File, Error<UploadGalleryImageError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_form_file = file;
@@ -1097,15 +1097,7 @@ pub async fn upload_gallery_image(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    let file = TokioFile::open(&p_form_file).await?;
-    let stream = FramedRead::new(file, BytesCodec::new());
-    let file_name = p_form_file
-        .file_name()
-        .map(|n| n.to_string_lossy().to_string())
-        .unwrap_or_default();
-    let file_part =
-        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
-    multipart_form = multipart_form.part("file", file_part);
+    multipart_form = multipart_form.part("file", p_form_file.get_multipart().await?);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;
@@ -1140,7 +1132,7 @@ pub async fn upload_gallery_image(
 /// Upload an icon
 pub async fn upload_icon(
     configuration: &configuration::Configuration,
-    file: std::path::PathBuf,
+    file: crate::patches::better_file_upload::File<'_>,
 ) -> Result<models::File, Error<UploadIconError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_form_file = file;
@@ -1154,15 +1146,7 @@ pub async fn upload_icon(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    let file = TokioFile::open(&p_form_file).await?;
-    let stream = FramedRead::new(file, BytesCodec::new());
-    let file_name = p_form_file
-        .file_name()
-        .map(|n| n.to_string_lossy().to_string())
-        .unwrap_or_default();
-    let file_part =
-        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
-    multipart_form = multipart_form.part("file", file_part);
+    multipart_form = multipart_form.part("file", p_form_file.get_multipart().await?);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;
@@ -1197,7 +1181,7 @@ pub async fn upload_icon(
 /// Upload an image, which can be an icon, gallery image, sticker or emoji
 pub async fn upload_image(
     configuration: &configuration::Configuration,
-    file: std::path::PathBuf,
+    file: crate::patches::better_file_upload::File<'_>,
     tag: models::ImagePurpose,
     animation_style: Option<models::ImageAnimationStyle>,
     frames: Option<i32>,
@@ -1227,15 +1211,7 @@ pub async fn upload_image(
         multipart_form =
             multipart_form.text("animationStyle", serde_json::to_string(&param_value)?);
     }
-    let file = TokioFile::open(&p_form_file).await?;
-    let stream = FramedRead::new(file, BytesCodec::new());
-    let file_name = p_form_file
-        .file_name()
-        .map(|n| n.to_string_lossy().to_string())
-        .unwrap_or_default();
-    let file_part =
-        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
-    multipart_form = multipart_form.part("file", file_part);
+    multipart_form = multipart_form.part("file", p_form_file.get_multipart().await?);
     if let Some(param_value) = p_form_frames {
         multipart_form = multipart_form.text("frames", param_value.to_string());
     }
