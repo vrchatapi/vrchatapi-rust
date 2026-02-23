@@ -10,6 +10,8 @@ use super::{configuration, ContentType, Error};
 use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
+use tokio::fs::File as TokioFile;
+use tokio_util::codec::{BytesCodec, FramedRead};
 
 /// struct for typed errors of method [`delete_print`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -95,9 +97,7 @@ pub async fn delete_print(
 pub async fn edit_print(
     configuration: &configuration::Configuration,
     print_id: &str,
-    image: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
+    image: std::path::PathBuf,
     note: Option<&str>,
 ) -> Result<models::Print, Error<EditPrintError>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -118,10 +118,15 @@ pub async fn edit_print(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    let part = reqwest::multipart::Part::bytes(p_form_image)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    multipart_form = multipart_form.part("image", part);
+    let file = TokioFile::open(&p_form_image).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_image
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .unwrap_or_default();
+    let file_part =
+        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("image", file_part);
     if let Some(param_value) = p_form_note {
         multipart_form = multipart_form.text("note", param_value.to_string());
     }
@@ -255,9 +260,7 @@ pub async fn get_user_prints(
 /// Uploads and creates a print.
 pub async fn upload_print(
     configuration: &configuration::Configuration,
-    image: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
+    image: std::path::PathBuf,
     timestamp: String,
     note: Option<&str>,
     world_id: Option<&str>,
@@ -279,10 +282,15 @@ pub async fn upload_print(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    let part = reqwest::multipart::Part::bytes(p_form_image)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    multipart_form = multipart_form.part("image", part);
+    let file = TokioFile::open(&p_form_image).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_image
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .unwrap_or_default();
+    let file_part =
+        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("image", file_part);
     if let Some(param_value) = p_form_note {
         multipart_form = multipart_form.text("note", param_value.to_string());
     }

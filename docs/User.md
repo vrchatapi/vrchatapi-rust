@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **current_avatar_tags** | **Vec<String>** |  | 
 **current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
-**date_joined** | [**String**](string.md) |  | 
+**date_joined** | [**String**](String.md) |  | 
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 
 **display_name** | **String** | A users visual display name. This is what shows up in-game, and can different from their `username`. Changing display name is restricted to a cooldown period. | 
 **friend_key** | **String** |  | 

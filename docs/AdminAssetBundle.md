@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **tags** | **Vec<String>** |  | 
 **thumbnail_image_url** | **String** |  | 
 **unity_package_url** | Option<**String**> |  | 
-**unity_packages** | [**Vec<models::AdminUnityPackage>**](AdminUnityPackage.md) |  | 
+**unity_packages** | [**HashSet<models::AdminUnityPackage>**](AdminUnityPackage.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -50,7 +50,7 @@ Returns a list of all player moderations made by **you**.  This endpoint does no
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**r#type** | Option<[**PlayerModerationType**](.md)> | Must be one of PlayerModerationType. |  |
+**r#type** | Option<[**PlayerModerationType**](PlayerModerationType.md)> | Must be one of PlayerModerationType. |  |
 **target_user_id** | Option<**String**> | Must be valid UserID. |  |
 
 ### Return type

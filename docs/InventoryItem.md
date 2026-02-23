@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **collections** | **Vec<String>** |  | 
 **created_at** | **String** |  | 
-**default_attributes** | [**std::collections::HashMap<String, models::InventoryDefaultAttributesValue>**](InventoryDefaultAttributes_value.md) |  | 
+**default_attributes** | [**std::collections::HashMap<String, models::InventoryDefaultAttributesValue>**](InventoryDefaultAttributesValue.md) |  | 
 **description** | **String** |  | 
 **equip_slot** | Option<[**models::InventoryEquipSlot**](InventoryEquipSlot.md)> |  | [optional]
 **equip_slots** | Option<[**Vec<models::InventoryEquipSlot>**](InventoryEquipSlot.md)> |  | [optional]

@@ -127,13 +127,13 @@ Name | Type | Description  | Required | Notes
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **holder_id** | Option<**String**> | The UserID of the owner of the inventory; defaults to the currently authenticated user. |  |
-**equip_slot** | Option<[**InventoryEquipSlot**](.md)> | Filter for inventory retrieval. |  |
+**equip_slot** | Option<[**InventoryEquipSlot**](InventoryEquipSlot.md)> | Filter for inventory retrieval. |  |
 **order** | Option<**String**> | Sort order for inventory retrieval. |  |
 **tags** | Option<**String**> | Filter tags for inventory retrieval (comma-separated). |  |
-**types** | Option<[**InventoryItemType**](.md)> | Filter for inventory retrieval. |  |
-**flags** | Option<[**InventoryFlag**](.md)> | Filter flags for inventory retrieval (comma-separated). |  |
-**not_types** | Option<[**InventoryItemType**](.md)> | Filter out types for inventory retrieval (comma-separated). |  |
-**not_flags** | Option<[**InventoryFlag**](.md)> | Filter out flags for inventory retrieval (comma-separated). |  |
+**types** | Option<[**InventoryItemType**](InventoryItemType.md)> | Filter for inventory retrieval. |  |
+**flags** | Option<[**InventoryFlag**](InventoryFlag.md)> | Filter flags for inventory retrieval (comma-separated). |  |
+**not_types** | Option<[**InventoryItemType**](InventoryItemType.md)> | Filter out types for inventory retrieval (comma-separated). |  |
+**not_flags** | Option<[**InventoryFlag**](InventoryFlag.md)> | Filter out flags for inventory retrieval (comma-separated). |  |
 **archived** | Option<**bool**> | Filter archived status for inventory retrieval. |  |
 
 ### Return type
@@ -405,7 +405,7 @@ Unequips the InventoryItem in the given slot of the inventory of the currently l
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inventory_item_id** | [**InventoryEquipSlot**](.md) | Selector for inventory slot management. | [required] |
+**inventory_item_id** | [**InventoryEquipSlot**](InventoryEquipSlot.md) | Selector for inventory slot management. | [required] |
 
 ### Return type
 

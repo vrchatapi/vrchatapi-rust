@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **accepted_tos_version** | Option<**i32**> |  | [optional]
 **bio** | Option<**String**> |  | [optional]
 **bio_links** | Option<**Vec<String>**> |  | [optional]
-**birthday** | Option<[**String**](string.md)> |  | [optional]
+**birthday** | Option<[**String**](String.md)> |  | [optional]
 **content_filters** | Option<[**Vec<models::ContentFilter>**](ContentFilter.md)> | These tags begin with `content_` and control content gating | [optional]
 **current_password** | Option<**String**> |  | [optional]
 **display_name** | Option<**String**> | MUST specify currentPassword as well to change display name | [optional]

@@ -31,7 +31,7 @@ Returns a single Invite Message. This returns the exact same information but les
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**message_type** | [**InviteMessageType**](.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
+**message_type** | [**InviteMessageType**](InviteMessageType.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
 **slot** | **i32** | The message slot to fetch of a given message type. | [required] |
 
 ### Return type
@@ -63,7 +63,7 @@ Returns a list of all the users Invite Messages. Admin Credentials are required 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**message_type** | [**InviteMessageType**](.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
+**message_type** | [**InviteMessageType**](InviteMessageType.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
 
 ### Return type
 
@@ -251,7 +251,7 @@ Resets a single Invite Message back to its original message, and then returns a 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**message_type** | [**InviteMessageType**](.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
+**message_type** | [**InviteMessageType**](InviteMessageType.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
 **slot** | **i32** | The message slot to fetch of a given message type. | [required] |
 
 ### Return type
@@ -346,7 +346,7 @@ Updates a single Invite Message and then returns a list of all of them. Admin Cr
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**message_type** | [**InviteMessageType**](.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
+**message_type** | [**InviteMessageType**](InviteMessageType.md) | The type of message to fetch, must be a valid InviteMessageType. | [required] |
 **slot** | **i32** | The message slot to fetch of a given message type. | [required] |
 **update_invite_message_request** | Option<[**UpdateInviteMessageRequest**](UpdateInviteMessageRequest.md)> | Message of what to set the invite message to. |  |
 

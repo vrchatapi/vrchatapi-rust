@@ -10,6 +10,8 @@ use super::{configuration, ContentType, Error};
 use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
+use tokio::fs::File as TokioFile;
+use tokio_util::codec::{BytesCodec, FramedRead};
 
 /// struct for typed errors of method [`create_file`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -1081,9 +1083,7 @@ pub async fn update_asset_review_notes(
 /// Upload a gallery image
 pub async fn upload_gallery_image(
     configuration: &configuration::Configuration,
-    file: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
+    file: std::path::PathBuf,
 ) -> Result<models::File, Error<UploadGalleryImageError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_form_file = file;
@@ -1097,10 +1097,15 @@ pub async fn upload_gallery_image(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    let part = reqwest::multipart::Part::bytes(p_form_file)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    multipart_form = multipart_form.part("file", part);
+    let file = TokioFile::open(&p_form_file).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_file
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .unwrap_or_default();
+    let file_part =
+        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("file", file_part);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;
@@ -1135,9 +1140,7 @@ pub async fn upload_gallery_image(
 /// Upload an icon
 pub async fn upload_icon(
     configuration: &configuration::Configuration,
-    file: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
+    file: std::path::PathBuf,
 ) -> Result<models::File, Error<UploadIconError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_form_file = file;
@@ -1151,10 +1154,15 @@ pub async fn upload_icon(
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     let mut multipart_form = reqwest::multipart::Form::new();
-    let part = reqwest::multipart::Part::bytes(p_form_file)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    multipart_form = multipart_form.part("file", part);
+    let file = TokioFile::open(&p_form_file).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_file
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .unwrap_or_default();
+    let file_part =
+        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("file", file_part);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;
@@ -1189,9 +1197,7 @@ pub async fn upload_icon(
 /// Upload an image, which can be an icon, gallery image, sticker or emoji
 pub async fn upload_image(
     configuration: &configuration::Configuration,
-    file: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
+    file: std::path::PathBuf,
     tag: models::ImagePurpose,
     animation_style: Option<models::ImageAnimationStyle>,
     frames: Option<i32>,
@@ -1218,12 +1224,18 @@ pub async fn upload_image(
     }
     let mut multipart_form = reqwest::multipart::Form::new();
     if let Some(param_value) = p_form_animation_style {
-        multipart_form = multipart_form.text("animationStyle", param_value.to_string());
+        multipart_form =
+            multipart_form.text("animationStyle", serde_json::to_string(&param_value)?);
     }
-    let part = reqwest::multipart::Part::bytes(p_form_file)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    multipart_form = multipart_form.part("file", part);
+    let file = TokioFile::open(&p_form_file).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_file
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .unwrap_or_default();
+    let file_part =
+        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("file", file_part);
     if let Some(param_value) = p_form_frames {
         multipart_form = multipart_form.text("frames", param_value.to_string());
     }
@@ -1231,10 +1243,10 @@ pub async fn upload_image(
         multipart_form = multipart_form.text("framesOverTime", param_value.to_string());
     }
     if let Some(param_value) = p_form_loop_style {
-        multipart_form = multipart_form.text("loopStyle", param_value.to_string());
+        multipart_form = multipart_form.text("loopStyle", serde_json::to_string(&param_value)?);
     }
     if let Some(param_value) = p_form_mask_tag {
-        multipart_form = multipart_form.text("maskTag", param_value.to_string());
+        multipart_form = multipart_form.text("maskTag", serde_json::to_string(&param_value)?);
     }
     multipart_form = multipart_form.text("tag", p_form_tag.to_string());
     req_builder = req_builder.multipart(multipart_form);

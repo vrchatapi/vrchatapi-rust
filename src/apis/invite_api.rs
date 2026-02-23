@@ -10,6 +10,8 @@ use super::{configuration, ContentType, Error};
 use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
+use tokio::fs::File as TokioFile;
+use tokio_util::codec::{BytesCodec, FramedRead};
 
 /// struct for typed errors of method [`get_invite_message`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -324,9 +326,7 @@ pub async fn invite_user_with_photo(
     configuration: &configuration::Configuration,
     user_id: &str,
     data: models::InviteRequest,
-    image: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
+    image: std::path::PathBuf,
 ) -> Result<models::SentNotification, Error<InviteUserWithPhotoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
@@ -347,10 +347,15 @@ pub async fn invite_user_with_photo(
     }
     let mut multipart_form = reqwest::multipart::Form::new();
     multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
-    let part = reqwest::multipart::Part::bytes(p_form_image)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    multipart_form = multipart_form.part("image", part);
+    let file = TokioFile::open(&p_form_image).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_image
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .unwrap_or_default();
+    let file_part =
+        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("image", file_part);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;
@@ -440,9 +445,7 @@ pub async fn request_invite_with_photo(
     configuration: &configuration::Configuration,
     user_id: &str,
     data: models::RequestInviteRequest,
-    image: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
+    image: std::path::PathBuf,
 ) -> Result<models::Notification, Error<RequestInviteWithPhotoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
@@ -463,10 +466,15 @@ pub async fn request_invite_with_photo(
     }
     let mut multipart_form = reqwest::multipart::Form::new();
     multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
-    let part = reqwest::multipart::Part::bytes(p_form_image)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    multipart_form = multipart_form.part("image", part);
+    let file = TokioFile::open(&p_form_image).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_image
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .unwrap_or_default();
+    let file_part =
+        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("image", file_part);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;
@@ -612,9 +620,7 @@ pub async fn respond_invite_with_photo(
     configuration: &configuration::Configuration,
     notification_id: &str,
     data: models::InviteResponse,
-    image: impl Into<::std::borrow::Cow<'static, [u8]>>,
-    filename: impl Into<::std::borrow::Cow<'static, str>>,
-    mime_type: &str,
+    image: std::path::PathBuf,
 ) -> Result<models::Notification, Error<RespondInviteWithPhotoError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_notification_id = notification_id;
@@ -635,10 +641,15 @@ pub async fn respond_invite_with_photo(
     }
     let mut multipart_form = reqwest::multipart::Form::new();
     multipart_form = multipart_form.text("data", serde_json::to_string_pretty(&p_form_data)?);
-    let part = reqwest::multipart::Part::bytes(p_form_image)
-        .file_name(filename)
-        .mime_str(mime_type)?;
-    multipart_form = multipart_form.part("image", part);
+    let file = TokioFile::open(&p_form_image).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    let file_name = p_form_image
+        .file_name()
+        .map(|n| n.to_string_lossy().to_string())
+        .unwrap_or_default();
+    let file_part =
+        reqwest::multipart::Part::stream(reqwest::Body::wrap_stream(stream)).file_name(file_name);
+    multipart_form = multipart_form.part("image", file_part);
     req_builder = req_builder.multipart(multipart_form);
 
     let req = req_builder.build()?;

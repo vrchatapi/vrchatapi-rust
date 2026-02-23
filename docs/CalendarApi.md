@@ -94,12 +94,12 @@ Get a list of calendar events Initially, call without a `nextCursor` parameter F
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**scope** | Option<[**CalendarEventDiscoveryScope**](.md)> | Scope for calendar event discovery. |  |
+**scope** | Option<[**CalendarEventDiscoveryScope**](CalendarEventDiscoveryScope.md)> | Scope for calendar event discovery. |  |
 **categories** | Option<**String**> | Filter for calendar event discovery. |  |
 **tags** | Option<**String**> | Filter for calendar event discovery. |  |
-**featured_results** | Option<[**CalendarEventDiscoveryInclusion**](.md)> | Filter for calendar event discovery. |  |
-**non_featured_results** | Option<[**CalendarEventDiscoveryInclusion**](.md)> | Filter for calendar event discovery. |  |
-**personalized_results** | Option<[**CalendarEventDiscoveryInclusion**](.md)> | Filter for calendar event discovery. |  |
+**featured_results** | Option<[**CalendarEventDiscoveryInclusion**](CalendarEventDiscoveryInclusion.md)> | Filter for calendar event discovery. |  |
+**non_featured_results** | Option<[**CalendarEventDiscoveryInclusion**](CalendarEventDiscoveryInclusion.md)> | Filter for calendar event discovery. |  |
+**personalized_results** | Option<[**CalendarEventDiscoveryInclusion**](CalendarEventDiscoveryInclusion.md)> | Filter for calendar event discovery. |  |
 **minimum_interest_count** | Option<**i32**> | Filter for calendar event discovery. |  |
 **minimum_remaining_minutes** | Option<**i32**> | Filter for calendar event discovery. |  |
 **upcoming_offset_minutes** | Option<**i32**> | Filter for calendar event discovery. |  |

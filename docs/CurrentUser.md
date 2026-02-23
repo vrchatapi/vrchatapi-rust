@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accepted_privacy_version** | Option<**i32**> |  | [optional]
 **accepted_tos_version** | **i32** |  | 
-**account_deletion_date** | Option<[**String**](string.md)> |  | [optional]
+**account_deletion_date** | Option<[**String**](String.md)> |  | [optional]
 **account_deletion_log** | Option<[**Vec<models::AccountDeletionLog>**](AccountDeletionLog.md)> |   | [optional]
 **active_friends** | Option<**Vec<String>**> |   | [optional]
 **age_verification_status** | [**models::AgeVerificationStatus**](AgeVerificationStatus.md) |  | 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **current_avatar_tags** | **Vec<String>** |  | 
 **current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
-**date_joined** | [**String**](string.md) |  | 
+**date_joined** | [**String**](String.md) |  | 
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 
 **discord_details** | Option<[**models::DiscordDetails**](DiscordDetails.md)> |  | [optional]
 **discord_id** | Option<**String**> | https://discord.com/developers/docs/reference#snowflakes | [optional]
@@ -31,7 +31,7 @@ Name | Type | Description | Notes
 **friend_group_names** | **Vec<String>** | Always empty array. | 
 **friend_key** | **String** |  | 
 **friends** | **Vec<String>** |  | 
-**google_details** | Option<[**serde_json::Value**](.md)> |  | [optional]
+**google_details** | Option<**serde_json::Value**> |  | [optional]
 **google_id** | Option<**String**> |  | [optional]
 **has_birthday** | **bool** |  | 
 **has_email** | **bool** |  | 
@@ -54,7 +54,7 @@ Name | Type | Description | Notes
 **online_friends** | Option<**Vec<String>**> |  | [optional]
 **past_display_names** | [**Vec<models::PastDisplayName>**](PastDisplayName.md) |   | 
 **pico_id** | Option<**String**> |  | [optional]
-**platform_history** | Option<[**Vec<models::CurrentUserPlatformHistoryInner>**](CurrentUser_platform_history_inner.md)> |  | [optional]
+**platform_history** | Option<[**Vec<models::CurrentUserPlatformHistoryInner>**](CurrentUserPlatformHistoryInner.md)> |  | [optional]
 **presence** | Option<[**models::CurrentUserPresence**](CurrentUserPresence.md)> |  | [optional]
 **profile_pic_override** | **String** |  | 
 **profile_pic_override_thumbnail** | **String** |  | 
@@ -67,7 +67,7 @@ Name | Type | Description | Notes
 **status_description** | **String** |  | 
 **status_first_time** | **bool** |  | 
 **status_history** | **Vec<String>** |  | 
-**steam_details** | [**serde_json::Value**](.md) |  | 
+**steam_details** | **serde_json::Value** |  | 
 **steam_id** | **String** |  | 
 **tags** | **Vec<String>** |  | 
 **two_factor_auth_enabled** | **bool** |  | 

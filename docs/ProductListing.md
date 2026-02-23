@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **price_tokens** | **i32** |  | 
 **product_ids** | **Vec<String>** |  | 
 **product_type** | [**models::ProductType**](ProductType.md) |  | 
-**products** | [**Vec<serde_json::Value>**](serde_json::Value.md) |  | 
+**products** | **Vec<serde_json::Value>** |  | 
 **quantifiable** | Option<**bool**> |  | [optional]
 **recurrable** | **bool** |  | 
 **refundable** | **bool** |  | 
