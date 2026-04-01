@@ -21,6 +21,8 @@ pub enum GroupPermissions {
     group_galleries_manage,
     #[serde(rename = "group-instance-age-gated-create")]
     group_instance_age_gated_create,
+    #[serde(rename = "group-instance-announcement-create")]
+    group_instance_announcement_create,
     #[serde(rename = "group-instance-calendar-link")]
     group_instance_calendar_link,
     #[serde(rename = "group-instance-join")]
@@ -69,6 +71,9 @@ impl std::fmt::Display for GroupPermissions {
             Self::group_default_role_manage => write!(f, "group-default-role-manage"),
             Self::group_galleries_manage => write!(f, "group-galleries-manage"),
             Self::group_instance_age_gated_create => write!(f, "group-instance-age-gated-create"),
+            Self::group_instance_announcement_create => {
+                write!(f, "group-instance-announcement-create")
+            }
             Self::group_instance_calendar_link => write!(f, "group-instance-calendar-link"),
             Self::group_instance_join => write!(f, "group-instance-join"),
             Self::group_instance_manage => write!(f, "group-instance-manage"),
