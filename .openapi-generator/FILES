@@ -54,6 +54,7 @@ docs/CalendarEventDiscoveryScope.md
 docs/CalendarEventPlatform.md
 docs/CalendarEventUserInterest.md
 docs/ChangeUserTagsRequest.md
+docs/ChangeWorldTagsRequest.md
 docs/ContentFilter.md
 docs/CreateAvatarModerationRequest.md
 docs/CreateAvatarRequest.md
@@ -67,6 +68,7 @@ docs/CreateGroupPostRequest.md
 docs/CreateGroupRequest.md
 docs/CreateGroupRoleRequest.md
 docs/CreateInstanceRequest.md
+docs/CreateJamSubmissionRequest.md
 docs/CreatePropRequest.md
 docs/CreateWorldRequest.md
 docs/CurrentUser.md
@@ -77,6 +79,8 @@ docs/DeveloperType.md
 docs/Disable2FaResult.md
 docs/DiscordDetails.md
 docs/DynamicContentRow.md
+docs/EarningsMetrics.md
+docs/EarningsMetricsTotals.md
 docs/EconomyAccount.md
 docs/EconomyApi.md
 docs/EquipInventoryItemRequest.md
@@ -172,6 +176,7 @@ docs/InviteRequest.md
 docs/InviteResponse.md
 docs/Jam.md
 docs/JamStateChangeDates.md
+docs/JamSubmission.md
 docs/JamsApi.md
 docs/JoinGroupRequest.md
 docs/License.md
@@ -236,12 +241,16 @@ docs/ProductListing.md
 docs/ProductListingType.md
 docs/ProductListingVariant.md
 docs/ProductPurchase.md
+docs/ProductPurchaseHistory.md
+docs/ProductPurchaseLocationType.md
 docs/ProductPurchasePurchaseContext.md
+docs/ProductPurchaseRecord.md
 docs/ProductType.md
 docs/Prop.md
 docs/PropPublishStatus.md
 docs/PropUnityPackage.md
 docs/PropsApi.md
+docs/PurchaseContextData.md
 docs/PurchaseProductListingRequest.md
 docs/Region.md
 docs/RegisterUserAccount200Response.md
@@ -255,7 +264,13 @@ docs/RequiresTwoFactorAuth.md
 docs/RespondGroupJoinRequest.md
 docs/RespondNotificationV2Request.md
 docs/Response.md
+docs/RewardBadge.md
+docs/RewardRedemption.md
+docs/RewardRedemptionData.md
+docs/RewardRedemptionRequest.md
+docs/RewardRedemptionResult.md
 docs/SearchGroupMembers200Response.md
+docs/SellerEligibility.md
 docs/SentNotification.md
 docs/SentNotificationDetails.md
 docs/ServiceQueueStats.md
@@ -267,7 +282,6 @@ docs/Store.md
 docs/StoreShelf.md
 docs/StoreType.md
 docs/StoreView.md
-docs/Submission.md
 docs/SubmitModerationReportRequest.md
 docs/SubmitModerationReportRequestDetails.md
 docs/Subscription.md
@@ -283,6 +297,7 @@ docs/TransactionStatus.md
 docs/TransactionSteamInfo.md
 docs/TransactionSteamWalletInfo.md
 docs/TransferGroupRequest.md
+docs/TutorialStatus.md
 docs/TwoFactorAuthCode.md
 docs/TwoFactorAuthType.md
 docs/TwoFactorEmailCode.md
@@ -397,6 +412,7 @@ src/models/calendar_event_discovery_scope.rs
 src/models/calendar_event_platform.rs
 src/models/calendar_event_user_interest.rs
 src/models/change_user_tags_request.rs
+src/models/change_world_tags_request.rs
 src/models/content_filter.rs
 src/models/create_avatar_moderation_request.rs
 src/models/create_avatar_request.rs
@@ -410,6 +426,7 @@ src/models/create_group_post_request.rs
 src/models/create_group_request.rs
 src/models/create_group_role_request.rs
 src/models/create_instance_request.rs
+src/models/create_jam_submission_request.rs
 src/models/create_prop_request.rs
 src/models/create_world_request.rs
 src/models/current_user.rs
@@ -420,6 +437,8 @@ src/models/developer_type.rs
 src/models/disable2_fa_result.rs
 src/models/discord_details.rs
 src/models/dynamic_content_row.rs
+src/models/earnings_metrics.rs
+src/models/earnings_metrics_totals.rs
 src/models/economy_account.rs
 src/models/equip_inventory_item_request.rs
 src/models/error.rs
@@ -507,6 +526,7 @@ src/models/invite_request.rs
 src/models/invite_response.rs
 src/models/jam.rs
 src/models/jam_state_change_dates.rs
+src/models/jam_submission.rs
 src/models/join_group_request.rs
 src/models/license.rs
 src/models/license_action.rs
@@ -567,11 +587,15 @@ src/models/product_listing.rs
 src/models/product_listing_type.rs
 src/models/product_listing_variant.rs
 src/models/product_purchase.rs
+src/models/product_purchase_history.rs
+src/models/product_purchase_location_type.rs
 src/models/product_purchase_purchase_context.rs
+src/models/product_purchase_record.rs
 src/models/product_type.rs
 src/models/prop.rs
 src/models/prop_publish_status.rs
 src/models/prop_unity_package.rs
+src/models/purchase_context_data.rs
 src/models/purchase_product_listing_request.rs
 src/models/region.rs
 src/models/register_user_account_200_response.rs
@@ -585,7 +609,13 @@ src/models/requires_two_factor_auth.rs
 src/models/respond_group_join_request.rs
 src/models/respond_notification_v2_request.rs
 src/models/response.rs
+src/models/reward_badge.rs
+src/models/reward_redemption.rs
+src/models/reward_redemption_data.rs
+src/models/reward_redemption_request.rs
+src/models/reward_redemption_result.rs
 src/models/search_group_members_200_response.rs
+src/models/seller_eligibility.rs
 src/models/sent_notification.rs
 src/models/sent_notification_details.rs
 src/models/service_queue_stats.rs
@@ -597,7 +627,6 @@ src/models/store.rs
 src/models/store_shelf.rs
 src/models/store_type.rs
 src/models/store_view.rs
-src/models/submission.rs
 src/models/submit_moderation_report_request.rs
 src/models/submit_moderation_report_request_details.rs
 src/models/subscription.rs
@@ -613,6 +642,7 @@ src/models/transaction_status.rs
 src/models/transaction_steam_info.rs
 src/models/transaction_steam_wallet_info.rs
 src/models/transfer_group_request.rs
+src/models/tutorial_status.rs
 src/models/two_factor_auth_code.rs
 src/models/two_factor_auth_type.rs
 src/models/two_factor_email_code.rs

@@ -24,6 +24,7 @@ Method | HTTP request | Description
 [**get_user_note**](UsersApi.md#get_user_note) | **GET** /userNotes/{userNoteId} | Get User Note
 [**get_user_notes**](UsersApi.md#get_user_notes) | **GET** /userNotes | Get User Notes
 [**get_user_represented_group**](UsersApi.md#get_user_represented_group) | **GET** /users/{userId}/groups/represented | Get user's current represented group
+[**get_user_tutorial_status**](UsersApi.md#get_user_tutorial_status) | **GET** /users/{userId}/tutorial | Get User Tutorial Status
 [**remove_tags**](UsersApi.md#remove_tags) | **POST** /users/{userId}/removeTags | Remove User Tags
 [**search_users**](UsersApi.md#search_users) | **GET** /users | Search All Users
 [**update_badge**](UsersApi.md#update_badge) | **PUT** /users/{userId}/badges/{badgeId} | Update User Badge
@@ -413,7 +414,7 @@ Get user's submitted feedback
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**content_id** | Option<**bool**> | Filter for users' previously submitted feedback, e.g., a groupId, userId, avatarId, etc. |  |
+**content_id** | Option<**String**> | Filter for particular content submitted, e.g., a groupId, userId, avatarId, etc. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 
@@ -631,7 +632,37 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::RepresentedGroup**](representedGroup.md)
+[**models::RepresentedGroup**](RepresentedGroup.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_tutorial_status
+
+> models::TutorialStatus get_user_tutorial_status(user_id)
+Get User Tutorial Status
+
+Gets the status of completed or outstanding tutorials for the specified user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**models::TutorialStatus**](TutorialStatus.md)
 
 ### Authorization
 

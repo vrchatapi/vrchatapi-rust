@@ -3,6 +3,15 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for typed errors of method [`add_world_tags`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum AddWorldTagsError {
+    Status400(models::Error),
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`check_user_persistence_exists`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -42,6 +51,15 @@ pub enum DeleteUserPersistenceError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteWorldError {
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`delete_world_platform`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteWorldPlatformError {
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
@@ -115,6 +133,15 @@ pub enum PublishWorldError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`remove_world_tags`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum RemoveWorldTagsError {
+    Status400(models::Error),
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`search_worlds`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -139,6 +166,59 @@ pub enum UpdateWorldError {
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
+}
+
+/// Adds tags to the world's profile
+pub async fn add_world_tags(
+    configuration: &configuration::Configuration,
+    world_id: &str,
+    change_world_tags_request: models::ChangeWorldTagsRequest,
+) -> Result<models::World, Error<AddWorldTagsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_world_id = world_id;
+    let p_body_change_world_tags_request = change_world_tags_request;
+
+    let uri_str = format!(
+        "{}/worlds/{worldId}/addTags",
+        configuration.base_path,
+        worldId = crate::apis::urlencode(p_path_world_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_change_world_tags_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::World`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::World`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<AddWorldTagsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
 }
 
 /// Checks whether the user has persistence data for a given world
@@ -340,6 +420,48 @@ pub async fn delete_world(
     } else {
         let content = resp.text().await?;
         let entity: Option<DeleteWorldError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Deletes a world platform.
+pub async fn delete_world_platform(
+    configuration: &configuration::Configuration,
+    world_id: &str,
+    published_platform: &str,
+) -> Result<(), Error<DeleteWorldPlatformError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_world_id = world_id;
+    let p_path_published_platform = published_platform;
+
+    let uri_str = format!(
+        "{}/worlds/{worldId}/platform/{publishedPlatform}",
+        configuration.base_path,
+        worldId = crate::apis::urlencode(p_path_world_id),
+        publishedPlatform = crate::apis::urlencode(p_path_published_platform)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<DeleteWorldPlatformError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -894,6 +1016,59 @@ pub async fn publish_world(
     } else {
         let content = resp.text().await?;
         let entity: Option<PublishWorldError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Removes tags from the world's profile
+pub async fn remove_world_tags(
+    configuration: &configuration::Configuration,
+    world_id: &str,
+    change_world_tags_request: models::ChangeWorldTagsRequest,
+) -> Result<models::World, Error<RemoveWorldTagsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_world_id = world_id;
+    let p_body_change_world_tags_request = change_world_tags_request;
+
+    let uri_str = format!(
+        "{}/worlds/{worldId}/removeTags",
+        configuration.base_path,
+        worldId = crate::apis::urlencode(p_path_world_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_change_world_tags_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::World`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::World`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<RemoveWorldTagsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

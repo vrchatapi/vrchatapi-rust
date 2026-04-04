@@ -7,6 +7,8 @@ pub enum FavoriteType {
     Avatar,
     #[serde(rename = "friend")]
     Friend,
+    #[serde(rename = "vrcPlusWorld")]
+    VrcPlusWorld,
     #[serde(rename = "world")]
     World,
 }
@@ -16,6 +18,7 @@ impl std::fmt::Display for FavoriteType {
         match self {
             Self::Avatar => write!(f, "avatar"),
             Self::Friend => write!(f, "friend"),
+            Self::VrcPlusWorld => write!(f, "vrcPlusWorld"),
             Self::World => write!(f, "world"),
         }
     }

@@ -4,11 +4,13 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_world_tags**](WorldsApi.md#add_world_tags) | **POST** /worlds/{worldId}/addTags | Add World Tags
 [**check_user_persistence_exists**](WorldsApi.md#check_user_persistence_exists) | **GET** /users/{userId}/{worldId}/persist/exists | Check User Persistence Exists
 [**create_world**](WorldsApi.md#create_world) | **POST** /worlds | Create World
 [**delete_all_user_persistence_data**](WorldsApi.md#delete_all_user_persistence_data) | **DELETE** /users/{userId}/persist | Delete All User Persistence Data
 [**delete_user_persistence**](WorldsApi.md#delete_user_persistence) | **DELETE** /users/{userId}/{worldId}/persist | Delete User Persistence
 [**delete_world**](WorldsApi.md#delete_world) | **DELETE** /worlds/{worldId} | Delete World
+[**delete_world_platform**](WorldsApi.md#delete_world_platform) | **DELETE** /worlds/{worldId}/platform/{publishedPlatform} | Delete World Platform
 [**get_active_worlds**](WorldsApi.md#get_active_worlds) | **GET** /worlds/active | List Active Worlds
 [**get_favorited_worlds**](WorldsApi.md#get_favorited_worlds) | **GET** /worlds/favorites | List Favorited Worlds
 [**get_recent_worlds**](WorldsApi.md#get_recent_worlds) | **GET** /worlds/recent | List Recent Worlds
@@ -17,10 +19,42 @@ Method | HTTP request | Description
 [**get_world_metadata**](WorldsApi.md#get_world_metadata) | **GET** /worlds/{worldId}/metadata | Get World Metadata
 [**get_world_publish_status**](WorldsApi.md#get_world_publish_status) | **GET** /worlds/{worldId}/publish | Get World Publish Status
 [**publish_world**](WorldsApi.md#publish_world) | **PUT** /worlds/{worldId}/publish | Publish World
+[**remove_world_tags**](WorldsApi.md#remove_world_tags) | **POST** /worlds/{worldId}/removeTags | Remove World Tags
 [**search_worlds**](WorldsApi.md#search_worlds) | **GET** /worlds | Search All Worlds
 [**unpublish_world**](WorldsApi.md#unpublish_world) | **DELETE** /worlds/{worldId}/publish | Unpublish World
 [**update_world**](WorldsApi.md#update_world) | **PUT** /worlds/{worldId} | Update World
 
+
+
+## add_world_tags
+
+> models::World add_world_tags(world_id, change_world_tags_request)
+Add World Tags
+
+Adds tags to the world's profile
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**change_world_tags_request** | [**ChangeWorldTagsRequest**](ChangeWorldTagsRequest.md) |  | [required] |
+
+### Return type
+
+[**models::World**](World.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## check_user_persistence_exists
@@ -158,6 +192,37 @@ Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatu
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **world_id** | **String** | Must be a valid world ID. | [required] |
+
+### Return type
+
+ (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_world_platform
+
+> delete_world_platform(world_id, published_platform)
+Delete World Platform
+
+Deletes a world platform.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**published_platform** | **String** | A platform the world supports. | [required] |
 
 ### Return type
 
@@ -447,6 +512,37 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## remove_world_tags
+
+> models::World remove_world_tags(world_id, change_world_tags_request)
+Remove World Tags
+
+Removes tags from the world's profile
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**change_world_tags_request** | [**ChangeWorldTagsRequest**](ChangeWorldTagsRequest.md) |  | [required] |
+
+### Return type
+
+[**models::World**](World.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

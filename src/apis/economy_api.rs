@@ -43,6 +43,14 @@ pub enum GetCurrentSubscriptionsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_earnings_metrics`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetEarningsMetricsError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_economy_account`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -83,6 +91,30 @@ pub enum GetProductListingsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_product_purchase`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetProductPurchaseError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_product_purchase_history`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetProductPurchaseHistoryError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_product_purchase_stacks`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetProductPurchaseStacksError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_product_purchases`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -95,6 +127,14 @@ pub enum GetProductPurchasesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetRecentSubscriptionError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_seller_eligibility`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetSellerEligibilityError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -418,6 +458,46 @@ pub async fn get_current_subscriptions(
     }
 }
 
+/// Gets earnings totals and breakdown metrics for the currently authenticated user.
+pub async fn get_earnings_metrics(
+    configuration: &configuration::Configuration,
+) -> Result<models::EarningsMetrics, Error<GetEarningsMetricsError>> {
+    let uri_str = format!("{}/economy/metrics/earnings", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::EarningsMetrics`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::EarningsMetrics`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetEarningsMetricsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Gets the economy account of a user
 pub async fn get_economy_account(
     configuration: &configuration::Configuration,
@@ -689,6 +769,185 @@ pub async fn get_product_listings(
     }
 }
 
+/// Gets a single product purchase
+pub async fn get_product_purchase(
+    configuration: &configuration::Configuration,
+    product_purchase_id: &str,
+) -> Result<models::ProductPurchase, Error<GetProductPurchaseError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_product_purchase_id = product_purchase_id;
+
+    let uri_str = format!(
+        "{}/economy/purchases/{productPurchaseId}",
+        configuration.base_path,
+        productPurchaseId = crate::apis::urlencode(p_path_product_purchase_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ProductPurchase`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ProductPurchase`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetProductPurchaseError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Gets a history of product purchases
+pub async fn get_product_purchase_history(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    n: Option<i32>,
+    date_min: Option<String>,
+    date_max: Option<String>,
+    from_user_id: Option<&str>,
+    to_user_id: Option<&str>,
+    sort: Option<models::SortOptionProductPurchase>,
+    order: Option<models::OrderOptionShort>,
+) -> Result<models::ProductPurchaseHistory, Error<GetProductPurchaseHistoryError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+    let p_query_n = n;
+    let p_query_date_min = date_min;
+    let p_query_date_max = date_max;
+    let p_query_from_user_id = from_user_id;
+    let p_query_to_user_id = to_user_id;
+    let p_query_sort = sort;
+    let p_query_order = order;
+
+    let uri_str = format!(
+        "{}/user/{userId}/economy/transactions",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_n {
+        req_builder = req_builder.query(&[("n", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_date_min {
+        req_builder = req_builder.query(&[("dateMin", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_date_max {
+        req_builder = req_builder.query(&[("dateMax", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_from_user_id {
+        req_builder = req_builder.query(&[("fromUserId", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_to_user_id {
+        req_builder = req_builder.query(&[("toUserId", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_sort {
+        req_builder = req_builder.query(&[("sort", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_order {
+        req_builder = req_builder.query(&[("order", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ProductPurchaseHistory`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ProductPurchaseHistory`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetProductPurchaseHistoryError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Gets stacks for a product purchase
+pub async fn get_product_purchase_stacks(
+    configuration: &configuration::Configuration,
+    product_purchase_id: &str,
+) -> Result<Vec<serde_json::Value>, Error<GetProductPurchaseStacksError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_product_purchase_id = product_purchase_id;
+
+    let uri_str = format!(
+        "{}/economy/purchases/{productPurchaseId}/stacks",
+        configuration.base_path,
+        productPurchaseId = crate::apis::urlencode(p_path_product_purchase_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;serde_json::Value&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;serde_json::Value&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetProductPurchaseStacksError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Gets product purchases
 pub async fn get_product_purchases(
     configuration: &configuration::Configuration,
@@ -791,6 +1050,46 @@ pub async fn get_recent_subscription(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetRecentSubscriptionError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get the eligibility of the currently authenticated user to become a seller
+pub async fn get_seller_eligibility(
+    configuration: &configuration::Configuration,
+) -> Result<models::SellerEligibility, Error<GetSellerEligibilityError>> {
+    let uri_str = format!("{}/economy/seller/eligibility", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SellerEligibility`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SellerEligibility`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetSellerEligibilityError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

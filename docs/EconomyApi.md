@@ -9,13 +9,18 @@ Method | HTTP request | Description
 [**get_balance_earnings**](EconomyApi.md#get_balance_earnings) | **GET** /user/{userId}/balance/earnings | Get Balance Earnings
 [**get_bulk_gift_purchases**](EconomyApi.md#get_bulk_gift_purchases) | **GET** /user/bulk/gift/purchases | Get Bulk Gift Purchases
 [**get_current_subscriptions**](EconomyApi.md#get_current_subscriptions) | **GET** /auth/user/subscription | Get Current Subscriptions
+[**get_earnings_metrics**](EconomyApi.md#get_earnings_metrics) | **GET** /economy/metrics/earnings | Get Earnings Metrics
 [**get_economy_account**](EconomyApi.md#get_economy_account) | **GET** /user/{userId}/economy/account | Get Economy Account
 [**get_license_group**](EconomyApi.md#get_license_group) | **GET** /licenseGroups/{licenseGroupId} | Get License Group
 [**get_product_listing**](EconomyApi.md#get_product_listing) | **GET** /listing/{productId} | Get Product Listing
 [**get_product_listing_alternate**](EconomyApi.md#get_product_listing_alternate) | **GET** /products/{productId} | Get Product Listing (alternate)
 [**get_product_listings**](EconomyApi.md#get_product_listings) | **GET** /user/{userId}/listings | Get User Product Listings
+[**get_product_purchase**](EconomyApi.md#get_product_purchase) | **GET** /economy/purchases/{productPurchaseId} | Get Product Purchase
+[**get_product_purchase_history**](EconomyApi.md#get_product_purchase_history) | **GET** /user/{userId}/economy/transactions | Get Product Purchase History
+[**get_product_purchase_stacks**](EconomyApi.md#get_product_purchase_stacks) | **GET** /economy/purchases/{productPurchaseId}/stacks | Get Product Purchase Stacks
 [**get_product_purchases**](EconomyApi.md#get_product_purchases) | **GET** /economy/purchases | Get Product Purchases
 [**get_recent_subscription**](EconomyApi.md#get_recent_subscription) | **GET** /user/subscription/recent | Get Recent Subscription
+[**get_seller_eligibility**](EconomyApi.md#get_seller_eligibility) | **GET** /economy/seller/eligibility | Get Seller Eligibility
 [**get_steam_transaction**](EconomyApi.md#get_steam_transaction) | **GET** /Steam/transactions/{transactionId} | Get Steam Transaction
 [**get_steam_transactions**](EconomyApi.md#get_steam_transactions) | **GET** /Steam/transactions | List Steam Transactions
 [**get_store**](EconomyApi.md#get_store) | **GET** /economy/store | Get Store
@@ -162,6 +167,33 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**Vec<models::UserSubscription>**](UserSubscription.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_earnings_metrics
+
+> models::EarningsMetrics get_earnings_metrics()
+Get Earnings Metrics
+
+Gets earnings totals and breakdown metrics for the currently authenticated user.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::EarningsMetrics**](EarningsMetrics.md)
 
 ### Authorization
 
@@ -331,6 +363,103 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_product_purchase
+
+> models::ProductPurchase get_product_purchase(product_purchase_id)
+Get Product Purchase
+
+Gets a single product purchase
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**product_purchase_id** | **String** | Must be a valid purchase ID. | [required] |
+
+### Return type
+
+[**models::ProductPurchase**](ProductPurchase.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_product_purchase_history
+
+> models::ProductPurchaseHistory get_product_purchase_history(user_id, n, date_min, date_max, from_user_id, to_user_id, sort, order)
+Get Product Purchase History
+
+Gets a history of product purchases
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**date_min** | Option<**String**> | The start date of the search range. |  |
+**date_max** | Option<**String**> | The end date of the search range. |  |
+**from_user_id** | Option<**String**> | Must be a valid user ID. |  |
+**to_user_id** | Option<**String**> | Must be a valid user ID. |  |
+**sort** | Option<[**SortOptionProductPurchase**](SortOptionProductPurchase.md)> | The sort order of the results. |  |
+**order** | Option<[**OrderOptionShort**](OrderOptionShort.md)> | Result ordering |  |
+
+### Return type
+
+[**models::ProductPurchaseHistory**](ProductPurchaseHistory.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_product_purchase_stacks
+
+> Vec<serde_json::Value> get_product_purchase_stacks(product_purchase_id)
+Get Product Purchase Stacks
+
+Gets stacks for a product purchase
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**product_purchase_id** | **String** | Must be a valid purchase ID. | [required] |
+
+### Return type
+
+[**Vec<serde_json::Value>**](serde_json::Value.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_product_purchases
 
 > Vec<models::ProductPurchase> get_product_purchases(buyer_id, n, offset, most_recent, sort, order)
@@ -380,6 +509,33 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**models::UserSubscription**](UserSubscription.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_seller_eligibility
+
+> models::SellerEligibility get_seller_eligibility()
+Get Seller Eligibility
+
+Get the eligibility of the currently authenticated user to become a seller
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::SellerEligibility**](SellerEligibility.md)
 
 ### Authorization
 

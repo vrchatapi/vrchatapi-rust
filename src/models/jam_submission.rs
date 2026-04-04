@@ -1,9 +1,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Submission :
+/// JamSubmission :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct Submission {
+pub struct JamSubmission {
     /// Either world ID or avatar ID
     #[serde(rename = "contentId")]
     pub content_id: String,
@@ -22,7 +22,7 @@ pub struct Submission {
     pub submitter_id: String,
 }
 
-impl Submission {
+impl JamSubmission {
     pub fn new(
         content_id: String,
         created_at: String,
@@ -30,8 +30,8 @@ impl Submission {
         id: String,
         jam_id: String,
         submitter_id: String,
-    ) -> Submission {
-        Submission {
+    ) -> JamSubmission {
+        JamSubmission {
             content_id,
             created_at,
             description,

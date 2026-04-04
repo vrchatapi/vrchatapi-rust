@@ -116,7 +116,7 @@ pub async fn add_favorite(
 /// Clear ALL contents of a specific favorite group.
 pub async fn clear_favorite_group(
     configuration: &configuration::Configuration,
-    favorite_group_type: &str,
+    favorite_group_type: models::FavoriteType,
     favorite_group_name: &str,
     user_id: &str,
 ) -> Result<models::Success, Error<ClearFavoriteGroupError>> {
@@ -128,7 +128,7 @@ pub async fn clear_favorite_group(
     let uri_str = format!(
         "{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}",
         configuration.base_path,
-        favoriteGroupType = crate::apis::urlencode(p_path_favorite_group_type),
+        favoriteGroupType = p_path_favorite_group_type.to_string(),
         favoriteGroupName = crate::apis::urlencode(p_path_favorite_group_name),
         userId = crate::apis::urlencode(p_path_user_id)
     );
@@ -172,7 +172,7 @@ pub async fn clear_favorite_group(
 /// Fetch information about a specific favorite group.
 pub async fn get_favorite_group(
     configuration: &configuration::Configuration,
-    favorite_group_type: &str,
+    favorite_group_type: models::FavoriteType,
     favorite_group_name: &str,
     user_id: &str,
 ) -> Result<models::FavoriteGroup, Error<GetFavoriteGroupError>> {
@@ -184,7 +184,7 @@ pub async fn get_favorite_group(
     let uri_str = format!(
         "{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}",
         configuration.base_path,
-        favoriteGroupType = crate::apis::urlencode(p_path_favorite_group_type),
+        favoriteGroupType = p_path_favorite_group_type.to_string(),
         favoriteGroupName = crate::apis::urlencode(p_path_favorite_group_name),
         userId = crate::apis::urlencode(p_path_user_id)
     );
@@ -440,7 +440,7 @@ pub async fn remove_favorite(
 /// Update information about a specific favorite group.
 pub async fn update_favorite_group(
     configuration: &configuration::Configuration,
-    favorite_group_type: &str,
+    favorite_group_type: models::FavoriteType,
     favorite_group_name: &str,
     user_id: &str,
     update_favorite_group_request: Option<models::UpdateFavoriteGroupRequest>,
@@ -454,7 +454,7 @@ pub async fn update_favorite_group(
     let uri_str = format!(
         "{}/favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId}",
         configuration.base_path,
-        favoriteGroupType = crate::apis::urlencode(p_path_favorite_group_type),
+        favoriteGroupType = p_path_favorite_group_type.to_string(),
         favoriteGroupName = crate::apis::urlencode(p_path_favorite_group_name),
         userId = crate::apis::urlencode(p_path_user_id)
     );

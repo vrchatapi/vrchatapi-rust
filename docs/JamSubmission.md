@@ -1,4 +1,4 @@
-# Submission
+# JamSubmission
 
 ## Properties
 
