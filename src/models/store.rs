@@ -3,6 +3,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Store {
+    #[serde(rename = "created", skip_serializing_if = "Option::is_none")]
+    pub created: Option<String>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "displayName")]
@@ -28,12 +30,18 @@ pub struct Store {
     /// Only for store type house
     #[serde(rename = "shelves", skip_serializing_if = "Option::is_none")]
     pub shelves: Option<Vec<models::StoreShelf>>,
+    #[serde(rename = "storeContext", skip_serializing_if = "Option::is_none")]
+    pub store_context: Option<models::StoreContext>,
     #[serde(rename = "storeId")]
     pub store_id: String,
+    #[serde(rename = "storeStatus", skip_serializing_if = "Option::is_none")]
+    pub store_status: Option<String>,
     #[serde(rename = "storeType")]
     pub store_type: models::StoreType,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
+    #[serde(rename = "updated", skip_serializing_if = "Option::is_none")]
+    pub updated: Option<String>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "worldId", skip_serializing_if = "Option::is_none")]
     pub world_id: Option<String>,
@@ -51,6 +59,7 @@ impl Store {
         tags: Vec<String>,
     ) -> Store {
         Store {
+            created: None,
             description,
             display_name,
             group_id: None,
@@ -61,9 +70,12 @@ impl Store {
             seller_id,
             shelf_ids: None,
             shelves: None,
+            store_context: None,
             store_id,
+            store_status: None,
             store_type,
             tags,
+            updated: None,
             world_id: None,
         }
     }

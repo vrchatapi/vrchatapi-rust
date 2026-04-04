@@ -5,6 +5,7 @@
 | Name | Value |
 |---- | -----|
 | Duration | duration |
+| Instant | instant |
 | Permanent | permanent |
 | Subscription | subscription |
 

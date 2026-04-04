@@ -14,8 +14,12 @@ Name | Type | Description | Notes
 **group_role_id** | Option<**String**> |  | [optional]
 **id** | **String** |  | 
 **image_id** | **String** |  | 
+**image_url** | Option<**String**> |  | [optional]
 **parent_listings** | **Vec<String>** |  | 
 **product_type** | [**models::ProductType**](ProductType.md) |  | 
+**product_type_label** | Option<**String**> |  | [optional]
+**purchase_count** | Option<**i32**> |  | [optional]
+**purchase_count_quantity** | Option<**i32**> |  | [optional]
 **seller_display_name** | **String** |  | 
 **seller_id** | **String** |  | 
 **tags** | **Vec<String>** |  | 

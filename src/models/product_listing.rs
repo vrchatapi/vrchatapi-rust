@@ -5,8 +5,12 @@ use serde::{Deserialize, Serialize};
 pub struct ProductListing {
     #[serde(rename = "active")]
     pub active: bool,
+    #[serde(rename = "archived", skip_serializing_if = "Option::is_none")]
+    pub archived: Option<bool>,
     #[serde(rename = "buyerRefundable")]
     pub buyer_refundable: bool,
+    #[serde(rename = "created", skip_serializing_if = "Option::is_none")]
+    pub created: Option<String>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "displayName")]
@@ -67,6 +71,13 @@ pub struct ProductListing {
     pub product_type: models::ProductType,
     #[serde(rename = "products")]
     pub products: Vec<serde_json::Value>,
+    #[serde(rename = "purchaseCount", skip_serializing_if = "Option::is_none")]
+    pub purchase_count: Option<i32>,
+    #[serde(
+        rename = "purchaseCountQuantity",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub purchase_count_quantity: Option<i32>,
     #[serde(rename = "quantifiable", skip_serializing_if = "Option::is_none")]
     pub quantifiable: Option<bool>,
     #[serde(rename = "recurrable")]
@@ -87,6 +98,8 @@ pub struct ProductListing {
     pub subtitle: Option<String>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
+    #[serde(rename = "updated", skip_serializing_if = "Option::is_none")]
+    pub updated: Option<String>,
     #[serde(
         rename = "vrcPlusDiscountPrice",
         skip_serializing_if = "Option::is_none"
@@ -124,7 +137,9 @@ impl ProductListing {
     ) -> ProductListing {
         ProductListing {
             active,
+            archived: None,
             buyer_refundable,
+            created: None,
             description,
             display_name,
             duration: None,
@@ -145,6 +160,8 @@ impl ProductListing {
             product_ids,
             product_type,
             products,
+            purchase_count: None,
+            purchase_count_quantity: None,
             quantifiable: None,
             recurrable,
             refundable,
@@ -155,6 +172,7 @@ impl ProductListing {
             store_ids,
             subtitle: None,
             tags: None,
+            updated: None,
             vrc_plus_discount_price: None,
             when_to_expire: None,
         }

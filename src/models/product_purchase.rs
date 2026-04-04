@@ -18,8 +18,15 @@ pub struct ProductPurchase {
     pub is_receiver: bool,
     #[serde(rename = "isSeller")]
     pub is_seller: bool,
+    #[serde(
+        rename = "ledgerTransactionId",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub ledger_transaction_id: Option<i32>,
     #[serde(rename = "listingCurrentlyAvailable")]
     pub listing_currently_available: bool,
+    #[serde(rename = "listingDescription", skip_serializing_if = "Option::is_none")]
+    pub listing_description: Option<String>,
     #[serde(rename = "listingDisplayName")]
     pub listing_display_name: String,
     #[serde(rename = "listingId")]
@@ -31,7 +38,7 @@ pub struct ProductPurchase {
     #[serde(rename = "listingType")]
     pub listing_type: models::ProductListingType,
     #[serde(rename = "products")]
-    pub products: Vec<serde_json::Value>,
+    pub products: Vec<models::ProductPurchaseProduct>,
     #[serde(rename = "purchaseActive")]
     pub purchase_active: bool,
     #[serde(rename = "purchaseContext")]
@@ -47,8 +54,10 @@ pub struct ProductPurchase {
         skip_serializing_if = "Option::is_none"
     )]
     pub purchase_duration_type: Option<String>,
-    #[serde(rename = "purchaseEndDate")]
-    pub purchase_end_date: String,
+    #[serde(rename = "purchaseEndDate", deserialize_with = "Option::deserialize")]
+    pub purchase_end_date: Option<String>,
+    #[serde(rename = "purchaseFee", skip_serializing_if = "Option::is_none")]
+    pub purchase_fee: Option<i32>,
     #[serde(rename = "purchaseId")]
     pub purchase_id: String,
     #[serde(rename = "purchaseLatest")]
@@ -57,14 +66,16 @@ pub struct ProductPurchase {
     pub purchase_price: i32,
     #[serde(rename = "purchaseQuantity")]
     pub purchase_quantity: i32,
-    #[serde(rename = "purchaseStartDate")]
-    pub purchase_start_date: String,
+    #[serde(rename = "purchaseStartDate", deserialize_with = "Option::deserialize")]
+    pub purchase_start_date: Option<String>,
     #[serde(rename = "purchaseToken", deserialize_with = "Option::deserialize")]
     pub purchase_token: Option<serde_json::Value>,
     #[serde(rename = "purchaseType")]
     pub purchase_type: String,
     #[serde(rename = "purchaseUnitPrice")]
     pub purchase_unit_price: i32,
+    #[serde(rename = "purchaseValue", skip_serializing_if = "Option::is_none")]
+    pub purchase_value: Option<i32>,
     #[serde(rename = "receiverDisplayName")]
     pub receiver_display_name: String,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
@@ -99,17 +110,17 @@ impl ProductPurchase {
         listing_image_id: String,
         listing_subtitle: String,
         listing_type: models::ProductListingType,
-        products: Vec<serde_json::Value>,
+        products: Vec<models::ProductPurchaseProduct>,
         purchase_active: bool,
         purchase_context: models::ProductPurchasePurchaseContext,
         purchase_current_status: String,
         purchase_date: String,
-        purchase_end_date: String,
+        purchase_end_date: Option<String>,
         purchase_id: String,
         purchase_latest: bool,
         purchase_price: i32,
         purchase_quantity: i32,
-        purchase_start_date: String,
+        purchase_start_date: Option<String>,
         purchase_token: Option<serde_json::Value>,
         purchase_type: String,
         purchase_unit_price: i32,
@@ -130,7 +141,9 @@ impl ProductPurchase {
             is_gift,
             is_receiver,
             is_seller,
+            ledger_transaction_id: None,
             listing_currently_available,
+            listing_description: None,
             listing_display_name,
             listing_id,
             listing_image_id,
@@ -144,6 +157,7 @@ impl ProductPurchase {
             purchase_duration: None,
             purchase_duration_type: None,
             purchase_end_date,
+            purchase_fee: None,
             purchase_id,
             purchase_latest,
             purchase_price,
@@ -152,6 +166,7 @@ impl ProductPurchase {
             purchase_token,
             purchase_type,
             purchase_unit_price,
+            purchase_value: None,
             receiver_display_name,
             receiver_id,
             recurrable,

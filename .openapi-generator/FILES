@@ -69,6 +69,8 @@ docs/CreateGroupRequest.md
 docs/CreateGroupRoleRequest.md
 docs/CreateInstanceRequest.md
 docs/CreateJamSubmissionRequest.md
+docs/CreateListingRequest.md
+docs/CreateProductRequest.md
 docs/CreatePropRequest.md
 docs/CreateWorldRequest.md
 docs/CurrentUser.md
@@ -83,6 +85,11 @@ docs/EarningsMetrics.md
 docs/EarningsMetricsTotals.md
 docs/EconomyAccount.md
 docs/EconomyApi.md
+docs/EconomyBalances.md
+docs/EconomyPayout.md
+docs/EconomyPayoutEligibility.md
+docs/EconomyPayoutList.md
+docs/EconomyPayoutStatus.md
 docs/EquipInventoryItemRequest.md
 docs/Error.md
 docs/Favorite.md
@@ -243,6 +250,7 @@ docs/ProductListingVariant.md
 docs/ProductPurchase.md
 docs/ProductPurchaseHistory.md
 docs/ProductPurchaseLocationType.md
+docs/ProductPurchaseProduct.md
 docs/ProductPurchasePurchaseContext.md
 docs/ProductPurchaseRecord.md
 docs/ProductType.md
@@ -279,6 +287,7 @@ docs/ShareInventoryItemDirectRequest.md
 docs/SortOption.md
 docs/SortOptionProductPurchase.md
 docs/Store.md
+docs/StoreContext.md
 docs/StoreShelf.md
 docs/StoreType.md
 docs/StoreView.md
@@ -288,6 +297,7 @@ docs/Subscription.md
 docs/SubscriptionPeriod.md
 docs/Success.md
 docs/SuccessFlag.md
+docs/TiliaKyc.md
 docs/TiliaStatus.md
 docs/TiliaTos.md
 docs/TokenBundle.md
@@ -315,6 +325,8 @@ docs/UpdateGroupRequest.md
 docs/UpdateGroupRoleRequest.md
 docs/UpdateInventoryItemRequest.md
 docs/UpdateInviteMessageRequest.md
+docs/UpdateListingRequest.md
+docs/UpdateProductRequest.md
 docs/UpdatePropRequest.md
 docs/UpdateTiliaTosRequest.md
 docs/UpdateUserBadgeRequest.md
@@ -427,6 +439,8 @@ src/models/create_group_request.rs
 src/models/create_group_role_request.rs
 src/models/create_instance_request.rs
 src/models/create_jam_submission_request.rs
+src/models/create_listing_request.rs
+src/models/create_product_request.rs
 src/models/create_prop_request.rs
 src/models/create_world_request.rs
 src/models/current_user.rs
@@ -440,6 +454,11 @@ src/models/dynamic_content_row.rs
 src/models/earnings_metrics.rs
 src/models/earnings_metrics_totals.rs
 src/models/economy_account.rs
+src/models/economy_balances.rs
+src/models/economy_payout.rs
+src/models/economy_payout_eligibility.rs
+src/models/economy_payout_list.rs
+src/models/economy_payout_status.rs
 src/models/equip_inventory_item_request.rs
 src/models/error.rs
 src/models/favorite.rs
@@ -589,6 +608,7 @@ src/models/product_listing_variant.rs
 src/models/product_purchase.rs
 src/models/product_purchase_history.rs
 src/models/product_purchase_location_type.rs
+src/models/product_purchase_product.rs
 src/models/product_purchase_purchase_context.rs
 src/models/product_purchase_record.rs
 src/models/product_type.rs
@@ -624,6 +644,7 @@ src/models/share_inventory_item_direct_request.rs
 src/models/sort_option.rs
 src/models/sort_option_product_purchase.rs
 src/models/store.rs
+src/models/store_context.rs
 src/models/store_shelf.rs
 src/models/store_type.rs
 src/models/store_view.rs
@@ -633,6 +654,7 @@ src/models/subscription.rs
 src/models/subscription_period.rs
 src/models/success.rs
 src/models/success_flag.rs
+src/models/tilia_kyc.rs
 src/models/tilia_status.rs
 src/models/tilia_tos.rs
 src/models/token_bundle.rs
@@ -660,6 +682,8 @@ src/models/update_group_request.rs
 src/models/update_group_role_request.rs
 src/models/update_inventory_item_request.rs
 src/models/update_invite_message_request.rs
+src/models/update_listing_request.rs
+src/models/update_product_request.rs
 src/models/update_prop_request.rs
 src/models/update_tilia_tos_request.rs
 src/models/update_user_badge_request.rs

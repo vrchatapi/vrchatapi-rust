@@ -23,10 +23,26 @@ pub struct Product {
     pub id: String,
     #[serde(rename = "imageId")]
     pub image_id: String,
+    #[serde(
+        rename = "imageUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub image_url: Option<Option<String>>,
     #[serde(rename = "parentListings")]
     pub parent_listings: Vec<String>,
     #[serde(rename = "productType")]
     pub product_type: models::ProductType,
+    #[serde(rename = "productTypeLabel", skip_serializing_if = "Option::is_none")]
+    pub product_type_label: Option<String>,
+    #[serde(rename = "purchaseCount", skip_serializing_if = "Option::is_none")]
+    pub purchase_count: Option<i32>,
+    #[serde(
+        rename = "purchaseCountQuantity",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub purchase_count_quantity: Option<i32>,
     #[serde(rename = "sellerDisplayName")]
     pub seller_display_name: String,
     #[serde(rename = "sellerId")]
@@ -70,8 +86,12 @@ impl Product {
             group_role_id: None,
             id,
             image_id,
+            image_url: None,
             parent_listings,
             product_type,
+            product_type_label: None,
+            purchase_count: None,
+            purchase_count_quantity: None,
             seller_display_name,
             seller_id,
             tags,

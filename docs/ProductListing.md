@@ -5,7 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **bool** |  | 
+**archived** | Option<**bool**> |  | [optional]
 **buyer_refundable** | **bool** |  | 
+**created** | Option<**String**> |  | [optional]
 **description** | **String** |  | 
 **display_name** | **String** |  | 
 **duration** | Option<**i32**> |  | [optional]
@@ -26,6 +28,8 @@ Name | Type | Description | Notes
 **product_ids** | **Vec<String>** |  | 
 **product_type** | [**models::ProductType**](ProductType.md) |  | 
 **products** | **Vec<serde_json::Value>** |  | 
+**purchase_count** | Option<**i32**> |  | [optional]
+**purchase_count_quantity** | Option<**i32**> |  | [optional]
 **quantifiable** | Option<**bool**> |  | [optional]
 **recurrable** | **bool** |  | 
 **refundable** | **bool** |  | 
@@ -36,6 +40,7 @@ Name | Type | Description | Notes
 **store_ids** | **Vec<String>** |  | 
 **subtitle** | Option<**String**> |  | [optional]
 **tags** | Option<**Vec<String>**> |  | [optional]
+**updated** | Option<**String**> |  | [optional]
 **vrc_plus_discount_price** | Option<**i32**> |  | [optional]
 **when_to_expire** | Option<**String**> |  | [optional]
 
