@@ -14,6 +14,7 @@
 | group_galleries_manage | group-galleries-manage |
 | group_instance_age_gated_create | group-instance-age-gated-create |
 | group_instance_announcement_create | group-instance-announcement-create |
+| group_instance_bypass_avatar_performance | group-instance-bypass-avatar-performance |
 | group_instance_calendar_link | group-instance-calendar-link |
 | group_instance_join | group-instance-join |
 | group_instance_manage | group-instance-manage |

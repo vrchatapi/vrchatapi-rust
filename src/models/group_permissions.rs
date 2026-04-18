@@ -23,6 +23,8 @@ pub enum GroupPermissions {
     group_instance_age_gated_create,
     #[serde(rename = "group-instance-announcement-create")]
     group_instance_announcement_create,
+    #[serde(rename = "group-instance-bypass-avatar-performance")]
+    group_instance_bypass_avatar_performance,
     #[serde(rename = "group-instance-calendar-link")]
     group_instance_calendar_link,
     #[serde(rename = "group-instance-join")]
@@ -73,6 +75,9 @@ impl std::fmt::Display for GroupPermissions {
             Self::group_instance_age_gated_create => write!(f, "group-instance-age-gated-create"),
             Self::group_instance_announcement_create => {
                 write!(f, "group-instance-announcement-create")
+            }
+            Self::group_instance_bypass_avatar_performance => {
+                write!(f, "group-instance-bypass-avatar-performance")
             }
             Self::group_instance_calendar_link => write!(f, "group-instance-calendar-link"),
             Self::group_instance_join => write!(f, "group-instance-join"),
