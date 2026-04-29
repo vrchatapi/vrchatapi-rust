@@ -61,21 +61,19 @@ pub struct CalendarEvent {
     /// Languages that might be spoken at this event
     #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
     pub languages: Option<Vec<String>>,
-    /// So far if it exists, always the string \"single\"
     #[serde(rename = "occurrenceKind", skip_serializing_if = "Option::is_none")]
-    pub occurrence_kind: Option<String>,
+    pub occurrence_kind: Option<models::CalendarEventOccurrenceKind>,
     #[serde(rename = "ownerId", skip_serializing_if = "Option::is_none")]
     pub owner_id: Option<String>,
     #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
     pub platforms: Option<Vec<models::CalendarEventPlatform>>,
-    /// So far unused, always \"null\"
     #[serde(
         rename = "recurrence",
         default,
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub recurrence: Option<Option<String>>,
+    pub recurrence: Option<Option<models::CalendarEventRecurrence>>,
     /// Group roles that may join this event
     #[serde(
         rename = "roleIds",

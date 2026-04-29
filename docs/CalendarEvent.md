@@ -21,10 +21,10 @@ Name | Type | Description | Notes
 **interested_user_count** | Option<**i32**> |  | [optional]
 **is_draft** | Option<**bool**> |  | [optional]
 **languages** | Option<**Vec<String>**> | Languages that might be spoken at this event | [optional]
-**occurrence_kind** | Option<**String**> | So far if it exists, always the string \"single\" | [optional]
+**occurrence_kind** | Option<[**models::CalendarEventOccurrenceKind**](CalendarEventOccurrenceKind.md)> |  | [optional]
 **owner_id** | Option<**String**> |  | [optional]
 **platforms** | Option<[**Vec<models::CalendarEventPlatform>**](CalendarEventPlatform.md)> |  | [optional]
-**recurrence** | Option<**String**> | So far unused, always \"null\" | [optional]
+**recurrence** | Option<[**models::CalendarEventRecurrence**](CalendarEventRecurrence.md)> |  | [optional]
 **role_ids** | Option<**Vec<String>**> | Group roles that may join this event | [optional]
 **series_id** | Option<**String**> | So far unused, always \"null\" | [optional]
 **starts_at** | **String** |  | 

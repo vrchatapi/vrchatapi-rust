@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **languages** | Option<**Vec<String>**> |  | [optional]
 **parent_id** | Option<**String**> |  | [optional]
 **platforms** | Option<**Vec<String>**> |  | [optional]
+**recurrence** | Option<[**models::CalendarEventRecurrence**](CalendarEventRecurrence.md)> |  | [optional]
 **role_ids** | Option<**Vec<String>**> |  | [optional]
 **send_creation_notification** | Option<**bool**> | Send notification to group members. | [optional][default to false]
 **starts_at** | Option<**String**> | Time the vent starts at | [optional]

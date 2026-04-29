@@ -15,8 +15,10 @@ Name | Type | Description | Notes
 **image_id** | Option<**String**> |  | [optional]
 **is_draft** | Option<**bool**> |  | [optional]
 **languages** | Option<**Vec<String>**> |  | [optional]
+**occurrence_kind** | Option<[**models::CalendarEventOccurrenceKind**](CalendarEventOccurrenceKind.md)> |  | [optional]
 **parent_id** | Option<**String**> |  | [optional]
 **platforms** | Option<[**Vec<models::CalendarEventPlatform>**](CalendarEventPlatform.md)> |  | [optional]
+**recurrence** | Option<[**models::CalendarEventRecurrence**](CalendarEventRecurrence.md)> |  | [optional]
 **role_ids** | Option<**Vec<String>**> |  | [optional]
 **send_creation_notification** | **bool** | Send notification to group members. | 
 **starts_at** | **String** | Time the event starts at | 
