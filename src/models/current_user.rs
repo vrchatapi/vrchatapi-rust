@@ -83,12 +83,22 @@ pub struct CurrentUser {
     pub google_id: Option<String>,
     #[serde(rename = "hasBirthday")]
     pub has_birthday: bool,
+    #[serde(
+        rename = "hasDiscordFriendsOptOut",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub has_discord_friends_opt_out: Option<bool>,
     #[serde(rename = "hasEmail")]
     pub has_email: bool,
     #[serde(rename = "hasLoggedInFromClient")]
     pub has_logged_in_from_client: bool,
     #[serde(rename = "hasPendingEmail")]
     pub has_pending_email: bool,
+    #[serde(
+        rename = "hasSharedConnectionsOptOut",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub has_shared_connections_opt_out: Option<bool>,
     #[serde(
         rename = "hideContentFilterSettings",
         skip_serializing_if = "Option::is_none"
@@ -289,9 +299,11 @@ impl CurrentUser {
             google_details: None,
             google_id: None,
             has_birthday,
+            has_discord_friends_opt_out: None,
             has_email,
             has_logged_in_from_client,
             has_pending_email,
+            has_shared_connections_opt_out: None,
             hide_content_filter_settings: None,
             home_location,
             id,

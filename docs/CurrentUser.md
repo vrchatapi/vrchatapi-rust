@@ -34,9 +34,11 @@ Name | Type | Description | Notes
 **google_details** | Option<**serde_json::Value**> |  | [optional]
 **google_id** | Option<**String**> |  | [optional]
 **has_birthday** | **bool** |  | 
+**has_discord_friends_opt_out** | Option<**bool**> |  | [optional]
 **has_email** | **bool** |  | 
 **has_logged_in_from_client** | **bool** |  | 
 **has_pending_email** | **bool** |  | 
+**has_shared_connections_opt_out** | Option<**bool**> |  | [optional]
 **hide_content_filter_settings** | Option<**bool**> |  | [optional]
 **home_location** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 

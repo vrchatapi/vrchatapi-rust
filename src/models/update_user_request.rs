@@ -21,6 +21,12 @@ pub struct UpdateUserRequest {
     pub display_name: Option<String>,
     #[serde(rename = "email", skip_serializing_if = "Option::is_none")]
     pub email: Option<String>,
+    /// Opt out of the Discord Friend Connections feature
+    #[serde(
+        rename = "hasDiscordFriendsOptOut",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub has_discord_friends_opt_out: Option<bool>,
     /// Opt out of the Mutuals feature
     #[serde(
         rename = "hasSharedConnectionsOptOut",
@@ -61,6 +67,7 @@ impl UpdateUserRequest {
             current_password: None,
             display_name: None,
             email: None,
+            has_discord_friends_opt_out: None,
             has_shared_connections_opt_out: None,
             is_booping_enabled: None,
             password: None,
