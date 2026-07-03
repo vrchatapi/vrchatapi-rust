@@ -21,7 +21,7 @@ pub struct RegisterUserAccountRequest {
     /// Password
     #[serde(rename = "password")]
     pub password: String,
-    /// Whether to recieve promotional emails
+    /// Whether to receive promotional emails
     #[serde(rename = "subscribe")]
     pub subscribe: bool,
     /// Display Name / Username (Username is a sanitized version)

@@ -1186,7 +1186,7 @@ Name | Type | Description  | Required | Notes
 > models::Success initiate_or_accept_group_transfer(group_id, transfer_group_request)
 Initiate or Accept Group Transfer
 
-To initiate, must be logged in as the current owner and specify the transferTargetId in the body. To accept, must be logged in as the user targetted by a pending transfer, no body is required.
+To initiate, must be logged in as the current owner and specify the transferTargetId in the body. To accept, must be logged in as the user targeted by a pending transfer, no body is required.
 
 ### Parameters
 

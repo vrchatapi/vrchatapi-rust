@@ -36,8 +36,8 @@ Method | HTTP request | Description
 [**get_tilia_status**](EconomyApi.md#get_tilia_status) | **GET** /tilia/status | Get Tilia Status
 [**get_tilia_tos**](EconomyApi.md#get_tilia_tos) | **GET** /user/{userId}/tilia/tos | Get Tilia TOS Agreement Status
 [**get_token_bundles**](EconomyApi.md#get_token_bundles) | **GET** /tokenBundles | List Token Bundles
-[**get_user_credits_eligible**](EconomyApi.md#get_user_credits_eligible) | **GET** /users/{userId}/credits/eligible | Get User Credits Eligiblity
-[**get_user_subscription_eligible**](EconomyApi.md#get_user_subscription_eligible) | **GET** /users/{userId}/subscription/eligible | Get User Subscription Eligiblity
+[**get_user_credits_eligible**](EconomyApi.md#get_user_credits_eligible) | **GET** /users/{userId}/credits/eligible | Get User Credits Eligibility
+[**get_user_subscription_eligible**](EconomyApi.md#get_user_subscription_eligible) | **GET** /users/{userId}/subscription/eligible | Get User Subscription Eligibility
 [**get_user_tilia_kyc**](EconomyApi.md#get_user_tilia_kyc) | **GET** /user/{userId}/tilia/kyc | Get User Tilia KYC
 [**list_stores**](EconomyApi.md#list_stores) | **GET** /economy/stores | List Stores
 [**list_user_products**](EconomyApi.md#list_user_products) | **GET** /user/{userId}/products | List User Products
@@ -1015,7 +1015,7 @@ This endpoint does not need any parameter.
 ## get_user_credits_eligible
 
 > models::UserCreditsEligible get_user_credits_eligible(user_id, subscription_id)
-Get User Credits Eligiblity
+Get User Credits Eligibility
 
 Get the user's eligibility status for subscriptions based on available credits.
 
@@ -1046,7 +1046,7 @@ Name | Type | Description  | Required | Notes
 ## get_user_subscription_eligible
 
 > models::UserSubscriptionEligible get_user_subscription_eligible(user_id, steam_id)
-Get User Subscription Eligiblity
+Get User Subscription Eligibility
 
 Get the user's eligibility status for subscriptions.
 

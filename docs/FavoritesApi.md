@@ -124,7 +124,7 @@ Name | Type | Description  | Required | Notes
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **user_id** | Option<**String**> | Target user to see information on, admin-only. |  |
-**owner_id** | Option<**String**> | The owner of whoms favorite groups to return. Must be a UserID. |  |
+**owner_id** | Option<**String**> | The owner whose favorite groups to return. Must be a UserID. |  |
 
 ### Return type
 

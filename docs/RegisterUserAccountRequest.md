@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **email** | **String** | Email address | 
 **month** | **String** | Birth month of year | 
 **password** | **String** | Password | 
-**subscribe** | **bool** | Whether to recieve promotional emails | 
+**subscribe** | **bool** | Whether to receive promotional emails | 
 **username** | **String** | Display Name / Username (Username is a sanitized version) | 
 **year** | **String** | Birth year | 
 

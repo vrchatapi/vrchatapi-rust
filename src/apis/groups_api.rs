@@ -2391,7 +2391,7 @@ pub async fn get_group_transferability(
     }
 }
 
-/// To initiate, must be logged in as the current owner and specify the transferTargetId in the body. To accept, must be logged in as the user targetted by a pending transfer, no body is required.
+/// To initiate, must be logged in as the current owner and specify the transferTargetId in the body. To accept, must be logged in as the user targeted by a pending transfer, no body is required.
 pub async fn initiate_or_accept_group_transfer(
     configuration: &configuration::Configuration,
     group_id: &str,
