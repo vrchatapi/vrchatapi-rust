@@ -95,8 +95,44 @@ impl <T> From<std::io::Error> for Error<T> {
     }
 }
 
+fn hex_digit(b: u8) -> Option<u8> {
+    match b {
+        b'0'..=b'9' => Some(b - b'0'),
+        b'a'..=b'f' => Some(b - b'a' + 10),
+        b'A'..=b'F' => Some(b - b'A' + 10),
+        _ => None,
+    }
+}
+
+fn parse_percent_encoded(bytes: &[u8; 3]) -> Option<u8> {
+    if bytes[0] != b'%' { return None; }
+    let hi = hex_digit(bytes[1])?;
+    let lo = hex_digit(bytes[2])?;
+    Some((hi << 4) | lo)
+}
+
 pub fn urlencode<T: AsRef<str>>(s: T) -> String {
-    ::url::form_urlencoded::byte_serialize(s.as_ref().as_bytes()).collect()
+    ::url::form_urlencoded::byte_serialize(s.as_ref().as_bytes())
+        .map(|string| {
+            debug_assert!(
+                !string.starts_with('%') || string.len() == 3,
+                "the iterator should yield percent-encoded strings of exactly 3 bytes, or unescaped strings"
+            );
+
+            let parsed = match string.as_bytes().try_into() {
+                Ok(bytes) => parse_percent_encoded(bytes),
+                Err(_) => None,
+            };
+
+            // The VRChat API deviates from the application/x-www-form-urlencoded percent-encode set, for values like the InstanceID.
+            // The characters bellow should remain unchanged for URI parameters, or requests will be rejected as malformed.
+            match parsed {
+                Some(b'(') => "(",
+                Some(b')') => ")",
+                _ => string
+            }
+        })
+        .collect()
 }
 
 pub fn parse_deep_object(prefix: &str, value: &serde_json::Value) -> Vec<(String, String)> {
