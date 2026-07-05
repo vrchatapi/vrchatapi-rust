@@ -45,7 +45,7 @@ jobs:
         uses: actions/setup-java@v5
         with:
           java-version: '20'
-          distribution: 'adopt'
+          distribution: 'temurin'
       - name: Install Rustup toolchain
         uses: moonrepo/setup-rust@v1
       - name: Download Specification
@@ -80,6 +80,6 @@ jobs:
           folder: .
           commit-message: "Upgrade Rust SDK to spec ${{ env.PASSED_VERSION }}${{env.VERSION_POSTPEND}}"
       - name: Deploy to Crates.io
-        run: cargo publish
+        run: cargo publish --allow-dirty #Cargo.toml is always detected as "dirty", eventhough the changed should have been pushed by the step above
         env:
           CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
