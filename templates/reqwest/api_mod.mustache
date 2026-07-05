@@ -128,7 +128,9 @@ fn hex_digit(b: u8) -> Option<u8> {
 }
 
 fn parse_percent_encoded(bytes: &[u8; 3]) -> Option<u8> {
-    if bytes[0] != b'%' { return None; }
+    if bytes[0] != b'%' { 
+      return None;
+    }
     let hi = hex_digit(bytes[1])?;
     let lo = hex_digit(bytes[2])?;
     Some((hi << 4) | lo)
