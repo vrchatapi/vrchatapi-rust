@@ -19,10 +19,9 @@ reqwest = { version = "^0.13", default-features = false, features = ["json", "mu
 reqwest-middleware = { version = "^0.5", features = ["json", "multipart", "query", "form"] }
 
 [features]
-default = ["reqwest/cookies"]
+default = ["native-tls"]
 native-tls = ["reqwest/native-tls"]
 rustls = ["reqwest/rustls"]
 
 [dev-dependencies]
 tokio = { version = '1', features = ['macros', 'rt-multi-thread'] }
-reqwest = { version = '^0.13', features = ['native-tls']}

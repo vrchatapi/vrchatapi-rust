@@ -13,7 +13,7 @@ rm src/apis src/models docs -rf
 ./node_modules/\@openapitools/openapi-generator-cli/main.js generate \
 -g rust \
 -t ./templates \
-'--additional-properties=packageName=vrchatapi,supportAsync=true,avoidBoxedModels=true,library=reqwest,reqwestDefaultFeatures=reqwest/cookies,supportMiddleware=true,repositoryUrl="https://github.com/vrchatapi/vrchatapi-rust",description="VRChat API Client for Rust",infoEmail="vrchatapi.lpv0t@aries.fyi"' \
+'--additional-properties=packageName=vrchatapi,supportAsync=true,avoidBoxedModels=true,library=reqwest,supportMiddleware=true,repositoryUrl="https://github.com/vrchatapi/vrchatapi-rust",description="VRChat API Client for Rust",infoEmail="vrchatapi.lpv0t@aries.fyi"' \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
@@ -27,10 +27,9 @@ sed -i 's/^description = ".*"/description = "VRChat API Client for Rust"/' Cargo
 # Remove empty doc comments
 find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
 
-#Fix example
-# tokio as an async runtime
-# reqwest to enable some tls handling in reqwest via feature unification (since we can't enable features of our own library for examples?)
-printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }\nreqwest = { version = '^0.13', features = ['native-tls']}" >> Cargo.toml
+# Fix example
+# - tokio is needed as an async runtime
+printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
 
 find src/ -type f -name "*.rs" -exec sed -i 's/models::models/models/g' {} +
 find src/ -type f -name "*.rs" -exec sed -i -E "s/(::)?std::path::PathBuf/crate::patches::better_file_upload::File<'_>/g" {} +
