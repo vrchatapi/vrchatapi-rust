@@ -4,6 +4,12 @@ use serde::{Deserialize, Serialize};
 /// LimitedUserSearch : User object received when searching
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedUserSearch {
+    #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
+    pub banner_color: Option<String>,
+    #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
+    pub banner_type: Option<String>,
+    #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
+    pub banner_url: Option<String>,
     #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
     pub bio: Option<String>,
     #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
@@ -20,6 +26,10 @@ pub struct LimitedUserSearch {
     pub developer_type: models::DeveloperType,
     #[serde(rename = "displayName")]
     pub display_name: String,
+    #[serde(rename = "iconFrame", skip_serializing_if = "Option::is_none")]
+    pub icon_frame: Option<String>,
+    #[serde(rename = "iconUrl", skip_serializing_if = "Option::is_none")]
+    pub icon_url: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id")]
     pub id: String,
@@ -28,6 +38,10 @@ pub struct LimitedUserSearch {
     /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
+    #[serde(rename = "nameplateEffect", skip_serializing_if = "Option::is_none")]
+    pub nameplate_effect: Option<String>,
+    #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
+    pub profile_effect: Option<String>,
     #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
     pub profile_pic_override: Option<String>,
     #[serde(rename = "pronouns", skip_serializing_if = "Option::is_none")]
@@ -59,6 +73,9 @@ impl LimitedUserSearch {
         tags: Vec<String>,
     ) -> LimitedUserSearch {
         LimitedUserSearch {
+            banner_color: None,
+            banner_type: None,
+            banner_url: None,
             bio: None,
             bio_links: None,
             current_avatar_image_url,
@@ -66,9 +83,13 @@ impl LimitedUserSearch {
             current_avatar_thumbnail_image_url,
             developer_type,
             display_name,
+            icon_frame: None,
+            icon_url: None,
             id,
             is_friend,
             last_platform,
+            nameplate_effect: None,
+            profile_effect: None,
             profile_pic_override: None,
             pronouns: None,
             status,

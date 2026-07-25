@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **badge_image_url** | **String** | direct url to image | 
 **badge_name** | **String** |  | 
 **hidden** | Option<**bool**> | only present in CurrentUser badges | [optional]
+**is_quantifiable** | Option<**bool**> |  | [optional]
 **showcased** | **bool** |  | 
 **updated_at** | Option<**String**> | only present in CurrentUser badges | [optional]
 

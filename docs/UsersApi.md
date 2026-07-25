@@ -13,6 +13,8 @@ Method | HTTP request | Description
 [**get_mutual_friends**](UsersApi.md#get_mutual_friends) | **GET** /users/{userId}/mutuals/friends | Get User Mutual Friends
 [**get_mutual_groups**](UsersApi.md#get_mutual_groups) | **GET** /users/{userId}/mutuals/groups | Get User Mutual Groups
 [**get_mutuals**](UsersApi.md#get_mutuals) | **GET** /users/{userId}/mutuals | Get User Mutuals
+[**get_private_profile**](UsersApi.md#get_private_profile) | **GET** /profile/{userId}/private | Get Private Profile
+[**get_public_profile**](UsersApi.md#get_public_profile) | **GET** /profile/{userId} | Get Public Profile
 [**get_user**](UsersApi.md#get_user) | **GET** /users/{userId} | Get User by ID
 [**get_user_all_group_permissions**](UsersApi.md#get_user_all_group_permissions) | **GET** /users/{userId}/groups/permissions | Get user's permissions for all joined groups.
 [**get_user_by_name**](UsersApi.md#get_user_by_name) | **GET** /users/{username}/name | Get User by Username
@@ -297,6 +299,66 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::Mutuals**](Mutuals.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_private_profile
+
+> models::PrivateProfile get_private_profile(user_id)
+Get Private Profile
+
+Get profile information visible to the currently authenticated user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**models::PrivateProfile**](PrivateProfile.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_public_profile
+
+> models::PublicProfile get_public_profile(user_id)
+Get Public Profile
+
+Get a user's public profile information.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**models::PublicProfile**](PublicProfile.md)
 
 ### Authorization
 

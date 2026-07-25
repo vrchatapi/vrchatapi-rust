@@ -78,6 +78,22 @@ pub enum GetMutualsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_private_profile`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetPrivateProfileError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_public_profile`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetPublicProfileError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -647,6 +663,102 @@ pub async fn get_mutuals(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetMutualsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get profile information visible to the currently authenticated user.
+pub async fn get_private_profile(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+) -> Result<models::PrivateProfile, Error<GetPrivateProfileError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+
+    let uri_str = format!(
+        "{}/profile/{userId}/private",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PrivateProfile`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PrivateProfile`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetPrivateProfileError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get a user's public profile information.
+pub async fn get_public_profile(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+) -> Result<models::PublicProfile, Error<GetPublicProfileError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+
+    let uri_str = format!(
+        "{}/profile/{userId}",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PublicProfile`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PublicProfile`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetPublicProfileError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

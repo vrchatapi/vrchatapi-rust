@@ -28,6 +28,8 @@ pub struct Badge {
         skip_serializing_if = "Option::is_none"
     )]
     pub hidden: Option<Option<bool>>,
+    #[serde(rename = "isQuantifiable", skip_serializing_if = "Option::is_none")]
+    pub is_quantifiable: Option<bool>,
     #[serde(rename = "showcased")]
     pub showcased: bool,
     /// only present in CurrentUser badges
@@ -55,6 +57,7 @@ impl Badge {
             badge_image_url,
             badge_name,
             hidden: None,
+            is_quantifiable: None,
             showcased,
             updated_at: None,
         }

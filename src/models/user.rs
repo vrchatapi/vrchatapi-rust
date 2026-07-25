@@ -12,6 +12,10 @@ pub struct User {
     pub allow_avatar_copying: bool,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
     pub badges: Option<Vec<models::Badge>>,
+    #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
+    pub banner_type: Option<String>,
+    #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
+    pub banner_url: Option<String>,
     #[serde(rename = "bio")]
     pub bio: String,
     #[serde(rename = "bioLinks")]
@@ -38,12 +42,18 @@ pub struct User {
         skip_serializing_if = "Option::is_none"
     )]
     pub friend_request_status: Option<String>,
+    #[serde(rename = "iconFrame", skip_serializing_if = "Option::is_none")]
+    pub icon_frame: Option<String>,
+    #[serde(rename = "iconUrl", skip_serializing_if = "Option::is_none")]
+    pub icon_url: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id")]
     pub id: String,
     /// InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance.
     #[serde(rename = "instanceId", skip_serializing_if = "Option::is_none")]
     pub instance_id: Option<String>,
+    #[serde(rename = "isEconomyCreator", skip_serializing_if = "Option::is_none")]
+    pub is_economy_creator: Option<bool>,
     /// Either their `friendKey`, or empty string if you are not friends. Unknown usage.
     #[serde(rename = "isFriend")]
     pub is_friend: bool,
@@ -66,10 +76,14 @@ pub struct User {
     /// Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list.
     #[serde(rename = "location", skip_serializing_if = "Option::is_none")]
     pub location: Option<String>,
+    #[serde(rename = "nameplateEffect", skip_serializing_if = "Option::is_none")]
+    pub nameplate_effect: Option<String>,
     #[serde(rename = "note", skip_serializing_if = "Option::is_none")]
     pub note: Option<String>,
     #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
     pub platform: Option<String>,
+    #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
+    pub profile_effect: Option<String>,
     #[serde(rename = "profilePicOverride")]
     pub profile_pic_override: String,
     #[serde(rename = "profilePicOverrideThumbnail")]
@@ -139,6 +153,8 @@ impl User {
             age_verified,
             allow_avatar_copying,
             badges: None,
+            banner_type: None,
+            banner_url: None,
             bio,
             bio_links,
             current_avatar_image_url,
@@ -149,16 +165,21 @@ impl User {
             display_name,
             friend_key,
             friend_request_status: None,
+            icon_frame: None,
+            icon_url: None,
             id,
             instance_id: None,
+            is_economy_creator: None,
             is_friend,
             last_activity,
             last_login,
             last_mobile: None,
             last_platform,
             location: None,
+            nameplate_effect: None,
             note: None,
             platform: None,
+            profile_effect: None,
             profile_pic_override,
             profile_pic_override_thumbnail,
             pronouns,

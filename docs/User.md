@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **age_verified** | **bool** | `true` if, user is age verified (not 18+). | 
 **allow_avatar_copying** | **bool** |  | [default to true]
 **badges** | Option<[**Vec<models::Badge>**](Badge.md)> |   | [optional]
+**banner_type** | Option<**String**> |  | [optional]
+**banner_url** | Option<**String**> |  | [optional]
 **bio** | **String** |  | 
 **bio_links** | **Vec<String>** |  | 
 **current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
@@ -18,16 +20,21 @@ Name | Type | Description | Notes
 **display_name** | **String** | A users visual display name. This is what shows up in-game, and can different from their `username`. Changing display name is restricted to a cooldown period. | 
 **friend_key** | **String** |  | 
 **friend_request_status** | Option<**String**> |  | [optional]
+**icon_frame** | Option<**String**> |  | [optional]
+**icon_url** | Option<**String**> |  | [optional]
 **id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
 **instance_id** | Option<**String**> | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | [optional]
+**is_economy_creator** | Option<**bool**> |  | [optional]
 **is_friend** | **bool** | Either their `friendKey`, or empty string if you are not friends. Unknown usage. | 
 **last_activity** | **String** | Either a date-time or empty string. | 
 **last_login** | **String** | Either a date-time or empty string. | 
 **last_mobile** | Option<**String**> |  | [optional]
 **last_platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **location** | Option<**String**> | Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list. | [optional]
+**nameplate_effect** | Option<**String**> |  | [optional]
 **note** | Option<**String**> |  | [optional]
 **platform** | Option<**String**> |  | [optional]
+**profile_effect** | Option<**String**> |  | [optional]
 **profile_pic_override** | **String** |  | 
 **profile_pic_override_thumbnail** | **String** |  | 
 **pronouns** | **String** |  | 
