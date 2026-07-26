@@ -3,28 +3,33 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ProfileRepresentedGroup {
-    #[serde(rename = "bannerUrl", deserialize_with = "Option::deserialize")]
-    pub banner_url: Option<String>,
-    #[serde(rename = "iconUrl", deserialize_with = "Option::deserialize")]
-    pub icon_url: Option<String>,
-    #[serde(rename = "id")]
-    pub id: String,
-    #[serde(rename = "name")]
-    pub name: String,
+    #[serde(
+        rename = "bannerUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub banner_url: Option<Option<String>>,
+    #[serde(
+        rename = "iconUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub icon_url: Option<Option<String>>,
+    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
+    pub id: Option<String>,
+    #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
+    pub name: Option<String>,
 }
 
 impl ProfileRepresentedGroup {
-    pub fn new(
-        banner_url: Option<String>,
-        icon_url: Option<String>,
-        id: String,
-        name: String,
-    ) -> ProfileRepresentedGroup {
+    pub fn new() -> ProfileRepresentedGroup {
         ProfileRepresentedGroup {
-            banner_url,
-            icon_url,
-            id,
-            name,
+            banner_url: None,
+            icon_url: None,
+            id: None,
+            name: None,
         }
     }
 }
