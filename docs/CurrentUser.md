@@ -12,6 +12,8 @@ Name | Type | Description | Notes
 **age_verification_status** | [**models::AgeVerificationStatus**](AgeVerificationStatus.md) |  | 
 **age_verified** | **bool** | `true` if, user is age verified (not 18+). | 
 **allow_avatar_copying** | **bool** |  | 
+**apple_details** | Option<**serde_json::Value**> |  | [optional]
+**apple_id** | Option<**String**> |  | [optional]
 **auth_token** | Option<**String**> | The auth token for NEWLY REGISTERED ACCOUNTS ONLY (/auth/register) | [optional]
 **badges** | Option<[**Vec<models::Badge>**](Badge.md)> |   | [optional]
 **bio** | **String** |  | 
@@ -72,6 +74,8 @@ Name | Type | Description | Notes
 **steam_details** | **serde_json::Value** |  | 
 **steam_id** | **String** |  | 
 **tags** | **Vec<String>** |  | 
+**twitch_details** | Option<**serde_json::Value**> |  | [optional]
+**twitch_id** | Option<**String**> |  | [optional]
 **two_factor_auth_enabled** | **bool** |  | 
 **two_factor_auth_enabled_date** | Option<**String**> |  | [optional]
 **unsubscribe** | **bool** |  | 

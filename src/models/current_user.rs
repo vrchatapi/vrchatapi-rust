@@ -33,6 +33,10 @@ pub struct CurrentUser {
     pub age_verified: bool,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
+    #[serde(rename = "appleDetails", skip_serializing_if = "Option::is_none")]
+    pub apple_details: Option<serde_json::Value>,
+    #[serde(rename = "appleId", skip_serializing_if = "Option::is_none")]
+    pub apple_id: Option<String>,
     /// The auth token for NEWLY REGISTERED ACCOUNTS ONLY (/auth/register)
     #[serde(rename = "authToken", skip_serializing_if = "Option::is_none")]
     pub auth_token: Option<String>,
@@ -179,6 +183,10 @@ pub struct CurrentUser {
     pub steam_id: String,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
+    #[serde(rename = "twitchDetails", skip_serializing_if = "Option::is_none")]
+    pub twitch_details: Option<serde_json::Value>,
+    #[serde(rename = "twitchId", skip_serializing_if = "Option::is_none")]
+    pub twitch_id: Option<String>,
     #[serde(rename = "twoFactorAuthEnabled")]
     pub two_factor_auth_enabled: bool,
     #[serde(
@@ -277,6 +285,8 @@ impl CurrentUser {
             age_verification_status,
             age_verified,
             allow_avatar_copying,
+            apple_details: None,
+            apple_id: None,
             auth_token: None,
             badges: None,
             bio,
@@ -337,6 +347,8 @@ impl CurrentUser {
             steam_details,
             steam_id,
             tags,
+            twitch_details: None,
+            twitch_id: None,
             two_factor_auth_enabled,
             two_factor_auth_enabled_date: None,
             unsubscribe,
