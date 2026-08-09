@@ -1,0 +1,72 @@
+on:
+  repository_dispatch:
+    types: [release]
+  workflow_dispatch:
+    inputs:
+      json:
+        description: 'Passed json from repository_dispatch'
+        required: true
+        type: string
+      version_postfix:
+        description: 'Additional string to concatenate onto the existing version before release'
+        required: false
+        type: string
+        default: ''
+
+name: Generate VRChat API SDK
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    name: Generate VRChat API SDK
+    env:
+      ARTIFACT_NAME: "openapi.json"
+      INPUT: ${{ github.event_name == 'repository_dispatch' && toJSON(github.event.client_payload) || inputs.json }}
+      SPEC_URL: ${{ (github.event_name == 'repository_dispatch' && github.event.client_payload || fromJSON(inputs.json))['artifacts']['openapi.json'] }}
+      PASSED_VERSION: ${{ (github.event_name == 'repository_dispatch' && github.event.client_payload || fromJSON(inputs.json))['version'] }}
+      VERSION_POSTPEND: ${{ github.event_name == 'workflow_dispatch' && inputs.version_postfix || '' }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: vrchatapi/specification/.github/actions/setup-generator@ci/modernise-actions
+      - name: Set up JDK 20
+        uses: actions/setup-java@v5.7.0
+        with:
+          java-version: '20'
+          distribution: 'temurin'
+      - name: Install Rustup toolchain
+        uses: moonrepo/setup-rust@v1.3.0
+      - name: Download Specification
+        run: wget "${SPEC_URL}" '--output-document' "${ARTIFACT_NAME}"
+      - name: Check version number
+        run: |
+          set -euo pipefail
+          if [ "$(yq '--unwrapScalar' '.info.version' "${ARTIFACT_NAME}")" != ${PASSED_VERSION} ]
+          then
+            echo -e "Mismatch between actual and expected version!\nAborting Release." >&2
+            exit 1
+          fi
+      - name: Apply Version Postpend
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.version_postfix != '' }}
+        run: yq '--inplace' ".info.version |= \"${PASSED_VERSION}${VERSION_POSTPEND}\"" "${ARTIFACT_NAME}"
+      - name: Generate SDK Client
+        run: bash ./generate.sh "${ARTIFACT_NAME}"
+      - name: Check version number
+        run: |
+          set -euo pipefail
+          if [ "$(yq '--unwrapScalar' '--input-format=toml' '--output-format=toml' '.package.version' 'Cargo.toml')" != "${PASSED_VERSION}${VERSION_POSTPEND}" ]
+          then
+            echo -e "Mismatch between actual and expected version!\nAborting Release." >&2
+            exit 1
+          fi
+      - name: Remove API Spec
+        run: unlink "${ARTIFACT_NAME}"
+      - name: Deploy SDK back into main branch
+        uses: JamesIves/github-pages-deploy-action@v4.9.0
+        with:
+          branch: main
+          folder: .
+          commit-message: "Upgrade Rust SDK to spec ${{ env.PASSED_VERSION }}${{env.VERSION_POSTPEND}}"
+      - name: Deploy to Crates.io
+        run: cargo publish --allow-dirty #Cargo.toml is always detected as "dirty", eventhough the changed should have been pushed by the step above
+        env:
+          CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_REGISTRY_TOKEN }}
