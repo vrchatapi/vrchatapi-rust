@@ -22,9 +22,11 @@ jobs:
           repository: vrchatapi/vrchatapi-rust
           ref: ${{ inputs.ref || github.ref }}
 
-      - uses: vrchatapi/specification/.github/actions/setup@ci/modernise-actions
+      - uses: vrchatapi/specification/.github/actions/generator@ci/modernise-actions
+
+      - uses: vrchatapi/specification/.github/actions/bundle@ci/modernise-actions
         with:
-          generator: 7.21.0
+          bundle: openapi.json
 
       - uses: moonrepo/setup-rust@v1.3.0
 

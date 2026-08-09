@@ -10,7 +10,7 @@ fi
 # Generate Client
 rm src/apis src/models docs -rf
 
-./node_modules/\@openapitools/openapi-generator-cli/main.js generate \
+openapi-generator generate \
 -g rust \
 -t ./templates \
 '--additional-properties=packageName=vrchatapi,supportAsync=true,avoidBoxedModels=true,library=reqwest,supportMiddleware=true,repositoryUrl="https://github.com/vrchatapi/vrchatapi-rust",description="VRChat API Client for Rust",infoEmail="vrchatapi.lpv0t@aries.fyi"' \
