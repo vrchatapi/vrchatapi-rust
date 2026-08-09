@@ -1,5 +1,7 @@
 on:
   push:
+    branches:
+      - '**'
   pull_request:
   workflow_call:
     inputs:
@@ -14,7 +16,6 @@ name: CI
 jobs:
   generate:
     runs-on: ubuntu-latest
-    if: inputs.ref != '' || github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - uses: actions/checkout@v7
         with:
@@ -35,7 +36,6 @@ jobs:
 
   format:
     runs-on: ubuntu-latest
-    if: inputs.ref != '' || github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - uses: actions/checkout@v7
         with:
@@ -53,7 +53,6 @@ jobs:
   test:
     needs: generate
     runs-on: ubuntu-latest
-    if: inputs.ref != '' || github.event_name == 'push' || github.event.pull_request.head.repo.full_name != github.repository
     steps:
       - uses: actions/download-artifact@v8
         with:
