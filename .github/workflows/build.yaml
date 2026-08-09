@@ -5,13 +5,13 @@ on:
   pull_request:
   workflow_call:
     inputs:
-      spec-artifact:
+      artifact:
         description: >-
-          Artifact holding the bundled specification. Only reachable when the
-          caller shares this run; when empty the latest published one is used.
+          Take the bundle from this run's artifacts rather than the latest
+          release. Only set it when the caller shares the run.
         required: false
-        type: string
-        default: ''
+        type: boolean
+        default: false
       ref:
         description: Ref of this repository to build.
         required: false
@@ -24,12 +24,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: vrchatapi/specification/.github/actions/sdk-spec@ci/modernise-actions
+      - uses: vrchatapi/specification/.github/actions/setup@ci/modernise-actions
         with:
           repository: vrchatapi/vrchatapi-rust
           ref: ${{ inputs.ref || github.ref }}
-          generator-version: 7.21.0
-          spec-artifact: ${{ inputs.spec-artifact }}
+          bundle: openapi.json
+          artifact: ${{ inputs.artifact }}
+          generator: 7.21.0
 
       - uses: actions/setup-java@v5.7.0
         with:
@@ -40,6 +41,4 @@ jobs:
 
       - run: bash ./generate.sh openapi.json
 
-      # The generator runs with avoidBoxedModels, so a schema that produces a
-      # self-referential type fails to compile rather than being boxed.
       - run: cargo build
