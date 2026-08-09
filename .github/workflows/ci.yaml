@@ -34,6 +34,22 @@ jobs:
           path: .
           include-hidden-files: true
 
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          repository: vrchatapi/vrchatapi-rust
+          ref: ${{ inputs.ref || github.ref }}
+
+      - uses: moonrepo/setup-rust@v1.3.0
+        with:
+          components: rustfmt
+
+      - run: cargo fmt --all -- --check
+
+      - run: rustfmt --edition 2021 --check patches/*.rs
+
   test:
     needs: generate
     runs-on: ubuntu-latest
