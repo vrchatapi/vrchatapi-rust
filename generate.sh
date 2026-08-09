@@ -39,5 +39,3 @@ cp -r patches src/patches
 printf "\npub mod patches;" >> src/lib.rs
 
 cargo fmt
-cargo build
-cargo test
