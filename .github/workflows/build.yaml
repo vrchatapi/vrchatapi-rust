@@ -28,7 +28,6 @@ jobs:
         with:
           repository: vrchatapi/vrchatapi-rust
           ref: ${{ inputs.ref || github.ref }}
-          bundle: openapi.json
           artifact: ${{ inputs.artifact }}
           generator: 7.21.0
 
