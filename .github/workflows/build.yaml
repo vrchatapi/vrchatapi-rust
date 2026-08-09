@@ -26,13 +26,6 @@ jobs:
         with:
           generator: 7.21.0
 
-      - uses: actions/setup-java@v5.7.0
-        with:
-          java-version: '20'
-          distribution: temurin
-
       - uses: moonrepo/setup-rust@v1.3.0
 
       - run: bash ./generate.sh openapi.json
-
-      - run: cargo build
