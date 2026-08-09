@@ -14,8 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Test
     steps:
-      - uses: actions/checkout@v6
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions/checkout@v7
+      - uses: moonrepo/setup-rust@v1.3.0
       - run: cargo build --all
       - run: cargo test --all
 
@@ -23,8 +23,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Check formatting
     steps:
-      - uses: actions/checkout@v6
-      - uses: moonrepo/setup-rust@v1
+      - uses: actions/checkout@v7
+      - uses: moonrepo/setup-rust@v1.3.0
         with:
           components: rustfmt
       - run: cargo fmt --all -- --check
