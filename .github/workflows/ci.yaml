@@ -14,10 +14,7 @@ on:
 name: CI
 
 jobs:
-  # Generated once here and handed to the checks below, so they neither repeat
-  # the generation nor disagree about what they are checking. The artifact name
-  # carries the language because a spec run shares one namespace across SDKs.
-  build:
+  generate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -31,13 +28,26 @@ jobs:
 
       - run: bash ./generate.sh openapi.json
 
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         with:
           name: generated-rust
           path: .
+          include-hidden-files: true
+
+  build:
+    needs: generate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: generated-rust
+
+      - uses: moonrepo/setup-rust@v1.3.0
+
+      - run: cargo build --all
 
   test:
-    needs: build
+    needs: generate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v8
@@ -49,7 +59,7 @@ jobs:
       - run: cargo test --all
 
   format:
-    needs: build
+    needs: generate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v8
