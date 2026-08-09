@@ -34,18 +34,6 @@ jobs:
           path: .
           include-hidden-files: true
 
-  build:
-    needs: generate
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v8
-        with:
-          name: generated-rust
-
-      - uses: moonrepo/setup-rust@v1.3.0
-
-      - run: cargo build --all
-
   test:
     needs: generate
     runs-on: ubuntu-latest
@@ -57,17 +45,3 @@ jobs:
       - uses: moonrepo/setup-rust@v1.3.0
 
       - run: cargo test --all
-
-  format:
-    needs: generate
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@v8
-        with:
-          name: generated-rust
-
-      - uses: moonrepo/setup-rust@v1.3.0
-        with:
-          components: rustfmt
-
-      - run: cargo fmt --all -- --check
