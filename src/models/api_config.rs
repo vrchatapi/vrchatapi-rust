@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ApiConfig : Global configuration for various features.
+/// ApiConfig : Global client configuration.  The response carries decoy properties: plausible-looking names VRChat rerolls at random as deliberate obfuscation.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfig {
     /// The current platform-wide event taking place
@@ -67,6 +67,8 @@ pub struct ApiConfig {
     /// Unknown
     #[serde(rename = "clientDisconnectTimeout")]
     pub client_disconnect_timeout: i32,
+    #[serde(rename = "clientMaxDatagrams", skip_serializing_if = "Option::is_none")]
+    pub client_max_datagrams: Option<i32>,
     /// Unknown
     #[serde(
         rename = "clientNetDispatchThread",
@@ -124,6 +126,8 @@ pub struct ApiConfig {
     /// Unknown
     #[serde(rename = "clientSentCountAllowance")]
     pub client_sent_count_allowance: i32,
+    #[serde(rename = "clientUseAck2", skip_serializing_if = "Option::is_none")]
+    pub client_use_ack2: Option<bool>,
     #[serde(rename = "constants")]
     pub constants: models::ApiConfigConstants,
     /// VRChat's contact email
@@ -156,7 +160,7 @@ pub struct ApiConfig {
     pub dev_sdk_version: String,
     /// Unknown, \"dis\" maybe for disconnect?
     #[serde(rename = "dis-countdown")]
-    pub dis_countdown: String,
+    pub dis_countdown: chrono::DateTime<chrono::FixedOffset>,
     /// Unknown
     #[serde(
         rename = "disableAVProInProton",
@@ -226,23 +230,36 @@ pub struct ApiConfig {
     #[serde(rename = "economyLedgerBackfill")]
     pub economy_ledger_backfill: bool,
     /// Unknown
-    #[serde(rename = "economyLedgerMigrationStop")]
-    pub economy_ledger_migration_stop: String,
+    #[serde(
+        rename = "economyLedgerMigrationStop",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub economy_ledger_migration_stop: Option<String>,
     /// Unknown
     #[serde(rename = "economyLedgerMode")]
     pub economy_ledger_mode: String,
     /// Unknown
     #[serde(rename = "economyPauseEnd")]
-    pub economy_pause_end: String,
+    pub economy_pause_end: chrono::DateTime<chrono::FixedOffset>,
     /// Unknown
     #[serde(rename = "economyPauseStart")]
-    pub economy_pause_start: String,
+    pub economy_pause_start: chrono::DateTime<chrono::FixedOffset>,
     /// Unknown
     #[serde(rename = "economyPurchaseRepairEnabled")]
     pub economy_purchase_repair_enabled: bool,
     /// Unknown
     #[serde(rename = "economyState")]
     pub economy_state: i32,
+    #[serde(
+        rename = "enableVRCPlusWorldLists",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub enable_vrc_plus_world_lists: Option<bool>,
+    #[serde(
+        rename = "eventShelfCampaigns",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub event_shelf_campaigns: Option<Vec<models::ApiConfigEventShelfCampaign>>,
     #[serde(rename = "events")]
     pub events: models::ApiConfigEvents,
     /// Unknown
@@ -251,9 +268,21 @@ pub struct ApiConfig {
     /// Display type of gifts
     #[serde(rename = "giftDisplayType")]
     pub gift_display_type: String,
+    #[serde(rename = "globalCacheVersion", skip_serializing_if = "Option::is_none")]
+    pub global_cache_version: Option<i32>,
+    #[serde(
+        rename = "globalCacheVersionDefault",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub global_cache_version_default: Option<i32>,
     /// Unknown
     #[serde(rename = "googleApiClientId")]
     pub google_api_client_id: String,
+    #[serde(
+        rename = "googleApiUnityClientId",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub google_api_unity_client_id: Option<String>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "homeWorldId")]
     pub home_world_id: String,
@@ -274,12 +303,31 @@ pub struct ApiConfig {
     /// VRChat's job application email
     #[serde(rename = "jobsEmail")]
     pub jobs_email: String,
+    /// Relative weight of each info-push category on the loading screen, per audience.
+    #[serde(
+        rename = "loadingScreenWeights",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub loading_screen_weights:
+        Option<std::collections::HashMap<String, models::ApiConfigLoadingScreenWeights>>,
+    /// Low-memory timeout, keyed by platform.
+    #[serde(
+        rename = "lowMemoryGoHomeTimeout",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub low_memory_go_home_timeout:
+        Option<std::collections::HashMap<String, models::ApiConfigLowMemoryGoHomeTimeoutValue>>,
     /// The maximum number of custom emoji each user may have at a given time.
     #[serde(rename = "maxUserEmoji")]
     pub max_user_emoji: i32,
     /// The maximum number of custom stickers each user may have at a given time.
     #[serde(rename = "maxUserStickers")]
     pub max_user_stickers: i32,
+    #[serde(
+        rename = "maximumUnityVersionForUploads",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub maximum_unity_version_for_uploads: Option<String>,
     #[serde(rename = "minSupportedClientBuildNumber")]
     pub min_supported_client_build_number: models::ApiConfigMinSupportedClientBuildNumber,
     /// Minimum Unity version required for uploading assets
@@ -302,12 +350,35 @@ pub struct ApiConfig {
     /// Currently used youtube-dl.exe hash in SHA1-delimited format
     #[serde(rename = "player-url-resolver-sha1")]
     pub player_url_resolver_sha1: String,
+    /// Overrides `player-url-resolver-sha1` on GeForce Now.
+    #[serde(
+        rename = "player-url-resolver-sha1-gfn-override",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub player_url_resolver_sha1_gfn_override: Option<String>,
     /// Currently used youtube-dl.exe version
     #[serde(rename = "player-url-resolver-version")]
     pub player_url_resolver_version: String,
+    /// Overrides `player-url-resolver-version` on GeForce Now.
+    #[serde(
+        rename = "player-url-resolver-version-gfn-override",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub player_url_resolver_version_gfn_override: Option<String>,
+    #[serde(rename = "profileDefaults", skip_serializing_if = "Option::is_none")]
+    pub profile_defaults: Option<models::ApiConfigProfileDefaults>,
+    /// SDK3 component type names.
+    #[serde(rename = "propComponentList", skip_serializing_if = "Option::is_none")]
+    pub prop_component_list: Option<Vec<String>>,
     /// Public key, hex encoded
     #[serde(rename = "publicKey")]
     pub public_key: String,
+    /// Low-memory threshold, keyed by platform.
+    #[serde(
+        rename = "questMinimumLowMemoryThreshold",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub quest_minimum_low_memory_threshold: Option<std::collections::HashMap<String, i32>>,
     /// Categories available for reporting objectionable content
     #[serde(rename = "reportCategories")]
     pub report_categories: std::collections::HashMap<String, models::ReportCategory>,
@@ -377,6 +448,16 @@ pub struct ApiConfig {
     /// Download link for game on the Steam website.
     #[serde(rename = "viveWindowsUrl")]
     pub vive_windows_url: String,
+    #[serde(
+        rename = "voiceMaxPlaybackSourcesMobile",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub voice_max_playback_sources_mobile: Option<i32>,
+    #[serde(
+        rename = "voiceMaxPlaybackSourcesPC",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub voice_max_playback_sources_pc: Option<i32>,
     /// Unknown
     #[serde(rename = "websocketMaxFriendsRefreshDelay")]
     pub websocket_max_friends_refresh_delay: i32,
@@ -392,7 +473,7 @@ pub struct ApiConfig {
 }
 
 impl ApiConfig {
-    /// Global configuration for various features.
+    /// Global client configuration.  The response carries decoy properties: plausible-looking names VRChat rerolls at random as deliberate obfuscation.
     pub fn new(
         campaign_status: String,
         disable_background_preloads: bool,
@@ -429,7 +510,7 @@ impl ApiConfig {
         default_sticker_set: String,
         dev_sdk_url: String,
         dev_sdk_version: String,
-        dis_countdown: String,
+        dis_countdown: chrono::DateTime<chrono::FixedOffset>,
         disable_avatar_copying: bool,
         disable_avatar_gating: bool,
         disable_community_labs: bool,
@@ -450,10 +531,9 @@ impl ApiConfig {
         download_urls: models::ApiConfigDownloadUrlList,
         dynamic_world_rows: Vec<models::DynamicContentRow>,
         economy_ledger_backfill: bool,
-        economy_ledger_migration_stop: String,
         economy_ledger_mode: String,
-        economy_pause_end: String,
-        economy_pause_start: String,
+        economy_pause_end: chrono::DateTime<chrono::FixedOffset>,
+        economy_pause_start: chrono::DateTime<chrono::FixedOffset>,
         economy_purchase_repair_enabled: bool,
         economy_state: i32,
         events: models::ApiConfigEvents,
@@ -534,6 +614,7 @@ impl ApiConfig {
             client_api_key,
             client_bps_ceiling,
             client_disconnect_timeout,
+            client_max_datagrams: None,
             client_net_dispatch_thread: None,
             client_net_dispatch_thread_mobile,
             client_net_in_thread: None,
@@ -547,6 +628,7 @@ impl ApiConfig {
             client_qr: None,
             client_reserved_player_bps,
             client_sent_count_allowance,
+            client_use_ack2: None,
             constants,
             contact_email,
             copyright_email,
@@ -581,16 +663,21 @@ impl ApiConfig {
             download_urls,
             dynamic_world_rows,
             economy_ledger_backfill,
-            economy_ledger_migration_stop,
+            economy_ledger_migration_stop: None,
             economy_ledger_mode,
             economy_pause_end,
             economy_pause_start,
             economy_purchase_repair_enabled,
             economy_state,
+            enable_vrc_plus_world_lists: None,
+            event_shelf_campaigns: None,
             events,
             force_use_latest_world,
             gift_display_type,
+            global_cache_version: None,
+            global_cache_version_default: None,
             google_api_client_id,
+            google_api_unity_client_id: None,
             home_world_id,
             homepage_redirect_target,
             hub_world_id,
@@ -598,8 +685,11 @@ impl ApiConfig {
             ios_app_version,
             ios_version,
             jobs_email,
+            loading_screen_weights: None,
+            low_memory_go_home_timeout: None,
             max_user_emoji,
             max_user_stickers,
+            maximum_unity_version_for_uploads: None,
             min_supported_client_build_number,
             minimum_unity_version_for_uploads,
             moderation_email,
@@ -608,8 +698,13 @@ impl ApiConfig {
             photon_nameserver_overrides,
             photon_public_keys,
             player_url_resolver_sha1,
+            player_url_resolver_sha1_gfn_override: None,
             player_url_resolver_version,
+            player_url_resolver_version_gfn_override: None,
+            profile_defaults: None,
+            prop_component_list: None,
             public_key,
+            quest_minimum_low_memory_threshold: None,
             report_categories,
             report_form_url,
             report_options,
@@ -633,6 +728,8 @@ impl ApiConfig {
             url_list,
             use_reliable_udp_for_voice,
             vive_windows_url,
+            voice_max_playback_sources_mobile: None,
+            voice_max_playback_sources_pc: None,
             websocket_max_friends_refresh_delay,
             websocket_quick_reconnect_time,
             websocket_reconnect_max_delay,

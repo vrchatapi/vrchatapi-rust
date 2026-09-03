@@ -166,7 +166,7 @@ Get a list of a user's calendar events for the month in ?date
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**date** | Option<**String**> | The month to search in. |  |
+**date** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The month to search in. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 
@@ -198,7 +198,7 @@ Get a list of a featured calendar events for the month in ?date
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**date** | Option<**String**> | The month to search in. |  |
+**date** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The month to search in. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 
@@ -230,7 +230,7 @@ Get a list of a followed calendar events for the month in ?date
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**date** | Option<**String**> | The month to search in. |  |
+**date** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The month to search in. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 
@@ -325,7 +325,7 @@ Get a list of a group's calendar events
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
-**date** | Option<**String**> | The month to search in. |  |
+**date** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The month to search in. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 
@@ -350,7 +350,7 @@ Name | Type | Description  | Required | Notes
 > models::CalendarEvent get_group_next_calendar_event(group_id)
 Get next calendar event
 
-Get the closest future calendar event scheduled for a group
+Return the closest future calendar event scheduled for a group. A group with no future scheduled events answers 404.
 
 ### Parameters
 

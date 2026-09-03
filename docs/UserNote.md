@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **String** |  | 
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **id** | **String** |  | 
 **note** | **String** |  | 
 **target_user** | Option<[**models::UserNoteTargetUser**](UserNoteTargetUser.md)> |  | [optional]

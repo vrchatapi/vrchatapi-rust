@@ -782,8 +782,8 @@ Name | Type | Description  | Required | Notes
 **group_id** | **String** | Must be a valid group ID. | [required] |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
-**start_date** | Option<**String**> | The start date of the search range. |  |
-**end_date** | Option<**String**> | The end date of the search range. |  |
+**start_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The start date of the search range. |  |
+**end_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The end date of the search range. |  |
 **actor_ids** | Option<**String**> | The comma-separated actor ids to search for. |  |
 **event_types** | Option<**String**> | The comma-separated event types to search for. |  |
 **target_ids** | Option<**String**> | The comma-separated target ids to search for. |  |

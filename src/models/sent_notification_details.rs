@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SentNotificationDetails {
-    NotificationDetailEmpty(serde_json::Value),
+    NotificationEmpty(serde_json::Value),
     NotificationDetailBoop(models::NotificationDetailBoop),
     NotificationDetailInvite(models::NotificationDetailInvite),
     NotificationDetailInviteResponse(models::NotificationDetailInviteResponse),
@@ -15,6 +15,6 @@ pub enum SentNotificationDetails {
 
 impl Default for SentNotificationDetails {
     fn default() -> Self {
-        Self::NotificationDetailEmpty(Default::default())
+        Self::NotificationEmpty(Default::default())
     }
 }

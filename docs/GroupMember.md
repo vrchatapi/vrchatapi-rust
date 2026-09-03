@@ -6,16 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accepted_by_display_name** | Option<**String**> | Only missing when explicitly fetching own user. | [optional]
 **accepted_by_id** | Option<**String**> | Only missing when explicitly fetching own user. | [optional]
-**banned_at** | Option<**String**> | Only missing when explicitly fetching own user. | [optional]
-**created_at** | Option<**String**> | Only missing when explicitly fetching own user. | [optional]
+**banned_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Only missing when explicitly fetching own user. | [optional]
+**created_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Only missing when explicitly fetching own user. | [optional]
 **group_id** | **String** |  | 
 **has_joined_from_purchase** | Option<**bool**> | Missing when explicitly fetching own user, or when group isn't linked to a purchase. | [optional]
 **id** | **String** |  | 
 **is_representing** | **bool** | Whether the user is representing the group. This makes the group show up above the name tag in-game. | [default to false]
 **is_subscribed_to_announcements** | **bool** |  | [default to false]
 **is_subscribed_to_event_announcements** | Option<**bool**> | Only missing when explicitly fetching own user. | [optional]
-**joined_at** | Option<**String**> |  | 
-**last_post_read_at** | Option<**String**> |  | 
+**joined_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | 
+**last_post_read_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | 
 **m_role_ids** | **Vec<String>** |  | 
 **manager_notes** | Option<**String**> | Only missing when explicitly fetching own user. | [optional]
 **membership_status** | [**models::GroupMemberStatus**](GroupMemberStatus.md) |  | 

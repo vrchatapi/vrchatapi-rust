@@ -16,7 +16,7 @@ pub struct UnityPackage {
     #[serde(rename = "assetVersion")]
     pub asset_version: i32,
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(

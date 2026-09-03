@@ -10,7 +10,7 @@ pub struct GroupRoleTemplateValues {
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "roles")]
-    pub roles: models::GroupRoleTemplateValuesRoles,
+    pub roles: Vec<models::GroupRoleTemplateRole>,
 }
 
 impl GroupRoleTemplateValues {
@@ -18,7 +18,7 @@ impl GroupRoleTemplateValues {
         base_permissions: Vec<models::GroupPermissions>,
         description: String,
         name: String,
-        roles: models::GroupRoleTemplateValuesRoles,
+        roles: Vec<models::GroupRoleTemplateRole>,
     ) -> GroupRoleTemplateValues {
         GroupRoleTemplateValues {
             base_permissions,

@@ -10,7 +10,7 @@ pub struct Print {
     #[serde(rename = "authorName")]
     pub author_name: String,
     #[serde(rename = "createdAt")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "files")]
     pub files: models::PrintFiles,
     #[serde(rename = "id")]
@@ -21,7 +21,7 @@ pub struct Print {
     #[serde(rename = "ownerId", skip_serializing_if = "Option::is_none")]
     pub owner_id: Option<String>,
     #[serde(rename = "timestamp")]
-    pub timestamp: String,
+    pub timestamp: chrono::DateTime<chrono::FixedOffset>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "worldId")]
     pub world_id: String,
@@ -34,11 +34,11 @@ impl Print {
     pub fn new(
         author_id: String,
         author_name: String,
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         files: models::PrintFiles,
         id: String,
         note: String,
-        timestamp: String,
+        timestamp: chrono::DateTime<chrono::FixedOffset>,
         world_id: String,
         world_name: String,
     ) -> Print {

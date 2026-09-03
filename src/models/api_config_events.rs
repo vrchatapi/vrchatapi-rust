@@ -33,6 +33,11 @@ pub struct ApiConfigEvents {
     /// Unknown
     #[serde(rename = "useDirectPlayerSerialization")]
     pub use_direct_player_serialization: bool,
+    #[serde(
+        rename = "useSparseRotationForPlayerSerialization",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub use_sparse_rotation_for_player_serialization: Option<bool>,
     /// Unknown
     #[serde(rename = "viewSegmentLength")]
     pub view_segment_length: i32,
@@ -63,6 +68,7 @@ impl ApiConfigEvents {
             player_order_factor,
             slow_update_factor_threshold,
             use_direct_player_serialization,
+            use_sparse_rotation_for_player_serialization: None,
             view_segment_length,
         }
     }

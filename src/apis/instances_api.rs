@@ -17,6 +17,7 @@ pub enum CloseInstanceError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateInstanceError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -35,6 +36,20 @@ pub enum GetInstanceError {
 pub enum GetInstanceByShortNameError {
     Status401(models::Error),
     Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_instance_categories`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetInstanceCategoriesError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_instance_vibes`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetInstanceVibesError {
     UnknownValue(serde_json::Value),
 }
 
@@ -60,7 +75,7 @@ pub async fn close_instance(
     world_id: &str,
     instance_id: &str,
     hard_close: Option<bool>,
-    closed_at: Option<String>,
+    closed_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 ) -> Result<models::Instance, Error<CloseInstanceError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_world_id = world_id;
@@ -255,6 +270,86 @@ pub async fn get_instance_by_short_name(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetInstanceByShortNameError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns the categories an instance can be listed under.
+pub async fn get_instance_categories(
+    configuration: &configuration::Configuration,
+) -> Result<Vec<models::InstanceCategory>, Error<GetInstanceCategoriesError>> {
+    let uri_str = format!("{}/instanceCategories", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::InstanceCategory&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::InstanceCategory&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetInstanceCategoriesError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns the vibes an instance can be tagged with.
+pub async fn get_instance_vibes(
+    configuration: &configuration::Configuration,
+) -> Result<Vec<models::InstanceVibe>, Error<GetInstanceVibesError>> {
+    let uri_str = format!("{}/instanceVibes", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::InstanceVibe&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::InstanceVibe&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetInstanceVibesError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

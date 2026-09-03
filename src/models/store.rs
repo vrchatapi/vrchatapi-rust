@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Store {
     #[serde(rename = "created", skip_serializing_if = "Option::is_none")]
-    pub created: Option<String>,
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "displayName")]
@@ -41,7 +41,7 @@ pub struct Store {
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "updated", skip_serializing_if = "Option::is_none")]
-    pub updated: Option<String>,
+    pub updated: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "worldId", skip_serializing_if = "Option::is_none")]
     pub world_id: Option<String>,

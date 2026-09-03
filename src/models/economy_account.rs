@@ -7,7 +7,7 @@ pub struct EconomyAccount {
         rename = "accountActivatedOn",
         deserialize_with = "Option::deserialize"
     )]
-    pub account_activated_on: Option<String>,
+    pub account_activated_on: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "accountId", deserialize_with = "Option::deserialize")]
     pub account_id: Option<String>,
     #[serde(
@@ -16,7 +16,7 @@ pub struct EconomyAccount {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub account_seller_registered_on: Option<Option<String>>,
+    pub account_seller_registered_on: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(
         rename = "accountSellerStatus",
         default,
@@ -62,7 +62,7 @@ pub struct EconomyAccount {
 
 impl EconomyAccount {
     pub fn new(
-        account_activated_on: Option<String>,
+        account_activated_on: Option<chrono::DateTime<chrono::FixedOffset>>,
         account_id: Option<String>,
         blocked: bool,
         can_spend: bool,

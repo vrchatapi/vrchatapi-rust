@@ -19,7 +19,7 @@ Method | HTTP request | Description
 [**get_world_metadata**](WorldsApi.md#get_world_metadata) | **GET** /worlds/{worldId}/metadata | Get World Metadata
 [**get_world_publish_status**](WorldsApi.md#get_world_publish_status) | **GET** /worlds/{worldId}/publish | Get World Publish Status
 [**publish_world**](WorldsApi.md#publish_world) | **PUT** /worlds/{worldId}/publish | Publish World
-[**remove_world_tags**](WorldsApi.md#remove_world_tags) | **POST** /worlds/{worldId}/removeTags | Remove World Tags
+[**remove_world_tags**](WorldsApi.md#remove_world_tags) | **POST** /worlds/{worldId}/deleteTags | Remove World Tags
 [**search_worlds**](WorldsApi.md#search_worlds) | **GET** /worlds | Search All Worlds
 [**unpublish_world**](WorldsApi.md#unpublish_world) | **DELETE** /worlds/{worldId}/publish | Unpublish World
 [**update_world**](WorldsApi.md#update_world) | **PUT** /worlds/{worldId} | Update World
@@ -522,7 +522,7 @@ Name | Type | Description  | Required | Notes
 > models::World remove_world_tags(world_id, change_world_tags_request)
 Remove World Tags
 
-Removes tags from the world's profile
+Remove tags from the world's profile.  The path is `deleteTags`, not `removeTags` as the user equivalent uses.
 
 ### Parameters
 

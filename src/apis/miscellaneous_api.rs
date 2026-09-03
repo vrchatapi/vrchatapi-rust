@@ -37,6 +37,7 @@ pub enum GetCurrentOnlineUsersError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetHealthError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -44,6 +45,7 @@ pub enum GetHealthError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInfoPushError {
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -242,7 +244,7 @@ pub async fn get_current_online_users(
     }
 }
 
-/// ~~Gets the overall health status, the server name, and the current build version tag of the API.~~  **DEPRECATED:** VRChat has suddenly restricted this endpoint for unknown reasons, and now always return 401 Unauthorized.
+/// Gets the overall health status, the server name, and the current build version tag of the API.  VRChat has restricted this endpoint, which now always returns 401 Unauthorized.
 #[deprecated]
 pub async fn get_health(
     configuration: &configuration::Configuration,
@@ -438,7 +440,7 @@ pub async fn get_permission(
 /// Returns the current time of the API server.  **NOTE:** The response type is not a JSON object, but a simple JSON string.
 pub async fn get_system_time(
     configuration: &configuration::Configuration,
-) -> Result<String, Error<GetSystemTimeError>> {
+) -> Result<chrono::DateTime<chrono::FixedOffset>, Error<GetSystemTimeError>> {
     let uri_str = format!("{}/time", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -461,8 +463,8 @@ pub async fn get_system_time(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `String`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `String`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `chrono::DateTime&lt;chrono::FixedOffset&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `chrono::DateTime&lt;chrono::FixedOffset&gt;`")))),
         }
     } else {
         let content = resp.text().await?;

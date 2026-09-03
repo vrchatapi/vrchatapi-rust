@@ -9,19 +9,19 @@ pub struct CreateGroupAnnouncementRequest {
     #[serde(rename = "sendNotification", skip_serializing_if = "Option::is_none")]
     pub send_notification: Option<bool>,
     /// Announcement text
-    #[serde(rename = "text", skip_serializing_if = "Option::is_none")]
-    pub text: Option<String>,
+    #[serde(rename = "text")]
+    pub text: String,
     /// Announcement title
     #[serde(rename = "title")]
     pub title: String,
 }
 
 impl CreateGroupAnnouncementRequest {
-    pub fn new(title: String) -> CreateGroupAnnouncementRequest {
+    pub fn new(text: String, title: String) -> CreateGroupAnnouncementRequest {
         CreateGroupAnnouncementRequest {
             image_id: None,
             send_notification: None,
-            text: None,
+            text,
             title,
         }
     }

@@ -4,6 +4,8 @@ use serde::{Deserialize, Serialize};
 /// ReportReason : A reason used for reporting users
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ReportReason {
+    #[serde(rename = "policy", skip_serializing_if = "Option::is_none")]
+    pub policy: Option<Vec<String>>,
     /// The label or name of the report reason
     #[serde(rename = "text")]
     pub text: String,
@@ -15,6 +17,10 @@ pub struct ReportReason {
 impl ReportReason {
     /// A reason used for reporting users
     pub fn new(text: String, tooltip: String) -> ReportReason {
-        ReportReason { text, tooltip }
+        ReportReason {
+            policy: None,
+            text,
+            tooltip,
+        }
     }
 }

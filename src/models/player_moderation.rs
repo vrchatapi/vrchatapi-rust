@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PlayerModeration {
     #[serde(rename = "created")]
-    pub created: String,
+    pub created: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "sourceDisplayName")]
@@ -23,7 +23,7 @@ pub struct PlayerModeration {
 
 impl PlayerModeration {
     pub fn new(
-        created: String,
+        created: chrono::DateTime<chrono::FixedOffset>,
         id: String,
         source_display_name: String,
         source_user_id: String,

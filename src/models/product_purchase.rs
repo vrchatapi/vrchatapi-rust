@@ -46,7 +46,7 @@ pub struct ProductPurchase {
     #[serde(rename = "purchaseCurrentStatus")]
     pub purchase_current_status: String,
     #[serde(rename = "purchaseDate")]
-    pub purchase_date: String,
+    pub purchase_date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "purchaseDuration", skip_serializing_if = "Option::is_none")]
     pub purchase_duration: Option<i32>,
     #[serde(
@@ -55,7 +55,7 @@ pub struct ProductPurchase {
     )]
     pub purchase_duration_type: Option<String>,
     #[serde(rename = "purchaseEndDate", deserialize_with = "Option::deserialize")]
-    pub purchase_end_date: Option<String>,
+    pub purchase_end_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "purchaseFee", skip_serializing_if = "Option::is_none")]
     pub purchase_fee: Option<i32>,
     #[serde(rename = "purchaseId")]
@@ -67,7 +67,7 @@ pub struct ProductPurchase {
     #[serde(rename = "purchaseQuantity")]
     pub purchase_quantity: i32,
     #[serde(rename = "purchaseStartDate", deserialize_with = "Option::deserialize")]
-    pub purchase_start_date: Option<String>,
+    pub purchase_start_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "purchaseToken", deserialize_with = "Option::deserialize")]
     pub purchase_token: Option<serde_json::Value>,
     #[serde(rename = "purchaseType")]
@@ -114,13 +114,13 @@ impl ProductPurchase {
         purchase_active: bool,
         purchase_context: models::ProductPurchasePurchaseContext,
         purchase_current_status: String,
-        purchase_date: String,
-        purchase_end_date: Option<String>,
+        purchase_date: chrono::DateTime<chrono::FixedOffset>,
+        purchase_end_date: Option<chrono::DateTime<chrono::FixedOffset>>,
         purchase_id: String,
         purchase_latest: bool,
         purchase_price: i32,
         purchase_quantity: i32,
-        purchase_start_date: Option<String>,
+        purchase_start_date: Option<chrono::DateTime<chrono::FixedOffset>>,
         purchase_token: Option<serde_json::Value>,
         purchase_type: String,
         purchase_unit_price: i32,

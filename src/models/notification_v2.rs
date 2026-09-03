@@ -9,13 +9,20 @@ pub struct NotificationV2 {
     #[serde(rename = "category")]
     pub category: String,
     #[serde(rename = "createdAt")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "data")]
     pub data: models::NotificationV2Data,
     #[serde(rename = "details", skip_serializing_if = "Option::is_none")]
     pub details: Option<models::NotificationV2DetailsBoop>,
+    #[serde(
+        rename = "displayData",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub display_data: Option<Option<serde_json::Value>>,
     #[serde(rename = "expiresAt")]
-    pub expires_at: String,
+    pub expires_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "expiryAfterSeen", deserialize_with = "Option::deserialize")]
     pub expiry_after_seen: Option<i32>,
     #[serde(rename = "id")]
@@ -26,10 +33,10 @@ pub struct NotificationV2 {
     pub image_url: Option<String>,
     #[serde(rename = "isSystem")]
     pub is_system: bool,
-    #[serde(rename = "link")]
-    pub link: String,
-    #[serde(rename = "linkText")]
-    pub link_text: String,
+    #[serde(rename = "link", deserialize_with = "Option::deserialize")]
+    pub link: Option<String>,
+    #[serde(rename = "linkText", deserialize_with = "Option::deserialize")]
+    pub link_text: Option<String>,
     #[serde(rename = "linkTextKey", deserialize_with = "Option::deserialize")]
     pub link_text_key: Option<String>,
     #[serde(rename = "message")]
@@ -67,7 +74,7 @@ pub struct NotificationV2 {
     #[serde(rename = "type")]
     pub r#type: models::NotificationV2Type,
     #[serde(rename = "updatedAt")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "version")]
     pub version: i32,
 }
@@ -76,16 +83,16 @@ impl NotificationV2 {
     pub fn new(
         can_delete: bool,
         category: String,
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         data: models::NotificationV2Data,
-        expires_at: String,
+        expires_at: chrono::DateTime<chrono::FixedOffset>,
         expiry_after_seen: Option<i32>,
         id: String,
         ignore_dnd: bool,
         image_url: Option<String>,
         is_system: bool,
-        link: String,
-        link_text: String,
+        link: Option<String>,
+        link_text: Option<String>,
         link_text_key: Option<String>,
         message: String,
         receiver_user_id: String,
@@ -98,7 +105,7 @@ impl NotificationV2 {
         title: String,
         title_key: Option<String>,
         r#type: models::NotificationV2Type,
-        updated_at: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
         version: i32,
     ) -> NotificationV2 {
         NotificationV2 {
@@ -107,6 +114,7 @@ impl NotificationV2 {
             created_at,
             data,
             details: None,
+            display_data: None,
             expires_at,
             expiry_after_seen,
             id,

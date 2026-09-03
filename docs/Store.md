@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created** | Option<**String**> |  | [optional]
+**created** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **description** | **String** |  | 
 **display_name** | **String** |  | 
 **group_id** | Option<**String**> |  | [optional]
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **store_status** | Option<**String**> |  | [optional]
 **store_type** | [**models::StoreType**](StoreType.md) |  | 
 **tags** | **Vec<String>** |  | 
-**updated** | Option<**String**> |  | [optional]
+**updated** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **world_id** | Option<**String**> | WorldID be \"offline\" on User profiles if you are not friends with that user. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

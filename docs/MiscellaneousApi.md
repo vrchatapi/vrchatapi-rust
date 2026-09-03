@@ -133,7 +133,7 @@ No authorization required
 > models::ApiHealth get_health()
 Check API Health
 
-~~Gets the overall health status, the server name, and the current build version tag of the API.~~  **DEPRECATED:** VRChat has suddenly restricted this endpoint for unknown reasons, and now always return 401 Unauthorized.
+Gets the overall health status, the server name, and the current build version tag of the API.  VRChat has restricted this endpoint, which now always returns 401 Unauthorized.
 
 ### Parameters
 
@@ -249,7 +249,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_system_time
 
-> String get_system_time()
+> chrono::DateTime<chrono::FixedOffset> get_system_time()
 Current System Time
 
 Returns the current time of the API server.  **NOTE:** The response type is not a JSON object, but a simple JSON string.
@@ -260,7 +260,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**String**
+[**chrono::DateTime<chrono::FixedOffset>**](chrono::DateTime<chrono::FixedOffset>.md)
 
 ### Authorization
 

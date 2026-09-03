@@ -12,12 +12,17 @@ pub struct LimitedWorld {
     #[serde(rename = "capacity")]
     pub capacity: i32,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(
         rename = "defaultContentSettings",
         skip_serializing_if = "Option::is_none"
     )]
     pub default_content_settings: Option<models::InstanceContentSettings>,
+    #[serde(
+        rename = "disabledPropAbilities",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub disabled_prop_abilities: Option<Vec<serde_json::Value>>,
     #[serde(rename = "favorites")]
     pub favorites: i32,
     #[serde(rename = "heat")]
@@ -64,7 +69,7 @@ pub struct LimitedWorld {
     #[serde(rename = "unityPackages")]
     pub unity_packages: Vec<models::LimitedUnityPackage>,
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "visits", skip_serializing_if = "Option::is_none")]
     pub visits: Option<i32>,
 }
@@ -74,7 +79,7 @@ impl LimitedWorld {
         author_id: String,
         author_name: String,
         capacity: i32,
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         favorites: i32,
         heat: i32,
         id: String,
@@ -89,7 +94,7 @@ impl LimitedWorld {
         tags: Vec<String>,
         thumbnail_image_url: String,
         unity_packages: Vec<models::LimitedUnityPackage>,
-        updated_at: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
     ) -> LimitedWorld {
         LimitedWorld {
             author_id,
@@ -97,6 +102,7 @@ impl LimitedWorld {
             capacity,
             created_at,
             default_content_settings: None,
+            disabled_prop_abilities: None,
             favorites,
             heat,
             id,

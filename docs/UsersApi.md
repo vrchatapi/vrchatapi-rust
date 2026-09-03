@@ -374,7 +374,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user
 
-> models::User get_user(user_id)
+> models::GetUser200Response get_user(user_id)
 Get User by ID
 
 Get public user information about a specific user using their ID.
@@ -388,7 +388,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::User**](User.md)
+[**models::GetUser200Response**](getUser_200_response.md)
 
 ### Authorization
 
@@ -435,10 +435,10 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_by_name
 
-> models::User get_user_by_name(username)
+> models::GetUser200Response get_user_by_name(username)
 Get User by Username
 
-~~Get public user information about a specific user using their name.~~  **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). This endpoint now require Admin Credentials.
+Get public user information about a specific user using their name.  VRChat no longer returns the usernames of other users, and this endpoint now requires admin credentials. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
 
 ### Parameters
 
@@ -449,7 +449,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::User**](User.md)
+[**models::GetUser200Response**](getUser_200_response.md)
 
 ### Authorization
 

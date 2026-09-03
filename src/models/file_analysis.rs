@@ -6,7 +6,7 @@ pub struct FileAnalysis {
     #[serde(rename = "avatarStats")]
     pub avatar_stats: models::FileAnalysisAvatarStats,
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "encryptionKey", skip_serializing_if = "Option::is_none")]
     pub encryption_key: Option<String>,
     #[serde(rename = "fileSize")]

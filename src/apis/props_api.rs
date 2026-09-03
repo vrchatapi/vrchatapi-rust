@@ -37,7 +37,7 @@ pub enum GetPropError {
 pub enum GetPropPublishStatusError {
     Status401(models::Error),
     Status403(models::Error),
-    Status404(models::Error),
+    Status404(models::RouteNotImplemented),
     UnknownValue(serde_json::Value),
 }
 
@@ -56,7 +56,7 @@ pub enum ListPropsError {
 pub enum PublishPropError {
     Status401(models::Error),
     Status403(models::Error),
-    Status404(models::Error),
+    Status404(models::RouteNotImplemented),
     UnknownValue(serde_json::Value),
 }
 
@@ -66,7 +66,7 @@ pub enum PublishPropError {
 pub enum UnpublishPropError {
     Status401(models::Error),
     Status403(models::Error),
-    Status404(models::Error),
+    Status404(models::RouteNotImplemented),
     UnknownValue(serde_json::Value),
 }
 
@@ -74,6 +74,7 @@ pub enum UnpublishPropError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdatePropError {
+    Status400(models::Error),
     Status401(models::Error),
     Status403(models::Error),
     Status404(models::Error),
@@ -214,7 +215,8 @@ pub async fn get_prop(
     }
 }
 
-/// Returns a PropPublishStatus object.
+/// Return the PropPublishStatus object. `/props/{propId}` is still served.
+#[deprecated]
 pub async fn get_prop_publish_status(
     configuration: &configuration::Configuration,
     prop_id: &str,
@@ -317,7 +319,8 @@ pub async fn list_props(
     }
 }
 
-/// Publish a Prop and return the updated PropPublishStatus object.
+/// Publish a prop and return the updated PropPublishStatus object. `/props/{propId}` is still served.
+#[deprecated]
 pub async fn publish_prop(
     configuration: &configuration::Configuration,
     prop_id: &str,
@@ -365,7 +368,8 @@ pub async fn publish_prop(
     }
 }
 
-/// Unpublish a Prop and return the updated PropPublishStatus object.
+/// Unpublish a prop and return the updated PropPublishStatus object. `/props/{propId}` is still served.
+#[deprecated]
 pub async fn unpublish_prop(
     configuration: &configuration::Configuration,
     prop_id: &str,

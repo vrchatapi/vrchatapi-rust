@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **avatar_stats** | [**models::FileAnalysisAvatarStats**](FileAnalysisAvatarStats.md) |  | 
-**created_at** | Option<**String**> |  | [optional]
+**created_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **encryption_key** | Option<**String**> |  | [optional]
 **file_size** | **i32** |  | 
 **performance_rating** | Option<**String**> |  | [optional]

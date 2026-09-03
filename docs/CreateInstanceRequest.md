@@ -6,9 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **age_gate** | Option<**bool**> |  | [optional][default to false]
 **calendar_entry_id** | Option<**String**> |  | [optional]
-**can_request_invite** | Option<**bool**> | Only applies to invite type instances to make them invite+ | [optional][default to false]
-**closed_at** | Option<**String**> | The time after which users won't be allowed to join the instance. This doesn't work for public instances. | [optional]
+**can_request_invite** | Option<**bool**> | Makes a private instance invite+. A friends instance is rejected. | [optional][default to false]
+**category_id** | Option<**String**> |  | [optional]
+**closed_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The time after which users won't be allowed to join the instance. This doesn't work for public instances. | [optional]
 **content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
+**description** | Option<**String**> |  | [optional]
 **display_name** | Option<**String**> |  | [optional]
 **group_access_type** | Option<[**models::GroupAccessType**](GroupAccessType.md)> |  | [optional]
 **hard_close** | Option<**bool**> | Currently unused, but will eventually be a flag to set if the closing of the instance should kick people. | [optional][default to false]
@@ -20,6 +22,7 @@ Name | Type | Description | Notes
 **region** | [**models::InstanceRegion**](InstanceRegion.md) |  | 
 **role_ids** | Option<**Vec<String>**> | Group roleIds that are allowed to join if the type is \"group\" and groupAccessType is \"member\" | [optional]
 **r#type** | [**models::InstanceType**](InstanceType.md) |  | 
+**vibe_ids** | Option<**Vec<String>**> |  | [optional]
 **world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

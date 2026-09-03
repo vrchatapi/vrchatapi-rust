@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileVersion {
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     /// Usually only present if `true`
     #[serde(rename = "deleted", skip_serializing_if = "Option::is_none")]
     pub deleted: Option<bool>,
@@ -23,7 +23,11 @@ pub struct FileVersion {
 }
 
 impl FileVersion {
-    pub fn new(created_at: String, status: models::FileStatus, version: i32) -> FileVersion {
+    pub fn new(
+        created_at: chrono::DateTime<chrono::FixedOffset>,
+        status: models::FileStatus,
+        version: i32,
+    ) -> FileVersion {
         FileVersion {
             created_at,
             deleted: None,

@@ -110,7 +110,7 @@ Name | Type | Description  | Required | Notes
 > models::PropPublishStatus get_prop_publish_status(prop_id)
 Get Prop Publish Status
 
-Returns a PropPublishStatus object.
+Return the PropPublishStatus object. `/props/{propId}` is still served.
 
 ### Parameters
 
@@ -172,7 +172,7 @@ Name | Type | Description  | Required | Notes
 > models::PropPublishStatus publish_prop(prop_id)
 Publish Prop
 
-Publish a Prop and return the updated PropPublishStatus object.
+Publish a prop and return the updated PropPublishStatus object. `/props/{propId}` is still served.
 
 ### Parameters
 
@@ -202,7 +202,7 @@ Name | Type | Description  | Required | Notes
 > models::PropPublishStatus unpublish_prop(prop_id)
 Unpublish Prop
 
-Unpublish a Prop and return the updated PropPublishStatus object.
+Unpublish a prop and return the updated PropPublishStatus object. `/props/{propId}` is still served.
 
 ### Parameters
 

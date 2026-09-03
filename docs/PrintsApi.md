@@ -147,7 +147,7 @@ Uploads and creates a print.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
-**timestamp** | **String** | The time the image was captured. | [required] |
+**timestamp** | **chrono::DateTime<chrono::FixedOffset>** | The time the image was captured. | [required] |
 **note** | Option<**String**> | The caption for the image. |  |
 **world_id** | Option<**String**> | The id of the world in which the image was captured. |  |
 **world_name** | Option<**String**> | The name of the world in which the image was captured. |  |

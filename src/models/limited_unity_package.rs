@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedUnityPackage {
     #[serde(rename = "created_at", deserialize_with = "Option::deserialize")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "platform")]
     pub platform: String,
@@ -15,7 +15,7 @@ pub struct LimitedUnityPackage {
 
 impl LimitedUnityPackage {
     pub fn new(
-        created_at: Option<String>,
+        created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
         platform: String,
         unity_version: String,
     ) -> LimitedUnityPackage {

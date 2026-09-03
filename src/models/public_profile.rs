@@ -44,13 +44,8 @@ pub struct PublicProfile {
     pub profile_effect: Option<String>,
     #[serde(rename = "pronouns", skip_serializing_if = "Option::is_none")]
     pub pronouns: Option<String>,
-    #[serde(
-        rename = "representedGroup",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub represented_group: Option<Option<models::ProfileRepresentedGroup>>,
+    #[serde(rename = "representedGroup", skip_serializing_if = "Option::is_none")]
+    pub represented_group: Option<models::ProfileRepresentedGroup>,
     #[serde(rename = "themeId", skip_serializing_if = "Option::is_none")]
     pub theme_id: Option<String>,
     #[serde(rename = "trustTags", skip_serializing_if = "Option::is_none")]

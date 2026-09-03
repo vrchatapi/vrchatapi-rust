@@ -7,6 +7,9 @@ pub struct GroupPermission {
     /// Whether the user is allowed to add this permission to a role.
     #[serde(rename = "allowedToAdd", skip_serializing_if = "Option::is_none")]
     pub allowed_to_add: Option<bool>,
+    /// Other permission names this one is listed against.
+    #[serde(rename = "dependsOn", skip_serializing_if = "Option::is_none")]
+    pub depends_on: Option<Vec<models::GroupPermissions>>,
     /// The display name of the permission.
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
     pub display_name: Option<String>,
@@ -29,6 +32,7 @@ impl GroupPermission {
     pub fn new() -> GroupPermission {
         GroupPermission {
             allowed_to_add: None,
+            depends_on: None,
             display_name: None,
             help: None,
             is_management_permission: None,

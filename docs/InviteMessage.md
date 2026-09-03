@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **message_type** | [**models::InviteMessageType**](InviteMessageType.md) |  | 
 **remaining_cooldown_minutes** | **i32** | Changes to 60 when updated, although probably server-side configurable. | [default to 0]
 **slot** | **i32** |  | 
-**updated_at** | **String** |  | 
+**updated_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

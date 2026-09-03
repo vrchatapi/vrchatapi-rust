@@ -18,8 +18,8 @@ pub struct ApiConfigMinSupportedClientBuildNumber {
     pub pc: models::PlatformBuildInfo,
     #[serde(rename = "PicoStore")]
     pub pico_store: models::PlatformBuildInfo,
-    #[serde(rename = "QuestAppLab")]
-    pub quest_app_lab: models::PlatformBuildInfo,
+    #[serde(rename = "QuestAppLab", skip_serializing_if = "Option::is_none")]
+    pub quest_app_lab: Option<models::PlatformBuildInfo>,
     #[serde(rename = "QuestStore")]
     pub quest_store: models::PlatformBuildInfo,
     #[serde(rename = "TestFlight")]
@@ -38,7 +38,6 @@ impl ApiConfigMinSupportedClientBuildNumber {
         google_play: models::PlatformBuildInfo,
         pc: models::PlatformBuildInfo,
         pico_store: models::PlatformBuildInfo,
-        quest_app_lab: models::PlatformBuildInfo,
         quest_store: models::PlatformBuildInfo,
         test_flight: models::PlatformBuildInfo,
         xr_elite: models::PlatformBuildInfo,
@@ -51,7 +50,7 @@ impl ApiConfigMinSupportedClientBuildNumber {
             google_play,
             pc,
             pico_store,
-            quest_app_lab,
+            quest_app_lab: None,
             quest_store,
             test_flight,
             xr_elite,

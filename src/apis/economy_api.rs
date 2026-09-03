@@ -56,6 +56,7 @@ pub enum GetBalanceError {
 #[serde(untagged)]
 pub enum GetBalanceEarningsError {
     Status401(models::Error),
+    Status404(models::RouteNotImplemented),
     UnknownValue(serde_json::Value),
 }
 
@@ -103,6 +104,7 @@ pub enum GetEconomyBalancesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetEconomyPayoutStatusError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -144,6 +146,7 @@ pub enum GetProductListingAlternateError {
 #[serde(untagged)]
 pub enum GetProductListingsError {
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -192,6 +195,7 @@ pub enum GetRecentSubscriptionError {
 #[serde(untagged)]
 pub enum GetSellerEligibilityError {
     Status401(models::Error),
+    Status404(models::RouteNotImplemented),
     UnknownValue(serde_json::Value),
 }
 
@@ -240,6 +244,7 @@ pub enum GetSubscriptionsError {
 #[serde(untagged)]
 pub enum GetTiliaStatusError {
     Status401(models::Error),
+    Status404(models::RouteNotImplemented),
     UnknownValue(serde_json::Value),
 }
 
@@ -248,6 +253,7 @@ pub enum GetTiliaStatusError {
 #[serde(untagged)]
 pub enum GetTiliaTosError {
     Status401(models::Error),
+    Status404(models::RouteNotImplemented),
     UnknownValue(serde_json::Value),
 }
 
@@ -264,6 +270,7 @@ pub enum GetTokenBundlesError {
 #[serde(untagged)]
 pub enum GetUserCreditsEligibleError {
     Status401(models::Error),
+    Status404(models::RouteNotImplemented),
     UnknownValue(serde_json::Value),
 }
 
@@ -279,6 +286,7 @@ pub enum GetUserSubscriptionEligibleError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetUserTiliaKycError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -287,7 +295,9 @@ pub enum GetUserTiliaKycError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListStoresError {
+    Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -328,6 +338,7 @@ pub enum UpdateProductListingDirectError {
 #[serde(untagged)]
 pub enum UpdateTiliaTosError {
     Status401(models::Error),
+    Status404(models::RouteNotImplemented),
     UnknownValue(serde_json::Value),
 }
 
@@ -570,7 +581,7 @@ pub async fn get_active_licenses(
     }
 }
 
-/// Gets the balance of a user
+/// Return the balance of a user.
 pub async fn get_balance(
     configuration: &configuration::Configuration,
     user_id: &str,
@@ -618,7 +629,8 @@ pub async fn get_balance(
     }
 }
 
-/// Gets the balance of a user from earnings
+/// Return the user's balance from earnings.
+#[deprecated]
 pub async fn get_balance_earnings(
     configuration: &configuration::Configuration,
     user_id: &str,
@@ -756,15 +768,15 @@ pub async fn get_current_subscriptions(
 /// Gets earnings totals and breakdown metrics for the currently authenticated user.
 pub async fn get_earnings_metrics(
     configuration: &configuration::Configuration,
-    seller_id: &str,
     metric_date_start: Option<&str>,
     metric_date_end: Option<&str>,
+    seller_id: Option<&str>,
     group_by_duration: Option<&str>,
 ) -> Result<models::EarningsMetrics, Error<GetEarningsMetricsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_seller_id = seller_id;
     let p_query_metric_date_start = metric_date_start;
     let p_query_metric_date_end = metric_date_end;
+    let p_query_seller_id = seller_id;
     let p_query_group_by_duration = group_by_duration;
 
     let uri_str = format!("{}/economy/metrics/earnings", configuration.base_path);
@@ -776,7 +788,9 @@ pub async fn get_earnings_metrics(
     if let Some(ref param_value) = p_query_metric_date_end {
         req_builder = req_builder.query(&[("metricDateEnd", &param_value.to_string())]);
     }
-    req_builder = req_builder.query(&[("sellerId", &p_query_seller_id.to_string())]);
+    if let Some(ref param_value) = p_query_seller_id {
+        req_builder = req_builder.query(&[("sellerId", &param_value.to_string())]);
+    }
     if let Some(ref param_value) = p_query_group_by_duration {
         req_builder = req_builder.query(&[("groupByDuration", &param_value.to_string())]);
     }
@@ -1286,8 +1300,8 @@ pub async fn get_product_purchase_history(
     configuration: &configuration::Configuration,
     user_id: &str,
     n: Option<i32>,
-    date_min: Option<String>,
-    date_max: Option<String>,
+    date_min: Option<chrono::DateTime<chrono::FixedOffset>>,
+    date_max: Option<chrono::DateTime<chrono::FixedOffset>>,
     from_user_id: Option<&str>,
     to_user_id: Option<&str>,
     sort: Option<models::SortOptionProductPurchase>,
@@ -1527,7 +1541,8 @@ pub async fn get_recent_subscription(
     }
 }
 
-/// Get the eligibility of the currently authenticated user to become a seller
+/// Return the current user's eligibility to become a seller.
+#[deprecated]
 pub async fn get_seller_eligibility(
     configuration: &configuration::Configuration,
 ) -> Result<models::SellerEligibility, Error<GetSellerEligibilityError>> {
@@ -1568,7 +1583,6 @@ pub async fn get_seller_eligibility(
 }
 
 /// Get a single Steam transactions by ID. This returns the exact same information as `getSteamTransactions`, so no point in using this endpoint.
-#[deprecated]
 pub async fn get_steam_transaction(
     configuration: &configuration::Configuration,
     transaction_id: &str,
@@ -1769,10 +1783,22 @@ pub async fn get_store_shelves(
 /// List all existing Subscriptions. For example, \"vrchatplus-monthly\" and \"vrchatplus-yearly\".
 pub async fn get_subscriptions(
     configuration: &configuration::Configuration,
+    gifts: Option<bool>,
+    recurring: Option<bool>,
 ) -> Result<Vec<models::Subscription>, Error<GetSubscriptionsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_gifts = gifts;
+    let p_query_recurring = recurring;
+
     let uri_str = format!("{}/subscriptions", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    if let Some(ref param_value) = p_query_gifts {
+        req_builder = req_builder.query(&[("gifts", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_recurring {
+        req_builder = req_builder.query(&[("recurring", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -1806,7 +1832,8 @@ pub async fn get_subscriptions(
     }
 }
 
-/// Gets the status of Tilia integration
+/// Return the Tilia integration status.
+#[deprecated]
 pub async fn get_tilia_status(
     configuration: &configuration::Configuration,
 ) -> Result<models::TiliaStatus, Error<GetTiliaStatusError>> {
@@ -1846,7 +1873,8 @@ pub async fn get_tilia_status(
     }
 }
 
-/// Gets the status of the agreement of a user to the Tilia TOS
+/// Return the user's Tilia TOS agreement status.
+#[deprecated]
 pub async fn get_tilia_tos(
     configuration: &configuration::Configuration,
     user_id: &str,
@@ -1934,7 +1962,8 @@ pub async fn get_token_bundles(
     }
 }
 
-/// Get the user's eligibility status for subscriptions based on available credits.
+/// Return the user's subscription credit eligibility.
+#[deprecated]
 pub async fn get_user_credits_eligible(
     configuration: &configuration::Configuration,
     user_id: &str,
@@ -2086,10 +2115,10 @@ pub async fn get_user_tilia_kyc(
     }
 }
 
-/// Lists stores, optionally filtered to a seller and adjusted for management views.
+/// List a seller's stores, adjusted for management views.
 pub async fn list_stores(
     configuration: &configuration::Configuration,
-    seller_id: Option<&str>,
+    seller_id: &str,
     management_pov: Option<bool>,
     n: Option<i32>,
     offset: Option<i32>,
@@ -2103,9 +2132,7 @@ pub async fn list_stores(
     let uri_str = format!("{}/economy/stores", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_query_seller_id {
-        req_builder = req_builder.query(&[("sellerId", &param_value.to_string())]);
-    }
+    req_builder = req_builder.query(&[("sellerId", &p_query_seller_id.to_string())]);
     if let Some(ref param_value) = p_query_management_pov {
         req_builder = req_builder.query(&[("managementPov", &param_value.to_string())]);
     }
@@ -2360,7 +2387,8 @@ pub async fn update_product_listing_direct(
     }
 }
 
-/// Updates the status of the agreement of a user to the Tilia TOS
+/// Update the user's Tilia TOS agreement status.
+#[deprecated]
 pub async fn update_tilia_tos(
     configuration: &configuration::Configuration,
     user_id: &str,

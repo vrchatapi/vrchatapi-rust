@@ -12,12 +12,12 @@ pub struct TiliaStatus {
         rename = "plannedOfflineWindowEnd",
         skip_serializing_if = "Option::is_none"
     )]
-    pub planned_offline_window_end: Option<String>,
+    pub planned_offline_window_end: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(
         rename = "plannedOfflineWindowStart",
         skip_serializing_if = "Option::is_none"
     )]
-    pub planned_offline_window_start: Option<String>,
+    pub planned_offline_window_start: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl TiliaStatus {

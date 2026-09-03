@@ -4,6 +4,8 @@ use serde::{Deserialize, Serialize};
 /// Jam :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Jam {
+    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "id")]
@@ -21,13 +23,15 @@ pub struct Jam {
         rename = "submissionContentGateDate",
         deserialize_with = "Option::deserialize"
     )]
-    pub submission_content_gate_date: Option<String>,
+    pub submission_content_gate_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "submissionContentGated")]
     pub submission_content_gated: bool,
     #[serde(rename = "title")]
     pub title: String,
+    #[serde(rename = "type")]
+    pub r#type: String,
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl Jam {
@@ -38,12 +42,14 @@ impl Jam {
         more_info: String,
         state: String,
         state_change_dates: models::JamStateChangeDates,
-        submission_content_gate_date: Option<String>,
+        submission_content_gate_date: Option<chrono::DateTime<chrono::FixedOffset>>,
         submission_content_gated: bool,
         title: String,
-        updated_at: String,
+        r#type: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
     ) -> Jam {
         Jam {
+            created_at: None,
             description,
             id,
             is_visible,
@@ -53,6 +59,7 @@ impl Jam {
             submission_content_gate_date,
             submission_content_gated,
             title,
+            r#type,
             updated_at,
         }
     }

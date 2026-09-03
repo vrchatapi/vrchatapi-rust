@@ -8,6 +8,8 @@ Method | HTTP request | Description
 [**create_instance**](InstancesApi.md#create_instance) | **POST** /instances | Create Instance
 [**get_instance**](InstancesApi.md#get_instance) | **GET** /instances/{worldId}:{instanceId} | Get Instance
 [**get_instance_by_short_name**](InstancesApi.md#get_instance_by_short_name) | **GET** /instances/s/{shortName} | Get Instance By Short Name
+[**get_instance_categories**](InstancesApi.md#get_instance_categories) | **GET** /instanceCategories | List Instance Categories
+[**get_instance_vibes**](InstancesApi.md#get_instance_vibes) | **GET** /instanceVibes | List Instance Vibes
 [**get_recent_locations**](InstancesApi.md#get_recent_locations) | **GET** /instances/recent | List Recent Locations
 [**get_short_name**](InstancesApi.md#get_short_name) | **GET** /instances/{worldId}:{instanceId}/shortName | Get Instance Short Name
 
@@ -28,7 +30,7 @@ Name | Type | Description  | Required | Notes
 **world_id** | **String** | Must be a valid world ID. | [required] |
 **instance_id** | **String** | Must be a valid instance ID. | [required] |
 **hard_close** | Option<**bool**> | Whether to hard close the instance. Defaults to false. |  |
-**closed_at** | Option<**String**> | The time after which users won't be allowed to join the instances. If omitted, the instance will be closed immediately. |  |
+**closed_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The time after which users won't be allowed to join the instances. If omitted, the instance will be closed immediately. |  |
 
 ### Return type
 
@@ -124,6 +126,60 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::Instance**](Instance.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_instance_categories
+
+> Vec<models::InstanceCategory> get_instance_categories()
+List Instance Categories
+
+Returns the categories an instance can be listed under.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Vec<models::InstanceCategory>**](InstanceCategory.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_instance_vibes
+
+> Vec<models::InstanceVibe> get_instance_vibes()
+List Instance Vibes
+
+Returns the vibes an instance can be tagged with.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Vec<models::InstanceVibe>**](InstanceVibe.md)
 
 ### Authorization
 

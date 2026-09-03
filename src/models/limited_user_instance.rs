@@ -24,7 +24,7 @@ pub struct LimitedUserInstance {
     #[serde(rename = "currentAvatarThumbnailImageUrl")]
     pub current_avatar_thumbnail_image_url: String,
     #[serde(rename = "date_joined", deserialize_with = "Option::deserialize")]
-    pub date_joined: Option<String>,
+    pub date_joined: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "developerType")]
     pub developer_type: models::DeveloperType,
     #[serde(rename = "displayName")]
@@ -39,14 +39,14 @@ pub struct LimitedUserInstance {
     #[serde(rename = "isFriend")]
     pub is_friend: bool,
     #[serde(rename = "last_activity", deserialize_with = "Option::deserialize")]
-    pub last_activity: Option<String>,
+    pub last_activity: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(
         rename = "last_mobile",
         default,
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub last_mobile: Option<Option<String>>,
+    pub last_mobile: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
@@ -83,13 +83,13 @@ impl LimitedUserInstance {
         current_avatar_image_url: String,
         current_avatar_tags: Vec<String>,
         current_avatar_thumbnail_image_url: String,
-        date_joined: Option<String>,
+        date_joined: Option<chrono::DateTime<chrono::FixedOffset>>,
         developer_type: models::DeveloperType,
         display_name: String,
         friend_key: String,
         id: String,
         is_friend: bool,
-        last_activity: Option<String>,
+        last_activity: Option<chrono::DateTime<chrono::FixedOffset>>,
         last_platform: String,
         pronouns: String,
         status: models::UserStatus,

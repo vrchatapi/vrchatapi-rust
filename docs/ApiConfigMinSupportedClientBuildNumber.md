@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **google_play** | [**models::PlatformBuildInfo**](PlatformBuildInfo.md) |  | 
 **pc** | [**models::PlatformBuildInfo**](PlatformBuildInfo.md) |  | 
 **pico_store** | [**models::PlatformBuildInfo**](PlatformBuildInfo.md) |  | 
-**quest_app_lab** | [**models::PlatformBuildInfo**](PlatformBuildInfo.md) |  | 
+**quest_app_lab** | Option<[**models::PlatformBuildInfo**](PlatformBuildInfo.md)> |  | [optional]
 **quest_store** | [**models::PlatformBuildInfo**](PlatformBuildInfo.md) |  | 
 **test_flight** | [**models::PlatformBuildInfo**](PlatformBuildInfo.md) |  | 
 **xr_elite** | [**models::PlatformBuildInfo**](PlatformBuildInfo.md) |  | 

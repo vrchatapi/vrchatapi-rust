@@ -9,28 +9,28 @@ pub struct JamStateChangeDates {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub closed: Option<Option<String>>,
+    pub closed: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(
         rename = "submissionsClosed",
         default,
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub submissions_closed: Option<Option<String>>,
+    pub submissions_closed: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(
         rename = "submissionsOpened",
         default,
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub submissions_opened: Option<Option<String>>,
+    pub submissions_opened: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(
         rename = "winnersSelected",
         default,
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub winners_selected: Option<Option<String>>,
+    pub winners_selected: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
 }
 
 impl JamStateChangeDates {

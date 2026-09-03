@@ -10,13 +10,17 @@ Name | Type | Description | Notes
 **author_name** | Option<**String**> |  | [optional]
 **capacity** | Option<**i32**> |  | [optional]
 **description** | Option<**String**> |  | [optional]
+**disabled_prop_abilities** | Option<**Vec<String>**> |  | [optional]
 **image_url** | Option<**String**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
 **platform** | Option<**String**> | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | [optional]
+**preview_youtube_id** | Option<**String**> |  | [optional]
+**recommended_capacity** | Option<**i32**> |  | [optional]
 **release_status** | Option<[**models::ReleaseStatus**](ReleaseStatus.md)> |  | [optional]
 **tags** | Option<**Vec<String>**> |   | [optional]
 **unity_package_url** | Option<**String**> |  | [optional]
 **unity_version** | Option<**String**> |  | [optional][default to 5.3.4p1]
+**url_list** | Option<**Vec<String>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

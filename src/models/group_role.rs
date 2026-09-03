@@ -4,13 +4,17 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupRole {
     #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
+    #[serde(rename = "defaultRole", skip_serializing_if = "Option::is_none")]
+    pub default_role: Option<bool>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
     pub group_id: Option<String>,
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
+    #[serde(rename = "isAddedOnJoin", skip_serializing_if = "Option::is_none")]
+    pub is_added_on_join: Option<bool>,
     #[serde(rename = "isManagementRole", skip_serializing_if = "Option::is_none")]
     pub is_management_role: Option<bool>,
     #[serde(rename = "isSelfAssignable", skip_serializing_if = "Option::is_none")]
@@ -26,16 +30,18 @@ pub struct GroupRole {
     #[serde(rename = "requiresTwoFactor", skip_serializing_if = "Option::is_none")]
     pub requires_two_factor: Option<bool>,
     #[serde(rename = "updatedAt", skip_serializing_if = "Option::is_none")]
-    pub updated_at: Option<String>,
+    pub updated_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl GroupRole {
     pub fn new() -> GroupRole {
         GroupRole {
             created_at: None,
+            default_role: None,
             description: None,
             group_id: None,
             id: None,
+            is_added_on_join: None,
             is_management_role: None,
             is_self_assignable: None,
             name: None,

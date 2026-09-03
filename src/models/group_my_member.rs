@@ -25,7 +25,7 @@ pub struct GroupMyMember {
     )]
     pub banned_at: Option<Option<String>>,
     #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
     pub group_id: Option<String>,
     #[serde(rename = "has2FA", skip_serializing_if = "Option::is_none")]
@@ -50,14 +50,14 @@ pub struct GroupMyMember {
     )]
     pub is_subscribed_to_event_announcements: Option<bool>,
     #[serde(rename = "joinedAt", skip_serializing_if = "Option::is_none")]
-    pub joined_at: Option<String>,
+    pub joined_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(
         rename = "lastPostReadAt",
         default,
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub last_post_read_at: Option<Option<String>>,
+    pub last_post_read_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "mRoleIds", skip_serializing_if = "Option::is_none")]
     pub m_role_ids: Option<Vec<String>>,
     #[serde(rename = "managerNotes", skip_serializing_if = "Option::is_none")]

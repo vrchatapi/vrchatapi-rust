@@ -1,89 +1,15 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// TransactionAgreement : Represents a single Transaction, which is likely between VRChat and Steam.
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct TransactionAgreement {
-    #[serde(rename = "agreement")]
-    pub agreement: String,
-    #[serde(rename = "agreementId")]
-    pub agreement_id: String,
-    #[serde(rename = "billingType")]
-    pub billing_type: String,
-    #[serde(rename = "currency")]
-    pub currency: String,
-    #[serde(rename = "endDate")]
-    pub end_date: String,
-    #[serde(rename = "failedAttempts")]
-    pub failed_attempts: i32,
-    #[serde(rename = "frequency")]
-    pub frequency: i32,
-    #[serde(rename = "itemId")]
-    pub item_id: i32,
-    #[serde(rename = "lastAmount")]
-    pub last_amount: f64,
-    #[serde(rename = "lastAmountVat")]
-    pub last_amount_vat: f64,
-    #[serde(rename = "lastPayment")]
-    pub last_payment: String,
-    #[serde(rename = "nextPayment")]
-    pub next_payment: String,
-    #[serde(rename = "outstanding")]
-    pub outstanding: i32,
-    #[serde(rename = "period")]
-    pub period: String,
-    #[serde(rename = "recurringAmt")]
-    pub recurring_amt: f64,
-    #[serde(rename = "startDate")]
-    pub start_date: String,
-    /// This is NOT TransactionStatus, but whatever Steam return.
-    #[serde(rename = "status")]
-    pub status: String,
-    #[serde(rename = "timeCreated")]
-    pub time_created: String,
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum TransactionAgreement {
+    String(String),
+    TransactionAgreement(Box<models::TransactionAgreement>),
 }
 
-impl TransactionAgreement {
-    /// Represents a single Transaction, which is likely between VRChat and Steam.
-    pub fn new(
-        agreement: String,
-        agreement_id: String,
-        billing_type: String,
-        currency: String,
-        end_date: String,
-        failed_attempts: i32,
-        frequency: i32,
-        item_id: i32,
-        last_amount: f64,
-        last_amount_vat: f64,
-        last_payment: String,
-        next_payment: String,
-        outstanding: i32,
-        period: String,
-        recurring_amt: f64,
-        start_date: String,
-        status: String,
-        time_created: String,
-    ) -> TransactionAgreement {
-        TransactionAgreement {
-            agreement,
-            agreement_id,
-            billing_type,
-            currency,
-            end_date,
-            failed_attempts,
-            frequency,
-            item_id,
-            last_amount,
-            last_amount_vat,
-            last_payment,
-            next_payment,
-            outstanding,
-            period,
-            recurring_amt,
-            start_date,
-            status,
-            time_created,
-        }
+impl Default for TransactionAgreement {
+    fn default() -> Self {
+        Self::String(Default::default())
     }
 }

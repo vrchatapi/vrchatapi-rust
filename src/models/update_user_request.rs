@@ -10,7 +10,7 @@ pub struct UpdateUserRequest {
     #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
     pub bio_links: Option<Vec<String>>,
     #[serde(rename = "birthday", skip_serializing_if = "Option::is_none")]
-    pub birthday: Option<String>,
+    pub birthday: Option<chrono::NaiveDate>,
     /// These tags begin with `content_` and control content gating
     #[serde(rename = "contentFilters", skip_serializing_if = "Option::is_none")]
     pub content_filters: Option<Vec<models::ContentFilter>>,

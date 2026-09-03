@@ -16,6 +16,11 @@ pub struct ApiConfigAudioConfig {
     /// Unknown
     #[serde(rename = "nearFieldILDNudgeEarRadius")]
     pub near_field_ild_nudge_ear_radius: f64,
+    #[serde(
+        rename = "nearFieldILDNudgeEarTranslate",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub near_field_ild_nudge_ear_translate: Option<f64>,
     /// Unknown
     #[serde(rename = "perEarDirectionalityEarRadius")]
     pub per_ear_directionality_ear_radius: f64,
@@ -37,6 +42,11 @@ pub struct ApiConfigAudioConfig {
     /// Unknown
     #[serde(rename = "trackingScaleMultiplier")]
     pub tracking_scale_multiplier: f64,
+    #[serde(
+        rename = "useLegacyILDNudging",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub use_legacy_ild_nudging: Option<bool>,
 }
 
 impl ApiConfigAudioConfig {
@@ -59,6 +69,7 @@ impl ApiConfigAudioConfig {
             near_field_ild_nudge,
             near_field_ild_nudge_distance,
             near_field_ild_nudge_ear_radius,
+            near_field_ild_nudge_ear_translate: None,
             per_ear_directionality_ear_radius,
             per_ear_directionality_fade_distance,
             per_ear_directionality_max_scale,
@@ -66,6 +77,7 @@ impl ApiConfigAudioConfig {
             tracking_scale_max,
             tracking_scale_min,
             tracking_scale_multiplier,
+            use_legacy_ild_nudging: None,
         }
     }
 }

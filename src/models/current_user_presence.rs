@@ -3,6 +3,8 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CurrentUserPresence {
+    #[serde(rename = "avatarImageUrl", skip_serializing_if = "Option::is_none")]
+    pub avatar_image_url: Option<String>,
     #[serde(
         rename = "avatarThumbnail",
         default,
@@ -10,6 +12,8 @@ pub struct CurrentUserPresence {
         skip_serializing_if = "Option::is_none"
     )]
     pub avatar_thumbnail: Option<Option<String>>,
+    #[serde(rename = "banner", skip_serializing_if = "Option::is_none")]
+    pub banner: Option<String>,
     #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
     pub current_avatar_tags: Option<Vec<String>>,
     #[serde(rename = "debugflag", skip_serializing_if = "Option::is_none")]
@@ -23,6 +27,8 @@ pub struct CurrentUserPresence {
         skip_serializing_if = "Option::is_none"
     )]
     pub groups: Option<Option<Vec<String>>>,
+    #[serde(rename = "iconFrame", skip_serializing_if = "Option::is_none")]
+    pub icon_frame: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
@@ -48,9 +54,13 @@ pub struct CurrentUserPresence {
         skip_serializing_if = "Option::is_none"
     )]
     pub is_rejoining: Option<Option<String>>,
+    #[serde(rename = "nameplateEffect", skip_serializing_if = "Option::is_none")]
+    pub nameplate_effect: Option<String>,
     /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
     pub platform: Option<String>,
+    #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
+    pub profile_effect: Option<String>,
     #[serde(
         rename = "profilePicOverride",
         default,
@@ -91,16 +101,21 @@ pub struct CurrentUserPresence {
 impl CurrentUserPresence {
     pub fn new() -> CurrentUserPresence {
         CurrentUserPresence {
+            avatar_image_url: None,
             avatar_thumbnail: None,
+            banner: None,
             current_avatar_tags: None,
             debugflag: None,
             display_name: None,
             groups: None,
+            icon_frame: None,
             id: None,
             instance: None,
             instance_type: None,
             is_rejoining: None,
+            nameplate_effect: None,
             platform: None,
+            profile_effect: None,
             profile_pic_override: None,
             status: None,
             traveling_to_instance: None,

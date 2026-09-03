@@ -6,7 +6,7 @@ pub struct Product {
     #[serde(rename = "archived", skip_serializing_if = "Option::is_none")]
     pub archived: Option<bool>,
     #[serde(rename = "created", skip_serializing_if = "Option::is_none")]
-    pub created: Option<String>,
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "displayName")]
@@ -55,7 +55,7 @@ pub struct Product {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub updated: Option<Option<String>>,
+    pub updated: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(
         rename = "useForSubscriberList",
         skip_serializing_if = "Option::is_none"

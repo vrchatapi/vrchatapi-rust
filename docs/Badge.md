@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**assigned_at** | Option<**String**> | only present in CurrentUser badges | [optional]
+**assigned_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | only present in CurrentUser badges | [optional]
 **badge_description** | **String** |  | 
 **badge_id** | **String** |  | 
 **badge_image_url** | **String** | direct url to image | 
@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **hidden** | Option<**bool**> | only present in CurrentUser badges | [optional]
 **is_quantifiable** | Option<**bool**> |  | [optional]
 **showcased** | **bool** |  | 
-**updated_at** | Option<**String**> | only present in CurrentUser badges | [optional]
+**updated_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> | only present in CurrentUser badges | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

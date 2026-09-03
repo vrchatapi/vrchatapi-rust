@@ -7,11 +7,13 @@ pub struct InventoryDrop {
     #[serde(rename = "authorId")]
     pub author_id: String,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "dropExpiryDate", deserialize_with = "Option::deserialize")]
-    pub drop_expiry_date: Option<String>,
+    pub drop_expiry_date: Option<chrono::DateTime<chrono::FixedOffset>>,
+    #[serde(rename = "dropStatus", skip_serializing_if = "Option::is_none")]
+    pub drop_status: Option<String>,
     #[serde(rename = "endDropDate")]
-    pub end_drop_date: String,
+    pub end_drop_date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "isDisabled")]
@@ -21,9 +23,7 @@ pub struct InventoryDrop {
     #[serde(rename = "notificationDetails")]
     pub notification_details: models::InventoryNotificationDetails,
     #[serde(rename = "startDropDate")]
-    pub start_drop_date: String,
-    #[serde(rename = "status")]
-    pub status: String,
+    pub start_drop_date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "targetGroup")]
@@ -31,37 +31,36 @@ pub struct InventoryDrop {
     #[serde(rename = "templateIds")]
     pub template_ids: Vec<String>,
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl InventoryDrop {
     pub fn new(
         author_id: String,
-        created_at: String,
-        drop_expiry_date: Option<String>,
-        end_drop_date: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
+        drop_expiry_date: Option<chrono::DateTime<chrono::FixedOffset>>,
+        end_drop_date: chrono::DateTime<chrono::FixedOffset>,
         id: String,
         is_disabled: bool,
         name: String,
         notification_details: models::InventoryNotificationDetails,
-        start_drop_date: String,
-        status: String,
+        start_drop_date: chrono::DateTime<chrono::FixedOffset>,
         tags: Vec<String>,
         target_group: String,
         template_ids: Vec<String>,
-        updated_at: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
     ) -> InventoryDrop {
         InventoryDrop {
             author_id,
             created_at,
             drop_expiry_date,
+            drop_status: None,
             end_drop_date,
             id,
             is_disabled,
             name,
             notification_details,
             start_drop_date,
-            status,
             tags,
             target_group,
             template_ids,

@@ -3,6 +3,27 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct User {
+    #[serde(
+        rename = "acceptedPrivacyVersion",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub accepted_privacy_version: Option<i32>,
+    #[serde(rename = "acceptedTOSVersion", skip_serializing_if = "Option::is_none")]
+    pub accepted_tos_version: Option<i32>,
+    #[serde(
+        rename = "accountDeletionDate",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub account_deletion_date: Option<Option<String>>,
+    #[serde(
+        rename = "accountDeletionLog",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub account_deletion_log: Option<Option<Vec<serde_json::Value>>>,
     #[serde(rename = "ageVerificationStatus")]
     pub age_verification_status: models::AgeVerificationStatus,
     /// `true` if, user is age verified (not 18+).
@@ -10,8 +31,12 @@ pub struct User {
     pub age_verified: bool,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
+    #[serde(rename = "appleDetails", skip_serializing_if = "Option::is_none")]
+    pub apple_details: Option<std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
     pub badges: Option<Vec<models::Badge>>,
+    #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
+    pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
     pub banner_type: Option<String>,
     #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
@@ -29,7 +54,7 @@ pub struct User {
     #[serde(rename = "currentAvatarThumbnailImageUrl")]
     pub current_avatar_thumbnail_image_url: String,
     #[serde(rename = "date_joined")]
-    pub date_joined: String,
+    pub date_joined: chrono::NaiveDate,
     #[serde(rename = "developerType")]
     pub developer_type: models::DeveloperType,
     /// A users visual display name. This is what shows up in-game, and can different from their `username`. Changing display name is restricted to a cooldown period.
@@ -37,6 +62,7 @@ pub struct User {
     pub display_name: String,
     #[serde(rename = "friendKey")]
     pub friend_key: String,
+    /// State of a friend request between the caller and this user. VRChat sends the string `\"null\"`, not JSON `null`.
     #[serde(
         rename = "friendRequestStatus",
         skip_serializing_if = "Option::is_none"
@@ -112,9 +138,6 @@ pub struct User {
     pub traveling_to_world: Option<String>,
     #[serde(rename = "userIcon")]
     pub user_icon: String,
-    /// -| A users unique name, used during login. This is different from `displayName` which is what shows up in-game. A users `username` can never be changed.' **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
-    #[serde(rename = "username", skip_serializing_if = "Option::is_none")]
-    pub username: Option<String>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "worldId", skip_serializing_if = "Option::is_none")]
     pub world_id: Option<String>,
@@ -130,7 +153,7 @@ impl User {
         current_avatar_image_url: String,
         current_avatar_tags: Vec<String>,
         current_avatar_thumbnail_image_url: String,
-        date_joined: String,
+        date_joined: chrono::NaiveDate,
         developer_type: models::DeveloperType,
         display_name: String,
         friend_key: String,
@@ -149,10 +172,16 @@ impl User {
         user_icon: String,
     ) -> User {
         User {
+            accepted_privacy_version: None,
+            accepted_tos_version: None,
+            account_deletion_date: None,
+            account_deletion_log: None,
             age_verification_status,
             age_verified,
             allow_avatar_copying,
+            apple_details: None,
             badges: None,
+            banner_color: None,
             banner_type: None,
             banner_url: None,
             bio,
@@ -191,7 +220,6 @@ impl User {
             traveling_to_location: None,
             traveling_to_world: None,
             user_icon,
-            username: None,
             world_id: None,
         }
     }

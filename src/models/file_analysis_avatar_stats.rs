@@ -67,6 +67,8 @@ pub struct FileAnalysisAvatarStats {
     pub physics_colliders: i32,
     #[serde(rename = "physicsRigidbodies")]
     pub physics_rigidbodies: i32,
+    #[serde(rename = "raycastCount", skip_serializing_if = "Option::is_none")]
+    pub raycast_count: Option<i32>,
     #[serde(rename = "skinnedMeshCount")]
     pub skinned_mesh_count: i32,
     #[serde(rename = "skinnedMeshIndices")]
@@ -172,6 +174,7 @@ impl FileAnalysisAvatarStats {
             phys_bone_transform_count,
             physics_colliders,
             physics_rigidbodies,
+            raycast_count: None,
             skinned_mesh_count,
             skinned_mesh_indices,
             skinned_mesh_polygons,

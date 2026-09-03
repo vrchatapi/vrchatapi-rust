@@ -18,7 +18,7 @@ pub struct InviteMessage {
     #[serde(rename = "slot")]
     pub slot: i32,
     #[serde(rename = "updatedAt")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl InviteMessage {
@@ -29,7 +29,7 @@ impl InviteMessage {
         message_type: models::InviteMessageType,
         remaining_cooldown_minutes: i32,
         slot: i32,
-        updated_at: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
     ) -> InviteMessage {
         InviteMessage {
             can_be_updated,

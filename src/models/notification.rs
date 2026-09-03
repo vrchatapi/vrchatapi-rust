@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Notification {
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     /// **NOTICE:** This is not a JSON object when received from the REST API, but it is when received from the Websocket API. When received from the REST API, this is a json **encoded** object, meaning you have to json-de-encode to get the NotificationDetail object depending on the NotificationType.
     #[serde(rename = "details")]
     pub details: String,
@@ -22,16 +22,21 @@ pub struct Notification {
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "senderUserId")]
     pub sender_user_id: String,
-    /// -| **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
-    #[serde(rename = "senderUsername", skip_serializing_if = "Option::is_none")]
-    pub sender_username: Option<String>,
+    /// The name of the user who sent the notification.
+    #[serde(
+        rename = "senderUsername",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub sender_username: Option<Option<String>>,
     #[serde(rename = "type")]
     pub r#type: models::NotificationType,
 }
 
 impl Notification {
     pub fn new(
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         details: String,
         id: String,
         message: String,

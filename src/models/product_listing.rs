@@ -7,10 +7,22 @@ pub struct ProductListing {
     pub active: bool,
     #[serde(rename = "archived", skip_serializing_if = "Option::is_none")]
     pub archived: Option<bool>,
+    #[serde(rename = "attribution", skip_serializing_if = "Option::is_none")]
+    pub attribution: Option<models::ProductListingAttribution>,
     #[serde(rename = "buyerRefundable")]
     pub buyer_refundable: bool,
+    #[serde(
+        rename = "collabUserDisplayName",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub collab_user_display_name: Option<Option<String>>,
+    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+    #[serde(rename = "collabUserId", skip_serializing_if = "Option::is_none")]
+    pub collab_user_id: Option<String>,
     #[serde(rename = "created", skip_serializing_if = "Option::is_none")]
-    pub created: Option<String>,
+    pub created: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "displayName")]
@@ -42,6 +54,10 @@ pub struct ProductListing {
     pub group_name: Option<Option<String>>,
     #[serde(rename = "hasAvatar")]
     pub has_avatar: bool,
+    #[serde(rename = "hasCompanion", skip_serializing_if = "Option::is_none")]
+    pub has_companion: Option<bool>,
+    #[serde(rename = "hasInventory", skip_serializing_if = "Option::is_none")]
+    pub has_inventory: Option<bool>,
     #[serde(rename = "hasUdon")]
     pub has_udon: bool,
     #[serde(rename = "hydratedProducts", skip_serializing_if = "Option::is_none")]
@@ -69,8 +85,11 @@ pub struct ProductListing {
     pub product_ids: Vec<String>,
     #[serde(rename = "productType")]
     pub product_type: models::ProductType,
+    #[serde(rename = "productTypes", skip_serializing_if = "Option::is_none")]
+    pub product_types: Option<Vec<String>>,
+    /// Product ids. The products themselves arrive in `hydratedProducts`.
     #[serde(rename = "products")]
-    pub products: Vec<serde_json::Value>,
+    pub products: Vec<String>,
     #[serde(rename = "purchaseCount", skip_serializing_if = "Option::is_none")]
     pub purchase_count: Option<i32>,
     #[serde(
@@ -99,7 +118,7 @@ pub struct ProductListing {
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     #[serde(rename = "updated", skip_serializing_if = "Option::is_none")]
-    pub updated: Option<String>,
+    pub updated: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(
         rename = "vrcPlusDiscountPrice",
         skip_serializing_if = "Option::is_none"
@@ -111,7 +130,7 @@ pub struct ProductListing {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub when_to_expire: Option<Option<String>>,
+    pub when_to_expire: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
 }
 
 impl ProductListing {
@@ -127,7 +146,7 @@ impl ProductListing {
         price_tokens: i32,
         product_ids: Vec<String>,
         product_type: models::ProductType,
-        products: Vec<serde_json::Value>,
+        products: Vec<String>,
         recurrable: bool,
         refundable: bool,
         seller_display_name: String,
@@ -138,7 +157,10 @@ impl ProductListing {
         ProductListing {
             active,
             archived: None,
+            attribution: None,
             buyer_refundable,
+            collab_user_display_name: None,
+            collab_user_id: None,
             created: None,
             description,
             display_name,
@@ -148,6 +170,8 @@ impl ProductListing {
             group_id: None,
             group_name: None,
             has_avatar,
+            has_companion: None,
+            has_inventory: None,
             has_udon,
             hydrated_products: None,
             id,
@@ -159,6 +183,7 @@ impl ProductListing {
             price_tokens,
             product_ids,
             product_type,
+            product_types: None,
             products,
             purchase_count: None,
             purchase_count_quantity: None,

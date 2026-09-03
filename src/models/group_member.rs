@@ -27,7 +27,7 @@ pub struct GroupMember {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub banned_at: Option<Option<String>>,
+    pub banned_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// Only missing when explicitly fetching own user.
     #[serde(
         rename = "createdAt",
@@ -35,7 +35,7 @@ pub struct GroupMember {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub created_at: Option<Option<String>>,
+    pub created_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "groupId")]
     pub group_id: String,
     /// Missing when explicitly fetching own user, or when group isn't linked to a purchase.
@@ -58,9 +58,9 @@ pub struct GroupMember {
     )]
     pub is_subscribed_to_event_announcements: Option<bool>,
     #[serde(rename = "joinedAt", deserialize_with = "Option::deserialize")]
-    pub joined_at: Option<String>,
+    pub joined_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "lastPostReadAt", deserialize_with = "Option::deserialize")]
-    pub last_post_read_at: Option<String>,
+    pub last_post_read_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "mRoleIds")]
     pub m_role_ids: Vec<String>,
     /// Only missing when explicitly fetching own user.
@@ -96,8 +96,8 @@ impl GroupMember {
         id: String,
         is_representing: bool,
         is_subscribed_to_announcements: bool,
-        joined_at: Option<String>,
-        last_post_read_at: Option<String>,
+        joined_at: Option<chrono::DateTime<chrono::FixedOffset>>,
+        last_post_read_at: Option<chrono::DateTime<chrono::FixedOffset>>,
         m_role_ids: Vec<String>,
         membership_status: models::GroupMemberStatus,
         role_ids: Vec<String>,

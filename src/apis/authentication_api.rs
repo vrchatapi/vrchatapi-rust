@@ -100,10 +100,27 @@ pub enum GetModerationReportsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_o_auth_redirect_code`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetOAuthRedirectCodeError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_recovery_codes`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetRecoveryCodesError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_sso_token`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetSsoTokenError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -766,6 +783,46 @@ pub async fn get_moderation_reports(
     }
 }
 
+/// Generate a short-lived OAuth redirect code for the current session.
+pub async fn get_o_auth_redirect_code(
+    configuration: &configuration::Configuration,
+) -> Result<models::OAuthRedirectCode, Error<GetOAuthRedirectCodeError>> {
+    let uri_str = format!("{}/oauth/redirectCode", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuthRedirectCode`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::OAuthRedirectCode`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetOAuthRedirectCodeError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Gets the OTP (One Time Password) recovery codes for accounts with 2FA-protection enabled.
 pub async fn get_recovery_codes(
     configuration: &configuration::Configuration,
@@ -798,6 +855,54 @@ pub async fn get_recovery_codes(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetRecoveryCodesError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Generate a token for the specified third-party service.
+pub async fn get_sso_token(
+    configuration: &configuration::Configuration,
+    provider: models::SsoProvider,
+) -> Result<models::SsoToken, Error<GetSsoTokenError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_provider = provider;
+
+    let uri_str = format!(
+        "{}/sso/{provider}",
+        configuration.base_path,
+        provider = p_path_provider.to_string()
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SsoToken`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SsoToken`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetSsoTokenError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -846,7 +951,7 @@ pub async fn logout(
     }
 }
 
-/// ~~Register a new user account.~~  **DEPRECATED:** Automated creation of accounts has no legitimate public third-party use case, and would be in violation of ToS §13.2: *By using the Platform, you agree not to: i. [...] use the Platform in a manner inconsistent with individual human usage* This endpoint is documented in the interest of completeness
+/// Register a new user account.  Automated creation of accounts has no legitimate public third-party use case, and would violate ToS §13.2: *By using the Platform, you agree not to: i. [...] use the Platform in a manner inconsistent with individual human usage* This endpoint is documented in the interest of completeness.
 #[deprecated]
 pub async fn register_user_account(
     configuration: &configuration::Configuration,

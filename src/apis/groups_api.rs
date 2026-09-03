@@ -8,6 +8,7 @@ use serde::{de::Error as _, Deserialize, Serialize};
 #[serde(untagged)]
 pub enum AddGroupGalleryImageError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -17,6 +18,7 @@ pub enum AddGroupGalleryImageError {
 #[serde(untagged)]
 pub enum AddGroupMemberRoleError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -35,6 +37,7 @@ pub enum AddGroupPostError {
 pub enum BanGroupMemberError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -66,6 +69,7 @@ pub enum CancelGroupRequestError {
 pub enum CancelGroupTransferError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -82,6 +86,7 @@ pub enum CreateGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupAnnouncementError {
+    Status400(models::Error),
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
@@ -92,6 +97,7 @@ pub enum CreateGroupAnnouncementError {
 #[serde(untagged)]
 pub enum CreateGroupGalleryError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -112,6 +118,7 @@ pub enum CreateGroupInviteError {
 #[serde(untagged)]
 pub enum CreateGroupRoleError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -140,6 +147,7 @@ pub enum DeleteGroupError {
 #[serde(untagged)]
 pub enum DeleteGroupAnnouncementError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -149,6 +157,7 @@ pub enum DeleteGroupAnnouncementError {
 #[serde(untagged)]
 pub enum DeleteGroupGalleryError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -177,6 +186,7 @@ pub enum DeleteGroupInviteError {
 #[serde(untagged)]
 pub enum DeleteGroupPostError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Success),
     UnknownValue(serde_json::Value),
 }
@@ -186,6 +196,7 @@ pub enum DeleteGroupPostError {
 #[serde(untagged)]
 pub enum DeleteGroupRoleError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -204,6 +215,7 @@ pub enum GetGroupError {
 #[serde(untagged)]
 pub enum GetGroupAnnouncementsError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -213,6 +225,7 @@ pub enum GetGroupAnnouncementsError {
 #[serde(untagged)]
 pub enum GetGroupAuditLogEntryTypesError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -222,6 +235,7 @@ pub enum GetGroupAuditLogEntryTypesError {
 #[serde(untagged)]
 pub enum GetGroupAuditLogsError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -250,6 +264,7 @@ pub enum GetGroupGalleryImagesError {
 #[serde(untagged)]
 pub enum GetGroupInstancesError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -290,6 +305,7 @@ pub enum GetGroupMembersError {
 pub enum GetGroupPermissionsError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -325,6 +341,7 @@ pub enum GetGroupRoleTemplatesError {
 #[serde(untagged)]
 pub enum GetGroupRolesError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -383,6 +400,7 @@ pub enum LeaveGroupError {
 #[serde(untagged)]
 pub enum RemoveGroupMemberRoleError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -392,6 +410,7 @@ pub enum RemoveGroupMemberRoleError {
 #[serde(untagged)]
 pub enum RespondGroupJoinRequestError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -419,6 +438,7 @@ pub enum SearchGroupsError {
 #[serde(untagged)]
 pub enum UnbanGroupMemberError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -427,6 +447,7 @@ pub enum UnbanGroupMemberError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateGroupError {
+    Status400(models::Error),
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
@@ -437,6 +458,7 @@ pub enum UpdateGroupError {
 #[serde(untagged)]
 pub enum UpdateGroupGalleryError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -446,6 +468,7 @@ pub enum UpdateGroupGalleryError {
 #[serde(untagged)]
 pub enum UpdateGroupMemberError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -455,6 +478,7 @@ pub enum UpdateGroupMemberError {
 #[serde(untagged)]
 pub enum UpdateGroupPostError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Success),
     UnknownValue(serde_json::Value),
 }
@@ -1647,8 +1671,8 @@ pub async fn get_group_audit_logs(
     group_id: &str,
     n: Option<i32>,
     offset: Option<i32>,
-    start_date: Option<String>,
-    end_date: Option<String>,
+    start_date: Option<chrono::DateTime<chrono::FixedOffset>>,
+    end_date: Option<chrono::DateTime<chrono::FixedOffset>>,
     actor_ids: Option<&str>,
     event_types: Option<&str>,
     target_ids: Option<&str>,

@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RewardBadge {
     #[serde(rename = "createdAt")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "createdBy")]
     pub created_by: String,
@@ -27,12 +27,12 @@ pub struct RewardBadge {
     #[serde(rename = "type")]
     pub r#type: String,
     #[serde(rename = "updatedAt")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl RewardBadge {
     pub fn new(
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         created_by: String,
         description: String,
         file_name: String,
@@ -42,7 +42,7 @@ impl RewardBadge {
         is_localization_enabled: bool,
         name: String,
         r#type: String,
-        updated_at: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
     ) -> RewardBadge {
         RewardBadge {
             created_at,

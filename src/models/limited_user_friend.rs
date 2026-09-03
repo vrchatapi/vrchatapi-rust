@@ -4,6 +4,10 @@ use serde::{Deserialize, Serialize};
 /// LimitedUserFriend : User object received when querying your friends list
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedUserFriend {
+    #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
+    pub banner_color: Option<String>,
+    #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
+    pub banner_type: Option<String>,
     #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
     pub bio: Option<String>,
     #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
@@ -24,10 +28,17 @@ pub struct LimitedUserFriend {
     pub current_avatar_thumbnail_image_url: Option<String>,
     #[serde(rename = "developerType")]
     pub developer_type: models::DeveloperType,
+    /// https://discord.com/developers/docs/reference#snowflakes
+    #[serde(rename = "discordId", skip_serializing_if = "Option::is_none")]
+    pub discord_id: Option<String>,
     #[serde(rename = "displayName")]
     pub display_name: String,
     #[serde(rename = "friendKey")]
     pub friend_key: String,
+    #[serde(rename = "iconFrame", skip_serializing_if = "Option::is_none")]
+    pub icon_frame: Option<String>,
+    #[serde(rename = "iconUrl", skip_serializing_if = "Option::is_none")]
+    pub icon_url: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "id")]
     pub id: String,
@@ -36,18 +47,22 @@ pub struct LimitedUserFriend {
     #[serde(rename = "isFriend")]
     pub is_friend: bool,
     #[serde(rename = "last_activity", deserialize_with = "Option::deserialize")]
-    pub last_activity: Option<String>,
+    pub last_activity: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "last_login", deserialize_with = "Option::deserialize")]
-    pub last_login: Option<String>,
+    pub last_login: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "last_mobile", deserialize_with = "Option::deserialize")]
-    pub last_mobile: Option<String>,
+    pub last_mobile: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "last_platform")]
     pub last_platform: String,
     #[serde(rename = "location")]
     pub location: String,
+    #[serde(rename = "nameplateEffect", skip_serializing_if = "Option::is_none")]
+    pub nameplate_effect: Option<String>,
     #[serde(rename = "platform")]
     pub platform: String,
+    #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
+    pub profile_effect: Option<String>,
     #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
     pub profile_pic_override: Option<String>,
     #[serde(
@@ -75,9 +90,9 @@ impl LimitedUserFriend {
         id: String,
         image_url: String,
         is_friend: bool,
-        last_activity: Option<String>,
-        last_login: Option<String>,
-        last_mobile: Option<String>,
+        last_activity: Option<chrono::DateTime<chrono::FixedOffset>>,
+        last_login: Option<chrono::DateTime<chrono::FixedOffset>>,
+        last_mobile: Option<chrono::DateTime<chrono::FixedOffset>>,
         last_platform: String,
         location: String,
         platform: String,
@@ -86,14 +101,19 @@ impl LimitedUserFriend {
         tags: Vec<String>,
     ) -> LimitedUserFriend {
         LimitedUserFriend {
+            banner_color: None,
+            banner_type: None,
             bio: None,
             bio_links: None,
             current_avatar_image_url: None,
             current_avatar_tags: None,
             current_avatar_thumbnail_image_url: None,
             developer_type,
+            discord_id: None,
             display_name,
             friend_key,
+            icon_frame: None,
+            icon_url: None,
             id,
             image_url,
             is_friend,
@@ -102,7 +122,9 @@ impl LimitedUserFriend {
             last_mobile,
             last_platform,
             location,
+            nameplate_effect: None,
             platform,
+            profile_effect: None,
             profile_pic_override: None,
             profile_pic_override_thumbnail: None,
             status,

@@ -6,7 +6,7 @@ pub struct AvatarModeration {
     #[serde(rename = "avatarModerationType")]
     pub avatar_moderation_type: models::AvatarModerationType,
     #[serde(rename = "created")]
-    pub created: String,
+    pub created: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "targetAvatarId")]
     pub target_avatar_id: String,
 }
@@ -14,7 +14,7 @@ pub struct AvatarModeration {
 impl AvatarModeration {
     pub fn new(
         avatar_moderation_type: models::AvatarModerationType,
-        created: String,
+        created: chrono::DateTime<chrono::FixedOffset>,
         target_avatar_id: String,
     ) -> AvatarModeration {
         AvatarModeration {

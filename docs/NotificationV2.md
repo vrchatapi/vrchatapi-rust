@@ -6,17 +6,18 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **can_delete** | **bool** |  | 
 **category** | **String** |  | 
-**created_at** | **String** |  | 
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **data** | [**models::NotificationV2Data**](NotificationV2Data.md) |  | 
 **details** | Option<[**models::NotificationV2DetailsBoop**](NotificationV2DetailsBoop.md)> |  | [optional]
-**expires_at** | **String** |  | 
+**display_data** | Option<**serde_json::Value**> |  | [optional]
+**expires_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **expiry_after_seen** | Option<**i32**> |  | 
 **id** | **String** |  | 
 **ignore_dnd** | **bool** |  | 
 **image_url** | Option<**String**> |  | 
 **is_system** | **bool** |  | 
-**link** | **String** |  | 
-**link_text** | **String** |  | 
+**link** | Option<**String**> |  | 
+**link_text** | Option<**String**> |  | 
 **link_text_key** | Option<**String**> |  | 
 **message** | **String** |  | 
 **message_key** | Option<**String**> |  | [optional]
@@ -30,7 +31,7 @@ Name | Type | Description | Notes
 **title** | **String** |  | 
 **title_key** | Option<**String**> |  | 
 **r#type** | [**models::NotificationV2Type**](NotificationV2Type.md) |  | 
-**updated_at** | **String** |  | 
+**updated_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **version** | **i32** |  | [default to 2]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

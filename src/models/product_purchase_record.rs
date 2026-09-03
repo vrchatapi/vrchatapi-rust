@@ -8,7 +8,7 @@ pub struct ProductPurchaseRecord {
     #[serde(rename = "balance")]
     pub balance: i32,
     #[serde(rename = "date")]
-    pub date: String,
+    pub date: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "fromUserDisplayName")]
     pub from_user_display_name: String,
     #[serde(rename = "listingDisplayName")]
@@ -34,7 +34,7 @@ impl ProductPurchaseRecord {
     pub fn new(
         amount: i32,
         balance: i32,
-        date: String,
+        date: chrono::DateTime<chrono::FixedOffset>,
         from_user_display_name: String,
         listing_display_name: String,
         listing_type: models::ProductListingType,

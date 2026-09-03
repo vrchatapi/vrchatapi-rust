@@ -7,7 +7,7 @@ pub struct Transaction {
     #[serde(rename = "agreement", skip_serializing_if = "Option::is_none")]
     pub agreement: Option<models::TransactionAgreement>,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "error", deserialize_with = "Option::deserialize")]
     pub error: Option<String>,
     #[serde(rename = "id")]
@@ -25,7 +25,7 @@ pub struct Transaction {
     #[serde(rename = "subscription")]
     pub subscription: models::Subscription,
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "userDisplayName", skip_serializing_if = "Option::is_none")]
     pub user_display_name: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
@@ -35,13 +35,13 @@ pub struct Transaction {
 
 impl Transaction {
     pub fn new(
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         error: Option<String>,
         id: String,
         sandbox: bool,
         status: models::TransactionStatus,
         subscription: models::Subscription,
-        updated_at: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
     ) -> Transaction {
         Transaction {
             agreement: None,

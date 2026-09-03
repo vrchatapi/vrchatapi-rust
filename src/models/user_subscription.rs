@@ -9,11 +9,11 @@ pub struct UserSubscription {
     #[serde(rename = "amount")]
     pub amount: f64,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "expires")]
-    pub expires: String,
+    pub expires: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "isBulkGift")]
@@ -38,16 +38,16 @@ pub struct UserSubscription {
     #[serde(rename = "transactionId")]
     pub transaction_id: String,
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl UserSubscription {
     pub fn new(
         active: bool,
         amount: f64,
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         description: String,
-        expires: String,
+        expires: chrono::DateTime<chrono::FixedOffset>,
         id: String,
         is_bulk_gift: bool,
         is_gift: bool,
@@ -57,7 +57,7 @@ impl UserSubscription {
         store: String,
         tier: i32,
         transaction_id: String,
-        updated_at: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
     ) -> UserSubscription {
         UserSubscription {
             active,

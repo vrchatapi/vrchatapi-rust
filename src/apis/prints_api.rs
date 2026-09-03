@@ -245,7 +245,7 @@ pub async fn get_user_prints(
 pub async fn upload_print(
     configuration: &configuration::Configuration,
     image: crate::patches::better_file_upload::File<'_>,
-    timestamp: String,
+    timestamp: chrono::DateTime<chrono::FixedOffset>,
     note: Option<&str>,
     world_id: Option<&str>,
     world_name: Option<&str>,

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **asset_url** | Option<**String**> |  | [optional]
 **asset_url_object** | Option<**serde_json::Value**> |  | [optional]
 **asset_version** | **i32** |  | 
-**created_at** | Option<**String**> |  | [optional]
+**created_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **id** | **String** |  | 
 **impostor_url** | Option<**String**> |  | [optional]
 **impostorizer_version** | Option<**String**> |  | [optional]

@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **client_api_key** | **String** | apiKey to be used for all other requests | 
 **client_bps_ceiling** | **i32** | Unknown | [default to 18432]
 **client_disconnect_timeout** | **i32** | Unknown | [default to 30000]
+**client_max_datagrams** | Option<**i32**> |  | [optional]
 **client_net_dispatch_thread** | Option<**bool**> | Unknown | [optional][default to false]
 **client_net_dispatch_thread_mobile** | **bool** | Unknown | [default to true]
 **client_net_in_thread** | Option<**bool**> | Unknown | [optional][default to false]
@@ -40,6 +41,7 @@ Name | Type | Description | Notes
 **client_qr** | Option<**i32**> | Unknown | [optional][default to 1]
 **client_reserved_player_bps** | **i32** | Unknown | [default to 7168]
 **client_sent_count_allowance** | **i32** | Unknown | [default to 15]
+**client_use_ack2** | Option<**bool**> |  | [optional]
 **constants** | [**models::ApiConfigConstants**](APIConfigConstants.md) |  | 
 **contact_email** | **String** | VRChat's contact email | 
 **copyright_email** | **String** | VRChat's copyright-issues-related email | 
@@ -51,7 +53,7 @@ Name | Type | Description | Notes
 **dev_language_codes** | Option<**Vec<String>**> | Unknown | [optional]
 **dev_sdk_url** | **String** | Link to download the development SDK, use downloadUrls instead | 
 **dev_sdk_version** | **String** | Version of the development SDK | 
-**dis_countdown** | **String** | Unknown, \"dis\" maybe for disconnect? | 
+**dis_countdown** | **chrono::DateTime<chrono::FixedOffset>** | Unknown, \"dis\" maybe for disconnect? | 
 **disable_av_pro_in_proton** | Option<**bool**> | Unknown | [optional][default to false]
 **disable_avatar_copying** | **bool** | Toggles if copying avatars should be disabled | [default to false]
 **disable_avatar_gating** | **bool** | Toggles if avatar gating should be disabled. Avatar gating restricts uploading of avatars to people with the `system_avatar_access` Tag or `admin_avatar_access` Tag | [default to false]
@@ -74,16 +76,21 @@ Name | Type | Description | Notes
 **download_urls** | [**models::ApiConfigDownloadUrlList**](APIConfigDownloadURLList.md) |  | 
 **dynamic_world_rows** | [**HashSet<models::DynamicContentRow>**](DynamicContentRow.md) | Array of DynamicWorldRow objects, used by the game to display the list of world rows | 
 **economy_ledger_backfill** | **bool** | Unknown | 
-**economy_ledger_migration_stop** | **String** | Unknown | 
+**economy_ledger_migration_stop** | Option<**String**> | Unknown | [optional]
 **economy_ledger_mode** | **String** | Unknown | 
-**economy_pause_end** | **String** | Unknown | 
-**economy_pause_start** | **String** | Unknown | 
+**economy_pause_end** | **chrono::DateTime<chrono::FixedOffset>** | Unknown | 
+**economy_pause_start** | **chrono::DateTime<chrono::FixedOffset>** | Unknown | 
 **economy_purchase_repair_enabled** | **bool** | Unknown | 
 **economy_state** | **i32** | Unknown | [default to 1]
+**enable_vrc_plus_world_lists** | Option<**bool**> |  | [optional]
+**event_shelf_campaigns** | Option<[**Vec<models::ApiConfigEventShelfCampaign>**](APIConfigEventShelfCampaign.md)> |  | [optional]
 **events** | [**models::ApiConfigEvents**](APIConfigEvents.md) |  | 
 **force_use_latest_world** | **bool** | Unknown | [default to true]
 **gift_display_type** | **String** | Display type of gifts | 
+**global_cache_version** | Option<**i32**> |  | [optional]
+**global_cache_version_default** | Option<**i32**> |  | [optional]
 **google_api_client_id** | **String** | Unknown | [default to 827942544393-r2ouvckvouldn9dg9uruseje575e878f.apps.googleusercontent.com]
+**google_api_unity_client_id** | Option<**String**> |  | [optional]
 **home_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **homepage_redirect_target** | **String** | Redirect target if you try to open the base API domain in your browser | [default to https://hello.vrchat.com]
 **hub_world_id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
@@ -91,8 +98,11 @@ Name | Type | Description | Notes
 **ios_app_version** | **Vec<String>** | Current app version for iOS | 
 **ios_version** | [**models::ApiConfigIosVersion**](APIConfigIosVersion.md) |  | 
 **jobs_email** | **String** | VRChat's job application email | 
+**loading_screen_weights** | Option<[**std::collections::HashMap<String, models::ApiConfigLoadingScreenWeights>**](APIConfigLoadingScreenWeights.md)> | Relative weight of each info-push category on the loading screen, per audience. | [optional]
+**low_memory_go_home_timeout** | Option<[**std::collections::HashMap<String, models::ApiConfigLowMemoryGoHomeTimeoutValue>**](APIConfigLowMemoryGoHomeTimeoutValue.md)> | Low-memory timeout, keyed by platform. | [optional]
 **max_user_emoji** | **i32** | The maximum number of custom emoji each user may have at a given time. | [default to 18]
 **max_user_stickers** | **i32** | The maximum number of custom stickers each user may have at a given time. | [default to 18]
+**maximum_unity_version_for_uploads** | Option<**String**> |  | [optional]
 **min_supported_client_build_number** | [**models::ApiConfigMinSupportedClientBuildNumber**](APIConfigMinSupportedClientBuildNumber.md) |  | 
 **minimum_unity_version_for_uploads** | **String** | Minimum Unity version required for uploading assets | [default to 2019.0.0f1]
 **moderation_email** | **String** | VRChat's moderation related email | 
@@ -101,8 +111,13 @@ Name | Type | Description | Notes
 **photon_nameserver_overrides** | **Vec<String>** | Unknown | 
 **photon_public_keys** | **Vec<String>** | Unknown | 
 **player_url_resolver_sha1** | **String** | Currently used youtube-dl.exe hash in SHA1-delimited format | 
+**player_url_resolver_sha1_gfn_override** | Option<**String**> | Overrides `player-url-resolver-sha1` on GeForce Now. | [optional]
 **player_url_resolver_version** | **String** | Currently used youtube-dl.exe version | 
+**player_url_resolver_version_gfn_override** | Option<**String**> | Overrides `player-url-resolver-version` on GeForce Now. | [optional]
+**profile_defaults** | Option<[**models::ApiConfigProfileDefaults**](APIConfigProfileDefaults.md)> |  | [optional]
+**prop_component_list** | Option<**Vec<String>**> | SDK3 component type names. | [optional]
 **public_key** | **String** | Public key, hex encoded | 
+**quest_minimum_low_memory_threshold** | Option<**std::collections::HashMap<String, i32>**> | Low-memory threshold, keyed by platform. | [optional]
 **report_categories** | [**std::collections::HashMap<String, models::ReportCategory>**](ReportCategory.md) | Categories available for reporting objectionable content | 
 **report_form_url** | **String** | URL to the report form | [default to https://help.vrchat.com/hc/en-us/requests/new?ticket_form_id=1500000182242&tf_360056455174=user_report&tf_360057451993={userId}&tf_1500001445142={reportedId}&tf_subject={reason} {category} By {contentType} {reportedName}&tf_description={description}]
 **report_options** | **std::collections::HashMap<String, std::collections::HashMap<String, Vec<String>>>** | Options for reporting content. Select a key+value from this mapping as the `type` of the report. Select one key+value from the object at reportOptions[type] as the `category` of the report. reportCategories[category] contains user-facing text to display for all possible categories. Select one value from the array at reportOptions[type][category] as the `reason` of the report. reportReasons[reason] contains user-facing text to display for all possible categories. | 
@@ -126,6 +141,8 @@ Name | Type | Description | Notes
 **url_list** | **Vec<String>** | List of allowed URLs that bypass the \"Allow untrusted URL's\" setting in-game | 
 **use_reliable_udp_for_voice** | **bool** | Unknown | [default to false]
 **vive_windows_url** | **String** | Download link for game on the Steam website. | 
+**voice_max_playback_sources_mobile** | Option<**i32**> |  | [optional]
+**voice_max_playback_sources_pc** | Option<**i32**> |  | [optional]
 **websocket_max_friends_refresh_delay** | **i32** | Unknown | [default to 900]
 **websocket_quick_reconnect_time** | **i32** | Unknown | [default to 2]
 **websocket_reconnect_max_delay** | **i32** | Unknown | [default to 2]

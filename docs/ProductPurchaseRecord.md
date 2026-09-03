@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **amount** | **i32** |  | 
 **balance** | **i32** |  | 
-**date** | **String** |  | 
+**date** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **from_user_display_name** | **String** |  | 
 **listing_display_name** | **String** |  | 
 **listing_type** | [**models::ProductListingType**](ProductListingType.md) |  | 

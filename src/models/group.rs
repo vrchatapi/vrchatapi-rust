@@ -40,7 +40,7 @@ pub struct Group {
     )]
     pub banner_url: Option<Option<String>>,
     #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "discriminator", skip_serializing_if = "Option::is_none")]
@@ -75,7 +75,7 @@ pub struct Group {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub last_post_created_at: Option<Option<String>>,
+    pub last_post_created_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "links", skip_serializing_if = "Option::is_none")]
     pub links: Option<Vec<String>>,
     #[serde(rename = "memberCount", skip_serializing_if = "Option::is_none")]
@@ -84,13 +84,27 @@ pub struct Group {
         rename = "memberCountSyncedAt",
         skip_serializing_if = "Option::is_none"
     )]
-    pub member_count_synced_at: Option<String>,
+    pub member_count_synced_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
     pub membership_status: Option<models::GroupMemberStatus>,
     #[serde(rename = "myMember", skip_serializing_if = "Option::is_none")]
     pub my_member: Option<models::GroupMyMember>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
+    #[serde(
+        rename = "nameplateId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub nameplate_id: Option<Option<serde_json::Value>>,
+    #[serde(
+        rename = "nameplateUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub nameplate_url: Option<Option<serde_json::Value>>,
     #[serde(rename = "onlineMemberCount", skip_serializing_if = "Option::is_none")]
     pub online_member_count: Option<i32>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
@@ -121,7 +135,7 @@ pub struct Group {
     #[serde(rename = "transferTargetId", skip_serializing_if = "Option::is_none")]
     pub transfer_target_id: Option<String>,
     #[serde(rename = "updatedAt", skip_serializing_if = "Option::is_none")]
-    pub updated_at: Option<String>,
+    pub updated_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl Group {
@@ -151,6 +165,8 @@ impl Group {
             membership_status: None,
             my_member: None,
             name: None,
+            nameplate_id: None,
+            nameplate_url: None,
             online_member_count: None,
             owner_id: None,
             privacy: None,

@@ -163,6 +163,7 @@ impl From<&str> for ContentType {
 pub mod authentication_api;
 pub mod avatars_api;
 pub mod calendar_api;
+pub mod deprecated_api;
 pub mod economy_api;
 pub mod favorites_api;
 pub mod files_api;

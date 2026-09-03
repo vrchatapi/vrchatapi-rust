@@ -201,7 +201,7 @@ This endpoint does not need any parameter.
 > models::Balance get_balance(user_id)
 Get Balance
 
-Gets the balance of a user
+Return the balance of a user.
 
 ### Parameters
 
@@ -231,7 +231,7 @@ Name | Type | Description  | Required | Notes
 > models::Balance get_balance_earnings(user_id)
 Get Balance Earnings
 
-Gets the balance of a user from earnings
+Return the user's balance from earnings.
 
 ### Parameters
 
@@ -315,7 +315,7 @@ This endpoint does not need any parameter.
 
 ## get_earnings_metrics
 
-> models::EarningsMetrics get_earnings_metrics(seller_id, metric_date_start, metric_date_end, group_by_duration)
+> models::EarningsMetrics get_earnings_metrics(metric_date_start, metric_date_end, seller_id, group_by_duration)
 Get Earnings Metrics
 
 Gets earnings totals and breakdown metrics for the currently authenticated user.
@@ -325,9 +325,9 @@ Gets earnings totals and breakdown metrics for the currently authenticated user.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**seller_id** | **String** | Seller to retrieve economy metrics for. | [required] |
 **metric_date_start** | Option<**String**> | Lower bound for economy metrics queries. Observed formats include both date-only and full ISO timestamps. |  |
 **metric_date_end** | Option<**String**> | Upper bound for economy metrics queries. Observed formats include both date-only and full ISO timestamps. |  |
+**seller_id** | Option<**String**> | Filter results by seller. |  |
 **group_by_duration** | Option<**String**> | Time bucket size for economy metrics. Observed values include `days` and `years`. |  |
 
 ### Return type
@@ -637,8 +637,8 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
-**date_min** | Option<**String**> | The start date of the search range. |  |
-**date_max** | Option<**String**> | The end date of the search range. |  |
+**date_min** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The start date of the search range. |  |
+**date_max** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The end date of the search range. |  |
 **from_user_id** | Option<**String**> | Must be a valid user ID. |  |
 **to_user_id** | Option<**String**> | Must be a valid user ID. |  |
 **sort** | Option<[**SortOptionProductPurchase**](SortOptionProductPurchase.md)> | The sort order of the results. |  |
@@ -758,7 +758,7 @@ This endpoint does not need any parameter.
 > models::SellerEligibility get_seller_eligibility()
 Get Seller Eligibility
 
-Get the eligibility of the currently authenticated user to become a seller
+Return the current user's eligibility to become a seller.
 
 ### Parameters
 
@@ -903,14 +903,18 @@ Name | Type | Description  | Required | Notes
 
 ## get_subscriptions
 
-> Vec<models::Subscription> get_subscriptions()
+> Vec<models::Subscription> get_subscriptions(gifts, recurring)
 List Subscriptions
 
 List all existing Subscriptions. For example, \"vrchatplus-monthly\" and \"vrchatplus-yearly\".
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**gifts** | Option<**bool**> | Return giftable subscriptions instead of standard ones. |  |
+**recurring** | Option<**bool**> | Return recurring subscriptions instead of standard ones. |  |
 
 ### Return type
 
@@ -933,7 +937,7 @@ This endpoint does not need any parameter.
 > models::TiliaStatus get_tilia_status()
 Get Tilia Status
 
-Gets the status of Tilia integration
+Return the Tilia integration status.
 
 ### Parameters
 
@@ -960,7 +964,7 @@ This endpoint does not need any parameter.
 > models::TiliaTos get_tilia_tos(user_id)
 Get Tilia TOS Agreement Status
 
-Gets the status of the agreement of a user to the Tilia TOS
+Return the user's Tilia TOS agreement status.
 
 ### Parameters
 
@@ -1017,7 +1021,7 @@ This endpoint does not need any parameter.
 > models::UserCreditsEligible get_user_credits_eligible(user_id, subscription_id)
 Get User Credits Eligibility
 
-Get the user's eligibility status for subscriptions based on available credits.
+Return the user's subscription credit eligibility.
 
 ### Parameters
 
@@ -1109,14 +1113,14 @@ Name | Type | Description  | Required | Notes
 > Vec<models::Store> list_stores(seller_id, management_pov, n, offset)
 List Stores
 
-Lists stores, optionally filtered to a seller and adjusted for management views.
+List a seller's stores, adjusted for management views.
 
 ### Parameters
 
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**seller_id** | Option<**String**> | Filter results by seller. |  |
+**seller_id** | **String** | Seller to scope the results to. | [required] |
 **management_pov** | Option<**bool**> | Return stores from the seller management point of view. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
@@ -1267,7 +1271,7 @@ Name | Type | Description  | Required | Notes
 > serde_json::Value update_tilia_tos(user_id, update_tilia_tos_request)
 Update Tilia TOS Agreement Status
 
-Updates the status of the agreement of a user to the Tilia TOS
+Update the user's Tilia TOS agreement status.
 
 ### Parameters
 

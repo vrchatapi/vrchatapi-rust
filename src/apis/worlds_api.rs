@@ -17,6 +17,7 @@ pub enum AddWorldTagsError {
 #[serde(untagged)]
 pub enum CheckUserPersistenceExistsError {
     Status401(models::Error),
+    Status403(models::BareError),
     Status404(),
     UnknownValue(serde_json::Value),
 }
@@ -43,6 +44,7 @@ pub enum DeleteAllUserPersistenceDataError {
 #[serde(untagged)]
 pub enum DeleteUserPersistenceError {
     Status401(models::Error),
+    Status403(models::BareError),
     Status404(),
     UnknownValue(serde_json::Value),
 }
@@ -139,6 +141,7 @@ pub enum PublishWorldError {
 pub enum RemoveWorldTagsError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -163,6 +166,7 @@ pub enum UnpublishWorldError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateWorldError {
+    Status400(models::Error),
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
@@ -891,7 +895,6 @@ pub async fn get_world_instance(
 }
 
 /// Return a worlds custom metadata. This is currently believed to be unused. Metadata can be set with `updateWorld` and can be any arbitrary object.
-#[deprecated]
 pub async fn get_world_metadata(
     configuration: &configuration::Configuration,
     world_id: &str,
@@ -1024,7 +1027,7 @@ pub async fn publish_world(
     }
 }
 
-/// Removes tags from the world's profile
+/// Remove tags from the world's profile.  The path is `deleteTags`, not `removeTags` as the user equivalent uses.
 pub async fn remove_world_tags(
     configuration: &configuration::Configuration,
     world_id: &str,
@@ -1035,7 +1038,7 @@ pub async fn remove_world_tags(
     let p_body_change_world_tags_request = change_world_tags_request;
 
     let uri_str = format!(
-        "{}/worlds/{worldId}/removeTags",
+        "{}/worlds/{worldId}/deleteTags",
         configuration.base_path,
         worldId = crate::apis::urlencode(p_path_world_id)
     );

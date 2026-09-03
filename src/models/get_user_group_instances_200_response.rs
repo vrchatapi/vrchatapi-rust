@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GetUserGroupInstances200Response {
     #[serde(rename = "fetchedAt", skip_serializing_if = "Option::is_none")]
-    pub fetched_at: Option<String>,
+    pub fetched_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "instances", skip_serializing_if = "Option::is_none")]
     pub instances: Option<Vec<models::Instance>>,
 }

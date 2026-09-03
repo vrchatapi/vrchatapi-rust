@@ -9,7 +9,7 @@ pub struct CurrentUserPlatformHistoryInner {
     #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
     pub platform: Option<String>,
     #[serde(rename = "recorded", skip_serializing_if = "Option::is_none")]
-    pub recorded: Option<String>,
+    pub recorded: Option<chrono::DateTime<chrono::FixedOffset>>,
 }
 
 impl CurrentUserPlatformHistoryInner {

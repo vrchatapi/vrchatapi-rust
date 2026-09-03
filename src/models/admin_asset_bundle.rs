@@ -5,9 +5,9 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AdminAssetBundle {
     #[serde(rename = "_created_at")]
-    pub _created_at: String,
+    pub _created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "_updated_at")]
-    pub _updated_at: String,
+    pub _updated_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "assetType")]
     pub asset_type: String,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
@@ -35,8 +35,8 @@ pub struct AdminAssetBundle {
 
 impl AdminAssetBundle {
     pub fn new(
-        _created_at: String,
-        _updated_at: String,
+        _created_at: chrono::DateTime<chrono::FixedOffset>,
+        _updated_at: chrono::DateTime<chrono::FixedOffset>,
         asset_type: String,
         author_id: String,
         author_name: String,

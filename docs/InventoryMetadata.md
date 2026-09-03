@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **inventory_items_to_instantiate** | Option<**Vec<String>**> | Only in bundles | [optional]
 **mask_tag** | Option<**String**> |  | [optional]
 **prop_id** | Option<**String**> |  | [optional]
+**prop_kind** | Option<**i32**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

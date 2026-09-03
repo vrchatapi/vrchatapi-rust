@@ -14,20 +14,20 @@ pub struct CalendarEvent {
     )]
     pub close_instance_after_end_minutes: Option<i32>,
     #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(
         rename = "deletedAt",
         default,
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub deleted_at: Option<Option<String>>,
+    pub deleted_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "durationInMs", skip_serializing_if = "Option::is_none")]
     pub duration_in_ms: Option<i64>,
     #[serde(rename = "endsAt")]
-    pub ends_at: String,
+    pub ends_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
     pub featured: Option<bool>,
     #[serde(
@@ -63,6 +63,13 @@ pub struct CalendarEvent {
     pub languages: Option<Vec<String>>,
     #[serde(rename = "occurrenceKind", skip_serializing_if = "Option::is_none")]
     pub occurrence_kind: Option<models::CalendarEventOccurrenceKind>,
+    #[serde(
+        rename = "occurrenceModified",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub occurrence_modified: Option<Option<bool>>,
     #[serde(rename = "ownerId", skip_serializing_if = "Option::is_none")]
     pub owner_id: Option<String>,
     #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
@@ -91,7 +98,7 @@ pub struct CalendarEvent {
     )]
     pub series_id: Option<Option<String>>,
     #[serde(rename = "startsAt")]
-    pub starts_at: String,
+    pub starts_at: chrono::DateTime<chrono::FixedOffset>,
     /// Custom tags for this event
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
@@ -100,7 +107,7 @@ pub struct CalendarEvent {
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<String>,
     #[serde(rename = "updatedAt", skip_serializing_if = "Option::is_none")]
-    pub updated_at: Option<String>,
+    pub updated_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "userInterest", skip_serializing_if = "Option::is_none")]
     pub user_interest: Option<models::CalendarEventUserInterest>,
     #[serde(
@@ -116,9 +123,9 @@ impl CalendarEvent {
         access_type: models::CalendarEventAccess,
         category: models::CalendarEventCategory,
         description: String,
-        ends_at: String,
+        ends_at: chrono::DateTime<chrono::FixedOffset>,
         id: String,
-        starts_at: String,
+        starts_at: chrono::DateTime<chrono::FixedOffset>,
         title: String,
     ) -> CalendarEvent {
         CalendarEvent {
@@ -140,6 +147,7 @@ impl CalendarEvent {
             is_draft: None,
             languages: None,
             occurrence_kind: None,
+            occurrence_modified: None,
             owner_id: None,
             platforms: None,
             recurrence: None,

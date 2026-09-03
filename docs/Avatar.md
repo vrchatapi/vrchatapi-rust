@@ -8,9 +8,10 @@ Name | Type | Description | Notes
 **active_asset_review_id** | Option<**String**> | Only present for the avatar author on avatars under active review. | [optional]
 **asset_url** | Option<**String**> | Not present from general search `/avatars`, only on specific requests `/avatars/{avatarId}`. | [optional]
 **asset_url_object** | Option<**serde_json::Value**> | Not present from general search `/avatars`, only on specific requests `/avatars/{avatarId}`. **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead. | [optional]
+**attribution** | Option<**serde_json::Value**> |  | [optional]
 **author_id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
 **author_name** | **String** |  | 
-**created_at** | **String** |  | 
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **description** | **String** |  | 
 **featured** | **bool** |  | [default to false]
 **highest_price** | Option<**i32**> |  | [optional]
@@ -32,7 +33,7 @@ Name | Type | Description | Notes
 **unity_package_url** | **String** |  | 
 **unity_package_url_object** | [**models::AvatarUnityPackageUrlObject**](AvatarUnityPackageUrlObject.md) |  | 
 **unity_packages** | [**HashSet<models::UnityPackage>**](UnityPackage.md) |  | 
-**updated_at** | **String** |  | 
+**updated_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **version** | **i32** |  | [default to 0]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

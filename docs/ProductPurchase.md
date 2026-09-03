@@ -23,16 +23,16 @@ Name | Type | Description | Notes
 **purchase_active** | **bool** |  | 
 **purchase_context** | [**models::ProductPurchasePurchaseContext**](ProductPurchasePurchaseContext.md) |  | 
 **purchase_current_status** | **String** |  | 
-**purchase_date** | **String** |  | 
+**purchase_date** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **purchase_duration** | Option<**i32**> |  | [optional]
 **purchase_duration_type** | Option<**String**> |  | [optional]
-**purchase_end_date** | Option<**String**> |  | 
+**purchase_end_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | 
 **purchase_fee** | Option<**i32**> |  | [optional]
 **purchase_id** | **String** |  | 
 **purchase_latest** | **bool** |  | 
 **purchase_price** | **i32** |  | 
 **purchase_quantity** | **i32** |  | 
-**purchase_start_date** | Option<**String**> |  | 
+**purchase_start_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | 
 **purchase_token** | Option<**serde_json::Value**> |  | 
 **purchase_type** | **String** |  | 
 **purchase_unit_price** | **i32** |  | 

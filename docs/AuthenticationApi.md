@@ -16,7 +16,9 @@ Method | HTTP request | Description
 [**get_current_user**](AuthenticationApi.md#get_current_user) | **GET** /auth/user | Login and/or Get Current User Info
 [**get_global_avatar_moderations**](AuthenticationApi.md#get_global_avatar_moderations) | **GET** /auth/user/avatarmoderations | Get Global Avatar Moderations
 [**get_moderation_reports**](AuthenticationApi.md#get_moderation_reports) | **GET** /moderationReports | Get Moderation Reports
+[**get_o_auth_redirect_code**](AuthenticationApi.md#get_o_auth_redirect_code) | **GET** /oauth/redirectCode | Get OAuth Redirect Code
 [**get_recovery_codes**](AuthenticationApi.md#get_recovery_codes) | **GET** /auth/user/twofactorauth/otp | Get 2FA Recovery codes
+[**get_sso_token**](AuthenticationApi.md#get_sso_token) | **GET** /sso/{provider} | Get SSO Token
 [**logout**](AuthenticationApi.md#logout) | **PUT** /logout | Logout
 [**register_user_account**](AuthenticationApi.md#register_user_account) | **POST** /auth/register | Register User Account
 [**resend_email_confirmation**](AuthenticationApi.md#resend_email_confirmation) | **POST** /auth/user/resendEmail | Resend Email Confirmation
@@ -384,6 +386,33 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_o_auth_redirect_code
+
+> models::OAuthRedirectCode get_o_auth_redirect_code()
+Get OAuth Redirect Code
+
+Generate a short-lived OAuth redirect code for the current session.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::OAuthRedirectCode**](OAuthRedirectCode.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_recovery_codes
 
 > models::TwoFactorRecoveryCodes get_recovery_codes()
@@ -398,6 +427,36 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**models::TwoFactorRecoveryCodes**](TwoFactorRecoveryCodes.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_sso_token
+
+> models::SsoToken get_sso_token(provider)
+Get SSO Token
+
+Generate a token for the specified third-party service.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**provider** | [**SsoProvider**](SsoProvider.md) | The third-party service to mint a token for. | [required] |
+
+### Return type
+
+[**models::SsoToken**](SsoToken.md)
 
 ### Authorization
 
@@ -443,7 +502,7 @@ This endpoint does not need any parameter.
 > models::RegisterUserAccount200Response register_user_account(register_user_account_request)
 Register User Account
 
-~~Register a new user account.~~  **DEPRECATED:** Automated creation of accounts has no legitimate public third-party use case, and would be in violation of ToS §13.2: *By using the Platform, you agree not to: i. [...] use the Platform in a manner inconsistent with individual human usage* This endpoint is documented in the interest of completeness
+Register a new user account.  Automated creation of accounts has no legitimate public third-party use case, and would violate ToS §13.2: *By using the Platform, you agree not to: i. [...] use the Platform in a manner inconsistent with individual human usage* This endpoint is documented in the interest of completeness.
 
 ### Parameters
 

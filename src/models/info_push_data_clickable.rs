@@ -22,12 +22,24 @@ impl InfoPushDataClickable {
 pub enum Command {
     #[serde(rename = "CannedWorldSearch")]
     CannedWorldSearch,
+    #[serde(rename = "OpenAccountUpgrade")]
+    OpenAccountUpgrade,
+    #[serde(rename = "OpenAvatarsMenu")]
+    OpenAvatarsMenu,
+    #[serde(rename = "OpenHelpArticle")]
+    OpenHelpArticle,
+    #[serde(rename = "OpenListingDetails")]
+    OpenListingDetails,
     #[serde(rename = "OpenSafetyMenu")]
     OpenSafetyMenu,
     #[serde(rename = "OpenURL")]
     OpenUrl,
     #[serde(rename = "OpenVRCPlusMenu")]
     OpenVrcPlusMenu,
+    #[serde(rename = "OpenVRChatStore")]
+    OpenVrChatStore,
+    #[serde(rename = "OpenWorldDetails")]
+    OpenWorldDetails,
 }
 
 impl Default for Command {

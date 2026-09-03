@@ -16,7 +16,7 @@ pub struct CreateCalendarEventRequest {
     pub description: String,
     /// Time the event ends at
     #[serde(rename = "endsAt")]
-    pub ends_at: String,
+    pub ends_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
     pub featured: Option<bool>,
     #[serde(
@@ -55,7 +55,7 @@ pub struct CreateCalendarEventRequest {
     pub send_creation_notification: bool,
     /// Time the event starts at
     #[serde(rename = "startsAt")]
-    pub starts_at: String,
+    pub starts_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     /// Event title
@@ -73,9 +73,9 @@ impl CreateCalendarEventRequest {
         access_type: models::CalendarEventAccess,
         category: models::CalendarEventCategory,
         description: String,
-        ends_at: String,
+        ends_at: chrono::DateTime<chrono::FixedOffset>,
         send_creation_notification: bool,
-        starts_at: String,
+        starts_at: chrono::DateTime<chrono::FixedOffset>,
         title: String,
     ) -> CreateCalendarEventRequest {
         CreateCalendarEventRequest {

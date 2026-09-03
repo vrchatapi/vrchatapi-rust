@@ -11,6 +11,7 @@ use tokio_util::codec::{BytesCodec, FramedRead};
 pub enum GetInviteMessageError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -37,6 +38,7 @@ pub enum InviteMyselfToError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum InviteUserError {
+    Status401(models::Error),
     Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -71,6 +73,7 @@ pub enum RequestInviteWithPhotoError {
 pub enum ResetInviteMessageError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     Status429(models::Error),
     UnknownValue(serde_json::Value),

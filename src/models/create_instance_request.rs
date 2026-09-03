@@ -7,21 +7,20 @@ pub struct CreateInstanceRequest {
     pub age_gate: Option<bool>,
     #[serde(rename = "calendarEntryId", skip_serializing_if = "Option::is_none")]
     pub calendar_entry_id: Option<String>,
-    /// Only applies to invite type instances to make them invite+
+    /// Makes a private instance invite+. A friends instance is rejected.
     #[serde(rename = "canRequestInvite", skip_serializing_if = "Option::is_none")]
     pub can_request_invite: Option<bool>,
+    #[serde(rename = "categoryId", skip_serializing_if = "Option::is_none")]
+    pub category_id: Option<String>,
     /// The time after which users won't be allowed to join the instance. This doesn't work for public instances.
     #[serde(rename = "closedAt", skip_serializing_if = "Option::is_none")]
-    pub closed_at: Option<String>,
+    pub closed_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "contentSettings", skip_serializing_if = "Option::is_none")]
     pub content_settings: Option<models::InstanceContentSettings>,
-    #[serde(
-        rename = "displayName",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub display_name: Option<Option<String>>,
+    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
+    #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
+    pub display_name: Option<String>,
     #[serde(rename = "groupAccessType", skip_serializing_if = "Option::is_none")]
     pub group_access_type: Option<models::GroupAccessType>,
     /// Currently unused, but will eventually be a flag to set if the closing of the instance should kick people.
@@ -60,6 +59,8 @@ pub struct CreateInstanceRequest {
     pub role_ids: Option<Vec<String>>,
     #[serde(rename = "type")]
     pub r#type: models::InstanceType,
+    #[serde(rename = "vibeIds", skip_serializing_if = "Option::is_none")]
+    pub vibe_ids: Option<Vec<String>>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "worldId")]
     pub world_id: String,
@@ -75,8 +76,10 @@ impl CreateInstanceRequest {
             age_gate: None,
             calendar_entry_id: None,
             can_request_invite: None,
+            category_id: None,
             closed_at: None,
             content_settings: None,
+            description: None,
             display_name: None,
             group_access_type: None,
             hard_close: None,
@@ -88,6 +91,7 @@ impl CreateInstanceRequest {
             region,
             role_ids: None,
             r#type,
+            vibe_ids: None,
             world_id,
         }
     }

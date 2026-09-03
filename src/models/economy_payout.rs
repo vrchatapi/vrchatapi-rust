@@ -8,7 +8,7 @@ pub struct EconomyPayout {
     #[serde(rename = "paymentAmountUsd")]
     pub payment_amount_usd: i32,
     #[serde(rename = "paymentCreated")]
-    pub payment_created: String,
+    pub payment_created: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "paymentOutId")]
     pub payment_out_id: i32,
     #[serde(rename = "paymentPlatform")]
@@ -20,7 +20,7 @@ pub struct EconomyPayout {
     #[serde(rename = "paymentStatusCode")]
     pub payment_status_code: i32,
     #[serde(rename = "paymentUpdated")]
-    pub payment_updated: String,
+    pub payment_updated: chrono::DateTime<chrono::FixedOffset>,
     #[serde(
         rename = "platformPaymentGuid",
         default,
@@ -41,7 +41,7 @@ pub struct EconomyPayout {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub reversal_date: Option<Option<String>>,
+    pub reversal_date: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(
         rename = "reversalReason",
         default,
@@ -71,13 +71,13 @@ impl EconomyPayout {
     pub fn new(
         payment_amount_tokens: i32,
         payment_amount_usd: i32,
-        payment_created: String,
+        payment_created: chrono::DateTime<chrono::FixedOffset>,
         payment_out_id: i32,
         payment_platform: String,
         payment_platform_code: i32,
         payment_status: String,
         payment_status_code: i32,
-        payment_updated: String,
+        payment_updated: chrono::DateTime<chrono::FixedOffset>,
         transaction_id: i32,
     ) -> EconomyPayout {
         EconomyPayout {

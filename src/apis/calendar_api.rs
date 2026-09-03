@@ -67,6 +67,7 @@ pub enum GetFollowedCalendarEventsError {
 #[serde(untagged)]
 pub enum GetGroupCalendarEventError {
     Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -374,7 +375,7 @@ pub async fn follow_group_calendar_event(
 /// Get a list of a user's calendar events for the month in ?date
 pub async fn get_calendar_events(
     configuration: &configuration::Configuration,
-    date: Option<String>,
+    date: Option<chrono::DateTime<chrono::FixedOffset>>,
     n: Option<i32>,
     offset: Option<i32>,
 ) -> Result<models::PaginatedCalendarEventList, Error<GetCalendarEventsError>> {
@@ -431,7 +432,7 @@ pub async fn get_calendar_events(
 /// Get a list of a featured calendar events for the month in ?date
 pub async fn get_featured_calendar_events(
     configuration: &configuration::Configuration,
-    date: Option<String>,
+    date: Option<chrono::DateTime<chrono::FixedOffset>>,
     n: Option<i32>,
     offset: Option<i32>,
 ) -> Result<models::PaginatedCalendarEventList, Error<GetFeaturedCalendarEventsError>> {
@@ -488,7 +489,7 @@ pub async fn get_featured_calendar_events(
 /// Get a list of a followed calendar events for the month in ?date
 pub async fn get_followed_calendar_events(
     configuration: &configuration::Configuration,
-    date: Option<String>,
+    date: Option<chrono::DateTime<chrono::FixedOffset>>,
     n: Option<i32>,
     offset: Option<i32>,
 ) -> Result<models::PaginatedCalendarEventList, Error<GetFollowedCalendarEventsError>> {
@@ -637,7 +638,7 @@ pub async fn get_group_calendar_event_ics(
 pub async fn get_group_calendar_events(
     configuration: &configuration::Configuration,
     group_id: &str,
-    date: Option<String>,
+    date: Option<chrono::DateTime<chrono::FixedOffset>>,
     n: Option<i32>,
     offset: Option<i32>,
 ) -> Result<models::PaginatedCalendarEventList, Error<GetGroupCalendarEventsError>> {
@@ -696,7 +697,7 @@ pub async fn get_group_calendar_events(
     }
 }
 
-/// Get the closest future calendar event scheduled for a group
+/// Return the closest future calendar event scheduled for a group. A group with no future scheduled events answers 404.
 pub async fn get_group_next_calendar_event(
     configuration: &configuration::Configuration,
     group_id: &str,

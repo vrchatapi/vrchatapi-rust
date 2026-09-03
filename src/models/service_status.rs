@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ServiceStatus {
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     /// The id of this service, NOT the id of the thing this service was requested for.
     #[serde(rename = "id")]
     pub id: String,
@@ -26,13 +26,13 @@ pub struct ServiceStatus {
     #[serde(rename = "type")]
     pub r#type: String,
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
 }
 
 impl ServiceStatus {
     /// Status information for a service request
     pub fn new(
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         id: String,
         progress: Vec<serde_json::Value>,
         requester_user_id: String,
@@ -40,7 +40,7 @@ impl ServiceStatus {
         subject_id: String,
         subject_type: String,
         r#type: String,
-        updated_at: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
     ) -> ServiceStatus {
         ServiceStatus {
             created_at,

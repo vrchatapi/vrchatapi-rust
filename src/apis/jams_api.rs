@@ -40,6 +40,7 @@ pub enum GetJamsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SubmitJamContentError {
+    Status400(models::Error),
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),

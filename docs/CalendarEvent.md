@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 **access_type** | [**models::CalendarEventAccess**](CalendarEventAccess.md) |  | 
 **category** | [**models::CalendarEventCategory**](CalendarEventCategory.md) |  | 
 **close_instance_after_end_minutes** | Option<**i32**> |  | [optional]
-**created_at** | Option<**String**> |  | [optional]
-**deleted_at** | Option<**String**> |  | [optional]
+**created_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**deleted_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **description** | **String** |  | 
 **duration_in_ms** | Option<**i64**> |  | [optional]
-**ends_at** | **String** |  | 
+**ends_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **featured** | Option<**bool**> |  | [optional]
 **guest_early_join_minutes** | Option<**i32**> |  | [optional]
 **host_early_join_minutes** | Option<**i32**> |  | [optional]
@@ -22,16 +22,17 @@ Name | Type | Description | Notes
 **is_draft** | Option<**bool**> |  | [optional]
 **languages** | Option<**Vec<String>**> | Languages that might be spoken at this event | [optional]
 **occurrence_kind** | Option<[**models::CalendarEventOccurrenceKind**](CalendarEventOccurrenceKind.md)> |  | [optional]
+**occurrence_modified** | Option<**bool**> |  | [optional]
 **owner_id** | Option<**String**> |  | [optional]
 **platforms** | Option<[**Vec<models::CalendarEventPlatform>**](CalendarEventPlatform.md)> |  | [optional]
 **recurrence** | Option<[**models::CalendarEventRecurrence**](CalendarEventRecurrence.md)> |  | [optional]
 **role_ids** | Option<**Vec<String>**> | Group roles that may join this event | [optional]
 **series_id** | Option<**String**> | So far unused, always \"null\" | [optional]
-**starts_at** | **String** |  | 
+**starts_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **tags** | Option<**Vec<String>**> | Custom tags for this event | [optional]
 **title** | **String** |  | 
 **r#type** | Option<**String**> |  | [optional]
-**updated_at** | Option<**String**> |  | [optional]
+**updated_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **user_interest** | Option<[**models::CalendarEventUserInterest**](CalendarEventUserInterest.md)> |  | [optional]
 **uses_instance_overflow** | Option<**bool**> |  | [optional]
 

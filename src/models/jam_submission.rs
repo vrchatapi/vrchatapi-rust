@@ -8,15 +8,15 @@ pub struct JamSubmission {
     #[serde(rename = "contentId")]
     pub content_id: String,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "jamId")]
     pub jam_id: String,
-    #[serde(rename = "ratingScore", skip_serializing_if = "Option::is_none")]
-    pub rating_score: Option<i32>,
+    #[serde(rename = "ratingsScore")]
+    pub ratings_score: i32,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "submitterId")]
     pub submitter_id: String,
@@ -25,10 +25,11 @@ pub struct JamSubmission {
 impl JamSubmission {
     pub fn new(
         content_id: String,
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         description: String,
         id: String,
         jam_id: String,
+        ratings_score: i32,
         submitter_id: String,
     ) -> JamSubmission {
         JamSubmission {
@@ -37,7 +38,7 @@ impl JamSubmission {
             description,
             id,
             jam_id,
-            rating_score: None,
+            ratings_score,
             submitter_id,
         }
     }

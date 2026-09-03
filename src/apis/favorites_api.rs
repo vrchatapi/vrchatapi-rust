@@ -54,6 +54,7 @@ pub enum GetFavoritesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum RemoveFavoriteError {
+    Status400(models::Error),
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
@@ -228,12 +229,14 @@ pub async fn get_favorite_groups(
     configuration: &configuration::Configuration,
     n: Option<i32>,
     offset: Option<i32>,
+    r#type: Option<models::FavoriteType>,
     user_id: Option<&str>,
     owner_id: Option<&str>,
 ) -> Result<Vec<models::FavoriteGroup>, Error<GetFavoriteGroupsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_n = n;
     let p_query_offset = offset;
+    let p_query_type = r#type;
     let p_query_user_id = user_id;
     let p_query_owner_id = owner_id;
 
@@ -245,6 +248,9 @@ pub async fn get_favorite_groups(
     }
     if let Some(ref param_value) = p_query_offset {
         req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_type {
+        req_builder = req_builder.query(&[("type", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_user_id {
         req_builder = req_builder.query(&[("userId", &param_value.to_string())]);

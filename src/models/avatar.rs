@@ -18,13 +18,20 @@ pub struct Avatar {
     /// Not present from general search `/avatars`, only on specific requests `/avatars/{avatarId}`. **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead.
     #[serde(rename = "assetUrlObject", skip_serializing_if = "Option::is_none")]
     pub asset_url_object: Option<serde_json::Value>,
+    #[serde(
+        rename = "attribution",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub attribution: Option<Option<serde_json::Value>>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "authorId")]
     pub author_id: String,
     #[serde(rename = "authorName")]
     pub author_name: String,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "featured")]
@@ -68,7 +75,7 @@ pub struct Avatar {
     #[serde(rename = "unityPackages")]
     pub unity_packages: Vec<models::UnityPackage>,
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "version")]
     pub version: i32,
 }
@@ -77,7 +84,7 @@ impl Avatar {
     pub fn new(
         author_id: String,
         author_name: String,
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         description: String,
         featured: bool,
         id: String,
@@ -92,7 +99,7 @@ impl Avatar {
         unity_package_url: String,
         unity_package_url_object: models::AvatarUnityPackageUrlObject,
         unity_packages: Vec<models::UnityPackage>,
-        updated_at: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
         version: i32,
     ) -> Avatar {
         Avatar {
@@ -100,6 +107,7 @@ impl Avatar {
             active_asset_review_id: None,
             asset_url: None,
             asset_url_object: None,
+            attribution: None,
             author_id,
             author_name,
             created_at,

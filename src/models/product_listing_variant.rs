@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ProductListingVariant {
     #[serde(rename = "effectiveFrom", skip_serializing_if = "Option::is_none")]
-    pub effective_from: Option<String>,
+    pub effective_from: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "listingVariantId")]
     pub listing_variant_id: String,
     #[serde(rename = "nonRefundable")]

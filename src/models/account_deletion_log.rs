@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 pub struct AccountDeletionLog {
     /// Date and time of the deletion request.
     #[serde(rename = "dateTime", skip_serializing_if = "Option::is_none")]
-    pub date_time: Option<String>,
+    pub date_time: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// When the deletion is scheduled to happen, standard is 14 days after the request.
     #[serde(
         rename = "deletionScheduled",
@@ -13,7 +13,7 @@ pub struct AccountDeletionLog {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub deletion_scheduled: Option<Option<String>>,
+    pub deletion_scheduled: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     /// Typically \"Deletion requested\" or \"Deletion canceled\". Other messages like \"Deletion completed\" may exist, but are these are not possible to see as a regular user.
     #[serde(rename = "message", skip_serializing_if = "Option::is_none")]
     pub message: Option<String>,

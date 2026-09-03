@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**effective_from** | Option<**String**> |  | [optional]
+**effective_from** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **listing_variant_id** | **String** |  | 
 **non_refundable** | **bool** |  | 
 **quantity** | **i32** |  | 

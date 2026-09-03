@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**created_at** | **String** |  | 
+**created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **deleted** | Option<**bool**> | Usually only present if `true` | [optional][default to true]
 **delta** | Option<[**models::FileData**](FileData.md)> |  | [optional]
 **file** | Option<[**models::FileData**](FileData.md)> |  | [optional]

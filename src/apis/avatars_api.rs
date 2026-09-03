@@ -120,6 +120,7 @@ pub enum SelectFallbackAvatarError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateAvatarError {
+    Status400(models::Error),
     Status401(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
@@ -807,7 +808,6 @@ pub async fn select_avatar(
 }
 
 /// Switches into that avatar as your fallback avatar.
-#[deprecated]
 pub async fn select_fallback_avatar(
     configuration: &configuration::Configuration,
     avatar_id: &str,

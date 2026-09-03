@@ -14,7 +14,7 @@ pub struct UpdateCalendarEventRequest {
     pub description: Option<String>,
     /// Time the vent starts at
     #[serde(rename = "endsAt", skip_serializing_if = "Option::is_none")]
-    pub ends_at: Option<String>,
+    pub ends_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
     pub featured: Option<bool>,
     #[serde(
@@ -54,7 +54,7 @@ pub struct UpdateCalendarEventRequest {
     pub send_creation_notification: Option<bool>,
     /// Time the vent starts at
     #[serde(rename = "startsAt", skip_serializing_if = "Option::is_none")]
-    pub starts_at: Option<String>,
+    pub starts_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     /// Event title

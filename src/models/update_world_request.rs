@@ -16,6 +16,11 @@ pub struct UpdateWorldRequest {
     pub capacity: Option<i32>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    #[serde(
+        rename = "disabledPropAbilities",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub disabled_prop_abilities: Option<Vec<String>>,
     #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
     pub image_url: Option<String>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
@@ -23,6 +28,18 @@ pub struct UpdateWorldRequest {
     /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
     pub platform: Option<String>,
+    #[serde(
+        rename = "previewYoutubeId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub preview_youtube_id: Option<Option<String>>,
+    #[serde(
+        rename = "recommendedCapacity",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub recommended_capacity: Option<i32>,
     #[serde(rename = "releaseStatus", skip_serializing_if = "Option::is_none")]
     pub release_status: Option<models::ReleaseStatus>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
@@ -31,6 +48,8 @@ pub struct UpdateWorldRequest {
     pub unity_package_url: Option<String>,
     #[serde(rename = "unityVersion", skip_serializing_if = "Option::is_none")]
     pub unity_version: Option<String>,
+    #[serde(rename = "urlList", skip_serializing_if = "Option::is_none")]
+    pub url_list: Option<Vec<String>>,
 }
 
 impl UpdateWorldRequest {
@@ -42,13 +61,17 @@ impl UpdateWorldRequest {
             author_name: None,
             capacity: None,
             description: None,
+            disabled_prop_abilities: None,
             image_url: None,
             name: None,
             platform: None,
+            preview_youtube_id: None,
+            recommended_capacity: None,
             release_status: None,
             tags: None,
             unity_package_url: None,
             unity_version: None,
+            url_list: None,
         }
     }
 }

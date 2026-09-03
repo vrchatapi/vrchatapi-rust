@@ -12,7 +12,7 @@ pub struct World {
     #[serde(rename = "capacity")]
     pub capacity: i32,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(
         rename = "defaultContentSettings",
         skip_serializing_if = "Option::is_none"
@@ -20,6 +20,11 @@ pub struct World {
     pub default_content_settings: Option<models::InstanceContentSettings>,
     #[serde(rename = "description")]
     pub description: String,
+    #[serde(
+        rename = "disabledPropAbilities",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub disabled_prop_abilities: Option<Vec<serde_json::Value>>,
     #[serde(rename = "favorites", skip_serializing_if = "Option::is_none")]
     pub favorites: Option<i32>,
     #[serde(rename = "featured")]
@@ -66,6 +71,8 @@ pub struct World {
     pub recommended_capacity: i32,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
+    #[serde(rename = "slimInstances", skip_serializing_if = "Option::is_none")]
+    pub slim_instances: Option<Vec<serde_json::Value>>,
     #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
     pub store_id: Option<String>,
     #[serde(rename = "tags")]
@@ -78,7 +85,7 @@ pub struct World {
     #[serde(rename = "unityPackages", skip_serializing_if = "Option::is_none")]
     pub unity_packages: Option<Vec<models::UnityPackage>>,
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "urlList", skip_serializing_if = "Option::is_none")]
     pub url_list: Option<Vec<String>>,
     #[serde(rename = "version")]
@@ -92,7 +99,7 @@ impl World {
         author_id: String,
         author_name: String,
         capacity: i32,
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         description: String,
         featured: bool,
         heat: i32,
@@ -107,7 +114,7 @@ impl World {
         release_status: models::ReleaseStatus,
         tags: Vec<String>,
         thumbnail_image_url: String,
-        updated_at: String,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
         version: i32,
         visits: i32,
     ) -> World {
@@ -118,6 +125,7 @@ impl World {
             created_at,
             default_content_settings: None,
             description,
+            disabled_prop_abilities: None,
             favorites: None,
             featured,
             heat,
@@ -136,6 +144,7 @@ impl World {
             publication_date,
             recommended_capacity,
             release_status,
+            slim_instances: None,
             store_id: None,
             tags,
             thumbnail_image_url,

@@ -12,7 +12,7 @@ pub struct FavoritedWorld {
     #[serde(rename = "capacity")]
     pub capacity: i32,
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(
         rename = "defaultContentSettings",
         skip_serializing_if = "Option::is_none"
@@ -20,6 +20,11 @@ pub struct FavoritedWorld {
     pub default_content_settings: Option<models::InstanceContentSettings>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    #[serde(
+        rename = "disabledPropAbilities",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub disabled_prop_abilities: Option<Vec<serde_json::Value>>,
     #[serde(rename = "favoriteGroup")]
     pub favorite_group: String,
     #[serde(rename = "favoriteId")]
@@ -73,7 +78,7 @@ pub struct FavoritedWorld {
     #[serde(rename = "unityPackages", skip_serializing_if = "Option::is_none")]
     pub unity_packages: Option<Vec<models::UnityPackage>>,
     #[serde(rename = "updated_at", skip_serializing_if = "Option::is_none")]
-    pub updated_at: Option<String>,
+    pub updated_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "urlList", skip_serializing_if = "Option::is_none")]
     pub url_list: Option<Vec<String>>,
     #[serde(rename = "version", skip_serializing_if = "Option::is_none")]
@@ -102,6 +107,7 @@ impl FavoritedWorld {
             created_at: None,
             default_content_settings: None,
             description: None,
+            disabled_prop_abilities: None,
             favorite_group,
             favorite_id,
             favorites: None,

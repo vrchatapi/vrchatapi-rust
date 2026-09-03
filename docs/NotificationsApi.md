@@ -136,7 +136,7 @@ This endpoint does not need any parameter.
 
 ## delete_notification
 
-> models::Notification delete_notification(notification_id)
+> models::Success delete_notification(notification_id)
 Delete Notification
 
 Delete a notification.
@@ -150,7 +150,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::Notification**](Notification.md)
+[**models::Success**](Success.md)
 
 ### Authorization
 

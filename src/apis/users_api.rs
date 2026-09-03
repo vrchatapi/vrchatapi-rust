@@ -9,6 +9,7 @@ use serde::{de::Error as _, Deserialize, Serialize};
 pub enum AddTagsError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -17,6 +18,7 @@ pub enum AddTagsError {
 #[serde(untagged)]
 pub enum CheckUserPersistenceExistsError {
     Status401(models::Error),
+    Status403(models::BareError),
     Status404(),
     UnknownValue(serde_json::Value),
 }
@@ -34,6 +36,7 @@ pub enum DeleteAllUserPersistenceDataError {
 #[serde(untagged)]
 pub enum DeleteUserPersistenceError {
     Status401(models::Error),
+    Status403(models::BareError),
     Status404(),
     UnknownValue(serde_json::Value),
 }
@@ -99,6 +102,7 @@ pub enum GetPublicProfileError {
 #[serde(untagged)]
 pub enum GetUserError {
     Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -115,6 +119,7 @@ pub enum GetUserAllGroupPermissionsError {
 #[serde(untagged)]
 pub enum GetUserByNameError {
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -198,6 +203,7 @@ pub enum GetUserTutorialStatusError {
 pub enum RemoveTagsError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -226,6 +232,7 @@ pub enum UpdateBadgeError {
 pub enum UpdateUserError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -771,7 +778,7 @@ pub async fn get_public_profile(
 pub async fn get_user(
     configuration: &configuration::Configuration,
     user_id: &str,
-) -> Result<models::User, Error<GetUserError>> {
+) -> Result<models::GetUser200Response, Error<GetUserError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
 
@@ -801,8 +808,8 @@ pub async fn get_user(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::User`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::User`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetUser200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetUser200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -871,12 +878,12 @@ pub async fn get_user_all_group_permissions(
     }
 }
 
-/// ~~Get public user information about a specific user using their name.~~  **DEPRECATED:** VRChat API no longer return usernames of other users. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429). This endpoint now require Admin Credentials.
+/// Get public user information about a specific user using their name.  VRChat no longer returns the usernames of other users, and this endpoint now requires admin credentials. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
 #[deprecated]
 pub async fn get_user_by_name(
     configuration: &configuration::Configuration,
     username: &str,
-) -> Result<models::User, Error<GetUserByNameError>> {
+) -> Result<models::GetUser200Response, Error<GetUserByNameError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_username = username;
 
@@ -906,8 +913,8 @@ pub async fn get_user_by_name(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::User`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::User`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetUser200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetUser200Response`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -921,7 +928,6 @@ pub async fn get_user_by_name(
 }
 
 /// Get user's submitted feedback
-#[deprecated]
 pub async fn get_user_feedback(
     configuration: &configuration::Configuration,
     user_id: &str,

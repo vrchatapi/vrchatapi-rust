@@ -23,6 +23,8 @@ pub struct InventoryMetadata {
     pub mask_tag: Option<String>,
     #[serde(rename = "propId", skip_serializing_if = "Option::is_none")]
     pub prop_id: Option<String>,
+    #[serde(rename = "propKind", skip_serializing_if = "Option::is_none")]
+    pub prop_kind: Option<i32>,
 }
 
 impl InventoryMetadata {
@@ -36,6 +38,7 @@ impl InventoryMetadata {
             inventory_items_to_instantiate: None,
             mask_tag: None,
             prop_id: None,
+            prop_kind: None,
         }
     }
 }

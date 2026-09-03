@@ -9,7 +9,7 @@ pub struct GroupAuditLogEntry {
     #[serde(rename = "actorId", skip_serializing_if = "Option::is_none")]
     pub actor_id: Option<String>,
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<String>,
+    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// The data associated with the event. The format of this data is dependent on the event type.
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
     pub data: Option<serde_json::Value>,

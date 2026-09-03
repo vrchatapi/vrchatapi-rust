@@ -3,10 +3,19 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InventoryItem {
+    #[serde(rename = "acquisition", skip_serializing_if = "Option::is_none")]
+    pub acquisition: Option<String>,
+    #[serde(
+        rename = "attribution",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub attribution: Option<Option<serde_json::Value>>,
     #[serde(rename = "collections")]
     pub collections: Vec<String>,
     #[serde(rename = "created_at")]
-    pub created_at: String,
+    pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "defaultAttributes")]
     pub default_attributes:
         std::collections::HashMap<String, models::InventoryDefaultAttributesValue>,
@@ -22,7 +31,7 @@ pub struct InventoryItem {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub expiry_date: Option<Option<String>>,
+    pub expiry_date: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "flags")]
     pub flags: Vec<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
@@ -40,6 +49,8 @@ pub struct InventoryItem {
     pub item_type: models::InventoryItemType,
     #[serde(rename = "itemTypeLabel")]
     pub item_type_label: String,
+    #[serde(rename = "last_equipped", skip_serializing_if = "Option::is_none")]
+    pub last_equipped: Option<std::collections::HashMap<String, serde_json::Value>>,
     #[serde(rename = "metadata")]
     pub metadata: models::InventoryMetadata,
     #[serde(rename = "name")]
@@ -51,11 +62,11 @@ pub struct InventoryItem {
     #[serde(rename = "templateId")]
     pub template_id: String,
     #[serde(rename = "template_created_at")]
-    pub template_created_at: String,
+    pub template_created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "template_updated_at")]
-    pub template_updated_at: String,
+    pub template_updated_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "updated_at")]
-    pub updated_at: String,
+    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "userAttributes")]
     pub user_attributes: models::InventoryUserAttributes,
     #[serde(rename = "validateUserAttributes")]
@@ -65,7 +76,7 @@ pub struct InventoryItem {
 impl InventoryItem {
     pub fn new(
         collections: Vec<String>,
-        created_at: String,
+        created_at: chrono::DateTime<chrono::FixedOffset>,
         default_attributes: std::collections::HashMap<
             String,
             models::InventoryDefaultAttributesValue,
@@ -84,13 +95,15 @@ impl InventoryItem {
         quantifiable: bool,
         tags: Vec<String>,
         template_id: String,
-        template_created_at: String,
-        template_updated_at: String,
-        updated_at: String,
+        template_created_at: chrono::DateTime<chrono::FixedOffset>,
+        template_updated_at: chrono::DateTime<chrono::FixedOffset>,
+        updated_at: chrono::DateTime<chrono::FixedOffset>,
         user_attributes: models::InventoryUserAttributes,
         validate_user_attributes: bool,
     ) -> InventoryItem {
         InventoryItem {
+            acquisition: None,
+            attribution: None,
             collections,
             created_at,
             default_attributes,
@@ -106,6 +119,7 @@ impl InventoryItem {
             is_seen,
             item_type,
             item_type_label,
+            last_equipped: None,
             metadata,
             name,
             quantifiable,
