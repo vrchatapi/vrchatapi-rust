@@ -13,7 +13,7 @@ rm src/apis src/models docs -rf
 openapi-generator generate \
 -g rust \
 -t ./templates \
-'--additional-properties=packageName=vrchatapi,supportAsync=true,avoidBoxedModels=true,library=reqwest,supportMiddleware=true,repositoryUrl="https://github.com/vrchatapi/vrchatapi-rust",description="VRChat API Client for Rust",infoEmail="vrchatapi.lpv0t@aries.fyi"' \
+'--additional-properties=packageName=vrchatapi,supportAsync=true,avoidBoxedModels=true,library=reqwest,supportMiddleware=true,repositoryUrl=https://github.com/vrchatapi/vrchatapi-rust,description="VRChat API Client for Rust",infoEmail="vrchatapi.lpv0t@aries.fyi"' \
 --git-user-id=vrchatapi \
 --git-repo-id=vrchatapi-rust \
 -o . \
