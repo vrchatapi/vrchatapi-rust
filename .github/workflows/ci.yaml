@@ -44,7 +44,7 @@ jobs:
 
       - uses: vrchatapi/specification/.github/actions/download@main
         with:
-          url: {{ env.URL }}
+          url: ${{ env.URL }}
 
       - if: env.PASSED_VERSION != ''
         run: |
