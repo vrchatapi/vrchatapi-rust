@@ -344,7 +344,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_public_profile
 
-> models::PublicProfile get_public_profile(user_id)
+> models::PublicProfile get_public_profile(user_id, with_groups_and_worlds)
 Get Public Profile
 
 Get a user's public profile information.
@@ -355,6 +355,7 @@ Get a user's public profile information.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
+**with_groups_and_worlds** | Option<**bool**> | Include `groups`, `publicWorlds` and `totalPublicWorldsCount` in the response. |  |
 
 ### Return type
 

@@ -16,11 +16,6 @@ Name | Type | Description | Notes
 **banner_color** | Option<**String**> |  | [optional]
 **banner_type** | Option<**String**> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
-**bio** | **String** |  | 
-**bio_links** | **Vec<String>** |  | 
-**current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
-**current_avatar_tags** | **Vec<String>** |  | 
-**current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **date_joined** | **chrono::NaiveDate** |  | 
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 
 **display_name** | **String** | A users visual display name. This is what shows up in-game, and can different from their `username`. Changing display name is restricted to a cooldown period. | 
@@ -41,8 +36,6 @@ Name | Type | Description | Notes
 **note** | Option<**String**> |  | [optional]
 **platform** | Option<**String**> |  | [optional]
 **profile_effect** | Option<**String**> |  | [optional]
-**profile_pic_override** | **String** |  | 
-**profile_pic_override_thumbnail** | **String** |  | 
 **pronouns** | **String** |  | 
 **state** | [**models::UserState**](UserState.md) |  | 
 **status** | [**models::UserStatus**](UserStatus.md) |  | 
@@ -51,7 +44,6 @@ Name | Type | Description | Notes
 **traveling_to_instance** | Option<**String**> |  | [optional]
 **traveling_to_location** | Option<**String**> |  | [optional]
 **traveling_to_world** | Option<**String**> |  | [optional]
-**user_icon** | **String** |  | 
 **world_id** | Option<**String**> | WorldID be \"offline\" on User profiles if you are not friends with that user. | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

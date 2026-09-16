@@ -19,12 +19,16 @@ pub struct PublicProfile {
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
     pub banner_type: Option<String>,
+    #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
+    pub banner_url: Option<String>,
     #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
     pub bio: Option<String>,
     #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
     pub bio_links: Option<Vec<String>>,
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
     pub display_name: Option<String>,
+    #[serde(rename = "groups", skip_serializing_if = "Option::is_none")]
+    pub groups: Option<models::ProfileGroups>,
     #[serde(rename = "hasVrcPlus", skip_serializing_if = "Option::is_none")]
     pub has_vrc_plus: Option<bool>,
     #[serde(rename = "iconFrame", skip_serializing_if = "Option::is_none")]
@@ -44,12 +48,21 @@ pub struct PublicProfile {
     pub profile_effect: Option<String>,
     #[serde(rename = "pronouns", skip_serializing_if = "Option::is_none")]
     pub pronouns: Option<String>,
+    #[serde(rename = "publicWorlds", skip_serializing_if = "Option::is_none")]
+    pub public_worlds: Option<Vec<serde_json::Value>>,
     #[serde(rename = "representedGroup", skip_serializing_if = "Option::is_none")]
     pub represented_group: Option<models::ProfileRepresentedGroup>,
     #[serde(rename = "themeId", skip_serializing_if = "Option::is_none")]
     pub theme_id: Option<String>,
+    #[serde(
+        rename = "totalPublicWorldsCount",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub total_public_worlds_count: Option<i32>,
     #[serde(rename = "trustTags", skip_serializing_if = "Option::is_none")]
     pub trust_tags: Option<Vec<String>>,
+    #[serde(rename = "worldFavoriteLists", skip_serializing_if = "Option::is_none")]
+    pub world_favorite_lists: Option<Vec<serde_json::Value>>,
 }
 
 impl PublicProfile {
@@ -61,9 +74,11 @@ impl PublicProfile {
             badges: None,
             banner_color: None,
             banner_type: None,
+            banner_url: None,
             bio: None,
             bio_links: None,
             display_name: None,
+            groups: None,
             has_vrc_plus: None,
             icon_frame: None,
             icon_url: None,
@@ -73,9 +88,12 @@ impl PublicProfile {
             nameplate_effect: None,
             profile_effect: None,
             pronouns: None,
+            public_worlds: None,
             represented_group: None,
             theme_id: None,
+            total_public_worlds_count: None,
             trust_tags: None,
+            world_favorite_lists: None,
         }
     }
 }

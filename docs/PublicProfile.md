@@ -10,9 +10,11 @@ Name | Type | Description | Notes
 **badges** | Option<[**Vec<models::Badge>**](Badge.md)> |  | [optional]
 **banner_color** | Option<**String**> |  | [optional]
 **banner_type** | Option<**String**> |  | [optional]
+**banner_url** | Option<**String**> |  | [optional]
 **bio** | Option<**String**> |  | [optional]
 **bio_links** | Option<**Vec<String>**> |  | [optional]
 **display_name** | Option<**String**> |  | [optional]
+**groups** | Option<[**models::ProfileGroups**](ProfileGroups.md)> |  | [optional]
 **has_vrc_plus** | Option<**bool**> |  | [optional]
 **icon_frame** | Option<**String**> |  | [optional]
 **icon_url** | Option<**String**> |  | [optional]
@@ -22,9 +24,12 @@ Name | Type | Description | Notes
 **nameplate_effect** | Option<**String**> |  | [optional]
 **profile_effect** | Option<**String**> |  | [optional]
 **pronouns** | Option<**String**> |  | [optional]
+**public_worlds** | Option<**Vec<serde_json::Value>**> |  | [optional]
 **represented_group** | Option<[**models::ProfileRepresentedGroup**](ProfileRepresentedGroup.md)> |  | [optional]
 **theme_id** | Option<**String**> |  | [optional]
+**total_public_worlds_count** | Option<**i32**> |  | [optional]
 **trust_tags** | Option<**Vec<String>**> |  | [optional]
+**world_favorite_lists** | Option<**Vec<serde_json::Value>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

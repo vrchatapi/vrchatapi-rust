@@ -41,18 +41,6 @@ pub struct User {
     pub banner_type: Option<String>,
     #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
     pub banner_url: Option<String>,
-    #[serde(rename = "bio")]
-    pub bio: String,
-    #[serde(rename = "bioLinks")]
-    pub bio_links: Vec<String>,
-    /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarImageUrl")]
-    pub current_avatar_image_url: String,
-    #[serde(rename = "currentAvatarTags")]
-    pub current_avatar_tags: Vec<String>,
-    /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarThumbnailImageUrl")]
-    pub current_avatar_thumbnail_image_url: String,
     #[serde(rename = "date_joined")]
     pub date_joined: chrono::NaiveDate,
     #[serde(rename = "developerType")]
@@ -110,10 +98,6 @@ pub struct User {
     pub platform: Option<String>,
     #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
     pub profile_effect: Option<String>,
-    #[serde(rename = "profilePicOverride")]
-    pub profile_pic_override: String,
-    #[serde(rename = "profilePicOverrideThumbnail")]
-    pub profile_pic_override_thumbnail: String,
     #[serde(rename = "pronouns")]
     pub pronouns: String,
     #[serde(rename = "state")]
@@ -136,8 +120,6 @@ pub struct User {
     pub traveling_to_location: Option<String>,
     #[serde(rename = "travelingToWorld", skip_serializing_if = "Option::is_none")]
     pub traveling_to_world: Option<String>,
-    #[serde(rename = "userIcon")]
-    pub user_icon: String,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
     #[serde(rename = "worldId", skip_serializing_if = "Option::is_none")]
     pub world_id: Option<String>,
@@ -148,11 +130,6 @@ impl User {
         age_verification_status: models::AgeVerificationStatus,
         age_verified: bool,
         allow_avatar_copying: bool,
-        bio: String,
-        bio_links: Vec<String>,
-        current_avatar_image_url: String,
-        current_avatar_tags: Vec<String>,
-        current_avatar_thumbnail_image_url: String,
         date_joined: chrono::NaiveDate,
         developer_type: models::DeveloperType,
         display_name: String,
@@ -162,14 +139,11 @@ impl User {
         last_activity: String,
         last_login: String,
         last_platform: String,
-        profile_pic_override: String,
-        profile_pic_override_thumbnail: String,
         pronouns: String,
         state: models::UserState,
         status: models::UserStatus,
         status_description: String,
         tags: Vec<String>,
-        user_icon: String,
     ) -> User {
         User {
             accepted_privacy_version: None,
@@ -184,11 +158,6 @@ impl User {
             banner_color: None,
             banner_type: None,
             banner_url: None,
-            bio,
-            bio_links,
-            current_avatar_image_url,
-            current_avatar_tags,
-            current_avatar_thumbnail_image_url,
             date_joined,
             developer_type,
             display_name,
@@ -209,8 +178,6 @@ impl User {
             note: None,
             platform: None,
             profile_effect: None,
-            profile_pic_override,
-            profile_pic_override_thumbnail,
             pronouns,
             state,
             status,
@@ -219,7 +186,6 @@ impl User {
             traveling_to_instance: None,
             traveling_to_location: None,
             traveling_to_world: None,
-            user_icon,
             world_id: None,
         }
     }

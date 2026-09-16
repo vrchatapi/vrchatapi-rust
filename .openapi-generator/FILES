@@ -284,6 +284,8 @@ docs/ProductPurchaseProduct.md
 docs/ProductPurchasePurchaseContext.md
 docs/ProductPurchaseRecord.md
 docs/ProductType.md
+docs/ProfileGroup.md
+docs/ProfileGroups.md
 docs/ProfileRepresentedGroup.md
 docs/Prop.md
 docs/PropPublishStatus.md
@@ -677,6 +679,8 @@ src/models/product_purchase_product.rs
 src/models/product_purchase_purchase_context.rs
 src/models/product_purchase_record.rs
 src/models/product_type.rs
+src/models/profile_group.rs
+src/models/profile_groups.rs
 src/models/profile_represented_group.rs
 src/models/prop.rs
 src/models/prop_publish_status.rs

@@ -730,9 +730,11 @@ pub async fn get_private_profile(
 pub async fn get_public_profile(
     configuration: &configuration::Configuration,
     user_id: &str,
+    with_groups_and_worlds: Option<bool>,
 ) -> Result<models::PublicProfile, Error<GetPublicProfileError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
+    let p_query_with_groups_and_worlds = with_groups_and_worlds;
 
     let uri_str = format!(
         "{}/profile/{userId}",
@@ -741,6 +743,9 @@ pub async fn get_public_profile(
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    if let Some(ref param_value) = p_query_with_groups_and_worlds {
+        req_builder = req_builder.query(&[("withGroupsAndWorlds", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
