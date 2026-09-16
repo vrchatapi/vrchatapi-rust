@@ -7,10 +7,7 @@ Method | HTTP request | Description
 [**create_prop**](PropsApi.md#create_prop) | **POST** /props | Create Prop
 [**delete_prop**](PropsApi.md#delete_prop) | **DELETE** /props/{propId} | Delete Prop
 [**get_prop**](PropsApi.md#get_prop) | **GET** /props/{propId} | Get Prop
-[**get_prop_publish_status**](PropsApi.md#get_prop_publish_status) | **GET** /props/{propId}/publish | Get Prop Publish Status
 [**list_props**](PropsApi.md#list_props) | **GET** /props | List Props
-[**publish_prop**](PropsApi.md#publish_prop) | **PUT** /props/{propId}/publish | Publish Prop
-[**unpublish_prop**](PropsApi.md#unpublish_prop) | **DELETE** /props/{propId}/publish | Unpublish Prop
 [**update_prop**](PropsApi.md#update_prop) | **PUT** /props/{propId} | Update Prop
 
 
@@ -105,36 +102,6 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_prop_publish_status
-
-> models::PropPublishStatus get_prop_publish_status(prop_id)
-Get Prop Publish Status
-
-Return the PropPublishStatus object. `/props/{propId}` is still served.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**prop_id** | **String** | Prop ID. | [required] |
-
-### Return type
-
-[**models::PropPublishStatus**](PropPublishStatus.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## list_props
 
 > Vec<models::Prop> list_props(n, offset, author_id)
@@ -154,66 +121,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<models::Prop>**](Prop.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## publish_prop
-
-> models::PropPublishStatus publish_prop(prop_id)
-Publish Prop
-
-Publish a prop and return the updated PropPublishStatus object. `/props/{propId}` is still served.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**prop_id** | **String** | Prop ID. | [required] |
-
-### Return type
-
-[**models::PropPublishStatus**](PropPublishStatus.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## unpublish_prop
-
-> models::PropPublishStatus unpublish_prop(prop_id)
-Unpublish Prop
-
-Unpublish a prop and return the updated PropPublishStatus object. `/props/{propId}` is still served.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**prop_id** | **String** | Prop ID. | [required] |
-
-### Return type
-
-[**models::PropPublishStatus**](PropPublishStatus.md)
 
 ### Authorization
 

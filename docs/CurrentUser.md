@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **apple_details** | Option<**serde_json::Value**> |  | [optional]
 **apple_id** | Option<**String**> |  | [optional]
 **auth_token** | Option<**String**> | The auth token for NEWLY REGISTERED ACCOUNTS ONLY (/auth/register) | [optional]
-**banner_color** | Option<**String**> |  | [optional]
+**banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
 **banner_type** | Option<**String**> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
 **completed_tutorials** | Option<**Vec<String>**> |  | [optional]

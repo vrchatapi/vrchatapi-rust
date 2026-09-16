@@ -13,10 +13,10 @@ pub struct InventoryMetadata {
     pub assets: Option<Vec<models::InventoryAsset>>,
     #[serde(rename = "fileId", skip_serializing_if = "Option::is_none")]
     pub file_id: Option<String>,
-    /// Hex colour without a leading `#`.
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "gradientEnd", skip_serializing_if = "Option::is_none")]
     pub gradient_end: Option<String>,
-    /// Hex colour without a leading `#`.
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "gradientStart", skip_serializing_if = "Option::is_none")]
     pub gradient_start: Option<String>,
     #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**banner_color** | Option<**String**> |  | [optional]
+**banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
 **banner_type** | Option<**String**> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 

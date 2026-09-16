@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 /// LimitedUserFriend : User object received when querying your friends list
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedUserFriend {
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]

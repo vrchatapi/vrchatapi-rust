@@ -11,13 +11,13 @@ pub struct PublicProfile {
     /// `true` if, user is age verified (not 18+).
     #[serde(rename = "ageVerified", skip_serializing_if = "Option::is_none")]
     pub age_verified: Option<bool>,
-    /// Hex colour without a leading `#`.
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(
         rename = "backgroundGradientBottom",
         skip_serializing_if = "Option::is_none"
     )]
     pub background_gradient_bottom: Option<String>,
-    /// Hex colour without a leading `#`.
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(
         rename = "backgroundGradientTop",
         skip_serializing_if = "Option::is_none"
@@ -37,6 +37,7 @@ pub struct PublicProfile {
     pub background_type: Option<String>,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
     pub badges: Option<Vec<models::Badge>>,
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerCustomUrl", skip_serializing_if = "Option::is_none")]
@@ -105,15 +106,15 @@ pub struct PublicProfile {
     pub status: Option<models::UserStatus>,
     #[serde(rename = "statusDescription", skip_serializing_if = "Option::is_none")]
     pub status_description: Option<String>,
-    /// Hex colour without a leading `#`.
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "themeButtonColor", skip_serializing_if = "Option::is_none")]
     pub theme_button_color: Option<String>,
-    /// Hex colour without a leading `#`.
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "themeIconColor", skip_serializing_if = "Option::is_none")]
     pub theme_icon_color: Option<String>,
     #[serde(rename = "themeId", skip_serializing_if = "Option::is_none")]
     pub theme_id: Option<String>,
-    /// Hex colour without a leading `#`.
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "themeSubtextColor", skip_serializing_if = "Option::is_none")]
     pub theme_subtext_color: Option<String>,
     #[serde(rename = "themes", skip_serializing_if = "Option::is_none")]

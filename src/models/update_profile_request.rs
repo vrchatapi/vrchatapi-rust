@@ -10,7 +10,7 @@ pub struct UpdateProfileRequest {
     pub background_texture_id: Option<String>,
     #[serde(rename = "backgroundType", skip_serializing_if = "Option::is_none")]
     pub background_type: Option<BackgroundType>,
-    /// Hex colour without a leading `#`.
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]

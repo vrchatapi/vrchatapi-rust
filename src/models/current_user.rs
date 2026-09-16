@@ -40,6 +40,7 @@ pub struct CurrentUser {
     /// The auth token for NEWLY REGISTERED ACCOUNTS ONLY (/auth/register)
     #[serde(rename = "authToken", skip_serializing_if = "Option::is_none")]
     pub auth_token: Option<String>,
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]

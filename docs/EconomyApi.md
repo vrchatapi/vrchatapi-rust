@@ -10,7 +10,6 @@ Method | HTTP request | Description
 [**delete_product_listing_direct**](EconomyApi.md#delete_product_listing_direct) | **DELETE** /listing/{productId} | Delete Product Listing
 [**get_active_licenses**](EconomyApi.md#get_active_licenses) | **GET** /economy/licenses/active | Get Active Licenses
 [**get_balance**](EconomyApi.md#get_balance) | **GET** /user/{userId}/balance | Get Balance
-[**get_balance_earnings**](EconomyApi.md#get_balance_earnings) | **GET** /user/{userId}/balance/earnings | Get Balance Earnings
 [**get_bulk_gift_purchases**](EconomyApi.md#get_bulk_gift_purchases) | **GET** /user/bulk/gift/purchases | Get Bulk Gift Purchases
 [**get_current_subscriptions**](EconomyApi.md#get_current_subscriptions) | **GET** /auth/user/subscription | Get Current Subscriptions
 [**get_earnings_metrics**](EconomyApi.md#get_earnings_metrics) | **GET** /economy/metrics/earnings | Get Earnings Metrics
@@ -30,16 +29,12 @@ Method | HTTP request | Description
 [**get_product_purchase_stacks**](EconomyApi.md#get_product_purchase_stacks) | **GET** /economy/purchases/{productPurchaseId}/stacks | Get Product Purchase Stacks
 [**get_product_purchases**](EconomyApi.md#get_product_purchases) | **GET** /economy/purchases | Get Product Purchases
 [**get_recent_subscription**](EconomyApi.md#get_recent_subscription) | **GET** /user/subscription/recent | Get Recent Subscription
-[**get_seller_eligibility**](EconomyApi.md#get_seller_eligibility) | **GET** /economy/seller/eligibility | Get Seller Eligibility
 [**get_steam_transaction**](EconomyApi.md#get_steam_transaction) | **GET** /Steam/transactions/{transactionId} | Get Steam Transaction
 [**get_steam_transactions**](EconomyApi.md#get_steam_transactions) | **GET** /Steam/transactions | List Steam Transactions
 [**get_store**](EconomyApi.md#get_store) | **GET** /economy/store | Get Store
 [**get_store_shelves**](EconomyApi.md#get_store_shelves) | **GET** /economy/store/shelves | Get Store Shelves
 [**get_subscriptions**](EconomyApi.md#get_subscriptions) | **GET** /subscriptions | List Subscriptions
-[**get_tilia_status**](EconomyApi.md#get_tilia_status) | **GET** /tilia/status | Get Tilia Status
-[**get_tilia_tos**](EconomyApi.md#get_tilia_tos) | **GET** /user/{userId}/tilia/tos | Get Tilia TOS Agreement Status
 [**get_token_bundles**](EconomyApi.md#get_token_bundles) | **GET** /tokenBundles | List Token Bundles
-[**get_user_credits_eligible**](EconomyApi.md#get_user_credits_eligible) | **GET** /users/{userId}/credits/eligible | Get User Credits Eligibility
 [**get_user_subscription_eligible**](EconomyApi.md#get_user_subscription_eligible) | **GET** /users/{userId}/subscription/eligible | Get User Subscription Eligibility
 [**get_user_tilia_kyc**](EconomyApi.md#get_user_tilia_kyc) | **GET** /user/{userId}/tilia/kyc | Get User Tilia KYC
 [**list_stores**](EconomyApi.md#list_stores) | **GET** /economy/stores | List Stores
@@ -47,7 +42,6 @@ Method | HTTP request | Description
 [**purchase_product_listing**](EconomyApi.md#purchase_product_listing) | **POST** /economy/purchase/listing | Purchase Product Listing
 [**update_product**](EconomyApi.md#update_product) | **PUT** /products/{productId} | Update Product
 [**update_product_listing_direct**](EconomyApi.md#update_product_listing_direct) | **PUT** /listing/{productId} | Update Product Listing
-[**update_tilia_tos**](EconomyApi.md#update_tilia_tos) | **PUT** /user/{userId}/tilia/tos | Update Tilia TOS Agreement Status
 
 
 
@@ -205,36 +199,6 @@ This endpoint does not need any parameter.
 Get Balance
 
 Return the balance of a user.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** | Must be a valid user ID. | [required] |
-
-### Return type
-
-[**models::Balance**](Balance.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## get_balance_earnings
-
-> models::Balance get_balance_earnings(user_id)
-Get Balance Earnings
-
-Return the user's balance from earnings.
 
 ### Parameters
 
@@ -849,33 +813,6 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_seller_eligibility
-
-> models::SellerEligibility get_seller_eligibility()
-Get Seller Eligibility
-
-Return the current user's eligibility to become a seller.
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**models::SellerEligibility**](SellerEligibility.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## get_steam_transaction
 
 > models::Transaction get_steam_transaction(transaction_id)
@@ -1029,63 +966,6 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_tilia_status
-
-> models::TiliaStatus get_tilia_status()
-Get Tilia Status
-
-Return the Tilia integration status.
-
-### Parameters
-
-This endpoint does not need any parameter.
-
-### Return type
-
-[**models::TiliaStatus**](TiliaStatus.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## get_tilia_tos
-
-> models::TiliaTos get_tilia_tos(user_id)
-Get Tilia TOS Agreement Status
-
-Return the user's Tilia TOS agreement status.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** | Must be a valid user ID. | [required] |
-
-### Return type
-
-[**models::TiliaTos**](TiliaTOS.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
 ## get_token_bundles
 
 > Vec<models::TokenBundle> get_token_bundles()
@@ -1100,37 +980,6 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**Vec<models::TokenBundle>**](TokenBundle.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## get_user_credits_eligible
-
-> models::UserCreditsEligible get_user_credits_eligible(user_id, subscription_id)
-Get User Credits Eligibility
-
-Return the user's subscription credit eligibility.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** | Must be a valid user ID. | [required] |
-**subscription_id** | **String** |  | [required] |
-
-### Return type
-
-[**models::UserCreditsEligible**](UserCreditsEligible.md)
 
 ### Authorization
 
@@ -1350,37 +1199,6 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::ProductListing**](ProductListing.md)
-
-### Authorization
-
-[authCookie](../README.md#authCookie)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-
-## update_tilia_tos
-
-> serde_json::Value update_tilia_tos(user_id, update_tilia_tos_request)
-Update Tilia TOS Agreement Status
-
-Update the user's Tilia TOS agreement status.
-
-### Parameters
-
-
-Name | Type | Description  | Required | Notes
-------------- | ------------- | ------------- | ------------- | -------------
-**user_id** | **String** | Must be a valid user ID. | [required] |
-**update_tilia_tos_request** | Option<[**UpdateTiliaTosRequest**](UpdateTiliaTosRequest.md)> |  |  |
-
-### Return type
-
-[**serde_json::Value**](serde_json::Value.md)
 
 ### Authorization
 

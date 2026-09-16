@@ -92,7 +92,6 @@ docs/CurrentUser.md
 docs/CurrentUserPlatformHistoryInner.md
 docs/CurrentUserPresence.md
 docs/DeclineGroupInviteRequest.md
-docs/DeprecatedApi.md
 docs/DeveloperType.md
 docs/Disable2FaResult.md
 docs/DiscordDetails.md
@@ -412,7 +411,6 @@ src/apis/authentication_api.rs
 src/apis/avatars_api.rs
 src/apis/calendar_api.rs
 src/apis/configuration.rs
-src/apis/deprecated_api.rs
 src/apis/economy_api.rs
 src/apis/favorites_api.rs
 src/apis/files_api.rs

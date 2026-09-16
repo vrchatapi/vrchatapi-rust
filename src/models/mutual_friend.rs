@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 /// MutualFriend : User object received when querying mutual friends
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct MutualFriend {
-    /// Hex colour without a leading `#`.
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]

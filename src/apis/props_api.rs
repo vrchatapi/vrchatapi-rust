@@ -31,42 +31,12 @@ pub enum GetPropError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`get_prop_publish_status`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum GetPropPublishStatusError {
-    Status401(models::Error),
-    Status403(models::Error),
-    Status404(models::RouteNotImplemented),
-    UnknownValue(serde_json::Value),
-}
-
 /// struct for typed errors of method [`list_props`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ListPropsError {
     Status401(models::Error),
     Status403(models::Error),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`publish_prop`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum PublishPropError {
-    Status401(models::Error),
-    Status403(models::Error),
-    Status404(models::RouteNotImplemented),
-    UnknownValue(serde_json::Value),
-}
-
-/// struct for typed errors of method [`unpublish_prop`]
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-pub enum UnpublishPropError {
-    Status401(models::Error),
-    Status403(models::Error),
-    Status404(models::RouteNotImplemented),
     UnknownValue(serde_json::Value),
 }
 
@@ -230,61 +200,6 @@ pub async fn get_prop(
     }
 }
 
-/// Return the PropPublishStatus object. `/props/{propId}` is still served.
-#[deprecated]
-pub async fn get_prop_publish_status(
-    configuration: &configuration::Configuration,
-    prop_id: &str,
-) -> Result<models::PropPublishStatus, Error<GetPropPublishStatusError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_prop_id = prop_id;
-
-    let uri_str = format!(
-        "{}/props/{propId}/publish",
-        configuration.base_path,
-        propId = crate::apis::urlencode(p_path_prop_id)
-    );
-    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        if configuration.debug {
-            log::debug!("get_prop_publish_status returned: {content}");
-        }
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PropPublishStatus`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PropPublishStatus`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        if configuration.debug {
-            log::debug!("get_prop_publish_status returned: {content}");
-        }
-        let entity: Option<GetPropPublishStatusError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent {
-            status,
-            content,
-            entity,
-        }))
-    }
-}
-
 /// Returns a list Prop objects.
 pub async fn list_props(
     configuration: &configuration::Configuration,
@@ -340,118 +255,6 @@ pub async fn list_props(
             log::debug!("list_props returned: {content}");
         }
         let entity: Option<ListPropsError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent {
-            status,
-            content,
-            entity,
-        }))
-    }
-}
-
-/// Publish a prop and return the updated PropPublishStatus object. `/props/{propId}` is still served.
-#[deprecated]
-pub async fn publish_prop(
-    configuration: &configuration::Configuration,
-    prop_id: &str,
-) -> Result<models::PropPublishStatus, Error<PublishPropError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_prop_id = prop_id;
-
-    let uri_str = format!(
-        "{}/props/{propId}/publish",
-        configuration.base_path,
-        propId = crate::apis::urlencode(p_path_prop_id)
-    );
-    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        if configuration.debug {
-            log::debug!("publish_prop returned: {content}");
-        }
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PropPublishStatus`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PropPublishStatus`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        if configuration.debug {
-            log::debug!("publish_prop returned: {content}");
-        }
-        let entity: Option<PublishPropError> = serde_json::from_str(&content).ok();
-        Err(Error::ResponseError(ResponseContent {
-            status,
-            content,
-            entity,
-        }))
-    }
-}
-
-/// Unpublish a prop and return the updated PropPublishStatus object. `/props/{propId}` is still served.
-#[deprecated]
-pub async fn unpublish_prop(
-    configuration: &configuration::Configuration,
-    prop_id: &str,
-) -> Result<models::PropPublishStatus, Error<UnpublishPropError>> {
-    // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_prop_id = prop_id;
-
-    let uri_str = format!(
-        "{}/props/{propId}/publish",
-        configuration.base_path,
-        propId = crate::apis::urlencode(p_path_prop_id)
-    );
-    let mut req_builder = configuration
-        .client
-        .request(reqwest::Method::DELETE, &uri_str);
-
-    if let Some(ref user_agent) = configuration.user_agent {
-        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
-    }
-
-    let req = req_builder.build()?;
-    let resp = configuration.client.execute(req).await?;
-
-    let status = resp.status();
-    let content_type = resp
-        .headers()
-        .get("content-type")
-        .and_then(|v| v.to_str().ok())
-        .unwrap_or("application/octet-stream");
-    let content_type = super::ContentType::from(content_type);
-
-    if !status.is_client_error() && !status.is_server_error() {
-        let content = resp.text().await?;
-        if configuration.debug {
-            log::debug!("unpublish_prop returned: {content}");
-        }
-        match content_type {
-            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PropPublishStatus`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PropPublishStatus`")))),
-        }
-    } else {
-        let content = resp.text().await?;
-        if configuration.debug {
-            log::debug!("unpublish_prop returned: {content}");
-        }
-        let entity: Option<UnpublishPropError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

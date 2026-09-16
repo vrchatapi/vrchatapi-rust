@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 /// GroupMemberLimitedUser : Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberLimitedUser {
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]

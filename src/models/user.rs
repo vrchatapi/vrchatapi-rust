@@ -33,6 +33,7 @@ pub struct User {
     pub allow_avatar_copying: bool,
     #[serde(rename = "appleDetails", skip_serializing_if = "Option::is_none")]
     pub apple_details: Option<std::collections::HashMap<String, serde_json::Value>>,
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
