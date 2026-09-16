@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **banners_tag** | Option<**String**> |  | [optional]
 **categories** | Option<**Vec<String>**> |  | [optional]
 **featured_results** | Option<**String**> |  | [optional]
+**group_pool** | Option<**String**> |  | [optional]
 **index** | Option<**i32**> |  | [optional]
 **marketplace** | Option<**String**> |  | [optional]
 **max_price** | Option<**i32**> |  | [optional]
@@ -36,6 +37,7 @@ Name | Type | Description | Notes
 **tags** | Option<**Vec<String>**> |  | [optional]
 **r#type** | Option<**String**> | Type is not present if it is a world. | [optional]
 **upcoming_offset_minutes** | Option<**i32**> |  | [optional]
+**world_pool** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

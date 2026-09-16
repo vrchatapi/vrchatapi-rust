@@ -40,6 +40,10 @@ pub enum Command {
     OpenVrChatStore,
     #[serde(rename = "OpenWorldDetails")]
     OpenWorldDetails,
+    #[serde(rename = "OpenWorldsMenu")]
+    OpenWorldsMenu,
+    #[serde(rename = "scrollToShelf")]
+    ScrollToShelf,
 }
 
 impl Default for Command {

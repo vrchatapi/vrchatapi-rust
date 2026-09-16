@@ -31,6 +31,8 @@ pub struct InfoPushData {
     pub featured_avatar_category_id: Option<String>,
     #[serde(rename = "finalName", skip_serializing_if = "Option::is_none")]
     pub final_name: Option<String>,
+    #[serde(rename = "hoverToJoin", skip_serializing_if = "Option::is_none")]
+    pub hover_to_join: Option<bool>,
     #[serde(rename = "iconImageUrl", skip_serializing_if = "Option::is_none")]
     pub icon_image_url: Option<String>,
     #[serde(
@@ -108,6 +110,7 @@ impl InfoPushData {
             domain_list: None,
             featured_avatar_category_id: None,
             final_name: None,
+            hover_to_join: None,
             icon_image_url: None,
             image_url: None,
             ips_query: None,

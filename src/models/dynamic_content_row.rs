@@ -25,6 +25,8 @@ pub struct DynamicContentRow {
     pub categories: Option<Vec<String>>,
     #[serde(rename = "featuredResults", skip_serializing_if = "Option::is_none")]
     pub featured_results: Option<String>,
+    #[serde(rename = "groupPool", skip_serializing_if = "Option::is_none")]
+    pub group_pool: Option<String>,
     #[serde(rename = "index", skip_serializing_if = "Option::is_none")]
     pub index: Option<i32>,
     #[serde(rename = "marketplace", skip_serializing_if = "Option::is_none")]
@@ -122,6 +124,8 @@ pub struct DynamicContentRow {
         skip_serializing_if = "Option::is_none"
     )]
     pub upcoming_offset_minutes: Option<i32>,
+    #[serde(rename = "worldPool", skip_serializing_if = "Option::is_none")]
+    pub world_pool: Option<String>,
 }
 
 impl DynamicContentRow {
@@ -133,6 +137,7 @@ impl DynamicContentRow {
             banners_tag: None,
             categories: None,
             featured_results: None,
+            group_pool: None,
             index: None,
             marketplace: None,
             max_price: None,
@@ -159,6 +164,7 @@ impl DynamicContentRow {
             tags: None,
             r#type: None,
             upcoming_offset_minutes: None,
+            world_pool: None,
         }
     }
 }

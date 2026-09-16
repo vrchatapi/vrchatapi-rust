@@ -227,8 +227,11 @@ pub struct ApiConfig {
     #[serde(rename = "dynamicWorldRows")]
     pub dynamic_world_rows: Vec<models::DynamicContentRow>,
     /// Unknown
-    #[serde(rename = "economyLedgerBackfill")]
-    pub economy_ledger_backfill: bool,
+    #[serde(
+        rename = "economyLedgerBackfill",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub economy_ledger_backfill: Option<bool>,
     /// Unknown
     #[serde(
         rename = "economyLedgerMigrationStop",
@@ -530,7 +533,6 @@ impl ApiConfig {
         download_link_windows: String,
         download_urls: models::ApiConfigDownloadUrlList,
         dynamic_world_rows: Vec<models::DynamicContentRow>,
-        economy_ledger_backfill: bool,
         economy_ledger_mode: String,
         economy_pause_end: chrono::DateTime<chrono::FixedOffset>,
         economy_pause_start: chrono::DateTime<chrono::FixedOffset>,
@@ -662,7 +664,7 @@ impl ApiConfig {
             download_link_windows,
             download_urls,
             dynamic_world_rows,
-            economy_ledger_backfill,
+            economy_ledger_backfill: None,
             economy_ledger_migration_stop: None,
             economy_ledger_mode,
             economy_pause_end,

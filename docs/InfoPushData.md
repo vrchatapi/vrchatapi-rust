@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **domain_list** | Option<[**Vec<models::InfoPushDataDomainListInner>**](InfoPushDataDomainListInner.md)> |  | [optional]
 **featured_avatar_category_id** | Option<**String**> |  | [optional]
 **final_name** | Option<**String**> |  | [optional]
+**hover_to_join** | Option<**bool**> |  | [optional]
 **icon_image_url** | Option<**String**> |  | [optional]
 **image_url** | Option<**String**> |  | [optional]
 **ips_query** | Option<[**models::InfoPushIpsQuery**](InfoPushIpsQuery.md)> |  | [optional]
