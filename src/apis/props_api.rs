@@ -288,14 +288,14 @@ pub async fn get_prop_publish_status(
 /// Returns a list Prop objects.
 pub async fn list_props(
     configuration: &configuration::Configuration,
-    author_id: &str,
     n: Option<i32>,
     offset: Option<i32>,
+    author_id: Option<&str>,
 ) -> Result<Vec<models::Prop>, Error<ListPropsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_query_author_id = author_id;
     let p_query_n = n;
     let p_query_offset = offset;
+    let p_query_author_id = author_id;
 
     let uri_str = format!("{}/props", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -306,7 +306,9 @@ pub async fn list_props(
     if let Some(ref param_value) = p_query_offset {
         req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
     }
-    req_builder = req_builder.query(&[("authorId", &p_query_author_id.to_string())]);
+    if let Some(ref param_value) = p_query_author_id {
+        req_builder = req_builder.query(&[("authorId", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }

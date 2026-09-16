@@ -137,7 +137,7 @@ Name | Type | Description  | Required | Notes
 
 ## list_props
 
-> Vec<models::Prop> list_props(author_id, n, offset)
+> Vec<models::Prop> list_props(n, offset, author_id)
 List Props
 
 Returns a list Prop objects.
@@ -147,9 +147,9 @@ Returns a list Prop objects.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**author_id** | **String** | Must be a valid user ID. | [required] |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**author_id** | Option<**String**> | Must be a valid user ID. |  |
 
 ### Return type
 

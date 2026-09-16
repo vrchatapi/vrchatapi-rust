@@ -18,12 +18,32 @@ pub struct StoreShelf {
         skip_serializing_if = "Option::is_none"
     )]
     pub shelf_background_image_id: Option<String>,
+    #[serde(
+        rename = "shelfClientBannerImageId",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub shelf_client_banner_image_id: Option<String>,
     #[serde(rename = "shelfDescription")]
     pub shelf_description: String,
     #[serde(rename = "shelfIconImageId", skip_serializing_if = "Option::is_none")]
     pub shelf_icon_image_id: Option<String>,
     #[serde(rename = "shelfLayout")]
     pub shelf_layout: String,
+    #[serde(
+        rename = "shelfMobileHeroBannerImageId",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub shelf_mobile_hero_banner_image_id: Option<String>,
+    #[serde(
+        rename = "shelfMobileLogoImageId",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub shelf_mobile_logo_image_id: Option<String>,
+    #[serde(
+        rename = "shelfMobileSecondaryBannerImageId",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub shelf_mobile_secondary_banner_image_id: Option<String>,
     #[serde(
         rename = "shelfTabBackgroundImageId",
         skip_serializing_if = "Option::is_none"
@@ -51,9 +71,13 @@ impl StoreShelf {
             listing_ids,
             listings: None,
             shelf_background_image_id: None,
+            shelf_client_banner_image_id: None,
             shelf_description,
             shelf_icon_image_id: None,
             shelf_layout,
+            shelf_mobile_hero_banner_image_id: None,
+            shelf_mobile_logo_image_id: None,
+            shelf_mobile_secondary_banner_image_id: None,
             shelf_tab_background_image_id: None,
             shelf_title,
             updated_at,

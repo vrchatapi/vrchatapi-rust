@@ -38,12 +38,12 @@ Name | Type | Description | Notes
 **purchase_count_quantity** | Option<**i32**> |  | [optional]
 **quantifiable** | Option<**bool**> |  | [optional]
 **recurrable** | **bool** |  | 
-**refundable** | **bool** |  | 
+**refundable** | Option<**bool**> |  | [optional]
 **seller_display_name** | **String** |  | 
 **seller_id** | **String** |  | 
 **sold_by_vrc** | Option<**bool**> |  | [optional]
 **stackable** | **bool** |  | 
-**store_ids** | **Vec<String>** |  | 
+**store_ids** | Option<**Vec<String>**> |  | [optional]
 **subtitle** | Option<**String**> |  | [optional]
 **tags** | Option<**Vec<String>**> |  | [optional]
 **updated** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]

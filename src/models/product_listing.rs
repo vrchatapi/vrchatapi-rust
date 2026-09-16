@@ -101,8 +101,8 @@ pub struct ProductListing {
     pub quantifiable: Option<bool>,
     #[serde(rename = "recurrable")]
     pub recurrable: bool,
-    #[serde(rename = "refundable")]
-    pub refundable: bool,
+    #[serde(rename = "refundable", skip_serializing_if = "Option::is_none")]
+    pub refundable: Option<bool>,
     #[serde(rename = "sellerDisplayName")]
     pub seller_display_name: String,
     #[serde(rename = "sellerId")]
@@ -111,8 +111,8 @@ pub struct ProductListing {
     pub sold_by_vrc: Option<bool>,
     #[serde(rename = "stackable")]
     pub stackable: bool,
-    #[serde(rename = "storeIds")]
-    pub store_ids: Vec<String>,
+    #[serde(rename = "storeIds", skip_serializing_if = "Option::is_none")]
+    pub store_ids: Option<Vec<String>>,
     #[serde(rename = "subtitle", skip_serializing_if = "Option::is_none")]
     pub subtitle: Option<String>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
@@ -148,11 +148,9 @@ impl ProductListing {
         product_type: models::ProductType,
         products: Vec<String>,
         recurrable: bool,
-        refundable: bool,
         seller_display_name: String,
         seller_id: String,
         stackable: bool,
-        store_ids: Vec<String>,
     ) -> ProductListing {
         ProductListing {
             active,
@@ -189,12 +187,12 @@ impl ProductListing {
             purchase_count_quantity: None,
             quantifiable: None,
             recurrable,
-            refundable,
+            refundable: None,
             seller_display_name,
             seller_id,
             sold_by_vrc: None,
             stackable,
-            store_ids,
+            store_ids: None,
             subtitle: None,
             tags: None,
             updated: None,

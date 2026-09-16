@@ -4,6 +4,8 @@ use serde::{Deserialize, Serialize};
 /// ProductListingAttribution : Attribution shown alongside a listing.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ProductListingAttribution {
+    #[serde(rename = "collaborationId", skip_serializing_if = "Option::is_none")]
+    pub collaboration_id: Option<String>,
     #[serde(rename = "creator", skip_serializing_if = "Option::is_none")]
     pub creator: Option<models::ProductListingAttributionCreator>,
     #[serde(rename = "publisher", skip_serializing_if = "Option::is_none")]
@@ -14,6 +16,7 @@ impl ProductListingAttribution {
     /// Attribution shown alongside a listing.
     pub fn new() -> ProductListingAttribution {
         ProductListingAttribution {
+            collaboration_id: None,
             creator: None,
             publisher: None,
         }

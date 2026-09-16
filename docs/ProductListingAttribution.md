@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**collaboration_id** | Option<**String**> |  | [optional]
 **creator** | Option<[**models::ProductListingAttributionCreator**](ProductListingAttributionCreator.md)> |  | [optional]
 **publisher** | Option<[**models::ProductListingAttributionCreator**](ProductListingAttributionCreator.md)> |  | [optional]
 
