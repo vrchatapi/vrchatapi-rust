@@ -150,6 +150,9 @@ pub async fn accept_friend_request(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("accept_friend_request returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -157,6 +160,9 @@ pub async fn accept_friend_request(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("accept_friend_request returned: {content}");
+        }
         let entity: Option<AcceptFriendRequestError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -200,6 +206,9 @@ pub async fn acknowledge_notification_v2(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("acknowledge_notification_v2 returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationV2`"))),
@@ -207,6 +216,9 @@ pub async fn acknowledge_notification_v2(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("acknowledge_notification_v2 returned: {content}");
+        }
         let entity: Option<AcknowledgeNotificationV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -240,6 +252,9 @@ pub async fn clear_notifications(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("clear_notifications returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -247,6 +262,9 @@ pub async fn clear_notifications(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("clear_notifications returned: {content}");
+        }
         let entity: Option<ClearNotificationsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -282,6 +300,9 @@ pub async fn delete_all_notification_v2s(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_all_notification_v2s returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -289,6 +310,9 @@ pub async fn delete_all_notification_v2s(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_all_notification_v2s returned: {content}");
+        }
         let entity: Option<DeleteAllNotificationV2sError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -330,6 +354,9 @@ pub async fn delete_notification(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_notification returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -337,6 +364,9 @@ pub async fn delete_notification(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_notification returned: {content}");
+        }
         let entity: Option<DeleteNotificationError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -380,6 +410,9 @@ pub async fn delete_notification_v2(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_notification_v2 returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -387,6 +420,9 @@ pub async fn delete_notification_v2(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_notification_v2 returned: {content}");
+        }
         let entity: Option<DeleteNotificationV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -428,6 +464,9 @@ pub async fn get_notification(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_notification returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Notification`"))),
@@ -435,6 +474,9 @@ pub async fn get_notification(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_notification returned: {content}");
+        }
         let entity: Option<GetNotificationError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -477,6 +519,9 @@ pub async fn get_notification_v2(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_notification_v2 returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationV2`"))),
@@ -484,6 +529,9 @@ pub async fn get_notification_v2(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_notification_v2 returned: {content}");
+        }
         let entity: Option<GetNotificationV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -524,6 +572,9 @@ pub async fn get_notification_v2s(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_notification_v2s returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::NotificationV2&gt;`"))),
@@ -531,6 +582,9 @@ pub async fn get_notification_v2s(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_notification_v2s returned: {content}");
+        }
         let entity: Option<GetNotificationV2sError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -596,6 +650,9 @@ pub async fn get_notifications(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_notifications returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Notification&gt;`"))),
@@ -603,6 +660,9 @@ pub async fn get_notifications(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_notifications returned: {content}");
+        }
         let entity: Option<GetNotificationsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -644,6 +704,9 @@ pub async fn mark_notification_as_read(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("mark_notification_as_read returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Notification`"))),
@@ -651,6 +714,9 @@ pub async fn mark_notification_as_read(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("mark_notification_as_read returned: {content}");
+        }
         let entity: Option<MarkNotificationAsReadError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -697,6 +763,9 @@ pub async fn reply_notification_v2(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("reply_notification_v2 returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationV2`"))),
@@ -704,6 +773,9 @@ pub async fn reply_notification_v2(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("reply_notification_v2 returned: {content}");
+        }
         let entity: Option<ReplyNotificationV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -750,6 +822,9 @@ pub async fn respond_notification_v2(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("respond_notification_v2 returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::NotificationV2`"))),
@@ -757,6 +832,9 @@ pub async fn respond_notification_v2(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("respond_notification_v2 returned: {content}");
+        }
         let entity: Option<RespondNotificationV2Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,

@@ -114,6 +114,9 @@ pub async fn add_favorite(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("add_favorite returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Favorite`"))),
@@ -121,6 +124,9 @@ pub async fn add_favorite(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("add_favorite returned: {content}");
+        }
         let entity: Option<AddFavoriteError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -170,6 +176,9 @@ pub async fn clear_favorite_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("clear_favorite_group returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -177,6 +186,9 @@ pub async fn clear_favorite_group(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("clear_favorite_group returned: {content}");
+        }
         let entity: Option<ClearFavoriteGroupError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -224,6 +236,9 @@ pub async fn get_favorite_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorite_group returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FavoriteGroup`"))),
@@ -231,6 +246,9 @@ pub async fn get_favorite_group(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorite_group returned: {content}");
+        }
         let entity: Option<GetFavoriteGroupError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -280,6 +298,9 @@ pub async fn get_favorite_group_contents(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorite_group_contents returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FavoriteGroupContents`"))),
@@ -287,6 +308,9 @@ pub async fn get_favorite_group_contents(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorite_group_contents returned: {content}");
+        }
         let entity: Option<GetFavoriteGroupContentsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -347,6 +371,9 @@ pub async fn get_favorite_groups(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorite_groups returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::FavoriteGroup&gt;`"))),
@@ -354,6 +381,9 @@ pub async fn get_favorite_groups(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorite_groups returned: {content}");
+        }
         let entity: Option<GetFavoriteGroupsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -400,6 +430,9 @@ pub async fn get_favorite_groups_by_type(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorite_groups_by_type returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FavoriteGroupList`"))),
@@ -407,6 +440,9 @@ pub async fn get_favorite_groups_by_type(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorite_groups_by_type returned: {content}");
+        }
         let entity: Option<GetFavoriteGroupsByTypeError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -440,6 +476,9 @@ pub async fn get_favorite_limits(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorite_limits returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FavoriteLimits`"))),
@@ -447,6 +486,9 @@ pub async fn get_favorite_limits(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorite_limits returned: {content}");
+        }
         let entity: Option<GetFavoriteLimitsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -502,6 +544,9 @@ pub async fn get_favorites(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorites returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Favorite&gt;`"))),
@@ -509,6 +554,9 @@ pub async fn get_favorites(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_favorites returned: {content}");
+        }
         let entity: Option<GetFavoritesError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -552,6 +600,9 @@ pub async fn remove_favorite(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("remove_favorite returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -559,6 +610,9 @@ pub async fn remove_favorite(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("remove_favorite returned: {content}");
+        }
         let entity: Option<RemoveFavoriteError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -605,6 +659,9 @@ pub async fn update_favorite_group(
         Ok(())
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("update_favorite_group returned: {content}");
+        }
         let entity: Option<UpdateFavoriteGroupError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,

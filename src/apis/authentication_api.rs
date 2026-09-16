@@ -233,6 +233,9 @@ pub async fn cancel_pending2_fa(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("cancel_pending2_fa returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Disable2FaResult`"))),
@@ -240,6 +243,9 @@ pub async fn cancel_pending2_fa(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("cancel_pending2_fa returned: {content}");
+        }
         let entity: Option<CancelPending2FaError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -295,6 +301,9 @@ pub async fn check_user_exists(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("check_user_exists returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserExists`"))),
@@ -302,6 +311,9 @@ pub async fn check_user_exists(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("check_user_exists returned: {content}");
+        }
         let entity: Option<CheckUserExistsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -339,6 +351,9 @@ pub async fn confirm_email(
         Ok(())
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("confirm_email returned: {content}");
+        }
         let entity: Option<ConfirmEmailError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -379,6 +394,9 @@ pub async fn create_global_avatar_moderation(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("create_global_avatar_moderation returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AvatarModerationCreated`"))),
@@ -386,6 +404,9 @@ pub async fn create_global_avatar_moderation(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("create_global_avatar_moderation returned: {content}");
+        }
         let entity: Option<CreateGlobalAvatarModerationError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -432,6 +453,9 @@ pub async fn delete_global_avatar_moderation(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_global_avatar_moderation returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OkStatus2`"))),
@@ -439,6 +463,9 @@ pub async fn delete_global_avatar_moderation(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_global_avatar_moderation returned: {content}");
+        }
         let entity: Option<DeleteGlobalAvatarModerationError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -482,6 +509,9 @@ pub async fn delete_moderation_report(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_moderation_report returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SuccessFlag`"))),
@@ -489,6 +519,9 @@ pub async fn delete_moderation_report(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_moderation_report returned: {content}");
+        }
         let entity: Option<DeleteModerationReportError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -530,6 +563,9 @@ pub async fn delete_user(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_user returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CurrentUser`"))),
@@ -537,6 +573,9 @@ pub async fn delete_user(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_user returned: {content}");
+        }
         let entity: Option<DeleteUserError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -572,6 +611,9 @@ pub async fn disable2_fa(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("disable2_fa returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Disable2FaResult`"))),
@@ -579,6 +621,9 @@ pub async fn disable2_fa(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("disable2_fa returned: {content}");
+        }
         let entity: Option<Disable2FaError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -617,6 +662,9 @@ pub async fn enable2_fa(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("enable2_fa returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Pending2FaResult`"))),
@@ -624,6 +672,9 @@ pub async fn enable2_fa(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("enable2_fa returned: {content}");
+        }
         let entity: Option<Enable2FaError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -660,6 +711,9 @@ pub async fn get_current_user(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_current_user returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RegisterUserAccount200Response`"))),
@@ -667,6 +721,9 @@ pub async fn get_current_user(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_current_user returned: {content}");
+        }
         let entity: Option<GetCurrentUserError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -700,6 +757,9 @@ pub async fn get_global_avatar_moderations(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_global_avatar_moderations returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::AvatarModeration&gt;`"))),
@@ -707,6 +767,9 @@ pub async fn get_global_avatar_moderations(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_global_avatar_moderations returned: {content}");
+        }
         let entity: Option<GetGlobalAvatarModerationsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -767,6 +830,9 @@ pub async fn get_moderation_reports(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_moderation_reports returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedModerationReportList`"))),
@@ -774,6 +840,9 @@ pub async fn get_moderation_reports(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_moderation_reports returned: {content}");
+        }
         let entity: Option<GetModerationReportsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -807,6 +876,9 @@ pub async fn get_o_auth_redirect_code(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_o_auth_redirect_code returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OAuthRedirectCode`"))),
@@ -814,6 +886,9 @@ pub async fn get_o_auth_redirect_code(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_o_auth_redirect_code returned: {content}");
+        }
         let entity: Option<GetOAuthRedirectCodeError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -847,6 +922,9 @@ pub async fn get_recovery_codes(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_recovery_codes returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::TwoFactorRecoveryCodes`"))),
@@ -854,6 +932,9 @@ pub async fn get_recovery_codes(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_recovery_codes returned: {content}");
+        }
         let entity: Option<GetRecoveryCodesError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -895,6 +976,9 @@ pub async fn get_sso_token(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_sso_token returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SsoToken`"))),
@@ -902,6 +986,9 @@ pub async fn get_sso_token(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_sso_token returned: {content}");
+        }
         let entity: Option<GetSsoTokenError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -935,6 +1022,9 @@ pub async fn logout(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("logout returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -942,6 +1032,9 @@ pub async fn logout(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("logout returned: {content}");
+        }
         let entity: Option<LogoutError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -983,6 +1076,9 @@ pub async fn register_user_account(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("register_user_account returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RegisterUserAccount200Response`"))),
@@ -990,6 +1086,9 @@ pub async fn register_user_account(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("register_user_account returned: {content}");
+        }
         let entity: Option<RegisterUserAccountError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -1025,6 +1124,9 @@ pub async fn resend_email_confirmation(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("resend_email_confirmation returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -1032,6 +1134,9 @@ pub async fn resend_email_confirmation(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("resend_email_confirmation returned: {content}");
+        }
         let entity: Option<ResendEmailConfirmationError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -1072,6 +1177,9 @@ pub async fn submit_moderation_report(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("submit_moderation_report returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ModerationReport`"))),
@@ -1079,6 +1187,9 @@ pub async fn submit_moderation_report(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("submit_moderation_report returned: {content}");
+        }
         let entity: Option<SubmitModerationReportError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -1119,6 +1230,9 @@ pub async fn verify2_fa(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify2_fa returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Verify2FaResult`"))),
@@ -1126,6 +1240,9 @@ pub async fn verify2_fa(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify2_fa returned: {content}");
+        }
         let entity: Option<Verify2FaError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -1169,6 +1286,9 @@ pub async fn verify2_fa_email_code(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify2_fa_email_code returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Verify2FaEmailCodeResult`"))),
@@ -1176,6 +1296,9 @@ pub async fn verify2_fa_email_code(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify2_fa_email_code returned: {content}");
+        }
         let entity: Option<Verify2FaEmailCodeError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -1209,6 +1332,9 @@ pub async fn verify_auth_token(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify_auth_token returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::VerifyAuthTokenResult`"))),
@@ -1216,6 +1342,9 @@ pub async fn verify_auth_token(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify_auth_token returned: {content}");
+        }
         let entity: Option<VerifyAuthTokenError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -1255,6 +1384,9 @@ pub async fn verify_login_place(
         Ok(())
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify_login_place returned: {content}");
+        }
         let entity: Option<VerifyLoginPlaceError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -1298,6 +1430,9 @@ pub async fn verify_pending2_fa(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify_pending2_fa returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Verify2FaResult`"))),
@@ -1305,6 +1440,9 @@ pub async fn verify_pending2_fa(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify_pending2_fa returned: {content}");
+        }
         let entity: Option<VerifyPending2FaError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -1345,6 +1483,9 @@ pub async fn verify_recovery_code(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify_recovery_code returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Verify2FaResult`"))),
@@ -1352,6 +1493,9 @@ pub async fn verify_recovery_code(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("verify_recovery_code returned: {content}");
+        }
         let entity: Option<VerifyRecoveryCodeError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,

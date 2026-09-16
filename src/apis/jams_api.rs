@@ -83,6 +83,9 @@ pub async fn delete_jam_submission(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_jam_submission returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -90,6 +93,9 @@ pub async fn delete_jam_submission(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_jam_submission returned: {content}");
+        }
         let entity: Option<DeleteJamSubmissionError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -131,6 +137,9 @@ pub async fn get_jam(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_jam returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Jam`"))),
@@ -138,6 +147,9 @@ pub async fn get_jam(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_jam returned: {content}");
+        }
         let entity: Option<GetJamError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -189,6 +201,9 @@ pub async fn get_jam_submissions(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_jam_submissions returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::JamSubmission&gt;`"))),
@@ -196,6 +211,9 @@ pub async fn get_jam_submissions(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_jam_submissions returned: {content}");
+        }
         let entity: Option<GetJamSubmissionsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -236,6 +254,9 @@ pub async fn get_jams(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_jams returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Jam&gt;`"))),
@@ -243,6 +264,9 @@ pub async fn get_jams(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_jams returned: {content}");
+        }
         let entity: Option<GetJamsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -289,6 +313,9 @@ pub async fn submit_jam_content(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("submit_jam_content returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::JamSubmission`"))),
@@ -296,6 +323,9 @@ pub async fn submit_jam_content(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("submit_jam_content returned: {content}");
+        }
         let entity: Option<SubmitJamContentError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,

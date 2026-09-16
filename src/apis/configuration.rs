@@ -1,4 +1,5 @@
 #[derive(Debug, Clone)]
+#[non_exhaustive]
 pub struct Configuration {
     pub base_path: String,
     pub user_agent: Option<String>,
@@ -7,6 +8,7 @@ pub struct Configuration {
     pub oauth_access_token: Option<String>,
     pub bearer_access_token: Option<String>,
     pub api_key: Option<ApiKey>,
+    pub debug: bool,
 }
 
 pub type BasicAuth = (String, Option<String>);
@@ -39,6 +41,7 @@ impl Default for Configuration {
             oauth_access_token: None,
             bearer_access_token: None,
             api_key: None,
+            debug: false,
         }
     }
 }

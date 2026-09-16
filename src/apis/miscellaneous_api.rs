@@ -121,6 +121,9 @@ pub async fn get_assigned_permissions(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_assigned_permissions returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Permission&gt;`"))),
@@ -128,6 +131,9 @@ pub async fn get_assigned_permissions(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_assigned_permissions returned: {content}");
+        }
         let entity: Option<GetAssignedPermissionsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -169,6 +175,9 @@ pub async fn get_beta(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_beta returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Beta`"))),
@@ -176,6 +185,9 @@ pub async fn get_beta(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_beta returned: {content}");
+        }
         let entity: Option<GetBetaError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -213,6 +225,9 @@ pub async fn get_beta_registration(
         Ok(())
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_beta_registration returned: {content}");
+        }
         let entity: Option<GetBetaRegistrationError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -246,6 +261,9 @@ pub async fn get_config(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_config returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiConfig`"))),
@@ -253,6 +271,9 @@ pub async fn get_config(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_config returned: {content}");
+        }
         let entity: Option<GetConfigError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -298,6 +319,9 @@ pub async fn get_css(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_css returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `String`"))),
@@ -305,6 +329,9 @@ pub async fn get_css(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_css returned: {content}");
+        }
         let entity: Option<GetCssError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -338,6 +365,9 @@ pub async fn get_current_online_users(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_current_online_users returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `i32`"))),
@@ -345,6 +375,9 @@ pub async fn get_current_online_users(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_current_online_users returned: {content}");
+        }
         let entity: Option<GetCurrentOnlineUsersError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -378,6 +411,9 @@ pub async fn get_frontend_branches(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_frontend_branches returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;serde_json::Value&gt;`"))),
@@ -385,6 +421,9 @@ pub async fn get_frontend_branches(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_frontend_branches returned: {content}");
+        }
         let entity: Option<GetFrontendBranchesError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -419,6 +458,9 @@ pub async fn get_health(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_health returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiHealth`"))),
@@ -426,6 +468,9 @@ pub async fn get_health(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_health returned: {content}");
+        }
         let entity: Option<GetHealthError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -471,6 +516,9 @@ pub async fn get_info_push(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_info_push returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::InfoPush&gt;`"))),
@@ -478,6 +526,9 @@ pub async fn get_info_push(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_info_push returned: {content}");
+        }
         let entity: Option<GetInfoPushError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -523,6 +574,9 @@ pub async fn get_java_script(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_java_script returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `String`"))),
@@ -530,6 +584,9 @@ pub async fn get_java_script(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_java_script returned: {content}");
+        }
         let entity: Option<GetJavaScriptError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -571,6 +628,9 @@ pub async fn get_permission(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_permission returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Permission`"))),
@@ -578,6 +638,9 @@ pub async fn get_permission(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_permission returned: {content}");
+        }
         let entity: Option<GetPermissionError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -611,6 +674,9 @@ pub async fn get_system_time(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_system_time returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `chrono::DateTime&lt;chrono::FixedOffset&gt;`"))),
@@ -618,6 +684,9 @@ pub async fn get_system_time(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_system_time returned: {content}");
+        }
         let entity: Option<GetSystemTimeError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,

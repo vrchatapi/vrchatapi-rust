@@ -94,6 +94,9 @@ pub async fn boop(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("boop returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -101,6 +104,9 @@ pub async fn boop(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("boop returned: {content}");
+        }
         let entity: Option<BoopError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -144,6 +150,9 @@ pub async fn delete_friend_request(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_friend_request returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -151,6 +160,9 @@ pub async fn delete_friend_request(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_friend_request returned: {content}");
+        }
         let entity: Option<DeleteFriendRequestError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -194,6 +206,9 @@ pub async fn friend(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("friend returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Notification`"))),
@@ -201,6 +216,9 @@ pub async fn friend(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("friend returned: {content}");
+        }
         let entity: Option<FriendError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -242,6 +260,9 @@ pub async fn get_friend_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_friend_status returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FriendStatus`"))),
@@ -249,6 +270,9 @@ pub async fn get_friend_status(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_friend_status returned: {content}");
+        }
         let entity: Option<GetFriendStatusError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -299,6 +323,9 @@ pub async fn get_friends(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_friends returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::LimitedUserFriend&gt;`"))),
@@ -306,6 +333,9 @@ pub async fn get_friends(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_friends returned: {content}");
+        }
         let entity: Option<GetFriendsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -349,6 +379,9 @@ pub async fn unfriend(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("unfriend returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
@@ -356,6 +389,9 @@ pub async fn unfriend(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("unfriend returned: {content}");
+        }
         let entity: Option<UnfriendError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,

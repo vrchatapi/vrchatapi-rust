@@ -143,6 +143,9 @@ pub async fn get_invite_message(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_invite_message returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InviteMessage`"))),
@@ -150,6 +153,9 @@ pub async fn get_invite_message(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_invite_message returned: {content}");
+        }
         let entity: Option<GetInviteMessageError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -194,6 +200,9 @@ pub async fn get_invite_messages(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_invite_messages returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::InviteMessage&gt;`"))),
@@ -201,6 +210,9 @@ pub async fn get_invite_messages(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_invite_messages returned: {content}");
+        }
         let entity: Option<GetInviteMessagesError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -247,6 +259,9 @@ pub async fn invite_myself_to(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("invite_myself_to returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SentNotification`"))),
@@ -254,6 +269,9 @@ pub async fn invite_myself_to(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("invite_myself_to returned: {content}");
+        }
         let entity: Option<InviteMyselfToError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -300,6 +318,9 @@ pub async fn invite_user(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("invite_user returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SentNotification`"))),
@@ -307,6 +328,9 @@ pub async fn invite_user(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("invite_user returned: {content}");
+        }
         let entity: Option<InviteUserError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -366,6 +390,9 @@ pub async fn invite_user_with_photo(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("invite_user_with_photo returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SentNotification`"))),
@@ -373,6 +400,9 @@ pub async fn invite_user_with_photo(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("invite_user_with_photo returned: {content}");
+        }
         let entity: Option<InviteUserWithPhotoError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -419,6 +449,9 @@ pub async fn request_invite(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("request_invite returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Notification`"))),
@@ -426,6 +459,9 @@ pub async fn request_invite(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("request_invite returned: {content}");
+        }
         let entity: Option<RequestInviteError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -485,6 +521,9 @@ pub async fn request_invite_with_photo(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("request_invite_with_photo returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Notification`"))),
@@ -492,6 +531,9 @@ pub async fn request_invite_with_photo(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("request_invite_with_photo returned: {content}");
+        }
         let entity: Option<RequestInviteWithPhotoError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -541,6 +583,9 @@ pub async fn reset_invite_message(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("reset_invite_message returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::InviteMessage&gt;`"))),
@@ -548,6 +593,9 @@ pub async fn reset_invite_message(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("reset_invite_message returned: {content}");
+        }
         let entity: Option<ResetInviteMessageError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -594,6 +642,9 @@ pub async fn respond_invite(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("respond_invite returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Notification`"))),
@@ -601,6 +652,9 @@ pub async fn respond_invite(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("respond_invite returned: {content}");
+        }
         let entity: Option<RespondInviteError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -660,6 +714,9 @@ pub async fn respond_invite_with_photo(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("respond_invite_with_photo returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Notification`"))),
@@ -667,6 +724,9 @@ pub async fn respond_invite_with_photo(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("respond_invite_with_photo returned: {content}");
+        }
         let entity: Option<RespondInviteWithPhotoError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -717,6 +777,9 @@ pub async fn update_invite_message(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("update_invite_message returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::InviteMessage&gt;`"))),
@@ -724,6 +787,9 @@ pub async fn update_invite_message(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("update_invite_message returned: {content}");
+        }
         let entity: Option<UpdateInviteMessageError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,

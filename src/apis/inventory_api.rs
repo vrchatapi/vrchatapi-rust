@@ -175,6 +175,9 @@ pub async fn consume_own_inventory_item(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("consume_own_inventory_item returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventoryConsumptionResults`"))),
@@ -182,6 +185,9 @@ pub async fn consume_own_inventory_item(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("consume_own_inventory_item returned: {content}");
+        }
         let entity: Option<ConsumeOwnInventoryItemError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -225,6 +231,9 @@ pub async fn delete_own_inventory_item(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_own_inventory_item returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SuccessFlag`"))),
@@ -232,6 +241,9 @@ pub async fn delete_own_inventory_item(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("delete_own_inventory_item returned: {content}");
+        }
         let entity: Option<DeleteOwnInventoryItemError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -276,6 +288,9 @@ pub async fn equip_own_inventory_item(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("equip_own_inventory_item returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventoryItem`"))),
@@ -283,6 +298,9 @@ pub async fn equip_own_inventory_item(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("equip_own_inventory_item returned: {content}");
+        }
         let entity: Option<EquipOwnInventoryItemError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -324,6 +342,9 @@ pub async fn get_cosmetic_index(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_cosmetic_index returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::InventoryTemplate&gt;`"))),
@@ -331,6 +352,9 @@ pub async fn get_cosmetic_index(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_cosmetic_index returned: {content}");
+        }
         let entity: Option<GetCosmeticIndexError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -431,6 +455,9 @@ pub async fn get_inventory(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_inventory returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Inventory`"))),
@@ -438,6 +465,9 @@ pub async fn get_inventory(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_inventory returned: {content}");
+        }
         let entity: Option<GetInventoryError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -471,6 +501,9 @@ pub async fn get_inventory_collections(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_inventory_collections returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;String&gt;`"))),
@@ -478,6 +511,9 @@ pub async fn get_inventory_collections(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_inventory_collections returned: {content}");
+        }
         let entity: Option<GetInventoryCollectionsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -518,6 +554,9 @@ pub async fn get_inventory_drops(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_inventory_drops returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::InventoryDrop&gt;`"))),
@@ -525,6 +564,9 @@ pub async fn get_inventory_drops(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_inventory_drops returned: {content}");
+        }
         let entity: Option<GetInventoryDropsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -566,6 +608,9 @@ pub async fn get_inventory_template(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_inventory_template returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventoryTemplate`"))),
@@ -573,6 +618,9 @@ pub async fn get_inventory_template(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_inventory_template returned: {content}");
+        }
         let entity: Option<GetInventoryTemplateError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -614,6 +662,9 @@ pub async fn get_own_inventory_item(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_own_inventory_item returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventoryItem`"))),
@@ -621,6 +672,9 @@ pub async fn get_own_inventory_item(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_own_inventory_item returned: {content}");
+        }
         let entity: Option<GetOwnInventoryItemError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -662,6 +716,9 @@ pub async fn get_user_cosmetics(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_user_cosmetics returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UserCosmetic&gt;`"))),
@@ -669,6 +726,9 @@ pub async fn get_user_cosmetics(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_user_cosmetics returned: {content}");
+        }
         let entity: Option<GetUserCosmeticsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -713,6 +773,9 @@ pub async fn get_user_inventory_item(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_user_inventory_item returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventoryItem`"))),
@@ -720,6 +783,9 @@ pub async fn get_user_inventory_item(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("get_user_inventory_item returned: {content}");
+        }
         let entity: Option<GetUserInventoryItemError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -760,6 +826,9 @@ pub async fn redeem_reward(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("redeem_reward returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::RewardRedemptionResult&gt;`"))),
@@ -767,6 +836,9 @@ pub async fn redeem_reward(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("redeem_reward returned: {content}");
+        }
         let entity: Option<RedeemRewardError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -813,6 +885,9 @@ pub async fn share_inventory_item_direct(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("share_inventory_item_direct returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::OkStatus`"))),
@@ -820,6 +895,9 @@ pub async fn share_inventory_item_direct(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("share_inventory_item_direct returned: {content}");
+        }
         let entity: Option<ShareInventoryItemDirectError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -861,6 +939,9 @@ pub async fn share_inventory_item_pedestal(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("share_inventory_item_pedestal returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventorySpawn`"))),
@@ -868,6 +949,9 @@ pub async fn share_inventory_item_pedestal(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("share_inventory_item_pedestal returned: {content}");
+        }
         let entity: Option<ShareInventoryItemPedestalError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -906,6 +990,9 @@ pub async fn spawn_inventory_item(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("spawn_inventory_item returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventorySpawn`"))),
@@ -913,6 +1000,9 @@ pub async fn spawn_inventory_item(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("spawn_inventory_item returned: {content}");
+        }
         let entity: Option<SpawnInventoryItemError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -956,6 +1046,9 @@ pub async fn unequip_own_inventory_slot(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("unequip_own_inventory_slot returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `String`"))),
@@ -963,6 +1056,9 @@ pub async fn unequip_own_inventory_slot(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("unequip_own_inventory_slot returned: {content}");
+        }
         let entity: Option<UnequipOwnInventorySlotError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
@@ -1007,6 +1103,9 @@ pub async fn update_own_inventory_item(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("update_own_inventory_item returned: {content}");
+        }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
             ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InventoryItem`"))),
@@ -1014,6 +1113,9 @@ pub async fn update_own_inventory_item(
         }
     } else {
         let content = resp.text().await?;
+        if (configuration.debug) {
+            log::debug!("update_own_inventory_item returned: {content}");
+        }
         let entity: Option<UpdateOwnInventoryItemError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
