@@ -397,7 +397,7 @@ pub async fn create_product(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_product returned: {content}");
         }
         match content_type {
@@ -407,7 +407,7 @@ pub async fn create_product(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_product returned: {content}");
         }
         let entity: Option<CreateProductError> = serde_json::from_str(&content).ok();
@@ -450,7 +450,7 @@ pub async fn create_product_listing_direct(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_product_listing_direct returned: {content}");
         }
         match content_type {
@@ -460,7 +460,7 @@ pub async fn create_product_listing_direct(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_product_listing_direct returned: {content}");
         }
         let entity: Option<CreateProductListingDirectError> = serde_json::from_str(&content).ok();
@@ -506,7 +506,7 @@ pub async fn delete_product(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_product returned: {content}");
         }
         match content_type {
@@ -516,7 +516,7 @@ pub async fn delete_product(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_product returned: {content}");
         }
         let entity: Option<DeleteProductError> = serde_json::from_str(&content).ok();
@@ -567,7 +567,7 @@ pub async fn delete_product_listing_direct(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_product_listing_direct returned: {content}");
         }
         match content_type {
@@ -577,7 +577,7 @@ pub async fn delete_product_listing_direct(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_product_listing_direct returned: {content}");
         }
         let entity: Option<DeleteProductListingDirectError> = serde_json::from_str(&content).ok();
@@ -613,7 +613,7 @@ pub async fn get_active_licenses(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_active_licenses returned: {content}");
         }
         match content_type {
@@ -623,7 +623,7 @@ pub async fn get_active_licenses(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_active_licenses returned: {content}");
         }
         let entity: Option<GetActiveLicensesError> = serde_json::from_str(&content).ok();
@@ -667,7 +667,7 @@ pub async fn get_balance(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_balance returned: {content}");
         }
         match content_type {
@@ -677,7 +677,7 @@ pub async fn get_balance(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_balance returned: {content}");
         }
         let entity: Option<GetBalanceError> = serde_json::from_str(&content).ok();
@@ -722,7 +722,7 @@ pub async fn get_balance_earnings(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_balance_earnings returned: {content}");
         }
         match content_type {
@@ -732,7 +732,7 @@ pub async fn get_balance_earnings(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_balance_earnings returned: {content}");
         }
         let entity: Option<GetBalanceEarningsError> = serde_json::from_str(&content).ok();
@@ -775,7 +775,7 @@ pub async fn get_bulk_gift_purchases(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_bulk_gift_purchases returned: {content}");
         }
         match content_type {
@@ -785,7 +785,7 @@ pub async fn get_bulk_gift_purchases(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_bulk_gift_purchases returned: {content}");
         }
         let entity: Option<GetBulkGiftPurchasesError> = serde_json::from_str(&content).ok();
@@ -821,7 +821,7 @@ pub async fn get_current_subscriptions(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_current_subscriptions returned: {content}");
         }
         match content_type {
@@ -831,7 +831,7 @@ pub async fn get_current_subscriptions(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_current_subscriptions returned: {content}");
         }
         let entity: Option<GetCurrentSubscriptionsError> = serde_json::from_str(&content).ok();
@@ -889,7 +889,7 @@ pub async fn get_earnings_metrics(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_earnings_metrics returned: {content}");
         }
         match content_type {
@@ -899,7 +899,7 @@ pub async fn get_earnings_metrics(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_earnings_metrics returned: {content}");
         }
         let entity: Option<GetEarningsMetricsError> = serde_json::from_str(&content).ok();
@@ -948,7 +948,7 @@ pub async fn get_economy_account(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_account returned: {content}");
         }
         match content_type {
@@ -958,7 +958,7 @@ pub async fn get_economy_account(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_account returned: {content}");
         }
         let entity: Option<GetEconomyAccountError> = serde_json::from_str(&content).ok();
@@ -1002,7 +1002,7 @@ pub async fn get_economy_balance(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_balance returned: {content}");
         }
         match content_type {
@@ -1012,7 +1012,7 @@ pub async fn get_economy_balance(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_balance returned: {content}");
         }
         let entity: Option<GetEconomyBalanceError> = serde_json::from_str(&content).ok();
@@ -1056,7 +1056,7 @@ pub async fn get_economy_balances(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_balances returned: {content}");
         }
         match content_type {
@@ -1066,7 +1066,7 @@ pub async fn get_economy_balances(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_balances returned: {content}");
         }
         let entity: Option<GetEconomyBalancesError> = serde_json::from_str(&content).ok();
@@ -1110,7 +1110,7 @@ pub async fn get_economy_payout_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_payout_status returned: {content}");
         }
         match content_type {
@@ -1120,7 +1120,7 @@ pub async fn get_economy_payout_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_payout_status returned: {content}");
         }
         let entity: Option<GetEconomyPayoutStatusError> = serde_json::from_str(&content).ok();
@@ -1164,7 +1164,7 @@ pub async fn get_economy_payouts(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_payouts returned: {content}");
         }
         match content_type {
@@ -1174,7 +1174,7 @@ pub async fn get_economy_payouts(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_payouts returned: {content}");
         }
         let entity: Option<GetEconomyPayoutsError> = serde_json::from_str(&content).ok();
@@ -1210,7 +1210,7 @@ pub async fn get_economy_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_status returned: {content}");
         }
         match content_type {
@@ -1220,7 +1220,7 @@ pub async fn get_economy_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_economy_status returned: {content}");
         }
         let entity: Option<GetEconomyStatusError> = serde_json::from_str(&content).ok();
@@ -1264,7 +1264,7 @@ pub async fn get_license_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_license_group returned: {content}");
         }
         match content_type {
@@ -1274,7 +1274,7 @@ pub async fn get_license_group(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_license_group returned: {content}");
         }
         let entity: Option<GetLicenseGroupError> = serde_json::from_str(&content).ok();
@@ -1323,7 +1323,7 @@ pub async fn get_product_listing(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_listing returned: {content}");
         }
         match content_type {
@@ -1333,7 +1333,7 @@ pub async fn get_product_listing(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_listing returned: {content}");
         }
         let entity: Option<GetProductListingError> = serde_json::from_str(&content).ok();
@@ -1378,7 +1378,7 @@ pub async fn get_product_listing_alternate(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_listing_alternate returned: {content}");
         }
         match content_type {
@@ -1388,7 +1388,7 @@ pub async fn get_product_listing_alternate(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_listing_alternate returned: {content}");
         }
         let entity: Option<GetProductListingAlternateError> = serde_json::from_str(&content).ok();
@@ -1432,7 +1432,7 @@ pub async fn get_product_listing_products(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_listing_products returned: {content}");
         }
         match content_type {
@@ -1442,7 +1442,7 @@ pub async fn get_product_listing_products(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_listing_products returned: {content}");
         }
         let entity: Option<GetProductListingProductsError> = serde_json::from_str(&content).ok();
@@ -1516,7 +1516,7 @@ pub async fn get_product_listings(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_listings returned: {content}");
         }
         match content_type {
@@ -1526,7 +1526,7 @@ pub async fn get_product_listings(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_listings returned: {content}");
         }
         let entity: Option<GetProductListingsError> = serde_json::from_str(&content).ok();
@@ -1570,7 +1570,7 @@ pub async fn get_product_purchase(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_purchase returned: {content}");
         }
         match content_type {
@@ -1580,7 +1580,7 @@ pub async fn get_product_purchase(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_purchase returned: {content}");
         }
         let entity: Option<GetProductPurchaseError> = serde_json::from_str(&content).ok();
@@ -1659,7 +1659,7 @@ pub async fn get_product_purchase_history(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_purchase_history returned: {content}");
         }
         match content_type {
@@ -1669,7 +1669,7 @@ pub async fn get_product_purchase_history(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_purchase_history returned: {content}");
         }
         let entity: Option<GetProductPurchaseHistoryError> = serde_json::from_str(&content).ok();
@@ -1713,7 +1713,7 @@ pub async fn get_product_purchase_stacks(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_purchase_stacks returned: {content}");
         }
         match content_type {
@@ -1723,7 +1723,7 @@ pub async fn get_product_purchase_stacks(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_purchase_stacks returned: {content}");
         }
         let entity: Option<GetProductPurchaseStacksError> = serde_json::from_str(&content).ok();
@@ -1806,7 +1806,7 @@ pub async fn get_product_purchases(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_purchases returned: {content}");
         }
         match content_type {
@@ -1816,7 +1816,7 @@ pub async fn get_product_purchases(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_product_purchases returned: {content}");
         }
         let entity: Option<GetProductPurchasesError> = serde_json::from_str(&content).ok();
@@ -1859,7 +1859,7 @@ pub async fn get_recent_subscription(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_recent_subscription returned: {content}");
         }
         match content_type {
@@ -1869,7 +1869,7 @@ pub async fn get_recent_subscription(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_recent_subscription returned: {content}");
         }
         let entity: Option<GetRecentSubscriptionError> = serde_json::from_str(&content).ok();
@@ -1906,7 +1906,7 @@ pub async fn get_seller_eligibility(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_seller_eligibility returned: {content}");
         }
         match content_type {
@@ -1916,7 +1916,7 @@ pub async fn get_seller_eligibility(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_seller_eligibility returned: {content}");
         }
         let entity: Option<GetSellerEligibilityError> = serde_json::from_str(&content).ok();
@@ -1960,7 +1960,7 @@ pub async fn get_steam_transaction(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_steam_transaction returned: {content}");
         }
         match content_type {
@@ -1970,7 +1970,7 @@ pub async fn get_steam_transaction(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_steam_transaction returned: {content}");
         }
         let entity: Option<GetSteamTransactionError> = serde_json::from_str(&content).ok();
@@ -2006,7 +2006,7 @@ pub async fn get_steam_transactions(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_steam_transactions returned: {content}");
         }
         match content_type {
@@ -2016,7 +2016,7 @@ pub async fn get_steam_transactions(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_steam_transactions returned: {content}");
         }
         let entity: Option<GetSteamTransactionsError> = serde_json::from_str(&content).ok();
@@ -2072,7 +2072,7 @@ pub async fn get_store(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_store returned: {content}");
         }
         match content_type {
@@ -2082,7 +2082,7 @@ pub async fn get_store(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_store returned: {content}");
         }
         let entity: Option<GetStoreError> = serde_json::from_str(&content).ok();
@@ -2133,7 +2133,7 @@ pub async fn get_store_shelves(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_store_shelves returned: {content}");
         }
         match content_type {
@@ -2143,7 +2143,7 @@ pub async fn get_store_shelves(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_store_shelves returned: {content}");
         }
         let entity: Option<GetStoreShelvesError> = serde_json::from_str(&content).ok();
@@ -2191,7 +2191,7 @@ pub async fn get_subscriptions(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_subscriptions returned: {content}");
         }
         match content_type {
@@ -2201,7 +2201,7 @@ pub async fn get_subscriptions(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_subscriptions returned: {content}");
         }
         let entity: Option<GetSubscriptionsError> = serde_json::from_str(&content).ok();
@@ -2238,7 +2238,7 @@ pub async fn get_tilia_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_tilia_status returned: {content}");
         }
         match content_type {
@@ -2248,7 +2248,7 @@ pub async fn get_tilia_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_tilia_status returned: {content}");
         }
         let entity: Option<GetTiliaStatusError> = serde_json::from_str(&content).ok();
@@ -2293,7 +2293,7 @@ pub async fn get_tilia_tos(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_tilia_tos returned: {content}");
         }
         match content_type {
@@ -2303,7 +2303,7 @@ pub async fn get_tilia_tos(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_tilia_tos returned: {content}");
         }
         let entity: Option<GetTiliaTosError> = serde_json::from_str(&content).ok();
@@ -2339,7 +2339,7 @@ pub async fn get_token_bundles(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_token_bundles returned: {content}");
         }
         match content_type {
@@ -2349,7 +2349,7 @@ pub async fn get_token_bundles(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_token_bundles returned: {content}");
         }
         let entity: Option<GetTokenBundlesError> = serde_json::from_str(&content).ok();
@@ -2397,7 +2397,7 @@ pub async fn get_user_credits_eligible(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_credits_eligible returned: {content}");
         }
         match content_type {
@@ -2407,7 +2407,7 @@ pub async fn get_user_credits_eligible(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_credits_eligible returned: {content}");
         }
         let entity: Option<GetUserCreditsEligibleError> = serde_json::from_str(&content).ok();
@@ -2456,7 +2456,7 @@ pub async fn get_user_subscription_eligible(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_subscription_eligible returned: {content}");
         }
         match content_type {
@@ -2466,7 +2466,7 @@ pub async fn get_user_subscription_eligible(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_subscription_eligible returned: {content}");
         }
         let entity: Option<GetUserSubscriptionEligibleError> = serde_json::from_str(&content).ok();
@@ -2510,7 +2510,7 @@ pub async fn get_user_tilia_kyc(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_tilia_kyc returned: {content}");
         }
         match content_type {
@@ -2520,7 +2520,7 @@ pub async fn get_user_tilia_kyc(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_tilia_kyc returned: {content}");
         }
         let entity: Option<GetUserTiliaKycError> = serde_json::from_str(&content).ok();
@@ -2576,7 +2576,7 @@ pub async fn list_stores(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("list_stores returned: {content}");
         }
         match content_type {
@@ -2586,7 +2586,7 @@ pub async fn list_stores(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("list_stores returned: {content}");
         }
         let entity: Option<ListStoresError> = serde_json::from_str(&content).ok();
@@ -2640,7 +2640,7 @@ pub async fn list_user_products(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("list_user_products returned: {content}");
         }
         match content_type {
@@ -2650,7 +2650,7 @@ pub async fn list_user_products(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("list_user_products returned: {content}");
         }
         let entity: Option<ListUserProductsError> = serde_json::from_str(&content).ok();
@@ -2693,7 +2693,7 @@ pub async fn purchase_product_listing(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("purchase_product_listing returned: {content}");
         }
         match content_type {
@@ -2703,7 +2703,7 @@ pub async fn purchase_product_listing(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("purchase_product_listing returned: {content}");
         }
         let entity: Option<PurchaseProductListingError> = serde_json::from_str(&content).ok();
@@ -2750,7 +2750,7 @@ pub async fn update_product(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_product returned: {content}");
         }
         match content_type {
@@ -2760,7 +2760,7 @@ pub async fn update_product(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_product returned: {content}");
         }
         let entity: Option<UpdateProductError> = serde_json::from_str(&content).ok();
@@ -2812,7 +2812,7 @@ pub async fn update_product_listing_direct(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_product_listing_direct returned: {content}");
         }
         match content_type {
@@ -2822,7 +2822,7 @@ pub async fn update_product_listing_direct(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_product_listing_direct returned: {content}");
         }
         let entity: Option<UpdateProductListingDirectError> = serde_json::from_str(&content).ok();
@@ -2870,7 +2870,7 @@ pub async fn update_tilia_tos(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_tilia_tos returned: {content}");
         }
         match content_type {
@@ -2880,7 +2880,7 @@ pub async fn update_tilia_tos(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_tilia_tos returned: {content}");
         }
         let entity: Option<UpdateTiliaTosError> = serde_json::from_str(&content).ok();

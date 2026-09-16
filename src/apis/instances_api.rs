@@ -116,7 +116,7 @@ pub async fn close_instance(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("close_instance returned: {content}");
         }
         match content_type {
@@ -126,7 +126,7 @@ pub async fn close_instance(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("close_instance returned: {content}");
         }
         let entity: Option<CloseInstanceError> = serde_json::from_str(&content).ok();
@@ -169,7 +169,7 @@ pub async fn create_instance(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_instance returned: {content}");
         }
         match content_type {
@@ -179,7 +179,7 @@ pub async fn create_instance(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_instance returned: {content}");
         }
         let entity: Option<CreateInstanceError> = serde_json::from_str(&content).ok();
@@ -226,7 +226,7 @@ pub async fn get_instance(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_instance returned: {content}");
         }
         match content_type {
@@ -236,7 +236,7 @@ pub async fn get_instance(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_instance returned: {content}");
         }
         let entity: Option<GetInstanceError> = serde_json::from_str(&content).ok();
@@ -280,7 +280,7 @@ pub async fn get_instance_by_short_name(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_instance_by_short_name returned: {content}");
         }
         match content_type {
@@ -290,7 +290,7 @@ pub async fn get_instance_by_short_name(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_instance_by_short_name returned: {content}");
         }
         let entity: Option<GetInstanceByShortNameError> = serde_json::from_str(&content).ok();
@@ -326,7 +326,7 @@ pub async fn get_instance_categories(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_instance_categories returned: {content}");
         }
         match content_type {
@@ -336,7 +336,7 @@ pub async fn get_instance_categories(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_instance_categories returned: {content}");
         }
         let entity: Option<GetInstanceCategoriesError> = serde_json::from_str(&content).ok();
@@ -372,7 +372,7 @@ pub async fn get_instance_vibes(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_instance_vibes returned: {content}");
         }
         match content_type {
@@ -382,7 +382,7 @@ pub async fn get_instance_vibes(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_instance_vibes returned: {content}");
         }
         let entity: Option<GetInstanceVibesError> = serde_json::from_str(&content).ok();
@@ -430,7 +430,7 @@ pub async fn get_recent_locations(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_recent_locations returned: {content}");
         }
         match content_type {
@@ -440,7 +440,7 @@ pub async fn get_recent_locations(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_recent_locations returned: {content}");
         }
         let entity: Option<GetRecentLocationsError> = serde_json::from_str(&content).ok();
@@ -487,7 +487,7 @@ pub async fn get_short_name(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_short_name returned: {content}");
         }
         match content_type {
@@ -497,7 +497,7 @@ pub async fn get_short_name(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_short_name returned: {content}");
         }
         let entity: Option<GetShortNameError> = serde_json::from_str(&content).ok();

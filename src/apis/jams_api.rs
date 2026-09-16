@@ -83,7 +83,7 @@ pub async fn delete_jam_submission(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_jam_submission returned: {content}");
         }
         match content_type {
@@ -93,7 +93,7 @@ pub async fn delete_jam_submission(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_jam_submission returned: {content}");
         }
         let entity: Option<DeleteJamSubmissionError> = serde_json::from_str(&content).ok();
@@ -137,7 +137,7 @@ pub async fn get_jam(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_jam returned: {content}");
         }
         match content_type {
@@ -147,7 +147,7 @@ pub async fn get_jam(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_jam returned: {content}");
         }
         let entity: Option<GetJamError> = serde_json::from_str(&content).ok();
@@ -201,7 +201,7 @@ pub async fn get_jam_submissions(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_jam_submissions returned: {content}");
         }
         match content_type {
@@ -211,7 +211,7 @@ pub async fn get_jam_submissions(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_jam_submissions returned: {content}");
         }
         let entity: Option<GetJamSubmissionsError> = serde_json::from_str(&content).ok();
@@ -254,7 +254,7 @@ pub async fn get_jams(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_jams returned: {content}");
         }
         match content_type {
@@ -264,7 +264,7 @@ pub async fn get_jams(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_jams returned: {content}");
         }
         let entity: Option<GetJamsError> = serde_json::from_str(&content).ok();
@@ -313,7 +313,7 @@ pub async fn submit_jam_content(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("submit_jam_content returned: {content}");
         }
         match content_type {
@@ -323,7 +323,7 @@ pub async fn submit_jam_content(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("submit_jam_content returned: {content}");
         }
         let entity: Option<SubmitJamContentError> = serde_json::from_str(&content).ok();

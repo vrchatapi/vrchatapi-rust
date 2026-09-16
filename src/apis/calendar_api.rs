@@ -150,7 +150,7 @@ pub async fn create_group_calendar_event(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group_calendar_event returned: {content}");
         }
         match content_type {
@@ -160,7 +160,7 @@ pub async fn create_group_calendar_event(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group_calendar_event returned: {content}");
         }
         let entity: Option<CreateGroupCalendarEventError> = serde_json::from_str(&content).ok();
@@ -209,7 +209,7 @@ pub async fn delete_group_calendar_event(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_calendar_event returned: {content}");
         }
         match content_type {
@@ -219,7 +219,7 @@ pub async fn delete_group_calendar_event(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_calendar_event returned: {content}");
         }
         let entity: Option<DeleteGroupCalendarEventError> = serde_json::from_str(&content).ok();
@@ -312,7 +312,7 @@ pub async fn discover_calendar_events(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("discover_calendar_events returned: {content}");
         }
         match content_type {
@@ -322,7 +322,7 @@ pub async fn discover_calendar_events(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("discover_calendar_events returned: {content}");
         }
         let entity: Option<DiscoverCalendarEventsError> = serde_json::from_str(&content).ok();
@@ -374,7 +374,7 @@ pub async fn follow_group_calendar_event(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("follow_group_calendar_event returned: {content}");
         }
         match content_type {
@@ -384,7 +384,7 @@ pub async fn follow_group_calendar_event(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("follow_group_calendar_event returned: {content}");
         }
         let entity: Option<FollowGroupCalendarEventError> = serde_json::from_str(&content).ok();
@@ -437,7 +437,7 @@ pub async fn get_calendar_events(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_calendar_events returned: {content}");
         }
         match content_type {
@@ -447,7 +447,7 @@ pub async fn get_calendar_events(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_calendar_events returned: {content}");
         }
         let entity: Option<GetCalendarEventsError> = serde_json::from_str(&content).ok();
@@ -500,7 +500,7 @@ pub async fn get_featured_calendar_events(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_featured_calendar_events returned: {content}");
         }
         match content_type {
@@ -510,7 +510,7 @@ pub async fn get_featured_calendar_events(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_featured_calendar_events returned: {content}");
         }
         let entity: Option<GetFeaturedCalendarEventsError> = serde_json::from_str(&content).ok();
@@ -563,7 +563,7 @@ pub async fn get_followed_calendar_events(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_followed_calendar_events returned: {content}");
         }
         match content_type {
@@ -573,7 +573,7 @@ pub async fn get_followed_calendar_events(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_followed_calendar_events returned: {content}");
         }
         let entity: Option<GetFollowedCalendarEventsError> = serde_json::from_str(&content).ok();
@@ -620,7 +620,7 @@ pub async fn get_group_calendar_event(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_calendar_event returned: {content}");
         }
         match content_type {
@@ -630,7 +630,7 @@ pub async fn get_group_calendar_event(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_calendar_event returned: {content}");
         }
         let entity: Option<GetGroupCalendarEventError> = serde_json::from_str(&content).ok();
@@ -673,7 +673,7 @@ pub async fn get_group_calendar_event_ics(
         Ok(resp)
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_calendar_event_ics returned: {content}");
         }
         let entity: Option<GetGroupCalendarEventIcsError> = serde_json::from_str(&content).ok();
@@ -747,7 +747,7 @@ pub async fn get_group_calendar_events(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_calendar_events returned: {content}");
         }
         match content_type {
@@ -757,7 +757,7 @@ pub async fn get_group_calendar_events(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_calendar_events returned: {content}");
         }
         let entity: Option<GetGroupCalendarEventsError> = serde_json::from_str(&content).ok();
@@ -801,7 +801,7 @@ pub async fn get_group_next_calendar_event(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_next_calendar_event returned: {content}");
         }
         match content_type {
@@ -811,7 +811,7 @@ pub async fn get_group_next_calendar_event(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_next_calendar_event returned: {content}");
         }
         let entity: Option<GetGroupNextCalendarEventError> = serde_json::from_str(&content).ok();
@@ -872,7 +872,7 @@ pub async fn search_calendar_events(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_calendar_events returned: {content}");
         }
         match content_type {
@@ -882,7 +882,7 @@ pub async fn search_calendar_events(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_calendar_events returned: {content}");
         }
         let entity: Option<SearchCalendarEventsError> = serde_json::from_str(&content).ok();
@@ -932,7 +932,7 @@ pub async fn update_group_calendar_event(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_calendar_event returned: {content}");
         }
         match content_type {
@@ -942,7 +942,7 @@ pub async fn update_group_calendar_event(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_calendar_event returned: {content}");
         }
         let entity: Option<UpdateGroupCalendarEventError> = serde_json::from_str(&content).ok();

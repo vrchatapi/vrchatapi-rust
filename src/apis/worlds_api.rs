@@ -209,7 +209,7 @@ pub async fn add_world_tags(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("add_world_tags returned: {content}");
         }
         match content_type {
@@ -219,7 +219,7 @@ pub async fn add_world_tags(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("add_world_tags returned: {content}");
         }
         let entity: Option<AddWorldTagsError> = serde_json::from_str(&content).ok();
@@ -262,7 +262,7 @@ pub async fn check_user_persistence_exists(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("check_user_persistence_exists returned: {content}");
         }
         let entity: Option<CheckUserPersistenceExistsError> = serde_json::from_str(&content).ok();
@@ -305,7 +305,7 @@ pub async fn create_world(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_world returned: {content}");
         }
         match content_type {
@@ -315,7 +315,7 @@ pub async fn create_world(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_world returned: {content}");
         }
         let entity: Option<CreateWorldError> = serde_json::from_str(&content).ok();
@@ -357,7 +357,7 @@ pub async fn delete_all_user_persistence_data(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_all_user_persistence_data returned: {content}");
         }
         let entity: Option<DeleteAllUserPersistenceDataError> = serde_json::from_str(&content).ok();
@@ -402,7 +402,7 @@ pub async fn delete_user_persistence(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_user_persistence returned: {content}");
         }
         let entity: Option<DeleteUserPersistenceError> = serde_json::from_str(&content).ok();
@@ -444,7 +444,7 @@ pub async fn delete_world(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_world returned: {content}");
         }
         let entity: Option<DeleteWorldError> = serde_json::from_str(&content).ok();
@@ -489,7 +489,7 @@ pub async fn delete_world_platform(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_world_platform returned: {content}");
         }
         let entity: Option<DeleteWorldPlatformError> = serde_json::from_str(&content).ok();
@@ -592,7 +592,7 @@ pub async fn get_active_worlds(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_active_worlds returned: {content}");
         }
         match content_type {
@@ -602,7 +602,7 @@ pub async fn get_active_worlds(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_active_worlds returned: {content}");
         }
         let entity: Option<GetActiveWorldsError> = serde_json::from_str(&content).ok();
@@ -705,7 +705,7 @@ pub async fn get_favorited_worlds(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_favorited_worlds returned: {content}");
         }
         match content_type {
@@ -715,7 +715,7 @@ pub async fn get_favorited_worlds(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_favorited_worlds returned: {content}");
         }
         let entity: Option<GetFavoritedWorldsError> = serde_json::from_str(&content).ok();
@@ -818,7 +818,7 @@ pub async fn get_recent_worlds(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_recent_worlds returned: {content}");
         }
         match content_type {
@@ -828,7 +828,7 @@ pub async fn get_recent_worlds(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_recent_worlds returned: {content}");
         }
         let entity: Option<GetRecentWorldsError> = serde_json::from_str(&content).ok();
@@ -872,7 +872,7 @@ pub async fn get_world(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_world returned: {content}");
         }
         match content_type {
@@ -882,7 +882,7 @@ pub async fn get_world(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_world returned: {content}");
         }
         let entity: Option<GetWorldError> = serde_json::from_str(&content).ok();
@@ -929,7 +929,7 @@ pub async fn get_world_instance(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_world_instance returned: {content}");
         }
         match content_type {
@@ -939,7 +939,7 @@ pub async fn get_world_instance(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_world_instance returned: {content}");
         }
         let entity: Option<GetWorldInstanceError> = serde_json::from_str(&content).ok();
@@ -983,7 +983,7 @@ pub async fn get_world_metadata(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_world_metadata returned: {content}");
         }
         match content_type {
@@ -993,7 +993,7 @@ pub async fn get_world_metadata(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_world_metadata returned: {content}");
         }
         let entity: Option<GetWorldMetadataError> = serde_json::from_str(&content).ok();
@@ -1037,7 +1037,7 @@ pub async fn get_world_publish_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_world_publish_status returned: {content}");
         }
         match content_type {
@@ -1047,7 +1047,7 @@ pub async fn get_world_publish_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_world_publish_status returned: {content}");
         }
         let entity: Option<GetWorldPublishStatusError> = serde_json::from_str(&content).ok();
@@ -1087,7 +1087,7 @@ pub async fn publish_world(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("publish_world returned: {content}");
         }
         let entity: Option<PublishWorldError> = serde_json::from_str(&content).ok();
@@ -1136,7 +1136,7 @@ pub async fn remove_world_tags(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("remove_world_tags returned: {content}");
         }
         match content_type {
@@ -1146,7 +1146,7 @@ pub async fn remove_world_tags(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("remove_world_tags returned: {content}");
         }
         let entity: Option<RemoveWorldTagsError> = serde_json::from_str(&content).ok();
@@ -1269,7 +1269,7 @@ pub async fn search_worlds(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_worlds returned: {content}");
         }
         match content_type {
@@ -1279,7 +1279,7 @@ pub async fn search_worlds(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_worlds returned: {content}");
         }
         let entity: Option<SearchWorldsError> = serde_json::from_str(&content).ok();
@@ -1321,7 +1321,7 @@ pub async fn unpublish_world(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("unpublish_world returned: {content}");
         }
         let entity: Option<UnpublishWorldError> = serde_json::from_str(&content).ok();
@@ -1368,7 +1368,7 @@ pub async fn update_world(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_world returned: {content}");
         }
         match content_type {
@@ -1378,7 +1378,7 @@ pub async fn update_world(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_world returned: {content}");
         }
         let entity: Option<UpdateWorldError> = serde_json::from_str(&content).ok();

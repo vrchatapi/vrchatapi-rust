@@ -61,7 +61,7 @@ pub async fn clear_all_player_moderations(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("clear_all_player_moderations returned: {content}");
         }
         match content_type {
@@ -71,7 +71,7 @@ pub async fn clear_all_player_moderations(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("clear_all_player_moderations returned: {content}");
         }
         let entity: Option<ClearAllPlayerModerationsError> = serde_json::from_str(&content).ok();
@@ -119,7 +119,7 @@ pub async fn get_player_moderations(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_player_moderations returned: {content}");
         }
         match content_type {
@@ -129,7 +129,7 @@ pub async fn get_player_moderations(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_player_moderations returned: {content}");
         }
         let entity: Option<GetPlayerModerationsError> = serde_json::from_str(&content).ok();
@@ -172,7 +172,7 @@ pub async fn moderate_user(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("moderate_user returned: {content}");
         }
         match content_type {
@@ -182,7 +182,7 @@ pub async fn moderate_user(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("moderate_user returned: {content}");
         }
         let entity: Option<ModerateUserError> = serde_json::from_str(&content).ok();
@@ -223,7 +223,7 @@ pub async fn unmoderate_user(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("unmoderate_user returned: {content}");
         }
         match content_type {
@@ -233,7 +233,7 @@ pub async fn unmoderate_user(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("unmoderate_user returned: {content}");
         }
         let entity: Option<UnmoderateUserError> = serde_json::from_str(&content).ok();

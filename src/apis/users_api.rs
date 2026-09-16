@@ -314,7 +314,7 @@ pub async fn add_tags(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("add_tags returned: {content}");
         }
         match content_type {
@@ -324,7 +324,7 @@ pub async fn add_tags(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("add_tags returned: {content}");
         }
         let entity: Option<AddTagsError> = serde_json::from_str(&content).ok();
@@ -367,7 +367,7 @@ pub async fn check_user_persistence_exists(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("check_user_persistence_exists returned: {content}");
         }
         let entity: Option<CheckUserPersistenceExistsError> = serde_json::from_str(&content).ok();
@@ -409,7 +409,7 @@ pub async fn delete_all_user_persistence_data(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_all_user_persistence_data returned: {content}");
         }
         let entity: Option<DeleteAllUserPersistenceDataError> = serde_json::from_str(&content).ok();
@@ -454,7 +454,7 @@ pub async fn delete_user_persistence(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_user_persistence returned: {content}");
         }
         let entity: Option<DeleteUserPersistenceError> = serde_json::from_str(&content).ok();
@@ -490,7 +490,7 @@ pub async fn get_age_verification_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_age_verification_status returned: {content}");
         }
         match content_type {
@@ -500,7 +500,7 @@ pub async fn get_age_verification_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_age_verification_status returned: {content}");
         }
         let entity: Option<GetAgeVerificationStatusError> = serde_json::from_str(&content).ok();
@@ -544,7 +544,7 @@ pub async fn get_blocked_groups(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_blocked_groups returned: {content}");
         }
         match content_type {
@@ -554,7 +554,7 @@ pub async fn get_blocked_groups(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_blocked_groups returned: {content}");
         }
         let entity: Option<GetBlockedGroupsError> = serde_json::from_str(&content).ok();
@@ -598,7 +598,7 @@ pub async fn get_invited_groups(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_invited_groups returned: {content}");
         }
         match content_type {
@@ -608,7 +608,7 @@ pub async fn get_invited_groups(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_invited_groups returned: {content}");
         }
         let entity: Option<GetInvitedGroupsError> = serde_json::from_str(&content).ok();
@@ -662,7 +662,7 @@ pub async fn get_mutual_friends(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_mutual_friends returned: {content}");
         }
         match content_type {
@@ -672,7 +672,7 @@ pub async fn get_mutual_friends(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_mutual_friends returned: {content}");
         }
         let entity: Option<GetMutualFriendsError> = serde_json::from_str(&content).ok();
@@ -726,7 +726,7 @@ pub async fn get_mutual_groups(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_mutual_groups returned: {content}");
         }
         match content_type {
@@ -736,7 +736,7 @@ pub async fn get_mutual_groups(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_mutual_groups returned: {content}");
         }
         let entity: Option<GetMutualGroupsError> = serde_json::from_str(&content).ok();
@@ -780,7 +780,7 @@ pub async fn get_mutuals(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_mutuals returned: {content}");
         }
         match content_type {
@@ -790,7 +790,7 @@ pub async fn get_mutuals(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_mutuals returned: {content}");
         }
         let entity: Option<GetMutualsError> = serde_json::from_str(&content).ok();
@@ -834,7 +834,7 @@ pub async fn get_private_profile(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_private_profile returned: {content}");
         }
         match content_type {
@@ -844,7 +844,7 @@ pub async fn get_private_profile(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_private_profile returned: {content}");
         }
         let entity: Option<GetPrivateProfileError> = serde_json::from_str(&content).ok();
@@ -898,7 +898,7 @@ pub async fn get_public_profile(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_public_profile returned: {content}");
         }
         match content_type {
@@ -908,7 +908,7 @@ pub async fn get_public_profile(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_public_profile returned: {content}");
         }
         let entity: Option<GetPublicProfileError> = serde_json::from_str(&content).ok();
@@ -952,7 +952,7 @@ pub async fn get_user(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user returned: {content}");
         }
         match content_type {
@@ -962,7 +962,7 @@ pub async fn get_user(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user returned: {content}");
         }
         let entity: Option<GetUserError> = serde_json::from_str(&content).ok();
@@ -1014,7 +1014,7 @@ pub async fn get_user_all_group_permissions(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_all_group_permissions returned: {content}");
         }
         match content_type {
@@ -1024,7 +1024,7 @@ pub async fn get_user_all_group_permissions(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_all_group_permissions returned: {content}");
         }
         let entity: Option<GetUserAllGroupPermissionsError> = serde_json::from_str(&content).ok();
@@ -1069,7 +1069,7 @@ pub async fn get_user_by_name(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_by_name returned: {content}");
         }
         match content_type {
@@ -1079,7 +1079,7 @@ pub async fn get_user_by_name(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_by_name returned: {content}");
         }
         let entity: Option<GetUserByNameError> = serde_json::from_str(&content).ok();
@@ -1123,7 +1123,7 @@ pub async fn get_user_client_config(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_client_config returned: {content}");
         }
         match content_type {
@@ -1133,7 +1133,7 @@ pub async fn get_user_client_config(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_client_config returned: {content}");
         }
         let entity: Option<GetUserClientConfigError> = serde_json::from_str(&content).ok();
@@ -1192,7 +1192,7 @@ pub async fn get_user_feedback(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_feedback returned: {content}");
         }
         match content_type {
@@ -1202,7 +1202,7 @@ pub async fn get_user_feedback(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_feedback returned: {content}");
         }
         let entity: Option<GetUserFeedbackError> = serde_json::from_str(&content).ok();
@@ -1246,7 +1246,7 @@ pub async fn get_user_group_instances(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_group_instances returned: {content}");
         }
         match content_type {
@@ -1256,7 +1256,7 @@ pub async fn get_user_group_instances(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_group_instances returned: {content}");
         }
         let entity: Option<GetUserGroupInstancesError> = serde_json::from_str(&content).ok();
@@ -1303,7 +1303,7 @@ pub async fn get_user_group_instances_for_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_group_instances_for_group returned: {content}");
         }
         match content_type {
@@ -1313,7 +1313,7 @@ pub async fn get_user_group_instances_for_group(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_group_instances_for_group returned: {content}");
         }
         let entity: Option<GetUserGroupInstancesForGroupError> =
@@ -1358,7 +1358,7 @@ pub async fn get_user_group_requests(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_group_requests returned: {content}");
         }
         match content_type {
@@ -1368,7 +1368,7 @@ pub async fn get_user_group_requests(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_group_requests returned: {content}");
         }
         let entity: Option<GetUserGroupRequestsError> = serde_json::from_str(&content).ok();
@@ -1412,7 +1412,7 @@ pub async fn get_user_groups(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_groups returned: {content}");
         }
         match content_type {
@@ -1422,7 +1422,7 @@ pub async fn get_user_groups(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_groups returned: {content}");
         }
         let entity: Option<GetUserGroupsError> = serde_json::from_str(&content).ok();
@@ -1466,7 +1466,7 @@ pub async fn get_user_note(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_note returned: {content}");
         }
         match content_type {
@@ -1476,7 +1476,7 @@ pub async fn get_user_note(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_note returned: {content}");
         }
         let entity: Option<GetUserNoteError> = serde_json::from_str(&content).ok();
@@ -1524,7 +1524,7 @@ pub async fn get_user_notes(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_notes returned: {content}");
         }
         match content_type {
@@ -1534,7 +1534,7 @@ pub async fn get_user_notes(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_notes returned: {content}");
         }
         let entity: Option<GetUserNotesError> = serde_json::from_str(&content).ok();
@@ -1578,7 +1578,7 @@ pub async fn get_user_represented_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_represented_group returned: {content}");
         }
         match content_type {
@@ -1588,7 +1588,7 @@ pub async fn get_user_represented_group(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_represented_group returned: {content}");
         }
         let entity: Option<GetUserRepresentedGroupError> = serde_json::from_str(&content).ok();
@@ -1632,7 +1632,7 @@ pub async fn get_user_tutorial_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_tutorial_status returned: {content}");
         }
         match content_type {
@@ -1642,7 +1642,7 @@ pub async fn get_user_tutorial_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_tutorial_status returned: {content}");
         }
         let entity: Option<GetUserTutorialStatusError> = serde_json::from_str(&content).ok();
@@ -1691,7 +1691,7 @@ pub async fn remove_tags(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("remove_tags returned: {content}");
         }
         match content_type {
@@ -1701,7 +1701,7 @@ pub async fn remove_tags(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("remove_tags returned: {content}");
         }
         let entity: Option<RemoveTagsError> = serde_json::from_str(&content).ok();
@@ -1764,7 +1764,7 @@ pub async fn search_users(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_users returned: {content}");
         }
         match content_type {
@@ -1774,7 +1774,7 @@ pub async fn search_users(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_users returned: {content}");
         }
         let entity: Option<SearchUsersError> = serde_json::from_str(&content).ok();
@@ -1820,7 +1820,7 @@ pub async fn update_badge(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_badge returned: {content}");
         }
         let entity: Option<UpdateBadgeError> = serde_json::from_str(&content).ok();
@@ -1867,7 +1867,7 @@ pub async fn update_profile(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_profile returned: {content}");
         }
         match content_type {
@@ -1877,7 +1877,7 @@ pub async fn update_profile(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_profile returned: {content}");
         }
         let entity: Option<UpdateProfileError> = serde_json::from_str(&content).ok();
@@ -1924,7 +1924,7 @@ pub async fn update_user(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_user returned: {content}");
         }
         match content_type {
@@ -1934,7 +1934,7 @@ pub async fn update_user(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_user returned: {content}");
         }
         let entity: Option<UpdateUserError> = serde_json::from_str(&content).ok();
@@ -1981,7 +1981,7 @@ pub async fn update_user_client_config(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_user_client_config returned: {content}");
         }
         match content_type {
@@ -1991,7 +1991,7 @@ pub async fn update_user_client_config(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_user_client_config returned: {content}");
         }
         let entity: Option<UpdateUserClientConfigError> = serde_json::from_str(&content).ok();
@@ -2034,7 +2034,7 @@ pub async fn update_user_note(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_user_note returned: {content}");
         }
         match content_type {
@@ -2044,7 +2044,7 @@ pub async fn update_user_note(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_user_note returned: {content}");
         }
         let entity: Option<UpdateUserNoteError> = serde_json::from_str(&content).ok();

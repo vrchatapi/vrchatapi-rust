@@ -112,7 +112,7 @@ pub async fn create_prop(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_prop returned: {content}");
         }
         match content_type {
@@ -122,7 +122,7 @@ pub async fn create_prop(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_prop returned: {content}");
         }
         let entity: Option<CreatePropError> = serde_json::from_str(&content).ok();
@@ -164,7 +164,7 @@ pub async fn delete_prop(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_prop returned: {content}");
         }
         let entity: Option<DeletePropError> = serde_json::from_str(&content).ok();
@@ -208,7 +208,7 @@ pub async fn get_prop(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_prop returned: {content}");
         }
         match content_type {
@@ -218,7 +218,7 @@ pub async fn get_prop(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_prop returned: {content}");
         }
         let entity: Option<GetPropError> = serde_json::from_str(&content).ok();
@@ -263,7 +263,7 @@ pub async fn get_prop_publish_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_prop_publish_status returned: {content}");
         }
         match content_type {
@@ -273,7 +273,7 @@ pub async fn get_prop_publish_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_prop_publish_status returned: {content}");
         }
         let entity: Option<GetPropPublishStatusError> = serde_json::from_str(&content).ok();
@@ -324,7 +324,7 @@ pub async fn list_props(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("list_props returned: {content}");
         }
         match content_type {
@@ -334,7 +334,7 @@ pub async fn list_props(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("list_props returned: {content}");
         }
         let entity: Option<ListPropsError> = serde_json::from_str(&content).ok();
@@ -379,7 +379,7 @@ pub async fn publish_prop(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("publish_prop returned: {content}");
         }
         match content_type {
@@ -389,7 +389,7 @@ pub async fn publish_prop(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("publish_prop returned: {content}");
         }
         let entity: Option<PublishPropError> = serde_json::from_str(&content).ok();
@@ -436,7 +436,7 @@ pub async fn unpublish_prop(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("unpublish_prop returned: {content}");
         }
         match content_type {
@@ -446,7 +446,7 @@ pub async fn unpublish_prop(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("unpublish_prop returned: {content}");
         }
         let entity: Option<UnpublishPropError> = serde_json::from_str(&content).ok();
@@ -493,7 +493,7 @@ pub async fn update_prop(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_prop returned: {content}");
         }
         match content_type {
@@ -503,7 +503,7 @@ pub async fn update_prop(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_prop returned: {content}");
         }
         let entity: Option<UpdatePropError> = serde_json::from_str(&content).ok();

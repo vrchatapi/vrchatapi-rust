@@ -21,7 +21,7 @@ pub struct CurrentUserPresence {
     #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
     pub banner_url: Option<String>,
     #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
-    pub current_avatar_tags: Option<Vec<String>>,
+    pub current_avatar_tags: Option<String>,
     #[serde(rename = "debugflag", skip_serializing_if = "Option::is_none")]
     pub debugflag: Option<String>,
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]

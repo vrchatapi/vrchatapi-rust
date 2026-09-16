@@ -76,7 +76,7 @@ pub async fn delete_print(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_print returned: {content}");
         }
         let entity: Option<DeletePrintError> = serde_json::from_str(&content).ok();
@@ -132,7 +132,7 @@ pub async fn edit_print(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("edit_print returned: {content}");
         }
         match content_type {
@@ -142,7 +142,7 @@ pub async fn edit_print(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("edit_print returned: {content}");
         }
         let entity: Option<EditPrintError> = serde_json::from_str(&content).ok();
@@ -186,7 +186,7 @@ pub async fn get_print(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_print returned: {content}");
         }
         match content_type {
@@ -196,7 +196,7 @@ pub async fn get_print(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_print returned: {content}");
         }
         let entity: Option<GetPrintError> = serde_json::from_str(&content).ok();
@@ -240,7 +240,7 @@ pub async fn get_user_prints(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_prints returned: {content}");
         }
         match content_type {
@@ -250,7 +250,7 @@ pub async fn get_user_prints(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_prints returned: {content}");
         }
         let entity: Option<GetUserPrintsError> = serde_json::from_str(&content).ok();
@@ -321,7 +321,7 @@ pub async fn upload_print(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("upload_print returned: {content}");
         }
         match content_type {
@@ -331,7 +331,7 @@ pub async fn upload_print(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("upload_print returned: {content}");
         }
         let entity: Option<UploadPrintError> = serde_json::from_str(&content).ok();

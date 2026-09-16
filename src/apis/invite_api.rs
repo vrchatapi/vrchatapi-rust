@@ -143,7 +143,7 @@ pub async fn get_invite_message(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_invite_message returned: {content}");
         }
         match content_type {
@@ -153,7 +153,7 @@ pub async fn get_invite_message(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_invite_message returned: {content}");
         }
         let entity: Option<GetInviteMessageError> = serde_json::from_str(&content).ok();
@@ -200,7 +200,7 @@ pub async fn get_invite_messages(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_invite_messages returned: {content}");
         }
         match content_type {
@@ -210,7 +210,7 @@ pub async fn get_invite_messages(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_invite_messages returned: {content}");
         }
         let entity: Option<GetInviteMessagesError> = serde_json::from_str(&content).ok();
@@ -259,7 +259,7 @@ pub async fn invite_myself_to(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("invite_myself_to returned: {content}");
         }
         match content_type {
@@ -269,7 +269,7 @@ pub async fn invite_myself_to(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("invite_myself_to returned: {content}");
         }
         let entity: Option<InviteMyselfToError> = serde_json::from_str(&content).ok();
@@ -318,7 +318,7 @@ pub async fn invite_user(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("invite_user returned: {content}");
         }
         match content_type {
@@ -328,7 +328,7 @@ pub async fn invite_user(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("invite_user returned: {content}");
         }
         let entity: Option<InviteUserError> = serde_json::from_str(&content).ok();
@@ -390,7 +390,7 @@ pub async fn invite_user_with_photo(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("invite_user_with_photo returned: {content}");
         }
         match content_type {
@@ -400,7 +400,7 @@ pub async fn invite_user_with_photo(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("invite_user_with_photo returned: {content}");
         }
         let entity: Option<InviteUserWithPhotoError> = serde_json::from_str(&content).ok();
@@ -449,7 +449,7 @@ pub async fn request_invite(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("request_invite returned: {content}");
         }
         match content_type {
@@ -459,7 +459,7 @@ pub async fn request_invite(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("request_invite returned: {content}");
         }
         let entity: Option<RequestInviteError> = serde_json::from_str(&content).ok();
@@ -521,7 +521,7 @@ pub async fn request_invite_with_photo(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("request_invite_with_photo returned: {content}");
         }
         match content_type {
@@ -531,7 +531,7 @@ pub async fn request_invite_with_photo(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("request_invite_with_photo returned: {content}");
         }
         let entity: Option<RequestInviteWithPhotoError> = serde_json::from_str(&content).ok();
@@ -583,7 +583,7 @@ pub async fn reset_invite_message(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("reset_invite_message returned: {content}");
         }
         match content_type {
@@ -593,7 +593,7 @@ pub async fn reset_invite_message(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("reset_invite_message returned: {content}");
         }
         let entity: Option<ResetInviteMessageError> = serde_json::from_str(&content).ok();
@@ -642,7 +642,7 @@ pub async fn respond_invite(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("respond_invite returned: {content}");
         }
         match content_type {
@@ -652,7 +652,7 @@ pub async fn respond_invite(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("respond_invite returned: {content}");
         }
         let entity: Option<RespondInviteError> = serde_json::from_str(&content).ok();
@@ -714,7 +714,7 @@ pub async fn respond_invite_with_photo(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("respond_invite_with_photo returned: {content}");
         }
         match content_type {
@@ -724,7 +724,7 @@ pub async fn respond_invite_with_photo(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("respond_invite_with_photo returned: {content}");
         }
         let entity: Option<RespondInviteWithPhotoError> = serde_json::from_str(&content).ok();
@@ -777,7 +777,7 @@ pub async fn update_invite_message(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_invite_message returned: {content}");
         }
         match content_type {
@@ -787,7 +787,7 @@ pub async fn update_invite_message(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_invite_message returned: {content}");
         }
         let entity: Option<UpdateInviteMessageError> = serde_json::from_str(&content).ok();

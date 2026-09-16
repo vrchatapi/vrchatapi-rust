@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **banner_color** | Option<**String**> |  | [optional]
 **banner_type** | Option<**String**> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
-**current_avatar_tags** | Option<**Vec<String>**> |  | [optional]
+**current_avatar_tags** | Option<**String**> |  | [optional]
 **debugflag** | Option<**String**> |  | [optional]
 **display_name** | Option<**String**> |  | [optional]
 **groups** | Option<**Vec<String>**> |  | [optional]

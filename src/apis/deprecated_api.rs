@@ -120,7 +120,7 @@ pub async fn get_balance_earnings(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_balance_earnings returned: {content}");
         }
         match content_type {
@@ -130,7 +130,7 @@ pub async fn get_balance_earnings(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_balance_earnings returned: {content}");
         }
         let entity: Option<GetBalanceEarningsError> = serde_json::from_str(&content).ok();
@@ -175,7 +175,7 @@ pub async fn get_prop_publish_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_prop_publish_status returned: {content}");
         }
         match content_type {
@@ -185,7 +185,7 @@ pub async fn get_prop_publish_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_prop_publish_status returned: {content}");
         }
         let entity: Option<GetPropPublishStatusError> = serde_json::from_str(&content).ok();
@@ -222,7 +222,7 @@ pub async fn get_seller_eligibility(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_seller_eligibility returned: {content}");
         }
         match content_type {
@@ -232,7 +232,7 @@ pub async fn get_seller_eligibility(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_seller_eligibility returned: {content}");
         }
         let entity: Option<GetSellerEligibilityError> = serde_json::from_str(&content).ok();
@@ -269,7 +269,7 @@ pub async fn get_tilia_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_tilia_status returned: {content}");
         }
         match content_type {
@@ -279,7 +279,7 @@ pub async fn get_tilia_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_tilia_status returned: {content}");
         }
         let entity: Option<GetTiliaStatusError> = serde_json::from_str(&content).ok();
@@ -324,7 +324,7 @@ pub async fn get_tilia_tos(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_tilia_tos returned: {content}");
         }
         match content_type {
@@ -334,7 +334,7 @@ pub async fn get_tilia_tos(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_tilia_tos returned: {content}");
         }
         let entity: Option<GetTiliaTosError> = serde_json::from_str(&content).ok();
@@ -382,7 +382,7 @@ pub async fn get_user_credits_eligible(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_credits_eligible returned: {content}");
         }
         match content_type {
@@ -392,7 +392,7 @@ pub async fn get_user_credits_eligible(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_user_credits_eligible returned: {content}");
         }
         let entity: Option<GetUserCreditsEligibleError> = serde_json::from_str(&content).ok();
@@ -437,7 +437,7 @@ pub async fn publish_prop(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("publish_prop returned: {content}");
         }
         match content_type {
@@ -447,7 +447,7 @@ pub async fn publish_prop(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("publish_prop returned: {content}");
         }
         let entity: Option<PublishPropError> = serde_json::from_str(&content).ok();
@@ -494,7 +494,7 @@ pub async fn unpublish_prop(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("unpublish_prop returned: {content}");
         }
         match content_type {
@@ -504,7 +504,7 @@ pub async fn unpublish_prop(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("unpublish_prop returned: {content}");
         }
         let entity: Option<UnpublishPropError> = serde_json::from_str(&content).ok();
@@ -552,7 +552,7 @@ pub async fn update_tilia_tos(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_tilia_tos returned: {content}");
         }
         match content_type {
@@ -562,7 +562,7 @@ pub async fn update_tilia_tos(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_tilia_tos returned: {content}");
         }
         let entity: Option<UpdateTiliaTosError> = serde_json::from_str(&content).ok();

@@ -196,7 +196,7 @@ pub async fn create_file(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_file returned: {content}");
         }
         match content_type {
@@ -206,7 +206,7 @@ pub async fn create_file(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_file returned: {content}");
         }
         let entity: Option<CreateFileError> = serde_json::from_str(&content).ok();
@@ -255,7 +255,7 @@ pub async fn create_file_version(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_file_version returned: {content}");
         }
         match content_type {
@@ -265,7 +265,7 @@ pub async fn create_file_version(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_file_version returned: {content}");
         }
         let entity: Option<CreateFileVersionError> = serde_json::from_str(&content).ok();
@@ -311,7 +311,7 @@ pub async fn delete_file(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_file returned: {content}");
         }
         match content_type {
@@ -321,7 +321,7 @@ pub async fn delete_file(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_file returned: {content}");
         }
         let entity: Option<DeleteFileError> = serde_json::from_str(&content).ok();
@@ -370,7 +370,7 @@ pub async fn delete_file_version(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_file_version returned: {content}");
         }
         match content_type {
@@ -380,7 +380,7 @@ pub async fn delete_file_version(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_file_version returned: {content}");
         }
         let entity: Option<DeleteFileVersionError> = serde_json::from_str(&content).ok();
@@ -423,7 +423,7 @@ pub async fn download_file_version(
         Ok(resp)
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("download_file_version returned: {content}");
         }
         let entity: Option<DownloadFileVersionError> = serde_json::from_str(&content).ok();
@@ -476,7 +476,7 @@ pub async fn finish_file_data_upload(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("finish_file_data_upload returned: {content}");
         }
         match content_type {
@@ -486,7 +486,7 @@ pub async fn finish_file_data_upload(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("finish_file_data_upload returned: {content}");
         }
         let entity: Option<FinishFileDataUploadError> = serde_json::from_str(&content).ok();
@@ -530,7 +530,7 @@ pub async fn get_admin_asset_bundle(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_admin_asset_bundle returned: {content}");
         }
         match content_type {
@@ -540,7 +540,7 @@ pub async fn get_admin_asset_bundle(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_admin_asset_bundle returned: {content}");
         }
         let entity: Option<GetAdminAssetBundleError> = serde_json::from_str(&content).ok();
@@ -587,7 +587,7 @@ pub async fn get_content_agreement_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_content_agreement_status returned: {content}");
         }
         match content_type {
@@ -597,7 +597,7 @@ pub async fn get_content_agreement_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_content_agreement_status returned: {content}");
         }
         let entity: Option<GetContentAgreementStatusError> = serde_json::from_str(&content).ok();
@@ -641,7 +641,7 @@ pub async fn get_file(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_file returned: {content}");
         }
         match content_type {
@@ -651,7 +651,7 @@ pub async fn get_file(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_file returned: {content}");
         }
         let entity: Option<GetFileError> = serde_json::from_str(&content).ok();
@@ -698,7 +698,7 @@ pub async fn get_file_analysis(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_file_analysis returned: {content}");
         }
         match content_type {
@@ -708,7 +708,7 @@ pub async fn get_file_analysis(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_file_analysis returned: {content}");
         }
         let entity: Option<GetFileAnalysisError> = serde_json::from_str(&content).ok();
@@ -755,7 +755,7 @@ pub async fn get_file_analysis_security(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_file_analysis_security returned: {content}");
         }
         match content_type {
@@ -765,7 +765,7 @@ pub async fn get_file_analysis_security(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_file_analysis_security returned: {content}");
         }
         let entity: Option<GetFileAnalysisSecurityError> = serde_json::from_str(&content).ok();
@@ -812,7 +812,7 @@ pub async fn get_file_analysis_standard(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_file_analysis_standard returned: {content}");
         }
         match content_type {
@@ -822,7 +822,7 @@ pub async fn get_file_analysis_standard(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_file_analysis_standard returned: {content}");
         }
         let entity: Option<GetFileAnalysisStandardError> = serde_json::from_str(&content).ok();
@@ -872,7 +872,7 @@ pub async fn get_file_data_upload_status(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_file_data_upload_status returned: {content}");
         }
         match content_type {
@@ -882,7 +882,7 @@ pub async fn get_file_data_upload_status(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_file_data_upload_status returned: {content}");
         }
         let entity: Option<GetFileDataUploadStatusError> = serde_json::from_str(&content).ok();
@@ -940,7 +940,7 @@ pub async fn get_files(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_files returned: {content}");
         }
         match content_type {
@@ -950,7 +950,7 @@ pub async fn get_files(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_files returned: {content}");
         }
         let entity: Option<GetFilesError> = serde_json::from_str(&content).ok();
@@ -991,7 +991,7 @@ pub async fn set_group_gallery_file_order(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("set_group_gallery_file_order returned: {content}");
         }
         match content_type {
@@ -1001,7 +1001,7 @@ pub async fn set_group_gallery_file_order(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("set_group_gallery_file_order returned: {content}");
         }
         let entity: Option<SetGroupGalleryFileOrderError> = serde_json::from_str(&content).ok();
@@ -1056,7 +1056,7 @@ pub async fn start_file_data_upload(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("start_file_data_upload returned: {content}");
         }
         match content_type {
@@ -1066,7 +1066,7 @@ pub async fn start_file_data_upload(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("start_file_data_upload returned: {content}");
         }
         let entity: Option<StartFileDataUploadError> = serde_json::from_str(&content).ok();
@@ -1109,7 +1109,7 @@ pub async fn submit_content_agreement(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("submit_content_agreement returned: {content}");
         }
         match content_type {
@@ -1119,7 +1119,7 @@ pub async fn submit_content_agreement(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("submit_content_agreement returned: {content}");
         }
         let entity: Option<SubmitContentAgreementError> = serde_json::from_str(&content).ok();
@@ -1162,7 +1162,7 @@ pub async fn update_asset_review_notes(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_asset_review_notes returned: {content}");
         }
         let entity: Option<UpdateAssetReviewNotesError> = serde_json::from_str(&content).ok();
@@ -1207,7 +1207,7 @@ pub async fn upload_gallery_image(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("upload_gallery_image returned: {content}");
         }
         match content_type {
@@ -1217,7 +1217,7 @@ pub async fn upload_gallery_image(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("upload_gallery_image returned: {content}");
         }
         let entity: Option<UploadGalleryImageError> = serde_json::from_str(&content).ok();
@@ -1262,7 +1262,7 @@ pub async fn upload_icon(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("upload_icon returned: {content}");
         }
         match content_type {
@@ -1272,7 +1272,7 @@ pub async fn upload_icon(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("upload_icon returned: {content}");
         }
         let entity: Option<UploadIconError> = serde_json::from_str(&content).ok();
@@ -1354,7 +1354,7 @@ pub async fn upload_image(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("upload_image returned: {content}");
         }
         match content_type {
@@ -1364,7 +1364,7 @@ pub async fn upload_image(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("upload_image returned: {content}");
         }
         let entity: Option<UploadImageError> = serde_json::from_str(&content).ok();

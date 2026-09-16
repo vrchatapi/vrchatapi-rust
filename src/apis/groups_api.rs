@@ -540,7 +540,7 @@ pub async fn add_group_gallery_image(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("add_group_gallery_image returned: {content}");
         }
         match content_type {
@@ -550,7 +550,7 @@ pub async fn add_group_gallery_image(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("add_group_gallery_image returned: {content}");
         }
         let entity: Option<AddGroupGalleryImageError> = serde_json::from_str(&content).ok();
@@ -600,7 +600,7 @@ pub async fn add_group_member_role(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("add_group_member_role returned: {content}");
         }
         match content_type {
@@ -610,7 +610,7 @@ pub async fn add_group_member_role(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("add_group_member_role returned: {content}");
         }
         let entity: Option<AddGroupMemberRoleError> = serde_json::from_str(&content).ok();
@@ -659,7 +659,7 @@ pub async fn add_group_post(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("add_group_post returned: {content}");
         }
         match content_type {
@@ -669,7 +669,7 @@ pub async fn add_group_post(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("add_group_post returned: {content}");
         }
         let entity: Option<AddGroupPostError> = serde_json::from_str(&content).ok();
@@ -718,7 +718,7 @@ pub async fn ban_group_member(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("ban_group_member returned: {content}");
         }
         match content_type {
@@ -728,7 +728,7 @@ pub async fn ban_group_member(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("ban_group_member returned: {content}");
         }
         let entity: Option<BanGroupMemberError> = serde_json::from_str(&content).ok();
@@ -774,7 +774,7 @@ pub async fn block_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("block_group returned: {content}");
         }
         match content_type {
@@ -784,7 +784,7 @@ pub async fn block_group(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("block_group returned: {content}");
         }
         let entity: Option<BlockGroupError> = serde_json::from_str(&content).ok();
@@ -826,7 +826,7 @@ pub async fn cancel_group_request(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("cancel_group_request returned: {content}");
         }
         let entity: Option<CancelGroupRequestError> = serde_json::from_str(&content).ok();
@@ -872,7 +872,7 @@ pub async fn cancel_group_transfer(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("cancel_group_transfer returned: {content}");
         }
         match content_type {
@@ -882,7 +882,7 @@ pub async fn cancel_group_transfer(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("cancel_group_transfer returned: {content}");
         }
         let entity: Option<CancelGroupTransferError> = serde_json::from_str(&content).ok();
@@ -925,7 +925,7 @@ pub async fn create_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group returned: {content}");
         }
         match content_type {
@@ -935,7 +935,7 @@ pub async fn create_group(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group returned: {content}");
         }
         let entity: Option<CreateGroupError> = serde_json::from_str(&content).ok();
@@ -984,7 +984,7 @@ pub async fn create_group_announcement(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group_announcement returned: {content}");
         }
         match content_type {
@@ -994,7 +994,7 @@ pub async fn create_group_announcement(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group_announcement returned: {content}");
         }
         let entity: Option<CreateGroupAnnouncementError> = serde_json::from_str(&content).ok();
@@ -1043,7 +1043,7 @@ pub async fn create_group_gallery(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group_gallery returned: {content}");
         }
         match content_type {
@@ -1053,7 +1053,7 @@ pub async fn create_group_gallery(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group_gallery returned: {content}");
         }
         let entity: Option<CreateGroupGalleryError> = serde_json::from_str(&content).ok();
@@ -1098,7 +1098,7 @@ pub async fn create_group_invite(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group_invite returned: {content}");
         }
         let entity: Option<CreateGroupInviteError> = serde_json::from_str(&content).ok();
@@ -1147,7 +1147,7 @@ pub async fn create_group_role(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group_role returned: {content}");
         }
         match content_type {
@@ -1157,7 +1157,7 @@ pub async fn create_group_role(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_group_role returned: {content}");
         }
         let entity: Option<CreateGroupRoleError> = serde_json::from_str(&content).ok();
@@ -1204,7 +1204,7 @@ pub async fn decline_group_invite(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("decline_group_invite returned: {content}");
         }
         match content_type {
@@ -1214,7 +1214,7 @@ pub async fn decline_group_invite(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("decline_group_invite returned: {content}");
         }
         let entity: Option<DeclineGroupInviteError> = serde_json::from_str(&content).ok();
@@ -1265,7 +1265,7 @@ pub async fn delete_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group returned: {content}");
         }
         match content_type {
@@ -1275,7 +1275,7 @@ pub async fn delete_group(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group returned: {content}");
         }
         let entity: Option<DeleteGroupError> = serde_json::from_str(&content).ok();
@@ -1321,7 +1321,7 @@ pub async fn delete_group_announcement(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_announcement returned: {content}");
         }
         match content_type {
@@ -1331,7 +1331,7 @@ pub async fn delete_group_announcement(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_announcement returned: {content}");
         }
         let entity: Option<DeleteGroupAnnouncementError> = serde_json::from_str(&content).ok();
@@ -1380,7 +1380,7 @@ pub async fn delete_group_gallery(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_gallery returned: {content}");
         }
         match content_type {
@@ -1390,7 +1390,7 @@ pub async fn delete_group_gallery(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_gallery returned: {content}");
         }
         let entity: Option<DeleteGroupGalleryError> = serde_json::from_str(&content).ok();
@@ -1442,7 +1442,7 @@ pub async fn delete_group_gallery_image(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_gallery_image returned: {content}");
         }
         match content_type {
@@ -1452,7 +1452,7 @@ pub async fn delete_group_gallery_image(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_gallery_image returned: {content}");
         }
         let entity: Option<DeleteGroupGalleryImageError> = serde_json::from_str(&content).ok();
@@ -1497,7 +1497,7 @@ pub async fn delete_group_invite(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_invite returned: {content}");
         }
         let entity: Option<DeleteGroupInviteError> = serde_json::from_str(&content).ok();
@@ -1546,7 +1546,7 @@ pub async fn delete_group_post(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_post returned: {content}");
         }
         match content_type {
@@ -1556,7 +1556,7 @@ pub async fn delete_group_post(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_post returned: {content}");
         }
         let entity: Option<DeleteGroupPostError> = serde_json::from_str(&content).ok();
@@ -1605,7 +1605,7 @@ pub async fn delete_group_role(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_role returned: {content}");
         }
         match content_type {
@@ -1615,7 +1615,7 @@ pub async fn delete_group_role(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_group_role returned: {content}");
         }
         let entity: Option<DeleteGroupRoleError> = serde_json::from_str(&content).ok();
@@ -1669,7 +1669,7 @@ pub async fn get_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group returned: {content}");
         }
         match content_type {
@@ -1679,7 +1679,7 @@ pub async fn get_group(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group returned: {content}");
         }
         let entity: Option<GetGroupError> = serde_json::from_str(&content).ok();
@@ -1723,7 +1723,7 @@ pub async fn get_group_announcements(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_announcements returned: {content}");
         }
         match content_type {
@@ -1733,7 +1733,7 @@ pub async fn get_group_announcements(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_announcements returned: {content}");
         }
         let entity: Option<GetGroupAnnouncementsError> = serde_json::from_str(&content).ok();
@@ -1777,7 +1777,7 @@ pub async fn get_group_audit_log_entry_types(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_audit_log_entry_types returned: {content}");
         }
         match content_type {
@@ -1787,7 +1787,7 @@ pub async fn get_group_audit_log_entry_types(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_audit_log_entry_types returned: {content}");
         }
         let entity: Option<GetGroupAuditLogEntryTypesError> = serde_json::from_str(&content).ok();
@@ -1866,7 +1866,7 @@ pub async fn get_group_audit_logs(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_audit_logs returned: {content}");
         }
         match content_type {
@@ -1876,7 +1876,7 @@ pub async fn get_group_audit_logs(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_audit_logs returned: {content}");
         }
         let entity: Option<GetGroupAuditLogsError> = serde_json::from_str(&content).ok();
@@ -1930,7 +1930,7 @@ pub async fn get_group_bans(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_bans returned: {content}");
         }
         match content_type {
@@ -1940,7 +1940,7 @@ pub async fn get_group_bans(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_bans returned: {content}");
         }
         let entity: Option<GetGroupBansError> = serde_json::from_str(&content).ok();
@@ -2007,7 +2007,7 @@ pub async fn get_group_gallery_images(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_gallery_images returned: {content}");
         }
         match content_type {
@@ -2017,7 +2017,7 @@ pub async fn get_group_gallery_images(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_gallery_images returned: {content}");
         }
         let entity: Option<GetGroupGalleryImagesError> = serde_json::from_str(&content).ok();
@@ -2061,7 +2061,7 @@ pub async fn get_group_instances(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_instances returned: {content}");
         }
         match content_type {
@@ -2071,7 +2071,7 @@ pub async fn get_group_instances(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_instances returned: {content}");
         }
         let entity: Option<GetGroupInstancesError> = serde_json::from_str(&content).ok();
@@ -2125,7 +2125,7 @@ pub async fn get_group_invites(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_invites returned: {content}");
         }
         match content_type {
@@ -2135,7 +2135,7 @@ pub async fn get_group_invites(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_invites returned: {content}");
         }
         let entity: Option<GetGroupInvitesError> = serde_json::from_str(&content).ok();
@@ -2182,7 +2182,7 @@ pub async fn get_group_member(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_member returned: {content}");
         }
         match content_type {
@@ -2192,7 +2192,7 @@ pub async fn get_group_member(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_member returned: {content}");
         }
         let entity: Option<GetGroupMemberError> = serde_json::from_str(&content).ok();
@@ -2256,7 +2256,7 @@ pub async fn get_group_members(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_members returned: {content}");
         }
         match content_type {
@@ -2266,7 +2266,7 @@ pub async fn get_group_members(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_members returned: {content}");
         }
         let entity: Option<GetGroupMembersError> = serde_json::from_str(&content).ok();
@@ -2310,7 +2310,7 @@ pub async fn get_group_permissions(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_permissions returned: {content}");
         }
         match content_type {
@@ -2320,7 +2320,7 @@ pub async fn get_group_permissions(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_permissions returned: {content}");
         }
         let entity: Option<GetGroupPermissionsError> = serde_json::from_str(&content).ok();
@@ -2379,7 +2379,7 @@ pub async fn get_group_posts(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_posts returned: {content}");
         }
         match content_type {
@@ -2389,7 +2389,7 @@ pub async fn get_group_posts(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_posts returned: {content}");
         }
         let entity: Option<GetGroupPostsError> = serde_json::from_str(&content).ok();
@@ -2448,7 +2448,7 @@ pub async fn get_group_requests(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_requests returned: {content}");
         }
         match content_type {
@@ -2458,7 +2458,7 @@ pub async fn get_group_requests(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_requests returned: {content}");
         }
         let entity: Option<GetGroupRequestsError> = serde_json::from_str(&content).ok();
@@ -2497,7 +2497,7 @@ pub async fn get_group_role_templates(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_role_templates returned: {content}");
         }
         match content_type {
@@ -2507,7 +2507,7 @@ pub async fn get_group_role_templates(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_role_templates returned: {content}");
         }
         let entity: Option<GetGroupRoleTemplatesError> = serde_json::from_str(&content).ok();
@@ -2551,7 +2551,7 @@ pub async fn get_group_roles(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_roles returned: {content}");
         }
         match content_type {
@@ -2561,7 +2561,7 @@ pub async fn get_group_roles(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_roles returned: {content}");
         }
         let entity: Option<GetGroupRolesError> = serde_json::from_str(&content).ok();
@@ -2610,7 +2610,7 @@ pub async fn get_group_transferability(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_transferability returned: {content}");
         }
         match content_type {
@@ -2620,7 +2620,7 @@ pub async fn get_group_transferability(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_group_transferability returned: {content}");
         }
         let entity: Option<GetGroupTransferabilityError> = serde_json::from_str(&content).ok();
@@ -2669,7 +2669,7 @@ pub async fn initiate_or_accept_group_transfer(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("initiate_or_accept_group_transfer returned: {content}");
         }
         match content_type {
@@ -2679,7 +2679,7 @@ pub async fn initiate_or_accept_group_transfer(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("initiate_or_accept_group_transfer returned: {content}");
         }
         let entity: Option<InitiateOrAcceptGroupTransferError> =
@@ -2734,7 +2734,7 @@ pub async fn join_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("join_group returned: {content}");
         }
         match content_type {
@@ -2744,7 +2744,7 @@ pub async fn join_group(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("join_group returned: {content}");
         }
         let entity: Option<JoinGroupError> = serde_json::from_str(&content).ok();
@@ -2793,7 +2793,7 @@ pub async fn kick_group_member(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("kick_group_member returned: {content}");
         }
         match content_type {
@@ -2803,7 +2803,7 @@ pub async fn kick_group_member(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("kick_group_member returned: {content}");
         }
         let entity: Option<KickGroupMemberError> = serde_json::from_str(&content).ok();
@@ -2845,7 +2845,7 @@ pub async fn leave_group(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("leave_group returned: {content}");
         }
         let entity: Option<LeaveGroupError> = serde_json::from_str(&content).ok();
@@ -2897,7 +2897,7 @@ pub async fn remove_group_member_role(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("remove_group_member_role returned: {content}");
         }
         match content_type {
@@ -2907,7 +2907,7 @@ pub async fn remove_group_member_role(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("remove_group_member_role returned: {content}");
         }
         let entity: Option<RemoveGroupMemberRoleError> = serde_json::from_str(&content).ok();
@@ -2953,7 +2953,7 @@ pub async fn respond_group_join_request(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("respond_group_join_request returned: {content}");
         }
         let entity: Option<RespondGroupJoinRequestError> = serde_json::from_str(&content).ok();
@@ -3010,7 +3010,7 @@ pub async fn search_group_members(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_group_members returned: {content}");
         }
         match content_type {
@@ -3020,7 +3020,7 @@ pub async fn search_group_members(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_group_members returned: {content}");
         }
         let entity: Option<SearchGroupMembersError> = serde_json::from_str(&content).ok();
@@ -3073,7 +3073,7 @@ pub async fn search_groups(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_groups returned: {content}");
         }
         match content_type {
@@ -3083,7 +3083,7 @@ pub async fn search_groups(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_groups returned: {content}");
         }
         let entity: Option<SearchGroupsError> = serde_json::from_str(&content).ok();
@@ -3132,7 +3132,7 @@ pub async fn unban_group_member(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("unban_group_member returned: {content}");
         }
         match content_type {
@@ -3142,7 +3142,7 @@ pub async fn unban_group_member(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("unban_group_member returned: {content}");
         }
         let entity: Option<UnbanGroupMemberError> = serde_json::from_str(&content).ok();
@@ -3189,7 +3189,7 @@ pub async fn update_group(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group returned: {content}");
         }
         match content_type {
@@ -3199,7 +3199,7 @@ pub async fn update_group(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group returned: {content}");
         }
         let entity: Option<UpdateGroupError> = serde_json::from_str(&content).ok();
@@ -3249,7 +3249,7 @@ pub async fn update_group_gallery(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_gallery returned: {content}");
         }
         match content_type {
@@ -3259,7 +3259,7 @@ pub async fn update_group_gallery(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_gallery returned: {content}");
         }
         let entity: Option<UpdateGroupGalleryError> = serde_json::from_str(&content).ok();
@@ -3309,7 +3309,7 @@ pub async fn update_group_member(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_member returned: {content}");
         }
         match content_type {
@@ -3319,7 +3319,7 @@ pub async fn update_group_member(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_member returned: {content}");
         }
         let entity: Option<UpdateGroupMemberError> = serde_json::from_str(&content).ok();
@@ -3369,7 +3369,7 @@ pub async fn update_group_post(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_post returned: {content}");
         }
         match content_type {
@@ -3379,7 +3379,7 @@ pub async fn update_group_post(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_post returned: {content}");
         }
         let entity: Option<UpdateGroupPostError> = serde_json::from_str(&content).ok();
@@ -3426,7 +3426,7 @@ pub async fn update_group_representation(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_representation returned: {content}");
         }
         match content_type {
@@ -3436,7 +3436,7 @@ pub async fn update_group_representation(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_representation returned: {content}");
         }
         let entity: Option<UpdateGroupRepresentationError> = serde_json::from_str(&content).ok();
@@ -3486,7 +3486,7 @@ pub async fn update_group_role(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_role returned: {content}");
         }
         match content_type {
@@ -3496,7 +3496,7 @@ pub async fn update_group_role(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_group_role returned: {content}");
         }
         let entity: Option<UpdateGroupRoleError> = serde_json::from_str(&content).ok();

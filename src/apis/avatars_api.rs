@@ -157,7 +157,7 @@ pub async fn create_avatar(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_avatar returned: {content}");
         }
         match content_type {
@@ -167,7 +167,7 @@ pub async fn create_avatar(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("create_avatar returned: {content}");
         }
         let entity: Option<CreateAvatarError> = serde_json::from_str(&content).ok();
@@ -213,7 +213,7 @@ pub async fn delete_avatar(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_avatar returned: {content}");
         }
         match content_type {
@@ -223,7 +223,7 @@ pub async fn delete_avatar(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_avatar returned: {content}");
         }
         let entity: Option<DeleteAvatarError> = serde_json::from_str(&content).ok();
@@ -265,7 +265,7 @@ pub async fn delete_impostor(
         Ok(())
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("delete_impostor returned: {content}");
         }
         let entity: Option<DeleteImpostorError> = serde_json::from_str(&content).ok();
@@ -311,7 +311,7 @@ pub async fn enqueue_impostor(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("enqueue_impostor returned: {content}");
         }
         match content_type {
@@ -321,7 +321,7 @@ pub async fn enqueue_impostor(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("enqueue_impostor returned: {content}");
         }
         let entity: Option<EnqueueImpostorError> = serde_json::from_str(&content).ok();
@@ -365,7 +365,7 @@ pub async fn get_avatar(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_avatar returned: {content}");
         }
         match content_type {
@@ -375,7 +375,7 @@ pub async fn get_avatar(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_avatar returned: {content}");
         }
         let entity: Option<GetAvatarError> = serde_json::from_str(&content).ok();
@@ -411,7 +411,7 @@ pub async fn get_avatar_styles(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_avatar_styles returned: {content}");
         }
         match content_type {
@@ -421,7 +421,7 @@ pub async fn get_avatar_styles(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_avatar_styles returned: {content}");
         }
         let entity: Option<GetAvatarStylesError> = serde_json::from_str(&content).ok();
@@ -524,7 +524,7 @@ pub async fn get_favorited_avatars(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_favorited_avatars returned: {content}");
         }
         match content_type {
@@ -534,7 +534,7 @@ pub async fn get_favorited_avatars(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_favorited_avatars returned: {content}");
         }
         let entity: Option<GetFavoritedAvatarsError> = serde_json::from_str(&content).ok();
@@ -570,7 +570,7 @@ pub async fn get_impostor_queue_stats(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_impostor_queue_stats returned: {content}");
         }
         match content_type {
@@ -580,7 +580,7 @@ pub async fn get_impostor_queue_stats(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_impostor_queue_stats returned: {content}");
         }
         let entity: Option<GetImpostorQueueStatsError> = serde_json::from_str(&content).ok();
@@ -628,7 +628,7 @@ pub async fn get_licensed_avatars(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_licensed_avatars returned: {content}");
         }
         match content_type {
@@ -638,7 +638,7 @@ pub async fn get_licensed_avatars(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_licensed_avatars returned: {content}");
         }
         let entity: Option<GetLicensedAvatarsError> = serde_json::from_str(&content).ok();
@@ -682,7 +682,7 @@ pub async fn get_own_avatar(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_own_avatar returned: {content}");
         }
         match content_type {
@@ -692,7 +692,7 @@ pub async fn get_own_avatar(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("get_own_avatar returned: {content}");
         }
         let entity: Option<GetOwnAvatarError> = serde_json::from_str(&content).ok();
@@ -800,7 +800,7 @@ pub async fn search_avatars(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_avatars returned: {content}");
         }
         match content_type {
@@ -810,7 +810,7 @@ pub async fn search_avatars(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("search_avatars returned: {content}");
         }
         let entity: Option<SearchAvatarsError> = serde_json::from_str(&content).ok();
@@ -854,7 +854,7 @@ pub async fn select_avatar(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("select_avatar returned: {content}");
         }
         match content_type {
@@ -864,7 +864,7 @@ pub async fn select_avatar(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("select_avatar returned: {content}");
         }
         let entity: Option<SelectAvatarError> = serde_json::from_str(&content).ok();
@@ -908,7 +908,7 @@ pub async fn select_fallback_avatar(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("select_fallback_avatar returned: {content}");
         }
         match content_type {
@@ -918,7 +918,7 @@ pub async fn select_fallback_avatar(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("select_fallback_avatar returned: {content}");
         }
         let entity: Option<SelectFallbackAvatarError> = serde_json::from_str(&content).ok();
@@ -965,7 +965,7 @@ pub async fn update_avatar(
 
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_avatar returned: {content}");
         }
         match content_type {
@@ -975,7 +975,7 @@ pub async fn update_avatar(
         }
     } else {
         let content = resp.text().await?;
-        if (configuration.debug) {
+        if configuration.debug {
             log::debug!("update_avatar returned: {content}");
         }
         let entity: Option<UpdateAvatarError> = serde_json::from_str(&content).ok();
