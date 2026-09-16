@@ -11,6 +11,10 @@ pub enum InventoryFlag {
     Consumable,
     #[serde(rename = "equippable")]
     Equippable,
+    #[serde(rename = "global")]
+    Global,
+    #[serde(rename = "global_visible")]
+    GlobalVisible,
     #[serde(rename = "instantiatable")]
     Instantiatable,
     #[serde(rename = "trashable")]
@@ -19,6 +23,8 @@ pub enum InventoryFlag {
     Ugc,
     #[serde(rename = "unique")]
     Unique,
+    #[serde(rename = "vrc_plus_exclusive")]
+    VrcPlusExclusive,
 }
 
 impl std::fmt::Display for InventoryFlag {
@@ -28,10 +34,13 @@ impl std::fmt::Display for InventoryFlag {
             Self::Cloneable => write!(f, "cloneable"),
             Self::Consumable => write!(f, "consumable"),
             Self::Equippable => write!(f, "equippable"),
+            Self::Global => write!(f, "global"),
+            Self::GlobalVisible => write!(f, "global_visible"),
             Self::Instantiatable => write!(f, "instantiatable"),
             Self::Trashable => write!(f, "trashable"),
             Self::Ugc => write!(f, "ugc"),
             Self::Unique => write!(f, "unique"),
+            Self::VrcPlusExclusive => write!(f, "vrc_plus_exclusive"),
         }
     }
 }

@@ -1521,10 +1521,12 @@ pub async fn get_group(
     configuration: &configuration::Configuration,
     group_id: &str,
     include_roles: Option<bool>,
+    purpose: Option<&str>,
 ) -> Result<models::Group, Error<GetGroupError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_query_include_roles = include_roles;
+    let p_query_purpose = purpose;
 
     let uri_str = format!(
         "{}/groups/{groupId}",
@@ -1535,6 +1537,9 @@ pub async fn get_group(
 
     if let Some(ref param_value) = p_query_include_roles {
         req_builder = req_builder.query(&[("includeRoles", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_purpose {
+        req_builder = req_builder.query(&[("purpose", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -1813,13 +1818,15 @@ pub async fn get_group_gallery_images(
     group_gallery_id: &str,
     n: Option<i32>,
     offset: Option<i32>,
+    v: Option<i32>,
     approved: Option<bool>,
-) -> Result<Vec<models::GroupGalleryImage>, Error<GetGroupGalleryImagesError>> {
+) -> Result<models::GetGroupGalleryImages200Response, Error<GetGroupGalleryImagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_path_group_gallery_id = group_gallery_id;
     let p_query_n = n;
     let p_query_offset = offset;
+    let p_query_v = v;
     let p_query_approved = approved;
 
     let uri_str = format!(
@@ -1835,6 +1842,9 @@ pub async fn get_group_gallery_images(
     }
     if let Some(ref param_value) = p_query_offset {
         req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_v {
+        req_builder = req_builder.query(&[("v", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_approved {
         req_builder = req_builder.query(&[("approved", &param_value.to_string())]);
@@ -1858,8 +1868,8 @@ pub async fn get_group_gallery_images(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::GroupGalleryImage&gt;`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::GroupGalleryImage&gt;`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetGroupGalleryImages200Response`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetGroupGalleryImages200Response`")))),
         }
     } else {
         let content = resp.text().await?;

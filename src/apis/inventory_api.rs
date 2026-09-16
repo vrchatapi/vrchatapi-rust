@@ -29,6 +29,15 @@ pub enum EquipOwnInventoryItemError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_cosmetic_index`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetCosmeticIndexError {
+    Status400(models::Error),
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_inventory`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -66,6 +75,14 @@ pub enum GetInventoryTemplateError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetOwnInventoryItemError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_user_cosmetics`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetUserCosmeticsError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -275,6 +292,54 @@ pub async fn equip_own_inventory_item(
     }
 }
 
+/// List every cosmetic of a kind that VRChat has published, whether or not the caller owns it.
+pub async fn get_cosmetic_index(
+    configuration: &configuration::Configuration,
+    item_type: &str,
+) -> Result<Vec<models::InventoryTemplate>, Error<GetCosmeticIndexError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_item_type = item_type;
+
+    let uri_str = format!(
+        "{}/cosmetics/index/{itemType}",
+        configuration.base_path,
+        itemType = crate::apis::urlencode(p_path_item_type)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::InventoryTemplate&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::InventoryTemplate&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetCosmeticIndexError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Returns an Inventory object.
 pub async fn get_inventory(
     configuration: &configuration::Configuration,
@@ -289,6 +354,8 @@ pub async fn get_inventory(
     not_types: Option<models::InventoryItemType>,
     not_flags: Option<models::InventoryFlag>,
     archived: Option<bool>,
+    seen: Option<bool>,
+    is_nav_bar: Option<bool>,
 ) -> Result<models::Inventory, Error<GetInventoryError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_n = n;
@@ -302,6 +369,8 @@ pub async fn get_inventory(
     let p_query_not_types = not_types;
     let p_query_not_flags = not_flags;
     let p_query_archived = archived;
+    let p_query_seen = seen;
+    let p_query_is_nav_bar = is_nav_bar;
 
     let uri_str = format!("{}/inventory", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -338,6 +407,12 @@ pub async fn get_inventory(
     }
     if let Some(ref param_value) = p_query_archived {
         req_builder = req_builder.query(&[("archived", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_seen {
+        req_builder = req_builder.query(&[("seen", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_is_nav_bar {
+        req_builder = req_builder.query(&[("isNavBar", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -547,6 +622,54 @@ pub async fn get_own_inventory_item(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetOwnInventoryItemError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// List the cosmetics a user holds.
+pub async fn get_user_cosmetics(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+) -> Result<Vec<models::UserCosmetic>, Error<GetUserCosmeticsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+
+    let uri_str = format!(
+        "{}/user/{userId}/cosmetics",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::UserCosmetic&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::UserCosmetic&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetUserCosmeticsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

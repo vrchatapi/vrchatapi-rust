@@ -15,12 +15,15 @@ Method | HTTP request | Description
 [**get_current_subscriptions**](EconomyApi.md#get_current_subscriptions) | **GET** /auth/user/subscription | Get Current Subscriptions
 [**get_earnings_metrics**](EconomyApi.md#get_earnings_metrics) | **GET** /economy/metrics/earnings | Get Earnings Metrics
 [**get_economy_account**](EconomyApi.md#get_economy_account) | **GET** /user/{userId}/economy/account | Get Economy Account
+[**get_economy_balance**](EconomyApi.md#get_economy_balance) | **GET** /user/{userId}/economy/balance | Get Economy Balance
 [**get_economy_balances**](EconomyApi.md#get_economy_balances) | **GET** /user/{userId}/economy/balances | Get Economy Balances
 [**get_economy_payout_status**](EconomyApi.md#get_economy_payout_status) | **GET** /user/{userId}/economy/payouts/status | Get Economy Payout Status
 [**get_economy_payouts**](EconomyApi.md#get_economy_payouts) | **GET** /user/{userId}/economy/payouts/list | Get Economy Payouts
+[**get_economy_status**](EconomyApi.md#get_economy_status) | **GET** /economy/status | Get Economy Status
 [**get_license_group**](EconomyApi.md#get_license_group) | **GET** /licenseGroups/{licenseGroupId} | Get License Group
 [**get_product_listing**](EconomyApi.md#get_product_listing) | **GET** /listing/{productId} | Get Product Listing
 [**get_product_listing_alternate**](EconomyApi.md#get_product_listing_alternate) | **GET** /products/{productId} | Get Product Listing (alternate)
+[**get_product_listing_products**](EconomyApi.md#get_product_listing_products) | **GET** /listing/{productId}/products | Get Product Listing Products
 [**get_product_listings**](EconomyApi.md#get_product_listings) | **GET** /user/{userId}/listings | Get User Product Listings
 [**get_product_purchase**](EconomyApi.md#get_product_purchase) | **GET** /economy/purchases/{productPurchaseId} | Get Product Purchase
 [**get_product_purchase_history**](EconomyApi.md#get_product_purchase_history) | **GET** /user/{userId}/economy/transactions | Get Product Purchase History
@@ -348,7 +351,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_economy_account
 
-> models::EconomyAccount get_economy_account(user_id)
+> models::EconomyAccount get_economy_account(user_id, get_limits)
 Get Economy Account
 
 Gets the economy account of a user
@@ -359,10 +362,41 @@ Gets the economy account of a user
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
+**get_limits** | Option<**bool**> | Include the account's spending limits in the response. |  |
 
 ### Return type
 
 [**models::EconomyAccount**](EconomyAccount.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_economy_balance
+
+> models::Balance get_economy_balance(user_id)
+Get Economy Balance
+
+Return the balance of a user's economy account.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**models::Balance**](Balance.md)
 
 ### Authorization
 
@@ -466,6 +500,33 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_economy_status
+
+> models::EconomyStatus get_economy_status()
+Get Economy Status
+
+Get whether the economy is accepting requests.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::EconomyStatus**](EconomyStatus.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_license_group
 
 > models::LicenseGroup get_license_group(license_group_id)
@@ -544,6 +605,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::ProductListing**](ProductListing.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_product_listing_products
+
+> Vec<models::Product> get_product_listing_products(product_id)
+Get Product Listing Products
+
+List the products a listing sells.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**product_id** | **String** | Must be a valid product ID. | [required] |
+
+### Return type
+
+[**Vec<models::Product>**](Product.md)
 
 ### Authorization
 
@@ -692,7 +783,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_product_purchases
 
-> Vec<models::ProductPurchase> get_product_purchases(buyer_id, seller_id, n, offset, most_recent, sort, order)
+> Vec<models::ProductPurchase> get_product_purchases(active, buyer_id, receiver_id, seller_id, n, offset, most_recent, sort, order)
 Get Product Purchases
 
 Gets product purchases
@@ -702,7 +793,9 @@ Gets product purchases
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**buyer_id** | **String** | Must be a valid user ID. | [required] |
+**active** | Option<**bool**> | Filter for users' listings and inventory bundles. |  |
+**buyer_id** | Option<**String**> | Must be a valid user ID. |  |
+**receiver_id** | Option<**String**> | Must be a valid user ID. |  |
 **seller_id** | Option<**String**> | Filter results by seller. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
@@ -728,14 +821,17 @@ Name | Type | Description  | Required | Notes
 
 ## get_recent_subscription
 
-> models::UserSubscription get_recent_subscription()
+> models::UserSubscription get_recent_subscription(user_id)
 Get Recent Subscription
 
 Get the most recent user subscription.
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | Option<**String**> | Filter by UserID. |  |
 
 ### Return type
 
@@ -839,7 +935,7 @@ This endpoint does not need any parameter.
 
 ## get_store
 
-> models::Store get_store(store_id, hydrate_listings, hydrate_products)
+> models::Store get_store(store_id, hydrate_context, hydrate_listings, hydrate_products)
 Get Store
 
 Gets a store
@@ -850,6 +946,7 @@ Gets a store
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **store_id** | **String** |  | [required] |
+**hydrate_context** | Option<**bool**> |  |  |
 **hydrate_listings** | Option<**bool**> | Listings fields will be populated. |  |
 **hydrate_products** | Option<**bool**> | Products fields will be populated. |  |
 

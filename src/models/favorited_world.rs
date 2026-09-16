@@ -25,10 +25,10 @@ pub struct FavoritedWorld {
         skip_serializing_if = "Option::is_none"
     )]
     pub disabled_prop_abilities: Option<Vec<serde_json::Value>>,
-    #[serde(rename = "favoriteGroup")]
-    pub favorite_group: String,
-    #[serde(rename = "favoriteId")]
-    pub favorite_id: String,
+    #[serde(rename = "favoriteGroup", skip_serializing_if = "Option::is_none")]
+    pub favorite_group: Option<String>,
+    #[serde(rename = "favoriteId", skip_serializing_if = "Option::is_none")]
+    pub favorite_id: Option<String>,
     #[serde(rename = "favorites", skip_serializing_if = "Option::is_none")]
     pub favorites: Option<i32>,
     #[serde(rename = "featured", skip_serializing_if = "Option::is_none")]
@@ -41,14 +41,19 @@ pub struct FavoritedWorld {
     #[serde(rename = "imageUrl")]
     pub image_url: String,
     #[serde(
+        rename = "isHypeTrainEligible",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub is_hype_train_eligible: Option<bool>,
+    #[serde(
         rename = "labsPublicationDate",
         skip_serializing_if = "Option::is_none"
     )]
     pub labs_publication_date: Option<String>,
     #[serde(rename = "name")]
     pub name: String,
-    #[serde(rename = "occupants")]
-    pub occupants: i32,
+    #[serde(rename = "occupants", skip_serializing_if = "Option::is_none")]
+    pub occupants: Option<i32>,
     #[serde(rename = "organization", skip_serializing_if = "Option::is_none")]
     pub organization: Option<String>,
     #[serde(rename = "popularity", skip_serializing_if = "Option::is_none")]
@@ -69,6 +74,8 @@ pub struct FavoritedWorld {
     pub recommended_capacity: Option<i32>,
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
+    #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
+    pub store_id: Option<String>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     #[serde(rename = "thumbnailImageUrl")]
@@ -91,12 +98,9 @@ impl FavoritedWorld {
     pub fn new(
         author_name: String,
         capacity: i32,
-        favorite_group: String,
-        favorite_id: String,
         id: String,
         image_url: String,
         name: String,
-        occupants: i32,
         release_status: models::ReleaseStatus,
         thumbnail_image_url: String,
     ) -> FavoritedWorld {
@@ -108,22 +112,24 @@ impl FavoritedWorld {
             default_content_settings: None,
             description: None,
             disabled_prop_abilities: None,
-            favorite_group,
-            favorite_id,
+            favorite_group: None,
+            favorite_id: None,
             favorites: None,
             featured: None,
             heat: None,
             id,
             image_url,
+            is_hype_train_eligible: None,
             labs_publication_date: None,
             name,
-            occupants,
+            occupants: None,
             organization: None,
             popularity: None,
             preview_youtube_id: None,
             publication_date: None,
             recommended_capacity: None,
             release_status,
+            store_id: None,
             tags: None,
             thumbnail_image_url,
             udon_products: None,

@@ -314,7 +314,7 @@ No authorization required
 
 ## get_group_calendar_events
 
-> models::PaginatedCalendarEventList get_group_calendar_events(group_id, date, n, offset)
+> models::PaginatedCalendarEventList get_group_calendar_events(group_id, date, n, offset, limit, after, sort)
 List a group's calendar events
 
 Get a list of a group's calendar events
@@ -328,6 +328,9 @@ Name | Type | Description  | Required | Notes
 **date** | Option<**chrono::DateTime<chrono::FixedOffset>**> | The month to search in. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**limit** | Option<**i32**> | The maximum number of entries to get. |  |
+**after** | Option<**chrono::DateTime<chrono::FixedOffset>**> | Only return events starting after this date. |  |
+**sort** | Option<**String**> |  |  |
 
 ### Return type
 

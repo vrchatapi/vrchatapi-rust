@@ -6,7 +6,10 @@
 |---- | -----|
 | Empty |  |
 | Drone | drone |
+| IconFrame | iconFrame |
+| NameplateEffect | nameplateEffect |
 | Portal | portal |
+| ProfileEffect | profileEffect |
 | Warp | warp |
 
 

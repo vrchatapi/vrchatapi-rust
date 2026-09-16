@@ -5,9 +5,12 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_assigned_permissions**](MiscellaneousApi.md#get_assigned_permissions) | **GET** /auth/permissions | Get Assigned Permissions
+[**get_beta**](MiscellaneousApi.md#get_beta) | **GET** /beta/{betaName} | Get Beta Program
+[**get_beta_registration**](MiscellaneousApi.md#get_beta_registration) | **GET** /beta/{betaName}/register | Get Beta Registration
 [**get_config**](MiscellaneousApi.md#get_config) | **GET** /config | Fetch API Config
 [**get_css**](MiscellaneousApi.md#get_css) | **GET** /css/app.css | Download CSS
 [**get_current_online_users**](MiscellaneousApi.md#get_current_online_users) | **GET** /visits | Current Online Users
+[**get_frontend_branches**](MiscellaneousApi.md#get_frontend_branches) | **GET** /frontend/branches | List Frontend Branches
 [**get_health**](MiscellaneousApi.md#get_health) | **GET** /health | Check API Health
 [**get_info_push**](MiscellaneousApi.md#get_info_push) | **GET** /infoPush | Show Information Notices
 [**get_java_script**](MiscellaneousApi.md#get_java_script) | **GET** /js/app.js | Download JavaScript
@@ -30,6 +33,66 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**Vec<models::Permission>**](Permission.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_beta
+
+> models::Beta get_beta(beta_name)
+Get Beta Program
+
+Get a beta program and the fields a registration must supply.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**beta_name** | **String** | The name of a beta program. | [required] |
+
+### Return type
+
+[**models::Beta**](Beta.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_beta_registration
+
+> get_beta_registration(beta_name)
+Get Beta Registration
+
+Get the currently authenticated user's registration for a beta program.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**beta_name** | **String** | The name of a beta program. | [required] |
+
+### Return type
+
+ (empty response body)
 
 ### Authorization
 
@@ -119,6 +182,33 @@ This endpoint does not need any parameter.
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_frontend_branches
+
+> Vec<serde_json::Value> get_frontend_branches()
+List Frontend Branches
+
+List the frontend branches the currently authenticated user may switch to.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Vec<serde_json::Value>**](serde_json::Value.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 

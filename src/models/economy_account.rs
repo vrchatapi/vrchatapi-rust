@@ -9,7 +9,7 @@ pub struct EconomyAccount {
     )]
     pub account_activated_on: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "accountId", deserialize_with = "Option::deserialize")]
-    pub account_id: Option<String>,
+    pub account_id: Option<i32>,
     #[serde(
         rename = "accountSellerRegisteredOn",
         default,
@@ -32,6 +32,8 @@ pub struct EconomyAccount {
     pub can_payout: Option<bool>,
     #[serde(rename = "canSpend")]
     pub can_spend: bool,
+    #[serde(rename = "limits", skip_serializing_if = "Option::is_none")]
+    pub limits: Option<models::EconomyAccountLimits>,
     #[serde(
         rename = "skrillEmail",
         default,
@@ -63,7 +65,7 @@ pub struct EconomyAccount {
 impl EconomyAccount {
     pub fn new(
         account_activated_on: Option<chrono::DateTime<chrono::FixedOffset>>,
-        account_id: Option<String>,
+        account_id: Option<i32>,
         blocked: bool,
         can_spend: bool,
         source: String,
@@ -78,6 +80,7 @@ impl EconomyAccount {
             can_earn: None,
             can_payout: None,
             can_spend,
+            limits: None,
             skrill_email: None,
             source,
             tilia_id: None,

@@ -45,6 +45,8 @@ pub struct LimitedWorld {
     pub occupants: i32,
     #[serde(rename = "organization")]
     pub organization: String,
+    #[serde(rename = "pendingUpload", skip_serializing_if = "Option::is_none")]
+    pub pending_upload: Option<bool>,
     #[serde(rename = "popularity")]
     pub popularity: i32,
     #[serde(
@@ -117,6 +119,7 @@ impl LimitedWorld {
             name,
             occupants,
             organization,
+            pending_upload: None,
             popularity,
             preview_youtube_id: None,
             publication_date,

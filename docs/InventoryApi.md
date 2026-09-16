@@ -7,11 +7,13 @@ Method | HTTP request | Description
 [**consume_own_inventory_item**](InventoryApi.md#consume_own_inventory_item) | **PUT** /inventory/{inventoryItemId}/consume | Consume Own Inventory Item
 [**delete_own_inventory_item**](InventoryApi.md#delete_own_inventory_item) | **DELETE** /inventory/{inventoryItemId} | Delete Own Inventory Item
 [**equip_own_inventory_item**](InventoryApi.md#equip_own_inventory_item) | **PUT** /inventory/{inventoryItemId}/equip | Equip Own Inventory Item
+[**get_cosmetic_index**](InventoryApi.md#get_cosmetic_index) | **GET** /cosmetics/index/{itemType} | List Cosmetics
 [**get_inventory**](InventoryApi.md#get_inventory) | **GET** /inventory | Get Inventory
 [**get_inventory_collections**](InventoryApi.md#get_inventory_collections) | **GET** /inventory/collections | List Inventory Collections
 [**get_inventory_drops**](InventoryApi.md#get_inventory_drops) | **GET** /inventory/drops | List Inventory Drops
 [**get_inventory_template**](InventoryApi.md#get_inventory_template) | **GET** /inventory/template/{inventoryTemplateId} | Get Inventory Template
 [**get_own_inventory_item**](InventoryApi.md#get_own_inventory_item) | **GET** /inventory/{inventoryItemId} | Get Own Inventory Item
+[**get_user_cosmetics**](InventoryApi.md#get_user_cosmetics) | **GET** /user/{userId}/cosmetics | List User Cosmetics
 [**get_user_inventory_item**](InventoryApi.md#get_user_inventory_item) | **GET** /user/{userId}/inventory/{inventoryItemId} | Get User Inventory Item
 [**redeem_reward**](InventoryApi.md#redeem_reward) | **POST** /reward/redeem | Redeem Reward
 [**share_inventory_item_direct**](InventoryApi.md#share_inventory_item_direct) | **POST** /inventory/cloning/direct | Share Inventory Item Direct
@@ -113,9 +115,39 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_cosmetic_index
+
+> Vec<models::InventoryTemplate> get_cosmetic_index(item_type)
+List Cosmetics
+
+List every cosmetic of a kind that VRChat has published, whether or not the caller owns it.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**item_type** | **String** | The kind of cosmetic to list. | [required] |
+
+### Return type
+
+[**Vec<models::InventoryTemplate>**](InventoryTemplate.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_inventory
 
-> models::Inventory get_inventory(n, offset, holder_id, equip_slot, order, tags, types, flags, not_types, not_flags, archived)
+> models::Inventory get_inventory(n, offset, holder_id, equip_slot, order, tags, types, flags, not_types, not_flags, archived, seen, is_nav_bar)
 Get Inventory
 
 Returns an Inventory object.
@@ -136,6 +168,8 @@ Name | Type | Description  | Required | Notes
 **not_types** | Option<[**InventoryItemType**](InventoryItemType.md)> | Filter out types for inventory retrieval (comma-separated). |  |
 **not_flags** | Option<[**InventoryFlag**](InventoryFlag.md)> | Filter out flags for inventory retrieval (comma-separated). |  |
 **archived** | Option<**bool**> | Filter archived status for inventory retrieval. |  |
+**seen** | Option<**bool**> |  |  |
+**is_nav_bar** | Option<**bool**> |  |  |
 
 ### Return type
 
@@ -257,6 +291,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::InventoryItem**](InventoryItem.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_cosmetics
+
+> Vec<models::UserCosmetic> get_user_cosmetics(user_id)
+List User Cosmetics
+
+List the cosmetics a user holds.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**Vec<models::UserCosmetic>**](UserCosmetic.md)
 
 ### Authorization
 

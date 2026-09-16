@@ -5,13 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **account_activated_on** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | 
-**account_id** | Option<**String**> |  | 
+**account_id** | Option<**i32**> |  | 
 **account_seller_registered_on** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **account_seller_status** | Option<**String**> |  | [optional]
 **blocked** | **bool** |  | 
 **can_earn** | Option<**bool**> |  | [optional]
 **can_payout** | Option<**bool**> |  | [optional]
 **can_spend** | **bool** |  | 
+**limits** | Option<[**models::EconomyAccountLimits**](EconomyAccountLimits.md)> |  | [optional]
 **skrill_email** | Option<**String**> |  | [optional]
 **source** | **String** |  | 
 **tilia_id** | Option<**String**> |  | [optional]

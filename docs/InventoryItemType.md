@@ -7,7 +7,10 @@
 | Bundle | bundle |
 | Droneskin | droneskin |
 | Emoji | emoji |
+| IconFrame | iconFrame |
+| NameplateEffect | nameplateEffect |
 | Portalskin | portalskin |
+| ProfileEffect | profileEffect |
 | Prop | prop |
 | Sticker | sticker |
 | Warpeffect | warpeffect |

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **banner_color** | Option<**String**> | Hex colour without a leading `#`. | [optional]
 **banner_type** | Option<**String**> |  | [optional]
+**banner_url** | Option<**String**> |  | [optional]
 **display_name** | **String** |  | 
 **icon_frame** | Option<**String**> |  | [optional]
 **icon_url** | Option<**String**> |  | [optional]

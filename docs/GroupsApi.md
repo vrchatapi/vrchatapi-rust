@@ -678,7 +678,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group
 
-> models::Group get_group(group_id, include_roles)
+> models::Group get_group(group_id, include_roles, purpose)
 Get Group by ID
 
 Returns a single Group by ID.
@@ -690,6 +690,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **group_id** | **String** | Must be a valid group ID. | [required] |
 **include_roles** | Option<**bool**> | Include roles for the Group object. Defaults to false. |  |
+**purpose** | Option<**String**> |  |  |
 
 ### Return type
 
@@ -838,7 +839,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_gallery_images
 
-> Vec<models::GroupGalleryImage> get_group_gallery_images(group_id, group_gallery_id, n, offset, approved)
+> models::GetGroupGalleryImages200Response get_group_gallery_images(group_id, group_gallery_id, n, offset, v, approved)
 Get Group Gallery Images
 
 Returns a list of images for a Group gallery.
@@ -852,11 +853,12 @@ Name | Type | Description  | Required | Notes
 **group_gallery_id** | **String** | Must be a valid group gallery ID. | [required] |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+**v** | Option<**i32**> | Response version. `2` wraps the images in a paginated object. |  |
 **approved** | Option<**bool**> | If specified, only returns images that have been approved or not approved. |  |
 
 ### Return type
 
-[**Vec<models::GroupGalleryImage>**](GroupGalleryImage.md)
+[**models::GetGroupGalleryImages200Response**](getGroupGalleryImages_200_response.md)
 
 ### Authorization
 

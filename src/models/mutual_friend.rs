@@ -9,6 +9,8 @@ pub struct MutualFriend {
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
     pub banner_type: Option<String>,
+    #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
+    pub banner_url: Option<String>,
     #[serde(rename = "displayName")]
     pub display_name: String,
     #[serde(rename = "iconFrame", skip_serializing_if = "Option::is_none")]
@@ -39,6 +41,7 @@ impl MutualFriend {
         MutualFriend {
             banner_color: None,
             banner_type: None,
+            banner_url: None,
             display_name,
             icon_frame: None,
             icon_url: None,

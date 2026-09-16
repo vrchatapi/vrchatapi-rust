@@ -25,6 +25,8 @@ pub struct GroupRole {
     pub order: Option<i32>,
     #[serde(rename = "permissions", skip_serializing_if = "Option::is_none")]
     pub permissions: Option<Vec<models::GroupPermissions>>,
+    #[serde(rename = "productId", skip_serializing_if = "Option::is_none")]
+    pub product_id: Option<String>,
     #[serde(rename = "requiresPurchase", skip_serializing_if = "Option::is_none")]
     pub requires_purchase: Option<bool>,
     #[serde(rename = "requiresTwoFactor", skip_serializing_if = "Option::is_none")]
@@ -47,6 +49,7 @@ impl GroupRole {
             name: None,
             order: None,
             permissions: None,
+            product_id: None,
             requires_purchase: None,
             requires_two_factor: None,
             updated_at: None,

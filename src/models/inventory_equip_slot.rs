@@ -7,8 +7,14 @@ pub enum InventoryEquipSlot {
     Empty,
     #[serde(rename = "drone")]
     Drone,
+    #[serde(rename = "iconFrame")]
+    IconFrame,
+    #[serde(rename = "nameplateEffect")]
+    NameplateEffect,
     #[serde(rename = "portal")]
     Portal,
+    #[serde(rename = "profileEffect")]
+    ProfileEffect,
     #[serde(rename = "warp")]
     Warp,
 }
@@ -18,7 +24,10 @@ impl std::fmt::Display for InventoryEquipSlot {
         match self {
             Self::Empty => write!(f, ""),
             Self::Drone => write!(f, "drone"),
+            Self::IconFrame => write!(f, "iconFrame"),
+            Self::NameplateEffect => write!(f, "nameplateEffect"),
             Self::Portal => write!(f, "portal"),
+            Self::ProfileEffect => write!(f, "profileEffect"),
             Self::Warp => write!(f, "warp"),
         }
     }

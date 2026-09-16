@@ -41,6 +41,14 @@ pub enum DeleteUserPersistenceError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_age_verification_status`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetAgeVerificationStatusError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_blocked_groups`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -120,6 +128,14 @@ pub enum GetUserAllGroupPermissionsError {
 pub enum GetUserByNameError {
     Status401(models::Error),
     Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_user_client_config`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetUserClientConfigError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -226,6 +242,15 @@ pub enum UpdateBadgeError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`update_profile`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UpdateProfileError {
+    Status400(models::Error),
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`update_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -233,6 +258,14 @@ pub enum UpdateUserError {
     Status400(models::Error),
     Status401(models::Error),
     Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`update_user_client_config`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UpdateUserClientConfigError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -410,6 +443,46 @@ pub async fn delete_user_persistence(
     } else {
         let content = resp.text().await?;
         let entity: Option<DeleteUserPersistenceError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get the currently authenticated user's age verification status.
+pub async fn get_age_verification_status(
+    configuration: &configuration::Configuration,
+) -> Result<models::AgeVerificationStatusResult, Error<GetAgeVerificationStatusError>> {
+    let uri_str = format!("{}/ageVerification/status", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AgeVerificationStatusResult`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AgeVerificationStatusResult`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetAgeVerificationStatusError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -730,10 +803,12 @@ pub async fn get_private_profile(
 pub async fn get_public_profile(
     configuration: &configuration::Configuration,
     user_id: &str,
+    as_self: Option<bool>,
     with_groups_and_worlds: Option<bool>,
 ) -> Result<models::PublicProfile, Error<GetPublicProfileError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
+    let p_query_as_self = as_self;
     let p_query_with_groups_and_worlds = with_groups_and_worlds;
 
     let uri_str = format!(
@@ -743,6 +818,9 @@ pub async fn get_public_profile(
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    if let Some(ref param_value) = p_query_as_self {
+        req_builder = req_builder.query(&[("asSelf", &param_value.to_string())]);
+    }
     if let Some(ref param_value) = p_query_with_groups_and_worlds {
         req_builder = req_builder.query(&[("withGroupsAndWorlds", &param_value.to_string())]);
     }
@@ -924,6 +1002,54 @@ pub async fn get_user_by_name(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetUserByNameError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get the client settings VRChat stores against a user.
+pub async fn get_user_client_config(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+) -> Result<models::UserClientConfig, Error<GetUserClientConfigError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+
+    let uri_str = format!(
+        "{}/users/{userId}/clientConfig",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserClientConfig`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserClientConfig`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetUserClientConfigError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -1550,6 +1676,57 @@ pub async fn update_badge(
     }
 }
 
+/// Update a user's profile. `pronouns`, `status` and `statusDescription` are written through `updateUser` instead.
+pub async fn update_profile(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    update_profile_request: Option<models::UpdateProfileRequest>,
+) -> Result<models::PublicProfile, Error<UpdateProfileError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+    let p_body_update_profile_request = update_profile_request;
+
+    let uri_str = format!(
+        "{}/profile/{userId}",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_update_profile_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PublicProfile`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PublicProfile`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<UpdateProfileError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Update a users information such as the email and birthday.
 pub async fn update_user(
     configuration: &configuration::Configuration,
@@ -1593,6 +1770,57 @@ pub async fn update_user(
     } else {
         let content = resp.text().await?;
         let entity: Option<UpdateUserError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Update the client settings VRChat stores against a user.
+pub async fn update_user_client_config(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    update_user_client_config_request: Option<models::UpdateUserClientConfigRequest>,
+) -> Result<models::UserClientConfig, Error<UpdateUserClientConfigError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+    let p_body_update_user_client_config_request = update_user_client_config_request;
+
+    let uri_str = format!(
+        "{}/users/{userId}/clientConfig",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_update_user_client_config_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserClientConfig`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserClientConfig`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<UpdateUserClientConfigError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
