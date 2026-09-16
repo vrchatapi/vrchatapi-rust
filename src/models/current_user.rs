@@ -40,16 +40,10 @@ pub struct CurrentUser {
     /// The auth token for NEWLY REGISTERED ACCOUNTS ONLY (/auth/register)
     #[serde(rename = "authToken", skip_serializing_if = "Option::is_none")]
     pub auth_token: Option<String>,
-    #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
-    pub badges: Option<Vec<models::Badge>>,
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
     pub banner_type: Option<String>,
-    #[serde(rename = "bio")]
-    pub bio: String,
-    #[serde(rename = "bioLinks")]
-    pub bio_links: Vec<String>,
     #[serde(rename = "completedTutorials", skip_serializing_if = "Option::is_none")]
     pub completed_tutorials: Option<Vec<String>>,
     /// These tags begin with `content_` and control content gating
@@ -186,10 +180,6 @@ pub struct CurrentUser {
     pub presence: Option<models::CurrentUserPresence>,
     #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
     pub profile_effect: Option<String>,
-    #[serde(rename = "profilePicOverride")]
-    pub profile_pic_override: String,
-    #[serde(rename = "profilePicOverrideThumbnail")]
-    pub profile_pic_override_thumbnail: String,
     #[serde(rename = "pronouns")]
     pub pronouns: String,
     #[serde(rename = "pronounsHistory")]
@@ -258,8 +248,6 @@ pub struct CurrentUser {
     pub unsubscribe: bool,
     #[serde(rename = "updated_at", skip_serializing_if = "Option::is_none")]
     pub updated_at: Option<chrono::DateTime<chrono::FixedOffset>>,
-    #[serde(rename = "userIcon")]
-    pub user_icon: String,
     #[serde(
         rename = "userLanguage",
         default,
@@ -292,8 +280,6 @@ impl CurrentUser {
         age_verification_status: models::AgeVerificationStatus,
         age_verified: bool,
         allow_avatar_copying: bool,
-        bio: String,
-        bio_links: Vec<String>,
         current_avatar: String,
         current_avatar_image_url: String,
         current_avatar_tags: Vec<String>,
@@ -320,8 +306,6 @@ impl CurrentUser {
         obfuscated_pending_email: String,
         oculus_id: String,
         past_display_names: Vec<models::PastDisplayName>,
-        profile_pic_override: String,
-        profile_pic_override_thumbnail: String,
         pronouns: String,
         pronouns_history: Vec<String>,
         state: models::UserState,
@@ -334,7 +318,6 @@ impl CurrentUser {
         tags: Vec<String>,
         two_factor_auth_enabled: bool,
         unsubscribe: bool,
-        user_icon: String,
         uses_generated_password: bool,
     ) -> CurrentUser {
         CurrentUser {
@@ -349,11 +332,8 @@ impl CurrentUser {
             apple_details: None,
             apple_id: None,
             auth_token: None,
-            badges: None,
             banner_color: None,
             banner_type: None,
-            bio,
-            bio_links,
             completed_tutorials: None,
             content_filters: None,
             current_avatar,
@@ -409,8 +389,6 @@ impl CurrentUser {
             platform_history: None,
             presence: None,
             profile_effect: None,
-            profile_pic_override,
-            profile_pic_override_thumbnail,
             pronouns,
             pronouns_history,
             queued_instance: None,
@@ -433,7 +411,6 @@ impl CurrentUser {
             two_factor_auth_enabled_date: None,
             unsubscribe,
             updated_at: None,
-            user_icon,
             user_language: None,
             user_language_code: None,
             username: None,

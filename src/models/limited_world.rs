@@ -32,6 +32,11 @@ pub struct LimitedWorld {
     pub id: String,
     #[serde(rename = "imageUrl")]
     pub image_url: String,
+    #[serde(
+        rename = "isHypeTrainEligible",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub is_hype_train_eligible: Option<bool>,
     #[serde(rename = "labsPublicationDate")]
     pub labs_publication_date: String,
     #[serde(rename = "name")]
@@ -107,6 +112,7 @@ impl LimitedWorld {
             heat,
             id,
             image_url,
+            is_hype_train_eligible: None,
             labs_publication_date,
             name,
             occupants,

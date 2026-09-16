@@ -5,10 +5,6 @@ use serde::{Deserialize, Serialize};
 pub struct UpdateUserRequest {
     #[serde(rename = "acceptedTOSVersion", skip_serializing_if = "Option::is_none")]
     pub accepted_tos_version: Option<i32>,
-    #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
-    pub bio: Option<String>,
-    #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
-    pub bio_links: Option<Vec<String>>,
     #[serde(rename = "birthday", skip_serializing_if = "Option::is_none")]
     pub birthday: Option<chrono::NaiveDate>,
     /// These tags begin with `content_` and control content gating
@@ -51,17 +47,12 @@ pub struct UpdateUserRequest {
     pub tags: Option<Vec<String>>,
     #[serde(rename = "unsubscribe", skip_serializing_if = "Option::is_none")]
     pub unsubscribe: Option<bool>,
-    /// MUST be a valid VRChat /file/ url.
-    #[serde(rename = "userIcon", skip_serializing_if = "Option::is_none")]
-    pub user_icon: Option<String>,
 }
 
 impl UpdateUserRequest {
     pub fn new() -> UpdateUserRequest {
         UpdateUserRequest {
             accepted_tos_version: None,
-            bio: None,
-            bio_links: None,
             birthday: None,
             content_filters: None,
             current_password: None,
@@ -77,7 +68,6 @@ impl UpdateUserRequest {
             status_description: None,
             tags: None,
             unsubscribe: None,
-            user_icon: None,
         }
     }
 }

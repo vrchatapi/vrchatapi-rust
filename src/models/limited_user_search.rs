@@ -10,18 +10,6 @@ pub struct LimitedUserSearch {
     pub banner_type: Option<String>,
     #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
     pub banner_url: Option<String>,
-    #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
-    pub bio: Option<String>,
-    #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
-    pub bio_links: Option<Vec<String>>,
-    /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarImageUrl")]
-    pub current_avatar_image_url: String,
-    #[serde(rename = "currentAvatarTags")]
-    pub current_avatar_tags: Vec<String>,
-    /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarThumbnailImageUrl")]
-    pub current_avatar_thumbnail_image_url: String,
     #[serde(rename = "developerType")]
     pub developer_type: models::DeveloperType,
     #[serde(rename = "displayName")]
@@ -42,8 +30,6 @@ pub struct LimitedUserSearch {
     pub nameplate_effect: Option<String>,
     #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
     pub profile_effect: Option<String>,
-    #[serde(rename = "profilePicOverride", skip_serializing_if = "Option::is_none")]
-    pub profile_pic_override: Option<String>,
     #[serde(rename = "pronouns", skip_serializing_if = "Option::is_none")]
     pub pronouns: Option<String>,
     #[serde(rename = "status")]
@@ -53,16 +39,11 @@ pub struct LimitedUserSearch {
     /// <- Always empty.
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
-    #[serde(rename = "userIcon", skip_serializing_if = "Option::is_none")]
-    pub user_icon: Option<String>,
 }
 
 impl LimitedUserSearch {
     /// User object received when searching
     pub fn new(
-        current_avatar_image_url: String,
-        current_avatar_tags: Vec<String>,
-        current_avatar_thumbnail_image_url: String,
         developer_type: models::DeveloperType,
         display_name: String,
         id: String,
@@ -76,11 +57,6 @@ impl LimitedUserSearch {
             banner_color: None,
             banner_type: None,
             banner_url: None,
-            bio: None,
-            bio_links: None,
-            current_avatar_image_url,
-            current_avatar_tags,
-            current_avatar_thumbnail_image_url,
             developer_type,
             display_name,
             icon_frame: None,
@@ -90,12 +66,10 @@ impl LimitedUserSearch {
             last_platform,
             nameplate_effect: None,
             profile_effect: None,
-            profile_pic_override: None,
             pronouns: None,
             status,
             status_description,
             tags,
-            user_icon: None,
         }
     }
 }

@@ -7,11 +7,6 @@ Name | Type | Description | Notes
 **banner_color** | Option<**String**> |  | [optional]
 **banner_type** | Option<**String**> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
-**bio** | Option<**String**> |  | [optional]
-**bio_links** | Option<**Vec<String>**> |   | [optional]
-**current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
-**current_avatar_tags** | **Vec<String>** |  | 
-**current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 
 **display_name** | **String** |  | 
 **icon_frame** | Option<**String**> |  | [optional]
@@ -21,12 +16,10 @@ Name | Type | Description | Notes
 **last_platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **nameplate_effect** | Option<**String**> |  | [optional]
 **profile_effect** | Option<**String**> |  | [optional]
-**profile_pic_override** | Option<**String**> |  | [optional]
 **pronouns** | Option<**String**> |  | [optional]
 **status** | [**models::UserStatus**](UserStatus.md) |  | 
 **status_description** | **String** |  | 
 **tags** | **Vec<String>** | <- Always empty. | 
-**user_icon** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

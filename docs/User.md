@@ -12,7 +12,6 @@ Name | Type | Description | Notes
 **age_verified** | **bool** | `true` if, user is age verified (not 18+). | 
 **allow_avatar_copying** | **bool** |  | [default to true]
 **apple_details** | Option<**std::collections::HashMap<String, serde_json::Value>**> |  | [optional]
-**badges** | Option<[**Vec<models::Badge>**](Badge.md)> |   | [optional]
 **banner_color** | Option<**String**> |  | [optional]
 **banner_type** | Option<**String**> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]

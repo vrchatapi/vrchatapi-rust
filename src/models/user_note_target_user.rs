@@ -5,36 +5,15 @@ use serde::{Deserialize, Serialize};
 pub struct UserNoteTargetUser {
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
-    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
-    pub current_avatar_tags: Option<Vec<String>>,
-    /// When profilePicOverride is not empty, use it instead.
-    #[serde(
-        rename = "currentAvatarThumbnailImageUrl",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub current_avatar_thumbnail_image_url: Option<String>,
     #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
     pub display_name: Option<String>,
-    #[serde(
-        rename = "profilePicOverride",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub profile_pic_override: Option<Option<String>>,
-    #[serde(rename = "userIcon", skip_serializing_if = "Option::is_none")]
-    pub user_icon: Option<String>,
 }
 
 impl UserNoteTargetUser {
     pub fn new() -> UserNoteTargetUser {
         UserNoteTargetUser {
             id: None,
-            current_avatar_tags: None,
-            current_avatar_thumbnail_image_url: None,
             display_name: None,
-            profile_pic_override: None,
-            user_icon: None,
         }
     }
 }

@@ -355,7 +355,7 @@ Get a user's public profile information.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
-**with_groups_and_worlds** | Option<**bool**> | Include `groups`, `publicWorlds` and `totalPublicWorldsCount` in the response. |  |
+**with_groups_and_worlds** | Option<**bool**> | Include `groups`, `publicWorlds`, `totalPublicWorldsCount` and `worldFavoriteLists` in the response. |  |
 
 ### Return type
 

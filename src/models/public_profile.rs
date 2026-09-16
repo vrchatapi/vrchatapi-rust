@@ -11,6 +11,11 @@ pub struct PublicProfile {
     /// `true` if, user is age verified (not 18+).
     #[serde(rename = "ageVerified", skip_serializing_if = "Option::is_none")]
     pub age_verified: Option<bool>,
+    #[serde(
+        rename = "backgroundTextureId",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub background_texture_id: Option<String>,
     #[serde(rename = "backgroundType", skip_serializing_if = "Option::is_none")]
     pub background_type: Option<String>,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
@@ -49,11 +54,20 @@ pub struct PublicProfile {
     #[serde(rename = "pronouns", skip_serializing_if = "Option::is_none")]
     pub pronouns: Option<String>,
     #[serde(rename = "publicWorlds", skip_serializing_if = "Option::is_none")]
-    pub public_worlds: Option<Vec<serde_json::Value>>,
+    pub public_worlds: Option<Vec<models::LimitedWorld>>,
     #[serde(rename = "representedGroup", skip_serializing_if = "Option::is_none")]
     pub represented_group: Option<models::ProfileRepresentedGroup>,
+    /// Hex colour without a leading `#`.
+    #[serde(rename = "themeButtonColor", skip_serializing_if = "Option::is_none")]
+    pub theme_button_color: Option<String>,
+    /// Hex colour without a leading `#`.
+    #[serde(rename = "themeIconColor", skip_serializing_if = "Option::is_none")]
+    pub theme_icon_color: Option<String>,
     #[serde(rename = "themeId", skip_serializing_if = "Option::is_none")]
     pub theme_id: Option<String>,
+    /// Hex colour without a leading `#`.
+    #[serde(rename = "themeSubtextColor", skip_serializing_if = "Option::is_none")]
+    pub theme_subtext_color: Option<String>,
     #[serde(
         rename = "totalPublicWorldsCount",
         skip_serializing_if = "Option::is_none"
@@ -70,6 +84,7 @@ impl PublicProfile {
         PublicProfile {
             age_verification_status: None,
             age_verified: None,
+            background_texture_id: None,
             background_type: None,
             badges: None,
             banner_color: None,
@@ -90,7 +105,10 @@ impl PublicProfile {
             pronouns: None,
             public_worlds: None,
             represented_group: None,
+            theme_button_color: None,
+            theme_icon_color: None,
             theme_id: None,
+            theme_subtext_color: None,
             total_public_worlds_count: None,
             trust_tags: None,
             world_favorite_lists: None,

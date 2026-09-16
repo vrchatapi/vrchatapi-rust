@@ -15,11 +15,8 @@ Name | Type | Description | Notes
 **apple_details** | Option<**serde_json::Value**> |  | [optional]
 **apple_id** | Option<**String**> |  | [optional]
 **auth_token** | Option<**String**> | The auth token for NEWLY REGISTERED ACCOUNTS ONLY (/auth/register) | [optional]
-**badges** | Option<[**Vec<models::Badge>**](Badge.md)> |   | [optional]
 **banner_color** | Option<**String**> |  | [optional]
 **banner_type** | Option<**String**> |  | [optional]
-**bio** | **String** |  | 
-**bio_links** | **Vec<String>** |   | 
 **completed_tutorials** | Option<**Vec<String>**> |  | [optional]
 **content_filters** | Option<**Vec<String>**> | These tags begin with `content_` and control content gating | [optional]
 **current_avatar** | **String** |  | 
@@ -75,8 +72,6 @@ Name | Type | Description | Notes
 **platform_history** | Option<[**Vec<models::CurrentUserPlatformHistoryInner>**](CurrentUserPlatformHistoryInner.md)> |  | [optional]
 **presence** | Option<[**models::CurrentUserPresence**](CurrentUserPresence.md)> |  | [optional]
 **profile_effect** | Option<**String**> |  | [optional]
-**profile_pic_override** | **String** |  | 
-**profile_pic_override_thumbnail** | **String** |  | 
 **pronouns** | **String** |  | 
 **pronouns_history** | **Vec<String>** |  | 
 **queued_instance** | Option<**String**> |  | [optional]
@@ -99,7 +94,6 @@ Name | Type | Description | Notes
 **two_factor_auth_enabled_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **unsubscribe** | **bool** |  | 
 **updated_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
-**user_icon** | **String** |  | 
 **user_language** | Option<**String**> |  | [optional]
 **user_language_code** | Option<**String**> |  | [optional]
 **username** | Option<**String**> | Your own unique name, used during login. Distinct from `displayName`, and never returned for another user. | [optional]

@@ -33,8 +33,6 @@ pub struct User {
     pub allow_avatar_copying: bool,
     #[serde(rename = "appleDetails", skip_serializing_if = "Option::is_none")]
     pub apple_details: Option<std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
-    pub badges: Option<Vec<models::Badge>>,
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
@@ -154,7 +152,6 @@ impl User {
             age_verified,
             allow_avatar_copying,
             apple_details: None,
-            badges: None,
             banner_color: None,
             banner_type: None,
             banner_url: None,
