@@ -13,6 +13,7 @@ use async_trait::async_trait;
 {{/supportTokenSource}}
 
 #[derive(Debug, Clone)]
+#[non_exhaustive]
 pub struct Configuration {
     pub base_path: String,
     pub user_agent: Option<String>,
@@ -31,6 +32,7 @@ pub struct Configuration {
     pub token_source: Arc<dyn TokenSource>,
     {{/supportTokenSource}}
     {{/supportAsync}}
+    pub debug: bool,
 }
 {{^supportTokenSource}}
 
@@ -106,6 +108,7 @@ impl Default for Configuration {
             {{#supportTokenSource}}
             token_source: Arc::new(NoopTokenSource{}),
             {{/supportTokenSource}}
+            debug: false,
         }
     }
 }
