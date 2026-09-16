@@ -598,7 +598,7 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: 
         {{/returnType}}
         {{#returnType}}
         let content = resp.text(){{#supportAsync}}.await{{/supportAsync}}?;
-        if (configuration.debug) { log::debug!("{{{operationId}}} returned: {content}"); }
+        if configuration.debug { log::debug!("{{{operationId}}} returned: {content}"); }
         match content_type {
             {{^useSerdePathToError}}
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
@@ -629,7 +629,7 @@ pub {{#supportAsync}}async {{/supportAsync}}fn {{{operationId}}}(configuration: 
         {{/supportMultipleResponses}}
     } else {
         let content = resp.text(){{#supportAsync}}.await{{/supportAsync}}?;
-        if (configuration.debug) { log::debug!("{{{operationId}}} returned: {content}"); }
+        if configuration.debug { log::debug!("{{{operationId}}} returned: {content}"); }
         let entity: Option<{{{operationIdCamelCase}}}Error> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent { status, content, entity }))
     }
