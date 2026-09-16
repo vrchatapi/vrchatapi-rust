@@ -9,8 +9,14 @@ pub enum InventoryItemType {
     Droneskin,
     #[serde(rename = "emoji")]
     Emoji,
+    #[serde(rename = "iconFrame")]
+    IconFrame,
+    #[serde(rename = "nameplateEffect")]
+    NameplateEffect,
     #[serde(rename = "portalskin")]
     Portalskin,
+    #[serde(rename = "profileEffect")]
+    ProfileEffect,
     #[serde(rename = "prop")]
     Prop,
     #[serde(rename = "sticker")]
@@ -25,7 +31,10 @@ impl std::fmt::Display for InventoryItemType {
             Self::Bundle => write!(f, "bundle"),
             Self::Droneskin => write!(f, "droneskin"),
             Self::Emoji => write!(f, "emoji"),
+            Self::IconFrame => write!(f, "iconFrame"),
+            Self::NameplateEffect => write!(f, "nameplateEffect"),
             Self::Portalskin => write!(f, "portalskin"),
+            Self::ProfileEffect => write!(f, "profileEffect"),
             Self::Prop => write!(f, "prop"),
             Self::Sticker => write!(f, "sticker"),
             Self::Warpeffect => write!(f, "warpeffect"),

@@ -92,6 +92,14 @@ pub enum GetEconomyAccountError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_economy_balance`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetEconomyBalanceError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_economy_balances`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -117,6 +125,14 @@ pub enum GetEconomyPayoutsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_economy_status`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetEconomyStatusError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_license_group`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -137,6 +153,14 @@ pub enum GetProductListingError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetProductListingAlternateError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_product_listing_products`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetProductListingProductsError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -831,9 +855,11 @@ pub async fn get_earnings_metrics(
 pub async fn get_economy_account(
     configuration: &configuration::Configuration,
     user_id: &str,
+    get_limits: Option<bool>,
 ) -> Result<models::EconomyAccount, Error<GetEconomyAccountError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
+    let p_query_get_limits = get_limits;
 
     let uri_str = format!(
         "{}/user/{userId}/economy/account",
@@ -842,6 +868,9 @@ pub async fn get_economy_account(
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    if let Some(ref param_value) = p_query_get_limits {
+        req_builder = req_builder.query(&[("getLimits", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -867,6 +896,54 @@ pub async fn get_economy_account(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetEconomyAccountError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Return the balance of a user's economy account.
+pub async fn get_economy_balance(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+) -> Result<models::Balance, Error<GetEconomyBalanceError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+
+    let uri_str = format!(
+        "{}/user/{userId}/economy/balance",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Balance`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Balance`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetEconomyBalanceError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -1019,6 +1096,46 @@ pub async fn get_economy_payouts(
     }
 }
 
+/// Get whether the economy is accepting requests.
+pub async fn get_economy_status(
+    configuration: &configuration::Configuration,
+) -> Result<models::EconomyStatus, Error<GetEconomyStatusError>> {
+    let uri_str = format!("{}/economy/status", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::EconomyStatus`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::EconomyStatus`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetEconomyStatusError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Get a single License Group by given ID.
 pub async fn get_license_group(
     configuration: &configuration::Configuration,
@@ -1161,6 +1278,54 @@ pub async fn get_product_listing_alternate(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetProductListingAlternateError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// List the products a listing sells.
+pub async fn get_product_listing_products(
+    configuration: &configuration::Configuration,
+    product_id: &str,
+) -> Result<Vec<models::Product>, Error<GetProductListingProductsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_product_id = product_id;
+
+    let uri_str = format!(
+        "{}/listing/{productId}/products",
+        configuration.base_path,
+        productId = crate::apis::urlencode(p_path_product_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Product&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::Product&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetProductListingProductsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -1429,7 +1594,9 @@ pub async fn get_product_purchase_stacks(
 /// Gets product purchases
 pub async fn get_product_purchases(
     configuration: &configuration::Configuration,
-    buyer_id: &str,
+    active: Option<bool>,
+    buyer_id: Option<&str>,
+    receiver_id: Option<&str>,
     seller_id: Option<&str>,
     n: Option<i32>,
     offset: Option<i32>,
@@ -1438,7 +1605,9 @@ pub async fn get_product_purchases(
     order: Option<models::OrderOptionShort>,
 ) -> Result<Vec<models::ProductPurchase>, Error<GetProductPurchasesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_active = active;
     let p_query_buyer_id = buyer_id;
+    let p_query_receiver_id = receiver_id;
     let p_query_seller_id = seller_id;
     let p_query_n = n;
     let p_query_offset = offset;
@@ -1449,7 +1618,15 @@ pub async fn get_product_purchases(
     let uri_str = format!("{}/economy/purchases", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    req_builder = req_builder.query(&[("buyerId", &p_query_buyer_id.to_string())]);
+    if let Some(ref param_value) = p_query_active {
+        req_builder = req_builder.query(&[("active", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_buyer_id {
+        req_builder = req_builder.query(&[("buyerId", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_receiver_id {
+        req_builder = req_builder.query(&[("receiverId", &param_value.to_string())]);
+    }
     if let Some(ref param_value) = p_query_seller_id {
         req_builder = req_builder.query(&[("sellerId", &param_value.to_string())]);
     }
@@ -1504,10 +1681,17 @@ pub async fn get_product_purchases(
 /// Get the most recent user subscription.
 pub async fn get_recent_subscription(
     configuration: &configuration::Configuration,
+    user_id: Option<&str>,
 ) -> Result<models::UserSubscription, Error<GetRecentSubscriptionError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_user_id = user_id;
+
     let uri_str = format!("{}/user/subscription/recent", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
+    if let Some(ref param_value) = p_query_user_id {
+        req_builder = req_builder.query(&[("userId", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -1674,11 +1858,13 @@ pub async fn get_steam_transactions(
 pub async fn get_store(
     configuration: &configuration::Configuration,
     store_id: &str,
+    hydrate_context: Option<bool>,
     hydrate_listings: Option<bool>,
     hydrate_products: Option<bool>,
 ) -> Result<models::Store, Error<GetStoreError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_store_id = store_id;
+    let p_query_hydrate_context = hydrate_context;
     let p_query_hydrate_listings = hydrate_listings;
     let p_query_hydrate_products = hydrate_products;
 
@@ -1686,6 +1872,9 @@ pub async fn get_store(
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     req_builder = req_builder.query(&[("storeId", &p_query_store_id.to_string())]);
+    if let Some(ref param_value) = p_query_hydrate_context {
+        req_builder = req_builder.query(&[("hydrateContext", &param_value.to_string())]);
+    }
     if let Some(ref param_value) = p_query_hydrate_listings {
         req_builder = req_builder.query(&[("hydrateListings", &param_value.to_string())]);
     }

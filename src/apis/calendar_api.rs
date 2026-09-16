@@ -641,12 +641,18 @@ pub async fn get_group_calendar_events(
     date: Option<chrono::DateTime<chrono::FixedOffset>>,
     n: Option<i32>,
     offset: Option<i32>,
+    limit: Option<i32>,
+    after: Option<chrono::DateTime<chrono::FixedOffset>>,
+    sort: Option<&str>,
 ) -> Result<models::PaginatedCalendarEventList, Error<GetGroupCalendarEventsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_query_date = date;
     let p_query_n = n;
     let p_query_offset = offset;
+    let p_query_limit = limit;
+    let p_query_after = after;
+    let p_query_sort = sort;
 
     let uri_str = format!(
         "{}/calendar/{groupId}",
@@ -663,6 +669,15 @@ pub async fn get_group_calendar_events(
     }
     if let Some(ref param_value) = p_query_offset {
         req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_limit {
+        req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_after {
+        req_builder = req_builder.query(&[("after", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_sort {
+        req_builder = req_builder.query(&[("sort", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

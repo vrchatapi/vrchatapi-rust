@@ -11,6 +11,23 @@ pub enum GetAssignedPermissionsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_beta`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetBetaError {
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_beta_registration`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetBetaRegistrationError {
+    Status401(models::Error),
+    Status404(models::BetaRegistrationNotFoundError),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_config`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -30,6 +47,14 @@ pub enum GetCssError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetCurrentOnlineUsersError {
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_frontend_branches`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetFrontendBranchesError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -104,6 +129,91 @@ pub async fn get_assigned_permissions(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetAssignedPermissionsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get a beta program and the fields a registration must supply.
+pub async fn get_beta(
+    configuration: &configuration::Configuration,
+    beta_name: &str,
+) -> Result<models::Beta, Error<GetBetaError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_beta_name = beta_name;
+
+    let uri_str = format!(
+        "{}/beta/{betaName}",
+        configuration.base_path,
+        betaName = crate::apis::urlencode(p_path_beta_name)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Beta`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Beta`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetBetaError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Get the currently authenticated user's registration for a beta program.
+pub async fn get_beta_registration(
+    configuration: &configuration::Configuration,
+    beta_name: &str,
+) -> Result<(), Error<GetBetaRegistrationError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_beta_name = beta_name;
+
+    let uri_str = format!(
+        "{}/beta/{betaName}/register",
+        configuration.base_path,
+        betaName = crate::apis::urlencode(p_path_beta_name)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+
+    if !status.is_client_error() && !status.is_server_error() {
+        Ok(())
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetBetaRegistrationError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -236,6 +346,46 @@ pub async fn get_current_online_users(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetCurrentOnlineUsersError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// List the frontend branches the currently authenticated user may switch to.
+pub async fn get_frontend_branches(
+    configuration: &configuration::Configuration,
+) -> Result<Vec<serde_json::Value>, Error<GetFrontendBranchesError>> {
+    let uri_str = format!("{}/frontend/branches", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;serde_json::Value&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;serde_json::Value&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetFrontendBranchesError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

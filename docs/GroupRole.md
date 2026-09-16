@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **name** | Option<**String**> |  | [optional]
 **order** | Option<**i32**> |  | [optional]
 **permissions** | Option<[**Vec<models::GroupPermissions>**](GroupPermissions.md)> |  | [optional]
+**product_id** | Option<**String**> |  | [optional]
 **requires_purchase** | Option<**bool**> |  | [optional][default to false]
 **requires_two_factor** | Option<**bool**> |  | [optional][default to false]
 **updated_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]

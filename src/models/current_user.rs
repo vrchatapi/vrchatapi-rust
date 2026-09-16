@@ -44,6 +44,8 @@ pub struct CurrentUser {
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
     pub banner_type: Option<String>,
+    #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
+    pub banner_url: Option<String>,
     #[serde(rename = "completedTutorials", skip_serializing_if = "Option::is_none")]
     pub completed_tutorials: Option<Vec<String>>,
     /// These tags begin with `content_` and control content gating
@@ -334,6 +336,7 @@ impl CurrentUser {
             auth_token: None,
             banner_color: None,
             banner_type: None,
+            banner_url: None,
             completed_tutorials: None,
             content_filters: None,
             current_avatar,

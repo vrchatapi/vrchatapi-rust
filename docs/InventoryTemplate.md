@@ -15,11 +15,14 @@ Name | Type | Description | Notes
 **flags** | **Vec<String>** |  | 
 **id** | **String** |  | 
 **image_url** | **String** |  | 
+**initial_toggle_state** | Option<**bool**> |  | [optional]
 **item_type** | [**models::InventoryItemType**](InventoryItemType.md) |  | 
 **item_type_label** | **String** |  | 
 **metadata** | Option<[**models::InventoryMetadata**](InventoryMetadata.md)> |  | [optional]
 **name** | **String** |  | 
 **notification_details** | Option<[**models::InventoryNotificationDetails**](InventoryNotificationDetails.md)> |  | [optional]
+**product_id** | Option<**String**> |  | [optional]
+**published_listings** | Option<**Vec<String>**> |  | [optional]
 **status** | Option<**String**> |  | [optional]
 **tags** | **Vec<String>** |  | 
 **updated_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 

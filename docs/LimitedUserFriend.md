@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **banner_color** | Option<**String**> |  | [optional]
 **banner_type** | Option<**String**> |  | [optional]
+**banner_url** | Option<**String**> |  | [optional]
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 
 **discord_id** | Option<**String**> | https://discord.com/developers/docs/reference#snowflakes | [optional]
 **display_name** | **String** |  | 

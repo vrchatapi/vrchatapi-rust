@@ -7,7 +7,9 @@ Method | HTTP request | Description
 [**add_favorite**](FavoritesApi.md#add_favorite) | **POST** /favorites | Add Favorite
 [**clear_favorite_group**](FavoritesApi.md#clear_favorite_group) | **DELETE** /favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId} | Clear Favorite Group
 [**get_favorite_group**](FavoritesApi.md#get_favorite_group) | **GET** /favorite/group/{favoriteGroupType}/{favoriteGroupName}/{userId} | Show Favorite Group
+[**get_favorite_group_contents**](FavoritesApi.md#get_favorite_group_contents) | **GET** /favorites/groups/{favoriteGroupType}/{favoriteGroupName} | List Favorite Group Contents
 [**get_favorite_groups**](FavoritesApi.md#get_favorite_groups) | **GET** /favorite/groups | List Favorite Groups
+[**get_favorite_groups_by_type**](FavoritesApi.md#get_favorite_groups_by_type) | **GET** /favorites/groups/{favoriteGroupType} | List Favorite Groups By Type
 [**get_favorite_limits**](FavoritesApi.md#get_favorite_limits) | **GET** /auth/user/favoritelimits | Get Favorite Limits
 [**get_favorites**](FavoritesApi.md#get_favorites) | **GET** /favorites | List Favorites
 [**remove_favorite**](FavoritesApi.md#remove_favorite) | **DELETE** /favorites/{favoriteId} | Remove Favorite
@@ -109,6 +111,38 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_favorite_group_contents
+
+> models::FavoriteGroupContents get_favorite_group_contents(favorite_group_type, favorite_group_name, owner_id)
+List Favorite Group Contents
+
+List the favorites in a group, each alongside the object it points at.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**favorite_group_type** | [**FavoriteType**](FavoriteType.md) | The type of group to fetch, must be a valid FavoriteType. | [required] |
+**favorite_group_name** | **String** | The name of the group to fetch, must be a name of a FavoriteGroup. | [required] |[default to group_0]
+**owner_id** | Option<**String**> | The user whose favorite group to return. Must be a user ID. |  |
+
+### Return type
+
+[**models::FavoriteGroupContents**](FavoriteGroupContents.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_favorite_groups
 
 > Vec<models::FavoriteGroup> get_favorite_groups(n, offset, r#type, user_id, owner_id)
@@ -130,6 +164,37 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**Vec<models::FavoriteGroup>**](FavoriteGroup.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_favorite_groups_by_type
+
+> models::FavoriteGroupList get_favorite_groups_by_type(favorite_group_type, owner_id)
+List Favorite Groups By Type
+
+List a user's favorite groups of one type.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**favorite_group_type** | [**FavoriteType**](FavoriteType.md) | The type of group to fetch, must be a valid FavoriteType. | [required] |
+**owner_id** | Option<**String**> | The user whose favorite groups to return. Must be a user ID. |  |
+
+### Return type
+
+[**models::FavoriteGroupList**](FavoriteGroupList.md)
 
 ### Authorization
 

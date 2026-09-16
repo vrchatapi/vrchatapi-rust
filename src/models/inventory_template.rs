@@ -31,6 +31,8 @@ pub struct InventoryTemplate {
     pub id: String,
     #[serde(rename = "imageUrl")]
     pub image_url: String,
+    #[serde(rename = "initialToggleState", skip_serializing_if = "Option::is_none")]
+    pub initial_toggle_state: Option<bool>,
     #[serde(rename = "itemType")]
     pub item_type: models::InventoryItemType,
     #[serde(rename = "itemTypeLabel")]
@@ -44,6 +46,10 @@ pub struct InventoryTemplate {
         skip_serializing_if = "Option::is_none"
     )]
     pub notification_details: Option<models::InventoryNotificationDetails>,
+    #[serde(rename = "productId", skip_serializing_if = "Option::is_none")]
+    pub product_id: Option<String>,
+    #[serde(rename = "publishedListings", skip_serializing_if = "Option::is_none")]
+    pub published_listings: Option<Vec<String>>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<String>,
     #[serde(rename = "tags")]
@@ -84,11 +90,14 @@ impl InventoryTemplate {
             flags,
             id,
             image_url,
+            initial_toggle_state: None,
             item_type,
             item_type_label,
             metadata: None,
             name,
             notification_details: None,
+            product_id: None,
+            published_listings: None,
             status: None,
             tags,
             updated_at,

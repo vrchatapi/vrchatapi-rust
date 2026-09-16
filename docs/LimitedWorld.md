@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **occupants** | **i32** |  | [default to 0]
 **organization** | **String** |  | [default to vrchat]
+**pending_upload** | Option<**bool**> |  | [optional]
 **popularity** | **i32** |  | [default to 0]
 **preview_youtube_id** | Option<**String**> |  | [optional]
 **publication_date** | **String** |  | 

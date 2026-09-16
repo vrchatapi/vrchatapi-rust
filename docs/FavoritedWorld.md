@@ -11,22 +11,24 @@ Name | Type | Description | Notes
 **default_content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
 **description** | Option<**String**> |  | [optional]
 **disabled_prop_abilities** | Option<**Vec<serde_json::Value>**> |  | [optional]
-**favorite_group** | **String** |  | 
-**favorite_id** | **String** |  | 
+**favorite_group** | Option<**String**> |  | [optional]
+**favorite_id** | Option<**String**> |  | [optional]
 **favorites** | Option<**i32**> |  | [optional][default to 0]
 **featured** | Option<**bool**> |  | [optional][default to false]
 **heat** | Option<**i32**> |  | [optional][default to 0]
 **id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **image_url** | **String** |  | 
+**is_hype_train_eligible** | Option<**bool**> |  | [optional]
 **labs_publication_date** | Option<**String**> |  | [optional]
 **name** | **String** |  | 
-**occupants** | **i32** |  | [default to 0]
+**occupants** | Option<**i32**> |  | [optional][default to 0]
 **organization** | Option<**String**> |  | [optional][default to vrchat]
 **popularity** | Option<**i32**> |  | [optional][default to 0]
 **preview_youtube_id** | Option<**String**> |  | [optional]
 **publication_date** | Option<**String**> |  | [optional]
 **recommended_capacity** | Option<**i32**> |  | [optional]
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
+**store_id** | Option<**String**> |  | [optional]
 **tags** | Option<**Vec<String>**> |   | [optional]
 **thumbnail_image_url** | **String** |  | 
 **udon_products** | Option<**Vec<String>**> |  | [optional]

@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 
 **image_url** | **String** |  | 
 **instances** | Option<[**Vec<Vec<serde_json::Value>>**](Vec.md)> | Will always be an empty list when unauthenticated. | [optional]
+**is_hype_train_eligible** | Option<**bool**> |  | [optional]
 **labs_publication_date** | **String** |  | 
 **name** | **String** |  | 
 **namespace** | Option<**String**> |  | [optional]

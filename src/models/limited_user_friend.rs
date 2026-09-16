@@ -8,6 +8,8 @@ pub struct LimitedUserFriend {
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
     pub banner_type: Option<String>,
+    #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
+    pub banner_url: Option<String>,
     #[serde(rename = "developerType")]
     pub developer_type: models::DeveloperType,
     /// https://discord.com/developers/docs/reference#snowflakes
@@ -73,6 +75,7 @@ impl LimitedUserFriend {
         LimitedUserFriend {
             banner_color: None,
             banner_type: None,
+            banner_url: None,
             developer_type,
             discord_id: None,
             display_name,

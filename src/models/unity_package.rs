@@ -15,8 +15,13 @@ pub struct UnityPackage {
     pub asset_url_object: Option<serde_json::Value>,
     #[serde(rename = "assetVersion")]
     pub asset_version: i32,
-    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
+    #[serde(
+        rename = "created_at",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub created_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(

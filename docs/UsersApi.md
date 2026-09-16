@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**check_user_persistence_exists**](UsersApi.md#check_user_persistence_exists) | **GET** /users/{userId}/{worldId}/persist/exists | Check User Persistence Exists
 [**delete_all_user_persistence_data**](UsersApi.md#delete_all_user_persistence_data) | **DELETE** /users/{userId}/persist | Delete All User Persistence Data
 [**delete_user_persistence**](UsersApi.md#delete_user_persistence) | **DELETE** /users/{userId}/{worldId}/persist | Delete User Persistence
+[**get_age_verification_status**](UsersApi.md#get_age_verification_status) | **GET** /ageVerification/status | Get Age Verification Status
 [**get_blocked_groups**](UsersApi.md#get_blocked_groups) | **GET** /users/{userId}/groups/userblocked | Get User Group Blocks
 [**get_invited_groups**](UsersApi.md#get_invited_groups) | **GET** /users/{userId}/groups/invited | Get User Group Invited
 [**get_mutual_friends**](UsersApi.md#get_mutual_friends) | **GET** /users/{userId}/mutuals/friends | Get User Mutual Friends
@@ -18,6 +19,7 @@ Method | HTTP request | Description
 [**get_user**](UsersApi.md#get_user) | **GET** /users/{userId} | Get User by ID
 [**get_user_all_group_permissions**](UsersApi.md#get_user_all_group_permissions) | **GET** /users/{userId}/groups/permissions | Get user's permissions for all joined groups.
 [**get_user_by_name**](UsersApi.md#get_user_by_name) | **GET** /users/{username}/name | Get User by Username
+[**get_user_client_config**](UsersApi.md#get_user_client_config) | **GET** /users/{userId}/clientConfig | Get User Client Config
 [**get_user_feedback**](UsersApi.md#get_user_feedback) | **GET** /users/{userId}/feedback | Get User Feedback
 [**get_user_group_instances**](UsersApi.md#get_user_group_instances) | **GET** /users/{userId}/instances/groups | Get User Group Instances
 [**get_user_group_instances_for_group**](UsersApi.md#get_user_group_instances_for_group) | **GET** /users/{userId}/instances/groups/{groupId} | Get User Group Instances for a specific Group
@@ -30,7 +32,9 @@ Method | HTTP request | Description
 [**remove_tags**](UsersApi.md#remove_tags) | **POST** /users/{userId}/removeTags | Remove User Tags
 [**search_users**](UsersApi.md#search_users) | **GET** /users | Search All Users
 [**update_badge**](UsersApi.md#update_badge) | **PUT** /users/{userId}/badges/{badgeId} | Update User Badge
+[**update_profile**](UsersApi.md#update_profile) | **PUT** /profile/{userId} | Update Profile
 [**update_user**](UsersApi.md#update_user) | **PUT** /users/{userId} | Update User Info
+[**update_user_client_config**](UsersApi.md#update_user_client_config) | **PUT** /users/{userId}/clientConfig | Update User Client Config
 [**update_user_note**](UsersApi.md#update_user_note) | **POST** /userNotes | Update User Note
 
 
@@ -145,6 +149,33 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_age_verification_status
+
+> models::AgeVerificationStatusResult get_age_verification_status()
+Get Age Verification Status
+
+Get the currently authenticated user's age verification status.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::AgeVerificationStatusResult**](AgeVerificationStatusResult.md)
 
 ### Authorization
 
@@ -344,7 +375,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_public_profile
 
-> models::PublicProfile get_public_profile(user_id, with_groups_and_worlds)
+> models::PublicProfile get_public_profile(user_id, as_self, with_groups_and_worlds)
 Get Public Profile
 
 Get a user's public profile information.
@@ -355,6 +386,7 @@ Get a user's public profile information.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
+**as_self** | Option<**bool**> | Include the properties VRChat shows a user on their own profile. Ignored for any other user. |  |
 **with_groups_and_worlds** | Option<**bool**> | Include `groups`, `publicWorlds`, `totalPublicWorldsCount` and `worldFavoriteLists` in the response. |  |
 
 ### Return type
@@ -451,6 +483,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::GetUser200Response**](getUser_200_response.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_user_client_config
+
+> models::UserClientConfig get_user_client_config(user_id)
+Get User Client Config
+
+Get the client settings VRChat stores against a user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+
+### Return type
+
+[**models::UserClientConfig**](UserClientConfig.md)
 
 ### Authorization
 
@@ -836,6 +898,37 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## update_profile
+
+> models::PublicProfile update_profile(user_id, update_profile_request)
+Update Profile
+
+Update a user's profile. `pronouns`, `status` and `statusDescription` are written through `updateUser` instead.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**update_profile_request** | Option<[**UpdateProfileRequest**](UpdateProfileRequest.md)> |  |  |
+
+### Return type
+
+[**models::PublicProfile**](PublicProfile.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## update_user
 
 > models::CurrentUser update_user(user_id, update_user_request)
@@ -854,6 +947,37 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::CurrentUser**](CurrentUser.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_user_client_config
+
+> models::UserClientConfig update_user_client_config(user_id, update_user_client_config_request)
+Update User Client Config
+
+Update the client settings VRChat stores against a user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**update_user_client_config_request** | Option<[**UpdateUserClientConfigRequest**](UpdateUserClientConfigRequest.md)> |  |  |
+
+### Return type
+
+[**models::UserClientConfig**](UserClientConfig.md)
 
 ### Authorization
 

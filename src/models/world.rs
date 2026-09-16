@@ -39,6 +39,11 @@ pub struct World {
     /// Will always be an empty list when unauthenticated.
     #[serde(rename = "instances", skip_serializing_if = "Option::is_none")]
     pub instances: Option<Vec<Vec<serde_json::Value>>>,
+    #[serde(
+        rename = "isHypeTrainEligible",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub is_hype_train_eligible: Option<bool>,
     #[serde(rename = "labsPublicationDate")]
     pub labs_publication_date: String,
     #[serde(rename = "name")]
@@ -132,6 +137,7 @@ impl World {
             id,
             image_url,
             instances: None,
+            is_hype_train_eligible: None,
             labs_publication_date,
             name,
             namespace: None,

@@ -26,10 +26,26 @@ pub enum GetFavoriteGroupError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_favorite_group_contents`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetFavoriteGroupContentsError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_favorite_groups`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoriteGroupsError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_favorite_groups_by_type`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetFavoriteGroupsByTypeError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -224,6 +240,62 @@ pub async fn get_favorite_group(
     }
 }
 
+/// List the favorites in a group, each alongside the object it points at.
+pub async fn get_favorite_group_contents(
+    configuration: &configuration::Configuration,
+    favorite_group_type: models::FavoriteType,
+    favorite_group_name: &str,
+    owner_id: Option<&str>,
+) -> Result<models::FavoriteGroupContents, Error<GetFavoriteGroupContentsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_favorite_group_type = favorite_group_type;
+    let p_path_favorite_group_name = favorite_group_name;
+    let p_query_owner_id = owner_id;
+
+    let uri_str = format!(
+        "{}/favorites/groups/{favoriteGroupType}/{favoriteGroupName}",
+        configuration.base_path,
+        favoriteGroupType = p_path_favorite_group_type.to_string(),
+        favoriteGroupName = crate::apis::urlencode(p_path_favorite_group_name)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_owner_id {
+        req_builder = req_builder.query(&[("ownerId", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FavoriteGroupContents`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FavoriteGroupContents`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetFavoriteGroupContentsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Return a list of favorite groups owned by a user. Returns the same information as `getFavoriteGroups`.
 pub async fn get_favorite_groups(
     configuration: &configuration::Configuration,
@@ -283,6 +355,59 @@ pub async fn get_favorite_groups(
     } else {
         let content = resp.text().await?;
         let entity: Option<GetFavoriteGroupsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// List a user's favorite groups of one type.
+pub async fn get_favorite_groups_by_type(
+    configuration: &configuration::Configuration,
+    favorite_group_type: models::FavoriteType,
+    owner_id: Option<&str>,
+) -> Result<models::FavoriteGroupList, Error<GetFavoriteGroupsByTypeError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_favorite_group_type = favorite_group_type;
+    let p_query_owner_id = owner_id;
+
+    let uri_str = format!(
+        "{}/favorites/groups/{favoriteGroupType}",
+        configuration.base_path,
+        favoriteGroupType = p_path_favorite_group_type.to_string()
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_owner_id {
+        req_builder = req_builder.query(&[("ownerId", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::FavoriteGroupList`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::FavoriteGroupList`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        let entity: Option<GetFavoriteGroupsByTypeError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
