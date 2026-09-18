@@ -28,6 +28,13 @@ pub struct UpdateGroupRequest {
     pub links: Option<Vec<String>>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
+    #[serde(
+        rename = "nameplateId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub nameplate_id: Option<Option<String>>,
     #[serde(rename = "rules", skip_serializing_if = "Option::is_none")]
     pub rules: Option<String>,
     #[serde(rename = "shortCode", skip_serializing_if = "Option::is_none")]
@@ -46,6 +53,7 @@ impl UpdateGroupRequest {
             languages: None,
             links: None,
             name: None,
+            nameplate_id: None,
             rules: None,
             short_code: None,
             tags: None,

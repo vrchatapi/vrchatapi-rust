@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **languages** | Option<**Vec<String>**> | 3 letter language code | [optional]
 **links** | Option<**Vec<String>**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
+**nameplate_id** | Option<**String**> |  | [optional]
 **rules** | Option<**String**> |  | [optional]
 **short_code** | Option<**String**> |  | [optional]
 **tags** | Option<**Vec<String>**> |   | [optional]
