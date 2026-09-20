@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// WorldFavoriteList : A world favorite group summarised for a public profile, with a sample of its worlds' thumbnails.
+/// WorldFavoriteList : A world favorite group as a public profile lists it, with a sample of its worlds' thumbnails.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct WorldFavoriteList {
     #[serde(rename = "count")]
@@ -15,7 +15,7 @@ pub struct WorldFavoriteList {
 }
 
 impl WorldFavoriteList {
-    /// A world favorite group summarised for a public profile, with a sample of its worlds' thumbnails.
+    /// A world favorite group as a public profile lists it, with a sample of its worlds' thumbnails.
     pub fn new(count: i32, id: String, name: String, thumbnails: Vec<String>) -> WorldFavoriteList {
         WorldFavoriteList {
             count,

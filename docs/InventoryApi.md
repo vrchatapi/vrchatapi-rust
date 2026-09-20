@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**consume_own_inventory_item**](InventoryApi.md#consume_own_inventory_item) | **PUT** /inventory/{inventoryItemId}/consume | Consume Own Inventory Item
 [**delete_own_inventory_item**](InventoryApi.md#delete_own_inventory_item) | **DELETE** /inventory/{inventoryItemId} | Delete Own Inventory Item
 [**equip_own_inventory_item**](InventoryApi.md#equip_own_inventory_item) | **PUT** /inventory/{inventoryItemId}/equip | Equip Own Inventory Item
-[**get_cosmetic_index**](InventoryApi.md#get_cosmetic_index) | **GET** /cosmetics/index/{itemType} | List Cosmetics
+[**get_cosmetics**](InventoryApi.md#get_cosmetics) | **GET** /cosmetics/index/{itemType} | List Cosmetics
 [**get_inventory**](InventoryApi.md#get_inventory) | **GET** /inventory | Get Inventory
 [**get_inventory_collections**](InventoryApi.md#get_inventory_collections) | **GET** /inventory/collections | List Inventory Collections
 [**get_inventory_drops**](InventoryApi.md#get_inventory_drops) | **GET** /inventory/drops | List Inventory Drops
@@ -115,9 +115,9 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
-## get_cosmetic_index
+## get_cosmetics
 
-> Vec<models::InventoryTemplate> get_cosmetic_index(item_type)
+> Vec<models::InventoryTemplate> get_cosmetics(item_type)
 List Cosmetics
 
 List every cosmetic of a kind that VRChat has published, whether or not the caller owns it.

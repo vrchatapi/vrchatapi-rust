@@ -29,10 +29,10 @@ pub enum EquipOwnInventoryItemError {
     UnknownValue(serde_json::Value),
 }
 
-/// struct for typed errors of method [`get_cosmetic_index`]
+/// struct for typed errors of method [`get_cosmetics`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
-pub enum GetCosmeticIndexError {
+pub enum GetCosmeticsError {
     Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
@@ -311,10 +311,10 @@ pub async fn equip_own_inventory_item(
 }
 
 /// List every cosmetic of a kind that VRChat has published, whether or not the caller owns it.
-pub async fn get_cosmetic_index(
+pub async fn get_cosmetics(
     configuration: &configuration::Configuration,
     item_type: &str,
-) -> Result<Vec<models::InventoryTemplate>, Error<GetCosmeticIndexError>> {
+) -> Result<Vec<models::InventoryTemplate>, Error<GetCosmeticsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_item_type = item_type;
 
@@ -343,7 +343,7 @@ pub async fn get_cosmetic_index(
     if !status.is_client_error() && !status.is_server_error() {
         let content = resp.text().await?;
         if configuration.debug {
-            log::debug!("get_cosmetic_index returned: {content}");
+            log::debug!("get_cosmetics returned: {content}");
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
@@ -353,9 +353,9 @@ pub async fn get_cosmetic_index(
     } else {
         let content = resp.text().await?;
         if configuration.debug {
-            log::debug!("get_cosmetic_index returned: {content}");
+            log::debug!("get_cosmetics returned: {content}");
         }
-        let entity: Option<GetCosmeticIndexError> = serde_json::from_str(&content).ok();
+        let entity: Option<GetCosmeticsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

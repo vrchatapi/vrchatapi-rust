@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ApiConfigProfileDefaults : Default profile theme colours, each a hex RGB triplet without a leading `#`.
+/// ApiConfigProfileDefaults : Default profile theme colors.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigProfileDefaults {
     /// Six hexadecimal digits, without a leading `#`. May be empty.
@@ -28,7 +28,7 @@ pub struct ApiConfigProfileDefaults {
 }
 
 impl ApiConfigProfileDefaults {
-    /// Default profile theme colours, each a hex RGB triplet without a leading `#`.
+    /// Default profile theme colors.
     pub fn new() -> ApiConfigProfileDefaults {
         ApiConfigProfileDefaults {
             background_gradient_bottom: None,

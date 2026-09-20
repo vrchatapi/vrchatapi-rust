@@ -31,8 +31,9 @@ pub struct User {
     pub age_verified: bool,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
+    /// Details of an account on another service linked to this one.
     #[serde(rename = "appleDetails", skip_serializing_if = "Option::is_none")]
-    pub apple_details: Option<std::collections::HashMap<String, serde_json::Value>>,
+    pub apple_details: Option<serde_json::Value>,
     /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,

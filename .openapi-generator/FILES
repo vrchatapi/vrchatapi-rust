@@ -89,7 +89,6 @@ docs/CreateProductRequest.md
 docs/CreatePropRequest.md
 docs/CreateWorldRequest.md
 docs/CurrentUser.md
-docs/CurrentUserPlatformHistoryInner.md
 docs/CurrentUserPresence.md
 docs/DeclineGroupInviteRequest.md
 docs/DeveloperType.md
@@ -276,6 +275,7 @@ docs/PerformanceRatings.md
 docs/Permission.md
 docs/PermissionData.md
 docs/PlatformBuildInfo.md
+docs/PlatformHistoryEntry.md
 docs/PlayerModeration.md
 docs/PlayerModerationType.md
 docs/PlayermoderationApi.md
@@ -515,7 +515,6 @@ src/models/create_product_request.rs
 src/models/create_prop_request.rs
 src/models/create_world_request.rs
 src/models/current_user.rs
-src/models/current_user_platform_history_inner.rs
 src/models/current_user_presence.rs
 src/models/decline_group_invite_request.rs
 src/models/developer_type.rs
@@ -692,6 +691,7 @@ src/models/performance_ratings.rs
 src/models/permission.rs
 src/models/permission_data.rs
 src/models/platform_build_info.rs
+src/models/platform_history_entry.rs
 src/models/player_moderation.rs
 src/models/player_moderation_type.rs
 src/models/print.rs

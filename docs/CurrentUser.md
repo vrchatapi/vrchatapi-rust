@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **age_verification_status** | [**models::AgeVerificationStatus**](AgeVerificationStatus.md) |  | 
 **age_verified** | **bool** | `true` if, user is age verified (not 18+). | 
 **allow_avatar_copying** | **bool** |  | 
-**apple_details** | Option<**serde_json::Value**> |  | [optional]
+**apple_details** | Option<**serde_json::Value**> | Details of an account on another service linked to this one. | [optional]
 **apple_id** | Option<**String**> |  | [optional]
 **auth_token** | Option<**String**> | The auth token for NEWLY REGISTERED ACCOUNTS ONLY (/auth/register) | [optional]
 **banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **friend_key** | **String** |  | 
 **friend_request_status** | Option<**String**> | State of a friend request between the caller and this user. VRChat sends the string `\"null\"`, not JSON `null`. | [optional]
 **friends** | **Vec<String>** |  | 
-**google_details** | Option<**serde_json::Value**> |  | [optional]
+**google_details** | Option<**serde_json::Value**> | Details of an account on another service linked to this one. | [optional]
 **google_id** | Option<**String**> |  | [optional]
 **has_birthday** | **bool** |  | 
 **has_discord_friends_opt_out** | Option<**bool**> |  | [optional]
@@ -70,7 +70,7 @@ Name | Type | Description | Notes
 **personalization_opt_out** | Option<**bool**> |  | [optional]
 **pico_id** | Option<**String**> |  | [optional]
 **platform** | Option<**String**> |  | [optional]
-**platform_history** | Option<[**Vec<models::CurrentUserPlatformHistoryInner>**](CurrentUserPlatformHistoryInner.md)> |  | [optional]
+**platform_history** | Option<[**Vec<models::PlatformHistoryEntry>**](PlatformHistoryEntry.md)> |  | [optional]
 **presence** | Option<[**models::CurrentUserPresence**](CurrentUserPresence.md)> |  | [optional]
 **profile_effect** | Option<**String**> |  | [optional]
 **pronouns** | **String** |  | 
@@ -82,14 +82,14 @@ Name | Type | Description | Notes
 **status_description** | **String** |  | 
 **status_first_time** | **bool** |  | 
 **status_history** | **Vec<String>** |  | 
-**steam_details** | **serde_json::Value** |  | 
+**steam_details** | **serde_json::Value** | Details of an account on another service linked to this one. | 
 **steam_id** | **String** |  | 
 **tags** | **Vec<String>** |  | 
 **temporary_expiry_date** | Option<**serde_json::Value**> |  | [optional]
 **traveling_to_instance** | Option<**String**> |  | [optional]
 **traveling_to_location** | Option<**String**> |  | [optional]
 **traveling_to_world** | Option<**String**> |  | [optional]
-**twitch_details** | Option<**serde_json::Value**> |  | [optional]
+**twitch_details** | Option<**serde_json::Value**> | Details of an account on another service linked to this one. | [optional]
 **twitch_id** | Option<**String**> |  | [optional]
 **two_factor_auth_enabled** | **bool** |  | 
 **two_factor_auth_enabled_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]

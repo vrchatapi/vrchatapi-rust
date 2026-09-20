@@ -33,6 +33,7 @@ pub struct CurrentUser {
     pub age_verified: bool,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
+    /// Details of an account on another service linked to this one.
     #[serde(rename = "appleDetails", skip_serializing_if = "Option::is_none")]
     pub apple_details: Option<serde_json::Value>,
     #[serde(rename = "appleId", skip_serializing_if = "Option::is_none")]
@@ -90,6 +91,7 @@ pub struct CurrentUser {
     pub friend_request_status: Option<String>,
     #[serde(rename = "friends")]
     pub friends: Vec<String>,
+    /// Details of an account on another service linked to this one.
     #[serde(rename = "googleDetails", skip_serializing_if = "Option::is_none")]
     pub google_details: Option<serde_json::Value>,
     #[serde(rename = "googleId", skip_serializing_if = "Option::is_none")]
@@ -178,7 +180,7 @@ pub struct CurrentUser {
     #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
     pub platform: Option<String>,
     #[serde(rename = "platform_history", skip_serializing_if = "Option::is_none")]
-    pub platform_history: Option<Vec<models::CurrentUserPlatformHistoryInner>>,
+    pub platform_history: Option<Vec<models::PlatformHistoryEntry>>,
     #[serde(rename = "presence", skip_serializing_if = "Option::is_none")]
     pub presence: Option<models::CurrentUserPresence>,
     #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
@@ -209,6 +211,7 @@ pub struct CurrentUser {
     pub status_first_time: bool,
     #[serde(rename = "statusHistory")]
     pub status_history: Vec<String>,
+    /// Details of an account on another service linked to this one.
     #[serde(rename = "steamDetails")]
     pub steam_details: serde_json::Value,
     #[serde(rename = "steamId")]
@@ -234,6 +237,7 @@ pub struct CurrentUser {
     pub traveling_to_location: Option<String>,
     #[serde(rename = "travelingToWorld", skip_serializing_if = "Option::is_none")]
     pub traveling_to_world: Option<String>,
+    /// Details of an account on another service linked to this one.
     #[serde(rename = "twitchDetails", skip_serializing_if = "Option::is_none")]
     pub twitch_details: Option<serde_json::Value>,
     #[serde(rename = "twitchId", skip_serializing_if = "Option::is_none")]
