@@ -11,6 +11,12 @@ pub struct LimitedUserFriend {
     pub banner_type: Option<String>,
     #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
     pub banner_url: Option<String>,
+    /// When profilePicOverride is not empty, use it instead.
+    #[serde(
+        rename = "currentAvatarImageUrl",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub current_avatar_image_url: Option<String>,
     #[serde(rename = "developerType")]
     pub developer_type: models::DeveloperType,
     /// https://discord.com/developers/docs/reference#snowflakes
@@ -77,6 +83,7 @@ impl LimitedUserFriend {
             banner_color: None,
             banner_type: None,
             banner_url: None,
+            current_avatar_image_url: None,
             developer_type,
             discord_id: None,
             display_name,

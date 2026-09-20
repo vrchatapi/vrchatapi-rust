@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
 **banner_type** | Option<**String**> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
+**current_avatar_image_url** | Option<**String**> | When profilePicOverride is not empty, use it instead. | [optional]
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 
 **discord_id** | Option<**String**> | https://discord.com/developers/docs/reference#snowflakes | [optional]
 **display_name** | **String** |  | 

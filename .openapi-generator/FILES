@@ -179,9 +179,11 @@ docs/InfoPush.md
 docs/InfoPushData.md
 docs/InfoPushDataArticle.md
 docs/InfoPushDataArticleContent.md
+docs/InfoPushDataCallToAction.md
 docs/InfoPushDataCategory.md
 docs/InfoPushDataCategoryName.md
 docs/InfoPushDataClickable.md
+docs/InfoPushDataDeliveryBehavior.md
 docs/InfoPushDataDomainListInner.md
 docs/InfoPushDataSearch.md
 docs/InfoPushEmbeddedLink.md
@@ -600,9 +602,11 @@ src/models/info_push.rs
 src/models/info_push_data.rs
 src/models/info_push_data_article.rs
 src/models/info_push_data_article_content.rs
+src/models/info_push_data_call_to_action.rs
 src/models/info_push_data_category.rs
 src/models/info_push_data_category_name.rs
 src/models/info_push_data_clickable.rs
+src/models/info_push_data_delivery_behavior.rs
 src/models/info_push_data_domain_list_inner.rs
 src/models/info_push_data_search.rs
 src/models/info_push_embedded_link.rs
