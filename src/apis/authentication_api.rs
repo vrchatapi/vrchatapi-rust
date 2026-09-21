@@ -16,6 +16,7 @@ pub enum CancelPending2FaError {
 #[serde(untagged)]
 pub enum CheckUserExistsError {
     Status400(models::Error),
+    Status429(),
     UnknownValue(serde_json::Value),
 }
 
