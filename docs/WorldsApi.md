@@ -108,7 +108,7 @@ Name | Type | Description  | Required | Notes
 
 ### Authorization
 
-No authorization required
+[authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 

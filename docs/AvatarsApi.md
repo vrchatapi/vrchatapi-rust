@@ -188,7 +188,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
