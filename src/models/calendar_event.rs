@@ -44,13 +44,8 @@ pub struct CalendarEvent {
     pub id: String,
     #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
     pub image_id: Option<String>,
-    #[serde(
-        rename = "imageUrl",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub image_url: Option<Option<String>>,
+    #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
+    pub image_url: Option<String>,
     #[serde(
         rename = "interestedUserCount",
         skip_serializing_if = "Option::is_none"
@@ -63,13 +58,8 @@ pub struct CalendarEvent {
     pub languages: Option<Vec<String>>,
     #[serde(rename = "occurrenceKind", skip_serializing_if = "Option::is_none")]
     pub occurrence_kind: Option<models::CalendarEventOccurrenceKind>,
-    #[serde(
-        rename = "occurrenceModified",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub occurrence_modified: Option<Option<bool>>,
+    #[serde(rename = "occurrenceModified", skip_serializing_if = "Option::is_none")]
+    pub occurrence_modified: Option<bool>,
     #[serde(rename = "ownerId", skip_serializing_if = "Option::is_none")]
     pub owner_id: Option<String>,
     #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
@@ -89,14 +79,8 @@ pub struct CalendarEvent {
         skip_serializing_if = "Option::is_none"
     )]
     pub role_ids: Option<Option<Vec<String>>>,
-    /// So far unused, always \"null\"
-    #[serde(
-        rename = "seriesId",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub series_id: Option<Option<String>>,
+    #[serde(rename = "seriesId", skip_serializing_if = "Option::is_none")]
+    pub series_id: Option<String>,
     #[serde(rename = "startsAt")]
     pub starts_at: chrono::DateTime<chrono::FixedOffset>,
     /// Custom tags for this event

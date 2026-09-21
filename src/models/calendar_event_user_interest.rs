@@ -1,6 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// CalendarEventUserInterest : The currently logged in user's interest in an event.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CalendarEventUserInterest {
     #[serde(rename = "createdAt", skip_serializing_if = "Option::is_none")]
@@ -12,6 +13,7 @@ pub struct CalendarEventUserInterest {
 }
 
 impl CalendarEventUserInterest {
+    /// The currently logged in user's interest in an event.
     pub fn new() -> CalendarEventUserInterest {
         CalendarEventUserInterest {
             created_at: None,

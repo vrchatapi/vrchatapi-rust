@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **platforms** | Option<[**Vec<models::CalendarEventPlatform>**](CalendarEventPlatform.md)> |  | [optional]
 **recurrence** | Option<[**models::CalendarEventRecurrence**](CalendarEventRecurrence.md)> |  | [optional]
 **role_ids** | Option<**Vec<String>**> | Group roles that may join this event | [optional]
-**series_id** | Option<**String**> | So far unused, always \"null\" | [optional]
+**series_id** | Option<**String**> |  | [optional]
 **starts_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **tags** | Option<**Vec<String>**> | Custom tags for this event | [optional]
 **title** | **String** |  | 
