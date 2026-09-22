@@ -10,9 +10,7 @@ async fn main() {
         ::vrchatapi::models::LoginOr2fa::CurrentUser(me) => {
             println!("Username: {}", me.username.unwrap())
         }
-        ::vrchatapi::models::LoginOr2fa::RequiresTwoFactorAuth(
-            requires_auth,
-        ) => {
+        ::vrchatapi::models::LoginOr2fa::RequiresTwoFactorAuth(requires_auth) => {
             if requires_auth
                 .requires_two_factor_auth
                 .contains(&::vrchatapi::models::TwoFactorAuthType::EmailOtp)
