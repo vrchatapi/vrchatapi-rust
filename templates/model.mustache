@@ -154,7 +154,7 @@ pub struct {{{classname}}} {
 {{/composedSchemas.allOf}}
 {{#composedSchemas.allOf}}
     #[serde(flatten)]
-    pub {{^title.isEmpty}}{{{title}}}{{/title.isEmpty}}{{#title.isEmpty}}{{{name}}}{{/title.isEmpty}}: {{{dataType}}},
+    pub {{#title}}{{{title}}}{{/title}}{{^title}}{{{name}}}{{/title}}: {{{dataType}}},
 {{/composedSchemas.allOf}}
 }
 
