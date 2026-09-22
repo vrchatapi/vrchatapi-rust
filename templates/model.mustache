@@ -123,9 +123,10 @@ impl Default for {{classname}} {
 {{!-- for non-enum schemas --}}
 {{^isEnum}}
 {{^discriminator}}
-{{#vendorExtensions.x-rust-has-byte-array}}#[serde_as]
-{{/vendorExtensions.x-rust-has-byte-array}}{{#oneOf.isEmpty}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+{{^composedSchemas.allOf}}{{#vendorExtensions.x-rust-has-byte-array}}#[serde_as]
+{{/vendorExtensions.x-rust-has-byte-array}}{{/composedSchemas.allOf}}{{#oneOf.isEmpty}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct {{{classname}}} {
+{{^composedSchemas.allOf}}
 {{#vars}}
     {{#description}}
     /// {{{.}}}
@@ -150,8 +151,14 @@ pub struct {{{classname}}} {
     ### Option End (and trailing comma)
     }}{{#isNullable}}>{{/isNullable}}{{^required}}>{{/required}},
 {{/vars}}
+{{/composedSchemas.allOf}}
+{{#composedSchemas.allOf}}
+    #[serde(flatten)]
+    pub {{^title.isEmpty}}{{{title}}}{{/title.isEmpty}}{{#title.isEmpty}}{{{name}}}{{/title.isEmpty}}: {{{dataType}}},
+{{/composedSchemas.allOf}}
 }
 
+{{^composedSchemas.allOf}}
 impl {{{classname}}} {
     {{#description}}
     /// {{{.}}}
@@ -174,6 +181,7 @@ impl {{{classname}}} {
         }
     }
 }
+{{/composedSchemas.allOf}}
 {{/oneOf.isEmpty}}
 {{^oneOf.isEmpty}}
 {{! TODO: add other vars that are not part of the oneOf}}
