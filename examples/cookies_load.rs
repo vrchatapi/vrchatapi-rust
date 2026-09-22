@@ -31,10 +31,10 @@ async fn main() {
         .unwrap();
 
     match user {
-        ::vrchatapi::models::RegisterUserAccount200Response::CurrentUser(user) => {
+        ::vrchatapi::models::LoginOr2fa::CurrentUser(user) => {
             println!("Current user: {}", user.display_name)
         }
-        ::vrchatapi::models::RegisterUserAccount200Response::RequiresTwoFactorAuth(_) => {
+        ::vrchatapi::models::LoginOr2fa::RequiresTwoFactorAuth(_) => {
             println!("cookie invalid")
         }
     }

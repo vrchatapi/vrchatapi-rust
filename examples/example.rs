@@ -7,10 +7,10 @@ async fn main() {
         .await
         .unwrap()
     {
-        ::vrchatapi::models::RegisterUserAccount200Response::CurrentUser(me) => {
+        ::vrchatapi::models::LoginOr2fa::CurrentUser(me) => {
             println!("Username: {}", me.username.unwrap())
         }
-        ::vrchatapi::models::RegisterUserAccount200Response::RequiresTwoFactorAuth(
+        ::vrchatapi::models::LoginOr2fa::RequiresTwoFactorAuth(
             requires_auth,
         ) => {
             if requires_auth
@@ -45,10 +45,10 @@ async fn main() {
         .unwrap();
 
     match user {
-        ::vrchatapi::models::RegisterUserAccount200Response::CurrentUser(user) => {
+        ::vrchatapi::models::LoginOr2fa::CurrentUser(user) => {
             println!("Current user: {}", user.display_name)
         }
-        ::vrchatapi::models::RegisterUserAccount200Response::RequiresTwoFactorAuth(_) => {
+        ::vrchatapi::models::LoginOr2fa::RequiresTwoFactorAuth(_) => {
             println!("cookie invalid")
         }
     }
