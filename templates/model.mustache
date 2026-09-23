@@ -177,7 +177,9 @@ impl {{{classname}}} {
     ### Enums
     }}{{#isEnum}}{{#isArray}}{{#uniqueItems}}std::collections::HashSet<{{/uniqueItems}}{{^uniqueItems}}Vec<{{/uniqueItems}}{{/isArray}}{{{enumName}}}{{#isArray}}>{{/isArray}}{{/isEnum}}{{!
     ### Non-Enums
+    }}{{^vendorExtensions.x-vrchat-double-encoding-type}}{{!
     }}{{^isEnum}}{{#isByteArray}}Vec<u8>{{/isByteArray}}{{^isByteArray}}{{{dataType}}}{{/isByteArray}}{{/isEnum}}{{!
+    }}{{/vendorExtensions.x-vrchat-double-encoding-type}}{{#vendorExtensions.x-vrchat-double-encoding-type}}models::{{{vendorExtensions.x-vrchat-double-encoding-type}}}{{/vendorExtensions.x-vrchat-double-encoding-type}}{{!
     ### Option End
     }}{{#isNullable}}>{{/isNullable}}{{!
     ### Comma for next arguement
