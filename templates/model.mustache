@@ -123,8 +123,12 @@ impl Default for {{classname}} {
 {{!-- for non-enum schemas --}}
 {{^isEnum}}
 {{^discriminator}}
-{{^composedSchemas.allOf}}{{#vendorExtensions.x-rust-has-byte-array}}#[serde_as]
-{{/vendorExtensions.x-rust-has-byte-array}}{{/composedSchemas.allOf}}{{#oneOf.isEmpty}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+{{^composedSchemas.allOf}}{{!
+}}{{#vendorExtensions.x-rust-has-byte-array}}#[serde_as]
+{{/vendorExtensions.x-rust-has-byte-array}}{{^vendorExtensions.x-rust-has-byte-array}}{{#vendorExtensions.x-vrcapispecification-has-double-json-encoding}}#[serde_with::serde_as]
+{{/vendorExtensions.x-vrcapispecification-has-double-json-encoding}}{{/vendorExtensions.x-rust-has-byte-array}}{{!
+}}{{/composedSchemas.allOf}}{{!
+}}{{#oneOf.isEmpty}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct {{{classname}}} {
 {{^composedSchemas.allOf}}
 {{#vars}}
@@ -134,6 +138,8 @@ pub struct {{{classname}}} {
     {{#isByteArray}}
     {{#vendorExtensions.isMandatory}}#[serde_as(as = "serde_with::base64::Base64")]{{/vendorExtensions.isMandatory}}{{^vendorExtensions.isMandatory}}#[serde_as(as = "{{^serdeAsDoubleOption}}Option{{/serdeAsDoubleOption}}{{#serdeAsDoubleOption}}super::DoubleOption{{/serdeAsDoubleOption}}<serde_with::base64::Base64>")]{{/vendorExtensions.isMandatory}}
     {{/isByteArray}}
+    {{#vendorExtensions.x-vrcapispecification-inner-json}}#[serde_as(as = "serde_with::json::JsonString")]
+    {{/vendorExtensions.x-vrcapispecification-inner-json}}
     #[serde(rename = "{{{baseName}}}"{{^required}}{{#isNullable}}, default{{^isByteArray}}, with = "::serde_with::rust::double_option"{{/isByteArray}}{{/isNullable}}{{/required}}{{^required}}, skip_serializing_if = "Option::is_none"{{/required}}{{#required}}{{#isNullable}}, deserialize_with = "Option::deserialize"{{/isNullable}}{{/required}})]
     pub {{{name}}}: {{!
     ### Option Start
@@ -145,7 +151,9 @@ pub struct {{{classname}}} {
     ### Models
     }}{{#isModel}}{{^avoidBoxedModels}}Box<{{/avoidBoxedModels}}{{{dataType}}}{{^avoidBoxedModels}}>{{/avoidBoxedModels}}{{/isModel}}{{!
     ### Primative datatypes
+    }}{{^vendorExtensions.x-vrcapispecification-inner-json}}{{!
     }}{{^isModel}}{{#isByteArray}}Vec<u8>{{/isByteArray}}{{^isByteArray}}{{{dataType}}}{{/isByteArray}}{{/isModel}}{{!
+    }}{{/vendorExtensions.x-vrcapispecification-inner-json}}{{#vendorExtensions.x-vrcapispecification-inner-json}}models::{{{vendorExtensions.x-vrcapispecification-inner-json}}}{{/vendorExtensions.x-vrcapispecification-inner-json}}{{!
     ### Non-Enums End
     }}{{/isEnum}}{{!
     ### Option End (and trailing comma)
