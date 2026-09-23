@@ -35,7 +35,7 @@ homepage = "{{.}}"
 log = "0.4"
 serde = { version = "^1.0", features = ["derive"] }
 {{#serdeWith}}
-serde_with = { version = "^3.8", default-features = false, features = ["base64", "std", "macros"] }
+serde_with = { version = "^3.8", default-features = false, features = ["base64", "json", "std", "macros"] }
 {{/serdeWith}}
 serde_json = "^1.0"
 serde_repr = "^0.1"
