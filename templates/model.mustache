@@ -125,8 +125,8 @@ impl Default for {{classname}} {
 {{^discriminator}}
 {{^composedSchemas.allOf}}{{!
 }}{{#vendorExtensions.x-rust-has-byte-array}}#[serde_as]
-{{/vendorExtensions.x-rust-has-byte-array}}{{^vendorExtensions.x-rust-has-byte-array}}{{#vendorExtensions.x-vrcapispecification-has-double-json-encoding}}#[serde_with::serde_as]
-{{/vendorExtensions.x-vrcapispecification-has-double-json-encoding}}{{/vendorExtensions.x-rust-has-byte-array}}{{!
+{{/vendorExtensions.x-rust-has-byte-array}}{{^vendorExtensions.x-rust-has-byte-array}}{{#vendorExtensions.x-vrchat-double-encoding}}#[serde_with::serde_as]
+{{/vendorExtensions.x-vrchat-double-encoding}}{{/vendorExtensions.x-rust-has-byte-array}}{{!
 }}{{/composedSchemas.allOf}}{{!
 }}{{#oneOf.isEmpty}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct {{{classname}}} {
@@ -138,8 +138,8 @@ pub struct {{{classname}}} {
     {{#isByteArray}}
     {{#vendorExtensions.isMandatory}}#[serde_as(as = "serde_with::base64::Base64")]{{/vendorExtensions.isMandatory}}{{^vendorExtensions.isMandatory}}#[serde_as(as = "{{^serdeAsDoubleOption}}Option{{/serdeAsDoubleOption}}{{#serdeAsDoubleOption}}super::DoubleOption{{/serdeAsDoubleOption}}<serde_with::base64::Base64>")]{{/vendorExtensions.isMandatory}}
     {{/isByteArray}}
-    {{#vendorExtensions.x-double-encoding}}#[serde_as(as = "serde_with::json::JsonString")]
-    {{/vendorExtensions.x-double-encoding}}
+    {{#vendorExtensions.x-vrchat-double-encoding-type}}#[serde_as(as = "serde_with::json::JsonString")]
+    {{/vendorExtensions.x-vrchat-double-encoding-type}}
     #[serde(rename = "{{{baseName}}}"{{^required}}{{#isNullable}}, default{{^isByteArray}}, with = "::serde_with::rust::double_option"{{/isByteArray}}{{/isNullable}}{{/required}}{{^required}}, skip_serializing_if = "Option::is_none"{{/required}}{{#required}}{{#isNullable}}, deserialize_with = "Option::deserialize"{{/isNullable}}{{/required}})]
     pub {{{name}}}: {{!
     ### Option Start
