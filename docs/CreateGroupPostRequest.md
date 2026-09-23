@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **image_id** | Option<**String**> |  | [optional]
-**role_ids** | Option<**Vec<String>**> |   | [optional]
+**role_ids** | Option<**Vec<String>**> |  | [optional]
 **send_notification** | **bool** | Send notification to group members. | [default to false]
 **text** | **String** | Post text | 
 **title** | **String** | Post title | 

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **age_verified** | **bool** | `true` if, user is age verified (not 18+). | 
 **allow_avatar_copying** | **bool** |  | 
 **bio** | Option<**String**> |  | [optional]
-**bio_links** | Option<**Vec<String>**> |   | [optional]
+**bio_links** | Option<**Vec<String>**> |  | [optional]
 **current_avatar_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 
 **current_avatar_tags** | **Vec<String>** |  | 
 **current_avatar_thumbnail_image_url** | **String** | When profilePicOverride is not empty, use it instead. | 

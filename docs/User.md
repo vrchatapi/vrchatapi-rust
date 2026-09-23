@@ -39,7 +39,7 @@ Name | Type | Description | Notes
 **state** | [**models::UserState**](UserState.md) |  | 
 **status** | [**models::UserStatus**](UserStatus.md) |  | 
 **status_description** | **String** |  | 
-**tags** | **Vec<String>** |   | 
+**tags** | **Vec<String>** |  | 
 **traveling_to_instance** | Option<**String**> |  | [optional]
 **traveling_to_location** | Option<**String**> |  | [optional]
 **traveling_to_world** | Option<**String**> |  | [optional]

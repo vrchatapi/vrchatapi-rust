@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// AdminAssetBundle :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AdminAssetBundle {
     #[serde(rename = "_created_at")]

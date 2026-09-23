@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Jam :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Jam {
     #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]

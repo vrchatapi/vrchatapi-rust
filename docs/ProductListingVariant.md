@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **effective_from** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
-**listing_variant_id** | **String** |  | 
+**listing_variant_id** | Option<**String**> |  | 
 **non_refundable** | **bool** |  | 
 **quantity** | **i32** |  | 
 **seller_variant** | **bool** |  | 

@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// TiliaTos :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TiliaTos {
     #[serde(rename = "signed_tos")]

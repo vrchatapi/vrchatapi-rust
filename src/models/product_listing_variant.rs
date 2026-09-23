@@ -5,8 +5,8 @@ use serde::{Deserialize, Serialize};
 pub struct ProductListingVariant {
     #[serde(rename = "effectiveFrom", skip_serializing_if = "Option::is_none")]
     pub effective_from: Option<chrono::DateTime<chrono::FixedOffset>>,
-    #[serde(rename = "listingVariantId")]
-    pub listing_variant_id: String,
+    #[serde(rename = "listingVariantId", deserialize_with = "Option::deserialize")]
+    pub listing_variant_id: Option<String>,
     #[serde(rename = "nonRefundable")]
     pub non_refundable: bool,
     #[serde(rename = "quantity")]
@@ -19,7 +19,7 @@ pub struct ProductListingVariant {
 
 impl ProductListingVariant {
     pub fn new(
-        listing_variant_id: String,
+        listing_variant_id: Option<String>,
         non_refundable: bool,
         quantity: i32,
         seller_variant: bool,

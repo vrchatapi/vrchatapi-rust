@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Subscription :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Subscription {
     #[serde(rename = "amount")]

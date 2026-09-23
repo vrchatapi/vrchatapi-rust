@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// TransactionSteamWalletInfo :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TransactionSteamWalletInfo {
     #[serde(rename = "country")]

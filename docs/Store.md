@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **created** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **description** | **String** |  | 
 **display_name** | **String** |  | 
-**group_id** | Option<**String**> |  | [optional]
+**group_id** | Option<**String**> | Only for store type group | [optional]
 **id** | **String** |  | 
 **listing_ids** | Option<**Vec<String>**> | Only for store type world and group | [optional]
 **listings** | Option<[**Vec<models::ProductListing>**](ProductListing.md)> | Only for store type world and group | [optional]
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **store_type** | [**models::StoreType**](StoreType.md) |  | 
 **tags** | **Vec<String>** |  | 
 **updated** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
-**world_id** | Option<**String**> | WorldID be \"offline\" on User profiles if you are not friends with that user. | [optional]
+**world_id** | Option<**String**> | Only for store type world | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

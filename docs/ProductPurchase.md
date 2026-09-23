@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **listing_description** | Option<**String**> |  | [optional]
 **listing_display_name** | **String** |  | 
 **listing_id** | **String** |  | 
-**listing_image_id** | **String** |  | 
+**listing_image_id** | Option<**String**> |  | 
 **listing_subtitle** | **String** |  | 
 **listing_type** | [**models::ProductListingType**](ProductListingType.md) |  | 
 **products** | [**Vec<models::ProductPurchaseProduct>**](ProductPurchaseProduct.md) |  | 

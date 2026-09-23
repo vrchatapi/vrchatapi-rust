@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// LicenseGroup :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LicenseGroup {
     #[serde(rename = "description")]

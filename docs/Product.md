@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **group_id** | Option<**String**> |  | [optional]
 **group_role_id** | Option<**String**> |  | [optional]
 **id** | **String** |  | 
-**image_id** | **String** |  | 
+**image_id** | Option<**String**> |  | 
 **image_url** | Option<**String**> |  | [optional]
 **parent_listings** | **Vec<String>** |  | 
 **product_type** | [**models::ProductType**](ProductType.md) |  | 

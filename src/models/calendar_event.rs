@@ -42,8 +42,13 @@ pub struct CalendarEvent {
     pub host_early_join_minutes: Option<i32>,
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
-    pub image_id: Option<String>,
+    #[serde(
+        rename = "imageId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub image_id: Option<Option<String>>,
     #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
     pub image_url: Option<String>,
     #[serde(
@@ -79,8 +84,13 @@ pub struct CalendarEvent {
         skip_serializing_if = "Option::is_none"
     )]
     pub role_ids: Option<Option<Vec<String>>>,
-    #[serde(rename = "seriesId", skip_serializing_if = "Option::is_none")]
-    pub series_id: Option<String>,
+    #[serde(
+        rename = "seriesId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub series_id: Option<Option<String>>,
     #[serde(rename = "startsAt")]
     pub starts_at: chrono::DateTime<chrono::FixedOffset>,
     /// Custom tags for this event

@@ -87,8 +87,13 @@ pub struct Group {
     pub member_count_synced_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
     pub membership_status: Option<models::GroupMemberStatus>,
-    #[serde(rename = "myMember", skip_serializing_if = "Option::is_none")]
-    pub my_member: Option<models::GroupMyMember>,
+    #[serde(
+        rename = "myMember",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub my_member: Option<Option<models::GroupMyMember>>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(
@@ -129,13 +134,23 @@ pub struct Group {
     pub rules: Option<Option<String>>,
     #[serde(rename = "shortCode", skip_serializing_if = "Option::is_none")]
     pub short_code: Option<String>,
-    #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
-    pub store_id: Option<String>,
+    #[serde(
+        rename = "storeId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub store_id: Option<Option<String>>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "transferTargetId", skip_serializing_if = "Option::is_none")]
-    pub transfer_target_id: Option<String>,
+    #[serde(
+        rename = "transferTargetId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub transfer_target_id: Option<Option<String>>,
     #[serde(rename = "updatedAt", skip_serializing_if = "Option::is_none")]
     pub updated_at: Option<chrono::DateTime<chrono::FixedOffset>>,
 }

@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FileVersionUploadStatus :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileVersionUploadStatus {
     /// Unknown

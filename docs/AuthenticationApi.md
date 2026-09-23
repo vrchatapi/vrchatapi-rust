@@ -15,6 +15,7 @@ Method | HTTP request | Description
 [**enable2_fa**](AuthenticationApi.md#enable2_fa) | **POST** /auth/twofactorauth/totp/pending | Enable time-based 2FA codes
 [**get_current_user**](AuthenticationApi.md#get_current_user) | **GET** /auth/user | Login and/or Get Current User Info
 [**get_global_avatar_moderations**](AuthenticationApi.md#get_global_avatar_moderations) | **GET** /auth/user/avatarmoderations | Get Global Avatar Moderations
+[**get_interests_and_preferences**](AuthenticationApi.md#get_interests_and_preferences) | **GET** /auth/user/interestsAndPreferences | Get Interests and Preferences
 [**get_moderation_reports**](AuthenticationApi.md#get_moderation_reports) | **GET** /moderationReports | Get Moderation Reports
 [**get_o_auth_redirect_code**](AuthenticationApi.md#get_o_auth_redirect_code) | **GET** /oauth/redirectCode | Get OAuth Redirect Code
 [**get_recovery_codes**](AuthenticationApi.md#get_recovery_codes) | **GET** /auth/user/twofactorauth/otp | Get 2FA Recovery codes
@@ -23,6 +24,7 @@ Method | HTTP request | Description
 [**register_user_account**](AuthenticationApi.md#register_user_account) | **POST** /auth/register | Register User Account
 [**resend_email_confirmation**](AuthenticationApi.md#resend_email_confirmation) | **POST** /auth/user/resendEmail | Resend Email Confirmation
 [**submit_moderation_report**](AuthenticationApi.md#submit_moderation_report) | **POST** /moderationReports | Submit Moderation Report
+[**update_interests_and_preferences**](AuthenticationApi.md#update_interests_and_preferences) | **PUT** /auth/user/interestsAndPreferences | Update Interests and Preferences
 [**verify2_fa**](AuthenticationApi.md#verify2_fa) | **POST** /auth/twofactorauth/totp/verify | Verify 2FA code
 [**verify2_fa_email_code**](AuthenticationApi.md#verify2_fa_email_code) | **POST** /auth/twofactorauth/emailotp/verify | Verify 2FA email code
 [**verify_auth_token**](AuthenticationApi.md#verify_auth_token) | **GET** /auth | Verify Auth Token
@@ -300,7 +302,7 @@ This endpoint does not need any parameter.
 
 ## get_current_user
 
-> models::RegisterUserAccount200Response get_current_user()
+> models::CurrentUserLoginResponse get_current_user()
 Login and/or Get Current User Info
 
 This endpoint does the following two operations:   1) Checks if you are already logged in by looking for a valid `auth` cookie. If you are have a valid auth cookie then no additional auth-related actions are taken. If you are **not** logged in then it will log you in with the `Authorization` header and set the `auth` cookie. The `auth` cookie will only be sent once.   2) If logged in, this function will also return the CurrentUser object containing detailed information about the currently logged in user.  The auth string after `Authorization: Basic {string}` is a base64-encoded string of the username and password, both individually url-encoded, and then joined with a colon.  > base64(urlencode(username):urlencode(password))  **WARNING: Session Limit:** Each authentication with login credentials counts as a separate session, out of which you have a limited amount. Make sure to save and reuse the `auth` cookie if you are often restarting the program. The provided API libraries automatically save cookies during runtime, but does not persist during restart. While it can be fine to use username/password during development, expect in production to very fast run into the rate-limit and be temporarily blocked from making new sessions until older ones expire. The exact number of simultaneous sessions is unknown/undisclosed.
@@ -311,7 +313,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**models::RegisterUserAccount200Response**](registerUserAccount_200_response.md)
+[**models::CurrentUserLoginResponse**](CurrentUserLoginResponse.md)
 
 ### Authorization
 
@@ -339,6 +341,33 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**Vec<models::AvatarModeration>**](AvatarModeration.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_interests_and_preferences
+
+> models::InterestsAndPreferences get_interests_and_preferences()
+Get Interests and Preferences
+
+Returns the interests and preferences the current user has turned on.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::InterestsAndPreferences**](InterestsAndPreferences.md)
 
 ### Authorization
 
@@ -499,7 +528,7 @@ This endpoint does not need any parameter.
 
 ## register_user_account
 
-> models::RegisterUserAccount200Response register_user_account(register_user_account_request)
+> models::CurrentUserLoginResponse register_user_account(register_user_account_request)
 Register User Account
 
 Register a new user account.  Automated creation of accounts has no legitimate public third-party use case, and would violate ToS §13.2: *By using the Platform, you agree not to: i. [...] use the Platform in a manner inconsistent with individual human usage* This endpoint is documented in the interest of completeness.
@@ -513,7 +542,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::RegisterUserAccount200Response**](registerUserAccount_200_response.md)
+[**models::CurrentUserLoginResponse**](CurrentUserLoginResponse.md)
 
 ### Authorization
 
@@ -571,6 +600,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::ModerationReport**](ModerationReport.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_interests_and_preferences
+
+> models::Success update_interests_and_preferences(interests_and_preferences)
+Update Interests and Preferences
+
+Turns interests and preferences on with `true` and off with `false`. A key the body leaves out keeps its value, and an unknown key or a value that is not a boolean is ignored.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**interests_and_preferences** | [**InterestsAndPreferences**](InterestsAndPreferences.md) |  | [required] |
+
+### Return type
+
+[**models::Success**](Success.md)
 
 ### Authorization
 

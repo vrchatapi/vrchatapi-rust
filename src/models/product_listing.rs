@@ -41,8 +41,13 @@ pub struct ProductListing {
         skip_serializing_if = "Option::is_none"
     )]
     pub duration_type: Option<Option<String>>,
-    #[serde(rename = "groupIcon", skip_serializing_if = "Option::is_none")]
-    pub group_icon: Option<String>,
+    #[serde(
+        rename = "groupIcon",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub group_icon: Option<Option<String>>,
     #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
     pub group_id: Option<String>,
     #[serde(
@@ -64,8 +69,13 @@ pub struct ProductListing {
     pub hydrated_products: Option<Vec<models::Product>>,
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
-    pub image_id: Option<String>,
+    #[serde(
+        rename = "imageId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub image_id: Option<Option<String>>,
     #[serde(
         rename = "imageUrl",
         default,

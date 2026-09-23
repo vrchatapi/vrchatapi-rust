@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// AvatarStyle :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AvatarStyle {
     #[serde(rename = "id")]

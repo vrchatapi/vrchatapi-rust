@@ -24,8 +24,13 @@ pub struct Instance {
     pub can_request_invite: Option<bool>,
     #[serde(rename = "capacity", skip_serializing_if = "Option::is_none")]
     pub capacity: Option<i32>,
-    #[serde(rename = "categoryId", skip_serializing_if = "Option::is_none")]
-    pub category_id: Option<String>,
+    #[serde(
+        rename = "categoryId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub category_id: Option<Option<String>>,
     /// Always returns \"unknown\".
     #[serde(rename = "clientNumber")]
     pub client_number: String,
@@ -41,8 +46,13 @@ pub struct Instance {
     #[serde(rename = "creationLanguages", skip_serializing_if = "Option::is_none")]
     pub creation_languages: Option<Vec<serde_json::Value>>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "creatorId", skip_serializing_if = "Option::is_none")]
-    pub creator_id: Option<String>,
+    #[serde(
+        rename = "creatorId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub creator_id: Option<Option<String>>,
     #[serde(
         rename = "description",
         default,

@@ -7,8 +7,13 @@ pub struct PlatformHistoryEntry {
     #[serde(rename = "isMobile", skip_serializing_if = "Option::is_none")]
     pub is_mobile: Option<bool>,
     /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
-    #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
-    pub platform: Option<String>,
+    #[serde(
+        rename = "platform",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub platform: Option<Option<String>>,
     #[serde(rename = "recorded", skip_serializing_if = "Option::is_none")]
     pub recorded: Option<chrono::DateTime<chrono::FixedOffset>>,
 }

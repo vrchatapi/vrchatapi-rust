@@ -5,8 +5,13 @@ use serde::{Deserialize, Serialize};
 pub struct EconomyPayoutStatus {
     #[serde(rename = "accountId")]
     pub account_id: i32,
-    #[serde(rename = "activePayout", skip_serializing_if = "Option::is_none")]
-    pub active_payout: Option<models::EconomyPayout>,
+    #[serde(
+        rename = "activePayout",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub active_payout: Option<Option<models::EconomyPayout>>,
     #[serde(rename = "activePayoutCancellable")]
     pub active_payout_cancellable: bool,
     #[serde(rename = "activePayoutTiliaAmount")]

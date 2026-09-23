@@ -23,6 +23,24 @@ pub enum CheckUserPersistenceExistsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`clear_user_tutorials`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ClearUserTutorialsError {
+    Status401(models::Error),
+    Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`complete_user_tutorial`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CompleteUserTutorialError {
+    Status401(models::Error),
+    Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`delete_all_user_persistence_data`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -371,6 +389,138 @@ pub async fn check_user_persistence_exists(
             log::debug!("check_user_persistence_exists returned: {content}");
         }
         let entity: Option<CheckUserPersistenceExistsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Clears every tutorial the user completed on a platform, whatever `X-Platform` and `X-Store` name, and returns the current user. Tutorials of other kinds, such as `platform-agnostic:custom:onboarding-tutorial-world:v1`, stay completed.
+pub async fn clear_user_tutorials(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    x_platform: Option<&str>,
+    x_store: Option<&str>,
+) -> Result<models::CurrentUser, Error<ClearUserTutorialsError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+    let p_header_x_platform = x_platform;
+    let p_header_x_store = x_store;
+
+    let uri_str = format!(
+        "{}/users/{userId}/tutorial",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(param_value) = p_header_x_platform {
+        req_builder = req_builder.header("X-Platform", param_value.to_string());
+    }
+    if let Some(param_value) = p_header_x_store {
+        req_builder = req_builder.header("X-Store", param_value.to_string());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("clear_user_tutorials returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CurrentUser`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CurrentUser`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("clear_user_tutorials returned: {content}");
+        }
+        let entity: Option<ClearUserTutorialsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Marks the tutorial named by `X-Platform` and `X-Store` completed, and returns the current user.
+pub async fn complete_user_tutorial(
+    configuration: &configuration::Configuration,
+    user_id: &str,
+    x_platform: Option<&str>,
+    x_store: Option<&str>,
+) -> Result<models::CurrentUser, Error<CompleteUserTutorialError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_user_id = user_id;
+    let p_header_x_platform = x_platform;
+    let p_header_x_store = x_store;
+
+    let uri_str = format!(
+        "{}/users/{userId}/tutorial",
+        configuration.base_path,
+        userId = crate::apis::urlencode(p_path_user_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(param_value) = p_header_x_platform {
+        req_builder = req_builder.header("X-Platform", param_value.to_string());
+    }
+    if let Some(param_value) = p_header_x_store {
+        req_builder = req_builder.header("X-Store", param_value.to_string());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("complete_user_tutorial returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CurrentUser`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CurrentUser`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("complete_user_tutorial returned: {content}");
+        }
+        let entity: Option<CompleteUserTutorialError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -924,7 +1074,7 @@ pub async fn get_public_profile(
 pub async fn get_user(
     configuration: &configuration::Configuration,
     user_id: &str,
-) -> Result<models::GetUser200Response, Error<GetUserError>> {
+) -> Result<models::UserResponse, Error<GetUserError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
 
@@ -957,8 +1107,8 @@ pub async fn get_user(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetUser200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetUser200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1041,7 +1191,7 @@ pub async fn get_user_all_group_permissions(
 pub async fn get_user_by_name(
     configuration: &configuration::Configuration,
     username: &str,
-) -> Result<models::GetUser200Response, Error<GetUserByNameError>> {
+) -> Result<models::UserResponse, Error<GetUserByNameError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_username = username;
 
@@ -1074,8 +1224,8 @@ pub async fn get_user_by_name(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetUser200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetUser200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1218,7 +1368,7 @@ pub async fn get_user_feedback(
 pub async fn get_user_group_instances(
     configuration: &configuration::Configuration,
     user_id: &str,
-) -> Result<models::GetUserGroupInstances200Response, Error<GetUserGroupInstancesError>> {
+) -> Result<models::UserGroupInstanceListResponse, Error<GetUserGroupInstancesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
 
@@ -1251,8 +1401,8 @@ pub async fn get_user_group_instances(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetUserGroupInstances200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetUserGroupInstances200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserGroupInstanceListResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserGroupInstanceListResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1273,7 +1423,7 @@ pub async fn get_user_group_instances_for_group(
     configuration: &configuration::Configuration,
     user_id: &str,
     group_id: &str,
-) -> Result<models::GetUserGroupInstances200Response, Error<GetUserGroupInstancesForGroupError>> {
+) -> Result<models::UserGroupInstanceListResponse, Error<GetUserGroupInstancesForGroupError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
     let p_path_group_id = group_id;
@@ -1308,8 +1458,8 @@ pub async fn get_user_group_instances_for_group(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetUserGroupInstances200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetUserGroupInstances200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::UserGroupInstanceListResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::UserGroupInstanceListResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1600,13 +1750,17 @@ pub async fn get_user_represented_group(
     }
 }
 
-/// Gets the status of completed or outstanding tutorials for the specified user.
+/// Gets the status of completed or outstanding tutorials for the specified user. `tutorialKey` and `completed` describe the tutorial named by `X-Platform` and `X-Store`.
 pub async fn get_user_tutorial_status(
     configuration: &configuration::Configuration,
     user_id: &str,
+    x_platform: Option<&str>,
+    x_store: Option<&str>,
 ) -> Result<models::TutorialStatus, Error<GetUserTutorialStatusError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_user_id = user_id;
+    let p_header_x_platform = x_platform;
+    let p_header_x_store = x_store;
 
     let uri_str = format!(
         "{}/users/{userId}/tutorial",
@@ -1617,6 +1771,12 @@ pub async fn get_user_tutorial_status(
 
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    if let Some(param_value) = p_header_x_platform {
+        req_builder = req_builder.header("X-Platform", param_value.to_string());
+    }
+    if let Some(param_value) = p_header_x_store {
+        req_builder = req_builder.header("X-Store", param_value.to_string());
     }
 
     let req = req_builder.build()?;

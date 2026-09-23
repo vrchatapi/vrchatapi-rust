@@ -9,8 +9,8 @@ pub struct Feedback {
     #[serde(rename = "commenterName")]
     pub commenter_name: String,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "contentAuthorId")]
-    pub content_author_id: String,
+    #[serde(rename = "contentAuthorId", deserialize_with = "Option::deserialize")]
+    pub content_author_id: Option<String>,
     #[serde(rename = "contentAuthorName", deserialize_with = "Option::deserialize")]
     pub content_author_name: Option<String>,
     #[serde(rename = "contentId")]
@@ -42,7 +42,7 @@ impl Feedback {
     pub fn new(
         commenter_id: String,
         commenter_name: String,
-        content_author_id: String,
+        content_author_id: Option<String>,
         content_author_name: Option<String>,
         content_id: String,
         content_type: String,

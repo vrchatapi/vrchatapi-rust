@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **preview_youtube_id** | Option<**String**> |  | [optional]
 **recommended_capacity** | Option<**i32**> |  | [optional]
 **release_status** | Option<[**models::ReleaseStatus**](ReleaseStatus.md)> |  | [optional]
-**tags** | Option<**Vec<String>**> |   | [optional]
+**tags** | Option<**Vec<String>**> |  | [optional]
 **unity_package_url** | Option<**String**> |  | [optional]
 **unity_version** | Option<**String**> |  | [optional][default to 5.3.4p1]
 **url_list** | Option<**Vec<String>**> |  | [optional]

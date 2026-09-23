@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// DiscordDetails :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DiscordDetails {
     #[serde(rename = "global_name", skip_serializing_if = "Option::is_none")]

@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Avatar :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Avatar {
     #[serde(rename = "acknowledgements", skip_serializing_if = "Option::is_none")]

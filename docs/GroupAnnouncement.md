@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **id** | Option<**String**> |  | [optional]
 **image_id** | Option<**String**> |  | [optional]
 **image_url** | Option<**String**> |  | [optional]
-**role_ids** | Option<**Vec<String>**> |   | [optional]
+**role_ids** | Option<**Vec<String>**> |  | [optional]
 **text** | Option<**String**> |  | [optional]
 **title** | Option<**String**> |  | [optional]
 **updated_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]

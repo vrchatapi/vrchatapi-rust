@@ -32,7 +32,7 @@ Name | Type | Description | Notes
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **slim_instances** | Option<**Vec<serde_json::Value>**> |  | [optional]
 **store_id** | Option<**String**> |  | [optional]
-**tags** | **Vec<String>** |   | 
+**tags** | **Vec<String>** |  | 
 **thumbnail_image_url** | **String** |  | 
 **udon_products** | Option<**Vec<String>**> |  | [optional]
 **unity_packages** | Option<[**Vec<models::UnityPackage>**](UnityPackage.md)> | Empty if unauthenticated. | [optional]

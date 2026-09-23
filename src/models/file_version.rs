@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FileVersion :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileVersion {
     #[serde(rename = "created_at")]

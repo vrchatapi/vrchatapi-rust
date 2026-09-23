@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// JamSubmission :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct JamSubmission {
     /// Either world ID or avatar ID

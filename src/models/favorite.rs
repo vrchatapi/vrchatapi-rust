@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Favorite :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Favorite {
     /// MUST be either AvatarID, UserID or WorldID.

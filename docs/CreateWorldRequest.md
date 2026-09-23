@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **name** | **String** |  | 
 **platform** | Option<**String**> | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | [optional]
 **release_status** | Option<[**models::ReleaseStatus**](ReleaseStatus.md)> |  | [optional]
-**tags** | Option<**Vec<String>**> |   | [optional]
+**tags** | Option<**Vec<String>**> |  | [optional]
 **unity_package_url** | Option<**String**> |  | [optional]
 **unity_version** | Option<**String**> |  | [optional][default to 5.3.4p1]
 

@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Transaction :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Transaction {
     #[serde(rename = "agreement", skip_serializing_if = "Option::is_none")]

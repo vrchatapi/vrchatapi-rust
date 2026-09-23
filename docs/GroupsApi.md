@@ -839,7 +839,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_gallery_images
 
-> models::GetGroupGalleryImages200Response get_group_gallery_images(group_id, group_gallery_id, n, offset, v, approved)
+> models::GroupGalleryImageListResponse get_group_gallery_images(group_id, group_gallery_id, n, offset, v, approved)
 Get Group Gallery Images
 
 Returns a list of images for a Group gallery.
@@ -858,7 +858,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::GetGroupGalleryImages200Response**](getGroupGalleryImages_200_response.md)
+[**models::GroupGalleryImageListResponse**](GroupGalleryImageListResponse.md)
 
 ### Authorization
 
@@ -1031,7 +1031,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_posts
 
-> models::GetGroupPosts200Response get_group_posts(group_id, n, offset, public_only)
+> models::GroupPostsResponse get_group_posts(group_id, n, offset, public_only)
 Get posts from a Group
 
 Get posts from a Group
@@ -1048,7 +1048,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::GetGroupPosts200Response**](getGroupPosts_200_response.md)
+[**models::GroupPostsResponse**](GroupPostsResponse.md)
 
 ### Authorization
 
@@ -1373,7 +1373,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_group_members
 
-> models::SearchGroupMembers200Response search_group_members(group_id, query, n, offset)
+> models::GroupMemberSearchResponse search_group_members(query, group_id, n, offset)
 Search Group Members
 
 Search for members in the group by displayName.
@@ -1383,14 +1383,14 @@ Search for members in the group by displayName.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**group_id** | **String** | Must be a valid group ID. | [required] |
 **query** | **String** | Filter for member displayName. | [required] |
+**group_id** | **String** | Must be a valid group ID. | [required] |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 
 ### Return type
 
-[**models::SearchGroupMembers200Response**](searchGroupMembers_200_response.md)
+[**models::GroupMemberSearchResponse**](GroupMemberSearchResponse.md)
 
 ### Authorization
 

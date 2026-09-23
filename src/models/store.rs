@@ -9,6 +9,7 @@ pub struct Store {
     pub description: String,
     #[serde(rename = "displayName")]
     pub display_name: String,
+    /// Only for store type group
     #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
     pub group_id: Option<String>,
     #[serde(rename = "id")]
@@ -42,7 +43,7 @@ pub struct Store {
     pub tags: Vec<String>,
     #[serde(rename = "updated", skip_serializing_if = "Option::is_none")]
     pub updated: Option<chrono::DateTime<chrono::FixedOffset>>,
-    /// WorldID be \"offline\" on User profiles if you are not friends with that user.
+    /// Only for store type world
     #[serde(rename = "worldId", skip_serializing_if = "Option::is_none")]
     pub world_id: Option<String>,
 }

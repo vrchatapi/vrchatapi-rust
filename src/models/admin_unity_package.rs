@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// AdminUnityPackage :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AdminUnityPackage {
     #[serde(rename = "assetUrl")]

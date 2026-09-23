@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_tags**](UsersApi.md#add_tags) | **POST** /users/{userId}/addTags | Add User Tags
 [**check_user_persistence_exists**](UsersApi.md#check_user_persistence_exists) | **GET** /users/{userId}/{worldId}/persist/exists | Check User Persistence Exists
+[**clear_user_tutorials**](UsersApi.md#clear_user_tutorials) | **DELETE** /users/{userId}/tutorial | Clear User Tutorials
+[**complete_user_tutorial**](UsersApi.md#complete_user_tutorial) | **POST** /users/{userId}/tutorial | Complete User Tutorial
 [**delete_all_user_persistence_data**](UsersApi.md#delete_all_user_persistence_data) | **DELETE** /users/{userId}/persist | Delete All User Persistence Data
 [**delete_user_persistence**](UsersApi.md#delete_user_persistence) | **DELETE** /users/{userId}/{worldId}/persist | Delete User Persistence
 [**get_age_verification_status**](UsersApi.md#get_age_verification_status) | **GET** /ageVerification/status | Get Age Verification Status
@@ -88,6 +90,70 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## clear_user_tutorials
+
+> models::CurrentUser clear_user_tutorials(user_id, x_platform, x_store)
+Clear User Tutorials
+
+Clears every tutorial the user completed on a platform, whatever `X-Platform` and `X-Store` name, and returns the current user. Tutorials of other kinds, such as `platform-agnostic:custom:onboarding-tutorial-world:v1`, stay completed.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**x_platform** | Option<**String**> | The platform the tutorial belongs to. `standalonewindows`, `android` and `ios` are kept; any other value is recorded as `null`. |  |
+**x_store** | Option<**String**> | The store the tutorial belongs to, recorded as sent. |  |
+
+### Return type
+
+[**models::CurrentUser**](CurrentUser.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## complete_user_tutorial
+
+> models::CurrentUser complete_user_tutorial(user_id, x_platform, x_store)
+Complete User Tutorial
+
+Marks the tutorial named by `X-Platform` and `X-Store` completed, and returns the current user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**x_platform** | Option<**String**> | The platform the tutorial belongs to. `standalonewindows`, `android` and `ios` are kept; any other value is recorded as `null`. |  |
+**x_store** | Option<**String**> | The store the tutorial belongs to, recorded as sent. |  |
+
+### Return type
+
+[**models::CurrentUser**](CurrentUser.md)
 
 ### Authorization
 
@@ -407,7 +473,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user
 
-> models::GetUser200Response get_user(user_id)
+> models::UserResponse get_user(user_id)
 Get User by ID
 
 Get public user information about a specific user using their ID.
@@ -421,7 +487,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::GetUser200Response**](getUser_200_response.md)
+[**models::UserResponse**](UserResponse.md)
 
 ### Authorization
 
@@ -468,7 +534,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_by_name
 
-> models::GetUser200Response get_user_by_name(username)
+> models::UserResponse get_user_by_name(username)
 Get User by Username
 
 Get public user information about a specific user using their name.  VRChat no longer returns the usernames of other users, and this endpoint now requires admin credentials. [See issue by Tupper for more information](https://github.com/pypy-vrc/VRCX/issues/429).
@@ -482,7 +548,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::GetUser200Response**](getUser_200_response.md)
+[**models::UserResponse**](UserResponse.md)
 
 ### Authorization
 
@@ -561,7 +627,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_group_instances
 
-> models::GetUserGroupInstances200Response get_user_group_instances(user_id)
+> models::UserGroupInstanceListResponse get_user_group_instances(user_id)
 Get User Group Instances
 
 Returns a list of group instances for a user
@@ -575,7 +641,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::GetUserGroupInstances200Response**](getUserGroupInstances_200_response.md)
+[**models::UserGroupInstanceListResponse**](UserGroupInstanceListResponse.md)
 
 ### Authorization
 
@@ -591,7 +657,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_group_instances_for_group
 
-> models::GetUserGroupInstances200Response get_user_group_instances_for_group(user_id, group_id)
+> models::UserGroupInstanceListResponse get_user_group_instances_for_group(user_id, group_id)
 Get User Group Instances for a specific Group
 
 Returns a list of a group's instances for a user
@@ -606,7 +672,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::GetUserGroupInstances200Response**](getUserGroupInstances_200_response.md)
+[**models::UserGroupInstanceListResponse**](UserGroupInstanceListResponse.md)
 
 ### Authorization
 
@@ -773,10 +839,10 @@ Name | Type | Description  | Required | Notes
 
 ## get_user_tutorial_status
 
-> models::TutorialStatus get_user_tutorial_status(user_id)
+> models::TutorialStatus get_user_tutorial_status(user_id, x_platform, x_store)
 Get User Tutorial Status
 
-Gets the status of completed or outstanding tutorials for the specified user.
+Gets the status of completed or outstanding tutorials for the specified user. `tutorialKey` and `completed` describe the tutorial named by `X-Platform` and `X-Store`.
 
 ### Parameters
 
@@ -784,6 +850,8 @@ Gets the status of completed or outstanding tutorials for the specified user.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
+**x_platform** | Option<**String**> | The platform the tutorial belongs to. `standalonewindows`, `android` and `ios` are kept; any other value is recorded as `null`. |  |
+**x_store** | Option<**String**> | The store the tutorial belongs to, recorded as sent. |  |
 
 ### Return type
 

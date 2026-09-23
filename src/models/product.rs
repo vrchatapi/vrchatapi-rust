@@ -21,8 +21,8 @@ pub struct Product {
     pub group_role_id: Option<String>,
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "imageId")]
-    pub image_id: String,
+    #[serde(rename = "imageId", deserialize_with = "Option::deserialize")]
+    pub image_id: Option<String>,
     #[serde(
         rename = "imageUrl",
         default,
@@ -68,7 +68,7 @@ impl Product {
         description: String,
         display_name: String,
         id: String,
-        image_id: String,
+        image_id: Option<String>,
         parent_listings: Vec<String>,
         product_type: models::ProductType,
         seller_display_name: String,

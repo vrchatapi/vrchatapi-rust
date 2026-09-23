@@ -92,6 +92,14 @@ pub enum GetGlobalAvatarModerationsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_interests_and_preferences`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetInterestsAndPreferencesError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_moderation_reports`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -154,6 +162,15 @@ pub enum ResendEmailConfirmationError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SubmitModerationReportError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`update_interests_and_preferences`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UpdateInterestsAndPreferencesError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -688,7 +705,7 @@ pub async fn enable2_fa(
 /// This endpoint does the following two operations:   1) Checks if you are already logged in by looking for a valid `auth` cookie. If you are have a valid auth cookie then no additional auth-related actions are taken. If you are **not** logged in then it will log you in with the `Authorization` header and set the `auth` cookie. The `auth` cookie will only be sent once.   2) If logged in, this function will also return the CurrentUser object containing detailed information about the currently logged in user.  The auth string after `Authorization: Basic {string}` is a base64-encoded string of the username and password, both individually url-encoded, and then joined with a colon.  > base64(urlencode(username):urlencode(password))  **WARNING: Session Limit:** Each authentication with login credentials counts as a separate session, out of which you have a limited amount. Make sure to save and reuse the `auth` cookie if you are often restarting the program. The provided API libraries automatically save cookies during runtime, but does not persist during restart. While it can be fine to use username/password during development, expect in production to very fast run into the rate-limit and be temporarily blocked from making new sessions until older ones expire. The exact number of simultaneous sessions is unknown/undisclosed.
 pub async fn get_current_user(
     configuration: &configuration::Configuration,
-) -> Result<models::RegisterUserAccount200Response, Error<GetCurrentUserError>> {
+) -> Result<models::CurrentUserLoginResponse, Error<GetCurrentUserError>> {
     let uri_str = format!("{}/auth/user", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -717,8 +734,8 @@ pub async fn get_current_user(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RegisterUserAccount200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RegisterUserAccount200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CurrentUserLoginResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CurrentUserLoginResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -772,6 +789,55 @@ pub async fn get_global_avatar_moderations(
             log::debug!("get_global_avatar_moderations returned: {content}");
         }
         let entity: Option<GetGlobalAvatarModerationsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns the interests and preferences the current user has turned on.
+pub async fn get_interests_and_preferences(
+    configuration: &configuration::Configuration,
+) -> Result<models::InterestsAndPreferences, Error<GetInterestsAndPreferencesError>> {
+    let uri_str = format!(
+        "{}/auth/user/interestsAndPreferences",
+        configuration.base_path
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_interests_and_preferences returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InterestsAndPreferences`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::InterestsAndPreferences`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_interests_and_preferences returned: {content}");
+        }
+        let entity: Option<GetInterestsAndPreferencesError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -1050,7 +1116,7 @@ pub async fn logout(
 pub async fn register_user_account(
     configuration: &configuration::Configuration,
     register_user_account_request: models::RegisterUserAccountRequest,
-) -> Result<models::RegisterUserAccount200Response, Error<RegisterUserAccountError>> {
+) -> Result<models::CurrentUserLoginResponse, Error<RegisterUserAccountError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_body_register_user_account_request = register_user_account_request;
 
@@ -1082,8 +1148,8 @@ pub async fn register_user_account(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::RegisterUserAccount200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::RegisterUserAccount200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::CurrentUserLoginResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::CurrentUserLoginResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1192,6 +1258,61 @@ pub async fn submit_moderation_report(
             log::debug!("submit_moderation_report returned: {content}");
         }
         let entity: Option<SubmitModerationReportError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Turns interests and preferences on with `true` and off with `false`. A key the body leaves out keeps its value, and an unknown key or a value that is not a boolean is ignored.
+pub async fn update_interests_and_preferences(
+    configuration: &configuration::Configuration,
+    interests_and_preferences: models::InterestsAndPreferences,
+) -> Result<models::Success, Error<UpdateInterestsAndPreferencesError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_interests_and_preferences = interests_and_preferences;
+
+    let uri_str = format!(
+        "{}/auth/user/interestsAndPreferences",
+        configuration.base_path
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_interests_and_preferences);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("update_interests_and_preferences returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("update_interests_and_preferences returned: {content}");
+        }
+        let entity: Option<UpdateInterestsAndPreferencesError> =
+            serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

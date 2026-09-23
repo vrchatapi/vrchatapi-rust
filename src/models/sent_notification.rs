@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// SentNotification :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct SentNotification {
     #[serde(rename = "created_at")]

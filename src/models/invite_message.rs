@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// InviteMessage :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InviteMessage {
     #[serde(rename = "canBeUpdated")]

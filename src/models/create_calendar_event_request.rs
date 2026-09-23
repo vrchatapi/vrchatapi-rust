@@ -41,13 +41,8 @@ pub struct CreateCalendarEventRequest {
     pub parent_id: Option<String>,
     #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
     pub platforms: Option<Vec<models::CalendarEventPlatform>>,
-    #[serde(
-        rename = "recurrence",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub recurrence: Option<Option<models::CalendarEventRecurrence>>,
+    #[serde(rename = "recurrence", skip_serializing_if = "Option::is_none")]
+    pub recurrence: Option<models::CalendarEventRecurrence>,
     #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
     pub role_ids: Option<Vec<String>>,
     /// Send notification to group members.

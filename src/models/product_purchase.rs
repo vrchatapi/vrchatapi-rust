@@ -31,8 +31,8 @@ pub struct ProductPurchase {
     pub listing_display_name: String,
     #[serde(rename = "listingId")]
     pub listing_id: String,
-    #[serde(rename = "listingImageId")]
-    pub listing_image_id: String,
+    #[serde(rename = "listingImageId", deserialize_with = "Option::deserialize")]
+    pub listing_image_id: Option<String>,
     #[serde(rename = "listingSubtitle")]
     pub listing_subtitle: String,
     #[serde(rename = "listingType")]
@@ -107,7 +107,7 @@ impl ProductPurchase {
         listing_currently_available: bool,
         listing_display_name: String,
         listing_id: String,
-        listing_image_id: String,
+        listing_image_id: Option<String>,
         listing_subtitle: String,
         listing_type: models::ProductListingType,
         products: Vec<models::ProductPurchaseProduct>,

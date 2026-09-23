@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Balance :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Balance {
     #[serde(rename = "balance")]

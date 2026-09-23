@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Permission :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Permission {
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]

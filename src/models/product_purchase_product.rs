@@ -7,8 +7,13 @@ pub struct ProductPurchaseProduct {
     pub display_name: String,
     #[serde(rename = "id")]
     pub id: String,
-    #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
-    pub image_id: Option<String>,
+    #[serde(
+        rename = "imageId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub image_id: Option<Option<String>>,
     #[serde(
         rename = "licenseId",
         default,

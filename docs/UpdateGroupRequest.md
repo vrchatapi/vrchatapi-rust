@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **nameplate_id** | Option<**String**> |  | [optional]
 **rules** | Option<**String**> |  | [optional]
 **short_code** | Option<**String**> |  | [optional]
-**tags** | Option<**Vec<String>**> |   | [optional]
+**tags** | Option<**Vec<String>**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

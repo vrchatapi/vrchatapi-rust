@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Prop :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Prop {
     #[serde(rename = "_created_at")]

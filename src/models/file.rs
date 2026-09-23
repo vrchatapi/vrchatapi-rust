@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// File :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct File {
     #[serde(rename = "animationStyle", skip_serializing_if = "Option::is_none")]

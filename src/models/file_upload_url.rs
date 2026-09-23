@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FileUploadUrl :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileUploadUrl {
     #[serde(rename = "url")]

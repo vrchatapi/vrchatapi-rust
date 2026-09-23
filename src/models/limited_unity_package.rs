@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// LimitedUnityPackage :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedUnityPackage {
     #[serde(rename = "created_at", deserialize_with = "Option::deserialize")]

@@ -65,9 +65,14 @@ pub struct CurrentUserPresence {
     pub is_rejoining: Option<Option<String>>,
     #[serde(rename = "nameplateEffect", skip_serializing_if = "Option::is_none")]
     pub nameplate_effect: Option<String>,
-    /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
-    #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
-    pub platform: Option<String>,
+    /// either a Platform or an empty string
+    #[serde(
+        rename = "platform",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub platform: Option<Option<String>>,
     #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
     pub profile_effect: Option<String>,
     #[serde(
@@ -93,8 +98,13 @@ pub struct CurrentUserPresence {
     )]
     pub traveling_to_instance: Option<Option<String>>,
     /// Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list.
-    #[serde(rename = "travelingToWorld", skip_serializing_if = "Option::is_none")]
-    pub traveling_to_world: Option<String>,
+    #[serde(
+        rename = "travelingToWorld",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub traveling_to_world: Option<Option<String>>,
     #[serde(
         rename = "userIcon",
         default,
@@ -103,8 +113,13 @@ pub struct CurrentUserPresence {
     )]
     pub user_icon: Option<Option<String>>,
     /// WorldID be \"offline\" on User profiles if you are not friends with that user.
-    #[serde(rename = "world", skip_serializing_if = "Option::is_none")]
-    pub world: Option<String>,
+    #[serde(
+        rename = "world",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub world: Option<Option<String>>,
 }
 
 impl CurrentUserPresence {

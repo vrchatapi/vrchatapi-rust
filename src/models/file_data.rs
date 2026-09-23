@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FileData :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileData {
     #[serde(rename = "category")]

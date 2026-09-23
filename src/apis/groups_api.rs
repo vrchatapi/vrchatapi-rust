@@ -1961,7 +1961,7 @@ pub async fn get_group_gallery_images(
     offset: Option<i32>,
     v: Option<i32>,
     approved: Option<bool>,
-) -> Result<models::GetGroupGalleryImages200Response, Error<GetGroupGalleryImagesError>> {
+) -> Result<models::GroupGalleryImageListResponse, Error<GetGroupGalleryImagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_path_group_gallery_id = group_gallery_id;
@@ -2012,8 +2012,8 @@ pub async fn get_group_gallery_images(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetGroupGalleryImages200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetGroupGalleryImages200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupGalleryImageListResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupGalleryImageListResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -2339,7 +2339,7 @@ pub async fn get_group_posts(
     n: Option<i32>,
     offset: Option<i32>,
     public_only: Option<bool>,
-) -> Result<models::GetGroupPosts200Response, Error<GetGroupPostsError>> {
+) -> Result<models::GroupPostsResponse, Error<GetGroupPostsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_query_n = n;
@@ -2384,8 +2384,8 @@ pub async fn get_group_posts(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GetGroupPosts200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GetGroupPosts200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupPostsResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupPostsResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -2968,14 +2968,14 @@ pub async fn respond_group_join_request(
 /// Search for members in the group by displayName.
 pub async fn search_group_members(
     configuration: &configuration::Configuration,
-    group_id: &str,
     query: &str,
+    group_id: &str,
     n: Option<i32>,
     offset: Option<i32>,
-) -> Result<models::SearchGroupMembers200Response, Error<SearchGroupMembersError>> {
+) -> Result<models::GroupMemberSearchResponse, Error<SearchGroupMembersError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_path_group_id = group_id;
     let p_query_query = query;
+    let p_path_group_id = group_id;
     let p_query_n = n;
     let p_query_offset = offset;
 
@@ -3015,8 +3015,8 @@ pub async fn search_group_members(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SearchGroupMembers200Response`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SearchGroupMembers200Response`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::GroupMemberSearchResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::GroupMemberSearchResponse`")))),
         }
     } else {
         let content = resp.text().await?;

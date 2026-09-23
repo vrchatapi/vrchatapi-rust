@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **notag** | Option<**Vec<String>**> |  | [optional]
 **params** | Option<**std::collections::HashMap<String, serde_json::Value>**> |  | [optional]
 **personalized_results** | Option<**String**> |  | [optional]
-**platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
+**platform** | **String** | Usually \"ThisPlatformSupported\", but can also be other values such as \"all\" or platform specific identifiers. | 
 **region** | Option<**String**> |  | [optional]
 **scope** | Option<**String**> |  | [optional]
 **short_name** | Option<[**models::DynamicContentRowShortName**](DynamicContentRowShortName.md)> |  | [optional]

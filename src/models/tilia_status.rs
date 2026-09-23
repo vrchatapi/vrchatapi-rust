@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// TiliaStatus :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TiliaStatus {
     #[serde(rename = "economyOnline")]

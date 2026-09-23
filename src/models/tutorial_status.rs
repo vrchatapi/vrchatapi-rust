@@ -9,7 +9,7 @@ pub struct TutorialStatus {
     pub completed_any_tutorial: bool,
     #[serde(rename = "completedTutorials")]
     pub completed_tutorials: Vec<String>,
-    /// The ID of a tutorial, in the format `{platform}:{tutorial}:{version}`. `undefined:undefined:v1` is used as a null-ish or sentinel value.
+    /// The ID of a tutorial. A platform tutorial is `{platform}:{store}:v1`, taken from the `X-Platform` and `X-Store` headers, with `undefined` for a header the request left out. Other tutorials take a longer form, such as `platform-agnostic:custom:onboarding-tutorial-world:v1`.
     #[serde(rename = "tutorialKey")]
     pub tutorial_key: String,
 }

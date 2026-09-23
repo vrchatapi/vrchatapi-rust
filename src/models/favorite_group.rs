@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FavoriteGroup :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FavoriteGroup {
     #[serde(rename = "displayName")]

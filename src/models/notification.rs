@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Notification :
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Notification {
     #[serde(rename = "created_at")]
@@ -13,7 +12,7 @@ pub struct Notification {
     pub id: String,
     #[serde(rename = "message")]
     pub message: String,
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
+    /// Not included in notification objects received from the REST API
     #[serde(rename = "receiverUserId", skip_serializing_if = "Option::is_none")]
     pub receiver_user_id: Option<String>,
     /// Not included in notification objects received from the Websocket API

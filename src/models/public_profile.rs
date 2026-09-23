@@ -100,8 +100,13 @@ pub struct PublicProfile {
     pub pronouns: Option<String>,
     #[serde(rename = "publicWorlds", skip_serializing_if = "Option::is_none")]
     pub public_worlds: Option<Vec<models::LimitedWorld>>,
-    #[serde(rename = "representedGroup", skip_serializing_if = "Option::is_none")]
-    pub represented_group: Option<models::ProfileRepresentedGroup>,
+    #[serde(
+        rename = "representedGroup",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub represented_group: Option<Option<models::ProfileRepresentedGroup>>,
     #[serde(rename = "status", skip_serializing_if = "Option::is_none")]
     pub status: Option<models::UserStatus>,
     #[serde(rename = "statusDescription", skip_serializing_if = "Option::is_none")]

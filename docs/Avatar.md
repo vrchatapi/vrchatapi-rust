@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **searchable** | Option<**bool**> |  | [optional][default to false]
 **styles** | [**models::AvatarStyles**](AvatarStyles.md) |  | 
-**tags** | **Vec<String>** |   | 
+**tags** | **Vec<String>** |  | 
 **thumbnail_image_url** | **String** |  | 
 **unity_package_url** | **String** |  | 
 **unity_package_url_object** | [**models::AvatarUnityPackageUrlObject**](AvatarUnityPackageUrlObject.md) |  | 

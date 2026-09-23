@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **accepted_privacy_version** | Option<**i32**> |  | [optional]
 **accepted_tos_version** | **i32** |  | 
 **account_deletion_date** | Option<**chrono::NaiveDate**> |  | [optional]
-**account_deletion_log** | Option<[**Vec<models::AccountDeletionLog>**](AccountDeletionLog.md)> |   | [optional]
-**active_friends** | Option<**Vec<String>**> |   | [optional]
+**account_deletion_log** | Option<[**Vec<models::AccountDeletionLog>**](AccountDeletionLog.md)> |  | [optional]
+**active_friends** | Option<**Vec<String>**> |  | [optional]
 **age_verification_status** | [**models::AgeVerificationStatus**](AgeVerificationStatus.md) |  | 
 **age_verified** | **bool** | `true` if, user is age verified (not 18+). | 
 **allow_avatar_copying** | **bool** |  | 
@@ -66,7 +66,7 @@ Name | Type | Description | Notes
 **oculus_id** | **String** |  | 
 **offline_friends** | Option<**Vec<String>**> |  | [optional]
 **online_friends** | Option<**Vec<String>**> |  | [optional]
-**past_display_names** | [**Vec<models::PastDisplayName>**](PastDisplayName.md) |   | 
+**past_display_names** | [**Vec<models::PastDisplayName>**](PastDisplayName.md) |  | 
 **personalization_opt_out** | Option<**bool**> |  | [optional]
 **pico_id** | Option<**String**> |  | [optional]
 **platform** | Option<**String**> |  | [optional]

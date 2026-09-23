@@ -29,10 +29,10 @@ Name | Type | Description | Notes
 **recommended_capacity** | Option<**i32**> |  | [optional]
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **store_id** | Option<**String**> |  | [optional]
-**tags** | Option<**Vec<String>**> |   | [optional]
+**tags** | Option<**Vec<String>**> |  | [optional]
 **thumbnail_image_url** | **String** |  | 
 **udon_products** | Option<**Vec<String>**> |  | [optional]
-**unity_packages** | Option<[**Vec<models::UnityPackage>**](UnityPackage.md)> |   | [optional]
+**unity_packages** | Option<[**Vec<models::UnityPackage>**](UnityPackage.md)> |  | [optional]
 **updated_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **url_list** | Option<**Vec<String>**> |  | [optional]
 **version** | Option<**i32**> |  | [optional]

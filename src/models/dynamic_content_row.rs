@@ -69,7 +69,7 @@ pub struct DynamicContentRow {
         skip_serializing_if = "Option::is_none"
     )]
     pub personalized_results: Option<String>,
-    /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+    /// Usually \"ThisPlatformSupported\", but can also be other values such as \"all\" or platform specific identifiers.
     #[serde(rename = "platform")]
     pub platform: String,
     #[serde(
