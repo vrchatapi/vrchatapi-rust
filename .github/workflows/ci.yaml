@@ -51,15 +51,15 @@ jobs:
         run: |
           set -euo pipefail
 
-          if [ "$(yq '--unwrapScalar' '.info.version' openapi.json)" != "${PASSED_VERSION}" ]; then
+          if [ "$(yq '--unwrapScalar' '.info.version' openapi-3.1.json)" != "${PASSED_VERSION}" ]; then
             echo "Mismatch between actual and expected version" >&2
             exit 1
           fi
 
       - if: env.VERSION_POSTPEND != ''
-        run: yq '--inplace' ".info.version |= \"${PASSED_VERSION}${VERSION_POSTPEND}\"" openapi.json
+        run: yq '--inplace' ".info.version |= \"${PASSED_VERSION}${VERSION_POSTPEND}\"" openapi-3.1.json
 
-      - run: bash ./generate.sh openapi.json
+      - run: bash ./generate.sh openapi-3.1.json
 
       - if: env.PASSED_VERSION != ''
         run: |
@@ -123,7 +123,7 @@ jobs:
         with:
           name: rust-generated
 
-      - run: rm -f openapi.json
+      - run: rm -f openapi-3.1.json
 
       - uses: JamesIves/github-pages-deploy-action@v4.9.0
         with:
