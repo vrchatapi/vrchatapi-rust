@@ -123,9 +123,14 @@ impl Default for {{classname}} {
 {{!-- for non-enum schemas --}}
 {{^isEnum}}
 {{^discriminator}}
-{{#vendorExtensions.x-rust-has-byte-array}}#[serde_as]
-{{/vendorExtensions.x-rust-has-byte-array}}{{#oneOf.isEmpty}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+{{^composedSchemas.allOf}}{{!
+}}{{#vendorExtensions.x-rust-has-byte-array}}#[serde_as]
+{{/vendorExtensions.x-rust-has-byte-array}}{{^vendorExtensions.x-rust-has-byte-array}}{{#vendorExtensions.x-vrcapispecification-has-double-json-encoding}}#[serde_with::serde_as]
+{{/vendorExtensions.x-vrcapispecification-has-double-json-encoding}}{{/vendorExtensions.x-rust-has-byte-array}}{{!
+}}{{/composedSchemas.allOf}}{{!
+}}{{#oneOf.isEmpty}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct {{{classname}}} {
+{{^composedSchemas.allOf}}
 {{#vars}}
     {{#description}}
     /// {{{.}}}
@@ -133,6 +138,8 @@ pub struct {{{classname}}} {
     {{#isByteArray}}
     {{#vendorExtensions.isMandatory}}#[serde_as(as = "serde_with::base64::Base64")]{{/vendorExtensions.isMandatory}}{{^vendorExtensions.isMandatory}}#[serde_as(as = "{{^serdeAsDoubleOption}}Option{{/serdeAsDoubleOption}}{{#serdeAsDoubleOption}}super::DoubleOption{{/serdeAsDoubleOption}}<serde_with::base64::Base64>")]{{/vendorExtensions.isMandatory}}
     {{/isByteArray}}
+    {{#vendorExtensions.x-double-encoding}}#[serde_as(as = "serde_with::json::JsonString")]
+    {{/vendorExtensions.x-double-encoding}}
     #[serde(rename = "{{{baseName}}}"{{^required}}{{#isNullable}}, default{{^isByteArray}}, with = "::serde_with::rust::double_option"{{/isByteArray}}{{/isNullable}}{{/required}}{{^required}}, skip_serializing_if = "Option::is_none"{{/required}}{{#required}}{{#isNullable}}, deserialize_with = "Option::deserialize"{{/isNullable}}{{/required}})]
     pub {{{name}}}: {{!
     ### Option Start
@@ -144,14 +151,22 @@ pub struct {{{classname}}} {
     ### Models
     }}{{#isModel}}{{^avoidBoxedModels}}Box<{{/avoidBoxedModels}}{{{dataType}}}{{^avoidBoxedModels}}>{{/avoidBoxedModels}}{{/isModel}}{{!
     ### Primative datatypes
+    }}{{^vendorExtensions.x-vrchat-double-encoding-type}}{{!
     }}{{^isModel}}{{#isByteArray}}Vec<u8>{{/isByteArray}}{{^isByteArray}}{{{dataType}}}{{/isByteArray}}{{/isModel}}{{!
+    }}{{/vendorExtensions.x-vrchat-double-encoding-type}}{{#vendorExtensions.x-vrchat-double-encoding-type}}models::{{{vendorExtensions.x-vrchat-double-encoding-type}}}{{/vendorExtensions.x-vrchat-double-encoding-type}}{{!
     ### Non-Enums End
     }}{{/isEnum}}{{!
     ### Option End (and trailing comma)
     }}{{#isNullable}}>{{/isNullable}}{{^required}}>{{/required}},
 {{/vars}}
+{{/composedSchemas.allOf}}
+{{#composedSchemas.allOf}}
+    #[serde(flatten)]
+    pub {{#title}}{{{title}}}{{/title}}{{^title}}{{{name}}}{{/title}}: {{{dataType}}},
+{{/composedSchemas.allOf}}
 }
 
+{{^composedSchemas.allOf}}
 impl {{{classname}}} {
     {{#description}}
     /// {{{.}}}
@@ -174,6 +189,7 @@ impl {{{classname}}} {
         }
     }
 }
+{{/composedSchemas.allOf}}
 {{/oneOf.isEmpty}}
 {{^oneOf.isEmpty}}
 {{! TODO: add other vars that are not part of the oneOf}}
