@@ -181,7 +181,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_world
 
-> delete_world(world_id)
+> serde_json::Value delete_world(world_id)
 Delete World
 
 Delete a world. Notice a world is never fully \"deleted\", only its ReleaseStatus is set to \"hidden\" and the linked Files are deleted. The WorldID is permanently reserved.
@@ -195,7 +195,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**serde_json::Value**](serde_json::Value.md)
 
 ### Authorization
 

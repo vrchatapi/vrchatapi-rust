@@ -287,6 +287,7 @@ docs/PrintFiles.md
 docs/PrintsApi.md
 docs/PrivateProfile.md
 docs/PrivateProfileActivity.md
+docs/PrivateProfileActivityLastActivity.md
 docs/Product.md
 docs/ProductListing.md
 docs/ProductListingAttribution.md
@@ -704,6 +705,7 @@ src/models/print.rs
 src/models/print_files.rs
 src/models/private_profile.rs
 src/models/private_profile_activity.rs
+src/models/private_profile_activity_last_activity.rs
 src/models/product.rs
 src/models/product_listing.rs
 src/models/product_listing_attribution.rs

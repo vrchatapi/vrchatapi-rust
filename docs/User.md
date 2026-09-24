@@ -26,8 +26,8 @@ Name | Type | Description | Notes
 **instance_id** | Option<**String**> | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | [optional]
 **is_economy_creator** | Option<**bool**> |  | [optional]
 **is_friend** | **bool** | Either their `friendKey`, or empty string if you are not friends. Unknown usage. | 
-**last_activity** | **String** | Either a date-time or empty string. | 
-**last_login** | **String** | Either a date-time or empty string. | 
+**last_activity** | [**models::PrivateProfileActivityLastActivity**](PrivateProfileActivityLastActivity.md) |  | 
+**last_login** | [**models::PrivateProfileActivityLastActivity**](PrivateProfileActivityLastActivity.md) |  | 
 **last_mobile** | Option<**String**> |  | [optional]
 **last_platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
 **location** | Option<**String**> | Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list. | [optional]

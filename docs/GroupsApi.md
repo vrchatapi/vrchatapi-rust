@@ -368,7 +368,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_group_invite
 
-> create_group_invite(group_id, create_group_invite_request)
+> models::Success create_group_invite(group_id, create_group_invite_request)
 Invite User to Group
 
 Sends an invite to a user to join the group.
@@ -383,7 +383,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**models::Success**](Success.md)
 
 ### Authorization
 
@@ -585,7 +585,7 @@ Name | Type | Description  | Required | Notes
 
 ## delete_group_invite
 
-> delete_group_invite(group_id, user_id)
+> models::Success delete_group_invite(group_id, user_id)
 Delete User Invite
 
 Deletes an Group invite sent to a User
@@ -600,7 +600,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**models::Success**](Success.md)
 
 ### Authorization
 

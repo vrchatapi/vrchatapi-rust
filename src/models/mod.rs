@@ -540,6 +540,8 @@ pub mod private_profile;
 pub use self::private_profile::PrivateProfile;
 pub mod private_profile_activity;
 pub use self::private_profile_activity::PrivateProfileActivity;
+pub mod private_profile_activity_last_activity;
+pub use self::private_profile_activity_last_activity::PrivateProfileActivityLastActivity;
 pub mod product;
 pub use self::product::Product;
 pub mod product_listing;

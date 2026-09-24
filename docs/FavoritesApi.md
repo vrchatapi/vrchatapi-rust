@@ -300,7 +300,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_favorite_group
 
-> update_favorite_group(favorite_group_type, favorite_group_name, user_id, update_favorite_group_request)
+> serde_json::Value update_favorite_group(favorite_group_type, favorite_group_name, user_id, update_favorite_group_request)
 Update Favorite Group
 
 Update information about a specific favorite group.
@@ -317,7 +317,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
- (empty response body)
+[**serde_json::Value**](serde_json::Value.md)
 
 ### Authorization
 
@@ -326,7 +326,7 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: Not defined
+- **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

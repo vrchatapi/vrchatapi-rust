@@ -71,12 +71,10 @@ pub struct User {
     /// Either their `friendKey`, or empty string if you are not friends. Unknown usage.
     #[serde(rename = "isFriend")]
     pub is_friend: bool,
-    /// Either a date-time or empty string.
     #[serde(rename = "last_activity")]
-    pub last_activity: String,
-    /// Either a date-time or empty string.
+    pub last_activity: models::PrivateProfileActivityLastActivity,
     #[serde(rename = "last_login")]
-    pub last_login: String,
+    pub last_login: models::PrivateProfileActivityLastActivity,
     #[serde(
         rename = "last_mobile",
         default,
@@ -136,8 +134,8 @@ impl User {
         friend_key: String,
         id: String,
         is_friend: bool,
-        last_activity: String,
-        last_login: String,
+        last_activity: models::PrivateProfileActivityLastActivity,
+        last_login: models::PrivateProfileActivityLastActivity,
         last_platform: String,
         pronouns: String,
         state: models::UserState,

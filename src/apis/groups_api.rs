@@ -1070,7 +1070,7 @@ pub async fn create_group_invite(
     configuration: &configuration::Configuration,
     group_id: &str,
     create_group_invite_request: models::CreateGroupInviteRequest,
-) -> Result<(), Error<CreateGroupInviteError>> {
+) -> Result<models::Success, Error<CreateGroupInviteError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_body_create_group_invite_request = create_group_invite_request;
@@ -1093,9 +1093,23 @@ pub async fn create_group_invite(
     let resp = configuration.client.execute(req).await?;
 
     let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
 
     if !status.is_client_error() && !status.is_server_error() {
-        Ok(())
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("create_group_invite returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
     } else {
         let content = resp.text().await?;
         if configuration.debug {
@@ -1469,7 +1483,7 @@ pub async fn delete_group_invite(
     configuration: &configuration::Configuration,
     group_id: &str,
     user_id: &str,
-) -> Result<(), Error<DeleteGroupInviteError>> {
+) -> Result<models::Success, Error<DeleteGroupInviteError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_path_user_id = user_id;
@@ -1492,9 +1506,23 @@ pub async fn delete_group_invite(
     let resp = configuration.client.execute(req).await?;
 
     let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
 
     if !status.is_client_error() && !status.is_server_error() {
-        Ok(())
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("delete_group_invite returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
     } else {
         let content = resp.text().await?;
         if configuration.debug {

@@ -6,12 +6,10 @@ pub struct PrivateProfileActivity {
     /// InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance.
     #[serde(rename = "instanceId", skip_serializing_if = "Option::is_none")]
     pub instance_id: Option<String>,
-    /// Either a date-time or an empty string.
     #[serde(rename = "last_activity", skip_serializing_if = "Option::is_none")]
-    pub last_activity: Option<String>,
-    /// Either a date-time or an empty string.
+    pub last_activity: Option<models::PrivateProfileActivityLastActivity>,
     #[serde(rename = "last_login", skip_serializing_if = "Option::is_none")]
-    pub last_login: Option<String>,
+    pub last_login: Option<models::PrivateProfileActivityLastActivity>,
     /// Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list.
     #[serde(rename = "location", skip_serializing_if = "Option::is_none")]
     pub location: Option<String>,

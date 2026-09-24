@@ -419,7 +419,7 @@ pub async fn delete_user_persistence(
 pub async fn delete_world(
     configuration: &configuration::Configuration,
     world_id: &str,
-) -> Result<(), Error<DeleteWorldError>> {
+) -> Result<serde_json::Value, Error<DeleteWorldError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_world_id = world_id;
 
@@ -440,9 +440,23 @@ pub async fn delete_world(
     let resp = configuration.client.execute(req).await?;
 
     let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
 
     if !status.is_client_error() && !status.is_server_error() {
-        Ok(())
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("delete_world returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `serde_json::Value`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `serde_json::Value`")))),
+        }
     } else {
         let content = resp.text().await?;
         if configuration.debug {
