@@ -162,7 +162,7 @@ pub struct {{{classname}}} {
 {{/composedSchemas.allOf}}
 {{#composedSchemas.allOf}}
     #[serde(flatten)]
-    pub {{#title}}{{{title}}}{{/title}}{{^title}}{{{name}}}{{/title}}: {{{dataType}}},
+    pub {{#title}}{{{title}}}{{/title}}{{^title}}{{{nameInPascalCase}}}{{/title}}: {{{dataType}}},
 {{/composedSchemas.allOf}}
 }
 
@@ -216,14 +216,14 @@ impl Default for {{classname}} {
 #[serde(untagged)]
 pub enum {{classname}} {
 {{#composedSchemas.anyOf}}
-    {{{name}}}({{#isModel}}{{^avoidBoxedModels}}Box<{{/avoidBoxedModels}}{{/isModel}}{{{dataType}}}{{#isModel}}{{^avoidBoxedModels}}>{{/avoidBoxedModels}}{{/isModel}}),
+    {{{nameInPascalCase}}}({{#isModel}}{{^avoidBoxedModels}}Box<{{/avoidBoxedModels}}{{/isModel}}{{{dataType}}}{{#isModel}}{{^avoidBoxedModels}}>{{/avoidBoxedModels}}{{/isModel}}),
 {{/composedSchemas.anyOf}}
 }
 
 
 impl Default for {{classname}} {
     fn default() -> Self {
-    {{#composedSchemas.anyOf}}{{#-first}}Self::{{{name}}}(Default::default()){{/-first}}{{/composedSchemas.anyOf}}
+    {{#composedSchemas.anyOf}}{{#-first}}Self::{{{nameInPascalCase}}}(Default::default()){{/-first}}{{/composedSchemas.anyOf}}
     }
 }
 {{/anyOf.isEmpty}}
