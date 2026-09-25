@@ -128,7 +128,7 @@ impl Default for {{classname}} {
 {{/vendorExtensions.x-rust-has-byte-array}}{{^vendorExtensions.x-rust-has-byte-array}}{{#vendorExtensions.x-vrchat-double-encoding}}#[serde_with::serde_as]
 {{/vendorExtensions.x-vrchat-double-encoding}}{{/vendorExtensions.x-rust-has-byte-array}}{{!
 }}{{/composedSchemas.allOf}}{{!
-}}{{#oneOf.isEmpty}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+}}{{#oneOf.isEmpty}}{{^composedSchemas.anyOf}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct {{{classname}}} {
 {{^composedSchemas.allOf}}
 {{#vars}}
@@ -192,6 +192,7 @@ impl {{{classname}}} {
     }
 }
 {{/composedSchemas.allOf}}
+{{/composedSchemas.anyOf}}
 {{/oneOf.isEmpty}}
 {{^oneOf.isEmpty}}
 {{! TODO: add other vars that are not part of the oneOf}}
@@ -209,6 +210,23 @@ impl Default for {{classname}} {
     }
 }
 {{/oneOf.isEmpty}}
+{{#anyOf}}
+{{! TODO: add other vars that are not part of the anyOf}}
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum {{classname}} {
+{{#composedSchemas.anyOf}}
+    {{{name}}}({{#isModel}}{{^avoidBoxedModels}}Box<{{/avoidBoxedModels}}{{/isModel}}{{{dataType}}}{{#isModel}}{{^avoidBoxedModels}}>{{/avoidBoxedModels}}{{/isModel}}),
+{{/composedSchemas.anyOf}}
+}
+
+
+impl Default for {{classname}} {
+    fn default() -> Self {
+    {{#composedSchemas.anyOf}}{{#-first}}Self::{{{name}}}(Default::default()){{/-first}}{{/composedSchemas.anyOf}}
+    }
+}
+{{/anyOf}}
 {{/discriminator}}
 {{/isEnum}}
 {{!-- for properties that are of enum type --}}
