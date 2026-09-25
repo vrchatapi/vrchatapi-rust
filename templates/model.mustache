@@ -162,7 +162,7 @@ pub struct {{{classname}}} {
 {{/composedSchemas.allOf}}
 {{#composedSchemas.allOf}}
     #[serde(flatten)]
-    pub {{#title}}{{{title}}}{{/title}}{{^title}}{{{nameInPascalCase}}}{{/title}}: {{{dataType}}},
+    pub {{#title}}{{{title}}}{{/title}}{{^title}}{{{name}}}{{/title}}: {{{dataType}}},
 {{/composedSchemas.allOf}}
 }
 
