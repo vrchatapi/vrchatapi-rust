@@ -210,7 +210,7 @@ impl Default for {{classname}} {
     }
 }
 {{/oneOf.isEmpty}}
-{{#anyOf}}
+{{^anyOf.isEmpty}}
 {{! TODO: add other vars that are not part of the anyOf}}
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -226,7 +226,7 @@ impl Default for {{classname}} {
     {{#composedSchemas.anyOf}}{{#-first}}Self::{{{name}}}(Default::default()){{/-first}}{{/composedSchemas.anyOf}}
     }
 }
-{{/anyOf}}
+{{/anyOf.isEmpty}}
 {{/discriminator}}
 {{/isEnum}}
 {{!-- for properties that are of enum type --}}
