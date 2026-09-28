@@ -33,6 +33,12 @@ pub struct CurrentUser {
     pub age_verified: bool,
     #[serde(rename = "allowAvatarCopying")]
     pub allow_avatar_copying: bool,
+    /// The \"Allow Worlds to Count Friends in Instance\" setting, introduced under [Udon Methods for Friend Info](https://ask.vrchat.com/t/developer-update-24-september-2026/48972#p-90922-udon-methods-for-friend-info-13) in the Developer Update of September 24, 2026.
+    #[serde(
+        rename = "allowWorldsToCountFriendsInInstance",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub allow_worlds_to_count_friends_in_instance: Option<bool>,
     /// Details of an account on another service linked to this one.
     #[serde(rename = "appleDetails", skip_serializing_if = "Option::is_none")]
     pub apple_details: Option<serde_json::Value>,
@@ -336,6 +342,7 @@ impl CurrentUser {
             age_verification_status,
             age_verified,
             allow_avatar_copying,
+            allow_worlds_to_count_friends_in_instance: None,
             apple_details: None,
             apple_id: None,
             auth_token: None,

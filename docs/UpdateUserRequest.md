@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accepted_tos_version** | Option<**i32**> |  | [optional]
+**allow_worlds_to_count_friends_in_instance** | Option<**bool**> | The \"Allow Worlds to Count Friends in Instance\" setting, introduced under [Udon Methods for Friend Info](https://ask.vrchat.com/t/developer-update-24-september-2026/48972#p-90922-udon-methods-for-friend-info-13) in the Developer Update of September 24, 2026. | [optional]
 **birthday** | Option<**chrono::NaiveDate**> |  | [optional]
 **content_filters** | Option<[**Vec<models::ContentFilter>**](ContentFilter.md)> | These tags begin with `content_` and control content gating | [optional]
 **current_password** | Option<**String**> |  | [optional]
