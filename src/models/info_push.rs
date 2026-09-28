@@ -47,6 +47,8 @@ pub struct InfoPush {
     pub start_date: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
+    #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
+    pub r#type: Option<String>,
     #[serde(rename = "updatedAt")]
     pub updated_at: chrono::DateTime<chrono::FixedOffset>,
 }
@@ -78,6 +80,7 @@ impl InfoPush {
             require_client_tags: None,
             start_date: None,
             tags,
+            r#type: None,
             updated_at,
         }
     }

@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **require_client_tags** | Option<**Vec<String>**> |  | [optional]
 **start_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **tags** | **Vec<String>** |  | 
+**r#type** | Option<**String**> |  | [optional]
 **updated_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

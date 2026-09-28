@@ -19,6 +19,10 @@ pub struct InfoPushData {
     pub category: Option<String>,
     #[serde(rename = "contentList", skip_serializing_if = "Option::is_none")]
     pub content_list: Option<models::DynamicContentRow>,
+    #[serde(rename = "contentSource", skip_serializing_if = "Option::is_none")]
+    pub content_source: Option<models::InfoPushDataContentSource>,
+    #[serde(rename = "controls", skip_serializing_if = "Option::is_none")]
+    pub controls: Option<Vec<models::InfoPushDataControl>>,
     #[serde(rename = "cta", skip_serializing_if = "Option::is_none")]
     pub cta: Option<models::InfoPushDataCallToAction>,
     #[serde(rename = "deliveryBehavior", skip_serializing_if = "Option::is_none")]
@@ -59,8 +63,13 @@ pub struct InfoPushData {
     pub media_type: Option<String>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<models::InfoPushDataCategoryName>,
-    #[serde(rename = "onPressed", skip_serializing_if = "Option::is_none")]
-    pub on_pressed: Option<models::InfoPushDataClickable>,
+    #[serde(
+        rename = "onPressed",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub on_pressed: Option<Option<models::InfoPushDataClickable>>,
     #[serde(
         rename = "overrideName",
         default,
@@ -68,6 +77,10 @@ pub struct InfoPushData {
         skip_serializing_if = "Option::is_none"
     )]
     pub override_name: Option<Option<serde_json::Value>>,
+    #[serde(rename = "presentation", skip_serializing_if = "Option::is_none")]
+    pub presentation: Option<models::InfoPushDataPresentation>,
+    #[serde(rename = "promotion", skip_serializing_if = "Option::is_none")]
+    pub promotion: Option<models::InfoPushDataPromotion>,
     /// Number of rows to render.
     #[serde(
         rename = "rows",
@@ -76,6 +89,8 @@ pub struct InfoPushData {
         skip_serializing_if = "Option::is_none"
     )]
     pub rows: Option<Option<i32>>,
+    #[serde(rename = "schemaVersion", skip_serializing_if = "Option::is_none")]
+    pub schema_version: Option<i32>,
     #[serde(rename = "search", skip_serializing_if = "Option::is_none")]
     pub search: Option<models::InfoPushDataSearch>,
     #[serde(
@@ -92,6 +107,8 @@ pub struct InfoPushData {
         skip_serializing_if = "Option::is_none"
     )]
     pub show_in_world_ids: Option<Option<serde_json::Value>>,
+    #[serde(rename = "subtitle", skip_serializing_if = "Option::is_none")]
+    pub subtitle: Option<String>,
     #[serde(rename = "template", skip_serializing_if = "Option::is_none")]
     pub template: Option<String>,
     #[serde(
@@ -128,6 +145,8 @@ impl InfoPushData {
             categories: None,
             category: None,
             content_list: None,
+            content_source: None,
+            controls: None,
             cta: None,
             delivery_behavior: None,
             description: None,
@@ -146,10 +165,14 @@ impl InfoPushData {
             name: None,
             on_pressed: None,
             override_name: None,
+            presentation: None,
+            promotion: None,
             rows: None,
+            schema_version: None,
             search: None,
             short_name: None,
             show_in_world_ids: None,
+            subtitle: None,
             template: None,
             thumbnail_image_url: None,
             title: None,

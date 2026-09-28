@@ -1267,7 +1267,7 @@ pub async fn submit_moderation_report(
     }
 }
 
-/// Turns interests and preferences on with `true` and off with `false`. A key the body leaves out keeps its value, and an unknown key or a value that is not a boolean is ignored.
+/// Turns interests and preferences on with `true` and off with `false`. A key the body leaves out keeps its value.
 pub async fn update_interests_and_preferences(
     configuration: &configuration::Configuration,
     interests_and_preferences: models::InterestsAndPreferences,
