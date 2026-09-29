@@ -15,11 +15,13 @@ pub struct ModerationReport {
         deserialize_with = "Option::deserialize"
     )]
     pub content_thumbnail_image_url: Option<String>,
+    #[serde(rename = "created")]
+    pub created: chrono::DateTime<chrono::FixedOffset>,
     /// The subjective reason for the report
     #[serde(rename = "description")]
     pub description: String,
-    #[serde(rename = "evidenceRequired")]
-    pub evidence_required: bool,
+    #[serde(rename = "evidenceRequired", deserialize_with = "Option::deserialize")]
+    pub evidence_required: Option<bool>,
     #[serde(rename = "id")]
     pub id: String,
     /// Valid values are the strings in the array `$.reportOptions[type][category]` from `GET /config`. Descriptions of these are found at `$.reportReasons[type]`.
@@ -38,8 +40,9 @@ impl ModerationReport {
         content_id: String,
         content_name: String,
         content_thumbnail_image_url: Option<String>,
+        created: chrono::DateTime<chrono::FixedOffset>,
         description: String,
-        evidence_required: bool,
+        evidence_required: Option<bool>,
         id: String,
         reason: String,
         support_required: bool,
@@ -50,6 +53,7 @@ impl ModerationReport {
             content_id,
             content_name,
             content_thumbnail_image_url,
+            created,
             description,
             evidence_required,
             id,
