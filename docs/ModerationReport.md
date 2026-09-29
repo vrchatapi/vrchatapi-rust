@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **content_name** | **String** |  | 
 **content_thumbnail_image_url** | Option<**String**> |  | 
 **created** | **chrono::DateTime<chrono::FixedOffset>** |  | 
-**description** | **String** | The subjective reason for the report | 
+**description** | Option<**String**> | The subjective reason for the report | 
 **evidence_required** | Option<**bool**> |  | 
 **id** | **String** |  | 
 **reason** | **String** | Valid values are the strings in the array `$.reportOptions[type][category]` from `GET /config`. Descriptions of these are found at `$.reportReasons[type]`. | 

@@ -18,8 +18,8 @@ pub struct ModerationReport {
     #[serde(rename = "created")]
     pub created: chrono::DateTime<chrono::FixedOffset>,
     /// The subjective reason for the report
-    #[serde(rename = "description")]
-    pub description: String,
+    #[serde(rename = "description", deserialize_with = "Option::deserialize")]
+    pub description: Option<String>,
     #[serde(rename = "evidenceRequired", deserialize_with = "Option::deserialize")]
     pub evidence_required: Option<bool>,
     #[serde(rename = "id")]
@@ -41,7 +41,7 @@ impl ModerationReport {
         content_name: String,
         content_thumbnail_image_url: Option<String>,
         created: chrono::DateTime<chrono::FixedOffset>,
-        description: String,
+        description: Option<String>,
         evidence_required: Option<bool>,
         id: String,
         reason: String,
