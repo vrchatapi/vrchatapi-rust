@@ -84,6 +84,8 @@ pub struct LimitedUserGroups {
     pub privacy: Option<String>,
     #[serde(rename = "shortCode", skip_serializing_if = "Option::is_none")]
     pub short_code: Option<String>,
+    #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
+    pub store_id: Option<String>,
 }
 
 impl LimitedUserGroups {
@@ -109,6 +111,7 @@ impl LimitedUserGroups {
             owner_id: None,
             privacy: None,
             short_code: None,
+            store_id: None,
         }
     }
 }

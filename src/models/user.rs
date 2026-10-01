@@ -45,6 +45,8 @@ pub struct User {
     pub date_joined: chrono::NaiveDate,
     #[serde(rename = "developerType")]
     pub developer_type: models::DeveloperType,
+    #[serde(rename = "discordId", skip_serializing_if = "Option::is_none")]
+    pub discord_id: Option<String>,
     /// A users visual display name. This is what shows up in-game, and can different from their `username`. Changing display name is restricted to a cooldown period.
     #[serde(rename = "displayName")]
     pub display_name: String,
@@ -157,6 +159,7 @@ impl User {
             banner_url: None,
             date_joined,
             developer_type,
+            discord_id: None,
             display_name,
             friend_key,
             friend_request_status: None,

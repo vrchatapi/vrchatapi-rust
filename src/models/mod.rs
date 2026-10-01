@@ -750,6 +750,8 @@ pub mod update_user_client_config_request;
 pub use self::update_user_client_config_request::UpdateUserClientConfigRequest;
 pub mod update_user_note_request;
 pub use self::update_user_note_request::UpdateUserNoteRequest;
+pub mod update_user_note_response;
+pub use self::update_user_note_response::UpdateUserNoteResponse;
 pub mod update_user_request;
 pub use self::update_user_request::UpdateUserRequest;
 pub mod update_world_request;

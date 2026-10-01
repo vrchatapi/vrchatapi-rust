@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **banner_url** | Option<**String**> |  | [optional]
 **date_joined** | **chrono::NaiveDate** |  | 
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 
+**discord_id** | Option<**String**> |  | [optional]
 **display_name** | **String** | A users visual display name. This is what shows up in-game, and can different from their `username`. Changing display name is restricted to a cooldown period. | 
 **friend_key** | **String** |  | 
 **friend_request_status** | Option<**String**> | State of a friend request between the caller and this user. VRChat sends the string `\"null\"`, not JSON `null`. | [optional]

@@ -1061,7 +1061,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_user_note
 
-> models::UserNote update_user_note(update_user_note_request)
+> models::UpdateUserNoteResponse update_user_note(update_user_note_request)
 Update User Note
 
 Updates the currently authenticated user's note on a user
@@ -1075,7 +1075,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::UserNote**](UserNote.md)
+[**models::UpdateUserNoteResponse**](UpdateUserNoteResponse.md)
 
 ### Authorization
 

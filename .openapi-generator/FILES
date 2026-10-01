@@ -393,6 +393,7 @@ docs/UpdateTiliaTosRequest.md
 docs/UpdateUserBadgeRequest.md
 docs/UpdateUserClientConfigRequest.md
 docs/UpdateUserNoteRequest.md
+docs/UpdateUserNoteResponse.md
 docs/UpdateUserRequest.md
 docs/UpdateWorldRequest.md
 docs/User.md
@@ -817,6 +818,7 @@ src/models/update_tilia_tos_request.rs
 src/models/update_user_badge_request.rs
 src/models/update_user_client_config_request.rs
 src/models/update_user_note_request.rs
+src/models/update_user_note_response.rs
 src/models/update_user_request.rs
 src/models/update_world_request.rs
 src/models/user.rs
