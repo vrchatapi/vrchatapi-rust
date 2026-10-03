@@ -24,6 +24,8 @@ pub struct CurrentUser {
         skip_serializing_if = "Option::is_none"
     )]
     pub account_deletion_log: Option<Option<Vec<models::AccountDeletionLog>>>,
+    #[serde(rename = "accountStanding", skip_serializing_if = "Option::is_none")]
+    pub account_standing: Option<String>,
     #[serde(rename = "activeFriends", skip_serializing_if = "Option::is_none")]
     pub active_friends: Option<Vec<String>>,
     #[serde(rename = "ageVerificationStatus")]
@@ -338,6 +340,7 @@ impl CurrentUser {
             accepted_tos_version,
             account_deletion_date: None,
             account_deletion_log: None,
+            account_standing: None,
             active_friends: None,
             age_verification_status,
             age_verified,

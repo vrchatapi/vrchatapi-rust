@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **accepted_tos_version** | **i32** |  | 
 **account_deletion_date** | Option<**chrono::NaiveDate**> |  | [optional]
 **account_deletion_log** | Option<[**Vec<models::AccountDeletionLog>**](AccountDeletionLog.md)> |  | [optional]
+**account_standing** | Option<**String**> |  | [optional]
 **active_friends** | Option<**Vec<String>**> |  | [optional]
 **age_verification_status** | [**models::AgeVerificationStatus**](AgeVerificationStatus.md) |  | 
 **age_verified** | **bool** | `true` if, user is age verified (not 18+). | 
