@@ -314,8 +314,6 @@ pub mod group_audit_log_entry_data_group_role_update;
 pub use self::group_audit_log_entry_data_group_role_update::GroupAuditLogEntryDataGroupRoleUpdate;
 pub mod group_audit_log_entry_data_group_update;
 pub use self::group_audit_log_entry_data_group_update::GroupAuditLogEntryDataGroupUpdate;
-pub mod group_audit_log_entry_event;
-pub use self::group_audit_log_entry_event::GroupAuditLogEntryEvent;
 pub mod group_audit_log_entry_file_id_change;
 pub use self::group_audit_log_entry_file_id_change::GroupAuditLogEntryFileIdChange;
 pub mod group_audit_log_entry_group_announcement;

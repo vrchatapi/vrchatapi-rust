@@ -165,7 +165,6 @@ docs/GroupAuditLogEntryDataGroupRoleCreate.md
 docs/GroupAuditLogEntryDataGroupRoleDelete.md
 docs/GroupAuditLogEntryDataGroupRoleUpdate.md
 docs/GroupAuditLogEntryDataGroupUpdate.md
-docs/GroupAuditLogEntryEvent.md
 docs/GroupAuditLogEntryFileIdChange.md
 docs/GroupAuditLogEntryGroupAnnouncement.md
 docs/GroupAuditLogEntryGroupCalendarEventCreate.md
@@ -662,7 +661,6 @@ src/models/group_audit_log_entry_data_group_role_create.rs
 src/models/group_audit_log_entry_data_group_role_delete.rs
 src/models/group_audit_log_entry_data_group_role_update.rs
 src/models/group_audit_log_entry_data_group_update.rs
-src/models/group_audit_log_entry_event.rs
 src/models/group_audit_log_entry_file_id_change.rs
 src/models/group_audit_log_entry_group_announcement.rs
 src/models/group_audit_log_entry_group_calendar_event_create.rs

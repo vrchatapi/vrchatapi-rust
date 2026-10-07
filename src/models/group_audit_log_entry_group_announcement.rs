@@ -3,27 +3,12 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupAuditLogEntryGroupAnnouncement {
-    #[serde(rename = "data")]
-    pub data: models::GroupAuditLogEntryDataGroupAnnouncement,
-    #[serde(rename = "eventType")]
-    pub event_type: EventType,
-    #[serde(rename = "targetId")]
-    pub target_id: String,
+    #[serde(flatten)]
+    pub all_of_0: models::GroupAuditLogEntryBase,
+    #[serde(flatten)]
+    pub GroupAuditLogEntryGroupAnnouncement: serde_json::Value,
 }
 
-impl GroupAuditLogEntryGroupAnnouncement {
-    pub fn new(
-        data: models::GroupAuditLogEntryDataGroupAnnouncement,
-        event_type: EventType,
-        target_id: String,
-    ) -> GroupAuditLogEntryGroupAnnouncement {
-        GroupAuditLogEntryGroupAnnouncement {
-            data,
-            event_type,
-            target_id,
-        }
-    }
-}
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum EventType {
     #[serde(rename = "group.announcement")]
