@@ -16,13 +16,19 @@ pub struct LimitedUserInstance {
     #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
     pub bio_links: Option<Vec<String>>,
     /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarImageUrl")]
-    pub current_avatar_image_url: String,
-    #[serde(rename = "currentAvatarTags")]
-    pub current_avatar_tags: Vec<String>,
+    #[serde(
+        rename = "currentAvatarImageUrl",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub current_avatar_image_url: Option<String>,
+    #[serde(rename = "currentAvatarTags", skip_serializing_if = "Option::is_none")]
+    pub current_avatar_tags: Option<Vec<String>>,
     /// When profilePicOverride is not empty, use it instead.
-    #[serde(rename = "currentAvatarThumbnailImageUrl")]
-    pub current_avatar_thumbnail_image_url: String,
+    #[serde(
+        rename = "currentAvatarThumbnailImageUrl",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub current_avatar_thumbnail_image_url: Option<String>,
     #[serde(rename = "date_joined", deserialize_with = "Option::deserialize")]
     pub date_joined: Option<chrono::DateTime<chrono::FixedOffset>>,
     #[serde(rename = "developerType")]
@@ -80,9 +86,6 @@ impl LimitedUserInstance {
         age_verification_status: models::AgeVerificationStatus,
         age_verified: bool,
         allow_avatar_copying: bool,
-        current_avatar_image_url: String,
-        current_avatar_tags: Vec<String>,
-        current_avatar_thumbnail_image_url: String,
         date_joined: Option<chrono::DateTime<chrono::FixedOffset>>,
         developer_type: models::DeveloperType,
         display_name: String,
@@ -102,9 +105,9 @@ impl LimitedUserInstance {
             allow_avatar_copying,
             bio: None,
             bio_links: None,
-            current_avatar_image_url,
-            current_avatar_tags,
-            current_avatar_thumbnail_image_url,
+            current_avatar_image_url: None,
+            current_avatar_tags: None,
+            current_avatar_thumbnail_image_url: None,
             date_joined,
             developer_type,
             display_name,
