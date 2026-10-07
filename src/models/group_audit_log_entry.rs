@@ -1,45 +1,11 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+/// GroupAuditLogEntry : A group audit log entry. The shape of `data` depends on `eventType`.
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupAuditLogEntry {
-    #[serde(rename = "actorDisplayName", skip_serializing_if = "Option::is_none")]
-    pub actor_display_name: Option<String>,
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "actorId", skip_serializing_if = "Option::is_none")]
-    pub actor_id: Option<String>,
-    #[serde(rename = "created_at", skip_serializing_if = "Option::is_none")]
-    pub created_at: Option<chrono::DateTime<chrono::FixedOffset>>,
-    /// The data associated with the event. The format of this data is dependent on the event type.
-    #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
-    pub data: Option<serde_json::Value>,
-    /// A human-readable description of the event.
-    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
-    pub description: Option<String>,
-    /// The type of event that occurred. This is a string that is prefixed with the type of object that the event occurred on. For example, a group role update event would be prefixed with `group.role`.
-    #[serde(rename = "eventType", skip_serializing_if = "Option::is_none")]
-    pub event_type: Option<String>,
-    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
-    pub group_id: Option<String>,
-    #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
-    pub id: Option<String>,
-    /// Typically a UserID, GroupID, GroupRoleID, or Location, but could be other types of IDs.
-    #[serde(rename = "targetId", skip_serializing_if = "Option::is_none")]
-    pub target_id: Option<String>,
-}
-
-impl GroupAuditLogEntry {
-    pub fn new() -> GroupAuditLogEntry {
-        GroupAuditLogEntry {
-            actor_display_name: None,
-            actor_id: None,
-            created_at: None,
-            data: None,
-            description: None,
-            event_type: None,
-            group_id: None,
-            id: None,
-            target_id: None,
-        }
-    }
+    #[serde(flatten)]
+    pub all_of_0: models::GroupAuditLogEntryBase,
+    #[serde(flatten)]
+    pub all_of_1: models::GroupAuditLogEntryEvent,
 }
