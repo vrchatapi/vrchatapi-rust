@@ -79,9 +79,15 @@ fn types_the_fields_of_a_role_update() {
         panic!("expected a group.role.update entry");
     };
     assert_eq!(update.actor_display_name, "8cf3def6b8cea");
-    assert_eq!(update.target_id, "grol_459e7601-f5a1-4aec-aa18-903adb1f6889");
+    assert_eq!(
+        update.target_id,
+        "grol_459e7601-f5a1-4aec-aa18-903adb1f6889"
+    );
     let name = update.data.name.unwrap();
-    assert_eq!((name.old.as_str(), name.new.as_str()), ("test", "test-renamed"));
+    assert_eq!(
+        (name.old.as_str(), name.new.as_str()),
+        ("test", "test-renamed")
+    );
     let description = update.data.description.unwrap();
     assert_eq!(
         (description.old.as_str(), description.new.as_str()),
@@ -96,7 +102,10 @@ fn parses_an_unlisted_event_type_into_unknown() {
         panic!("expected the unknown variant, got {entry:?}");
     };
     assert_eq!(unknown.event_type, "group.future.thing");
-    assert_eq!(unknown.target_id, "grol_459e7601-f5a1-4aec-aa18-903adb1f6889");
+    assert_eq!(
+        unknown.target_id,
+        "grol_459e7601-f5a1-4aec-aa18-903adb1f6889"
+    );
     let expected: serde_json::Value = serde_json::from_str(UNLISTED).unwrap();
     assert_eq!(serde_json::to_value(&entry).unwrap(), expected);
 }
@@ -104,7 +113,10 @@ fn parses_an_unlisted_event_type_into_unknown() {
 #[test]
 fn rejects_an_entry_no_member_accepts() {
     let error = serde_json::from_str::<GroupAuditLogEntry>(MISTYPED_TARGET).unwrap_err();
-    assert_eq!(error.to_string(), "data did not match any variant of untagged enum GroupAuditLogEntry");
+    assert_eq!(
+        error.to_string(),
+        "data did not match any variant of untagged enum GroupAuditLogEntry"
+    );
 }
 
 #[test]
