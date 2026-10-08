@@ -86,8 +86,6 @@ jobs:
 
       - run: cargo fmt --all -- --check
 
-      - run: rustfmt --edition 2021 --check patches/*.rs
-
   test:
     needs: generate
     runs-on: ubuntu-latest

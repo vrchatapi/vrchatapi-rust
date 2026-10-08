@@ -7,9 +7,7 @@ authors = ["{{{.}}}"]
 {{^infoEmail}}
 authors = ["OpenAPI Generator team and contributors"]
 {{/infoEmail}}
-{{#appDescription}}
-description = "{{{.}}}"
-{{/appDescription}}
+description = "VRChat API Client for Rust"
 {{#licenseInfo}}
 license = "{{.}}"
 {{/licenseInfo}}
@@ -126,3 +124,6 @@ mockall = ["dep:mockall"]
 bon = ["dep:bon"]
 {{/useBonBuilder}}
 {{/reqwestTrait}}
+
+[dev-dependencies]
+tokio = { version = '1', features = ['macros', 'rt-multi-thread'] }
