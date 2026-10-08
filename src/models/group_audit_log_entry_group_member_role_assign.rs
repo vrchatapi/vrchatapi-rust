@@ -16,8 +16,6 @@ pub struct GroupAuditLogEntryGroupMemberRoleAssign {
     /// A human-readable description of the event.
     #[serde(rename = "description")]
     pub description: String,
-    #[serde(rename = "eventType", default)]
-    pub event_type: EventType,
     /// The ID of the group the entry belongs to.
     #[serde(rename = "groupId")]
     pub group_id: String,
@@ -26,6 +24,8 @@ pub struct GroupAuditLogEntryGroupMemberRoleAssign {
     pub id: String,
     #[serde(rename = "data")]
     pub data: models::GroupAuditLogEntryDataGroupMemberRole,
+    #[serde(rename = "eventType", default)]
+    pub event_type: EventType,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "targetId")]
     pub target_id: String,
@@ -37,10 +37,10 @@ impl GroupAuditLogEntryGroupMemberRoleAssign {
         actor_id: String,
         created_at: chrono::DateTime<chrono::FixedOffset>,
         description: String,
-        event_type: EventType,
         group_id: String,
         id: String,
         data: models::GroupAuditLogEntryDataGroupMemberRole,
+        event_type: EventType,
         target_id: String,
     ) -> GroupAuditLogEntryGroupMemberRoleAssign {
         GroupAuditLogEntryGroupMemberRoleAssign {
@@ -48,10 +48,10 @@ impl GroupAuditLogEntryGroupMemberRoleAssign {
             actor_id,
             created_at,
             description,
-            event_type,
             group_id,
             id,
             data,
+            event_type,
             target_id,
         }
     }

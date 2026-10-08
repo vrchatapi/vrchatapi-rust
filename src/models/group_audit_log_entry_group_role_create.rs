@@ -16,8 +16,6 @@ pub struct GroupAuditLogEntryGroupRoleCreate {
     /// A human-readable description of the event.
     #[serde(rename = "description")]
     pub description: String,
-    #[serde(rename = "eventType", default)]
-    pub event_type: EventType,
     /// The ID of the group the entry belongs to.
     #[serde(rename = "groupId")]
     pub group_id: String,
@@ -26,6 +24,8 @@ pub struct GroupAuditLogEntryGroupRoleCreate {
     pub id: String,
     #[serde(rename = "data")]
     pub data: models::GroupAuditLogEntryDataGroupRoleCreate,
+    #[serde(rename = "eventType", default)]
+    pub event_type: EventType,
     #[serde(rename = "targetId")]
     pub target_id: String,
 }
@@ -36,10 +36,10 @@ impl GroupAuditLogEntryGroupRoleCreate {
         actor_id: String,
         created_at: chrono::DateTime<chrono::FixedOffset>,
         description: String,
-        event_type: EventType,
         group_id: String,
         id: String,
         data: models::GroupAuditLogEntryDataGroupRoleCreate,
+        event_type: EventType,
         target_id: String,
     ) -> GroupAuditLogEntryGroupRoleCreate {
         GroupAuditLogEntryGroupRoleCreate {
@@ -47,10 +47,10 @@ impl GroupAuditLogEntryGroupRoleCreate {
             actor_id,
             created_at,
             description,
-            event_type,
             group_id,
             id,
             data,
+            event_type,
             target_id,
         }
     }

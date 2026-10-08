@@ -16,9 +16,6 @@ pub struct GroupAuditLogEntryBase {
     /// A human-readable description of the event.
     #[serde(rename = "description")]
     pub description: String,
-    /// The type of event that occurred.
-    #[serde(rename = "eventType")]
-    pub event_type: String,
     /// The ID of the group the entry belongs to.
     #[serde(rename = "groupId")]
     pub group_id: String,
@@ -33,7 +30,6 @@ impl GroupAuditLogEntryBase {
         actor_id: String,
         created_at: chrono::DateTime<chrono::FixedOffset>,
         description: String,
-        event_type: String,
         group_id: String,
         id: String,
     ) -> GroupAuditLogEntryBase {
@@ -42,7 +38,6 @@ impl GroupAuditLogEntryBase {
             actor_id,
             created_at,
             description,
-            event_type,
             group_id,
             id,
         }

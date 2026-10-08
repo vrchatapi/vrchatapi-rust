@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **actor_id** | **String** | The ID of the user who performed the action. | 
 **created_at** | **chrono::DateTime<chrono::FixedOffset>** | When the action was performed. | 
 **description** | **String** | A human-readable description of the event. | 
-**event_type** | **String** | The type of event that occurred. | 
 **group_id** | **String** | The ID of the group the entry belongs to. | 
 **id** | **String** | The unique ID of this audit log entry. | 
 

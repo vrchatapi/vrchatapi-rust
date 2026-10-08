@@ -16,8 +16,6 @@ pub struct GroupAuditLogEntryGroupCalendarEventDelete {
     /// A human-readable description of the event.
     #[serde(rename = "description")]
     pub description: String,
-    #[serde(rename = "eventType", default)]
-    pub event_type: EventType,
     /// The ID of the group the entry belongs to.
     #[serde(rename = "groupId")]
     pub group_id: String,
@@ -26,6 +24,8 @@ pub struct GroupAuditLogEntryGroupCalendarEventDelete {
     pub id: String,
     #[serde(rename = "data")]
     pub data: models::GroupAuditLogEntryDataGroupCalendarEventDelete,
+    #[serde(rename = "eventType", default)]
+    pub event_type: EventType,
     #[serde(rename = "targetId")]
     pub target_id: String,
 }
@@ -36,10 +36,10 @@ impl GroupAuditLogEntryGroupCalendarEventDelete {
         actor_id: String,
         created_at: chrono::DateTime<chrono::FixedOffset>,
         description: String,
-        event_type: EventType,
         group_id: String,
         id: String,
         data: models::GroupAuditLogEntryDataGroupCalendarEventDelete,
+        event_type: EventType,
         target_id: String,
     ) -> GroupAuditLogEntryGroupCalendarEventDelete {
         GroupAuditLogEntryGroupCalendarEventDelete {
@@ -47,10 +47,10 @@ impl GroupAuditLogEntryGroupCalendarEventDelete {
             actor_id,
             created_at,
             description,
-            event_type,
             group_id,
             id,
             data,
+            event_type,
             target_id,
         }
     }

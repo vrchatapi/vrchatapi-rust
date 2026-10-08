@@ -18,8 +18,7 @@ openapi-generator generate \
 --git-repo-id=vrchatapi-rust \
 -o . \
 -i "${1}" \
---http-user-agent="vrchatapi-rust" \
---inline-schema-name-mappings Transaction_agreement=TransactionAgreementOneOf
+--http-user-agent="vrchatapi-rust"
 #--global-property debugOperations=true
 
 # Update entire description (replace entire line, match the random data there) line in Cargo.toml
@@ -34,6 +33,9 @@ printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt
 
 find src/ -type f -name "*.rs" -exec sed -i 's/models::models/models/g' {} +
 find src/ -type f -name "*.rs" -exec sed -i -E "s/(::)?std::path::PathBuf/crate::patches::better_file_upload::File<'_>/g" {} +
+
+# Fix infinite size of Transaction Agreement
+sed -i 's/TransactionAgreement(models::TransactionAgreement),/TransactionAgreement(Box<models::TransactionAgreement>),/' src/models/transaction_agreement.rs
 
 rm -r src/patches
 cp -r patches src/patches

@@ -16,8 +16,6 @@ pub struct GroupAuditLogEntryGroupInstanceClose {
     /// A human-readable description of the event.
     #[serde(rename = "description")]
     pub description: String,
-    #[serde(rename = "eventType", default)]
-    pub event_type: EventType,
     /// The ID of the group the entry belongs to.
     #[serde(rename = "groupId")]
     pub group_id: String,
@@ -26,6 +24,8 @@ pub struct GroupAuditLogEntryGroupInstanceClose {
     pub id: String,
     #[serde(rename = "data")]
     pub data: models::GroupAuditLogEntryDataGroupInstanceClose,
+    #[serde(rename = "eventType", default)]
+    pub event_type: EventType,
     /// Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list.
     #[serde(rename = "targetId")]
     pub target_id: String,
@@ -37,10 +37,10 @@ impl GroupAuditLogEntryGroupInstanceClose {
         actor_id: String,
         created_at: chrono::DateTime<chrono::FixedOffset>,
         description: String,
-        event_type: EventType,
         group_id: String,
         id: String,
         data: models::GroupAuditLogEntryDataGroupInstanceClose,
+        event_type: EventType,
         target_id: String,
     ) -> GroupAuditLogEntryGroupInstanceClose {
         GroupAuditLogEntryGroupInstanceClose {
@@ -48,10 +48,10 @@ impl GroupAuditLogEntryGroupInstanceClose {
             actor_id,
             created_at,
             description,
-            event_type,
             group_id,
             id,
             data,
+            event_type,
             target_id,
         }
     }
