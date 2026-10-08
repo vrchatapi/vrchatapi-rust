@@ -2,7 +2,6 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// ImageLoopStyle : Animation looping style for images.
-/// Animation looping style for images.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ImageLoopStyle {
     #[serde(rename = "linear")]

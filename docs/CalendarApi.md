@@ -283,7 +283,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_calendar_event_ics
 
-> std::path::PathBuf get_group_calendar_event_ics(group_id, calendar_id)
+> crate::patches::better_file_upload::File<'_> get_group_calendar_event_ics(group_id, calendar_id)
 Download calendar event as ICS
 
 Returns the specified calendar in iCalendar (ICS) format.
@@ -298,7 +298,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**std::path::PathBuf**](std::path::PathBuf.md)
+[**crate::patches::better_file_upload::File<'_>**](crate::patches::better_file_upload::File<'_>.md)
 
 ### Authorization
 

@@ -2,7 +2,6 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// InstanceRegion : Instance region
-/// Instance region
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum InstanceRegion {
     #[serde(rename = "eu")]

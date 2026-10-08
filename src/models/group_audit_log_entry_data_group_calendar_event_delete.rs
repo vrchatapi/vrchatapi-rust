@@ -4,20 +4,9 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupAuditLogEntryDataGroupCalendarEventDelete {
-    #[serde(rename = "accessType")]
-    pub access_type: models::CalendarEventAccess,
-    /// The description of the calendar event.
-    #[serde(rename = "description")]
-    pub description: String,
-    /// The image file ID for the event.
-    #[serde(rename = "imageId", deserialize_with = "Option::deserialize")]
-    pub image_id: Option<String>,
-    /// The title of the calendar event.
-    #[serde(rename = "title")]
-    pub title: String,
-    /// The type of calendar entry.
-    #[serde(rename = "type")]
-    pub r#type: String,
+    #[serde(flatten)]
+    pub group_audit_log_entry_data_group_calendar_event_create:
+        models::GroupAuditLogEntryDataGroupCalendarEventCreate,
     /// The category of the event.
     #[serde(rename = "category")]
     pub category: String,
@@ -95,11 +84,7 @@ pub struct GroupAuditLogEntryDataGroupCalendarEventDelete {
 
 impl GroupAuditLogEntryDataGroupCalendarEventDelete {
     pub fn new(
-        access_type: models::CalendarEventAccess,
-        description: String,
-        image_id: Option<String>,
-        title: String,
-        r#type: String,
+        group_audit_log_entry_data_group_calendar_event_create: models::GroupAuditLogEntryDataGroupCalendarEventCreate,
         category: String,
         close_instance_after_end_minutes: i32,
         created_at: chrono::DateTime<chrono::FixedOffset>,
@@ -126,11 +111,7 @@ impl GroupAuditLogEntryDataGroupCalendarEventDelete {
         uses_instance_overflow: bool,
     ) -> GroupAuditLogEntryDataGroupCalendarEventDelete {
         GroupAuditLogEntryDataGroupCalendarEventDelete {
-            access_type,
-            description,
-            image_id,
-            title,
-            r#type,
+            group_audit_log_entry_data_group_calendar_event_create,
             category,
             close_instance_after_end_minutes,
             created_at,

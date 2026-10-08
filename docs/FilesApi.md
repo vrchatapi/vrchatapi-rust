@@ -152,7 +152,7 @@ Name | Type | Description  | Required | Notes
 
 ## download_file_version
 
-> std::path::PathBuf download_file_version(file_id, version_id)
+> crate::patches::better_file_upload::File<'_> download_file_version(file_id, version_id)
 Download File Version
 
 Downloads the file with the provided version number.  **Version Note:** Version 0 is always when the file was created. The real data is usually always located in version 1 and up.  **Extension Note:** Files are not guaranteed to have a file extensions. UnityPackage files tends to have it, images through this endpoint do not. You are responsible for appending file extension from the `extension` field when necessary.
@@ -167,7 +167,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**std::path::PathBuf**](std::path::PathBuf.md)
+[**crate::patches::better_file_upload::File<'_>**](crate::patches::better_file_upload::File<'_>.md)
 
 ### Authorization
 
@@ -600,7 +600,7 @@ Upload a gallery image
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**file** | **crate::patches::better_file_upload::File<'_>** | The binary blob of the png file. | [required] |
 
 ### Return type
 
@@ -630,7 +630,7 @@ Upload an icon
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**file** | **crate::patches::better_file_upload::File<'_>** | The binary blob of the png file. | [required] |
 
 ### Return type
 
@@ -660,7 +660,7 @@ Upload an image, which can be an icon, gallery image, sticker or emoji
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**file** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**file** | **crate::patches::better_file_upload::File<'_>** | The binary blob of the png file. | [required] |
 **tag** | [**models::ImagePurpose**](ImagePurpose.md) |  | [required] |
 **animation_style** | Option<[**models::ImageAnimationStyle**](ImageAnimationStyle.md)> |  |  |
 **frames** | Option<**i32**> | Required for animated images. Total number of frames of the spritesheet to be animated. |  |

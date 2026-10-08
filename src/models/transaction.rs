@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Transaction {
     #[serde(rename = "agreement", skip_serializing_if = "Option::is_none")]
-    pub agreement: Option<models::TransactionAgreement>,
+    pub agreement: Option<models::TransactionAgreementOneOf>,
     #[serde(rename = "created_at")]
     pub created_at: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "error", deserialize_with = "Option::deserialize")]

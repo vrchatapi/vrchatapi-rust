@@ -2,7 +2,6 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// Region : API/Photon region.
-/// API/Photon region.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum Region {
     #[serde(rename = "eu")]

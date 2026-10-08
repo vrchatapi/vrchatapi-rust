@@ -157,7 +157,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
 **data** | [**models::InviteRequest**](InviteRequest.md) |  | [required] |
-**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**image** | **crate::patches::better_file_upload::File<'_>** | The binary blob of the png file. | [required] |
 
 ### Return type
 
@@ -220,7 +220,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **user_id** | **String** | Must be a valid user ID. | [required] |
 **data** | [**models::RequestInviteRequest**](RequestInviteRequest.md) |  | [required] |
-**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**image** | **crate::patches::better_file_upload::File<'_>** | The binary blob of the png file. | [required] |
 
 ### Return type
 
@@ -315,7 +315,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **notification_id** | **String** | Must be a valid notification ID. | [required] |
 **data** | [**models::InviteResponse**](InviteResponse.md) |  | [required] |
-**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**image** | **crate::patches::better_file_upload::File<'_>** | The binary blob of the png file. | [required] |
 
 ### Return type
 

@@ -2,7 +2,6 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// CalendarEventFrequency : The time unit used to specify how often a recurring event occurs.
-/// The time unit used to specify how often a recurring event occurs.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum CalendarEventFrequency {
     #[serde(rename = "daily")]

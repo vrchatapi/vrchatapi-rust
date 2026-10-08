@@ -55,7 +55,7 @@ Edits a print.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **print_id** | **String** | Print ID. | [required] |
-**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**image** | **crate::patches::better_file_upload::File<'_>** | The binary blob of the png file. | [required] |
 **note** | Option<**String**> | The caption for the image. |  |
 
 ### Return type
@@ -146,7 +146,7 @@ Uploads and creates a print.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**image** | **std::path::PathBuf** | The binary blob of the png file. | [required] |
+**image** | **crate::patches::better_file_upload::File<'_>** | The binary blob of the png file. | [required] |
 **timestamp** | **chrono::DateTime<chrono::FixedOffset>** | The time the image was captured. | [required] |
 **note** | Option<**String**> | The caption for the image. |  |
 **world_id** | Option<**String**> | The id of the world in which the image was captured. |  |

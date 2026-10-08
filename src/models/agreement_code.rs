@@ -2,7 +2,6 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// AgreementCode : The type of agreement.
-/// The type of agreement.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum AgreementCode {
     #[serde(rename = "content.copyright.owned")]

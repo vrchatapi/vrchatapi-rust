@@ -7,9 +7,9 @@ use serde_repr::{Deserialize_repr, Serialize_repr};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RouteNotImplemented {
-    #[serde(rename = "error")]
+    #[serde(rename = "error", default)]
     pub error: Error,
-    #[serde(rename = "status_code")]
+    #[serde(rename = "status_code", default)]
     pub status_code: StatusCode,
 }
 

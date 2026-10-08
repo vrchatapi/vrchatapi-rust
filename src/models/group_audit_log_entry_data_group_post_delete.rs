@@ -4,20 +4,8 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupAuditLogEntryDataGroupPostDelete {
-    /// The ID of the post author.
-    #[serde(rename = "authorId")]
-    pub author_id: String,
-    /// The image file ID attached to the post.
-    #[serde(rename = "imageId", deserialize_with = "Option::deserialize")]
-    pub image_id: Option<String>,
-    /// The text content of the post.
-    #[serde(rename = "text")]
-    pub text: String,
-    /// The title of the post.
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "visibility")]
-    pub visibility: models::GroupPostVisibility,
+    #[serde(flatten)]
+    pub group_audit_log_entry_data_group_post: models::GroupAuditLogEntryDataGroupPost,
     /// The creation timestamp of the post.
     #[serde(rename = "createdAt")]
     pub created_at: chrono::DateTime<chrono::FixedOffset>,
@@ -37,11 +25,7 @@ pub struct GroupAuditLogEntryDataGroupPostDelete {
 
 impl GroupAuditLogEntryDataGroupPostDelete {
     pub fn new(
-        author_id: String,
-        image_id: Option<String>,
-        text: String,
-        title: String,
-        visibility: models::GroupPostVisibility,
+        group_audit_log_entry_data_group_post: models::GroupAuditLogEntryDataGroupPost,
         created_at: chrono::DateTime<chrono::FixedOffset>,
         editor_id: Option<String>,
         image_url: Option<String>,
@@ -49,11 +33,7 @@ impl GroupAuditLogEntryDataGroupPostDelete {
         updated_at: chrono::DateTime<chrono::FixedOffset>,
     ) -> GroupAuditLogEntryDataGroupPostDelete {
         GroupAuditLogEntryDataGroupPostDelete {
-            author_id,
-            image_id,
-            text,
-            title,
-            visibility,
+            group_audit_log_entry_data_group_post,
             created_at,
             editor_id,
             image_url,

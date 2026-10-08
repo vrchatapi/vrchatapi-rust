@@ -2,7 +2,6 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// ContentFilter : Flags for content filtering
-/// Flags for content filtering
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ContentFilter {
     #[serde(rename = "content_adult")]
