@@ -854,6 +854,8 @@ pub mod update_group_request;
 pub use self::update_group_request::UpdateGroupRequest;
 pub mod update_group_role_request;
 pub use self::update_group_role_request::UpdateGroupRoleRequest;
+pub mod update_instance_request;
+pub use self::update_instance_request::UpdateInstanceRequest;
 pub mod update_inventory_item_request;
 pub use self::update_inventory_item_request::UpdateInventoryItemRequest;
 pub mod update_invite_message_request;

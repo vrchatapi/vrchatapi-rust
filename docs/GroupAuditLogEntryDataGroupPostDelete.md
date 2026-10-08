@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **author_id** | **String** | The ID of the post author. | 
-**image_id** | **String** | The image file ID attached to the post. | 
+**image_id** | Option<**String**> | The image file ID attached to the post. | 
 **text** | **String** | The text content of the post. | 
 **title** | **String** | The title of the post. | 
 **visibility** | [**models::GroupPostVisibility**](GroupPostVisibility.md) |  | 

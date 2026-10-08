@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **access_type** | [**models::CalendarEventAccess**](CalendarEventAccess.md) |  | 
 **description** | **String** | The description of the calendar event. | 
-**image_id** | **String** | The image file ID for the event. | 
+**image_id** | Option<**String**> | The image file ID for the event. | 
 **title** | **String** | The title of the calendar event. | 
 **r#type** | **String** | The type of calendar entry. | 
 **category** | **String** | The category of the event. | 

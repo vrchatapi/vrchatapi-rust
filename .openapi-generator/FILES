@@ -445,6 +445,7 @@ docs/UpdateGroupMemberRequest.md
 docs/UpdateGroupRepresentationRequest.md
 docs/UpdateGroupRequest.md
 docs/UpdateGroupRoleRequest.md
+docs/UpdateInstanceRequest.md
 docs/UpdateInventoryItemRequest.md
 docs/UpdateInviteMessageRequest.md
 docs/UpdateListingRequest.md
@@ -932,6 +933,7 @@ src/models/update_group_member_request.rs
 src/models/update_group_representation_request.rs
 src/models/update_group_request.rs
 src/models/update_group_role_request.rs
+src/models/update_instance_request.rs
 src/models/update_inventory_item_request.rs
 src/models/update_invite_message_request.rs
 src/models/update_listing_request.rs

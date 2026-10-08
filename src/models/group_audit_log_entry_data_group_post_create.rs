@@ -3,8 +3,46 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupAuditLogEntryDataGroupPostCreate {
-    #[serde(flatten)]
-    pub all_of_0: models::GroupAuditLogEntryDataGroupPost,
-    #[serde(flatten)]
-    pub GroupAuditLogEntryDataGroupPostCreate: serde_json::Value,
+    /// The ID of the post author.
+    #[serde(rename = "authorId")]
+    pub author_id: String,
+    /// The image file ID attached to the post.
+    #[serde(rename = "imageId", deserialize_with = "Option::deserialize")]
+    pub image_id: Option<String>,
+    /// The text content of the post.
+    #[serde(rename = "text")]
+    pub text: String,
+    /// The title of the post.
+    #[serde(rename = "title")]
+    pub title: String,
+    #[serde(rename = "visibility")]
+    pub visibility: models::GroupPostVisibility,
+    /// The role IDs that can see the post.
+    #[serde(rename = "roleIds", deserialize_with = "Option::deserialize")]
+    pub role_ids: Option<Vec<String>>,
+    /// Whether a notification was sent for this post.
+    #[serde(rename = "sendNotification")]
+    pub send_notification: bool,
+}
+
+impl GroupAuditLogEntryDataGroupPostCreate {
+    pub fn new(
+        author_id: String,
+        image_id: Option<String>,
+        text: String,
+        title: String,
+        visibility: models::GroupPostVisibility,
+        role_ids: Option<Vec<String>>,
+        send_notification: bool,
+    ) -> GroupAuditLogEntryDataGroupPostCreate {
+        GroupAuditLogEntryDataGroupPostCreate {
+            author_id,
+            image_id,
+            text,
+            title,
+            visibility,
+            role_ids,
+            send_notification,
+        }
+    }
 }

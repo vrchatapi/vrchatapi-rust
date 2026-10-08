@@ -69,6 +69,17 @@ pub enum GetShortNameError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`update_instance`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UpdateInstanceError {
+    Status400(models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// Close an instance or update the closedAt time when it will be closed.  You can only close an instance if the ownerId is yourself or if the instance owner is a group and you have the `group-instance-manage` permission.
 pub async fn close_instance(
     configuration: &configuration::Configuration,
@@ -501,6 +512,66 @@ pub async fn get_short_name(
             log::debug!("get_short_name returned: {content}");
         }
         let entity: Option<GetShortNameError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Set or remove the calendar event linked to a group instance.  Updating a group instance requires both the `group-instance-manage` and `group-instance-calendar-link` permissions.  The event must begin within the next six hours or have ended within the previous six hours.
+pub async fn update_instance(
+    configuration: &configuration::Configuration,
+    world_id: &str,
+    instance_id: &str,
+    update_instance_request: models::UpdateInstanceRequest,
+) -> Result<models::Instance, Error<UpdateInstanceError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_world_id = world_id;
+    let p_path_instance_id = instance_id;
+    let p_body_update_instance_request = update_instance_request;
+
+    let uri_str = format!(
+        "{}/instances/{worldId}:{instanceId}",
+        configuration.base_path,
+        worldId = crate::apis::urlencode(p_path_world_id),
+        instanceId = crate::apis::urlencode(p_path_instance_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_update_instance_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("update_instance returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Instance`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Instance`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("update_instance returned: {content}");
+        }
+        let entity: Option<UpdateInstanceError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

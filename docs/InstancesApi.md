@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**get_instance_vibes**](InstancesApi.md#get_instance_vibes) | **GET** /instanceVibes | List Instance Vibes
 [**get_recent_locations**](InstancesApi.md#get_recent_locations) | **GET** /instances/recent | List Recent Locations
 [**get_short_name**](InstancesApi.md#get_short_name) | **GET** /instances/{worldId}:{instanceId}/shortName | Get Instance Short Name
+[**update_instance**](InstancesApi.md#update_instance) | **PUT** /instances/{worldId}:{instanceId} | Update Instance
 
 
 
@@ -250,6 +251,38 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_instance
+
+> models::Instance update_instance(world_id, instance_id, update_instance_request)
+Update Instance
+
+Set or remove the calendar event linked to a group instance.  Updating a group instance requires both the `group-instance-manage` and `group-instance-calendar-link` permissions.  The event must begin within the next six hours or have ended within the previous six hours.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**instance_id** | **String** | Must be a valid instance ID. | [required] |
+**update_instance_request** | [**UpdateInstanceRequest**](UpdateInstanceRequest.md) |  | [required] |
+
+### Return type
+
+[**models::Instance**](Instance.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
