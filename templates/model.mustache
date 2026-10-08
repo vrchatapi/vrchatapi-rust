@@ -106,9 +106,15 @@ pub enum {{{classname}}} {
     {{#description}}
     /// {{{.}}}
     {{/description}}
-    {{#baseName}}
+    {{#-last}}{{#discriminator.vendorExtensions.x-defaultMapping}}
+    #[serde(untagged)]
+    {{/discriminator.vendorExtensions.x-defaultMapping}}{{/-last}}
+    {{^-last}}{{#baseName}}
     #[serde(rename="{{{.}}}")]
-    {{/baseName}}
+    {{/baseName}}{{/-last}}
+    {{#-last}}{{^discriminator.vendorExtensions.x-defaultMapping}}{{#baseName}}
+    #[serde(rename="{{{.}}}")]
+    {{/baseName}}{{/discriminator.vendorExtensions.x-defaultMapping}}{{/-last}}
     {{{name}}}({{#isModel}}{{^avoidBoxedModels}}Box<{{/avoidBoxedModels}}{{/isModel}}{{{dataType}}}{{#isModel}}{{^avoidBoxedModels}}>{{/avoidBoxedModels}}{{/isModel}}),
     {{/composedSchemas.oneOf}}
     {{/oneOf.isEmpty}}
