@@ -129,14 +129,11 @@ impl Default for {{classname}} {
 {{!-- for non-enum schemas --}}
 {{^isEnum}}
 {{^discriminator}}
-{{^composedSchemas.allOf}}{{!
-}}{{#vendorExtensions.x-rust-has-byte-array}}#[serde_as]
+{{#vendorExtensions.x-rust-has-byte-array}}#[serde_as]
 {{/vendorExtensions.x-rust-has-byte-array}}{{^vendorExtensions.x-rust-has-byte-array}}{{#vendorExtensions.x-vrchat-double-encoding}}#[serde_with::serde_as]
 {{/vendorExtensions.x-vrchat-double-encoding}}{{/vendorExtensions.x-rust-has-byte-array}}{{!
-}}{{/composedSchemas.allOf}}{{!
 }}{{#oneOf.isEmpty}}{{^composedSchemas.anyOf}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct {{{classname}}} {
-{{^composedSchemas.allOf}}
 {{#vars}}
     {{#description}}
     /// {{{.}}}
@@ -165,14 +162,8 @@ pub struct {{{classname}}} {
     ### Option End (and trailing comma)
     }}{{#isNullable}}>{{/isNullable}}{{^required}}>{{/required}},
 {{/vars}}
-{{/composedSchemas.allOf}}
-{{#composedSchemas.allOf}}
-    #[serde(flatten)]
-    pub {{#title}}{{{title}}}{{/title}}{{^title}}{{{name}}}{{/title}}: {{{dataType}}},
-{{/composedSchemas.allOf}}
 }
 
-{{^composedSchemas.allOf}}
 impl {{{classname}}} {
     {{#description}}
     /// {{{.}}}
@@ -197,7 +188,6 @@ impl {{{classname}}} {
         }
     }
 }
-{{/composedSchemas.allOf}}
 {{/composedSchemas.anyOf}}
 {{/oneOf.isEmpty}}
 {{^oneOf.isEmpty}}
