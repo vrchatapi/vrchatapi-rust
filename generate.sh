@@ -25,9 +25,6 @@ openapi-generator generate \
 # Update entire description (replace entire line, match the random data there) line in Cargo.toml
 sed -i 's/^description = ".*"/description = "VRChat API Client for Rust"/' Cargo.toml
 
-# Remove empty doc comments
-find src -type f -exec sed -i '/^\s*\/\/\/\s*$/d' {} \;
-
 # Fix example
 # - tokio is needed as an async runtime
 printf "\n[dev-dependencies]\ntokio = { version = '1', features = ['macros', 'rt-multi-thread'] }" >> Cargo.toml
