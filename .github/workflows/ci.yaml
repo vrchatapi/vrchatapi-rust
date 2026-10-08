@@ -7,10 +7,11 @@ on:
     types: [release]
   workflow_dispatch:
     inputs:
-      json:
-        description: Passed json from repository_dispatch
-        required: true
+      tag:
+        description: Release to build, such as v1.22.1 or nightly. Defaults to the latest release.
+        required: false
         type: string
+        default: ''
       version_postfix:
         description: Additional string to concatenate onto the existing version before release
         required: false
@@ -27,13 +28,13 @@ on:
 name: CI
 
 env:
-  PASSED_VERSION: ${{ (github.event_name == 'repository_dispatch' && github.event.client_payload || fromJSON(inputs.json || '{}'))['version'] }}
-  URL: ${{ (github.event_name == 'repository_dispatch' && github.event.client_payload || fromJSON(inputs.json || '{}'))['artifacts']['openapi-3.1.json'] }}
   VERSION_POSTPEND: ${{ github.event_name == 'workflow_dispatch' && inputs.version_postfix || '' }}
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -45,27 +46,20 @@ jobs:
       - uses: vrchatapi/specification/.github/actions/download@main
         with:
           bundle: openapi-3.1.json
-          url: ${{ env.URL }}
+          tag: ${{ inputs.tag }}
 
-      - if: env.PASSED_VERSION != ''
-        run: |
-          set -euo pipefail
-
-          if [ "$(yq '--unwrapScalar' '.info.version' openapi-3.1.json)" != "${PASSED_VERSION}" ]; then
-            echo "Mismatch between actual and expected version" >&2
-            exit 1
-          fi
+      - id: version
+        run: echo "version=$(yq '--unwrapScalar' '.info.version' openapi-3.1.json)${VERSION_POSTPEND}" >> $GITHUB_OUTPUT
 
       - if: env.VERSION_POSTPEND != ''
-        run: yq '--inplace' ".info.version |= \"${PASSED_VERSION}${VERSION_POSTPEND}\"" openapi-3.1.json
+        run: yq '--inplace' ".info.version |= \"${{ steps.version.outputs.version }}\"" openapi-3.1.json
 
       - run: bash ./generate.sh openapi-3.1.json
 
-      - if: env.PASSED_VERSION != ''
-        run: |
+      - run: |
           set -euo pipefail
 
-          if [ "$(yq '--unwrapScalar' '--input-format=toml' '--output-format=toml' '.package.version' Cargo.toml)" != "${PASSED_VERSION}${VERSION_POSTPEND}" ]; then
+          if [ "$(yq '--unwrapScalar' '--input-format=toml' '--output-format=toml' '.package.version' Cargo.toml)" != "${{ steps.version.outputs.version }}" ]; then
             echo "Mismatch between actual and expected version" >&2
             exit 1
           fi
@@ -129,7 +123,7 @@ jobs:
         with:
           branch: main
           folder: .
-          commit-message: Upgrade Rust SDK to spec ${{ env.PASSED_VERSION }}${{ env.VERSION_POSTPEND }}
+          commit-message: Upgrade Rust SDK to spec ${{ needs.generate.outputs.version }}
 
       - uses: moonrepo/setup-rust@v1.3.0
 
