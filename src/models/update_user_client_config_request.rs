@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// UpdateUserClientConfigRequest : Only the settings named are changed.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateUserClientConfigRequest {
     #[serde(

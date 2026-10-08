@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// EconomyAccountLimits : Returned only when `getLimits` is set.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct EconomyAccountLimits {
     #[serde(rename = "buyingTokenMaxPerDay")]

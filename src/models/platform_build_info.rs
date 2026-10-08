@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// PlatformBuildInfo : Build information for a platform
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PlatformBuildInfo {
     /// Minimum build number required for the platform

@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// FavoriteGroupContentsEntry : A favorite alongside the object it points at. The object appears under a property named for the favorite's type.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FavoriteGroupContentsEntry {
     #[serde(rename = "avatar", skip_serializing_if = "Option::is_none")]

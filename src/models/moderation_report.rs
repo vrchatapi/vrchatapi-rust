@@ -1,6 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ModerationReport {
     /// Valid values are the keys of the object `$.reportOptions[type]` from `GET /config`. Descriptions of these are found at `$.reportCategories[type]`.

@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// ApiConfigDownloadUrlList : Download links for various development assets.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigDownloadUrlList {
     /// Download link for ???

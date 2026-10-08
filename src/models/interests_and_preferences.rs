@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// InterestsAndPreferences : Interests and preferences the current user has turned on. A key is present only while its value is `true`.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InterestsAndPreferences {
     #[serde(rename = "Anime", skip_serializing_if = "Option::is_none")]

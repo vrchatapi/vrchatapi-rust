@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// LocalizedString : A string the client resolves through its localization table, falling back to `fallback` when the key is unknown.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LocalizedString {
     /// The text to show when `key` cannot be resolved.

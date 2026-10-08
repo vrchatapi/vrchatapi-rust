@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// GroupAuditLogEntryBooleanChange : A boolean field's value before and after an update.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupAuditLogEntryBooleanChange {
     #[serde(rename = "new")]

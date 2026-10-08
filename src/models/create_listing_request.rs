@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// CreateListingRequest : Observed create-listing payload fields. Additional fields may exist.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateListingRequest {
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]

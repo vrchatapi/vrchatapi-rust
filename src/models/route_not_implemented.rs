@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 use serde_repr::{Deserialize_repr, Serialize_repr};
 
 /// RouteNotImplemented : The body VRChat returns for a route it does not serve. The shape differs from every other error in this description: `error` is a string here, not an `Error` object with `message` and `status_code` inside it.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct RouteNotImplemented {
     #[serde(rename = "error")]

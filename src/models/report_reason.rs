@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// ReportReason : A reason used for reporting users
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ReportReason {
     #[serde(rename = "policy", skip_serializing_if = "Option::is_none")]

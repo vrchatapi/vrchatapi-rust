@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// GroupPermission : A permission that can be granted to a role in a group.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupPermission {
     /// Whether the user is allowed to add this permission to a role.

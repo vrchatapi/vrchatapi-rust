@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// CalendarEventRecurrence : Details about how a recurring event will be scheduled. If the event is to be scheduled indefinitely, this will lack an \"end\" property.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CalendarEventRecurrence {
     /// Which days of the week the event will be scheduled, only valid/present for \"weekly\" recurring events

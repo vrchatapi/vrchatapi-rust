@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// ApiConfigProfileDefaults : Default profile theme colors.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigProfileDefaults {
     /// Six hexadecimal digits, without a leading `#`. May be empty.

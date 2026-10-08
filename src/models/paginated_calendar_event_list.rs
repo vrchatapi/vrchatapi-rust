@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// PaginatedCalendarEventList : An offset-based list of CalendarEvents
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PaginatedCalendarEventList {
     /// Whether there are more results after this page.

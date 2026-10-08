@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// GroupMemberLimitedUser : Only visible via the /groups/:groupId/members endpoint, **not** when fetching a specific user.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupMemberLimitedUser {
     /// Six hexadecimal digits, without a leading `#`. May be empty.

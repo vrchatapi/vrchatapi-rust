@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// GroupRoleTemplateRole : A role a group role template creates alongside the everyone role.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupRoleTemplateRole {
     #[serde(rename = "description")]

@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// ApiConfigConstantsInstancePopulationBracketsCrowded : Crowded population range
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigConstantsInstancePopulationBracketsCrowded {
     /// Maximum population for a crowded instance

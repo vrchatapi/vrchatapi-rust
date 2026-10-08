@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// FavoriteGroupSummary : A favorite group as listed for one favorite type.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FavoriteGroupSummary {
     #[serde(rename = "displayName")]

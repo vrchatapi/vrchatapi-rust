@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// UserCosmetic : A cosmetic a user holds, without the template's presentation fields.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UserCosmetic {
     #[serde(rename = "acquiredOn")]

@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// BoopRequest : See NotificationDetailBoop; either inventoryItemId (accessed through .id) by itself, or emojiId (accessed through .metadata.fileId or built-in emoji name) with optional emojiVersion
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BoopRequest {
     /// Either a FileID or a string constant for default emojis

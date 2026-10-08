@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// LimitedUserSearch : User object received when searching
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedUserSearch {
     /// Six hexadecimal digits, without a leading `#`. May be empty.

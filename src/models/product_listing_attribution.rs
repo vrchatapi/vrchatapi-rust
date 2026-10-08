@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// ProductListingAttribution : Attribution shown alongside a listing.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ProductListingAttribution {
     #[serde(rename = "collaborationId", skip_serializing_if = "Option::is_none")]

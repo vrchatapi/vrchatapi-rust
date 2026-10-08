@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// PlatformHistoryEntry : A platform the user was recorded on, and when.
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PlatformHistoryEntry {
     #[serde(rename = "isMobile", skip_serializing_if = "Option::is_none")]

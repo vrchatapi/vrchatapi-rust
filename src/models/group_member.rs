@@ -2,6 +2,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 /// GroupMember : May be null when attempting to retrieve group membership for a user who is not part of the group
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupMember {
     /// Only missing when explicitly fetching own user.

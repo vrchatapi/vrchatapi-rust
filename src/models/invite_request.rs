@@ -1,6 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
+#[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InviteRequest {
     /// InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance.
