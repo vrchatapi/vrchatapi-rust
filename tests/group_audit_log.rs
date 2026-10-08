@@ -78,7 +78,7 @@ fn types_the_fields_of_a_role_update() {
     let GroupAuditLogEntry::GroupRoleUpdate(update) = entries().remove(0) else {
         panic!("expected a group.role.update entry");
     };
-    assert_eq!(update.actor_display_name, "8cf3def6b8cea");
+    assert_eq!(update.group_audit_log_entry_base.actor_display_name, "8cf3def6b8cea");
     assert_eq!(
         update.target_id,
         "grol_459e7601-f5a1-4aec-aa18-903adb1f6889"

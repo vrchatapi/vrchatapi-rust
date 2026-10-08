@@ -145,57 +145,45 @@ impl Default for {{classname}} {
 {{/composedSchemas.anyOf}}{{/oneOf.isEmpty}}{{!
 }}{{#oneOf.isEmpty}}{{^composedSchemas.anyOf}}#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct {{{classname}}} {
+{{#composedSchemas.allOf}}
+{{#ref}}
+    #[serde(flatten)]
+    pub {{#lambda.snakecase}}{{complexType}}{{/lambda.snakecase}}: {{{dataType}}},
+{{/ref}}
+{{^ref}}
 {{#vars}}
-    {{#description}}
-    /// {{{.}}}
-    {{/description}}
-    {{#isByteArray}}
-    {{#vendorExtensions.isMandatory}}#[serde_as(as = "serde_with::base64::Base64")]{{/vendorExtensions.isMandatory}}{{^vendorExtensions.isMandatory}}#[serde_as(as = "{{^serdeAsDoubleOption}}Option{{/serdeAsDoubleOption}}{{#serdeAsDoubleOption}}super::DoubleOption{{/serdeAsDoubleOption}}<serde_with::base64::Base64>")]{{/vendorExtensions.isMandatory}}
-    {{/isByteArray}}
-    {{#vendorExtensions.x-vrchat-double-encoding-type}}#[serde_as(as = "serde_with::json::JsonString")]
-    {{/vendorExtensions.x-vrchat-double-encoding-type}}
-    #[serde(rename = "{{{baseName}}}"{{#isDiscriminator}}{{#required}}, default{{#isNullable}}, skip_serializing_if = "Option::is_none"{{/isNullable}}{{^isNullable}}{{#isString}}{{^isEnum}}, skip_serializing_if = "String::is_empty"{{/isEnum}}{{/isString}}{{/isNullable}}{{/required}}{{/isDiscriminator}}{{^required}}{{#isNullable}}, default{{^isByteArray}}, with = "::serde_with::rust::double_option"{{/isByteArray}}{{/isNullable}}{{/required}}{{^required}}, skip_serializing_if = "Option::is_none"{{/required}}{{#required}}{{#isNullable}}{{^isDiscriminator}}, deserialize_with = "Option::deserialize"{{/isDiscriminator}}{{/isNullable}}{{/required}})]
-    pub {{{name}}}: {{!
-    ### Option Start
-    }}{{#isNullable}}Option<{{/isNullable}}{{^required}}Option<{{/required}}{{!
-    ### Enums
-    }}{{#isEnum}}{{#isArray}}{{#uniqueItems}}std::collections::HashSet<{{/uniqueItems}}{{^uniqueItems}}Vec<{{/uniqueItems}}{{/isArray}}{{{enumName}}}{{#isArray}}>{{/isArray}}{{/isEnum}}{{!
-    ### Non-Enums Start
-    }}{{^isEnum}}{{!
-    ### Models
-    }}{{#isModel}}{{^avoidBoxedModels}}Box<{{/avoidBoxedModels}}{{{dataType}}}{{^avoidBoxedModels}}>{{/avoidBoxedModels}}{{/isModel}}{{!
-    ### Primative datatypes
-    }}{{^vendorExtensions.x-vrchat-double-encoding-type}}{{!
-    }}{{^isModel}}{{#isByteArray}}Vec<u8>{{/isByteArray}}{{^isByteArray}}{{{dataType}}}{{/isByteArray}}{{/isModel}}{{!
-    }}{{/vendorExtensions.x-vrchat-double-encoding-type}}{{#vendorExtensions.x-vrchat-double-encoding-type}}models::{{{vendorExtensions.x-vrchat-double-encoding-type}}}{{/vendorExtensions.x-vrchat-double-encoding-type}}{{!
-    ### Non-Enums End
-    }}{{/isEnum}}{{!
-    ### Option End (and trailing comma)
-    }}{{#isNullable}}>{{/isNullable}}{{^required}}>{{/required}},
+{{>model_field}}
 {{/vars}}
+{{/ref}}
+{{/composedSchemas.allOf}}
+{{^composedSchemas.allOf}}
+{{#vars}}
+{{>model_field}}
+{{/vars}}
+{{/composedSchemas.allOf}}
 }
 
 impl {{{classname}}} {
     {{#description}}
     /// {{{.}}}
     {{/description}}
-    pub fn new({{#requiredVars}}{{{name}}}: {{!
-    ### Option Start
-    }}{{#isNullable}}Option<{{/isNullable}}{{!
-    ### Enums
-    }}{{#isEnum}}{{#isArray}}{{#uniqueItems}}std::collections::HashSet<{{/uniqueItems}}{{^uniqueItems}}Vec<{{/uniqueItems}}{{/isArray}}{{{enumName}}}{{#isArray}}>{{/isArray}}{{/isEnum}}{{!
-    ### Non-Enums
-    }}{{^vendorExtensions.x-vrchat-double-encoding-type}}{{!
-    }}{{^isEnum}}{{#isByteArray}}Vec<u8>{{/isByteArray}}{{^isByteArray}}{{{dataType}}}{{/isByteArray}}{{/isEnum}}{{!
-    }}{{/vendorExtensions.x-vrchat-double-encoding-type}}{{#vendorExtensions.x-vrchat-double-encoding-type}}models::{{{vendorExtensions.x-vrchat-double-encoding-type}}}{{/vendorExtensions.x-vrchat-double-encoding-type}}{{!
-    ### Option End
-    }}{{#isNullable}}>{{/isNullable}}{{!
-    ### Comma for next arguement
-    }}{{^-last}}, {{/-last}}{{/requiredVars}}) -> {{{classname}}} {
+    pub fn new({{#composedSchemas.allOf}}{{#ref}}{{#lambda.snakecase}}{{complexType}}{{/lambda.snakecase}}: {{{dataType}}}, {{/ref}}{{^ref}}{{#vars}}{{#required}}{{{name}}}: {{>model_param}}, {{/required}}{{/vars}}{{/ref}}{{/composedSchemas.allOf}}{{^composedSchemas.allOf}}{{#requiredVars}}{{{name}}}: {{>model_param}}, {{/requiredVars}}{{/composedSchemas.allOf}}) -> {{{classname}}} {
         {{{classname}}} {
+            {{#composedSchemas.allOf}}
+            {{#ref}}
+            {{#lambda.snakecase}}{{complexType}}{{/lambda.snakecase}},
+            {{/ref}}
+            {{^ref}}
             {{#vars}}
-            {{{name}}}{{^required}}: None{{/required}}{{#required}}{{^isEnum}}{{#isModel}}{{^avoidBoxedModels}}: {{^isNullable}}Box::new({{{name}}}){{/isNullable}}{{#isNullable}}if let Some(x) = {{{name}}} {Some(Box::new(x))} else {None}{{/isNullable}}{{/avoidBoxedModels}}{{/isModel}}{{/isEnum}}{{/required}},
+            {{>model_init}}
             {{/vars}}
+            {{/ref}}
+            {{/composedSchemas.allOf}}
+            {{^composedSchemas.allOf}}
+            {{#vars}}
+            {{>model_init}}
+            {{/vars}}
+            {{/composedSchemas.allOf}}
         }
     }
 }

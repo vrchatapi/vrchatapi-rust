@@ -1,0 +1,1 @@
+{{{name}}}{{^required}}: None{{/required}}{{#required}}{{^isEnum}}{{#isModel}}{{^avoidBoxedModels}}: {{^isNullable}}Box::new({{{name}}}){{/isNullable}}{{#isNullable}}if let Some(x) = {{{name}}} {Some(Box::new(x))} else {None}{{/isNullable}}{{/avoidBoxedModels}}{{/isModel}}{{/isEnum}}{{/required}},
