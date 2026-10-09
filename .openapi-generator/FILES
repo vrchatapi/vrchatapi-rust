@@ -267,6 +267,8 @@ docs/InfoPushIpsQuery.md
 docs/Instance.md
 docs/InstanceCategory.md
 docs/InstanceContentSettings.md
+docs/InstanceDiscovery.md
+docs/InstanceDiscoveryPlatform.md
 docs/InstancePlatforms.md
 docs/InstanceRegion.md
 docs/InstanceShortNameResponse.md
@@ -306,6 +308,7 @@ docs/LicenseAction.md
 docs/LicenseGroup.md
 docs/LicenseType.md
 docs/LimitedGroup.md
+docs/LimitedInstance.md
 docs/LimitedUnityPackage.md
 docs/LimitedUserFriend.md
 docs/LimitedUserGroups.md
@@ -390,11 +393,13 @@ docs/ProductType.md
 docs/ProfileGroup.md
 docs/ProfileGroups.md
 docs/ProfileRepresentedGroup.md
+docs/ProfileTheme.md
 docs/Prop.md
 docs/PropPublishStatus.md
 docs/PropUnityPackage.md
 docs/PropsApi.md
 docs/PublicProfile.md
+docs/PublicProfileThemeId.md
 docs/PurchaseContextData.md
 docs/PurchaseProductListingRequest.md
 docs/Region.md
@@ -842,6 +847,8 @@ src/models/info_push_ips_query.rs
 src/models/instance.rs
 src/models/instance_category.rs
 src/models/instance_content_settings.rs
+src/models/instance_discovery.rs
+src/models/instance_discovery_platform.rs
 src/models/instance_platforms.rs
 src/models/instance_region.rs
 src/models/instance_short_name_response.rs
@@ -877,6 +884,7 @@ src/models/license_action.rs
 src/models/license_group.rs
 src/models/license_type.rs
 src/models/limited_group.rs
+src/models/limited_instance.rs
 src/models/limited_unity_package.rs
 src/models/limited_user_friend.rs
 src/models/limited_user_groups.rs
@@ -958,10 +966,12 @@ src/models/product_type.rs
 src/models/profile_group.rs
 src/models/profile_groups.rs
 src/models/profile_represented_group.rs
+src/models/profile_theme.rs
 src/models/prop.rs
 src/models/prop_publish_status.rs
 src/models/prop_unity_package.rs
 src/models/public_profile.rs
+src/models/public_profile_theme_id.rs
 src/models/purchase_context_data.rs
 src/models/purchase_product_listing_request.rs
 src/models/region.rs

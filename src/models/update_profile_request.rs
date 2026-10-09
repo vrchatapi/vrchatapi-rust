@@ -4,6 +4,18 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateProfileRequest {
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    #[serde(
+        rename = "backgroundGradientBottom",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub background_gradient_bottom: Option<String>,
+    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    #[serde(
+        rename = "backgroundGradientTop",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub background_gradient_top: Option<String>,
     #[serde(
         rename = "backgroundTextureId",
         skip_serializing_if = "Option::is_none"
@@ -14,6 +26,8 @@ pub struct UpdateProfileRequest {
     /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
+    #[serde(rename = "bannerCustomUrl", skip_serializing_if = "Option::is_none")]
+    pub banner_custom_url: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
     pub banner_type: Option<models::BannerType>,
     #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
@@ -29,7 +43,7 @@ pub struct UpdateProfileRequest {
     #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
     pub profile_effect: Option<String>,
     #[serde(rename = "themeId", skip_serializing_if = "Option::is_none")]
-    pub theme_id: Option<String>,
+    pub theme_id: Option<models::PublicProfileThemeId>,
     #[serde(rename = "userIcon", skip_serializing_if = "Option::is_none")]
     pub user_icon: Option<String>,
 }
@@ -37,9 +51,12 @@ pub struct UpdateProfileRequest {
 impl UpdateProfileRequest {
     pub fn new() -> UpdateProfileRequest {
         UpdateProfileRequest {
+            background_gradient_bottom: None,
+            background_gradient_top: None,
             background_texture_id: None,
             background_type: None,
             banner_color: None,
+            banner_custom_url: None,
             banner_type: None,
             bio: None,
             bio_links: None,

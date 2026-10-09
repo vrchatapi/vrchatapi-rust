@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**close_instance**](InstancesApi.md#close_instance) | **DELETE** /instances/{worldId}:{instanceId} | Close Instance
 [**create_instance**](InstancesApi.md#create_instance) | **POST** /instances | Create Instance
+[**discover_instances**](InstancesApi.md#discover_instances) | **GET** /instances/discover | Discover Instances
 [**get_active_instances**](InstancesApi.md#get_active_instances) | **GET** /instances/active | List Active Instances
 [**get_instance**](InstancesApi.md#get_instance) | **GET** /instances/{worldId}:{instanceId} | Get Instance
 [**get_instance_by_short_name**](InstancesApi.md#get_instance_by_short_name) | **GET** /instances/s/{shortName} | Get Instance By Short Name
@@ -75,6 +76,42 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## discover_instances
+
+> models::InstanceDiscovery discover_instances(n, region, platform, world_id, group_id, vibe, category)
+Discover Instances
+
+Returns instances to discover, in an order that changes between requests.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**n** | Option<**i32**> | The number of instances to return. |  |
+**region** | Option<[**CreateInstanceRequestRegion**](CreateInstanceRequestRegion.md)> | Return only instances in this region. |  |
+**platform** | Option<[**InstanceDiscoveryPlatform**](InstanceDiscoveryPlatform.md)> | The platform to discover instances for. |  |
+**world_id** | Option<[**Vec<String>**](String.md)> | Return only instances of these worlds. |  |
+**group_id** | Option<[**Vec<String>**](String.md)> | Return only instances of these groups. |  |
+**vibe** | Option<[**Vec<String>**](String.md)> |  |  |
+**category** | Option<**String**> |  |  |
+
+### Return type
+
+[**models::InstanceDiscovery**](InstanceDiscovery.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

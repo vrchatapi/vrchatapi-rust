@@ -41,8 +41,13 @@ pub struct UnityPackage {
     /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
     #[serde(rename = "platform")]
     pub platform: String,
-    #[serde(rename = "pluginUrl", skip_serializing_if = "Option::is_none")]
-    pub plugin_url: Option<String>,
+    #[serde(
+        rename = "pluginUrl",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub plugin_url: Option<Option<String>>,
     #[serde(rename = "pluginUrlObject", skip_serializing_if = "Option::is_none")]
     pub plugin_url_object: Option<serde_json::Value>,
     #[serde(rename = "scanStatus", skip_serializing_if = "Option::is_none")]

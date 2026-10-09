@@ -119,12 +119,12 @@ pub struct PublicProfile {
     #[serde(rename = "themeIconColor", skip_serializing_if = "Option::is_none")]
     pub theme_icon_color: Option<String>,
     #[serde(rename = "themeId", skip_serializing_if = "Option::is_none")]
-    pub theme_id: Option<String>,
+    pub theme_id: Option<models::PublicProfileThemeId>,
     /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "themeSubtextColor", skip_serializing_if = "Option::is_none")]
     pub theme_subtext_color: Option<String>,
     #[serde(rename = "themes", skip_serializing_if = "Option::is_none")]
-    pub themes: Option<Vec<serde_json::Value>>,
+    pub themes: Option<Vec<models::ProfileTheme>>,
     #[serde(
         rename = "totalPublicWorldsCount",
         skip_serializing_if = "Option::is_none"
