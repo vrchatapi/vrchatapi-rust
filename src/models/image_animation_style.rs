@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ImageAnimationStyle : Animation style for images.
+/// Animation style for images.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ImageAnimationStyle {
     #[serde(rename = "aura")]

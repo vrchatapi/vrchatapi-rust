@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// CalendarEventRecurrenceEnd : Details about how a recurring event stops being scheduled
+/// Details about how a recurring event stops being scheduled
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CalendarEventRecurrenceEnd {

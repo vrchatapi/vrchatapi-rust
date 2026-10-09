@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// GroupAnnouncement : An announcement is stored as a group post, so `POST /groups/{groupId}/announcement` answers with the post fields below as well as the announcement ones.
+/// An announcement is stored as a group post, so `POST /groups/{groupId}/announcement` answers with the post fields below as well as the announcement ones.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct GroupAnnouncement {

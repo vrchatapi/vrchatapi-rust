@@ -9,6 +9,7 @@ use tokio_util::codec::{BytesCodec, FramedRead};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateFileError {
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 

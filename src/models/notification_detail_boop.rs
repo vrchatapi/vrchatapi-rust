@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// NotificationDetailBoop : Either inventoryItemId by itself, or emojiId with optional emojiVersion
+/// Either inventoryItemId by itself, or emojiId with optional emojiVersion
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct NotificationDetailBoop {

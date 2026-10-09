@@ -15,7 +15,7 @@ pub struct UpdateAvatarRequest {
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     #[serde(rename = "releaseStatus", skip_serializing_if = "Option::is_none")]
-    pub release_status: Option<models::ReleaseStatus>,
+    pub release_status: Option<models::UpdateAvatarRequestReleaseStatus>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     #[serde(rename = "unityPackageUrl", skip_serializing_if = "Option::is_none")]

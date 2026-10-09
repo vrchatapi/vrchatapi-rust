@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// CalendarEventOccurrenceKind : How an event occurs or recurs. \"single\" is a standalone event, \"series\" is a parent specification of a recurring series, and \"occurrence\" is an individual event in a series.
+/// How an event occurs or recurs. \"single\" is a standalone event, \"series\" is a parent specification of a recurring series, and \"occurrence\" is an individual event in a series.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum CalendarEventOccurrenceKind {
     #[serde(rename = "occurrence")]

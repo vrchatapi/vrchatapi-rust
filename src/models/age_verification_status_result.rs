@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// AgeVerificationStatusResult : The caller's age verification status.
+/// The caller's age verification status.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AgeVerificationStatusResult {

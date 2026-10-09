@@ -54,7 +54,7 @@ pub struct CreateInstanceRequest {
     #[serde(rename = "queueEnabled", skip_serializing_if = "Option::is_none")]
     pub queue_enabled: Option<bool>,
     #[serde(rename = "region")]
-    pub region: models::InstanceRegion,
+    pub region: models::CreateInstanceRequestRegion,
     /// Group roleIds that are allowed to join if the type is \"group\" and groupAccessType is \"member\"
     #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]
     pub role_ids: Option<Vec<String>>,
@@ -69,7 +69,7 @@ pub struct CreateInstanceRequest {
 
 impl CreateInstanceRequest {
     pub fn new(
-        region: models::InstanceRegion,
+        region: models::CreateInstanceRequestRegion,
         r#type: models::InstanceType,
         world_id: String,
     ) -> CreateInstanceRequest {

@@ -4,10 +4,13 @@
 
 | Name | Value |
 |---- | -----|
+| Avatar | avatar |
+| Credit | credit |
 | Inventory | inventory |
 | Listing | listing |
-| Role | role |
+| TestBirdy | test_birdy |
 | Udon | udon |
+| Role | role |
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

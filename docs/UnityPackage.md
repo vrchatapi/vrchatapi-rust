@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **plugin_url** | Option<**String**> |  | [optional]
 **plugin_url_object** | Option<**serde_json::Value**> |  | [optional]
 **scan_status** | Option<**String**> |  | [optional]
+**transpiler_version** | Option<**String**> |  | [optional]
 **unity_sort_number** | Option<**i64**> |  | [optional]
 **unity_version** | **String** |  | [default to 5.3.4p1]
 **variant** | Option<**String**> |  | [optional]

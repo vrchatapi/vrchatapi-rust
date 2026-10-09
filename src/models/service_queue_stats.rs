@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ServiceQueueStats : Statistics about the user's currently queued service request
+/// Statistics about the user's currently queued service request
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ServiceQueueStats {

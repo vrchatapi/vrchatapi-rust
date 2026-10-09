@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ApiConfigEventShelfCampaign : A seasonal campaign a group event can be listed under.
+/// A seasonal campaign a group event can be listed under.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigEventShelfCampaign {

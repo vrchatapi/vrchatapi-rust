@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ApiConfigConstantsInstancePopulationBracketsMany : Many population range
+/// Many population range
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigConstantsInstancePopulationBracketsMany {

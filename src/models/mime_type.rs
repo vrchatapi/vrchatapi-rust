@@ -27,8 +27,8 @@ pub enum MimeType {
     ImageSlashJpg,
     #[serde(rename = "image/png")]
     ImageSlashPng,
-    #[serde(rename = "image/svg＋xml")]
-    ImageSlashSvgxml,
+    #[serde(rename = "image/svg+xml")]
+    ImageSlashSvgPlusXml,
     #[serde(rename = "image/tiff")]
     ImageSlashTiff,
     #[serde(rename = "image/webp")]
@@ -50,7 +50,7 @@ impl std::fmt::Display for MimeType {
             Self::ImageSlashJpeg => write!(f, "image/jpeg"),
             Self::ImageSlashJpg => write!(f, "image/jpg"),
             Self::ImageSlashPng => write!(f, "image/png"),
-            Self::ImageSlashSvgxml => write!(f, "image/svg＋xml"),
+            Self::ImageSlashSvgPlusXml => write!(f, "image/svg+xml"),
             Self::ImageSlashTiff => write!(f, "image/tiff"),
             Self::ImageSlashWebp => write!(f, "image/webp"),
         }

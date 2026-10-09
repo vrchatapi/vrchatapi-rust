@@ -438,7 +438,7 @@ pub async fn get_avatar_styles(
 pub async fn get_favorited_avatars(
     configuration: &configuration::Configuration,
     featured: Option<bool>,
-    sort: Option<models::SortOption>,
+    sort: Option<models::SortOptionAvatar>,
     n: Option<i32>,
     order: Option<models::OrderOption>,
     offset: Option<i32>,
@@ -709,7 +709,7 @@ pub async fn get_own_avatar(
 pub async fn search_avatars(
     configuration: &configuration::Configuration,
     featured: Option<bool>,
-    sort: Option<models::SortOption>,
+    sort: Option<models::SortOptionAvatar>,
     user: Option<&str>,
     user_id: Option<&str>,
     n: Option<i32>,

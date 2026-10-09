@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// TransactionAgreement : Represents a single Transaction, which is likely between VRChat and Steam.
+/// Represents a single Transaction, which is likely between VRChat and Steam.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TransactionAgreement {

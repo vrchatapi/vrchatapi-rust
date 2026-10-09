@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Notification : A notification. The shape of `details` depends on `type`.
+/// A notification. The shape of `details` depends on `type`.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "type")]
 pub enum Notification {

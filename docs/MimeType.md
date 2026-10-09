@@ -16,7 +16,7 @@
 | ImageSlashJpeg | image/jpeg |
 | ImageSlashJpg | image/jpg |
 | ImageSlashPng | image/png |
-| ImageSlashSvgxml | image/svg＋xml |
+| ImageSlashSvgPlusXml | image/svg+xml |
 | ImageSlashTiff | image/tiff |
 | ImageSlashWebp | image/webp |
 

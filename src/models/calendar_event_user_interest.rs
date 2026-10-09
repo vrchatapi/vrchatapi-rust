@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// CalendarEventUserInterest : The currently logged in user's interest in an event.
+/// The currently logged in user's interest in an event.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CalendarEventUserInterest {

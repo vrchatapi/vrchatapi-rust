@@ -73,8 +73,10 @@ docs/ChangeWorldTagsRequest.md
 docs/ContentFilter.md
 docs/CreateAvatarModerationRequest.md
 docs/CreateAvatarRequest.md
+docs/CreateAvatarRequestReleaseStatus.md
 docs/CreateCalendarEventRequest.md
 docs/CreateFileRequest.md
+docs/CreateFileRequestMimeType.md
 docs/CreateFileVersionRequest.md
 docs/CreateGroupAnnouncementRequest.md
 docs/CreateGroupGalleryRequest.md
@@ -83,11 +85,14 @@ docs/CreateGroupPostRequest.md
 docs/CreateGroupRequest.md
 docs/CreateGroupRoleRequest.md
 docs/CreateInstanceRequest.md
+docs/CreateInstanceRequestRegion.md
 docs/CreateJamSubmissionRequest.md
 docs/CreateListingRequest.md
 docs/CreateProductRequest.md
+docs/CreateProductRequestType.md
 docs/CreatePropRequest.md
 docs/CreateWorldRequest.md
+docs/CreateWorldRequestReleaseStatus.md
 docs/CurrentUser.md
 docs/CurrentUserLoginResponse.md
 docs/CurrentUserPresence.md
@@ -281,6 +286,7 @@ docs/InventoryItem.md
 docs/InventoryItemType.md
 docs/InventoryMetadata.md
 docs/InventoryNotificationDetails.md
+docs/InventorySortOrder.md
 docs/InventorySpawn.md
 docs/InventoryTemplate.md
 docs/InventoryUserAttributes.md
@@ -414,6 +420,7 @@ docs/ServiceQueueStats.md
 docs/ServiceStatus.md
 docs/ShareInventoryItemDirectRequest.md
 docs/SortOption.md
+docs/SortOptionAvatar.md
 docs/SortOptionProductPurchase.md
 docs/SsoProvider.md
 docs/SsoToken.md
@@ -449,6 +456,7 @@ docs/UnavailableWorld.md
 docs/UnityPackage.md
 docs/UpdateAssetReviewNotesRequest.md
 docs/UpdateAvatarRequest.md
+docs/UpdateAvatarRequestReleaseStatus.md
 docs/UpdateCalendarEventRequest.md
 docs/UpdateFavoriteGroupRequest.md
 docs/UpdateGroupGalleryRequest.md
@@ -479,6 +487,7 @@ docs/UserGroupInstanceListResponse.md
 docs/UserNote.md
 docs/UserNoteTargetUser.md
 docs/UserResponse.md
+docs/UserSearchSort.md
 docs/UserState.md
 docs/UserStatus.md
 docs/UserSubscription.md
@@ -643,8 +652,10 @@ src/models/change_world_tags_request.rs
 src/models/content_filter.rs
 src/models/create_avatar_moderation_request.rs
 src/models/create_avatar_request.rs
+src/models/create_avatar_request_release_status.rs
 src/models/create_calendar_event_request.rs
 src/models/create_file_request.rs
+src/models/create_file_request_mime_type.rs
 src/models/create_file_version_request.rs
 src/models/create_group_announcement_request.rs
 src/models/create_group_gallery_request.rs
@@ -653,11 +664,14 @@ src/models/create_group_post_request.rs
 src/models/create_group_request.rs
 src/models/create_group_role_request.rs
 src/models/create_instance_request.rs
+src/models/create_instance_request_region.rs
 src/models/create_jam_submission_request.rs
 src/models/create_listing_request.rs
 src/models/create_product_request.rs
+src/models/create_product_request_type.rs
 src/models/create_prop_request.rs
 src/models/create_world_request.rs
+src/models/create_world_request_release_status.rs
 src/models/current_user.rs
 src/models/current_user_login_response.rs
 src/models/current_user_presence.rs
@@ -844,6 +858,7 @@ src/models/inventory_item.rs
 src/models/inventory_item_type.rs
 src/models/inventory_metadata.rs
 src/models/inventory_notification_details.rs
+src/models/inventory_sort_order.rs
 src/models/inventory_spawn.rs
 src/models/inventory_template.rs
 src/models/inventory_user_attributes.rs
@@ -971,6 +986,7 @@ src/models/service_queue_stats.rs
 src/models/service_status.rs
 src/models/share_inventory_item_direct_request.rs
 src/models/sort_option.rs
+src/models/sort_option_avatar.rs
 src/models/sort_option_product_purchase.rs
 src/models/sso_provider.rs
 src/models/sso_token.rs
@@ -1006,6 +1022,7 @@ src/models/unavailable_world.rs
 src/models/unity_package.rs
 src/models/update_asset_review_notes_request.rs
 src/models/update_avatar_request.rs
+src/models/update_avatar_request_release_status.rs
 src/models/update_calendar_event_request.rs
 src/models/update_favorite_group_request.rs
 src/models/update_group_gallery_request.rs
@@ -1036,6 +1053,7 @@ src/models/user_group_instance_list_response.rs
 src/models/user_note.rs
 src/models/user_note_target_user.rs
 src/models/user_response.rs
+src/models/user_search_sort.rs
 src/models/user_state.rs
 src/models/user_status.rs
 src/models/user_subscription.rs

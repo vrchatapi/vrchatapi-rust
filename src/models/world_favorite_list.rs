@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// WorldFavoriteList : A world favorite group as a public profile lists it, with a sample of its worlds' thumbnails.
+/// A world favorite group as a public profile lists it, with a sample of its worlds' thumbnails.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct WorldFavoriteList {

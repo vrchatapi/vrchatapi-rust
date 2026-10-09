@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// PerformanceRatings : Avatar Performance ratings.
+/// Avatar Performance ratings.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum PerformanceRatings {
     #[serde(rename = "Excellent")]

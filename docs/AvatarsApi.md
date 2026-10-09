@@ -211,7 +211,7 @@ Search and list favorited avatars by query filters.
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
-**sort** | Option<[**SortOption**](SortOption.md)> | The sort order of the results. |  |
+**sort** | Option<[**SortOptionAvatar**](SortOptionAvatar.md)> | The sort order of the results. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **order** | Option<[**OrderOption**](OrderOption.md)> | Result ordering |  |
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
@@ -341,7 +341,7 @@ Search and list avatars by query filters. You can only search your own or featur
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
-**sort** | Option<[**SortOption**](SortOption.md)> | The sort order of the results. |  |
+**sort** | Option<[**SortOptionAvatar**](SortOptionAvatar.md)> | The sort order of the results. |  |
 **user** | Option<**String**> | Set to `me` for searching own avatars. |  |
 **user_id** | Option<**String**> | Filter by UserID. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]

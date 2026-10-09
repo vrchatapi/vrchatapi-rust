@@ -6,9 +6,12 @@
 |---- | -----|
 | CreatedAt | _created_at |
 | UpdatedAt | _updated_at |
+| Contains | contains |
 | Created | created |
+| Exact | exact |
 | Favorites | favorites |
 | Heat | heat |
+| Hotness | hotness |
 | LabsPublicationDate | labsPublicationDate |
 | Magic | magic |
 | Name | name |
@@ -20,6 +23,7 @@
 | ReportCount | reportCount |
 | ReportScore | reportScore |
 | Shuffle | shuffle |
+| Trending | trending |
 | Trust | trust |
 | Updated | updated |
 

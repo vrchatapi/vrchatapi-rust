@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// GroupAccessType : Group access type when the instance type is \"group\"
+/// Group access type when the instance type is \"group\"
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum GroupAccessType {
     #[serde(rename = "members")]

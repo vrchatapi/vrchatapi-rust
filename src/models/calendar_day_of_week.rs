@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// CalendarDayOfWeek : The day of the week, used for recurring events.
+/// The day of the week, used for recurring events.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum CalendarDayOfWeek {
     #[serde(rename = "FR")]

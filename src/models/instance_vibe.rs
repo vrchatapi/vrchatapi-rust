@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// InstanceVibe : A vibe an instance can be tagged with.
+/// A vibe an instance can be tagged with.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InstanceVibe {

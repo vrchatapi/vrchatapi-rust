@@ -902,7 +902,7 @@ Name | Type | Description  | Required | Notes
 
 ## search_users
 
-> Vec<models::LimitedUserSearch> search_users(search, developer_type, n, offset, is_internal_variant)
+> Vec<models::LimitedUserSearch> search_users(search, developer_type, sort, custom_fields, n, offset, is_internal_variant)
 Search All Users
 
 Search and list any users by text query
@@ -914,6 +914,8 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **search** | Option<**String**> | Searches by `displayName`. Will return empty array if search query is empty or missing. |  |
 **developer_type** | Option<**String**> | Active user by developer type, none for normal users and internal for moderators |  |
+**sort** | Option<[**UserSearchSort**](UserSearchSort.md)> | The order to return users in. |  |
+**custom_fields** | Option<**String**> | A comma-separated list of field names. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **is_internal_variant** | Option<**bool**> | Not quite sure what this actually does (exists on the website but doesn't seem to be used) |  |

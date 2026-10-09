@@ -7,7 +7,7 @@ pub struct CreateFileRequest {
     #[serde(rename = "extension")]
     pub extension: String,
     #[serde(rename = "mimeType")]
-    pub mime_type: models::MimeType,
+    pub mime_type: models::CreateFileRequestMimeType,
     #[serde(rename = "name")]
     pub name: String,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
@@ -15,7 +15,11 @@ pub struct CreateFileRequest {
 }
 
 impl CreateFileRequest {
-    pub fn new(extension: String, mime_type: models::MimeType, name: String) -> CreateFileRequest {
+    pub fn new(
+        extension: String,
+        mime_type: models::CreateFileRequestMimeType,
+        name: String,
+    ) -> CreateFileRequest {
         CreateFileRequest {
             extension,
             mime_type,

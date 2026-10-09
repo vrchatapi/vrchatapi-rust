@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ApiConfigMinSupportedClientBuildNumber : Minimum supported client build number for various platforms
+/// Minimum supported client build number for various platforms
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigMinSupportedClientBuildNumber {

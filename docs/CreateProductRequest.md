@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **description** | **String** |  | 
 **display_name** | **String** |  | 
 **image_id** | **String** |  | 
-**product_type** | [**models::ProductType**](ProductType.md) |  | 
+**product_type** | [**models::CreateProductRequestType**](CreateProductRequestType.md) |  | 
 **tags** | **Vec<String>** |  | 
 **use_for_subscriber_list** | **bool** |  | 
 

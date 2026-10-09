@@ -1,19 +1,19 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// InstanceRegion : Instance region
+/// Instance region
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum InstanceRegion {
     #[serde(rename = "eu")]
     Eu,
     #[serde(rename = "jp")]
     Jp,
-    #[serde(rename = "unknown")]
-    Unknown,
     #[serde(rename = "us")]
     Us,
     #[serde(rename = "use")]
     Use,
+    #[serde(rename = "unknown")]
+    Unknown,
 }
 
 impl std::fmt::Display for InstanceRegion {
@@ -21,9 +21,9 @@ impl std::fmt::Display for InstanceRegion {
         match self {
             Self::Eu => write!(f, "eu"),
             Self::Jp => write!(f, "jp"),
-            Self::Unknown => write!(f, "unknown"),
             Self::Us => write!(f, "us"),
             Self::Use => write!(f, "use"),
+            Self::Unknown => write!(f, "unknown"),
         }
     }
 }

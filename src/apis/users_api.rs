@@ -1878,6 +1878,8 @@ pub async fn search_users(
     configuration: &configuration::Configuration,
     search: Option<&str>,
     developer_type: Option<&str>,
+    sort: Option<models::UserSearchSort>,
+    custom_fields: Option<&str>,
     n: Option<i32>,
     offset: Option<i32>,
     is_internal_variant: Option<bool>,
@@ -1885,6 +1887,8 @@ pub async fn search_users(
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_search = search;
     let p_query_developer_type = developer_type;
+    let p_query_sort = sort;
+    let p_query_custom_fields = custom_fields;
     let p_query_n = n;
     let p_query_offset = offset;
     let p_query_is_internal_variant = is_internal_variant;
@@ -1897,6 +1901,12 @@ pub async fn search_users(
     }
     if let Some(ref param_value) = p_query_developer_type {
         req_builder = req_builder.query(&[("developerType", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_sort {
+        req_builder = req_builder.query(&[("sort", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_custom_fields {
+        req_builder = req_builder.query(&[("customFields", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_n {
         req_builder = req_builder.query(&[("n", &param_value.to_string())]);

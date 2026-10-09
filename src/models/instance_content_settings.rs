@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// InstanceContentSettings : Types of dynamic user content permitted in an instance
+/// Types of dynamic user content permitted in an instance
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct InstanceContentSettings {

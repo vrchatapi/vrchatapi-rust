@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **extension** | **String** |  | 
-**mime_type** | [**models::MimeType**](MIMEType.md) |  | 
+**mime_type** | [**models::CreateFileRequestMimeType**](CreateFileRequestMIMEType.md) |  | 
 **name** | **String** |  | 
 **tags** | Option<**Vec<String>**> |  | [optional]
 

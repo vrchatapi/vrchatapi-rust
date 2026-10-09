@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ImagePurpose : Indication of the purpose for uploading images.
+/// Indication of the purpose for uploading images.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ImagePurpose {
     #[serde(rename = "admin")]

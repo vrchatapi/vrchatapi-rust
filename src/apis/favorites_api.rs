@@ -30,6 +30,7 @@ pub enum GetFavoriteGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoriteGroupContentsError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -38,6 +39,7 @@ pub enum GetFavoriteGroupContentsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoriteGroupsError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -46,6 +48,7 @@ pub enum GetFavoriteGroupsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoriteGroupsByTypeError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -80,6 +83,7 @@ pub enum RemoveFavoriteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateFavoriteGroupError {
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 

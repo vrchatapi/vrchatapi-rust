@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// AgeVerificationStatus : `verified` is obsolete.  User who have verified and are 18+ can switch to `plus18` status.
+/// `verified` is obsolete.  User who have verified and are 18+ can switch to `plus18` status.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum AgeVerificationStatus {
     #[serde(rename = "18+")]

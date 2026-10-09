@@ -42,6 +42,7 @@ pub enum GetCosmeticsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInventoryError {
+    Status400(models::Error),
     Status401(models::Error),
     Status403(models::Error),
     UnknownValue(serde_json::Value),
@@ -371,7 +372,7 @@ pub async fn get_inventory(
     offset: Option<i32>,
     holder_id: Option<&str>,
     equip_slot: Option<models::InventoryEquipSlot>,
-    order: Option<&str>,
+    order: Option<models::InventorySortOrder>,
     tags: Option<&str>,
     types: Option<models::InventoryItemType>,
     flags: Option<models::InventoryFlag>,

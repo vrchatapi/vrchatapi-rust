@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// CreateJamSubmissionRequest : Submit content for a Jam. Both content upload by submitter and jam submission itself must be made within the jam's designated times.
+/// Submit content for a Jam. Both content upload by submitter and jam submission itself must be made within the jam's designated times.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct CreateJamSubmissionRequest {

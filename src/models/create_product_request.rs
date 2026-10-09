@@ -11,7 +11,7 @@ pub struct CreateProductRequest {
     #[serde(rename = "imageId")]
     pub image_id: String,
     #[serde(rename = "productType")]
-    pub product_type: models::ProductType,
+    pub product_type: models::CreateProductRequestType,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "useForSubscriberList")]
@@ -23,7 +23,7 @@ impl CreateProductRequest {
         description: String,
         display_name: String,
         image_id: String,
-        product_type: models::ProductType,
+        product_type: models::CreateProductRequestType,
         tags: Vec<String>,
         use_for_subscriber_list: bool,
     ) -> CreateProductRequest {

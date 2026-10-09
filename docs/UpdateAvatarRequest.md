@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **id** | Option<**String**> |  | [optional]
 **image_url** | Option<**String**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
-**release_status** | Option<[**models::ReleaseStatus**](ReleaseStatus.md)> |  | [optional]
+**release_status** | Option<[**models::UpdateAvatarRequestReleaseStatus**](UpdateAvatarRequestReleaseStatus.md)> |  | [optional]
 **tags** | Option<**Vec<String>**> |  | [optional]
 **unity_package_url** | Option<**String**> |  | [optional]
 **unity_version** | Option<**String**> |  | [optional][default to 5.3.4p1]

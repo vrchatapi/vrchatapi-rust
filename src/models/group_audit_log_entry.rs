@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// GroupAuditLogEntry : A group audit log entry. The shape of `data` depends on `eventType`.
+/// A group audit log entry. The shape of `data` depends on `eventType`.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "eventType")]
 pub enum GroupAuditLogEntry {

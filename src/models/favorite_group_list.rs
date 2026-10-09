@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// FavoriteGroupList : A user's favorite groups of one type, with the limits that apply to them.
+/// A user's favorite groups of one type, with the limits that apply to them.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FavoriteGroupList {

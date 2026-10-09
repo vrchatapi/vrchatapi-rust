@@ -47,6 +47,8 @@ pub struct UnityPackage {
     pub plugin_url_object: Option<serde_json::Value>,
     #[serde(rename = "scanStatus", skip_serializing_if = "Option::is_none")]
     pub scan_status: Option<String>,
+    #[serde(rename = "transpilerVersion", skip_serializing_if = "Option::is_none")]
+    pub transpiler_version: Option<String>,
     #[serde(rename = "unitySortNumber", skip_serializing_if = "Option::is_none")]
     pub unity_sort_number: Option<i64>,
     #[serde(rename = "unityVersion")]
@@ -82,6 +84,7 @@ impl UnityPackage {
             plugin_url: None,
             plugin_url_object: None,
             scan_status: None,
+            transpiler_version: None,
             unity_sort_number: None,
             unity_version,
             variant: None,

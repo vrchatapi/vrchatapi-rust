@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// PerformanceLimiterInfo : Info about the performance limits on a platform
+/// Info about the performance limits on a platform
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PerformanceLimiterInfo {

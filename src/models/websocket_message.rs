@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// WebsocketMessage : A message received over the websocket. The shape of `content` depends on `type`.
+/// A message received over the websocket. The shape of `content` depends on `type`.
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "type")]
 pub enum WebsocketMessage {

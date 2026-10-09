@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 **close_instance_after_end_minutes** | Option<**i32**> |  | [optional]
 **description** | **String** |  | 
 **ends_at** | **chrono::DateTime<chrono::FixedOffset>** | Time the event ends at | 
-**featured** | Option<**bool**> |  | [optional]
+**featured** | Option<**bool**> |  | [optional][default to false]
 **guest_early_join_minutes** | Option<**i32**> |  | [optional]
 **host_early_join_minutes** | Option<**i32**> |  | [optional]
 **image_id** | Option<**String**> |  | [optional]
-**is_draft** | Option<**bool**> |  | [optional]
+**is_draft** | Option<**bool**> |  | [optional][default to true]
 **languages** | Option<**Vec<String>**> |  | [optional]
 **occurrence_kind** | Option<[**models::CalendarEventOccurrenceKind**](CalendarEventOccurrenceKind.md)> |  | [optional]
 **parent_id** | Option<**String**> |  | [optional]

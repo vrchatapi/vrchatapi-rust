@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// WebsocketMessageUnknown : A websocket message whose `type` has no schema of its own.
+/// A websocket message whose `type` has no schema of its own.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct WebsocketMessageUnknown {

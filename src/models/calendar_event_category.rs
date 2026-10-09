@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// CalendarEventCategory : The activity intended to take place at an event
+/// The activity intended to take place at an event
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum CalendarEventCategory {
     #[serde(rename = "arts")]

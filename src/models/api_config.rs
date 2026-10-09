@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ApiConfig : Global client configuration.  The response carries decoy properties: plausible-looking names VRChat rerolls at random as deliberate obfuscation.
+/// Global client configuration.  The response carries decoy properties: plausible-looking names VRChat rerolls at random as deliberate obfuscation.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfig {

@@ -1,7 +1,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// UnavailableWorld : Stands in for a world the API will not describe. `name` and `authorName` are `???`, `imageUrl` is empty, and the counts are `0`.
+/// Stands in for a world the API will not describe. `name` and `authorName` are `???`, `imageUrl` is empty, and the counts are `0`.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UnavailableWorld {

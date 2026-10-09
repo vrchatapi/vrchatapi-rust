@@ -7,12 +7,18 @@ pub enum SortOption {
     CreatedAt,
     #[serde(rename = "_updated_at")]
     UpdatedAt,
+    #[serde(rename = "contains")]
+    Contains,
     #[serde(rename = "created")]
     Created,
+    #[serde(rename = "exact")]
+    Exact,
     #[serde(rename = "favorites")]
     Favorites,
     #[serde(rename = "heat")]
     Heat,
+    #[serde(rename = "hotness")]
+    Hotness,
     #[serde(rename = "labsPublicationDate")]
     LabsPublicationDate,
     #[serde(rename = "magic")]
@@ -35,6 +41,8 @@ pub enum SortOption {
     ReportScore,
     #[serde(rename = "shuffle")]
     Shuffle,
+    #[serde(rename = "trending")]
+    Trending,
     #[serde(rename = "trust")]
     Trust,
     #[serde(rename = "updated")]
@@ -46,9 +54,12 @@ impl std::fmt::Display for SortOption {
         match self {
             Self::CreatedAt => write!(f, "_created_at"),
             Self::UpdatedAt => write!(f, "_updated_at"),
+            Self::Contains => write!(f, "contains"),
             Self::Created => write!(f, "created"),
+            Self::Exact => write!(f, "exact"),
             Self::Favorites => write!(f, "favorites"),
             Self::Heat => write!(f, "heat"),
+            Self::Hotness => write!(f, "hotness"),
             Self::LabsPublicationDate => write!(f, "labsPublicationDate"),
             Self::Magic => write!(f, "magic"),
             Self::Name => write!(f, "name"),
@@ -60,6 +71,7 @@ impl std::fmt::Display for SortOption {
             Self::ReportCount => write!(f, "reportCount"),
             Self::ReportScore => write!(f, "reportScore"),
             Self::Shuffle => write!(f, "shuffle"),
+            Self::Trending => write!(f, "trending"),
             Self::Trust => write!(f, "trust"),
             Self::Updated => write!(f, "updated"),
         }
