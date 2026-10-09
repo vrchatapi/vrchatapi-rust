@@ -9,7 +9,7 @@ pub struct LimitedUserFriend {
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
-    pub banner_type: Option<String>,
+    pub banner_type: Option<models::BannerType>,
     #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
     pub banner_url: Option<String>,
     /// When profilePicOverride is not empty, use it instead.

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **background_texture_id** | Option<**String**> |  | [optional]
 **background_type** | Option<**BackgroundType**> |  (enum: default, gradient, inventory, texture) | [optional]
 **banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
-**banner_type** | Option<**BannerType**> |  (enum: avatarBanner, color, customImage) | [optional]
+**banner_type** | Option<[**models::BannerType**](BannerType.md)> |  | [optional]
 **bio** | Option<**String**> |  | [optional]
 **bio_links** | Option<**Vec<String>**> |  | [optional]
 **icon_frame** | Option<**String**> |  | [optional]

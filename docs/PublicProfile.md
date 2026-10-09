@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **badges** | Option<[**Vec<models::Badge>**](Badge.md)> |  | [optional]
 **banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
 **banner_custom_url** | Option<**String**> |  | [optional]
-**banner_type** | Option<**String**> |  | [optional]
+**banner_type** | Option<[**models::BannerType**](BannerType.md)> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
 **bio** | Option<**String**> |  | [optional]
 **bio_links** | Option<**Vec<String>**> |  | [optional]

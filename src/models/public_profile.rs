@@ -44,7 +44,7 @@ pub struct PublicProfile {
     #[serde(rename = "bannerCustomUrl", skip_serializing_if = "Option::is_none")]
     pub banner_custom_url: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
-    pub banner_type: Option<String>,
+    pub banner_type: Option<models::BannerType>,
     #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]
     pub banner_url: Option<String>,
     #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]

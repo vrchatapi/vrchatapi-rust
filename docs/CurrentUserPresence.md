@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **avatar_thumbnail** | Option<**String**> |  | [optional]
 **banner** | Option<**String**> |  | [optional]
 **banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
-**banner_type** | Option<**String**> |  | [optional]
+**banner_type** | Option<[**models::BannerType**](BannerType.md)> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
 **current_avatar_tags** | Option<**String**> |  | [optional]
 **debugflag** | Option<**String**> |  | [optional]

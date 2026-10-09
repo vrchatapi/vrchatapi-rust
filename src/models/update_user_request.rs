@@ -6,6 +6,8 @@ use serde::{Deserialize, Serialize};
 pub struct UpdateUserRequest {
     #[serde(rename = "acceptedTOSVersion", skip_serializing_if = "Option::is_none")]
     pub accepted_tos_version: Option<i32>,
+    #[serde(rename = "allowAvatarCopying", skip_serializing_if = "Option::is_none")]
+    pub allow_avatar_copying: Option<bool>,
     /// The \"Allow Worlds to Count Friends in Instance\" setting, introduced under [Udon Methods for Friend Info](https://ask.vrchat.com/t/developer-update-24-september-2026/48972#p-90922-udon-methods-for-friend-info-13) in the Developer Update of September 24, 2026.
     #[serde(
         rename = "allowWorldsToCountFriendsInInstance",
@@ -36,6 +38,9 @@ pub struct UpdateUserRequest {
         skip_serializing_if = "Option::is_none"
     )]
     pub has_shared_connections_opt_out: Option<bool>,
+    /// WorldID be \"offline\" on User profiles if you are not friends with that user.
+    #[serde(rename = "homeLocation", skip_serializing_if = "Option::is_none")]
+    pub home_location: Option<String>,
     #[serde(rename = "isBoopingEnabled", skip_serializing_if = "Option::is_none")]
     pub is_booping_enabled: Option<bool>,
     /// MUST specify currentPassword as well to change password
@@ -60,6 +65,7 @@ impl UpdateUserRequest {
     pub fn new() -> UpdateUserRequest {
         UpdateUserRequest {
             accepted_tos_version: None,
+            allow_avatar_copying: None,
             allow_worlds_to_count_friends_in_instance: None,
             birthday: None,
             content_filters: None,
@@ -68,6 +74,7 @@ impl UpdateUserRequest {
             email: None,
             has_discord_friends_opt_out: None,
             has_shared_connections_opt_out: None,
+            home_location: None,
             is_booping_enabled: None,
             password: None,
             pronouns: None,

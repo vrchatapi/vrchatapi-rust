@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
-**banner_type** | Option<**String**> |  | [optional]
+**banner_type** | Option<[**models::BannerType**](BannerType.md)> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
 **current_avatar_image_url** | Option<**String**> | When profilePicOverride is not empty, use it instead. | [optional]
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 

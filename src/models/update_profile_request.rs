@@ -15,7 +15,7 @@ pub struct UpdateProfileRequest {
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
-    pub banner_type: Option<BannerType>,
+    pub banner_type: Option<models::BannerType>,
     #[serde(rename = "bio", skip_serializing_if = "Option::is_none")]
     pub bio: Option<String>,
     #[serde(rename = "bioLinks", skip_serializing_if = "Option::is_none")]
@@ -67,20 +67,5 @@ pub enum BackgroundType {
 impl Default for BackgroundType {
     fn default() -> BackgroundType {
         Self::Default
-    }
-}
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum BannerType {
-    #[serde(rename = "avatarBanner")]
-    AvatarBanner,
-    #[serde(rename = "color")]
-    Color,
-    #[serde(rename = "customImage")]
-    CustomImage,
-}
-
-impl Default for BannerType {
-    fn default() -> BannerType {
-        Self::AvatarBanner
     }
 }

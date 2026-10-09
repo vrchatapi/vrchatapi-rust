@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **apple_id** | Option<**String**> |  | [optional]
 **auth_token** | Option<**String**> | The auth token for NEWLY REGISTERED ACCOUNTS ONLY (/auth/register) | [optional]
 **banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
-**banner_type** | Option<**String**> |  | [optional]
+**banner_type** | Option<[**models::BannerType**](BannerType.md)> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
 **completed_tutorials** | Option<**Vec<String>**> |  | [optional]
 **content_filters** | Option<**Vec<String>**> | These tags begin with `content_` and control content gating | [optional]

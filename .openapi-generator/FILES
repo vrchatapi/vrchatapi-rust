@@ -48,6 +48,7 @@ docs/AvatarsApi.md
 docs/Badge.md
 docs/Balance.md
 docs/BanGroupMemberRequest.md
+docs/BannerType.md
 docs/BareError.md
 docs/Beta.md
 docs/BetaRegistrationNotFoundError.md
@@ -628,6 +629,7 @@ src/models/avatar_unity_package_url_object.rs
 src/models/badge.rs
 src/models/balance.rs
 src/models/ban_group_member_request.rs
+src/models/banner_type.rs
 src/models/bare_error.rs
 src/models/beta.rs
 src/models/beta_registration_not_found_error.rs

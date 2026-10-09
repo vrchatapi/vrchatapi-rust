@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **allow_avatar_copying** | **bool** |  | [default to true]
 **apple_details** | Option<**serde_json::Value**> | Details of an account on another service linked to this one. | [optional]
 **banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
-**banner_type** | Option<**String**> |  | [optional]
+**banner_type** | Option<[**models::BannerType**](BannerType.md)> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
 **date_joined** | **chrono::NaiveDate** |  | 
 **developer_type** | [**models::DeveloperType**](DeveloperType.md) |  | 

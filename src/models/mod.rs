@@ -90,6 +90,8 @@ pub mod balance;
 pub use self::balance::Balance;
 pub mod ban_group_member_request;
 pub use self::ban_group_member_request::BanGroupMemberRequest;
+pub mod banner_type;
+pub use self::banner_type::BannerType;
 pub mod bare_error;
 pub use self::bare_error::BareError;
 pub mod beta;

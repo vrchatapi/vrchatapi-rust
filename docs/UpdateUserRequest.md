@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **accepted_tos_version** | Option<**i32**> |  | [optional]
+**allow_avatar_copying** | Option<**bool**> |  | [optional]
 **allow_worlds_to_count_friends_in_instance** | Option<**bool**> | The \"Allow Worlds to Count Friends in Instance\" setting, introduced under [Udon Methods for Friend Info](https://ask.vrchat.com/t/developer-update-24-september-2026/48972#p-90922-udon-methods-for-friend-info-13) in the Developer Update of September 24, 2026. | [optional]
 **birthday** | Option<**chrono::NaiveDate**> |  | [optional]
 **content_filters** | Option<[**Vec<models::ContentFilter>**](ContentFilter.md)> | These tags begin with `content_` and control content gating | [optional]
@@ -13,6 +14,7 @@ Name | Type | Description | Notes
 **email** | Option<**String**> |  | [optional]
 **has_discord_friends_opt_out** | Option<**bool**> | Opt out of the Discord Friend Connections feature | [optional]
 **has_shared_connections_opt_out** | Option<**bool**> | Opt out of the Mutuals feature | [optional]
+**home_location** | Option<**String**> | WorldID be \"offline\" on User profiles if you are not friends with that user. | [optional]
 **is_booping_enabled** | Option<**bool**> |  | [optional]
 **password** | Option<**String**> | MUST specify currentPassword as well to change password | [optional]
 **pronouns** | Option<**String**> |  | [optional]
