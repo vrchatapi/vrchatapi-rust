@@ -1295,7 +1295,8 @@ pub async fn get_user_client_config(
     }
 }
 
-/// Get user's submitted feedback
+/// Get user's submitted feedback. VRChat staff note that [moderation reports](https://vrchat.community/reference/get-moderation-reports) replace the feedback system in [Feedback deprecated](https://github.com/vrchatapi/specification/issues/535), December 5, 2025.
+#[deprecated]
 pub async fn get_user_feedback(
     configuration: &configuration::Configuration,
     user_id: &str,

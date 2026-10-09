@@ -597,7 +597,7 @@ Name | Type | Description  | Required | Notes
 > Vec<models::Feedback> get_user_feedback(user_id, content_id, n, offset)
 Get User Feedback
 
-Get user's submitted feedback
+Get user's submitted feedback. VRChat staff note that [moderation reports](https://vrchat.community/reference/get-moderation-reports) replace the feedback system in [Feedback deprecated](https://github.com/vrchatapi/specification/issues/535), December 5, 2025.
 
 ### Parameters
 
