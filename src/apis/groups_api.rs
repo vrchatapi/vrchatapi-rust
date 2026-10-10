@@ -119,6 +119,7 @@ pub enum CreateGroupInviteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupRoleError {
+    Status400(models::Error),
     Status401(models::Error),
     Status403(models::Error),
     Status404(models::Error),
@@ -501,6 +502,7 @@ pub enum UpdateGroupRepresentationError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UpdateGroupRoleError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **name** | Option<[**models::GroupAuditLogEntryStringChange**](GroupAuditLogEntryStringChange.md)> |  | [optional]
 **order** | Option<[**models::GroupAuditLogEntryIntegerChange**](GroupAuditLogEntryIntegerChange.md)> |  | [optional]
 **permissions** | Option<[**models::GroupAuditLogEntryStringListChange**](GroupAuditLogEntryStringListChange.md)> |  | [optional]
+**requires_two_factor** | Option<[**models::GroupAuditLogEntryBooleanChange**](GroupAuditLogEntryBooleanChange.md)> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

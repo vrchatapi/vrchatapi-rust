@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**delete_user**](AuthenticationApi.md#delete_user) | **PUT** /users/{userId}/delete | Delete User
 [**disable2_fa**](AuthenticationApi.md#disable2_fa) | **DELETE** /auth/twofactorauth | Disable 2FA
 [**enable2_fa**](AuthenticationApi.md#enable2_fa) | **POST** /auth/twofactorauth/totp/pending | Enable time-based 2FA codes
+[**get_account_standing**](AuthenticationApi.md#get_account_standing) | **GET** /auth/user/accountStanding | Get Account Standing
 [**get_current_user**](AuthenticationApi.md#get_current_user) | **GET** /auth/user | Login and/or Get Current User Info
 [**get_global_avatar_moderations**](AuthenticationApi.md#get_global_avatar_moderations) | **GET** /auth/user/avatarmoderations | Get Global Avatar Moderations
 [**get_interests_and_preferences**](AuthenticationApi.md#get_interests_and_preferences) | **GET** /auth/user/interestsAndPreferences | Get Interests and Preferences
@@ -287,6 +288,33 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**models::Pending2FaResult**](Pending2FAResult.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_account_standing
+
+> models::AccountStanding get_account_standing()
+Get Account Standing
+
+Returns the current user's account standing and the sanctions on their account.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::AccountStanding**](AccountStanding.md)
 
 ### Authorization
 

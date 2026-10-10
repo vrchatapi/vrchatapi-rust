@@ -1,6 +1,7 @@
 .travis.yml
 Cargo.toml
 docs/AccountDeletionLog.md
+docs/AccountStanding.md
 docs/AddFavoriteRequest.md
 docs/AddGroupGalleryImageRequest.md
 docs/AdminAssetBundle.md
@@ -153,6 +154,9 @@ docs/GroupAuditLogEntryBooleanChange.md
 docs/GroupAuditLogEntryDataGroupAnnouncement.md
 docs/GroupAuditLogEntryDataGroupCalendarEventCreate.md
 docs/GroupAuditLogEntryDataGroupCalendarEventDelete.md
+docs/GroupAuditLogEntryDataGroupCreate.md
+docs/GroupAuditLogEntryDataGroupCreateDiscoverability.md
+docs/GroupAuditLogEntryDataGroupCreateGallery.md
 docs/GroupAuditLogEntryDataGroupGalleryCreate.md
 docs/GroupAuditLogEntryDataGroupGalleryDelete.md
 docs/GroupAuditLogEntryDataGroupGalleryUpdate.md
@@ -175,6 +179,7 @@ docs/GroupAuditLogEntryFileIdChange.md
 docs/GroupAuditLogEntryGroupAnnouncement.md
 docs/GroupAuditLogEntryGroupCalendarEventCreate.md
 docs/GroupAuditLogEntryGroupCalendarEventDelete.md
+docs/GroupAuditLogEntryGroupCreate.md
 docs/GroupAuditLogEntryGroupGalleryCreate.md
 docs/GroupAuditLogEntryGroupGalleryDelete.md
 docs/GroupAuditLogEntryGroupGalleryUpdate.md
@@ -589,6 +594,7 @@ src/apis/users_api.rs
 src/apis/worlds_api.rs
 src/lib.rs
 src/models/account_deletion_log.rs
+src/models/account_standing.rs
 src/models/add_favorite_request.rs
 src/models/add_group_gallery_image_request.rs
 src/models/admin_asset_bundle.rs
@@ -734,6 +740,9 @@ src/models/group_audit_log_entry_boolean_change.rs
 src/models/group_audit_log_entry_data_group_announcement.rs
 src/models/group_audit_log_entry_data_group_calendar_event_create.rs
 src/models/group_audit_log_entry_data_group_calendar_event_delete.rs
+src/models/group_audit_log_entry_data_group_create.rs
+src/models/group_audit_log_entry_data_group_create_discoverability.rs
+src/models/group_audit_log_entry_data_group_create_gallery.rs
 src/models/group_audit_log_entry_data_group_gallery_create.rs
 src/models/group_audit_log_entry_data_group_gallery_delete.rs
 src/models/group_audit_log_entry_data_group_gallery_update.rs
@@ -756,6 +765,7 @@ src/models/group_audit_log_entry_file_id_change.rs
 src/models/group_audit_log_entry_group_announcement.rs
 src/models/group_audit_log_entry_group_calendar_event_create.rs
 src/models/group_audit_log_entry_group_calendar_event_delete.rs
+src/models/group_audit_log_entry_group_create.rs
 src/models/group_audit_log_entry_group_gallery_create.rs
 src/models/group_audit_log_entry_group_gallery_delete.rs
 src/models/group_audit_log_entry_group_gallery_update.rs

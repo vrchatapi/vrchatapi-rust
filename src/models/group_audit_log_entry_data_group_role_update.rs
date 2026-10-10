@@ -17,6 +17,8 @@ pub struct GroupAuditLogEntryDataGroupRoleUpdate {
     pub order: Option<models::GroupAuditLogEntryIntegerChange>,
     #[serde(rename = "permissions", skip_serializing_if = "Option::is_none")]
     pub permissions: Option<models::GroupAuditLogEntryStringListChange>,
+    #[serde(rename = "requiresTwoFactor", skip_serializing_if = "Option::is_none")]
+    pub requires_two_factor: Option<models::GroupAuditLogEntryBooleanChange>,
 }
 
 impl GroupAuditLogEntryDataGroupRoleUpdate {
@@ -29,6 +31,7 @@ impl GroupAuditLogEntryDataGroupRoleUpdate {
             name: None,
             order: None,
             permissions: None,
+            requires_two_factor: None,
         }
     }
 }

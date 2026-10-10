@@ -77,6 +77,14 @@ pub enum Enable2FaError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_account_standing`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetAccountStandingError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_current_user`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -695,6 +703,52 @@ pub async fn enable2_fa(
             log::debug!("enable2_fa returned: {content}");
         }
         let entity: Option<Enable2FaError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns the current user's account standing and the sanctions on their account.
+pub async fn get_account_standing(
+    configuration: &configuration::Configuration,
+) -> Result<models::AccountStanding, Error<GetAccountStandingError>> {
+    let uri_str = format!("{}/auth/user/accountStanding", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_account_standing returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::AccountStanding`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::AccountStanding`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_account_standing returned: {content}");
+        }
+        let entity: Option<GetAccountStandingError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

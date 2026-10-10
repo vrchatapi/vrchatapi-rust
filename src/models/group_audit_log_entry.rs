@@ -11,6 +11,8 @@ pub enum GroupAuditLogEntry {
     GroupCalendarEventCreate(models::GroupAuditLogEntryGroupCalendarEventCreate),
     #[serde(rename = "group.calendarEvent.delete")]
     GroupCalendarEventDelete(models::GroupAuditLogEntryGroupCalendarEventDelete),
+    #[serde(rename = "group.create")]
+    GroupCreate(models::GroupAuditLogEntryGroupCreate),
     #[serde(rename = "group.gallery.create")]
     GroupGalleryCreate(models::GroupAuditLogEntryGroupGalleryCreate),
     #[serde(rename = "group.gallery.delete")]
