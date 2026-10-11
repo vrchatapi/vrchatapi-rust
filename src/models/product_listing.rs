@@ -58,14 +58,14 @@ pub struct ProductListing {
         skip_serializing_if = "Option::is_none"
     )]
     pub group_name: Option<Option<String>>,
-    #[serde(rename = "hasAvatar")]
-    pub has_avatar: bool,
+    #[serde(rename = "hasAvatar", skip_serializing_if = "Option::is_none")]
+    pub has_avatar: Option<bool>,
     #[serde(rename = "hasCompanion", skip_serializing_if = "Option::is_none")]
     pub has_companion: Option<bool>,
     #[serde(rename = "hasInventory", skip_serializing_if = "Option::is_none")]
     pub has_inventory: Option<bool>,
-    #[serde(rename = "hasUdon")]
-    pub has_udon: bool,
+    #[serde(rename = "hasUdon", skip_serializing_if = "Option::is_none")]
+    pub has_udon: Option<bool>,
     #[serde(rename = "hydratedProducts", skip_serializing_if = "Option::is_none")]
     pub hydrated_products: Option<Vec<models::Product>>,
     #[serde(rename = "id")]
@@ -99,8 +99,8 @@ pub struct ProductListing {
     #[serde(rename = "productTypes", skip_serializing_if = "Option::is_none")]
     pub product_types: Option<Vec<String>>,
     /// Product ids. The products themselves arrive in `hydratedProducts`.
-    #[serde(rename = "products")]
-    pub products: Vec<String>,
+    #[serde(rename = "products", skip_serializing_if = "Option::is_none")]
+    pub products: Option<Vec<String>>,
     #[serde(rename = "purchaseCount", skip_serializing_if = "Option::is_none")]
     pub purchase_count: Option<i32>,
     #[serde(
@@ -110,8 +110,8 @@ pub struct ProductListing {
     pub purchase_count_quantity: Option<i32>,
     #[serde(rename = "quantifiable", skip_serializing_if = "Option::is_none")]
     pub quantifiable: Option<bool>,
-    #[serde(rename = "recurrable")]
-    pub recurrable: bool,
+    #[serde(rename = "recurrable", skip_serializing_if = "Option::is_none")]
+    pub recurrable: Option<bool>,
     #[serde(rename = "refundable", skip_serializing_if = "Option::is_none")]
     pub refundable: Option<bool>,
     #[serde(rename = "sellerDisplayName")]
@@ -120,8 +120,8 @@ pub struct ProductListing {
     pub seller_id: String,
     #[serde(rename = "soldByVrc", skip_serializing_if = "Option::is_none")]
     pub sold_by_vrc: Option<bool>,
-    #[serde(rename = "stackable")]
-    pub stackable: bool,
+    #[serde(rename = "stackable", skip_serializing_if = "Option::is_none")]
+    pub stackable: Option<bool>,
     #[serde(rename = "storeIds", skip_serializing_if = "Option::is_none")]
     pub store_ids: Option<Vec<String>>,
     #[serde(rename = "subtitle", skip_serializing_if = "Option::is_none")]
@@ -150,18 +150,13 @@ impl ProductListing {
         buyer_refundable: bool,
         description: String,
         display_name: String,
-        has_avatar: bool,
-        has_udon: bool,
         id: String,
         listing_type: models::ProductListingType,
         price_tokens: i32,
         product_ids: Vec<String>,
         product_type: models::ProductType,
-        products: Vec<String>,
-        recurrable: bool,
         seller_display_name: String,
         seller_id: String,
-        stackable: bool,
     ) -> ProductListing {
         ProductListing {
             active,
@@ -178,10 +173,10 @@ impl ProductListing {
             group_icon: None,
             group_id: None,
             group_name: None,
-            has_avatar,
+            has_avatar: None,
             has_companion: None,
             has_inventory: None,
-            has_udon,
+            has_udon: None,
             hydrated_products: None,
             id,
             image_id: None,
@@ -193,16 +188,16 @@ impl ProductListing {
             product_ids,
             product_type,
             product_types: None,
-            products,
+            products: None,
             purchase_count: None,
             purchase_count_quantity: None,
             quantifiable: None,
-            recurrable,
+            recurrable: None,
             refundable: None,
             seller_display_name,
             seller_id,
             sold_by_vrc: None,
-            stackable,
+            stackable: None,
             store_ids: None,
             subtitle: None,
             tags: None,

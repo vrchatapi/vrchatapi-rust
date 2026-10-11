@@ -18,10 +18,10 @@ Name | Type | Description | Notes
 **group_icon** | Option<**String**> |  | [optional]
 **group_id** | Option<**String**> |  | [optional]
 **group_name** | Option<**String**> |  | [optional]
-**has_avatar** | **bool** |  | 
+**has_avatar** | Option<**bool**> |  | [optional]
 **has_companion** | Option<**bool**> |  | [optional]
 **has_inventory** | Option<**bool**> |  | [optional]
-**has_udon** | **bool** |  | 
+**has_udon** | Option<**bool**> |  | [optional]
 **hydrated_products** | Option<[**Vec<models::Product>**](Product.md)> |  | [optional]
 **id** | **String** |  | 
 **image_id** | Option<**String**> |  | [optional]
@@ -33,16 +33,16 @@ Name | Type | Description | Notes
 **product_ids** | **Vec<String>** |  | 
 **product_type** | [**models::ProductType**](ProductType.md) |  | 
 **product_types** | Option<**Vec<String>**> |  | [optional]
-**products** | **Vec<String>** | Product ids. The products themselves arrive in `hydratedProducts`. | 
+**products** | Option<**Vec<String>**> | Product ids. The products themselves arrive in `hydratedProducts`. | [optional]
 **purchase_count** | Option<**i32**> |  | [optional]
 **purchase_count_quantity** | Option<**i32**> |  | [optional]
 **quantifiable** | Option<**bool**> |  | [optional]
-**recurrable** | **bool** |  | 
+**recurrable** | Option<**bool**> |  | [optional]
 **refundable** | Option<**bool**> |  | [optional]
 **seller_display_name** | **String** |  | 
 **seller_id** | **String** |  | 
 **sold_by_vrc** | Option<**bool**> |  | [optional]
-**stackable** | **bool** |  | 
+**stackable** | Option<**bool**> |  | [optional]
 **store_ids** | Option<**Vec<String>**> |  | [optional]
 **subtitle** | Option<**String**> |  | [optional]
 **tags** | Option<**Vec<String>**> |  | [optional]

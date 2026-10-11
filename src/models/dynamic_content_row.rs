@@ -18,8 +18,13 @@ pub struct DynamicContentRow {
         skip_serializing_if = "Option::is_none"
     )]
     pub any_tag: Option<Option<Vec<String>>>,
-    #[serde(rename = "avatarSpecific", skip_serializing_if = "Option::is_none")]
-    pub avatar_specific: Option<bool>,
+    #[serde(
+        rename = "avatarSpecific",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub avatar_specific: Option<Option<bool>>,
     #[serde(rename = "bannersTag", skip_serializing_if = "Option::is_none")]
     pub banners_tag: Option<String>,
     #[serde(rename = "categories", skip_serializing_if = "Option::is_none")]
