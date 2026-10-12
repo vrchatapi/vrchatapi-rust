@@ -8,6 +8,8 @@ pub struct Response {
     pub message: Option<String>,
     #[serde(rename = "status_code")]
     pub status_code: i32,
+    #[serde(rename = "waf_code", skip_serializing_if = "Option::is_none")]
+    pub waf_code: Option<i32>,
 }
 
 impl Response {
@@ -15,6 +17,7 @@ impl Response {
         Response {
             message: None,
             status_code,
+            waf_code: None,
         }
     }
 }

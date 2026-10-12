@@ -7,6 +7,7 @@ use serde::{de::Error as _, Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreatePropError {
+    Status400(models::Error),
     Status401(models::Error),
     Status403(models::Error),
     UnknownValue(serde_json::Value),

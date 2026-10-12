@@ -236,6 +236,7 @@ pub enum GetStoreError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetStoreShelvesError {
+    Status400(models::Error),
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -1784,7 +1785,7 @@ pub async fn get_steam_transaction(
     let p_path_transaction_id = transaction_id;
 
     let uri_str = format!(
-        "{}/Steam/transactions/{transactionId}",
+        "{}/steam/transactions/{transactionId}",
         configuration.base_path,
         transactionId = crate::apis::urlencode(p_path_transaction_id)
     );
@@ -1833,7 +1834,7 @@ pub async fn get_steam_transaction(
 pub async fn get_steam_transactions(
     configuration: &configuration::Configuration,
 ) -> Result<Vec<models::Transaction>, Error<GetSteamTransactionsError>> {
-    let uri_str = format!("{}/Steam/transactions", configuration.base_path);
+    let uri_str = format!("{}/steam/transactions", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
     if let Some(ref user_agent) = configuration.user_agent {

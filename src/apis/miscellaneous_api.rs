@@ -40,6 +40,8 @@ pub enum GetConfigError {
 #[serde(untagged)]
 pub enum GetCssError {
     Status400(models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -79,6 +81,8 @@ pub enum GetInfoPushError {
 #[serde(untagged)]
 pub enum GetJavaScriptError {
     Status400(models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 

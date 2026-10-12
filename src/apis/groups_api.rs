@@ -7,6 +7,7 @@ use serde::{de::Error as _, Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum AddGroupGalleryImageError {
+    Status400(models::Error),
     Status401(models::Error),
     Status403(models::Error),
     Status404(models::Error),
@@ -98,6 +99,7 @@ pub enum CreateGroupAnnouncementError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateGroupGalleryError {
+    Status400(models::Error),
     Status401(models::Error),
     Status403(models::Error),
     Status404(models::Error),
@@ -453,6 +455,7 @@ pub enum UnbanGroupMemberError {
 pub enum UpdateGroupError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }

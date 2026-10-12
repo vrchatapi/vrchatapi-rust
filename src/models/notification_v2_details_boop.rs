@@ -5,9 +5,8 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct NotificationV2DetailsBoop {
-    /// Either a FileID or a string constant for default emojis
     #[serde(rename = "emojiId")]
-    pub emoji_id: String,
+    pub emoji_id: models::EmojiId,
     #[serde(rename = "emojiVersion", deserialize_with = "Option::deserialize")]
     pub emoji_version: Option<i32>,
     #[serde(rename = "inventoryItemId")]
@@ -17,7 +16,7 @@ pub struct NotificationV2DetailsBoop {
 impl NotificationV2DetailsBoop {
     /// Either inventoryItemId by itself, or emojiId with optional emojiVersion
     pub fn new(
-        emoji_id: String,
+        emoji_id: models::EmojiId,
         emoji_version: Option<i32>,
         inventory_item_id: String,
     ) -> NotificationV2DetailsBoop {

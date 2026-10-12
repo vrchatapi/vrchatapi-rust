@@ -157,6 +157,7 @@ pub enum LogoutError {
 #[serde(untagged)]
 pub enum RegisterUserAccountError {
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 

@@ -112,6 +112,7 @@ docs/EconomyPayoutEligibility.md
 docs/EconomyPayoutList.md
 docs/EconomyPayoutStatus.md
 docs/EconomyStatus.md
+docs/EmojiId.md
 docs/EquipInventoryItemRequest.md
 docs/Error.md
 docs/Favorite.md
@@ -719,6 +720,7 @@ src/models/economy_payout_eligibility.rs
 src/models/economy_payout_list.rs
 src/models/economy_payout_status.rs
 src/models/economy_status.rs
+src/models/emoji_id.rs
 src/models/equip_inventory_item_request.rs
 src/models/error.rs
 src/models/favorite.rs

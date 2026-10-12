@@ -214,6 +214,8 @@ pub mod economy_payout_status;
 pub use self::economy_payout_status::EconomyPayoutStatus;
 pub mod economy_status;
 pub use self::economy_status::EconomyStatus;
+pub mod emoji_id;
+pub use self::emoji_id::EmojiId;
 pub mod equip_inventory_item_request;
 pub use self::equip_inventory_item_request::EquipInventoryItemRequest;
 pub mod error;

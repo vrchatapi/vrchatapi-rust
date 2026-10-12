@@ -122,6 +122,7 @@ pub enum GetFilesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum SetGroupGalleryFileOrderError {
+    Status400(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }

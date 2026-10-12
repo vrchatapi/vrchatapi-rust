@@ -54,6 +54,7 @@ pub enum DeleteUserPersistenceError {
 #[serde(untagged)]
 pub enum DeleteWorldError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -170,6 +171,7 @@ pub enum UnpublishWorldError {
 pub enum UpdateWorldError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }

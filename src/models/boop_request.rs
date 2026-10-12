@@ -5,9 +5,8 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct BoopRequest {
-    /// Either a FileID or a string constant for default emojis
     #[serde(rename = "emojiId", skip_serializing_if = "Option::is_none")]
-    pub emoji_id: Option<String>,
+    pub emoji_id: Option<models::EmojiId>,
     #[serde(rename = "emojiVersion", skip_serializing_if = "Option::is_none")]
     pub emoji_version: Option<i32>,
     #[serde(rename = "inventoryItemId", skip_serializing_if = "Option::is_none")]

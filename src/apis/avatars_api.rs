@@ -35,6 +35,7 @@ pub enum DeleteImpostorError {
 #[serde(untagged)]
 pub enum EnqueueImpostorError {
     Status401(models::Error),
+    Status403(models::Error),
     Status404(models::Error),
     UnknownValue(serde_json::Value),
 }

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**emoji_id** | **String** | Either a FileID or a string constant for default emojis | 
+**emoji_id** | [**models::EmojiId**](EmojiID.md) |  | 
 **emoji_version** | Option<**i32**> |  | 
 **inventory_item_id** | **String** |  | 
 
