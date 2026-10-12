@@ -134,6 +134,27 @@ impl Default for {{classname}} {
         {{/oneOf}}{{^oneOf.isEmpty}}{{#composedSchemas.oneOf}}{{#-first}}Self::{{{name}}}(Default::default()){{/-first}}{{/composedSchemas.oneOf}}{{/oneOf.isEmpty}}
     }
 }
+{{^oneOf.isEmpty}}
+{{#composedSchemas.oneOf}}
+
+impl From<{{{dataType}}}> for {{classname}} {
+    fn from(value: {{{dataType}}}) -> Self {
+        Self::{{{name}}}(value)
+    }
+}
+
+impl TryFrom<{{classname}}> for {{{dataType}}} {
+    type Error = {{classname}};
+
+    fn try_from(value: {{classname}}) -> Result<Self, Self::Error> {
+        match value {
+            {{classname}}::{{{name}}}(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+{{/composedSchemas.oneOf}}
+{{/oneOf.isEmpty}}
 
 {{/discriminator}}
 {{!-- for non-enum schemas --}}
