@@ -223,6 +223,27 @@ impl Default for {{classname}} {
         {{#composedSchemas.oneOf}}{{#-first}}Self::{{{name}}}(Default::default()){{/-first}}{{/composedSchemas.oneOf}}
     }
 }
+{{#composedSchemas.oneOf}}
+{{#isModel}}
+
+impl From<{{{dataType}}}> for {{classname}} {
+    fn from(value: {{{dataType}}}) -> Self {
+        Self::{{{name}}}(value)
+    }
+}
+
+impl TryFrom<{{classname}}> for {{{dataType}}} {
+    type Error = {{classname}};
+
+    fn try_from(value: {{classname}}) -> Result<Self, Self::Error> {
+        match value {
+            {{classname}}::{{{name}}}(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+{{/isModel}}
+{{/composedSchemas.oneOf}}
 {{/oneOf.isEmpty}}
 {{^anyOf.isEmpty}}
 {{! TODO: add other vars that are not part of the anyOf}}
@@ -230,16 +251,37 @@ impl Default for {{classname}} {
 #[serde(untagged)]
 pub enum {{classname}} {
 {{#composedSchemas.anyOf}}
-    {{{nameInPascalCase}}}({{#isModel}}{{^avoidBoxedModels}}Box<{{/avoidBoxedModels}}{{/isModel}}{{{dataType}}}{{#isModel}}{{^avoidBoxedModels}}>{{/avoidBoxedModels}}{{/isModel}}),
+    {{>model_any_of_variant}}({{#isModel}}{{^avoidBoxedModels}}Box<{{/avoidBoxedModels}}{{/isModel}}{{{dataType}}}{{#isModel}}{{^avoidBoxedModels}}>{{/avoidBoxedModels}}{{/isModel}}),
 {{/composedSchemas.anyOf}}
 }
 
 
 impl Default for {{classname}} {
     fn default() -> Self {
-    {{#composedSchemas.anyOf}}{{#-first}}Self::{{{nameInPascalCase}}}(Default::default()){{/-first}}{{/composedSchemas.anyOf}}
+    {{#composedSchemas.anyOf}}{{#-first}}Self::{{>model_any_of_variant}}(Default::default()){{/-first}}{{/composedSchemas.anyOf}}
     }
 }
+{{#composedSchemas.anyOf}}
+{{#isModel}}
+
+impl From<{{{dataType}}}> for {{classname}} {
+    fn from(value: {{{dataType}}}) -> Self {
+        Self::{{>model_any_of_variant}}(value)
+    }
+}
+
+impl TryFrom<{{classname}}> for {{{dataType}}} {
+    type Error = {{classname}};
+
+    fn try_from(value: {{classname}}) -> Result<Self, Self::Error> {
+        match value {
+            {{classname}}::{{>model_any_of_variant}}(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+{{/isModel}}
+{{/composedSchemas.anyOf}}
 {{/anyOf.isEmpty}}
 {{/discriminator}}
 {{/isEnum}}
