@@ -1,0 +1,31 @@
+use crate::models;
+use serde::{Deserialize, Serialize};
+
+/// A platform the user was recorded on, and when.
+#[serde_with::serde_as]
+#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+pub struct PlatformHistoryItem {
+    #[serde(rename = "isMobile", skip_serializing_if = "Option::is_none")]
+    pub is_mobile: Option<bool>,
+    /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
+    #[serde(
+        rename = "platform",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub platform: Option<Option<String>>,
+    #[serde(rename = "recorded", skip_serializing_if = "Option::is_none")]
+    pub recorded: Option<chrono::DateTime<chrono::FixedOffset>>,
+}
+
+impl PlatformHistoryItem {
+    /// A platform the user was recorded on, and when.
+    pub fn new() -> PlatformHistoryItem {
+        PlatformHistoryItem {
+            is_mobile: None,
+            platform: None,
+            recorded: None,
+        }
+    }
+}

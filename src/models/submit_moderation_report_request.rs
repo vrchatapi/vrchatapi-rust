@@ -14,6 +14,7 @@ pub struct SubmitModerationReportRequest {
     /// The subjective reason for the report
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
+    /// Relevant details specific to the type of the report. `fileId` is for the image file attached to an inventory item, such as an emoji. `holderId` is for the user who owns an inventory item, such as a emoji.
     #[serde(rename = "details", skip_serializing_if = "Option::is_none")]
     pub details: Option<models::SubmitModerationReportRequestDetails>,
     /// Valid values are the strings in the array `$.reportOptions[type][category]` from `GET /config`. Descriptions of these are found at `$.reportReasons[type]`.

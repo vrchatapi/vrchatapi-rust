@@ -770,7 +770,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_audit_logs
 
-> models::PaginatedGroupAuditLogEntryList get_group_audit_logs(group_id, n, offset, start_date, end_date, actor_ids, event_types, target_ids)
+> models::PaginatedGroupAuditLogList get_group_audit_logs(group_id, n, offset, start_date, end_date, actor_ids, event_types, target_ids)
 Get Group Audit Logs
 
 Returns a list of audit logs for a Group.
@@ -791,7 +791,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::PaginatedGroupAuditLogEntryList**](PaginatedGroupAuditLogEntryList.md)
+[**models::PaginatedGroupAuditLogList**](PaginatedGroupAuditLogList.md)
 
 ### Authorization
 

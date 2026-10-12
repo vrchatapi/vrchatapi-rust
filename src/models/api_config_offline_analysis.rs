@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Whether to allow offline analysis
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigOfflineAnalysis {
@@ -14,7 +13,6 @@ pub struct ApiConfigOfflineAnalysis {
 }
 
 impl ApiConfigOfflineAnalysis {
-    /// Whether to allow offline analysis
     pub fn new() -> ApiConfigOfflineAnalysis {
         ApiConfigOfflineAnalysis {
             android: None,

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**agreement** | Option<[**models::TransactionAgreementOneOf**](TransactionAgreementOneOf.md)> |  | [optional]
+**agreement** | Option<[**models::TransactionAgreementValue**](TransactionAgreementValue.md)> |  | [optional]
 **created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **error** | Option<**String**> |  | 
 **id** | **String** |  | 

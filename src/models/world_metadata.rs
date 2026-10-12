@@ -8,11 +8,11 @@ pub struct WorldMetadata {
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "metadata")]
-    pub metadata: serde_json::Value,
+    pub metadata: models::WorldMetadataValue,
 }
 
 impl WorldMetadata {
-    pub fn new(id: String, metadata: serde_json::Value) -> WorldMetadata {
+    pub fn new(id: String, metadata: models::WorldMetadataValue) -> WorldMetadata {
         WorldMetadata { id, metadata }
     }
 }

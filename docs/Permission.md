@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | Option<[**models::PermissionData**](PermissionData.md)> |  | [optional]
+**data** | Option<[**models::PermissionData**](PermissionData.md)> | Specific values afforded the user by this permission | [optional]
 **description** | Option<**String**> |  | [optional]
 **display_name** | Option<**String**> |  | [optional]
 **id** | **String** |  | 

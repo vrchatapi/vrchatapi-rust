@@ -56,7 +56,7 @@ Name | Type | Description | Notes
 **is_economy_creator** | Option<**bool**> |  | [optional][default to false]
 **is_friend** | **bool** |  | [default to false]
 **is_temporary** | Option<**bool**> |  | [optional][default to false]
-**last_activity** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
+**last_activity** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **last_login** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **last_mobile** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | 
 **last_platform** | **String** | This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`. | 
@@ -72,7 +72,7 @@ Name | Type | Description | Notes
 **personalization_opt_out** | Option<**bool**> |  | [optional]
 **pico_id** | Option<**String**> |  | [optional]
 **platform** | Option<**String**> |  | [optional]
-**platform_history** | Option<[**Vec<models::PlatformHistoryEntry>**](PlatformHistoryEntry.md)> |  | [optional]
+**platform_history** | Option<[**Vec<models::PlatformHistoryItem>**](PlatformHistoryItem.md)> |  | [optional]
 **presence** | Option<[**models::CurrentUserPresence**](CurrentUserPresence.md)> |  | [optional]
 **profile_effect** | Option<**String**> |  | [optional]
 **pronouns** | **String** |  | 

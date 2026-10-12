@@ -302,6 +302,7 @@ pub struct ApiConfig {
     /// Current app version for iOS
     #[serde(rename = "iosAppVersion")]
     pub ios_app_version: Vec<String>,
+    /// Current version for iOS
     #[serde(rename = "iosVersion")]
     pub ios_version: models::ApiConfigIosVersion,
     /// VRChat's job application email
@@ -332,6 +333,7 @@ pub struct ApiConfig {
         skip_serializing_if = "Option::is_none"
     )]
     pub maximum_unity_version_for_uploads: Option<String>,
+    /// Minimum supported client build number for various platforms
     #[serde(rename = "minSupportedClientBuildNumber")]
     pub min_supported_client_build_number: models::ApiConfigMinSupportedClientBuildNumber,
     /// Minimum Unity version required for uploading assets
@@ -343,6 +345,7 @@ pub struct ApiConfig {
     /// Used in-game to notify a user they aren't allowed to select avatars in private worlds
     #[serde(rename = "notAllowedToSelectAvatarInPrivateWorldMessage")]
     pub not_allowed_to_select_avatar_in_private_world_message: String,
+    /// Whether to allow offline analysis
     #[serde(rename = "offlineAnalysis")]
     pub offline_analysis: models::ApiConfigOfflineAnalysis,
     /// Unknown

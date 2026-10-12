@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **capacity** | **i32** |  | 
 **created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **default_content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
-**disabled_prop_abilities** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**disabled_prop_abilities** | Option<**Vec<String>**> |  | [optional]
 **favorites** | **i32** |  | [default to 0]
 **heat** | **i32** |  | [default to 0]
 **id** | **String** | WorldID be \"offline\" on User profiles if you are not friends with that user. | 

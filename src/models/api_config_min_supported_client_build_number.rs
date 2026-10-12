@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Minimum supported client build number for various platforms
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigMinSupportedClientBuildNumber {
@@ -30,7 +29,6 @@ pub struct ApiConfigMinSupportedClientBuildNumber {
 }
 
 impl ApiConfigMinSupportedClientBuildNumber {
-    /// Minimum supported client build number for various platforms
     pub fn new(
         app_store: models::PlatformBuildInfo,
         default: models::PlatformBuildInfo,

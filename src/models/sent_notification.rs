@@ -1,49 +1,185 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-#[serde_with::serde_as]
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct SentNotification {
-    #[serde(rename = "created_at")]
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    #[serde(rename = "details")]
-    pub details: models::SentNotificationDetails,
-    #[serde(rename = "id")]
-    pub id: String,
+/// A notification as its sender receives it back. The shape of `details` depends on `type`.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "type")]
+pub enum SentNotification {
+    #[serde(rename = "boop")]
+    Boop(models::SentNotificationBoop),
+    #[serde(rename = "friendRequest")]
+    FriendRequest(models::SentNotificationFriendRequest),
+    #[serde(rename = "invite")]
+    Invite(models::SentNotificationInvite),
+    #[serde(rename = "inviteResponse")]
+    InviteResponse(models::SentNotificationInviteResponse),
     #[serde(rename = "message")]
-    pub message: String,
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "receiverUserId")]
-    pub receiver_user_id: String,
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "senderUserId")]
-    pub sender_user_id: String,
-    /// The name of the user who sent the notification.
-    #[serde(rename = "senderUsername", skip_serializing_if = "Option::is_none")]
-    pub sender_username: Option<String>,
-    #[serde(rename = "type")]
-    pub r#type: models::NotificationType,
+    Message(models::SentNotificationMessage),
+    #[serde(rename = "requestInvite")]
+    RequestInvite(models::SentNotificationRequestInvite),
+    #[serde(rename = "requestInviteResponse")]
+    RequestInviteResponse(models::SentNotificationRequestInviteResponse),
+    #[serde(rename = "votetokick")]
+    Votetokick(models::SentNotificationVoteToKick),
+    #[serde(untagged)]
+    SentNotificationUnknown(models::SentNotificationUnknown),
 }
 
-impl SentNotification {
-    pub fn new(
-        created_at: chrono::DateTime<chrono::FixedOffset>,
-        details: models::SentNotificationDetails,
-        id: String,
-        message: String,
-        receiver_user_id: String,
-        sender_user_id: String,
-        r#type: models::NotificationType,
-    ) -> SentNotification {
-        SentNotification {
-            created_at,
-            details,
-            id,
-            message,
-            receiver_user_id,
-            sender_user_id,
-            sender_username: None,
-            r#type,
+impl Default for SentNotification {
+    fn default() -> Self {
+        Self::Boop(Default::default())
+    }
+}
+
+impl From<models::SentNotificationBoop> for SentNotification {
+    fn from(value: models::SentNotificationBoop) -> Self {
+        Self::Boop(value)
+    }
+}
+
+impl TryFrom<SentNotification> for models::SentNotificationBoop {
+    type Error = SentNotification;
+
+    fn try_from(value: SentNotification) -> Result<Self, Self::Error> {
+        match value {
+            SentNotification::Boop(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::SentNotificationFriendRequest> for SentNotification {
+    fn from(value: models::SentNotificationFriendRequest) -> Self {
+        Self::FriendRequest(value)
+    }
+}
+
+impl TryFrom<SentNotification> for models::SentNotificationFriendRequest {
+    type Error = SentNotification;
+
+    fn try_from(value: SentNotification) -> Result<Self, Self::Error> {
+        match value {
+            SentNotification::FriendRequest(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::SentNotificationInvite> for SentNotification {
+    fn from(value: models::SentNotificationInvite) -> Self {
+        Self::Invite(value)
+    }
+}
+
+impl TryFrom<SentNotification> for models::SentNotificationInvite {
+    type Error = SentNotification;
+
+    fn try_from(value: SentNotification) -> Result<Self, Self::Error> {
+        match value {
+            SentNotification::Invite(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::SentNotificationInviteResponse> for SentNotification {
+    fn from(value: models::SentNotificationInviteResponse) -> Self {
+        Self::InviteResponse(value)
+    }
+}
+
+impl TryFrom<SentNotification> for models::SentNotificationInviteResponse {
+    type Error = SentNotification;
+
+    fn try_from(value: SentNotification) -> Result<Self, Self::Error> {
+        match value {
+            SentNotification::InviteResponse(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::SentNotificationMessage> for SentNotification {
+    fn from(value: models::SentNotificationMessage) -> Self {
+        Self::Message(value)
+    }
+}
+
+impl TryFrom<SentNotification> for models::SentNotificationMessage {
+    type Error = SentNotification;
+
+    fn try_from(value: SentNotification) -> Result<Self, Self::Error> {
+        match value {
+            SentNotification::Message(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::SentNotificationRequestInvite> for SentNotification {
+    fn from(value: models::SentNotificationRequestInvite) -> Self {
+        Self::RequestInvite(value)
+    }
+}
+
+impl TryFrom<SentNotification> for models::SentNotificationRequestInvite {
+    type Error = SentNotification;
+
+    fn try_from(value: SentNotification) -> Result<Self, Self::Error> {
+        match value {
+            SentNotification::RequestInvite(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::SentNotificationRequestInviteResponse> for SentNotification {
+    fn from(value: models::SentNotificationRequestInviteResponse) -> Self {
+        Self::RequestInviteResponse(value)
+    }
+}
+
+impl TryFrom<SentNotification> for models::SentNotificationRequestInviteResponse {
+    type Error = SentNotification;
+
+    fn try_from(value: SentNotification) -> Result<Self, Self::Error> {
+        match value {
+            SentNotification::RequestInviteResponse(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::SentNotificationVoteToKick> for SentNotification {
+    fn from(value: models::SentNotificationVoteToKick) -> Self {
+        Self::Votetokick(value)
+    }
+}
+
+impl TryFrom<SentNotification> for models::SentNotificationVoteToKick {
+    type Error = SentNotification;
+
+    fn try_from(value: SentNotification) -> Result<Self, Self::Error> {
+        match value {
+            SentNotification::Votetokick(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::SentNotificationUnknown> for SentNotification {
+    fn from(value: models::SentNotificationUnknown) -> Self {
+        Self::SentNotificationUnknown(value)
+    }
+}
+
+impl TryFrom<SentNotification> for models::SentNotificationUnknown {
+    type Error = SentNotification;
+
+    fn try_from(value: SentNotification) -> Result<Self, Self::Error> {
+        match value {
+            SentNotification::SentNotificationUnknown(inner) => Ok(inner),
+            other => Err(other),
         }
     }
 }

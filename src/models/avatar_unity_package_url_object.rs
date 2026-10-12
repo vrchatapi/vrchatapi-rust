@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AvatarUnityPackageUrlObject {
@@ -10,7 +9,6 @@ pub struct AvatarUnityPackageUrlObject {
 }
 
 impl AvatarUnityPackageUrlObject {
-    /// **Deprecation:** `Object` has unknown usage/fields, and is always empty. Use normal `Url` field instead.
     pub fn new() -> AvatarUnityPackageUrlObject {
         AvatarUnityPackageUrlObject {
             unity_package_url: None,

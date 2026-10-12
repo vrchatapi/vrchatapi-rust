@@ -16,6 +16,7 @@ pub enum AddFavoriteError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ClearFavoriteGroupError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -23,6 +24,7 @@ pub enum ClearFavoriteGroupError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFavoriteGroupError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -633,7 +635,7 @@ pub async fn update_favorite_group(
     favorite_group_name: &str,
     user_id: &str,
     update_favorite_group_request: Option<models::UpdateFavoriteGroupRequest>,
-) -> Result<serde_json::Value, Error<UpdateFavoriteGroupError>> {
+) -> Result<std::collections::HashMap<String, serde_json::Value>, Error<UpdateFavoriteGroupError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_favorite_group_type = favorite_group_type;
     let p_path_favorite_group_name = favorite_group_name;
@@ -672,8 +674,8 @@ pub async fn update_favorite_group(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `serde_json::Value`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `serde_json::Value`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `std::collections::HashMap&lt;String, serde_json::Value&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `std::collections::HashMap&lt;String, serde_json::Value&gt;`")))),
         }
     } else {
         let content = resp.text().await?;

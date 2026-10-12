@@ -5,10 +5,13 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigConstants {
+    /// Group-related constants
     #[serde(rename = "GROUPS")]
     pub groups: models::ApiConfigConstantsGroups,
+    /// Instance-related constants
     #[serde(rename = "INSTANCE")]
     pub instance: models::ApiConfigConstantsInstance,
+    /// Language-related constants
     #[serde(rename = "LANGUAGE")]
     pub language: models::ApiConfigConstantsLanguage,
 }

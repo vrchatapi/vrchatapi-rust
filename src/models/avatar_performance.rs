@@ -5,15 +5,15 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct AvatarPerformance {
     #[serde(rename = "android", skip_serializing_if = "Option::is_none")]
-    pub android: Option<String>,
+    pub android: Option<models::PerformanceRatings>,
     #[serde(rename = "android-sort", skip_serializing_if = "Option::is_none")]
     pub android_sort: Option<i32>,
     #[serde(rename = "ios", skip_serializing_if = "Option::is_none")]
-    pub ios: Option<String>,
+    pub ios: Option<models::PerformanceRatings>,
     #[serde(rename = "ios-sort", skip_serializing_if = "Option::is_none")]
     pub ios_sort: Option<i32>,
     #[serde(rename = "standalonewindows", skip_serializing_if = "Option::is_none")]
-    pub standalonewindows: Option<String>,
+    pub standalonewindows: Option<models::PerformanceRatings>,
     #[serde(
         rename = "standalonewindows-sort",
         skip_serializing_if = "Option::is_none"

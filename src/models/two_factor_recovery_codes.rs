@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct TwoFactorRecoveryCodes {
     #[serde(rename = "otp", skip_serializing_if = "Option::is_none")]
-    pub otp: Option<Vec<models::TwoFactorRecoveryCodesOtpInner>>,
+    pub otp: Option<Vec<models::TwoFactorRecoveryCode>>,
     #[serde(
         rename = "requiresTwoFactorAuth",
         skip_serializing_if = "Option::is_none"

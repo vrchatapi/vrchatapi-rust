@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Current version for iOS
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigIosVersion {
@@ -12,7 +11,6 @@ pub struct ApiConfigIosVersion {
 }
 
 impl ApiConfigIosVersion {
-    /// Current version for iOS
     pub fn new(major: i32, minor: i32) -> ApiConfigIosVersion {
         ApiConfigIosVersion { major, minor }
     }

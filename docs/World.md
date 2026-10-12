@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **default_content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
 **description** | **String** |  | 
-**disabled_prop_abilities** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**disabled_prop_abilities** | Option<**Vec<String>**> |  | [optional]
 **favorites** | Option<**i32**> |  | [optional][default to 0]
 **featured** | **bool** |  | [default to false]
 **heat** | **i32** |  | [default to 0]
@@ -30,7 +30,7 @@ Name | Type | Description | Notes
 **publication_date** | **String** |  | 
 **recommended_capacity** | **i32** |  | 
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
-**slim_instances** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**slim_instances** | Option<[**Vec<models::WorldSlimInstance>**](WorldSlimInstance.md)> |  | [optional]
 **store_id** | Option<**String**> |  | [optional]
 **tags** | **Vec<String>** |  | 
 **thumbnail_image_url** | **String** |  | 

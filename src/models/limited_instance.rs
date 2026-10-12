@@ -15,7 +15,7 @@ pub struct LimitedInstance {
     #[serde(rename = "description", deserialize_with = "Option::deserialize")]
     pub description: Option<String>,
     #[serde(rename = "disabledPropAbilities")]
-    pub disabled_prop_abilities: Vec<serde_json::Value>,
+    pub disabled_prop_abilities: Vec<String>,
     #[serde(rename = "displayName", deserialize_with = "Option::deserialize")]
     pub display_name: Option<String>,
     #[serde(rename = "displayVibeId", deserialize_with = "Option::deserialize")]
@@ -95,7 +95,7 @@ impl LimitedInstance {
         category_id: Option<String>,
         creation_languages: Vec<serde_json::Value>,
         description: Option<String>,
-        disabled_prop_abilities: Vec<serde_json::Value>,
+        disabled_prop_abilities: Vec<String>,
         display_name: Option<String>,
         display_vibe_id: Option<String>,
         dominant_language: String,

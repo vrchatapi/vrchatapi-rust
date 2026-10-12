@@ -75,9 +75,9 @@ pub struct User {
     #[serde(rename = "isFriend")]
     pub is_friend: bool,
     #[serde(rename = "last_activity")]
-    pub last_activity: models::PrivateProfileActivityLastActivity,
+    pub last_activity: models::UserActivityTimestamp,
     #[serde(rename = "last_login")]
-    pub last_login: models::PrivateProfileActivityLastActivity,
+    pub last_login: models::UserActivityTimestamp,
     #[serde(
         rename = "last_mobile",
         default,
@@ -137,8 +137,8 @@ impl User {
         friend_key: String,
         id: String,
         is_friend: bool,
-        last_activity: models::PrivateProfileActivityLastActivity,
-        last_login: models::PrivateProfileActivityLastActivity,
+        last_activity: models::UserActivityTimestamp,
+        last_login: models::UserActivityTimestamp,
         last_platform: String,
         pronouns: String,
         state: models::UserState,

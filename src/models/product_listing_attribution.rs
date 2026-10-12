@@ -5,12 +5,22 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ProductListingAttribution {
-    #[serde(rename = "collaborationId", skip_serializing_if = "Option::is_none")]
-    pub collaboration_id: Option<String>,
+    #[serde(
+        rename = "collaborationId",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub collaboration_id: Option<Option<String>>,
     #[serde(rename = "creator", skip_serializing_if = "Option::is_none")]
     pub creator: Option<models::ProductListingAttributionCreator>,
-    #[serde(rename = "publisher", skip_serializing_if = "Option::is_none")]
-    pub publisher: Option<models::ProductListingAttributionCreator>,
+    #[serde(
+        rename = "publisher",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub publisher: Option<Option<models::ProductListingAttributionCreator>>,
 }
 
 impl ProductListingAttribution {

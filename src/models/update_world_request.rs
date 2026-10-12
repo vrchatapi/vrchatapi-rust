@@ -24,6 +24,8 @@ pub struct UpdateWorldRequest {
     pub disabled_prop_abilities: Option<Vec<String>>,
     #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
     pub image_url: Option<String>,
+    #[serde(rename = "metadata", skip_serializing_if = "Option::is_none")]
+    pub metadata: Option<models::UpdateWorldRequestMetadata>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
     pub name: Option<String>,
     /// This is normally `android`, `ios`, `standalonewindows`, `web`, or the empty value ``, but also supposedly can be any random Unity version such as `2019.2.4-801-Release` or `2019.2.2-772-Release` or even `unknownplatform`.
@@ -64,6 +66,7 @@ impl UpdateWorldRequest {
             description: None,
             disabled_prop_abilities: None,
             image_url: None,
+            metadata: None,
             name: None,
             platform: None,
             preview_youtube_id: None,

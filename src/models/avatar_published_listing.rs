@@ -1,0 +1,32 @@
+use crate::models;
+use serde::{Deserialize, Serialize};
+
+#[serde_with::serde_as]
+#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+pub struct AvatarPublishedListing {
+    #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
+    pub description: Option<String>,
+    #[serde(rename = "displayName", skip_serializing_if = "Option::is_none")]
+    pub display_name: Option<String>,
+    #[serde(rename = "imageId", skip_serializing_if = "Option::is_none")]
+    pub image_id: Option<String>,
+    #[serde(rename = "listingId", skip_serializing_if = "Option::is_none")]
+    pub listing_id: Option<String>,
+    #[serde(rename = "listingType", skip_serializing_if = "Option::is_none")]
+    pub listing_type: Option<String>,
+    #[serde(rename = "priceTokens", skip_serializing_if = "Option::is_none")]
+    pub price_tokens: Option<i32>,
+}
+
+impl AvatarPublishedListing {
+    pub fn new() -> AvatarPublishedListing {
+        AvatarPublishedListing {
+            description: None,
+            display_name: None,
+            image_id: None,
+            listing_id: None,
+            listing_type: None,
+            price_tokens: None,
+        }
+    }
+}

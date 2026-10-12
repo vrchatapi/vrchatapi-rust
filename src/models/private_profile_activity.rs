@@ -8,9 +8,9 @@ pub struct PrivateProfileActivity {
     #[serde(rename = "instanceId", skip_serializing_if = "Option::is_none")]
     pub instance_id: Option<String>,
     #[serde(rename = "last_activity", skip_serializing_if = "Option::is_none")]
-    pub last_activity: Option<models::PrivateProfileActivityLastActivity>,
+    pub last_activity: Option<models::UserActivityTimestamp>,
     #[serde(rename = "last_login", skip_serializing_if = "Option::is_none")]
-    pub last_login: Option<models::PrivateProfileActivityLastActivity>,
+    pub last_login: Option<models::UserActivityTimestamp>,
     /// Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list.
     #[serde(rename = "location", skip_serializing_if = "Option::is_none")]
     pub location: Option<String>,

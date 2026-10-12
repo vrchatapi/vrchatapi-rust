@@ -24,7 +24,7 @@ pub struct FavoritedWorld {
         rename = "disabledPropAbilities",
         skip_serializing_if = "Option::is_none"
     )]
-    pub disabled_prop_abilities: Option<Vec<serde_json::Value>>,
+    pub disabled_prop_abilities: Option<Vec<String>>,
     #[serde(rename = "favoriteGroup", skip_serializing_if = "Option::is_none")]
     pub favorite_group: Option<String>,
     #[serde(rename = "favoriteId", skip_serializing_if = "Option::is_none")]

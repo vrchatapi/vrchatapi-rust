@@ -13,3 +13,20 @@ impl Default for UpdateUserNoteResponse {
         Self::UserNote(Default::default())
     }
 }
+
+impl From<models::UserNote> for UpdateUserNoteResponse {
+    fn from(value: models::UserNote) -> Self {
+        Self::UserNote(value)
+    }
+}
+
+impl TryFrom<UpdateUserNoteResponse> for models::UserNote {
+    type Error = UpdateUserNoteResponse;
+
+    fn try_from(value: UpdateUserNoteResponse) -> Result<Self, Self::Error> {
+        match value {
+            UpdateUserNoteResponse::UserNote(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}

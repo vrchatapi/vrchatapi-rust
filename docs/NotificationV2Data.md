@@ -7,7 +7,6 @@
 | NotificationV2DataBadgeEarned |  |
 | NotificationV2DataBoop |  |
 | NotificationV2DataEventAnnouncement |  |
-| NotificationV2DataGroupAnnouncement |  |
 | NotificationV2DataGroupInformative |  |
 | NotificationV2DataGroupTransfer |  |
 | serde_json::Value |  |

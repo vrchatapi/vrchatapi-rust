@@ -17,6 +17,7 @@ pub enum CreateFileError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CreateFileVersionError {
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -49,6 +50,7 @@ pub enum DownloadFileVersionError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum FinishFileDataUploadError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -56,6 +58,7 @@ pub enum FinishFileDataUploadError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetAdminAssetBundleError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -103,6 +106,7 @@ pub enum GetFileAnalysisStandardError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFileDataUploadStatusError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -110,6 +114,7 @@ pub enum GetFileDataUploadStatusError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetFilesError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -149,6 +154,7 @@ pub enum UpdateAssetReviewNotesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UploadGalleryImageError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -156,6 +162,7 @@ pub enum UploadGalleryImageError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UploadIconError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -163,6 +170,7 @@ pub enum UploadIconError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum UploadImageError {
+    Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
 

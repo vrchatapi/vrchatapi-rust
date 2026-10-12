@@ -5,14 +5,14 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FavoriteGroupContents {
     #[serde(rename = "favorites")]
-    pub favorites: Vec<models::FavoriteGroupContentsEntry>,
+    pub favorites: Vec<models::FavoriteGroupContentsItem>,
     #[serde(rename = "totalCount")]
     pub total_count: i32,
 }
 
 impl FavoriteGroupContents {
     pub fn new(
-        favorites: Vec<models::FavoriteGroupContentsEntry>,
+        favorites: Vec<models::FavoriteGroupContentsItem>,
         total_count: i32,
     ) -> FavoriteGroupContents {
         FavoriteGroupContents {

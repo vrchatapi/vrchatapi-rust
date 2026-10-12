@@ -1,144 +1,71 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-#[serde_with::serde_as]
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct NotificationV2 {
-    #[serde(rename = "canDelete")]
-    pub can_delete: bool,
-    #[serde(rename = "category")]
-    pub category: String,
-    #[serde(rename = "createdAt")]
-    pub created_at: chrono::DateTime<chrono::FixedOffset>,
-    #[serde(rename = "data")]
-    pub data: models::NotificationV2Data,
-    #[serde(rename = "details", skip_serializing_if = "Option::is_none")]
-    pub details: Option<models::NotificationV2DetailsBoop>,
-    /// An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the `working-copy` link in `info.x-links`, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as `info.x-agents` asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  `info.description` has the rest of the project's guidance.
-    #[serde(
-        rename = "displayData",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub display_data: Option<Option<serde_json::Value>>,
-    #[serde(rename = "expiresAt")]
-    pub expires_at: chrono::DateTime<chrono::FixedOffset>,
-    #[serde(rename = "expiryAfterSeen", deserialize_with = "Option::deserialize")]
-    pub expiry_after_seen: Option<i32>,
-    #[serde(rename = "id")]
-    pub id: String,
-    #[serde(rename = "ignoreDND")]
-    pub ignore_dnd: bool,
-    #[serde(rename = "imageUrl", deserialize_with = "Option::deserialize")]
-    pub image_url: Option<String>,
-    #[serde(rename = "isSystem")]
-    pub is_system: bool,
-    #[serde(rename = "link", deserialize_with = "Option::deserialize")]
-    pub link: Option<String>,
-    #[serde(rename = "linkText", deserialize_with = "Option::deserialize")]
-    pub link_text: Option<String>,
-    #[serde(rename = "linkTextKey", deserialize_with = "Option::deserialize")]
-    pub link_text_key: Option<String>,
-    #[serde(rename = "message")]
-    pub message: String,
-    #[serde(
-        rename = "messageKey",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub message_key: Option<Option<String>>,
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "receiverUserId")]
-    pub receiver_user_id: String,
-    #[serde(
-        rename = "relatedNotificationsId",
-        deserialize_with = "Option::deserialize"
-    )]
-    pub related_notifications_id: Option<String>,
-    #[serde(rename = "requireSeen")]
-    pub require_seen: bool,
-    #[serde(rename = "responses")]
-    pub responses: Vec<models::NotificationV2Response>,
-    #[serde(rename = "seen")]
-    pub seen: bool,
-    /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
-    #[serde(rename = "senderUserId", deserialize_with = "Option::deserialize")]
-    pub sender_user_id: Option<String>,
-    #[serde(rename = "senderUsername", deserialize_with = "Option::deserialize")]
-    pub sender_username: Option<String>,
-    #[serde(rename = "title")]
-    pub title: String,
-    #[serde(rename = "titleKey", deserialize_with = "Option::deserialize")]
-    pub title_key: Option<String>,
-    #[serde(rename = "type")]
-    pub r#type: models::NotificationV2Type,
-    #[serde(rename = "updatedAt")]
-    pub updated_at: chrono::DateTime<chrono::FixedOffset>,
-    #[serde(rename = "version")]
-    pub version: i32,
+/// A notification. The shape of `data` depends on `type`.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "type")]
+pub enum NotificationV2 {
+    #[serde(rename = "group.announcement")]
+    GroupAnnouncement(models::NotificationV2GroupAnnouncement),
+    #[serde(rename = "group.invite")]
+    GroupInvite(models::NotificationV2GroupInvite),
+    #[serde(untagged)]
+    NotificationV2Unknown(models::NotificationV2Unknown),
 }
 
-impl NotificationV2 {
-    pub fn new(
-        can_delete: bool,
-        category: String,
-        created_at: chrono::DateTime<chrono::FixedOffset>,
-        data: models::NotificationV2Data,
-        expires_at: chrono::DateTime<chrono::FixedOffset>,
-        expiry_after_seen: Option<i32>,
-        id: String,
-        ignore_dnd: bool,
-        image_url: Option<String>,
-        is_system: bool,
-        link: Option<String>,
-        link_text: Option<String>,
-        link_text_key: Option<String>,
-        message: String,
-        receiver_user_id: String,
-        related_notifications_id: Option<String>,
-        require_seen: bool,
-        responses: Vec<models::NotificationV2Response>,
-        seen: bool,
-        sender_user_id: Option<String>,
-        sender_username: Option<String>,
-        title: String,
-        title_key: Option<String>,
-        r#type: models::NotificationV2Type,
-        updated_at: chrono::DateTime<chrono::FixedOffset>,
-        version: i32,
-    ) -> NotificationV2 {
-        NotificationV2 {
-            can_delete,
-            category,
-            created_at,
-            data,
-            details: None,
-            display_data: None,
-            expires_at,
-            expiry_after_seen,
-            id,
-            ignore_dnd,
-            image_url,
-            is_system,
-            link,
-            link_text,
-            link_text_key,
-            message,
-            message_key: None,
-            receiver_user_id,
-            related_notifications_id,
-            require_seen,
-            responses,
-            seen,
-            sender_user_id,
-            sender_username,
-            title,
-            title_key,
-            r#type,
-            updated_at,
-            version,
+impl Default for NotificationV2 {
+    fn default() -> Self {
+        Self::GroupAnnouncement(Default::default())
+    }
+}
+
+impl From<models::NotificationV2GroupAnnouncement> for NotificationV2 {
+    fn from(value: models::NotificationV2GroupAnnouncement) -> Self {
+        Self::GroupAnnouncement(value)
+    }
+}
+
+impl TryFrom<NotificationV2> for models::NotificationV2GroupAnnouncement {
+    type Error = NotificationV2;
+
+    fn try_from(value: NotificationV2) -> Result<Self, Self::Error> {
+        match value {
+            NotificationV2::GroupAnnouncement(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::NotificationV2GroupInvite> for NotificationV2 {
+    fn from(value: models::NotificationV2GroupInvite) -> Self {
+        Self::GroupInvite(value)
+    }
+}
+
+impl TryFrom<NotificationV2> for models::NotificationV2GroupInvite {
+    type Error = NotificationV2;
+
+    fn try_from(value: NotificationV2) -> Result<Self, Self::Error> {
+        match value {
+            NotificationV2::GroupInvite(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::NotificationV2Unknown> for NotificationV2 {
+    fn from(value: models::NotificationV2Unknown) -> Self {
+        Self::NotificationV2Unknown(value)
+    }
+}
+
+impl TryFrom<NotificationV2> for models::NotificationV2Unknown {
+    type Error = NotificationV2;
+
+    fn try_from(value: NotificationV2) -> Result<Self, Self::Error> {
+        match value {
+            NotificationV2::NotificationV2Unknown(inner) => Ok(inner),
+            other => Err(other),
         }
     }
 }

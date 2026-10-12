@@ -43,7 +43,7 @@ pub struct ProductPurchase {
     #[serde(rename = "purchaseActive")]
     pub purchase_active: bool,
     #[serde(rename = "purchaseContext")]
-    pub purchase_context: models::ProductPurchasePurchaseContext,
+    pub purchase_context: models::ProductPurchaseContext,
     #[serde(rename = "purchaseCurrentStatus")]
     pub purchase_current_status: String,
     #[serde(rename = "purchaseDate")]
@@ -113,7 +113,7 @@ impl ProductPurchase {
         listing_type: models::ProductListingType,
         products: Vec<models::ProductPurchaseProduct>,
         purchase_active: bool,
-        purchase_context: models::ProductPurchasePurchaseContext,
+        purchase_context: models::ProductPurchaseContext,
         purchase_current_status: String,
         purchase_date: chrono::DateTime<chrono::FixedOffset>,
         purchase_end_date: Option<chrono::DateTime<chrono::FixedOffset>>,

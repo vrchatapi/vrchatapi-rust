@@ -65,7 +65,7 @@ pub struct Instance {
         rename = "disabledPropAbilities",
         skip_serializing_if = "Option::is_none"
     )]
-    pub disabled_prop_abilities: Option<Vec<serde_json::Value>>,
+    pub disabled_prop_abilities: Option<Vec<String>>,
     #[serde(
         rename = "displayName",
         default,

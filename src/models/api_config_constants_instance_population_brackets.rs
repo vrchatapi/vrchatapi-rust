@@ -1,20 +1,21 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Population brackets based on instance population
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigConstantsInstancePopulationBrackets {
+    /// Crowded population range
     #[serde(rename = "CROWDED", skip_serializing_if = "Option::is_none")]
-    pub crowded: Option<models::ApiConfigConstantsInstancePopulationBracketsCrowded>,
+    pub crowded: Option<models::ApiConfigConstantsInstancePopulationBracket>,
+    /// Few population range
     #[serde(rename = "FEW", skip_serializing_if = "Option::is_none")]
-    pub few: Option<models::ApiConfigConstantsInstancePopulationBracketsFew>,
+    pub few: Option<models::ApiConfigConstantsInstancePopulationBracket>,
+    /// Many population range
     #[serde(rename = "MANY", skip_serializing_if = "Option::is_none")]
-    pub many: Option<models::ApiConfigConstantsInstancePopulationBracketsMany>,
+    pub many: Option<models::ApiConfigConstantsInstancePopulationBracket>,
 }
 
 impl ApiConfigConstantsInstancePopulationBrackets {
-    /// Population brackets based on instance population
     pub fn new() -> ApiConfigConstantsInstancePopulationBrackets {
         ApiConfigConstantsInstancePopulationBrackets {
             crowded: None,

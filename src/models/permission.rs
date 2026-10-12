@@ -4,6 +4,7 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Permission {
+    /// Specific values afforded the user by this permission
     #[serde(rename = "data", skip_serializing_if = "Option::is_none")]
     pub data: Option<models::PermissionData>,
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]

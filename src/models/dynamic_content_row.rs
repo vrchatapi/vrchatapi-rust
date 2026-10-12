@@ -58,7 +58,7 @@ pub struct DynamicContentRow {
     #[serde(rename = "n", skip_serializing_if = "Option::is_none")]
     pub n: Option<i32>,
     #[serde(rename = "name")]
-    pub name: models::DynamicContentRowName,
+    pub name: models::LocalizableString,
     #[serde(rename = "nonFeaturedResults", skip_serializing_if = "Option::is_none")]
     pub non_featured_results: Option<String>,
     #[serde(
@@ -93,7 +93,7 @@ pub struct DynamicContentRow {
         with = "::serde_with::rust::double_option",
         skip_serializing_if = "Option::is_none"
     )]
-    pub short_name: Option<Option<models::DynamicContentRowShortName>>,
+    pub short_name: Option<Option<models::LocalizableString>>,
     #[serde(rename = "sortHeading", skip_serializing_if = "Option::is_none")]
     pub sort_heading: Option<String>,
     #[serde(rename = "sortOrder", skip_serializing_if = "Option::is_none")]
@@ -135,7 +135,7 @@ pub struct DynamicContentRow {
 }
 
 impl DynamicContentRow {
-    pub fn new(name: models::DynamicContentRowName, platform: String) -> DynamicContentRow {
+    pub fn new(name: models::LocalizableString, platform: String) -> DynamicContentRow {
         DynamicContentRow {
             any_style: None,
             any_tag: None,

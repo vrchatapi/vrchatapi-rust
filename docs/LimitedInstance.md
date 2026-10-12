@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **category_id** | Option<**String**> |  | 
 **creation_languages** | **Vec<serde_json::Value>** |  | 
 **description** | Option<**String**> |  | 
-**disabled_prop_abilities** | **Vec<serde_json::Value>** |  | 
+**disabled_prop_abilities** | **Vec<String>** |  | 
 **display_name** | Option<**String**> |  | 
 **display_vibe_id** | Option<**String**> |  | 
 **dominant_language** | **String** |  | 

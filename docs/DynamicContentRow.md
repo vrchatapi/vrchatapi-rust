@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **minimum_remaining_minutes** | Option<**i32**> |  | [optional]
 **mode** | Option<**String**> |  | [optional]
 **n** | Option<**i32**> |  | [optional]
-**name** | [**models::DynamicContentRowName**](DynamicContentRowName.md) |  | 
+**name** | [**models::LocalizableString**](LocalizableString.md) |  | 
 **non_featured_results** | Option<**String**> |  | [optional]
 **notag** | Option<**Vec<String>**> |  | [optional]
 **params** | Option<**std::collections::HashMap<String, serde_json::Value>**> |  | [optional]
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **platform** | **String** | Usually \"ThisPlatformSupported\", but can also be other values such as \"all\" or platform specific identifiers. | 
 **region** | Option<**String**> |  | [optional]
 **scope** | Option<**String**> |  | [optional]
-**short_name** | Option<[**models::DynamicContentRowShortName**](DynamicContentRowShortName.md)> |  | [optional]
+**short_name** | Option<[**models::LocalizableString**](LocalizableString.md)> |  | [optional]
 **sort_heading** | Option<**String**> |  | [optional]
 **sort_order** | Option<**String**> |  | [optional]
 **sort_ownership** | Option<**String**> |  | [optional]

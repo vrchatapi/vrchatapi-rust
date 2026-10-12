@@ -1845,7 +1845,7 @@ pub async fn get_group_audit_logs(
     actor_ids: Option<&str>,
     event_types: Option<&str>,
     target_ids: Option<&str>,
-) -> Result<models::PaginatedGroupAuditLogEntryList, Error<GetGroupAuditLogsError>> {
+) -> Result<models::PaginatedGroupAuditLogList, Error<GetGroupAuditLogsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_group_id = group_id;
     let p_query_n = n;
@@ -1906,8 +1906,8 @@ pub async fn get_group_audit_logs(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGroupAuditLogEntryList`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGroupAuditLogEntryList`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::PaginatedGroupAuditLogList`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::PaginatedGroupAuditLogList`")))),
         }
     } else {
         let content = resp.text().await?;

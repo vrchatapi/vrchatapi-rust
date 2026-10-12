@@ -13,3 +13,20 @@ impl Default for GroupGalleryImageListResponse {
         Self::ArrayVecGroupGalleryImage(Default::default())
     }
 }
+
+impl From<models::GroupGalleryImageList> for GroupGalleryImageListResponse {
+    fn from(value: models::GroupGalleryImageList) -> Self {
+        Self::GroupGalleryImageList(value)
+    }
+}
+
+impl TryFrom<GroupGalleryImageListResponse> for models::GroupGalleryImageList {
+    type Error = GroupGalleryImageListResponse;
+
+    fn try_from(value: GroupGalleryImageListResponse) -> Result<Self, Self::Error> {
+        match value {
+            GroupGalleryImageListResponse::GroupGalleryImageList(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}

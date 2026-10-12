@@ -151,8 +151,8 @@ pub struct CurrentUser {
     pub is_friend: bool,
     #[serde(rename = "isTemporary", skip_serializing_if = "Option::is_none")]
     pub is_temporary: Option<bool>,
-    #[serde(rename = "last_activity", skip_serializing_if = "Option::is_none")]
-    pub last_activity: Option<chrono::DateTime<chrono::FixedOffset>>,
+    #[serde(rename = "last_activity")]
+    pub last_activity: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "last_login")]
     pub last_login: chrono::DateTime<chrono::FixedOffset>,
     #[serde(rename = "last_mobile", deserialize_with = "Option::deserialize")]
@@ -189,7 +189,7 @@ pub struct CurrentUser {
     #[serde(rename = "platform", skip_serializing_if = "Option::is_none")]
     pub platform: Option<String>,
     #[serde(rename = "platform_history", skip_serializing_if = "Option::is_none")]
-    pub platform_history: Option<Vec<models::PlatformHistoryEntry>>,
+    pub platform_history: Option<Vec<models::PlatformHistoryItem>>,
     #[serde(rename = "presence", skip_serializing_if = "Option::is_none")]
     pub presence: Option<models::CurrentUserPresence>,
     #[serde(rename = "profileEffect", skip_serializing_if = "Option::is_none")]
@@ -316,6 +316,7 @@ impl CurrentUser {
         id: String,
         is_adult: bool,
         is_friend: bool,
+        last_activity: chrono::DateTime<chrono::FixedOffset>,
         last_login: chrono::DateTime<chrono::FixedOffset>,
         last_mobile: Option<chrono::DateTime<chrono::FixedOffset>>,
         last_platform: String,
@@ -390,7 +391,7 @@ impl CurrentUser {
             is_economy_creator: None,
             is_friend,
             is_temporary: None,
-            last_activity: None,
+            last_activity,
             last_login,
             last_mobile,
             last_platform,

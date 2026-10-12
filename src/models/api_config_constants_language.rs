@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Language-related constants
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigConstantsLanguage {
@@ -14,7 +13,6 @@ pub struct ApiConfigConstantsLanguage {
 }
 
 impl ApiConfigConstantsLanguage {
-    /// Language-related constants
     pub fn new() -> ApiConfigConstantsLanguage {
         ApiConfigConstantsLanguage {
             spoken_language_options: None,

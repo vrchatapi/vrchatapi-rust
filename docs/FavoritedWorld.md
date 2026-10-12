@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **created_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **default_content_settings** | Option<[**models::InstanceContentSettings**](InstanceContentSettings.md)> |  | [optional]
 **description** | Option<**String**> |  | [optional]
-**disabled_prop_abilities** | Option<**Vec<serde_json::Value>**> |  | [optional]
+**disabled_prop_abilities** | Option<**Vec<String>**> |  | [optional]
 **favorite_group** | Option<**String**> |  | [optional]
 **favorite_id** | Option<**String**> |  | [optional]
 **favorites** | Option<**i32**> |  | [optional][default to 0]

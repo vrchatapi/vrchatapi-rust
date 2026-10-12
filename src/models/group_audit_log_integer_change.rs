@@ -1,0 +1,19 @@
+use crate::models;
+use serde::{Deserialize, Serialize};
+
+/// An integer field's value before and after an update.
+#[serde_with::serde_as]
+#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
+pub struct GroupAuditLogIntegerChange {
+    #[serde(rename = "new")]
+    pub new: i32,
+    #[serde(rename = "old")]
+    pub old: i32,
+}
+
+impl GroupAuditLogIntegerChange {
+    /// An integer field's value before and after an update.
+    pub fn new(new: i32, old: i32) -> GroupAuditLogIntegerChange {
+        GroupAuditLogIntegerChange { new, old }
+    }
+}

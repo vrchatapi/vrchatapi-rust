@@ -24,6 +24,7 @@ pub enum CheckUserExistsError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum ConfirmEmailError {
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -212,6 +213,7 @@ pub enum VerifyAuthTokenError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum VerifyLoginPlaceError {
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 

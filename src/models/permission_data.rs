@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Specific values afforded the user by this permission
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct PermissionData {
@@ -26,7 +25,6 @@ pub struct PermissionData {
 }
 
 impl PermissionData {
-    /// Specific values afforded the user by this permission
     pub fn new() -> PermissionData {
         PermissionData {
             badges: None,

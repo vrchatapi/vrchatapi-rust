@@ -11,7 +11,7 @@ pub struct InfoPushDataCategory {
     #[serde(rename = "maxCells", skip_serializing_if = "Option::is_none")]
     pub max_cells: Option<i32>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
-    pub name: Option<models::InfoPushDataCategoryName>,
+    pub name: Option<models::LocalizableString>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<String>,
 }

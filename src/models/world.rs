@@ -24,7 +24,7 @@ pub struct World {
         rename = "disabledPropAbilities",
         skip_serializing_if = "Option::is_none"
     )]
-    pub disabled_prop_abilities: Option<Vec<serde_json::Value>>,
+    pub disabled_prop_abilities: Option<Vec<String>>,
     #[serde(rename = "favorites", skip_serializing_if = "Option::is_none")]
     pub favorites: Option<i32>,
     #[serde(rename = "featured")]
@@ -77,7 +77,7 @@ pub struct World {
     #[serde(rename = "releaseStatus")]
     pub release_status: models::ReleaseStatus,
     #[serde(rename = "slimInstances", skip_serializing_if = "Option::is_none")]
-    pub slim_instances: Option<Vec<serde_json::Value>>,
+    pub slim_instances: Option<Vec<models::WorldSlimInstance>>,
     #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
     pub store_id: Option<String>,
     #[serde(rename = "tags")]

@@ -1,7 +1,6 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// Group-related constants
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigConstantsGroups {
@@ -47,7 +46,6 @@ pub struct ApiConfigConstantsGroups {
 }
 
 impl ApiConfigConstantsGroups {
-    /// Group-related constants
     pub fn new() -> ApiConfigConstantsGroups {
         ApiConfigConstantsGroups {
             capacity: None,

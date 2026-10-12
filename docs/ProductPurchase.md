@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 **listing_type** | [**models::ProductListingType**](ProductListingType.md) |  | 
 **products** | [**Vec<models::ProductPurchaseProduct>**](ProductPurchaseProduct.md) |  | 
 **purchase_active** | **bool** |  | 
-**purchase_context** | [**models::ProductPurchasePurchaseContext**](ProductPurchasePurchaseContext.md) |  | 
+**purchase_context** | [**models::ProductPurchaseContext**](ProductPurchaseContext.md) |  | 
 **purchase_current_status** | **String** |  | 
 **purchase_date** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **purchase_duration** | Option<**i32**> |  | [optional]

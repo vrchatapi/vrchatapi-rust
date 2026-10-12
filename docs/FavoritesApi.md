@@ -300,7 +300,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_favorite_group
 
-> serde_json::Value update_favorite_group(favorite_group_type, favorite_group_name, user_id, update_favorite_group_request)
+> std::collections::HashMap<String, serde_json::Value> update_favorite_group(favorite_group_type, favorite_group_name, user_id, update_favorite_group_request)
 Update Favorite Group
 
 Update information about a specific favorite group.
@@ -317,7 +317,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**serde_json::Value**](serde_json::Value.md)
+[**std::collections::HashMap<String, serde_json::Value>**](serde_json::Value.md)
 
 ### Authorization
 
