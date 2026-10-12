@@ -1,4 +1,4 @@
-use vrchatapi::models::{GroupAuditLogEntry, PaginatedGroupAuditLogEntryList};
+use vrchatapi::models::{GroupAuditLog, PaginatedGroupAuditLogList};
 
 const PAGE: &str = r#"{
   "hasNext": true,
@@ -61,25 +61,25 @@ const MISTYPED_TARGET: &str = r#"{
   "targetId": 5
 }"#;
 
-fn entries() -> Vec<GroupAuditLogEntry> {
-    let page: PaginatedGroupAuditLogEntryList = serde_json::from_str(PAGE).unwrap();
+fn entries() -> Vec<GroupAuditLog> {
+    let page: PaginatedGroupAuditLogList = serde_json::from_str(PAGE).unwrap();
     page.results.unwrap()
 }
 
 #[test]
 fn round_trips_a_captured_page() {
-    let page: PaginatedGroupAuditLogEntryList = serde_json::from_str(PAGE).unwrap();
+    let page: PaginatedGroupAuditLogList = serde_json::from_str(PAGE).unwrap();
     let expected: serde_json::Value = serde_json::from_str(PAGE).unwrap();
     assert_eq!(serde_json::to_value(&page).unwrap(), expected);
 }
 
 #[test]
 fn types_the_fields_of_a_role_update() {
-    let GroupAuditLogEntry::GroupRoleUpdate(update) = entries().remove(0) else {
+    let GroupAuditLog::GroupRoleUpdate(update) = entries().remove(0) else {
         panic!("expected a group.role.update entry");
     };
     assert_eq!(
-        update.group_audit_log_entry_base.actor_display_name,
+        update.group_audit_log_base.actor_display_name,
         "8cf3def6b8cea"
     );
     assert_eq!(
@@ -100,8 +100,8 @@ fn types_the_fields_of_a_role_update() {
 
 #[test]
 fn parses_an_unlisted_event_type_into_unknown() {
-    let entry: GroupAuditLogEntry = serde_json::from_str(UNLISTED).unwrap();
-    let GroupAuditLogEntry::GroupAuditLogEntryUnknown(unknown) = &entry else {
+    let entry: GroupAuditLog = serde_json::from_str(UNLISTED).unwrap();
+    let GroupAuditLog::GroupAuditLogUnknown(unknown) = &entry else {
         panic!("expected the unknown variant, got {entry:?}");
     };
     assert_eq!(unknown.event_type, "group.future.thing");
@@ -115,10 +115,10 @@ fn parses_an_unlisted_event_type_into_unknown() {
 
 #[test]
 fn rejects_an_entry_no_member_accepts() {
-    let error = serde_json::from_str::<GroupAuditLogEntry>(MISTYPED_TARGET).unwrap_err();
+    let error = serde_json::from_str::<GroupAuditLog>(MISTYPED_TARGET).unwrap_err();
     assert_eq!(
         error.to_string(),
-        "data did not match any variant of untagged enum GroupAuditLogEntry"
+        "data did not match any variant of untagged enum GroupAuditLog"
     );
 }
 
@@ -127,8 +127,8 @@ fn parses_a_listed_event_type_with_drifted_data_into_unknown() {
     let drifted = UNLISTED
         .replace("group.future.thing", "group.role.update")
         .replace("\"Updated by the test suite\"", "1");
-    let entry: GroupAuditLogEntry = serde_json::from_str(&drifted).unwrap();
-    let GroupAuditLogEntry::GroupAuditLogEntryUnknown(unknown) = &entry else {
+    let entry: GroupAuditLog = serde_json::from_str(&drifted).unwrap();
+    let GroupAuditLog::GroupAuditLogUnknown(unknown) = &entry else {
         panic!("expected the unknown variant, got {entry:?}");
     };
     assert_eq!(unknown.event_type, "group.role.update");
