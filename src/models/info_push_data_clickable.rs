@@ -8,47 +8,14 @@ pub struct InfoPushDataClickable {
     #[serde(rename = "parameters", skip_serializing_if = "Option::is_none")]
     pub parameters: Option<Vec<String>>,
     #[serde(rename = "command")]
-    pub command: Command,
+    pub command: models::InfoPushCommand,
 }
 
 impl InfoPushDataClickable {
-    pub fn new(command: Command) -> InfoPushDataClickable {
+    pub fn new(command: models::InfoPushCommand) -> InfoPushDataClickable {
         InfoPushDataClickable {
             parameters: None,
             command,
         }
-    }
-}
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Command {
-    #[serde(rename = "CannedWorldSearch")]
-    CannedWorldSearch,
-    #[serde(rename = "OpenAccountUpgrade")]
-    OpenAccountUpgrade,
-    #[serde(rename = "OpenAvatarsMenu")]
-    OpenAvatarsMenu,
-    #[serde(rename = "OpenHelpArticle")]
-    OpenHelpArticle,
-    #[serde(rename = "OpenListingDetails")]
-    OpenListingDetails,
-    #[serde(rename = "OpenSafetyMenu")]
-    OpenSafetyMenu,
-    #[serde(rename = "OpenURL")]
-    OpenUrl,
-    #[serde(rename = "OpenVRCPlusMenu")]
-    OpenVrcPlusMenu,
-    #[serde(rename = "OpenVRChatStore")]
-    OpenVrChatStore,
-    #[serde(rename = "OpenWorldDetails")]
-    OpenWorldDetails,
-    #[serde(rename = "OpenWorldsMenu")]
-    OpenWorldsMenu,
-    #[serde(rename = "scrollToShelf")]
-    ScrollToShelf,
-}
-
-impl Default for Command {
-    fn default() -> Command {
-        Self::CannedWorldSearch
     }
 }

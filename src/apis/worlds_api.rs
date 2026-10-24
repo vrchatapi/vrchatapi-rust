@@ -1181,7 +1181,7 @@ pub async fn search_worlds(
     configuration: &configuration::Configuration,
     featured: Option<bool>,
     sort: Option<models::SortOption>,
-    user: Option<&str>,
+    user: Option<models::SearchWorldsUser>,
     user_id: Option<&str>,
     n: Option<i32>,
     order: Option<models::OrderOption>,

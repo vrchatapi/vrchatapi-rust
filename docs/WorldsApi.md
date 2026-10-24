@@ -562,7 +562,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **featured** | Option<**bool**> | Filters on featured results. |  |
 **sort** | Option<[**SortOption**](SortOption.md)> | The sort order of the results. |  |
-**user** | Option<**String**> | Set to `me` for searching own worlds. |  |
+**user** | Option<[**SearchWorldsUser**](SearchWorldsUser.md)> | Set to `me` for searching own worlds. |  |
 **user_id** | Option<**String**> | Filter by UserID. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **order** | Option<[**OrderOption**](OrderOption.md)> | Result ordering |  |

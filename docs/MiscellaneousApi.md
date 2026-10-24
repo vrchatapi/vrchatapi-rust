@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**get_frontend_branches**](MiscellaneousApi.md#get_frontend_branches) | **GET** /frontend/branches | List Frontend Branches
 [**get_health**](MiscellaneousApi.md#get_health) | **GET** /health | Check API Health
 [**get_info_push**](MiscellaneousApi.md#get_info_push) | **GET** /infoPush | Show Information Notices
+[**get_info_push_content**](MiscellaneousApi.md#get_info_push_content) | **GET** /infoPush/{entryId}/content | Get Content Shelf Results
 [**get_java_script**](MiscellaneousApi.md#get_java_script) | **GET** /js/app.js | Download JavaScript
 [**get_permission**](MiscellaneousApi.md#get_permission) | **GET** /permissions/{permissionId} | Get Permission
 [**get_system_time**](MiscellaneousApi.md#get_system_time) | **GET** /time | Current System Time
@@ -145,7 +146,7 @@ Fetches the CSS code to the frontend React website.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**variant** | Option<**String**> | Specifies which `variant` of the site. Public is the end-user site, while `internal` is the staff-only site with special pages for moderation and management. |  |[default to public]
+**variant** | Option<[**FrontendVariant**](FrontendVariant.md)> | Specifies which `variant` of the site. Public is the end-user site, while `internal` is the staff-only site with special pages for moderation and management. |  |
 **branch** | Option<**String**> | Specifies which git branch the site should load frontend source code from. |  |[default to main]
 
 ### Return type
@@ -276,6 +277,38 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_info_push_content
+
+> models::InfoPushContent get_info_push_content(entry_id, n, next_cursor)
+Get Content Shelf Results
+
+Runs the `contentSource` of a `ContentShelf` entry and returns its results. It runs the source's own `params`, including filters the account may not pass to the source's endpoint directly.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**entry_id** | **String** | The ID of a `ContentShelf` entry. | [required] |
+**n** | Option<**i32**> | The number of results to return. Only a content source with `pagination` pages. |  |
+**next_cursor** | Option<**String**> | The `nextCursor` of the previous page. Only a content source with `pagination` pages. |  |
+
+### Return type
+
+[**models::InfoPushContent**](InfoPushContent.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_java_script
 
 > String get_java_script(variant, branch)
@@ -288,7 +321,7 @@ Fetches the JavaScript code to the frontend React website.
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**variant** | Option<**String**> | Specifies which `variant` of the site. Public is the end-user site, while `internal` is the staff-only site with special pages for moderation and management. |  |[default to public]
+**variant** | Option<[**FrontendVariant**](FrontendVariant.md)> | Specifies which `variant` of the site. Public is the end-user site, while `internal` is the staff-only site with special pages for moderation and management. |  |
 **branch** | Option<**String**> | Specifies which git branch the site should load frontend source code from. |  |[default to main]
 
 ### Return type

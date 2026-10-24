@@ -127,7 +127,7 @@ List every cosmetic of a kind that VRChat has published, whether or not the call
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**item_type** | **String** | The kind of cosmetic to list. | [required] |
+**item_type** | [**CosmeticItemType**](CosmeticItemType.md) | The kind of cosmetic to list. | [required] |
 
 ### Return type
 

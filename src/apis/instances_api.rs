@@ -28,6 +28,7 @@ pub enum CreateInstanceError {
 pub enum DiscoverInstancesError {
     Status400(models::Error),
     Status401(models::Error),
+    Status403(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -230,6 +231,15 @@ pub async fn discover_instances(
     group_id: Option<Vec<String>>,
     vibe: Option<Vec<String>>,
     category: Option<&str>,
+    any_world_tag: Option<Vec<String>>,
+    boost: Option<Vec<models::InstanceDiscoveryBoost>>,
+    group_hosted: Option<bool>,
+    max_occupants: Option<i32>,
+    min_occupants: Option<i32>,
+    min_spots_left: Option<i32>,
+    mode: Option<models::InstanceDiscoveryMode>,
+    not_world_tag: Option<Vec<String>>,
+    world_pool: Option<models::InstanceDiscoveryWorldPool>,
 ) -> Result<models::InstanceDiscovery, Error<DiscoverInstancesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_n = n;
@@ -239,6 +249,15 @@ pub async fn discover_instances(
     let p_query_group_id = group_id;
     let p_query_vibe = vibe;
     let p_query_category = category;
+    let p_query_any_world_tag = any_world_tag;
+    let p_query_boost = boost;
+    let p_query_group_hosted = group_hosted;
+    let p_query_max_occupants = max_occupants;
+    let p_query_min_occupants = min_occupants;
+    let p_query_min_spots_left = min_spots_left;
+    let p_query_mode = mode;
+    let p_query_not_world_tag = not_world_tag;
+    let p_query_world_pool = world_pool;
 
     let uri_str = format!("{}/instances/discover", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -311,6 +330,81 @@ pub async fn discover_instances(
     }
     if let Some(ref param_value) = p_query_category {
         req_builder = req_builder.query(&[("category", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_any_world_tag {
+        req_builder = match "multi" {
+            "multi" => req_builder.query(
+                &param_value
+                    .into_iter()
+                    .map(|p| ("anyWorldTag".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => req_builder.query(&[(
+                "anyWorldTag",
+                &param_value
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref param_value) = p_query_boost {
+        req_builder = match "multi" {
+            "multi" => req_builder.query(
+                &param_value
+                    .into_iter()
+                    .map(|p| ("boost".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => req_builder.query(&[(
+                "boost",
+                &param_value
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref param_value) = p_query_group_hosted {
+        req_builder = req_builder.query(&[("groupHosted", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_max_occupants {
+        req_builder = req_builder.query(&[("maxOccupants", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_min_occupants {
+        req_builder = req_builder.query(&[("minOccupants", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_min_spots_left {
+        req_builder = req_builder.query(&[("minSpotsLeft", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_mode {
+        req_builder = req_builder.query(&[("mode", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_not_world_tag {
+        req_builder = match "multi" {
+            "multi" => req_builder.query(
+                &param_value
+                    .into_iter()
+                    .map(|p| ("notWorldTag".to_owned(), p.to_string()))
+                    .collect::<Vec<(std::string::String, std::string::String)>>(),
+            ),
+            _ => req_builder.query(&[(
+                "notWorldTag",
+                &param_value
+                    .into_iter()
+                    .map(|p| p.to_string())
+                    .collect::<Vec<String>>()
+                    .join(",")
+                    .to_string(),
+            )]),
+        };
+    }
+    if let Some(ref param_value) = p_query_world_pool {
+        req_builder = req_builder.query(&[("worldPool", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

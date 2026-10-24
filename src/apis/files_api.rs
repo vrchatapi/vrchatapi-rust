@@ -450,7 +450,7 @@ pub async fn finish_file_data_upload(
     configuration: &configuration::Configuration,
     file_id: &str,
     version_id: i32,
-    file_type: &str,
+    file_type: models::FileDataType,
     finish_file_data_upload_request: Option<models::FinishFileDataUploadRequest>,
 ) -> Result<models::File, Error<FinishFileDataUploadError>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -464,7 +464,7 @@ pub async fn finish_file_data_upload(
         configuration.base_path,
         fileId = crate::apis::urlencode(p_path_file_id),
         versionId = p_path_version_id,
-        fileType = crate::apis::urlencode(p_path_file_type)
+        fileType = p_path_file_type.to_string()
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -849,7 +849,7 @@ pub async fn get_file_data_upload_status(
     configuration: &configuration::Configuration,
     file_id: &str,
     version_id: i32,
-    file_type: &str,
+    file_type: models::FileDataType,
 ) -> Result<models::FileVersionUploadStatus, Error<GetFileDataUploadStatusError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_file_id = file_id;
@@ -861,7 +861,7 @@ pub async fn get_file_data_upload_status(
         configuration.base_path,
         fileId = crate::apis::urlencode(p_path_file_id),
         versionId = p_path_version_id,
-        fileType = crate::apis::urlencode(p_path_file_type)
+        fileType = p_path_file_type.to_string()
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1028,7 +1028,7 @@ pub async fn start_file_data_upload(
     configuration: &configuration::Configuration,
     file_id: &str,
     version_id: i32,
-    file_type: &str,
+    file_type: models::FileDataType,
     part_number: Option<i32>,
 ) -> Result<models::FileUploadUrl, Error<StartFileDataUploadError>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -1042,7 +1042,7 @@ pub async fn start_file_data_upload(
         configuration.base_path,
         fileId = crate::apis::urlencode(p_path_file_id),
         versionId = p_path_version_id,
-        fileType = crate::apis::urlencode(p_path_file_type)
+        fileType = p_path_file_type.to_string()
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 

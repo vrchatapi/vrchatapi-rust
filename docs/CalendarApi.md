@@ -84,7 +84,7 @@ Name | Type | Description  | Required | Notes
 
 ## discover_calendar_events
 
-> models::CalendarEventDiscovery discover_calendar_events(scope, categories, tags, featured_results, non_featured_results, personalized_results, minimum_interest_count, minimum_remaining_minutes, upcoming_offset_minutes, n, next_cursor)
+> models::CalendarEventDiscovery discover_calendar_events(scope, categories, tags, featured_results, non_featured_results, personalized_results, minimum_interest_count, minimum_remaining_minutes, upcoming_offset_minutes, n, next_cursor, require_linked_instance, upcoming_sort)
 Discover calendar events
 
 Get a list of calendar events Initially, call without a `nextCursor` parameter For every successive call, use the `nextCursor` property returned in the previous call & the `number` of entries desired for this call The `nextCursor` internally keeps track of the `offset` of the results, the initial request parameters, and accounts for discrepancies that might arise from time elapsed between calls
@@ -105,6 +105,8 @@ Name | Type | Description  | Required | Notes
 **upcoming_offset_minutes** | Option<**i32**> | Filter for calendar event discovery. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **next_cursor** | Option<**String**> | Cursor returned from previous calendar discovery queries (see nextCursor property of the schema CalendarEventDiscovery). |  |
+**require_linked_instance** | Option<**bool**> |  |  |
+**upcoming_sort** | Option<[**CalendarEventDiscoverySort**](CalendarEventDiscoverySort.md)> |  |  |
 
 ### Return type
 

@@ -22,7 +22,7 @@ pub struct UpdateProfileRequest {
     )]
     pub background_texture_id: Option<String>,
     #[serde(rename = "backgroundType", skip_serializing_if = "Option::is_none")]
-    pub background_type: Option<BackgroundType>,
+    pub background_type: Option<models::ProfileBackgroundType>,
     /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
@@ -67,22 +67,5 @@ impl UpdateProfileRequest {
             theme_id: None,
             user_icon: None,
         }
-    }
-}
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum BackgroundType {
-    #[serde(rename = "default")]
-    Default,
-    #[serde(rename = "gradient")]
-    Gradient,
-    #[serde(rename = "inventory")]
-    Inventory,
-    #[serde(rename = "texture")]
-    Texture,
-}
-
-impl Default for BackgroundType {
-    fn default() -> BackgroundType {
-        Self::Default
     }
 }

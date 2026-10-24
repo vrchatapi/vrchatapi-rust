@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **display_name** | Option<**String**> |  | [optional]
 **image_id** | Option<**String**> |  | [optional]
 **listing_id** | Option<**String**> |  | [optional]
-**listing_type** | Option<**String**> |  | [optional]
+**listing_type** | Option<[**models::ProductListingType**](ProductListingType.md)> |  | [optional]
 **price_tokens** | Option<**i32**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,61 +1,71 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-#[serde_with::serde_as]
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct InfoPushDataContentSource {
-    #[serde(
-        rename = "attributionResponseField",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub attribution_response_field: Option<String>,
-    #[serde(rename = "computedParams")]
-    pub computed_params: std::collections::HashMap<String, String>,
-    #[serde(rename = "endpoint")]
-    pub endpoint: String,
-    #[serde(rename = "kind")]
-    pub kind: String,
-    #[serde(rename = "method")]
-    pub method: String,
-    #[serde(rename = "pagination", deserialize_with = "Option::deserialize")]
-    pub pagination: Option<models::InfoPushDataContentSourcePagination>,
-    #[serde(rename = "paramModifiability")]
-    pub param_modifiability: std::collections::HashMap<String, serde_json::Value>,
-    #[serde(rename = "params")]
-    pub params: std::collections::HashMap<String, serde_json::Value>,
-    #[serde(rename = "responseType")]
-    pub response_type: String,
-    #[serde(rename = "resultsField")]
-    pub results_field: String,
-    #[serde(rename = "schemaVersion")]
-    pub schema_version: i32,
+/// A ready-made request to an API route whose results the client shows. The fields depend on `kind`.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "kind")]
+pub enum InfoPushDataContentSource {
+    #[serde(rename = "calendarDiscover")]
+    CalendarDiscover(models::InfoPushDataContentSourceCalendarDiscover),
+    #[serde(rename = "instanceDiscover")]
+    InstanceDiscover(models::InfoPushDataContentSourceInstanceDiscover),
+    #[serde(untagged)]
+    InfoPushDataContentSourceUnknown(models::InfoPushDataContentSourceUnknown),
 }
 
-impl InfoPushDataContentSource {
-    pub fn new(
-        computed_params: std::collections::HashMap<String, String>,
-        endpoint: String,
-        kind: String,
-        method: String,
-        pagination: Option<models::InfoPushDataContentSourcePagination>,
-        param_modifiability: std::collections::HashMap<String, serde_json::Value>,
-        params: std::collections::HashMap<String, serde_json::Value>,
-        response_type: String,
-        results_field: String,
-        schema_version: i32,
-    ) -> InfoPushDataContentSource {
-        InfoPushDataContentSource {
-            attribution_response_field: None,
-            computed_params,
-            endpoint,
-            kind,
-            method,
-            pagination,
-            param_modifiability,
-            params,
-            response_type,
-            results_field,
-            schema_version,
+impl Default for InfoPushDataContentSource {
+    fn default() -> Self {
+        Self::CalendarDiscover(Default::default())
+    }
+}
+
+impl From<models::InfoPushDataContentSourceCalendarDiscover> for InfoPushDataContentSource {
+    fn from(value: models::InfoPushDataContentSourceCalendarDiscover) -> Self {
+        Self::CalendarDiscover(value)
+    }
+}
+
+impl TryFrom<InfoPushDataContentSource> for models::InfoPushDataContentSourceCalendarDiscover {
+    type Error = InfoPushDataContentSource;
+
+    fn try_from(value: InfoPushDataContentSource) -> Result<Self, Self::Error> {
+        match value {
+            InfoPushDataContentSource::CalendarDiscover(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::InfoPushDataContentSourceInstanceDiscover> for InfoPushDataContentSource {
+    fn from(value: models::InfoPushDataContentSourceInstanceDiscover) -> Self {
+        Self::InstanceDiscover(value)
+    }
+}
+
+impl TryFrom<InfoPushDataContentSource> for models::InfoPushDataContentSourceInstanceDiscover {
+    type Error = InfoPushDataContentSource;
+
+    fn try_from(value: InfoPushDataContentSource) -> Result<Self, Self::Error> {
+        match value {
+            InfoPushDataContentSource::InstanceDiscover(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::InfoPushDataContentSourceUnknown> for InfoPushDataContentSource {
+    fn from(value: models::InfoPushDataContentSourceUnknown) -> Self {
+        Self::InfoPushDataContentSourceUnknown(value)
+    }
+}
+
+impl TryFrom<InfoPushDataContentSource> for models::InfoPushDataContentSourceUnknown {
+    type Error = InfoPushDataContentSource;
+
+    fn try_from(value: InfoPushDataContentSource) -> Result<Self, Self::Error> {
+        match value {
+            InfoPushDataContentSource::InfoPushDataContentSourceUnknown(inner) => Ok(inner),
+            other => Err(other),
         }
     }
 }

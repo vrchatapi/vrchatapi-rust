@@ -195,7 +195,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file_id** | **String** | Must be a valid file ID. | [required] |
 **version_id** | **i32** | Version ID of the asset. | [required] |
-**file_type** | **String** | Type of file. | [required] |
+**file_type** | [**FileDataType**](FileDataType.md) | Type of file. | [required] |
 **finish_file_data_upload_request** | Option<[**FinishFileDataUploadRequest**](FinishFileDataUploadRequest.md)> | Please see documentation on ETag's: [https://teppen.io/2018/06/23/aws_s3_etags/](https://teppen.io/2018/06/23/aws_s3_etags/)  ETag's should NOT be present when uploading a `signature`. |  |
 
 ### Return type
@@ -413,7 +413,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file_id** | **String** | Must be a valid file ID. | [required] |
 **version_id** | **i32** | Version ID of the asset. | [required] |
-**file_type** | **String** | Type of file. | [required] |
+**file_type** | [**FileDataType**](FileDataType.md) | Type of file. | [required] |
 
 ### Return type
 
@@ -508,7 +508,7 @@ Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **file_id** | **String** | Must be a valid file ID. | [required] |
 **version_id** | **i32** | Version ID of the asset. | [required] |
-**file_type** | **String** | Type of file. | [required] |
+**file_type** | [**FileDataType**](FileDataType.md) | Type of file. | [required] |
 **part_number** | Option<**i32**> | The part number to start uploading. If not provided, the first part will be started. |  |
 
 ### Return type

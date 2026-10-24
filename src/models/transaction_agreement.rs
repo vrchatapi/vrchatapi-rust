@@ -32,7 +32,7 @@ pub struct TransactionAgreement {
     #[serde(rename = "outstanding")]
     pub outstanding: i32,
     #[serde(rename = "period")]
-    pub period: String,
+    pub period: models::SubscriptionPeriod,
     #[serde(rename = "recurringAmt")]
     pub recurring_amt: f64,
     #[serde(rename = "startDate")]
@@ -60,7 +60,7 @@ impl TransactionAgreement {
         last_payment: String,
         next_payment: String,
         outstanding: i32,
-        period: String,
+        period: models::SubscriptionPeriod,
         recurring_amt: f64,
         start_date: String,
         status: String,

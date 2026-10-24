@@ -64,7 +64,7 @@ pub struct GroupMyMember {
     #[serde(rename = "managerNotes", skip_serializing_if = "Option::is_none")]
     pub manager_notes: Option<String>,
     #[serde(rename = "membershipStatus", skip_serializing_if = "Option::is_none")]
-    pub membership_status: Option<String>,
+    pub membership_status: Option<models::GroupMemberStatus>,
     #[serde(rename = "permissions", skip_serializing_if = "Option::is_none")]
     pub permissions: Option<Vec<models::GroupPermissions>>,
     #[serde(rename = "roleIds", skip_serializing_if = "Option::is_none")]

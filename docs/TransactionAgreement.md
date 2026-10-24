@@ -17,7 +17,7 @@ Name | Type | Description | Notes
 **last_payment** | **String** |  | 
 **next_payment** | **String** |  | 
 **outstanding** | **i32** |  | 
-**period** | **String** |  | 
+**period** | [**models::SubscriptionPeriod**](SubscriptionPeriod.md) |  | 
 **recurring_amt** | **f64** |  | 
 **start_date** | **String** |  | 
 **status** | **String** | This is NOT TransactionStatus, but whatever Steam return. | 

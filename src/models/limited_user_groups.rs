@@ -59,7 +59,7 @@ pub struct LimitedUserGroups {
     #[serde(rename = "memberCount", skip_serializing_if = "Option::is_none")]
     pub member_count: Option<i32>,
     #[serde(rename = "memberVisibility", skip_serializing_if = "Option::is_none")]
-    pub member_visibility: Option<String>,
+    pub member_visibility: Option<models::GroupUserVisibility>,
     #[serde(rename = "mutualGroup", skip_serializing_if = "Option::is_none")]
     pub mutual_group: Option<bool>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]
@@ -84,7 +84,7 @@ pub struct LimitedUserGroups {
     #[serde(rename = "ownerId", skip_serializing_if = "Option::is_none")]
     pub owner_id: Option<String>,
     #[serde(rename = "privacy", skip_serializing_if = "Option::is_none")]
-    pub privacy: Option<String>,
+    pub privacy: Option<models::GroupPrivacy>,
     #[serde(rename = "shortCode", skip_serializing_if = "Option::is_none")]
     pub short_code: Option<String>,
     #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]

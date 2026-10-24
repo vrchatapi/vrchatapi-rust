@@ -76,6 +76,16 @@ pub enum GetInfoPushError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_info_push_content`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetInfoPushContentError {
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_java_script`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -290,7 +300,7 @@ pub async fn get_config(
 /// Fetches the CSS code to the frontend React website.
 pub async fn get_css(
     configuration: &configuration::Configuration,
-    variant: Option<&str>,
+    variant: Option<models::FrontendVariant>,
     branch: Option<&str>,
 ) -> Result<String, Error<GetCssError>> {
     // add a prefix to parameters to efficiently prevent name collisions
@@ -542,10 +552,74 @@ pub async fn get_info_push(
     }
 }
 
+/// Runs the `contentSource` of a `ContentShelf` entry and returns its results. It runs the source's own `params`, including filters the account may not pass to the source's endpoint directly.
+pub async fn get_info_push_content(
+    configuration: &configuration::Configuration,
+    entry_id: &str,
+    n: Option<i32>,
+    next_cursor: Option<&str>,
+) -> Result<models::InfoPushContent, Error<GetInfoPushContentError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_entry_id = entry_id;
+    let p_query_n = n;
+    let p_query_next_cursor = next_cursor;
+
+    let uri_str = format!(
+        "{}/infoPush/{entryId}/content",
+        configuration.base_path,
+        entryId = crate::apis::urlencode(p_path_entry_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref param_value) = p_query_n {
+        req_builder = req_builder.query(&[("n", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_next_cursor {
+        req_builder = req_builder.query(&[("nextCursor", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_info_push_content returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InfoPushContent`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::InfoPushContent`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_info_push_content returned: {content}");
+        }
+        let entity: Option<GetInfoPushContentError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Fetches the JavaScript code to the frontend React website.
 pub async fn get_java_script(
     configuration: &configuration::Configuration,
-    variant: Option<&str>,
+    variant: Option<models::FrontendVariant>,
     branch: Option<&str>,
 ) -> Result<String, Error<GetJavaScriptError>> {
     // add a prefix to parameters to efficiently prevent name collisions

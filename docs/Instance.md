@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**access_type** | **String** | `type`, `groupAccessType` and `canRequestInvite` folded into one value.  | `type` | `groupAccessType` | `canRequestInvite` | `accessType` | | --- | --- | --- | --- | | `public` | | | `public` | | `friends` | | | `friends` | | `hidden` | | | `friendsPlus` | | `private` | | `false` | `invite` | | `private` | | `true` | `invitePlus` | | `group` | `public` | | `groupPublic` | | `group` | `plus` | | `groupPlus` | | `group` | `members` | | `group` | | 
 **active** | Option<**bool**> |  | [optional][default to true]
 **age_gate** | Option<**bool**> |  | [optional]
 **calendar_entry_id** | Option<**String**> |  | [optional]

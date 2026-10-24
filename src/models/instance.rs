@@ -5,6 +5,9 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct Instance {
+    /// `type`, `groupAccessType` and `canRequestInvite` folded into one value.  | `type` | `groupAccessType` | `canRequestInvite` | `accessType` | | --- | --- | --- | --- | | `public` | | | `public` | | `friends` | | | `friends` | | `hidden` | | | `friendsPlus` | | `private` | | `false` | `invite` | | `private` | | `true` | `invitePlus` | | `group` | `public` | | `groupPublic` | | `group` | `plus` | | `groupPlus` | | `group` | `members` | | `group` |
+    #[serde(rename = "accessType")]
+    pub access_type: String,
     #[serde(rename = "active", skip_serializing_if = "Option::is_none")]
     pub active: Option<bool>,
     #[serde(
@@ -213,6 +216,7 @@ pub struct Instance {
 impl Instance {
     /// * `hidden` field is only present if InstanceType is `hidden` aka \"Friends+\", and is instance creator. * `friends` field is only present if InstanceType is `friends` aka \"Friends\", and is instance creator. * `private` field is only present if InstanceType is `private` aka \"Invite\" or \"Invite+\", and is instance creator.
     pub fn new(
+        access_type: String,
         client_number: String,
         full: bool,
         id: String,
@@ -236,6 +240,7 @@ impl Instance {
         world_id: String,
     ) -> Instance {
         Instance {
+            access_type,
             active: None,
             age_gate: None,
             calendar_entry_id: None,

@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **created_at** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **encryption_key** | Option<**String**> |  | [optional]
 **file_size** | **i32** |  | 
-**performance_rating** | Option<**String**> |  | [optional]
+**performance_rating** | Option<[**models::PerformanceRatings**](PerformanceRatings.md)> |  | [optional]
 **success** | **bool** |  | 
 **uncompressed_size** | **i32** |  | 
 

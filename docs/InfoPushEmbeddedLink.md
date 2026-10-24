@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **parameters** | Option<**Vec<String>**> |  | [optional]
-**command** | Option<**String**> |  | [optional]
+**command** | Option<[**models::InfoPushCommand**](InfoPushCommand.md)> |  | [optional]
 **id** | Option<**String**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
 

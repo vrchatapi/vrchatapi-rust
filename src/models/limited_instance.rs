@@ -4,6 +4,9 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedInstance {
+    /// `type`, `groupAccessType` and `canRequestInvite` folded into one value.  | `type` | `groupAccessType` | `canRequestInvite` | `accessType` | | --- | --- | --- | --- | | `public` | | | `public` | | `friends` | | | `friends` | | `hidden` | | | `friendsPlus` | | `private` | | `false` | `invite` | | `private` | | `true` | `invitePlus` | | `group` | `public` | | `groupPublic` | | `group` | `plus` | | `groupPlus` | | `group` | `members` | | `group` |
+    #[serde(rename = "accessType")]
+    pub access_type: String,
     #[serde(rename = "active")]
     pub active: bool,
     #[serde(rename = "capacity")]
@@ -90,6 +93,7 @@ pub struct LimitedInstance {
 
 impl LimitedInstance {
     pub fn new(
+        access_type: String,
         active: bool,
         capacity: i32,
         category_id: Option<String>,
@@ -126,6 +130,7 @@ impl LimitedInstance {
         world_id: String,
     ) -> LimitedInstance {
         LimitedInstance {
+            access_type,
             active,
             capacity,
             category_id,

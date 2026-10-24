@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **background_gradient_top** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
 **background_template_id** | Option<**String**> |  | [optional]
 **background_texture_id** | Option<**String**> |  | [optional]
-**background_type** | Option<**String**> |  | [optional]
+**background_type** | Option<[**models::ProfileBackgroundType**](ProfileBackgroundType.md)> |  | [optional]
 **badges** | Option<[**Vec<models::Badge>**](Badge.md)> |  | [optional]
 **banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
 **banner_custom_url** | Option<**String**> |  | [optional]

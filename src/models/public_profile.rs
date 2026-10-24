@@ -35,7 +35,7 @@ pub struct PublicProfile {
     )]
     pub background_texture_id: Option<String>,
     #[serde(rename = "backgroundType", skip_serializing_if = "Option::is_none")]
-    pub background_type: Option<String>,
+    pub background_type: Option<models::ProfileBackgroundType>,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
     pub badges: Option<Vec<models::Badge>>,
     /// Six hexadecimal digits, without a leading `#`. May be empty.

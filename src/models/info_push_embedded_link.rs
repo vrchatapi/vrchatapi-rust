@@ -7,7 +7,7 @@ pub struct InfoPushEmbeddedLink {
     #[serde(rename = "parameters", skip_serializing_if = "Option::is_none")]
     pub parameters: Option<Vec<String>>,
     #[serde(rename = "command", skip_serializing_if = "Option::is_none")]
-    pub command: Option<String>,
+    pub command: Option<models::InfoPushCommand>,
     #[serde(rename = "id", skip_serializing_if = "Option::is_none")]
     pub id: Option<String>,
     #[serde(rename = "name", skip_serializing_if = "Option::is_none")]

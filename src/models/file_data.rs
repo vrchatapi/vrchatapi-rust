@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct FileData {
     #[serde(rename = "category")]
-    pub category: Category,
+    pub category: models::FileDataCategory,
     #[serde(rename = "fileName")]
     pub file_name: String,
     #[serde(rename = "md5", skip_serializing_if = "Option::is_none")]
@@ -22,7 +22,7 @@ pub struct FileData {
 
 impl FileData {
     pub fn new(
-        category: Category,
+        category: models::FileDataCategory,
         file_name: String,
         size_in_bytes: i32,
         status: models::FileStatus,
@@ -38,20 +38,5 @@ impl FileData {
             upload_id,
             url,
         }
-    }
-}
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-pub enum Category {
-    #[serde(rename = "multipart")]
-    Multipart,
-    #[serde(rename = "queued")]
-    Queued,
-    #[serde(rename = "simple")]
-    Simple,
-}
-
-impl Default for Category {
-    fn default() -> Category {
-        Self::Multipart
     }
 }

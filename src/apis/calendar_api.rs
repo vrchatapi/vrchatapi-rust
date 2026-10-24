@@ -246,6 +246,8 @@ pub async fn discover_calendar_events(
     upcoming_offset_minutes: Option<i32>,
     n: Option<i32>,
     next_cursor: Option<&str>,
+    require_linked_instance: Option<bool>,
+    upcoming_sort: Option<models::CalendarEventDiscoverySort>,
 ) -> Result<models::CalendarEventDiscovery, Error<DiscoverCalendarEventsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_scope = scope;
@@ -259,6 +261,8 @@ pub async fn discover_calendar_events(
     let p_query_upcoming_offset_minutes = upcoming_offset_minutes;
     let p_query_n = n;
     let p_query_next_cursor = next_cursor;
+    let p_query_require_linked_instance = require_linked_instance;
+    let p_query_upcoming_sort = upcoming_sort;
 
     let uri_str = format!("{}/calendar/discover", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -295,6 +299,12 @@ pub async fn discover_calendar_events(
     }
     if let Some(ref param_value) = p_query_next_cursor {
         req_builder = req_builder.query(&[("nextCursor", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_require_linked_instance {
+        req_builder = req_builder.query(&[("requireLinkedInstance", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_upcoming_sort {
+        req_builder = req_builder.query(&[("upcomingSort", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());

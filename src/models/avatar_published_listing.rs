@@ -13,7 +13,7 @@ pub struct AvatarPublishedListing {
     #[serde(rename = "listingId", skip_serializing_if = "Option::is_none")]
     pub listing_id: Option<String>,
     #[serde(rename = "listingType", skip_serializing_if = "Option::is_none")]
-    pub listing_type: Option<String>,
+    pub listing_type: Option<models::ProductListingType>,
     #[serde(rename = "priceTokens", skip_serializing_if = "Option::is_none")]
     pub price_tokens: Option<i32>,
 }

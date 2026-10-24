@@ -1,176 +1,90 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-#[serde_with::serde_as]
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct DynamicContentRow {
-    #[serde(
-        rename = "anyStyle",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub any_style: Option<Option<Vec<String>>>,
-    #[serde(
-        rename = "anyTag",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub any_tag: Option<Option<Vec<String>>>,
-    #[serde(
-        rename = "avatarSpecific",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub avatar_specific: Option<Option<bool>>,
-    #[serde(rename = "bannersTag", skip_serializing_if = "Option::is_none")]
-    pub banners_tag: Option<String>,
-    #[serde(rename = "categories", skip_serializing_if = "Option::is_none")]
-    pub categories: Option<Vec<String>>,
-    #[serde(rename = "featuredResults", skip_serializing_if = "Option::is_none")]
-    pub featured_results: Option<String>,
-    #[serde(rename = "groupPool", skip_serializing_if = "Option::is_none")]
-    pub group_pool: Option<String>,
-    #[serde(rename = "index", skip_serializing_if = "Option::is_none")]
-    pub index: Option<i32>,
-    #[serde(rename = "marketplace", skip_serializing_if = "Option::is_none")]
-    pub marketplace: Option<String>,
-    #[serde(rename = "maxPrice", skip_serializing_if = "Option::is_none")]
-    pub max_price: Option<i32>,
-    #[serde(rename = "minOccupants", skip_serializing_if = "Option::is_none")]
-    pub min_occupants: Option<i32>,
-    #[serde(rename = "minPrice", skip_serializing_if = "Option::is_none")]
-    pub min_price: Option<i32>,
-    #[serde(
-        rename = "minimumInterestCount",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub minimum_interest_count: Option<i32>,
-    #[serde(
-        rename = "minimumRemainingMinutes",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub minimum_remaining_minutes: Option<i32>,
-    #[serde(rename = "mode", skip_serializing_if = "Option::is_none")]
-    pub mode: Option<String>,
-    #[serde(rename = "n", skip_serializing_if = "Option::is_none")]
-    pub n: Option<i32>,
-    #[serde(rename = "name")]
-    pub name: models::LocalizableString,
-    #[serde(rename = "nonFeaturedResults", skip_serializing_if = "Option::is_none")]
-    pub non_featured_results: Option<String>,
-    #[serde(
-        rename = "notag",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub notag: Option<Option<Vec<String>>>,
-    #[serde(rename = "params", skip_serializing_if = "Option::is_none")]
-    pub params: Option<std::collections::HashMap<String, serde_json::Value>>,
-    #[serde(
-        rename = "personalizedResults",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub personalized_results: Option<String>,
-    /// Usually \"ThisPlatformSupported\", but can also be other values such as \"all\" or platform specific identifiers.
-    #[serde(rename = "platform")]
-    pub platform: String,
-    #[serde(
-        rename = "region",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub region: Option<Option<String>>,
-    #[serde(rename = "scope", skip_serializing_if = "Option::is_none")]
-    pub scope: Option<String>,
-    #[serde(
-        rename = "shortName",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub short_name: Option<Option<models::LocalizableString>>,
-    #[serde(rename = "sortHeading", skip_serializing_if = "Option::is_none")]
-    pub sort_heading: Option<String>,
-    #[serde(rename = "sortOrder", skip_serializing_if = "Option::is_none")]
-    pub sort_order: Option<String>,
-    #[serde(rename = "sortOwnership", skip_serializing_if = "Option::is_none")]
-    pub sort_ownership: Option<String>,
-    #[serde(
-        rename = "style",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub style: Option<Option<String>>,
-    /// Tag to filter content for this row. Not a `Tag`: that type forbids the empty string, which this field uses for a row that is not tag-filtered.
-    #[serde(
-        rename = "tag",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub tag: Option<Option<String>>,
-    #[serde(
-        rename = "tags",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub tags: Option<Option<Vec<String>>>,
-    /// Type is not present if it is a world.
-    #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
-    pub r#type: Option<String>,
-    #[serde(
-        rename = "upcomingOffsetMinutes",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub upcoming_offset_minutes: Option<i32>,
-    #[serde(rename = "worldPool", skip_serializing_if = "Option::is_none")]
-    pub world_pool: Option<String>,
+/// A row of content. The fields depend on `type`.
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "type")]
+pub enum DynamicContentRow {
+    #[serde(rename = "avatar")]
+    Avatar(models::DynamicContentRowAvatars),
+    #[serde(rename = "events")]
+    Events(models::DynamicContentRowEvents),
+    #[serde(rename = "instances")]
+    Instances(models::DynamicContentRowInstances),
+    #[serde(untagged)]
+    DynamicContentRowWorlds(models::DynamicContentRowWorlds),
 }
 
-impl DynamicContentRow {
-    pub fn new(name: models::LocalizableString, platform: String) -> DynamicContentRow {
-        DynamicContentRow {
-            any_style: None,
-            any_tag: None,
-            avatar_specific: None,
-            banners_tag: None,
-            categories: None,
-            featured_results: None,
-            group_pool: None,
-            index: None,
-            marketplace: None,
-            max_price: None,
-            min_occupants: None,
-            min_price: None,
-            minimum_interest_count: None,
-            minimum_remaining_minutes: None,
-            mode: None,
-            n: None,
-            name,
-            non_featured_results: None,
-            notag: None,
-            params: None,
-            personalized_results: None,
-            platform,
-            region: None,
-            scope: None,
-            short_name: None,
-            sort_heading: None,
-            sort_order: None,
-            sort_ownership: None,
-            style: None,
-            tag: None,
-            tags: None,
-            r#type: None,
-            upcoming_offset_minutes: None,
-            world_pool: None,
+impl Default for DynamicContentRow {
+    fn default() -> Self {
+        Self::Avatar(Default::default())
+    }
+}
+
+impl From<models::DynamicContentRowAvatars> for DynamicContentRow {
+    fn from(value: models::DynamicContentRowAvatars) -> Self {
+        Self::Avatar(value)
+    }
+}
+
+impl TryFrom<DynamicContentRow> for models::DynamicContentRowAvatars {
+    type Error = DynamicContentRow;
+
+    fn try_from(value: DynamicContentRow) -> Result<Self, Self::Error> {
+        match value {
+            DynamicContentRow::Avatar(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::DynamicContentRowEvents> for DynamicContentRow {
+    fn from(value: models::DynamicContentRowEvents) -> Self {
+        Self::Events(value)
+    }
+}
+
+impl TryFrom<DynamicContentRow> for models::DynamicContentRowEvents {
+    type Error = DynamicContentRow;
+
+    fn try_from(value: DynamicContentRow) -> Result<Self, Self::Error> {
+        match value {
+            DynamicContentRow::Events(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::DynamicContentRowInstances> for DynamicContentRow {
+    fn from(value: models::DynamicContentRowInstances) -> Self {
+        Self::Instances(value)
+    }
+}
+
+impl TryFrom<DynamicContentRow> for models::DynamicContentRowInstances {
+    type Error = DynamicContentRow;
+
+    fn try_from(value: DynamicContentRow) -> Result<Self, Self::Error> {
+        match value {
+            DynamicContentRow::Instances(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::DynamicContentRowWorlds> for DynamicContentRow {
+    fn from(value: models::DynamicContentRowWorlds) -> Self {
+        Self::DynamicContentRowWorlds(value)
+    }
+}
+
+impl TryFrom<DynamicContentRow> for models::DynamicContentRowWorlds {
+    type Error = DynamicContentRow;
+
+    fn try_from(value: DynamicContentRow) -> Result<Self, Self::Error> {
+        match value {
+            DynamicContentRow::DynamicContentRowWorlds(inner) => Ok(inner),
+            other => Err(other),
         }
     }
 }

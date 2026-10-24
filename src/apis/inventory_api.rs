@@ -314,7 +314,7 @@ pub async fn equip_own_inventory_item(
 /// List every cosmetic of a kind that VRChat has published, whether or not the caller owns it.
 pub async fn get_cosmetics(
     configuration: &configuration::Configuration,
-    item_type: &str,
+    item_type: models::CosmeticItemType,
 ) -> Result<Vec<models::InventoryTemplate>, Error<GetCosmeticsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_item_type = item_type;
@@ -322,7 +322,7 @@ pub async fn get_cosmetics(
     let uri_str = format!(
         "{}/cosmetics/index/{itemType}",
         configuration.base_path,
-        itemType = crate::apis::urlencode(p_path_item_type)
+        itemType = p_path_item_type.to_string()
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
