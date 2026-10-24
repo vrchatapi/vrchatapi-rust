@@ -706,7 +706,7 @@ pub async fn get_own_avatar(
     }
 }
 
-/// Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
+/// Search and list avatars by query filters. Without `marketplace`, you can only search your own or featured avatars.
 pub async fn search_avatars(
     configuration: &configuration::Configuration,
     featured: Option<bool>,
@@ -723,7 +723,15 @@ pub async fn search_avatars(
     min_unity_version: Option<&str>,
     platform: Option<&str>,
     is_internal_variant: Option<bool>,
-) -> Result<Vec<models::Avatar>, Error<SearchAvatarsError>> {
+    marketplace: Option<models::SearchAvatarsMarketplace>,
+    search: Option<&str>,
+    metadata: Option<bool>,
+    min_price: Option<i32>,
+    max_price: Option<i32>,
+    performance_at_least: Option<i32>,
+    min_asset_version: Option<i32>,
+    max_asset_version: Option<i32>,
+) -> Result<models::SearchAvatarsResult, Error<SearchAvatarsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_query_featured = featured;
     let p_query_sort = sort;
@@ -739,6 +747,14 @@ pub async fn search_avatars(
     let p_query_min_unity_version = min_unity_version;
     let p_query_platform = platform;
     let p_query_is_internal_variant = is_internal_variant;
+    let p_query_marketplace = marketplace;
+    let p_query_search = search;
+    let p_query_metadata = metadata;
+    let p_query_min_price = min_price;
+    let p_query_max_price = max_price;
+    let p_query_performance_at_least = performance_at_least;
+    let p_query_min_asset_version = min_asset_version;
+    let p_query_max_asset_version = max_asset_version;
 
     let uri_str = format!("{}/avatars", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
@@ -785,6 +801,30 @@ pub async fn search_avatars(
     if let Some(ref param_value) = p_query_is_internal_variant {
         req_builder = req_builder.query(&[("isInternalVariant", &param_value.to_string())]);
     }
+    if let Some(ref param_value) = p_query_marketplace {
+        req_builder = req_builder.query(&[("marketplace", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_search {
+        req_builder = req_builder.query(&[("search", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_metadata {
+        req_builder = req_builder.query(&[("metadata", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_min_price {
+        req_builder = req_builder.query(&[("minPrice", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_max_price {
+        req_builder = req_builder.query(&[("maxPrice", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_performance_at_least {
+        req_builder = req_builder.query(&[("performanceAtLeast", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_min_asset_version {
+        req_builder = req_builder.query(&[("minAssetVersion", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_max_asset_version {
+        req_builder = req_builder.query(&[("maxAssetVersion", &param_value.to_string())]);
+    }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
@@ -807,8 +847,8 @@ pub async fn search_avatars(
         }
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::Avatar&gt;`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::Avatar&gt;`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SearchAvatarsResult`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SearchAvatarsResult`")))),
         }
     } else {
         let content = resp.text().await?;

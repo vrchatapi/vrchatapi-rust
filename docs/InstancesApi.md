@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**get_instance**](InstancesApi.md#get_instance) | **GET** /instances/{worldId}:{instanceId} | Get Instance
 [**get_instance_by_short_name**](InstancesApi.md#get_instance_by_short_name) | **GET** /instances/s/{shortName} | Get Instance By Short Name
 [**get_instance_categories**](InstancesApi.md#get_instance_categories) | **GET** /instanceCategories | List Instance Categories
+[**get_instance_count**](InstancesApi.md#get_instance_count) | **GET** /instances/count | Get Instance Count
 [**get_instance_vibes**](InstancesApi.md#get_instance_vibes) | **GET** /instanceVibes | List Instance Vibes
 [**get_recent_locations**](InstancesApi.md#get_recent_locations) | **GET** /instances/recent | List Recent Locations
 [**get_short_name**](InstancesApi.md#get_short_name) | **GET** /instances/{worldId}:{instanceId}/shortName | Get Instance Short Name
@@ -232,6 +233,33 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**Vec<models::InstanceCategory>**](InstanceCategory.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_instance_count
+
+> models::InstanceCount get_instance_count()
+Get Instance Count
+
+Returns instance and event counts as of `asOf`.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::InstanceCount**](InstanceCount.md)
 
 ### Authorization
 

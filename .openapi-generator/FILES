@@ -35,6 +35,7 @@ docs/ApiConfigProfileDefaults.md
 docs/ApiHealth.md
 docs/AuthenticationApi.md
 docs/Avatar.md
+docs/AvatarList.md
 docs/AvatarModeration.md
 docs/AvatarModerationCreated.md
 docs/AvatarModerationType.md
@@ -319,6 +320,7 @@ docs/InfoPushWorldCategoryData.md
 docs/Instance.md
 docs/InstanceCategory.md
 docs/InstanceContentSettings.md
+docs/InstanceCount.md
 docs/InstanceDiscovery.md
 docs/InstanceDiscoveryBoost.md
 docs/InstanceDiscoveryMode.md
@@ -479,6 +481,8 @@ docs/RewardRedemptionData.md
 docs/RewardRedemptionRequest.md
 docs/RewardRedemptionResult.md
 docs/RouteNotImplemented.md
+docs/SearchAvatarsMarketplace.md
+docs/SearchAvatarsResult.md
 docs/SearchWorldsUser.md
 docs/SellerEligibility.md
 docs/SentNotification.md
@@ -696,6 +700,7 @@ src/models/api_config_offline_analysis.rs
 src/models/api_config_profile_defaults.rs
 src/models/api_health.rs
 src/models/avatar.rs
+src/models/avatar_list.rs
 src/models/avatar_moderation.rs
 src/models/avatar_moderation_created.rs
 src/models/avatar_moderation_type.rs
@@ -973,6 +978,7 @@ src/models/info_push_world_category_data.rs
 src/models/instance.rs
 src/models/instance_category.rs
 src/models/instance_content_settings.rs
+src/models/instance_count.rs
 src/models/instance_discovery.rs
 src/models/instance_discovery_boost.rs
 src/models/instance_discovery_mode.rs
@@ -1125,6 +1131,8 @@ src/models/reward_redemption_data.rs
 src/models/reward_redemption_request.rs
 src/models/reward_redemption_result.rs
 src/models/route_not_implemented.rs
+src/models/search_avatars_marketplace.rs
+src/models/search_avatars_result.rs
 src/models/search_worlds_user.rs
 src/models/seller_eligibility.rs
 src/models/sent_notification.rs

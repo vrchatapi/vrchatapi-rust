@@ -19,6 +19,7 @@ Method | HTTP request | Description
 [**get_economy_payout_status**](EconomyApi.md#get_economy_payout_status) | **GET** /user/{userId}/economy/payouts/status | Get Economy Payout Status
 [**get_economy_payouts**](EconomyApi.md#get_economy_payouts) | **GET** /user/{userId}/economy/payouts/list | Get Economy Payouts
 [**get_economy_status**](EconomyApi.md#get_economy_status) | **GET** /economy/status | Get Economy Status
+[**get_economy_subscriptions**](EconomyApi.md#get_economy_subscriptions) | **GET** /economy/subscriptions | List Economy Subscriptions
 [**get_license_group**](EconomyApi.md#get_license_group) | **GET** /licenseGroups/{licenseGroupId} | Get License Group
 [**get_product_listing**](EconomyApi.md#get_product_listing) | **GET** /listing/{productId} | Get Product Listing
 [**get_product_listing_alternate**](EconomyApi.md#get_product_listing_alternate) | **GET** /products/{productId} | Get Product Listing (alternate)
@@ -478,6 +479,38 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**models::EconomyStatus**](EconomyStatus.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_economy_subscriptions
+
+> Vec<serde_json::Value> get_economy_subscriptions(subscriber_id, n, offset)
+List Economy Subscriptions
+
+List a subscriber's economy subscriptions.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**subscriber_id** | **String** |  | [required] |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
+
+### Return type
+
+[**Vec<serde_json::Value>**](serde_json::Value.md)
 
 ### Authorization
 

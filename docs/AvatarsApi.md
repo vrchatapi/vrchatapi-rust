@@ -330,10 +330,10 @@ Name | Type | Description  | Required | Notes
 
 ## search_avatars
 
-> Vec<models::Avatar> search_avatars(featured, sort, user, user_id, n, order, offset, tag, notag, release_status, max_unity_version, min_unity_version, platform, is_internal_variant)
+> models::SearchAvatarsResult search_avatars(featured, sort, user, user_id, n, order, offset, tag, notag, release_status, max_unity_version, min_unity_version, platform, is_internal_variant, marketplace, search, metadata, min_price, max_price, performance_at_least, min_asset_version, max_asset_version)
 Search Avatars
 
-Search and list avatars by query filters. You can only search your own or featured avatars. It is not possible as a normal user to search other peoples avatars.
+Search and list avatars by query filters. Without `marketplace`, you can only search your own or featured avatars.
 
 ### Parameters
 
@@ -354,10 +354,18 @@ Name | Type | Description  | Required | Notes
 **min_unity_version** | Option<**String**> | The minimum Unity version supported by the asset. |  |
 **platform** | Option<**String**> | The platform the asset supports. |  |
 **is_internal_variant** | Option<**bool**> | Not quite sure what this actually does (exists on the website but doesn't seem to be used) |  |
+**marketplace** | Option<[**SearchAvatarsMarketplace**](SearchAvatarsMarketplace.md)> | Search avatars listed in the marketplace. |  |
+**search** | Option<**String**> | Text to search for. Requires `marketplace`. |  |
+**metadata** | Option<**bool**> | Wrap the results in an AvatarList. |  |
+**min_price** | Option<**i32**> |  |  |
+**max_price** | Option<**i32**> |  |  |
+**performance_at_least** | Option<**i32**> |  |  |
+**min_asset_version** | Option<**i32**> |  |  |
+**max_asset_version** | Option<**i32**> |  |  |
 
 ### Return type
 
-[**Vec<models::Avatar>**](Avatar.md)
+[**models::SearchAvatarsResult**](SearchAvatarsResult.md)
 
 ### Authorization
 
