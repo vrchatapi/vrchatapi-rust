@@ -107,6 +107,8 @@ docs/DeviceAuthApproveResponse.md
 docs/DeviceAuthInfo.md
 docs/DeviceAuthInfoGeolocation.md
 docs/DeviceCode.md
+docs/DeviceCodeApproved.md
+docs/DeviceCodePending.md
 docs/DeviceCodeStatus.md
 docs/Disable2FaResult.md
 docs/DiscordDetails.md
@@ -778,6 +780,8 @@ src/models/device_auth_approve_response.rs
 src/models/device_auth_info.rs
 src/models/device_auth_info_geolocation.rs
 src/models/device_code.rs
+src/models/device_code_approved.rs
+src/models/device_code_pending.rs
 src/models/device_code_status.rs
 src/models/disable2_fa_result.rs
 src/models/discord_details.rs

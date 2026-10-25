@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **city** | **String** |  | 
-**country** | **String** | ISO 3166-1 alpha-2 country code. | 
+**country** | **String** |  | 
 **region** | **String** |  | 
 **region_code** | **String** |  | 
 

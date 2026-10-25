@@ -1,23 +1,49 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-#[serde_with::serde_as]
-#[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct DeviceCodeStatus {
-    #[serde(rename = "status")]
-    pub status: String,
-    /// Set once someone approves the code, when the response also logs this device in.
-    #[serde(
-        rename = "user",
-        default,
-        with = "::serde_with::rust::double_option",
-        skip_serializing_if = "Option::is_none"
-    )]
-    pub user: Option<Option<serde_json::Value>>,
+#[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeviceCodeStatus {
+    DeviceCodePending(models::DeviceCodePending),
+    DeviceCodeApproved(models::DeviceCodeApproved),
 }
 
-impl DeviceCodeStatus {
-    pub fn new(status: String) -> DeviceCodeStatus {
-        DeviceCodeStatus { status, user: None }
+impl Default for DeviceCodeStatus {
+    fn default() -> Self {
+        Self::DeviceCodePending(Default::default())
+    }
+}
+
+impl From<models::DeviceCodePending> for DeviceCodeStatus {
+    fn from(value: models::DeviceCodePending) -> Self {
+        Self::DeviceCodePending(value)
+    }
+}
+
+impl TryFrom<DeviceCodeStatus> for models::DeviceCodePending {
+    type Error = DeviceCodeStatus;
+
+    fn try_from(value: DeviceCodeStatus) -> Result<Self, Self::Error> {
+        match value {
+            DeviceCodeStatus::DeviceCodePending(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::DeviceCodeApproved> for DeviceCodeStatus {
+    fn from(value: models::DeviceCodeApproved) -> Self {
+        Self::DeviceCodeApproved(value)
+    }
+}
+
+impl TryFrom<DeviceCodeStatus> for models::DeviceCodeApproved {
+    type Error = DeviceCodeStatus;
+
+    fn try_from(value: DeviceCodeStatus) -> Result<Self, Self::Error> {
+        match value {
+            DeviceCodeStatus::DeviceCodeApproved(inner) => Ok(inner),
+            other => Err(other),
+        }
     }
 }

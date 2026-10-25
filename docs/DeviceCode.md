@@ -5,9 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **device_code** | **String** | Identifies this login attempt to `checkDeviceCode`. | 
-**expires_in** | **i32** | Seconds until the code expires. | 
-**interval** | **i32** | Seconds to wait between calls to `checkDeviceCode`. | 
-**user_code** | **String** | The code a person enters at `verificationUrl` to approve the login. | 
+**expires_in** | **i32** |  | 
+**interval** | **i32** |  | 
+**user_code** | **String** | Identifies this login attempt to `getDeviceAuthInfo` and `approveDeviceAuth`. | 
 **verification_url** | **String** |  | 
 **verification_url_complete** | **String** | `verificationUrl` with the code already filled in. | 
 

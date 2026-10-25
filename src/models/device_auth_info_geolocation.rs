@@ -7,7 +7,6 @@ use serde::{Deserialize, Serialize};
 pub struct DeviceAuthInfoGeolocation {
     #[serde(rename = "city")]
     pub city: String,
-    /// ISO 3166-1 alpha-2 country code.
     #[serde(rename = "country")]
     pub country: String,
     #[serde(rename = "region")]

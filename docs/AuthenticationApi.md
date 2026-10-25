@@ -102,7 +102,7 @@ This endpoint does not need any parameter.
 > models::DeviceCodeStatus check_device_code(check_device_code_request)
 Check Device Code
 
-Returns whether a device code from `createDeviceCode` has been approved.
+Returns whether a device code from `createDeviceCode` has been approved. Once it is, the response logs this device in as the user who approved it.
 
 ### Parameters
 
@@ -196,7 +196,7 @@ No authorization required
 > models::DeviceCode create_device_code()
 Create Device Code
 
-Creates a code to log this device in from another one, where a logged-in person approves it. Poll `checkDeviceCode` until it is approved.
+Creates a code that logs this device in once a logged-in user approves it with `approveDeviceAuth`. `checkDeviceCode` returns the user and sets the `auth` cookie once it is approved.
 
 ### Parameters
 

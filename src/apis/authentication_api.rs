@@ -379,7 +379,7 @@ pub async fn cancel_pending2_fa(
     }
 }
 
-/// Returns whether a device code from `createDeviceCode` has been approved.
+/// Returns whether a device code from `createDeviceCode` has been approved. Once it is, the response logs this device in as the user who approved it.
 pub async fn check_device_code(
     configuration: &configuration::Configuration,
     check_device_code_request: models::CheckDeviceCodeRequest,
@@ -540,7 +540,7 @@ pub async fn confirm_email(
     }
 }
 
-/// Creates a code to log this device in from another one, where a logged-in person approves it. Poll `checkDeviceCode` until it is approved.
+/// Creates a code that logs this device in once a logged-in user approves it with `approveDeviceAuth`. `checkDeviceCode` returns the user and sets the `auth` cookie once it is approved.
 pub async fn create_device_code(
     configuration: &configuration::Configuration,
 ) -> Result<models::DeviceCode, Error<CreateDeviceCodeError>> {

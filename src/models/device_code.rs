@@ -1,20 +1,18 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// A code that logs this device in once someone approves it at `verificationUrl`.
+/// A code that logs the device that created it in, once a logged-in user approves it with `approveDeviceAuth`.
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct DeviceCode {
     /// Identifies this login attempt to `checkDeviceCode`.
     #[serde(rename = "deviceCode")]
     pub device_code: String,
-    /// Seconds until the code expires.
     #[serde(rename = "expiresIn")]
     pub expires_in: i32,
-    /// Seconds to wait between calls to `checkDeviceCode`.
     #[serde(rename = "interval")]
     pub interval: i32,
-    /// The code a person enters at `verificationUrl` to approve the login.
+    /// Identifies this login attempt to `getDeviceAuthInfo` and `approveDeviceAuth`.
     #[serde(rename = "userCode")]
     pub user_code: String,
     #[serde(rename = "verificationUrl")]
@@ -25,7 +23,7 @@ pub struct DeviceCode {
 }
 
 impl DeviceCode {
-    /// A code that logs this device in once someone approves it at `verificationUrl`.
+    /// A code that logs the device that created it in, once a logged-in user approves it with `approveDeviceAuth`.
     pub fn new(
         device_code: String,
         expires_in: i32,
