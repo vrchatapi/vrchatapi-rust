@@ -4,9 +4,12 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**approve_device_auth**](AuthenticationApi.md#approve_device_auth) | **POST** /auth/device/approve | Approve Device Code
 [**cancel_pending2_fa**](AuthenticationApi.md#cancel_pending2_fa) | **DELETE** /auth/twofactorauth/totp/pending | Cancel pending enabling of time-based 2FA codes
+[**check_device_code**](AuthenticationApi.md#check_device_code) | **POST** /auth/device/status | Check Device Code
 [**check_user_exists**](AuthenticationApi.md#check_user_exists) | **GET** /auth/exists | Check User Exists
 [**confirm_email**](AuthenticationApi.md#confirm_email) | **GET** /auth/confirmEmail | Confirm Email
+[**create_device_code**](AuthenticationApi.md#create_device_code) | **POST** /auth/device/code | Create Device Code
 [**create_global_avatar_moderation**](AuthenticationApi.md#create_global_avatar_moderation) | **POST** /auth/user/avatarmoderations | Create Global Avatar Moderation
 [**delete_global_avatar_moderation**](AuthenticationApi.md#delete_global_avatar_moderation) | **DELETE** /auth/user/avatarmoderations | Delete Global Avatar Moderation
 [**delete_moderation_report**](AuthenticationApi.md#delete_moderation_report) | **DELETE** /moderationReports/{moderationReportId} | Delete Moderation Report
@@ -15,6 +18,7 @@ Method | HTTP request | Description
 [**enable2_fa**](AuthenticationApi.md#enable2_fa) | **POST** /auth/twofactorauth/totp/pending | Enable time-based 2FA codes
 [**get_account_standing**](AuthenticationApi.md#get_account_standing) | **GET** /auth/user/accountStanding | Get Account Standing
 [**get_current_user**](AuthenticationApi.md#get_current_user) | **GET** /auth/user | Login and/or Get Current User Info
+[**get_device_auth_info**](AuthenticationApi.md#get_device_auth_info) | **GET** /auth/device/info | Get Device Code Info
 [**get_global_avatar_moderations**](AuthenticationApi.md#get_global_avatar_moderations) | **GET** /auth/user/avatarmoderations | Get Global Avatar Moderations
 [**get_interests_and_preferences**](AuthenticationApi.md#get_interests_and_preferences) | **GET** /auth/user/interestsAndPreferences | Get Interests and Preferences
 [**get_moderation_reports**](AuthenticationApi.md#get_moderation_reports) | **GET** /moderationReports | Get Moderation Reports
@@ -24,6 +28,7 @@ Method | HTTP request | Description
 [**logout**](AuthenticationApi.md#logout) | **PUT** /logout | Logout
 [**register_user_account**](AuthenticationApi.md#register_user_account) | **POST** /auth/register | Register User Account
 [**resend_email_confirmation**](AuthenticationApi.md#resend_email_confirmation) | **POST** /auth/user/resendEmail | Resend Email Confirmation
+[**reset_password**](AuthenticationApi.md#reset_password) | **PUT** /auth/password | Reset Password
 [**submit_moderation_report**](AuthenticationApi.md#submit_moderation_report) | **POST** /moderationReports | Submit Moderation Report
 [**update_interests_and_preferences**](AuthenticationApi.md#update_interests_and_preferences) | **PUT** /auth/user/interestsAndPreferences | Update Interests and Preferences
 [**verify2_fa**](AuthenticationApi.md#verify2_fa) | **POST** /auth/twofactorauth/totp/verify | Verify 2FA code
@@ -33,6 +38,36 @@ Method | HTTP request | Description
 [**verify_pending2_fa**](AuthenticationApi.md#verify_pending2_fa) | **POST** /auth/twofactorauth/totp/pending/verify | Verify Pending 2FA code
 [**verify_recovery_code**](AuthenticationApi.md#verify_recovery_code) | **POST** /auth/twofactorauth/otp/verify | Verify 2FA code with Recovery code
 
+
+
+## approve_device_auth
+
+> models::DeviceAuthApproveResponse approve_device_auth(device_auth_approve_request)
+Approve Device Code
+
+Approves a device code from `createDeviceCode`, logging the device that created it in as the current user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**device_auth_approve_request** | [**DeviceAuthApproveRequest**](DeviceAuthApproveRequest.md) |  | [required] |
+
+### Return type
+
+[**models::DeviceAuthApproveResponse**](DeviceAuthApproveResponse.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
 ## cancel_pending2_fa
@@ -57,6 +92,36 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## check_device_code
+
+> models::DeviceCodeStatus check_device_code(check_device_code_request)
+Check Device Code
+
+Returns whether a device code from `createDeviceCode` has been approved.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**check_device_code_request** | [**CheckDeviceCodeRequest**](CheckDeviceCodeRequest.md) |  | [required] |
+
+### Return type
+
+[**models::DeviceCodeStatus**](DeviceCodeStatus.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -117,6 +182,33 @@ Name | Type | Description  | Required | Notes
 ### Authorization
 
 No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_device_code
+
+> models::DeviceCode create_device_code()
+Create Device Code
+
+Creates a code to log this device in from another one, where a logged-in person approves it. Poll `checkDeviceCode` until it is approved.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::DeviceCode**](DeviceCode.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
@@ -346,6 +438,36 @@ This endpoint does not need any parameter.
 ### Authorization
 
 [authHeader](../README.md#authHeader), [twoFactorAuthCookie](../README.md#twoFactorAuthCookie), [authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_device_auth_info
+
+> models::DeviceAuthInfo get_device_auth_info(user_code)
+Get Device Code Info
+
+Returns where a device code was created, for the person about to approve it with `approveDeviceAuth`.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_code** | **String** | The `userCode` of a device code. | [required] |
+
+### Return type
+
+[**models::DeviceAuthInfo**](DeviceAuthInfo.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
 
 ### HTTP request headers
 
@@ -606,6 +728,36 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## reset_password
+
+> models::Success reset_password(reset_password_request)
+Reset Password
+
+Sends a password recovery email.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**reset_password_request** | [**ResetPasswordRequest**](ResetPasswordRequest.md) |  | [required] |
+
+### Return type
+
+[**models::Success**](Success.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -3,11 +3,28 @@ use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
 
+/// struct for typed errors of method [`approve_device_auth`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ApproveDeviceAuthError {
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`cancel_pending2_fa`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum CancelPending2FaError {
     Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`check_device_code`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CheckDeviceCodeError {
+    Status400(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -25,6 +42,13 @@ pub enum CheckUserExistsError {
 #[serde(untagged)]
 pub enum ConfirmEmailError {
     Status400(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`create_device_code`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CreateDeviceCodeError {
     UnknownValue(serde_json::Value),
 }
 
@@ -91,6 +115,15 @@ pub enum GetAccountStandingError {
 #[serde(untagged)]
 pub enum GetCurrentUserError {
     Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_device_auth_info`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetDeviceAuthInfoError {
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -169,6 +202,14 @@ pub enum ResendEmailConfirmationError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`reset_password`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum ResetPasswordError {
+    Status400(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`submit_moderation_report`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -234,6 +275,59 @@ pub enum VerifyRecoveryCodeError {
     UnknownValue(serde_json::Value),
 }
 
+/// Approves a device code from `createDeviceCode`, logging the device that created it in as the current user.
+pub async fn approve_device_auth(
+    configuration: &configuration::Configuration,
+    device_auth_approve_request: models::DeviceAuthApproveRequest,
+) -> Result<models::DeviceAuthApproveResponse, Error<ApproveDeviceAuthError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_device_auth_approve_request = device_auth_approve_request;
+
+    let uri_str = format!("{}/auth/device/approve", configuration.base_path);
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_device_auth_approve_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("approve_device_auth returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceAuthApproveResponse`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceAuthApproveResponse`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("approve_device_auth returned: {content}");
+        }
+        let entity: Option<ApproveDeviceAuthError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Cancels the sequence for enabling time-based 2FA.
 pub async fn cancel_pending2_fa(
     configuration: &configuration::Configuration,
@@ -277,6 +371,59 @@ pub async fn cancel_pending2_fa(
             log::debug!("cancel_pending2_fa returned: {content}");
         }
         let entity: Option<CancelPending2FaError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns whether a device code from `createDeviceCode` has been approved.
+pub async fn check_device_code(
+    configuration: &configuration::Configuration,
+    check_device_code_request: models::CheckDeviceCodeRequest,
+) -> Result<models::DeviceCodeStatus, Error<CheckDeviceCodeError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_check_device_code_request = check_device_code_request;
+
+    let uri_str = format!("{}/auth/device/status", configuration.base_path);
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_check_device_code_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("check_device_code returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceCodeStatus`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceCodeStatus`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("check_device_code returned: {content}");
+        }
+        let entity: Option<CheckDeviceCodeError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -385,6 +532,54 @@ pub async fn confirm_email(
             log::debug!("confirm_email returned: {content}");
         }
         let entity: Option<ConfirmEmailError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Creates a code to log this device in from another one, where a logged-in person approves it. Poll `checkDeviceCode` until it is approved.
+pub async fn create_device_code(
+    configuration: &configuration::Configuration,
+) -> Result<models::DeviceCode, Error<CreateDeviceCodeError>> {
+    let uri_str = format!("{}/auth/device/code", configuration.base_path);
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("create_device_code returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceCode`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceCode`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("create_device_code returned: {content}");
+        }
+        let entity: Option<CreateDeviceCodeError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -801,6 +996,57 @@ pub async fn get_current_user(
             log::debug!("get_current_user returned: {content}");
         }
         let entity: Option<GetCurrentUserError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns where a device code was created, for the person about to approve it with `approveDeviceAuth`.
+pub async fn get_device_auth_info(
+    configuration: &configuration::Configuration,
+    user_code: &str,
+) -> Result<models::DeviceAuthInfo, Error<GetDeviceAuthInfoError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_user_code = user_code;
+
+    let uri_str = format!("{}/auth/device/info", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    req_builder = req_builder.query(&[("userCode", &p_query_user_code.to_string())]);
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_device_auth_info returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::DeviceAuthInfo`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::DeviceAuthInfo`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_device_auth_info returned: {content}");
+        }
+        let entity: Option<GetDeviceAuthInfoError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -1263,6 +1509,57 @@ pub async fn resend_email_confirmation(
             log::debug!("resend_email_confirmation returned: {content}");
         }
         let entity: Option<ResendEmailConfirmationError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Sends a password recovery email.
+pub async fn reset_password(
+    configuration: &configuration::Configuration,
+    reset_password_request: models::ResetPasswordRequest,
+) -> Result<models::Success, Error<ResetPasswordError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_reset_password_request = reset_password_request;
+
+    let uri_str = format!("{}/auth/password", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_reset_password_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("reset_password returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::Success`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::Success`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("reset_password returned: {content}");
+        }
+        let entity: Option<ResetPasswordError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

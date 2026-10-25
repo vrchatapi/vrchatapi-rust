@@ -72,6 +72,7 @@ docs/CalendarEventRecurrenceEndType.md
 docs/CalendarEventUserInterest.md
 docs/ChangeUserTagsRequest.md
 docs/ChangeWorldTagsRequest.md
+docs/CheckDeviceCodeRequest.md
 docs/ContentFilter.md
 docs/CosmeticItemType.md
 docs/CreateAvatarModerationRequest.md
@@ -101,6 +102,12 @@ docs/CurrentUserLoginResponse.md
 docs/CurrentUserPresence.md
 docs/DeclineGroupInviteRequest.md
 docs/DeveloperType.md
+docs/DeviceAuthApproveRequest.md
+docs/DeviceAuthApproveResponse.md
+docs/DeviceAuthInfo.md
+docs/DeviceAuthInfoGeolocation.md
+docs/DeviceCode.md
+docs/DeviceCodeStatus.md
 docs/Disable2FaResult.md
 docs/DiscordDetails.md
 docs/DynamicContentRow.md
@@ -472,6 +479,7 @@ docs/ReportReason.md
 docs/RepresentedGroup.md
 docs/RequestInviteRequest.md
 docs/RequiresTwoFactorAuth.md
+docs/ResetPasswordRequest.md
 docs/RespondGroupJoinRequest.md
 docs/RespondNotificationV2Request.md
 docs/Response.md
@@ -735,6 +743,7 @@ src/models/calendar_event_recurrence_end_type.rs
 src/models/calendar_event_user_interest.rs
 src/models/change_user_tags_request.rs
 src/models/change_world_tags_request.rs
+src/models/check_device_code_request.rs
 src/models/content_filter.rs
 src/models/cosmetic_item_type.rs
 src/models/create_avatar_moderation_request.rs
@@ -764,6 +773,12 @@ src/models/current_user_login_response.rs
 src/models/current_user_presence.rs
 src/models/decline_group_invite_request.rs
 src/models/developer_type.rs
+src/models/device_auth_approve_request.rs
+src/models/device_auth_approve_response.rs
+src/models/device_auth_info.rs
+src/models/device_auth_info_geolocation.rs
+src/models/device_code.rs
+src/models/device_code_status.rs
 src/models/disable2_fa_result.rs
 src/models/discord_details.rs
 src/models/dynamic_content_row.rs
@@ -1122,6 +1137,7 @@ src/models/report_reason.rs
 src/models/represented_group.rs
 src/models/request_invite_request.rs
 src/models/requires_two_factor_auth.rs
+src/models/reset_password_request.rs
 src/models/respond_group_join_request.rs
 src/models/respond_notification_v2_request.rs
 src/models/response.rs
