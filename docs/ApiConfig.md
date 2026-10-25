@@ -78,8 +78,8 @@ Name | Type | Description | Notes
 **economy_ledger_backfill** | Option<**bool**> | Unknown | [optional]
 **economy_ledger_migration_stop** | Option<**String**> | Unknown | [optional]
 **economy_ledger_mode** | **String** | Unknown | 
-**economy_pause_end** | **chrono::DateTime<chrono::FixedOffset>** | Unknown | 
-**economy_pause_start** | **chrono::DateTime<chrono::FixedOffset>** | Unknown | 
+**economy_pause_end** | **chrono::DateTime<chrono::FixedOffset>** | A date and time in the form of an RFC 3339 `date-time`, except that the UTC offset can be written without its colon, as in `+0000`. | 
+**economy_pause_start** | **chrono::DateTime<chrono::FixedOffset>** | A date and time in the form of an RFC 3339 `date-time`, except that the UTC offset can be written without its colon, as in `+0000`. | 
 **economy_purchase_repair_enabled** | **bool** | Unknown | 
 **economy_state** | **i32** | Unknown | [default to 1]
 **enable_vrc_plus_world_lists** | Option<**bool**> |  | [optional]

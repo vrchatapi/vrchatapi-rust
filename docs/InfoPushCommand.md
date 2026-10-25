@@ -15,6 +15,7 @@
 | OpenVrChatStore | OpenVRChatStore |
 | OpenWorldDetails | OpenWorldDetails |
 | OpenWorldsMenu | OpenWorldsMenu |
+| Event | event |
 | ScrollToShelf | scrollToShelf |
 
 

@@ -25,6 +25,8 @@ pub enum InfoPushCommand {
     OpenWorldDetails,
     #[serde(rename = "OpenWorldsMenu")]
     OpenWorldsMenu,
+    #[serde(rename = "event")]
+    Event,
     #[serde(rename = "scrollToShelf")]
     ScrollToShelf,
 }
@@ -43,6 +45,7 @@ impl std::fmt::Display for InfoPushCommand {
             Self::OpenVrChatStore => write!(f, "OpenVRChatStore"),
             Self::OpenWorldDetails => write!(f, "OpenWorldDetails"),
             Self::OpenWorldsMenu => write!(f, "OpenWorldsMenu"),
+            Self::Event => write!(f, "event"),
             Self::ScrollToShelf => write!(f, "scrollToShelf"),
         }
     }

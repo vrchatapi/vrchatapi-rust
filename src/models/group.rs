@@ -48,6 +48,8 @@ pub struct Group {
     pub discriminator: Option<String>,
     #[serde(rename = "galleries", skip_serializing_if = "Option::is_none")]
     pub galleries: Option<Vec<models::GroupGallery>>,
+    #[serde(rename = "groupId", skip_serializing_if = "Option::is_none")]
+    pub group_id: Option<String>,
     #[serde(
         rename = "iconId",
         default,
@@ -172,6 +174,7 @@ impl Group {
             description: None,
             discriminator: None,
             galleries: None,
+            group_id: None,
             icon_id: None,
             icon_url: None,
             id: None,

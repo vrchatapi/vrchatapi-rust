@@ -17,6 +17,7 @@ pub struct InviteMessage {
     pub remaining_cooldown_minutes: i32,
     #[serde(rename = "slot")]
     pub slot: i32,
+    /// A date and time in the form of an RFC 3339 `date-time`, except that the UTC offset can be written without its colon, as in `+0000`.
     #[serde(rename = "updatedAt")]
     pub updated_at: chrono::DateTime<chrono::FixedOffset>,
 }

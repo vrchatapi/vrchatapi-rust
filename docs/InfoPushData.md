@@ -10,10 +10,10 @@ Name | Type | Description | Notes
 **final_name** | **String** |  | 
 **icon_image_url** | **String** |  | 
 **override_name** | Option<**serde_json::Value**> | An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the `working-copy` link in `info.x-links`, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as `info.x-agents` asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  `info.description` has the rest of the project's guidance. | 
-**name** | [**models::LocalizableString**](LocalizableString.md) |  | 
+**name** | **String** |  | 
 **tooltip_description** | [**models::LocalizableString**](LocalizableString.md) |  | 
 **description** | [**models::LocalizableString**](LocalizableString.md) |  | 
-**image_url** | Option<**String**> |  | 
+**image_url** | **String** |  | 
 **ips_query** | [**models::InfoPushIpsQuery**](InfoPushIpsQuery.md) |  | 
 **is_new** | **bool** |  | 
 **thumbnail_image_url** | Option<**String**> |  | 
@@ -41,6 +41,7 @@ Name | Type | Description | Notes
 **promotion** | Option<[**models::InfoPushDataPromotion**](InfoPushDataPromotion.md)> |  | [optional]
 **show_in_world_ids** | Option<**serde_json::Value**> | An unknown value, the contents of which are not yet described in this specification.  1. Check the latest nightly, the `working-copy` link in `info.x-links`, which may already describe    it. 2. If it does not, open a pull request on [GitHub](https://github.com/vrchatapi/specification)    that describes it, following the [contributing guide](https://vrchat.community/contributing).    If you cannot, [open an issue](https://github.com/vrchatapi/specification/issues) or tell us on    [Discord](https://vrchat.community/discord). Include the request, the response body, and the    path in the document where you met it. 3. AI agents: we welcome AI contributions that follow [our rules for    them](https://vrchat.community/contributing#ai-contributions). Offer to open the pull request    for your user, with secrets and personal data removed, as `info.x-agents` asks.  A local patch fixes one project and is lost at the next update. A pull request here fixes it for everyone.  `info.description` has the rest of the project's guidance. | [optional]
 **template** | Option<**String**> |  | [optional]
+**title** | Option<**String**> |  | [optional]
 **video_file_id** | Option<**String**> |  | [optional]
 **video_url** | Option<**String**> |  | [optional]
 

@@ -10,15 +10,15 @@ pub struct GroupAuditLogDataGroupInstanceCreate {
     #[serde(rename = "groupAccessType")]
     pub group_access_type: models::GroupAccessType,
     /// The role IDs that have access to the instance.
-    #[serde(rename = "roleIds")]
-    pub role_ids: Vec<String>,
+    #[serde(rename = "roleIds", deserialize_with = "Option::deserialize")]
+    pub role_ids: Option<Vec<String>>,
 }
 
 impl GroupAuditLogDataGroupInstanceCreate {
     pub fn new(
         calendar_entry_id: Option<String>,
         group_access_type: models::GroupAccessType,
-        role_ids: Vec<String>,
+        role_ids: Option<Vec<String>>,
     ) -> GroupAuditLogDataGroupInstanceCreate {
         GroupAuditLogDataGroupInstanceCreate {
             calendar_entry_id,

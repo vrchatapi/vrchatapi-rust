@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **description** | Option<**String**> |  | [optional]
 **discriminator** | Option<**String**> |  | [optional]
 **galleries** | Option<[**Vec<models::GroupGallery>**](GroupGallery.md)> |  | [optional]
+**group_id** | Option<**String**> |  | [optional]
 **icon_id** | Option<**String**> |  | [optional]
 **icon_url** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]

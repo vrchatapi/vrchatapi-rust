@@ -242,10 +242,10 @@ pub struct ApiConfig {
     /// Unknown
     #[serde(rename = "economyLedgerMode")]
     pub economy_ledger_mode: String,
-    /// Unknown
+    /// A date and time in the form of an RFC 3339 `date-time`, except that the UTC offset can be written without its colon, as in `+0000`.
     #[serde(rename = "economyPauseEnd")]
     pub economy_pause_end: chrono::DateTime<chrono::FixedOffset>,
-    /// Unknown
+    /// A date and time in the form of an RFC 3339 `date-time`, except that the UTC offset can be written without its colon, as in `+0000`.
     #[serde(rename = "economyPauseStart")]
     pub economy_pause_start: chrono::DateTime<chrono::FixedOffset>,
     /// Unknown
