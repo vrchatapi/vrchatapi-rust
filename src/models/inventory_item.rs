@@ -24,9 +24,9 @@ pub struct InventoryItem {
     #[serde(rename = "description")]
     pub description: String,
     #[serde(rename = "equipSlot", skip_serializing_if = "Option::is_none")]
-    pub equip_slot: Option<models::InventoryEquipSlot>,
+    pub equip_slot: Option<String>,
     #[serde(rename = "equipSlots", skip_serializing_if = "Option::is_none")]
-    pub equip_slots: Option<Vec<models::InventoryEquipSlot>>,
+    pub equip_slots: Option<Vec<String>>,
     #[serde(
         rename = "expiryDate",
         default,
@@ -48,7 +48,7 @@ pub struct InventoryItem {
     #[serde(rename = "isSeen")]
     pub is_seen: bool,
     #[serde(rename = "itemType")]
-    pub item_type: models::InventoryItemType,
+    pub item_type: String,
     #[serde(rename = "itemTypeLabel")]
     pub item_type_label: String,
     #[serde(rename = "last_equipped", skip_serializing_if = "Option::is_none")]
@@ -90,7 +90,7 @@ impl InventoryItem {
         image_url: String,
         is_archived: bool,
         is_seen: bool,
-        item_type: models::InventoryItemType,
+        item_type: String,
         item_type_label: String,
         metadata: models::InventoryMetadata,
         name: String,

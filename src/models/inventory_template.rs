@@ -35,7 +35,7 @@ pub struct InventoryTemplate {
     #[serde(rename = "initialToggleState", skip_serializing_if = "Option::is_none")]
     pub initial_toggle_state: Option<bool>,
     #[serde(rename = "itemType")]
-    pub item_type: models::InventoryItemType,
+    pub item_type: String,
     #[serde(rename = "itemTypeLabel")]
     pub item_type_label: String,
     #[serde(rename = "metadata", skip_serializing_if = "Option::is_none")]
@@ -72,7 +72,7 @@ impl InventoryTemplate {
         flags: Vec<String>,
         id: String,
         image_url: String,
-        item_type: models::InventoryItemType,
+        item_type: String,
         item_type_label: String,
         name: String,
         tags: Vec<String>,

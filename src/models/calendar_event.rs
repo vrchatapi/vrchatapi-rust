@@ -53,6 +53,11 @@ pub struct CalendarEvent {
     #[serde(rename = "imageUrl", skip_serializing_if = "Option::is_none")]
     pub image_url: Option<String>,
     #[serde(
+        rename = "interestedFriendCount",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub interested_friend_count: Option<i32>,
+    #[serde(
         rename = "interestedUserCount",
         skip_serializing_if = "Option::is_none"
     )]
@@ -62,6 +67,11 @@ pub struct CalendarEvent {
     /// Languages that might be spoken at this event
     #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
     pub languages: Option<Vec<String>>,
+    #[serde(
+        rename = "linkedInstanceCount",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub linked_instance_count: Option<i32>,
     #[serde(rename = "occurrenceKind", skip_serializing_if = "Option::is_none")]
     pub occurrence_kind: Option<models::CalendarEventOccurrenceKind>,
     #[serde(rename = "occurrenceModified", skip_serializing_if = "Option::is_none")]
@@ -138,9 +148,11 @@ impl CalendarEvent {
             id,
             image_id: None,
             image_url: None,
+            interested_friend_count: None,
             interested_user_count: None,
             is_draft: None,
             languages: None,
+            linked_instance_count: None,
             occurrence_kind: None,
             occurrence_modified: None,
             owner_id: None,

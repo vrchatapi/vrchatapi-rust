@@ -13,7 +13,7 @@ pub struct WebsocketContentRefresh {
     #[serde(rename = "itemId")]
     pub item_id: String,
     #[serde(rename = "itemType")]
-    pub item_type: models::InventoryItemType,
+    pub item_type: String,
 }
 
 impl WebsocketContentRefresh {
@@ -22,7 +22,7 @@ impl WebsocketContentRefresh {
         content_type: String,
         file_id: String,
         item_id: String,
-        item_type: models::InventoryItemType,
+        item_type: String,
     ) -> WebsocketContentRefresh {
         WebsocketContentRefresh {
             action_type,

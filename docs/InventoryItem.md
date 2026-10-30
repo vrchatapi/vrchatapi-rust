@@ -10,8 +10,8 @@ Name | Type | Description | Notes
 **created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **default_attributes** | [**std::collections::HashMap<String, models::InventoryDefaultAttributesValue>**](InventoryDefaultAttributesValue.md) |  | 
 **description** | **String** |  | 
-**equip_slot** | Option<[**models::InventoryEquipSlot**](InventoryEquipSlot.md)> |  | [optional]
-**equip_slots** | Option<[**Vec<models::InventoryEquipSlot>**](InventoryEquipSlot.md)> |  | [optional]
+**equip_slot** | Option<**String**> |  | [optional][default to ]
+**equip_slots** | Option<**Vec<String>**> |  | [optional]
 **expiry_date** | Option<**chrono::DateTime<chrono::FixedOffset>**> |  | [optional]
 **flags** | **Vec<String>** |  | 
 **holder_id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
@@ -19,7 +19,7 @@ Name | Type | Description | Notes
 **image_url** | **String** |  | 
 **is_archived** | **bool** |  | 
 **is_seen** | **bool** |  | 
-**item_type** | [**models::InventoryItemType**](InventoryItemType.md) |  | 
+**item_type** | **String** |  | [default to bundle]
 **item_type_label** | **String** |  | 
 **last_equipped** | Option<**std::collections::HashMap<String, serde_json::Value>**> |  | [optional]
 **metadata** | [**models::InventoryMetadata**](InventoryMetadata.md) |  | 

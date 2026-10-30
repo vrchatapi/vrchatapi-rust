@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_own_inventory_item**](InventoryApi.md#delete_own_inventory_item) | **DELETE** /inventory/{inventoryItemId} | Delete Own Inventory Item
 [**equip_own_inventory_item**](InventoryApi.md#equip_own_inventory_item) | **PUT** /inventory/{inventoryItemId}/equip | Equip Own Inventory Item
 [**get_cosmetics**](InventoryApi.md#get_cosmetics) | **GET** /cosmetics/index/{itemType} | List Cosmetics
+[**get_global_inventory**](InventoryApi.md#get_global_inventory) | **GET** /inventory/global | Get Global Inventory
 [**get_inventory**](InventoryApi.md#get_inventory) | **GET** /inventory | Get Inventory
 [**get_inventory_collections**](InventoryApi.md#get_inventory_collections) | **GET** /inventory/collections | List Inventory Collections
 [**get_inventory_drops**](InventoryApi.md#get_inventory_drops) | **GET** /inventory/drops | List Inventory Drops
@@ -145,6 +146,33 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_global_inventory
+
+> Vec<models::GlobalInventoryItem> get_global_inventory()
+Get Global Inventory
+
+Returns the inventory items flagged `global`.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**Vec<models::GlobalInventoryItem>**](GlobalInventoryItem.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## get_inventory
 
 > models::Inventory get_inventory(n, offset, holder_id, equip_slot, order, tags, types, flags, not_types, not_flags, archived, seen, is_nav_bar)
@@ -160,12 +188,12 @@ Name | Type | Description  | Required | Notes
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **holder_id** | Option<**String**> | The UserID of the owner of the inventory; defaults to the currently authenticated user. |  |
-**equip_slot** | Option<[**InventoryEquipSlot**](InventoryEquipSlot.md)> | Filter for inventory retrieval. |  |
+**equip_slot** | Option<**String**> | Filter for inventory retrieval. |  |[default to ]
 **order** | Option<[**InventorySortOrder**](InventorySortOrder.md)> | Sort order for inventory retrieval. |  |
 **tags** | Option<**String**> | Filter tags for inventory retrieval (comma-separated). |  |
-**types** | Option<[**InventoryItemType**](InventoryItemType.md)> | Filter for inventory retrieval. |  |
+**types** | Option<**String**> | Filter for inventory retrieval. |  |[default to bundle]
 **flags** | Option<[**InventoryFlag**](InventoryFlag.md)> | Filter flags for inventory retrieval (comma-separated). |  |
-**not_types** | Option<[**InventoryItemType**](InventoryItemType.md)> | Filter out types for inventory retrieval (comma-separated). |  |
+**not_types** | Option<**String**> | Filter out types for inventory retrieval (comma-separated). |  |[default to bundle]
 **not_flags** | Option<[**InventoryFlag**](InventoryFlag.md)> | Filter out flags for inventory retrieval (comma-separated). |  |
 **archived** | Option<**bool**> | Filter archived status for inventory retrieval. |  |
 **seen** | Option<**bool**> |  |  |
@@ -500,7 +528,7 @@ Unequips the InventoryItem in the given slot of the inventory of the currently l
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**inventory_item_id** | [**InventoryEquipSlot**](InventoryEquipSlot.md) | Selector for inventory slot management. | [required] |
+**inventory_item_id** | **String** | Selector for inventory slot management. | [required] |[default to ]
 
 ### Return type
 

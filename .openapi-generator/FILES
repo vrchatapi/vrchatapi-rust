@@ -168,6 +168,9 @@ docs/FollowCalendarEventRequest.md
 docs/FriendStatus.md
 docs/FriendsApi.md
 docs/FrontendVariant.md
+docs/GlobalInventoryItem.md
+docs/GlobalInventoryItemAttribution.md
+docs/GlobalInventoryItemAttributionCreator.md
 docs/Group.md
 docs/GroupAccessType.md
 docs/GroupAnnouncement.md
@@ -349,10 +352,8 @@ docs/InventoryConsumptionResults.md
 docs/InventoryDefaultAttributesValue.md
 docs/InventoryDefaultAttributesValueValidator.md
 docs/InventoryDrop.md
-docs/InventoryEquipSlot.md
 docs/InventoryFlag.md
 docs/InventoryItem.md
-docs/InventoryItemType.md
 docs/InventoryMetadata.md
 docs/InventoryNotificationDetails.md
 docs/InventorySortOrder.md
@@ -837,6 +838,9 @@ src/models/finish_file_data_upload_request.rs
 src/models/follow_calendar_event_request.rs
 src/models/friend_status.rs
 src/models/frontend_variant.rs
+src/models/global_inventory_item.rs
+src/models/global_inventory_item_attribution.rs
+src/models/global_inventory_item_attribution_creator.rs
 src/models/group.rs
 src/models/group_access_type.rs
 src/models/group_announcement.rs
@@ -1015,10 +1019,8 @@ src/models/inventory_consumption_results.rs
 src/models/inventory_default_attributes_value.rs
 src/models/inventory_default_attributes_value_validator.rs
 src/models/inventory_drop.rs
-src/models/inventory_equip_slot.rs
 src/models/inventory_flag.rs
 src/models/inventory_item.rs
-src/models/inventory_item_type.rs
 src/models/inventory_metadata.rs
 src/models/inventory_notification_details.rs
 src/models/inventory_sort_order.rs

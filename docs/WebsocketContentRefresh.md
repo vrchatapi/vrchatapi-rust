@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **content_type** | **String** |  | 
 **file_id** | **String** |  | 
 **item_id** | **String** |  | 
-**item_type** | [**models::InventoryItemType**](InventoryItemType.md) |  | 
+**item_type** | **String** |  | [default to bundle]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

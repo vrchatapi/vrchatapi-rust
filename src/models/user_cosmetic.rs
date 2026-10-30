@@ -12,7 +12,7 @@ pub struct UserCosmetic {
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "itemType")]
-    pub item_type: models::InventoryItemType,
+    pub item_type: String,
     #[serde(rename = "templateId")]
     pub template_id: String,
     #[serde(rename = "userAttributes")]
@@ -25,7 +25,7 @@ impl UserCosmetic {
         acquired_on: chrono::DateTime<chrono::FixedOffset>,
         acquisition: String,
         id: String,
-        item_type: models::InventoryItemType,
+        item_type: String,
         template_id: String,
         user_attributes: models::InventoryUserAttributes,
     ) -> UserCosmetic {

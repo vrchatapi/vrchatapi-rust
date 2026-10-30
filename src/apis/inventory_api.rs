@@ -38,6 +38,14 @@ pub enum GetCosmeticsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_global_inventory`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetGlobalInventoryError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_inventory`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -365,18 +373,64 @@ pub async fn get_cosmetics(
     }
 }
 
+/// Returns the inventory items flagged `global`.
+pub async fn get_global_inventory(
+    configuration: &configuration::Configuration,
+) -> Result<Vec<models::GlobalInventoryItem>, Error<GetGlobalInventoryError>> {
+    let uri_str = format!("{}/inventory/global", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_global_inventory returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::GlobalInventoryItem&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::GlobalInventoryItem&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_global_inventory returned: {content}");
+        }
+        let entity: Option<GetGlobalInventoryError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Returns an Inventory object.
 pub async fn get_inventory(
     configuration: &configuration::Configuration,
     n: Option<i32>,
     offset: Option<i32>,
     holder_id: Option<&str>,
-    equip_slot: Option<models::InventoryEquipSlot>,
+    equip_slot: Option<&str>,
     order: Option<models::InventorySortOrder>,
     tags: Option<&str>,
-    types: Option<models::InventoryItemType>,
+    types: Option<&str>,
     flags: Option<models::InventoryFlag>,
-    not_types: Option<models::InventoryItemType>,
+    not_types: Option<&str>,
     not_flags: Option<models::InventoryFlag>,
     archived: Option<bool>,
     seen: Option<bool>,
@@ -1016,7 +1070,7 @@ pub async fn spawn_inventory_item(
 /// Unequips the InventoryItem in the given slot of the inventory of the currently logged in user.
 pub async fn unequip_own_inventory_slot(
     configuration: &configuration::Configuration,
-    inventory_item_id: models::InventoryEquipSlot,
+    inventory_item_id: &str,
 ) -> Result<String, Error<UnequipOwnInventorySlotError>> {
     // add a prefix to parameters to efficiently prevent name collisions
     let p_path_inventory_item_id = inventory_item_id;
@@ -1024,7 +1078,7 @@ pub async fn unequip_own_inventory_slot(
     let uri_str = format!(
         "{}/inventory/{inventoryItemId}/equip",
         configuration.base_path,
-        inventoryItemId = p_path_inventory_item_id.to_string()
+        inventoryItemId = crate::apis::urlencode(p_path_inventory_item_id)
     );
     let mut req_builder = configuration
         .client

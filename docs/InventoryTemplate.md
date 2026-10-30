@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **image_url** | **String** |  | 
 **initial_toggle_state** | Option<**bool**> |  | [optional]
-**item_type** | [**models::InventoryItemType**](InventoryItemType.md) |  | 
+**item_type** | **String** |  | [default to bundle]
 **item_type_label** | **String** |  | 
 **metadata** | Option<[**models::InventoryMetadata**](InventoryMetadata.md)> |  | [optional]
 **name** | **String** |  | 

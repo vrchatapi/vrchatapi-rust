@@ -18,9 +18,11 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **image_id** | Option<**String**> |  | [optional]
 **image_url** | Option<**String**> |  | [optional]
+**interested_friend_count** | Option<**i32**> |  | [optional]
 **interested_user_count** | Option<**i32**> |  | [optional]
 **is_draft** | Option<**bool**> |  | [optional]
 **languages** | Option<**Vec<String>**> | Languages that might be spoken at this event | [optional]
+**linked_instance_count** | Option<**i32**> |  | [optional]
 **occurrence_kind** | Option<[**models::CalendarEventOccurrenceKind**](CalendarEventOccurrenceKind.md)> |  | [optional]
 **occurrence_modified** | Option<**bool**> |  | [optional]
 **owner_id** | Option<**String**> |  | [optional]

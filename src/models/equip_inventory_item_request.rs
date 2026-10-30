@@ -5,11 +5,11 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct EquipInventoryItemRequest {
     #[serde(rename = "equipSlot")]
-    pub equip_slot: models::InventoryEquipSlot,
+    pub equip_slot: String,
 }
 
 impl EquipInventoryItemRequest {
-    pub fn new(equip_slot: models::InventoryEquipSlot) -> EquipInventoryItemRequest {
+    pub fn new(equip_slot: String) -> EquipInventoryItemRequest {
         EquipInventoryItemRequest { equip_slot }
     }
 }
