@@ -10,6 +10,9 @@ pub struct InstanceCount {
     pub events: i32,
     #[serde(rename = "friends")]
     pub friends: i32,
+    /// The ID of a `ContentShelf` entry, whose results `getInfoPushContent` returns.
+    #[serde(rename = "friendsEntryId")]
+    pub friends_entry_id: String,
     #[serde(rename = "instances")]
     pub instances: i32,
 }
@@ -19,12 +22,14 @@ impl InstanceCount {
         as_of: chrono::DateTime<chrono::FixedOffset>,
         events: i32,
         friends: i32,
+        friends_entry_id: String,
         instances: i32,
     ) -> InstanceCount {
         InstanceCount {
             as_of,
             events,
             friends,
+            friends_entry_id,
             instances,
         }
     }

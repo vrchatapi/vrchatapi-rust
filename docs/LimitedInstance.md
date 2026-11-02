@@ -11,9 +11,10 @@ Name | Type | Description | Notes
 **creation_languages** | **Vec<serde_json::Value>** |  | 
 **description** | Option<**String**> |  | 
 **disabled_prop_abilities** | **Vec<String>** |  | 
-**display_name** | Option<**String**> |  | 
+**display_name** | Option<**String**> |  | [optional]
 **display_vibe_id** | Option<**String**> |  | 
 **dominant_language** | **String** |  | 
+**friend_icons** | **Vec<serde_json::Value>** |  | 
 **full** | **bool** |  | [default to false]
 **group_access_type** | Option<[**models::GroupAccessType**](GroupAccessType.md)> |  | [optional]
 **id** | **String** | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | 
@@ -24,7 +25,9 @@ Name | Type | Description | Notes
 **location** | **String** | Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list. | 
 **minimum_avatar_performance** | Option<**String**> |  | 
 **n_users** | **i32** |  | 
+**owner_icon_url** | Option<**String**> | The icon of the group `ownerId` names, or `null` when `ownerId` is. | 
 **owner_id** | Option<**String**> | A groupId if the instance type is \"group\", null if instance type is public, or a userId otherwise | 
+**owner_name** | Option<**String**> | The `name` of the group `ownerId` names, or `null` when `ownerId` is. | 
 **permanent** | **bool** |  | [default to false]
 **photon_region** | [**models::Region**](Region.md) |  | 
 **platforms** | [**models::InstancePlatforms**](InstancePlatforms.md) |  | 

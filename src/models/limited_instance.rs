@@ -19,12 +19,19 @@ pub struct LimitedInstance {
     pub description: Option<String>,
     #[serde(rename = "disabledPropAbilities")]
     pub disabled_prop_abilities: Vec<String>,
-    #[serde(rename = "displayName", deserialize_with = "Option::deserialize")]
-    pub display_name: Option<String>,
+    #[serde(
+        rename = "displayName",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub display_name: Option<Option<String>>,
     #[serde(rename = "displayVibeId", deserialize_with = "Option::deserialize")]
     pub display_vibe_id: Option<String>,
     #[serde(rename = "dominantLanguage")]
     pub dominant_language: String,
+    #[serde(rename = "friendIcons")]
+    pub friend_icons: Vec<serde_json::Value>,
     #[serde(rename = "full")]
     pub full: bool,
     #[serde(rename = "groupAccessType", skip_serializing_if = "Option::is_none")]
@@ -52,9 +59,15 @@ pub struct LimitedInstance {
     pub minimum_avatar_performance: Option<String>,
     #[serde(rename = "n_users")]
     pub n_users: i32,
+    /// The icon of the group `ownerId` names, or `null` when `ownerId` is.
+    #[serde(rename = "ownerIconUrl", deserialize_with = "Option::deserialize")]
+    pub owner_icon_url: Option<String>,
     /// A groupId if the instance type is \"group\", null if instance type is public, or a userId otherwise
     #[serde(rename = "ownerId", deserialize_with = "Option::deserialize")]
     pub owner_id: Option<String>,
+    /// The `name` of the group `ownerId` names, or `null` when `ownerId` is.
+    #[serde(rename = "ownerName", deserialize_with = "Option::deserialize")]
+    pub owner_name: Option<String>,
     #[serde(rename = "permanent")]
     pub permanent: bool,
     #[serde(rename = "photonRegion")]
@@ -100,9 +113,9 @@ impl LimitedInstance {
         creation_languages: Vec<serde_json::Value>,
         description: Option<String>,
         disabled_prop_abilities: Vec<String>,
-        display_name: Option<String>,
         display_vibe_id: Option<String>,
         dominant_language: String,
+        friend_icons: Vec<serde_json::Value>,
         full: bool,
         id: String,
         instance_id: String,
@@ -112,7 +125,9 @@ impl LimitedInstance {
         location: String,
         minimum_avatar_performance: Option<String>,
         n_users: i32,
+        owner_icon_url: Option<String>,
         owner_id: Option<String>,
+        owner_name: Option<String>,
         permanent: bool,
         photon_region: models::Region,
         platforms: models::InstancePlatforms,
@@ -137,9 +152,10 @@ impl LimitedInstance {
             creation_languages,
             description,
             disabled_prop_abilities,
-            display_name,
+            display_name: None,
             display_vibe_id,
             dominant_language,
+            friend_icons,
             full,
             group_access_type: None,
             id,
@@ -150,7 +166,9 @@ impl LimitedInstance {
             location,
             minimum_avatar_performance,
             n_users,
+            owner_icon_url,
             owner_id,
+            owner_name,
             permanent,
             photon_region,
             platforms,
