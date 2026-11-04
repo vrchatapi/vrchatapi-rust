@@ -652,6 +652,8 @@ pub mod instance_discovery;
 pub use self::instance_discovery::InstanceDiscovery;
 pub mod instance_discovery_boost;
 pub use self::instance_discovery_boost::InstanceDiscoveryBoost;
+pub mod instance_discovery_capacity_limit;
+pub use self::instance_discovery_capacity_limit::InstanceDiscoveryCapacityLimit;
 pub mod instance_discovery_mode;
 pub use self::instance_discovery_mode::InstanceDiscoveryMode;
 pub mod instance_discovery_platform;

@@ -84,7 +84,7 @@ Name | Type | Description  | Required | Notes
 
 ## discover_instances
 
-> models::InstanceDiscovery discover_instances(n, region, platform, world_id, group_id, vibe, category, any_world_tag, boost, group_hosted, max_occupants, min_occupants, min_spots_left, mode, not_world_tag, world_pool)
+> models::InstanceDiscovery discover_instances(n, region, platform, world_id, group_id, vibe, category, any_world_tag, boost, capacity_limit, group_hosted, max_occupants, min_occupants, min_spots_left, mode, not_world_tag, world_pool)
 Discover Instances
 
 Returns instances to discover, in an order that changes between requests.
@@ -103,6 +103,7 @@ Name | Type | Description  | Required | Notes
 **category** | Option<**String**> |  |  |
 **any_world_tag** | Option<[**Vec<String>**](String.md)> | Not every account may use it; the others are answered 403. |  |
 **boost** | Option<[**Vec<models::InstanceDiscoveryBoost>**](Models__InstanceDiscoveryBoost.md)> | Only `GET /infoPush/{entryId}/content` accepts it; this route answers 400 to any value. |  |
+**capacity_limit** | Option<[**InstanceDiscoveryCapacityLimit**](InstanceDiscoveryCapacityLimit.md)> | Not every account may use it; the others are answered 403. |  |
 **group_hosted** | Option<**bool**> |  |  |
 **max_occupants** | Option<**i32**> |  |  |
 **min_occupants** | Option<**i32**> |  |  |

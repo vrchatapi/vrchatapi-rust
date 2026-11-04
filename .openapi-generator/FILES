@@ -335,6 +335,7 @@ docs/InstanceContentSettings.md
 docs/InstanceCount.md
 docs/InstanceDiscovery.md
 docs/InstanceDiscoveryBoost.md
+docs/InstanceDiscoveryCapacityLimit.md
 docs/InstanceDiscoveryMode.md
 docs/InstanceDiscoveryPlatform.md
 docs/InstanceDiscoveryWorldPool.md
@@ -1004,6 +1005,7 @@ src/models/instance_content_settings.rs
 src/models/instance_count.rs
 src/models/instance_discovery.rs
 src/models/instance_discovery_boost.rs
+src/models/instance_discovery_capacity_limit.rs
 src/models/instance_discovery_mode.rs
 src/models/instance_discovery_platform.rs
 src/models/instance_discovery_world_pool.rs

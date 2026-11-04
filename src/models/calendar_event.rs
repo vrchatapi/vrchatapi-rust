@@ -76,8 +76,14 @@ pub struct CalendarEvent {
     pub occurrence_kind: Option<models::CalendarEventOccurrenceKind>,
     #[serde(rename = "occurrenceModified", skip_serializing_if = "Option::is_none")]
     pub occurrence_modified: Option<bool>,
+    /// The icon of the group `ownerId` names.
+    #[serde(rename = "ownerIconUrl", skip_serializing_if = "Option::is_none")]
+    pub owner_icon_url: Option<String>,
     #[serde(rename = "ownerId", skip_serializing_if = "Option::is_none")]
     pub owner_id: Option<String>,
+    /// The `name` of the group `ownerId` names.
+    #[serde(rename = "ownerName", skip_serializing_if = "Option::is_none")]
+    pub owner_name: Option<String>,
     #[serde(rename = "platforms", skip_serializing_if = "Option::is_none")]
     pub platforms: Option<Vec<models::CalendarEventPlatform>>,
     #[serde(
@@ -155,7 +161,9 @@ impl CalendarEvent {
             linked_instance_count: None,
             occurrence_kind: None,
             occurrence_modified: None,
+            owner_icon_url: None,
             owner_id: None,
+            owner_name: None,
             platforms: None,
             recurrence: None,
             role_ids: None,

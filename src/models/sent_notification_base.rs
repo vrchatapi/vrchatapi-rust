@@ -6,6 +6,8 @@ use serde::{Deserialize, Serialize};
 pub struct SentNotificationBase {
     #[serde(rename = "created_at")]
     pub created_at: chrono::DateTime<chrono::FixedOffset>,
+    #[serde(rename = "displayCategory")]
+    pub display_category: String,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "message")]
@@ -24,6 +26,7 @@ pub struct SentNotificationBase {
 impl SentNotificationBase {
     pub fn new(
         created_at: chrono::DateTime<chrono::FixedOffset>,
+        display_category: String,
         id: String,
         message: String,
         receiver_user_id: String,
@@ -31,6 +34,7 @@ impl SentNotificationBase {
     ) -> SentNotificationBase {
         SentNotificationBase {
             created_at,
+            display_category,
             id,
             message,
             receiver_user_id,

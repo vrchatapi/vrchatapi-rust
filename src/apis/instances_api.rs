@@ -241,6 +241,7 @@ pub async fn discover_instances(
     category: Option<&str>,
     any_world_tag: Option<Vec<String>>,
     boost: Option<Vec<models::InstanceDiscoveryBoost>>,
+    capacity_limit: Option<models::InstanceDiscoveryCapacityLimit>,
     group_hosted: Option<bool>,
     max_occupants: Option<i32>,
     min_occupants: Option<i32>,
@@ -259,6 +260,7 @@ pub async fn discover_instances(
     let p_query_category = category;
     let p_query_any_world_tag = any_world_tag;
     let p_query_boost = boost;
+    let p_query_capacity_limit = capacity_limit;
     let p_query_group_hosted = group_hosted;
     let p_query_max_occupants = max_occupants;
     let p_query_min_occupants = min_occupants;
@@ -376,6 +378,9 @@ pub async fn discover_instances(
                     .to_string(),
             )]),
         };
+    }
+    if let Some(ref param_value) = p_query_capacity_limit {
+        req_builder = req_builder.query(&[("capacityLimit", &param_value.to_string())]);
     }
     if let Some(ref param_value) = p_query_group_hosted {
         req_builder = req_builder.query(&[("groupHosted", &param_value.to_string())]);

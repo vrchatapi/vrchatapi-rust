@@ -8,6 +8,8 @@ pub struct InfoPushDataContentSourceInstanceDiscoverParams {
     pub any_world_tag: Option<Vec<String>>,
     #[serde(rename = "boost", skip_serializing_if = "Option::is_none")]
     pub boost: Option<Vec<models::InstanceDiscoveryBoost>>,
+    #[serde(rename = "capacityLimit", skip_serializing_if = "Option::is_none")]
+    pub capacity_limit: Option<models::InstanceDiscoveryCapacityLimit>,
     #[serde(rename = "groupHosted", skip_serializing_if = "Option::is_none")]
     pub group_hosted: Option<bool>,
     #[serde(rename = "maxOccupants", skip_serializing_if = "Option::is_none")]
@@ -41,6 +43,7 @@ impl InfoPushDataContentSourceInstanceDiscoverParams {
         InfoPushDataContentSourceInstanceDiscoverParams {
             any_world_tag: None,
             boost: None,
+            capacity_limit: None,
             group_hosted: None,
             max_occupants: None,
             min_occupants: None,

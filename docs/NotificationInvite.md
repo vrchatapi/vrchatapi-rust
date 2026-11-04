@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **chrono::DateTime<chrono::FixedOffset>** |  | 
+**display_category** | **String** |  | 
 **id** | **String** |  | 
 **message** | **String** |  | 
 **receiver_user_id** | Option<**String**> | Not included in notification objects received from the REST API | [optional]

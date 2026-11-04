@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **any_world_tag** | Option<**Vec<String>**> |  | [optional]
 **boost** | Option<[**Vec<models::InstanceDiscoveryBoost>**](InstanceDiscoveryBoost.md)> |  | [optional]
+**capacity_limit** | Option<[**models::InstanceDiscoveryCapacityLimit**](InstanceDiscoveryCapacityLimit.md)> |  | [optional]
 **group_hosted** | Option<**bool**> |  | [optional]
 **max_occupants** | Option<**i32**> |  | [optional]
 **min_occupants** | Option<**i32**> |  | [optional]
