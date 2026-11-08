@@ -5,6 +5,7 @@ All URIs are relative to *https://api.vrchat.cloud/api/1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**clear_all_player_moderations**](PlayermoderationApi.md#clear_all_player_moderations) | **DELETE** /auth/user/playermoderations | Clear All Player Moderations
+[**create_user_moderation**](PlayermoderationApi.md#create_user_moderation) | **POST** /user/{userId}/moderations | Create User Moderation
 [**get_player_moderations**](PlayermoderationApi.md#get_player_moderations) | **GET** /auth/user/playermoderations | Search Player Moderations
 [**moderate_user**](PlayermoderationApi.md#moderate_user) | **POST** /auth/user/playermoderations | Moderate User
 [**unmoderate_user**](PlayermoderationApi.md#unmoderate_user) | **PUT** /auth/user/unplayermoderate | Unmoderate User
@@ -33,6 +34,37 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_user_moderation
+
+> models::CreateUserModerationResponse create_user_moderation(user_id, create_user_moderation_request)
+Create User Moderation
+
+With `type` `kick`, bans the user in the path from the instance given by `worldId` and `instanceId`. The user is not removed from the instance, but cannot join it again, even by invite.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**user_id** | **String** | Must be a valid user ID. | [required] |
+**create_user_moderation_request** | [**CreateUserModerationRequest**](CreateUserModerationRequest.md) |  | [required] |
+
+### Return type
+
+[**models::CreateUserModerationResponse**](CreateUserModerationResponse.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -5,14 +5,14 @@ use serde::{Deserialize, Serialize};
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct WebsocketUserUpdate {
     #[serde(rename = "user")]
-    pub user: models::User,
+    pub user: models::WebsocketUserUpdateUser,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "userId")]
     pub user_id: String,
 }
 
 impl WebsocketUserUpdate {
-    pub fn new(user: models::User, user_id: String) -> WebsocketUserUpdate {
+    pub fn new(user: models::WebsocketUserUpdateUser, user_id: String) -> WebsocketUserUpdate {
         WebsocketUserUpdate { user, user_id }
     }
 }

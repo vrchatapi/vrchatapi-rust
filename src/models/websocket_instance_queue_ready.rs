@@ -7,15 +7,18 @@ pub struct WebsocketInstanceQueueReady {
     #[serde(rename = "expiry")]
     pub expiry: chrono::DateTime<chrono::FixedOffset>,
     /// Represents a unique location, consisting of a world identifier and an instance identifier, or \"offline\" if the user is not on your friends list.
-    #[serde(rename = "location")]
-    pub location: String,
+    #[serde(rename = "instanceLocation")]
+    pub instance_location: String,
 }
 
 impl WebsocketInstanceQueueReady {
     pub fn new(
         expiry: chrono::DateTime<chrono::FixedOffset>,
-        location: String,
+        instance_location: String,
     ) -> WebsocketInstanceQueueReady {
-        WebsocketInstanceQueueReady { expiry, location }
+        WebsocketInstanceQueueReady {
+            expiry,
+            instance_location,
+        }
     }
 }

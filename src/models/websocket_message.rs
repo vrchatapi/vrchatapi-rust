@@ -9,6 +9,8 @@ pub enum WebsocketMessage {
     ClearNotification(models::WebsocketClearNotification),
     #[serde(rename = "content-refresh")]
     ContentRefresh(models::WebsocketContentRefreshEncoded),
+    #[serde(rename = "economy-update")]
+    EconomyUpdate(models::WebsocketEconomyUpdateEncoded),
     #[serde(rename = "friend-active")]
     FriendActive(models::WebsocketFriendActiveEncoded),
     #[serde(rename = "friend-add")]
@@ -33,10 +35,14 @@ pub enum WebsocketMessage {
     GroupRoleUpdated(models::WebsocketGroupRoleUpdatedEncoded),
     #[serde(rename = "hide-notification")]
     HideNotification(models::WebsocketHideNotification),
+    #[serde(rename = "instance-closed")]
+    InstanceClosed(models::WebsocketInstanceClosedEncoded),
     #[serde(rename = "instance-queue-joined")]
     InstanceQueueJoined(models::WebsocketInstanceQueueJoinedEncoded),
     #[serde(rename = "instance-queue-ready")]
     InstanceQueueReady(models::WebsocketInstanceQueueReadyEncoded),
+    #[serde(rename = "modified-image-update")]
+    ModifiedImageUpdate(models::WebsocketModifiedImageUpdateEncoded),
     #[serde(rename = "notification")]
     Notification(models::WebsocketNotificationEncoded),
     #[serde(rename = "notification-v2")]
@@ -96,6 +102,23 @@ impl TryFrom<WebsocketMessage> for models::WebsocketContentRefreshEncoded {
     fn try_from(value: WebsocketMessage) -> Result<Self, Self::Error> {
         match value {
             WebsocketMessage::ContentRefresh(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::WebsocketEconomyUpdateEncoded> for WebsocketMessage {
+    fn from(value: models::WebsocketEconomyUpdateEncoded) -> Self {
+        Self::EconomyUpdate(value)
+    }
+}
+
+impl TryFrom<WebsocketMessage> for models::WebsocketEconomyUpdateEncoded {
+    type Error = WebsocketMessage;
+
+    fn try_from(value: WebsocketMessage) -> Result<Self, Self::Error> {
+        match value {
+            WebsocketMessage::EconomyUpdate(inner) => Ok(inner),
             other => Err(other),
         }
     }
@@ -305,6 +328,23 @@ impl TryFrom<WebsocketMessage> for models::WebsocketHideNotification {
     }
 }
 
+impl From<models::WebsocketInstanceClosedEncoded> for WebsocketMessage {
+    fn from(value: models::WebsocketInstanceClosedEncoded) -> Self {
+        Self::InstanceClosed(value)
+    }
+}
+
+impl TryFrom<WebsocketMessage> for models::WebsocketInstanceClosedEncoded {
+    type Error = WebsocketMessage;
+
+    fn try_from(value: WebsocketMessage) -> Result<Self, Self::Error> {
+        match value {
+            WebsocketMessage::InstanceClosed(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
 impl From<models::WebsocketInstanceQueueJoinedEncoded> for WebsocketMessage {
     fn from(value: models::WebsocketInstanceQueueJoinedEncoded) -> Self {
         Self::InstanceQueueJoined(value)
@@ -334,6 +374,23 @@ impl TryFrom<WebsocketMessage> for models::WebsocketInstanceQueueReadyEncoded {
     fn try_from(value: WebsocketMessage) -> Result<Self, Self::Error> {
         match value {
             WebsocketMessage::InstanceQueueReady(inner) => Ok(inner),
+            other => Err(other),
+        }
+    }
+}
+
+impl From<models::WebsocketModifiedImageUpdateEncoded> for WebsocketMessage {
+    fn from(value: models::WebsocketModifiedImageUpdateEncoded) -> Self {
+        Self::ModifiedImageUpdate(value)
+    }
+}
+
+impl TryFrom<WebsocketMessage> for models::WebsocketModifiedImageUpdateEncoded {
+    type Error = WebsocketMessage;
+
+    fn try_from(value: WebsocketMessage) -> Result<Self, Self::Error> {
+        match value {
+            WebsocketMessage::ModifiedImageUpdate(inner) => Ok(inner),
             other => Err(other),
         }
     }
