@@ -16,6 +16,8 @@ Name | Type | Description | Notes
 **hard_close** | Option<**bool**> | Currently unused, but will eventually be a flag to set if the closing of the instance should kick people. | [optional][default to false]
 **instance_persistence_enabled** | Option<**bool**> |  | [optional]
 **invite_only** | Option<**bool**> |  | [optional][default to false]
+**languages** | Option<**Vec<String>**> | Returned as the instance's `creationLanguages`. | [optional]
+**minimum_avatar_performance** | Option<[**models::CreateInstanceRequestMinimumAvatarPerformance**](CreateInstanceRequestMinimumAvatarPerformance.md)> |  | [optional]
 **owner_id** | Option<**String**> | A groupId if the instance type is \"group\", null if instance type is public, or a userId otherwise | [optional]
 **player_persistence_enabled** | Option<**bool**> |  | [optional]
 **queue_enabled** | Option<**bool**> |  | [optional][default to false]

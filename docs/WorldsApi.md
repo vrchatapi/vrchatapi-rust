@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**delete_user_persistence**](WorldsApi.md#delete_user_persistence) | **DELETE** /users/{userId}/{worldId}/persist | Delete User Persistence
 [**delete_world**](WorldsApi.md#delete_world) | **DELETE** /worlds/{worldId} | Delete World
 [**delete_world_platform**](WorldsApi.md#delete_world_platform) | **DELETE** /worlds/{worldId}/platform/{publishedPlatform} | Delete World Platform
+[**delete_world_rating**](WorldsApi.md#delete_world_rating) | **DELETE** /worlds/{worldId}/rating | Delete World Rating
 [**get_active_worlds**](WorldsApi.md#get_active_worlds) | **GET** /worlds/active | List Active Worlds
 [**get_favorited_worlds**](WorldsApi.md#get_favorited_worlds) | **GET** /worlds/favorites | List Favorited Worlds
 [**get_recent_worlds**](WorldsApi.md#get_recent_worlds) | **GET** /worlds/recent | List Recent Worlds
@@ -18,9 +19,11 @@ Method | HTTP request | Description
 [**get_world_instance**](WorldsApi.md#get_world_instance) | **GET** /worlds/{worldId}/{instanceId} | Get World Instance
 [**get_world_metadata**](WorldsApi.md#get_world_metadata) | **GET** /worlds/{worldId}/metadata | Get World Metadata
 [**get_world_publish_status**](WorldsApi.md#get_world_publish_status) | **GET** /worlds/{worldId}/publish | Get World Publish Status
+[**get_world_rating**](WorldsApi.md#get_world_rating) | **GET** /worlds/{worldId}/rating | Get World Rating
 [**publish_world**](WorldsApi.md#publish_world) | **PUT** /worlds/{worldId}/publish | Publish World
 [**remove_world_tags**](WorldsApi.md#remove_world_tags) | **POST** /worlds/{worldId}/deleteTags | Remove World Tags
 [**search_worlds**](WorldsApi.md#search_worlds) | **GET** /worlds | Search All Worlds
+[**set_world_rating**](WorldsApi.md#set_world_rating) | **PUT** /worlds/{worldId}/rating | Set World Rating
 [**unpublish_world**](WorldsApi.md#unpublish_world) | **DELETE** /worlds/{worldId}/publish | Unpublish World
 [**update_world**](WorldsApi.md#update_world) | **PUT** /worlds/{worldId} | Update World
 
@@ -227,6 +230,36 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
  (empty response body)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_world_rating
+
+> models::WorldRating delete_world_rating(world_id)
+Delete World Rating
+
+Removes the rating the current user has given a world.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**world_id** | **String** | Must be a valid world ID. | [required] |
+
+### Return type
+
+[**models::WorldRating**](WorldRating.md)
 
 ### Authorization
 
@@ -487,6 +520,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## get_world_rating
+
+> models::WorldRating get_world_rating(world_id)
+Get World Rating
+
+Returns the rating the current user has given a world. `value` is `null` for a world they have not rated, and for a world ID no world carries.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**world_id** | **String** | Must be a valid world ID. | [required] |
+
+### Return type
+
+[**models::WorldRating**](WorldRating.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## publish_world
 
 > publish_world(world_id)
@@ -589,6 +652,37 @@ Name | Type | Description  | Required | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## set_world_rating
+
+> models::WorldRating set_world_rating(world_id, set_world_rating_request)
+Set World Rating
+
+Rates a world as the current user, replacing any rating they gave it before.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**set_world_rating_request** | [**SetWorldRatingRequest**](SetWorldRatingRequest.md) |  | [required] |
+
+### Return type
+
+[**models::WorldRating**](WorldRating.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

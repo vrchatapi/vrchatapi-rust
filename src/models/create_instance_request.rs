@@ -36,6 +36,14 @@ pub struct CreateInstanceRequest {
     pub instance_persistence_enabled: Option<Option<bool>>,
     #[serde(rename = "inviteOnly", skip_serializing_if = "Option::is_none")]
     pub invite_only: Option<bool>,
+    /// Returned as the instance's `creationLanguages`.
+    #[serde(rename = "languages", skip_serializing_if = "Option::is_none")]
+    pub languages: Option<Vec<String>>,
+    #[serde(
+        rename = "minimumAvatarPerformance",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub minimum_avatar_performance: Option<models::CreateInstanceRequestMinimumAvatarPerformance>,
     /// A groupId if the instance type is \"group\", null if instance type is public, or a userId otherwise
     #[serde(
         rename = "ownerId",
@@ -86,6 +94,8 @@ impl CreateInstanceRequest {
             hard_close: None,
             instance_persistence_enabled: None,
             invite_only: None,
+            languages: None,
+            minimum_avatar_performance: None,
             owner_id: None,
             player_persistence_enabled: None,
             queue_enabled: None,

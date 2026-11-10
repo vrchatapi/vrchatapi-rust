@@ -89,6 +89,7 @@ docs/CreateGroupPostRequest.md
 docs/CreateGroupRequest.md
 docs/CreateGroupRoleRequest.md
 docs/CreateInstanceRequest.md
+docs/CreateInstanceRequestMinimumAvatarPerformance.md
 docs/CreateInstanceRequestRegion.md
 docs/CreateJamSubmissionRequest.md
 docs/CreateListingRequest.md
@@ -513,6 +514,7 @@ docs/SentNotificationUnknown.md
 docs/SentNotificationVoteToKick.md
 docs/ServiceQueueStats.md
 docs/ServiceStatus.md
+docs/SetWorldRatingRequest.md
 docs/ShareInventoryItemDirectRequest.md
 docs/SortOption.md
 docs/SortOptionAvatar.md
@@ -665,6 +667,8 @@ docs/WorldFavoriteList.md
 docs/WorldMetadata.md
 docs/WorldMetadataValue.md
 docs/WorldPublishStatus.md
+docs/WorldRating.md
+docs/WorldRatingValue.md
 docs/WorldSlimInstance.md
 docs/WorldsApi.md
 git_push.sh
@@ -776,6 +780,7 @@ src/models/create_group_post_request.rs
 src/models/create_group_request.rs
 src/models/create_group_role_request.rs
 src/models/create_instance_request.rs
+src/models/create_instance_request_minimum_avatar_performance.rs
 src/models/create_instance_request_region.rs
 src/models/create_jam_submission_request.rs
 src/models/create_listing_request.rs
@@ -1187,6 +1192,7 @@ src/models/sent_notification_unknown.rs
 src/models/sent_notification_vote_to_kick.rs
 src/models/service_queue_stats.rs
 src/models/service_status.rs
+src/models/set_world_rating_request.rs
 src/models/share_inventory_item_direct_request.rs
 src/models/sort_option.rs
 src/models/sort_option_avatar.rs
@@ -1338,4 +1344,6 @@ src/models/world_favorite_list.rs
 src/models/world_metadata.rs
 src/models/world_metadata_value.rs
 src/models/world_publish_status.rs
+src/models/world_rating.rs
+src/models/world_rating_value.rs
 src/models/world_slim_instance.rs

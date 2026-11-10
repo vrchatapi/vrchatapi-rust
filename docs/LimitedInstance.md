@@ -9,12 +9,12 @@ Name | Type | Description | Notes
 **calendar_entry_id** | Option<**String**> |  | 
 **capacity** | **i32** |  | 
 **category_id** | Option<**String**> |  | 
-**creation_languages** | **Vec<serde_json::Value>** |  | 
+**creation_languages** | **Vec<String>** | The `languages` the instance was created with. | 
 **description** | Option<**String**> |  | 
 **disabled_prop_abilities** | **Vec<String>** |  | 
 **display_name** | Option<**String**> |  | [optional]
 **display_vibe_id** | Option<**String**> |  | 
-**dominant_language** | **String** |  | 
+**dominant_language** | **String** | Empty while the instance has no users. | 
 **friend_icons** | **Vec<serde_json::Value>** |  | 
 **full** | **bool** |  | [default to false]
 **group_access_type** | Option<[**models::GroupAccessType**](GroupAccessType.md)> |  | [optional]

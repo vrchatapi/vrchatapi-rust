@@ -15,8 +15,9 @@ pub struct LimitedInstance {
     pub capacity: i32,
     #[serde(rename = "categoryId", deserialize_with = "Option::deserialize")]
     pub category_id: Option<String>,
+    /// The `languages` the instance was created with.
     #[serde(rename = "creationLanguages")]
-    pub creation_languages: Vec<serde_json::Value>,
+    pub creation_languages: Vec<String>,
     #[serde(rename = "description", deserialize_with = "Option::deserialize")]
     pub description: Option<String>,
     #[serde(rename = "disabledPropAbilities")]
@@ -30,6 +31,7 @@ pub struct LimitedInstance {
     pub display_name: Option<Option<String>>,
     #[serde(rename = "displayVibeId", deserialize_with = "Option::deserialize")]
     pub display_vibe_id: Option<String>,
+    /// Empty while the instance has no users.
     #[serde(rename = "dominantLanguage")]
     pub dominant_language: String,
     #[serde(rename = "friendIcons")]
@@ -113,7 +115,7 @@ impl LimitedInstance {
         calendar_entry_id: Option<String>,
         capacity: i32,
         category_id: Option<String>,
-        creation_languages: Vec<serde_json::Value>,
+        creation_languages: Vec<String>,
         description: Option<String>,
         disabled_prop_abilities: Vec<String>,
         display_vibe_id: Option<String>,

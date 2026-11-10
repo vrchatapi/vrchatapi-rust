@@ -68,6 +68,15 @@ pub enum DeleteWorldPlatformError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`delete_world_rating`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteWorldRatingError {
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`get_active_worlds`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -128,6 +137,15 @@ pub enum GetWorldPublishStatusError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`get_world_rating`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetWorldRatingError {
+    Status401(models::Error),
+    Status404(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`publish_world`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -153,6 +171,16 @@ pub enum RemoveWorldTagsError {
 pub enum SearchWorldsError {
     Status400(models::Error),
     Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`set_world_rating`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SetWorldRatingError {
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -511,6 +539,62 @@ pub async fn delete_world_platform(
             log::debug!("delete_world_platform returned: {content}");
         }
         let entity: Option<DeleteWorldPlatformError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Removes the rating the current user has given a world.
+pub async fn delete_world_rating(
+    configuration: &configuration::Configuration,
+    world_id: &str,
+) -> Result<models::WorldRating, Error<DeleteWorldRatingError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_world_id = world_id;
+
+    let uri_str = format!(
+        "{}/worlds/{worldId}/rating",
+        configuration.base_path,
+        worldId = crate::apis::urlencode(p_path_world_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("delete_world_rating returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::WorldRating`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::WorldRating`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("delete_world_rating returned: {content}");
+        }
+        let entity: Option<DeleteWorldRatingError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -1077,6 +1161,60 @@ pub async fn get_world_publish_status(
     }
 }
 
+/// Returns the rating the current user has given a world. `value` is `null` for a world they have not rated, and for a world ID no world carries.
+pub async fn get_world_rating(
+    configuration: &configuration::Configuration,
+    world_id: &str,
+) -> Result<models::WorldRating, Error<GetWorldRatingError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_world_id = world_id;
+
+    let uri_str = format!(
+        "{}/worlds/{worldId}/rating",
+        configuration.base_path,
+        worldId = crate::apis::urlencode(p_path_world_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_world_rating returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::WorldRating`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::WorldRating`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_world_rating returned: {content}");
+        }
+        let entity: Option<GetWorldRatingError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Publish a world. You can only publish one world per week.
 pub async fn publish_world(
     configuration: &configuration::Configuration,
@@ -1301,6 +1439,63 @@ pub async fn search_worlds(
             log::debug!("search_worlds returned: {content}");
         }
         let entity: Option<SearchWorldsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Rates a world as the current user, replacing any rating they gave it before.
+pub async fn set_world_rating(
+    configuration: &configuration::Configuration,
+    world_id: &str,
+    set_world_rating_request: models::SetWorldRatingRequest,
+) -> Result<models::WorldRating, Error<SetWorldRatingError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_world_id = world_id;
+    let p_body_set_world_rating_request = set_world_rating_request;
+
+    let uri_str = format!(
+        "{}/worlds/{worldId}/rating",
+        configuration.base_path,
+        worldId = crate::apis::urlencode(p_path_world_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_set_world_rating_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("set_world_rating returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::WorldRating`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::WorldRating`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("set_world_rating returned: {content}");
+        }
+        let entity: Option<SetWorldRatingError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

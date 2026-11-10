@@ -47,8 +47,9 @@ pub struct Instance {
     pub closed_at: Option<Option<chrono::DateTime<chrono::FixedOffset>>>,
     #[serde(rename = "contentSettings", skip_serializing_if = "Option::is_none")]
     pub content_settings: Option<models::InstanceContentSettings>,
+    /// The `languages` the instance was created with.
     #[serde(rename = "creationLanguages", skip_serializing_if = "Option::is_none")]
-    pub creation_languages: Option<Vec<serde_json::Value>>,
+    pub creation_languages: Option<Vec<String>>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(
         rename = "creatorId",
@@ -83,6 +84,7 @@ pub struct Instance {
         skip_serializing_if = "Option::is_none"
     )]
     pub display_vibe_id: Option<Option<String>>,
+    /// Empty while the instance has no users.
     #[serde(rename = "dominantLanguage", skip_serializing_if = "Option::is_none")]
     pub dominant_language: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
