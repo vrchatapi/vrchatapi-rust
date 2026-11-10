@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **as_of** | **chrono::DateTime<chrono::FixedOffset>** |  | 
 **events** | **i32** |  | 
+**friend_icons** | **Vec<serde_json::Value>** |  | 
 **friends** | **i32** |  | 
 **friends_entry_id** | **String** | The ID of a `ContentShelf` entry, whose results `getInfoPushContent` returns. | 
 **instances** | **i32** |  | 

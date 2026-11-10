@@ -76,6 +76,8 @@ pub struct FavoritedWorld {
     pub release_status: models::ReleaseStatus,
     #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
     pub store_id: Option<String>,
+    #[serde(rename = "supportedPlatforms", skip_serializing_if = "Option::is_none")]
+    pub supported_platforms: Option<Vec<String>>,
     #[serde(rename = "tags", skip_serializing_if = "Option::is_none")]
     pub tags: Option<Vec<String>>,
     #[serde(rename = "thumbnailImageUrl")]
@@ -130,6 +132,7 @@ impl FavoritedWorld {
             recommended_capacity: None,
             release_status,
             store_id: None,
+            supported_platforms: None,
             tags: None,
             thumbnail_image_url,
             udon_products: None,

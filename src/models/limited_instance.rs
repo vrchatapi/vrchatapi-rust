@@ -9,6 +9,8 @@ pub struct LimitedInstance {
     pub access_type: String,
     #[serde(rename = "active")]
     pub active: bool,
+    #[serde(rename = "calendarEntryId", deserialize_with = "Option::deserialize")]
+    pub calendar_entry_id: Option<String>,
     #[serde(rename = "capacity")]
     pub capacity: i32,
     #[serde(rename = "categoryId", deserialize_with = "Option::deserialize")]
@@ -108,6 +110,7 @@ impl LimitedInstance {
     pub fn new(
         access_type: String,
         active: bool,
+        calendar_entry_id: Option<String>,
         capacity: i32,
         category_id: Option<String>,
         creation_languages: Vec<serde_json::Value>,
@@ -147,6 +150,7 @@ impl LimitedInstance {
         LimitedInstance {
             access_type,
             active,
+            calendar_entry_id,
             capacity,
             category_id,
             creation_languages,

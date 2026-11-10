@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**author_icon_url** | Option<**String**> |  | [optional]
 **author_id** | **String** | A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed. | 
 **author_name** | **String** |  | 
 **capacity** | **i32** |  | 
@@ -32,6 +33,7 @@ Name | Type | Description | Notes
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **slim_instances** | Option<[**Vec<models::WorldSlimInstance>**](WorldSlimInstance.md)> |  | [optional]
 **store_id** | Option<**String**> |  | [optional]
+**supported_platforms** | **Vec<String>** |  | 
 **tags** | **Vec<String>** |  | 
 **thumbnail_image_url** | **String** |  | 
 **udon_products** | Option<**Vec<String>**> |  | [optional]

@@ -28,8 +28,8 @@ pub struct InfoPushDataContentSourceInstanceDiscoverParams {
     pub min_spread: Option<Option<serde_json::Value>>,
     #[serde(rename = "mode", skip_serializing_if = "Option::is_none")]
     pub mode: Option<models::InstanceDiscoveryMode>,
-    #[serde(rename = "n")]
-    pub n: i32,
+    #[serde(rename = "n", skip_serializing_if = "Option::is_none")]
+    pub n: Option<i32>,
     #[serde(rename = "notWorldTag", skip_serializing_if = "Option::is_none")]
     pub not_world_tag: Option<Vec<String>>,
     #[serde(rename = "worldId", skip_serializing_if = "Option::is_none")]
@@ -39,7 +39,7 @@ pub struct InfoPushDataContentSourceInstanceDiscoverParams {
 }
 
 impl InfoPushDataContentSourceInstanceDiscoverParams {
-    pub fn new(n: i32) -> InfoPushDataContentSourceInstanceDiscoverParams {
+    pub fn new() -> InfoPushDataContentSourceInstanceDiscoverParams {
         InfoPushDataContentSourceInstanceDiscoverParams {
             any_world_tag: None,
             boost: None,
@@ -50,7 +50,7 @@ impl InfoPushDataContentSourceInstanceDiscoverParams {
             min_spots_left: None,
             min_spread: None,
             mode: None,
-            n,
+            n: None,
             not_world_tag: None,
             world_id: None,
             world_pool: None,

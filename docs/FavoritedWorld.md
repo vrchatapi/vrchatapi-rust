@@ -29,6 +29,7 @@ Name | Type | Description | Notes
 **recommended_capacity** | Option<**i32**> |  | [optional]
 **release_status** | [**models::ReleaseStatus**](ReleaseStatus.md) |  | 
 **store_id** | Option<**String**> |  | [optional]
+**supported_platforms** | Option<**Vec<String>**> |  | [optional]
 **tags** | Option<**Vec<String>**> |  | [optional]
 **thumbnail_image_url** | **String** |  | 
 **udon_products** | Option<**Vec<String>**> |  | [optional]

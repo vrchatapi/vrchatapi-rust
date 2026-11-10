@@ -67,6 +67,8 @@ pub struct LimitedWorld {
     pub release_status: models::ReleaseStatus,
     #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
     pub store_id: Option<String>,
+    #[serde(rename = "supportedPlatforms")]
+    pub supported_platforms: Vec<String>,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "thumbnailImageUrl")]
@@ -98,6 +100,7 @@ impl LimitedWorld {
         popularity: i32,
         publication_date: String,
         release_status: models::ReleaseStatus,
+        supported_platforms: Vec<String>,
         tags: Vec<String>,
         thumbnail_image_url: String,
         unity_packages: Vec<models::LimitedUnityPackage>,
@@ -126,6 +129,7 @@ impl LimitedWorld {
             recommended_capacity: None,
             release_status,
             store_id: None,
+            supported_platforms,
             tags,
             thumbnail_image_url,
             udon_products: None,

@@ -4,6 +4,8 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct World {
+    #[serde(rename = "authorIconUrl", skip_serializing_if = "Option::is_none")]
+    pub author_icon_url: Option<String>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "authorId")]
     pub author_id: String,
@@ -80,6 +82,8 @@ pub struct World {
     pub slim_instances: Option<Vec<models::WorldSlimInstance>>,
     #[serde(rename = "storeId", skip_serializing_if = "Option::is_none")]
     pub store_id: Option<String>,
+    #[serde(rename = "supportedPlatforms")]
+    pub supported_platforms: Vec<String>,
     #[serde(rename = "tags")]
     pub tags: Vec<String>,
     #[serde(rename = "thumbnailImageUrl")]
@@ -117,6 +121,7 @@ impl World {
         publication_date: String,
         recommended_capacity: i32,
         release_status: models::ReleaseStatus,
+        supported_platforms: Vec<String>,
         tags: Vec<String>,
         thumbnail_image_url: String,
         updated_at: chrono::DateTime<chrono::FixedOffset>,
@@ -124,6 +129,7 @@ impl World {
         visits: i32,
     ) -> World {
         World {
+            author_icon_url: None,
             author_id,
             author_name,
             capacity,
@@ -152,6 +158,7 @@ impl World {
             release_status,
             slim_instances: None,
             store_id: None,
+            supported_platforms,
             tags,
             thumbnail_image_url,
             udon_products: None,
