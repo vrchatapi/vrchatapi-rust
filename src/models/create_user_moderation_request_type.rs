@@ -37,6 +37,8 @@ pub enum CreateUserModerationRequestType {
     Publicinstance,
     #[serde(rename = "sticker")]
     Sticker,
+    #[serde(rename = "userimage")]
+    Userimage,
     #[serde(rename = "voice")]
     Voice,
     #[serde(rename = "warn")]
@@ -67,6 +69,7 @@ impl std::fmt::Display for CreateUserModerationRequestType {
             Self::Profile => write!(f, "profile"),
             Self::Publicinstance => write!(f, "publicinstance"),
             Self::Sticker => write!(f, "sticker"),
+            Self::Userimage => write!(f, "userimage"),
             Self::Voice => write!(f, "voice"),
             Self::Warn => write!(f, "warn"),
             Self::Warning => write!(f, "warning"),

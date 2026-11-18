@@ -21,6 +21,7 @@
 | Profile | profile |
 | Publicinstance | publicinstance |
 | Sticker | sticker |
+| Userimage | userimage |
 | Voice | voice |
 | Warn | warn |
 | Warning | warning |
