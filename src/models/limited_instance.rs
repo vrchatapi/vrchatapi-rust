@@ -36,6 +36,8 @@ pub struct LimitedInstance {
     pub dominant_language: String,
     #[serde(rename = "friendIcons")]
     pub friend_icons: Vec<serde_json::Value>,
+    #[serde(rename = "friendOccupants")]
+    pub friend_occupants: Vec<serde_json::Value>,
     #[serde(rename = "full")]
     pub full: bool,
     #[serde(rename = "groupAccessType", skip_serializing_if = "Option::is_none")]
@@ -121,6 +123,7 @@ impl LimitedInstance {
         display_vibe_id: Option<String>,
         dominant_language: String,
         friend_icons: Vec<serde_json::Value>,
+        friend_occupants: Vec<serde_json::Value>,
         full: bool,
         id: String,
         instance_id: String,
@@ -162,6 +165,7 @@ impl LimitedInstance {
             display_vibe_id,
             dominant_language,
             friend_icons,
+            friend_occupants,
             full,
             group_access_type: None,
             id,

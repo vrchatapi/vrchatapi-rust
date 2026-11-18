@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **display_vibe_id** | Option<**String**> |  | 
 **dominant_language** | **String** | Empty while the instance has no users. | 
 **friend_icons** | **Vec<serde_json::Value>** |  | 
+**friend_occupants** | **Vec<serde_json::Value>** |  | 
 **full** | **bool** |  | [default to false]
 **group_access_type** | Option<[**models::GroupAccessType**](GroupAccessType.md)> |  | [optional]
 **id** | **String** | InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance. | 
