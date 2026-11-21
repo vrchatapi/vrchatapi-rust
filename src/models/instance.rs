@@ -85,8 +85,13 @@ pub struct Instance {
     )]
     pub display_vibe_id: Option<Option<String>>,
     /// Empty while the instance has no users.
-    #[serde(rename = "dominantLanguage", skip_serializing_if = "Option::is_none")]
-    pub dominant_language: Option<String>,
+    #[serde(
+        rename = "dominantLanguage",
+        default,
+        with = "::serde_with::rust::double_option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    pub dominant_language: Option<Option<String>>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "friends", skip_serializing_if = "Option::is_none")]
     pub friends: Option<String>,
