@@ -22,6 +22,16 @@ pub enum CreateInstanceError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`create_instance_announcement`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CreateInstanceAnnouncementError {
+    Status400(models::Error),
+    Status401(models::Error),
+    Status403(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`discover_instances`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -69,6 +79,14 @@ pub enum GetInstanceCategoriesError {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum GetInstanceCountError {
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`get_instance_options`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum GetInstanceOptionsError {
     Status401(models::Error),
     UnknownValue(serde_json::Value),
 }
@@ -221,6 +239,68 @@ pub async fn create_instance(
             log::debug!("create_instance returned: {content}");
         }
         let entity: Option<CreateInstanceError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Sends an announcement to a group instance. The caller must be present in the instance.
+pub async fn create_instance_announcement(
+    configuration: &configuration::Configuration,
+    world_id: &str,
+    instance_id: &str,
+    create_instance_announcement_request: models::CreateInstanceAnnouncementRequest,
+) -> Result<serde_json::Value, Error<CreateInstanceAnnouncementError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_world_id = world_id;
+    let p_path_instance_id = instance_id;
+    let p_body_create_instance_announcement_request = create_instance_announcement_request;
+
+    let uri_str = format!(
+        "{}/instances/{worldId}:{instanceId}/announce",
+        configuration.base_path,
+        worldId = crate::apis::urlencode(p_path_world_id),
+        instanceId = crate::apis::urlencode(p_path_instance_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_create_instance_announcement_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("create_instance_announcement returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `serde_json::Value`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `serde_json::Value`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("create_instance_announcement returned: {content}");
+        }
+        let entity: Option<CreateInstanceAnnouncementError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -711,6 +791,52 @@ pub async fn get_instance_count(
             log::debug!("get_instance_count returned: {content}");
         }
         let entity: Option<GetInstanceCountError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns the categories an instance can be listed under and the vibes it can be tagged with, in one response.
+pub async fn get_instance_options(
+    configuration: &configuration::Configuration,
+) -> Result<models::InstanceOptions, Error<GetInstanceOptionsError>> {
+    let uri_str = format!("{}/instanceOptions", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_instance_options returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::InstanceOptions`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::InstanceOptions`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("get_instance_options returned: {content}");
+        }
+        let entity: Option<GetInstanceOptionsError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

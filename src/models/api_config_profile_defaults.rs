@@ -5,25 +5,25 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ApiConfigProfileDefaults {
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(
         rename = "backgroundGradientBottom",
         skip_serializing_if = "Option::is_none"
     )]
     pub background_gradient_bottom: Option<String>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(
         rename = "backgroundGradientTop",
         skip_serializing_if = "Option::is_none"
     )]
     pub background_gradient_top: Option<String>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(rename = "themeButtonColor", skip_serializing_if = "Option::is_none")]
     pub theme_button_color: Option<String>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(rename = "themeIconColor", skip_serializing_if = "Option::is_none")]
     pub theme_icon_color: Option<String>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(rename = "themeSubtextColor", skip_serializing_if = "Option::is_none")]
     pub theme_subtext_color: Option<String>,
 }

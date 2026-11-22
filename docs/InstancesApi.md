@@ -6,12 +6,14 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**close_instance**](InstancesApi.md#close_instance) | **DELETE** /instances/{worldId}:{instanceId} | Close Instance
 [**create_instance**](InstancesApi.md#create_instance) | **POST** /instances | Create Instance
+[**create_instance_announcement**](InstancesApi.md#create_instance_announcement) | **POST** /instances/{worldId}:{instanceId}/announce | Create Instance Announcement
 [**discover_instances**](InstancesApi.md#discover_instances) | **GET** /instances/discover | Discover Instances
 [**get_active_instances**](InstancesApi.md#get_active_instances) | **GET** /instances/active | List Active Instances
 [**get_instance**](InstancesApi.md#get_instance) | **GET** /instances/{worldId}:{instanceId} | Get Instance
 [**get_instance_by_short_name**](InstancesApi.md#get_instance_by_short_name) | **GET** /instances/s/{shortName} | Get Instance By Short Name
 [**get_instance_categories**](InstancesApi.md#get_instance_categories) | **GET** /instanceCategories | List Instance Categories
 [**get_instance_count**](InstancesApi.md#get_instance_count) | **GET** /instances/count | Get Instance Count
+[**get_instance_options**](InstancesApi.md#get_instance_options) | **GET** /instanceOptions | Get Instance Options
 [**get_instance_vibes**](InstancesApi.md#get_instance_vibes) | **GET** /instanceVibes | List Instance Vibes
 [**get_recent_locations**](InstancesApi.md#get_recent_locations) | **GET** /instances/recent | List Recent Locations
 [**get_short_name**](InstancesApi.md#get_short_name) | **GET** /instances/{worldId}:{instanceId}/shortName | Get Instance Short Name
@@ -69,6 +71,38 @@ Name | Type | Description  | Required | Notes
 ### Return type
 
 [**models::Instance**](Instance.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## create_instance_announcement
+
+> serde_json::Value create_instance_announcement(world_id, instance_id, create_instance_announcement_request)
+Create Instance Announcement
+
+Sends an announcement to a group instance. The caller must be present in the instance.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**world_id** | **String** | Must be a valid world ID. | [required] |
+**instance_id** | **String** | Must be a valid instance ID. | [required] |
+**create_instance_announcement_request** | [**CreateInstanceAnnouncementRequest**](CreateInstanceAnnouncementRequest.md) |  | [required] |
+
+### Return type
+
+[**serde_json::Value**](serde_json::Value.md)
 
 ### Authorization
 
@@ -261,6 +295,33 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**models::InstanceCount**](InstanceCount.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## get_instance_options
+
+> models::InstanceOptions get_instance_options()
+Get Instance Options
+
+Returns the categories an instance can be listed under and the vibes it can be tagged with, in one response.
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**models::InstanceOptions**](InstanceOptions.md)
 
 ### Authorization
 

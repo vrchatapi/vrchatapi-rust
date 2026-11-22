@@ -4,17 +4,17 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct ProfileTheme {
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(rename = "buttonColor")]
     pub button_color: String,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(rename = "iconColor")]
     pub icon_color: String,
     #[serde(rename = "id")]
     pub id: String,
     #[serde(rename = "name")]
     pub name: String,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(rename = "subtextColor")]
     pub subtext_color: String,
 }

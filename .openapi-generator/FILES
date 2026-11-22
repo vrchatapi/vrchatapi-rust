@@ -73,6 +73,7 @@ docs/CalendarEventUserInterest.md
 docs/ChangeUserTagsRequest.md
 docs/ChangeWorldTagsRequest.md
 docs/CheckDeviceCodeRequest.md
+docs/ColorOrEmpty.md
 docs/ContentFilter.md
 docs/CosmeticItemType.md
 docs/CreateAvatarModerationRequest.md
@@ -88,6 +89,7 @@ docs/CreateGroupInviteRequest.md
 docs/CreateGroupPostRequest.md
 docs/CreateGroupRequest.md
 docs/CreateGroupRoleRequest.md
+docs/CreateInstanceAnnouncementRequest.md
 docs/CreateInstanceRequest.md
 docs/CreateInstanceRequestMinimumAvatarPerformance.md
 docs/CreateInstanceRequestRegion.md
@@ -95,6 +97,7 @@ docs/CreateJamSubmissionRequest.md
 docs/CreateListingRequest.md
 docs/CreateProductRequest.md
 docs/CreateProductRequestType.md
+docs/CreateProfileThemeRequest.md
 docs/CreatePropRequest.md
 docs/CreateUserModerationRequest.md
 docs/CreateUserModerationRequestType.md
@@ -343,6 +346,7 @@ docs/InstanceDiscoveryCapacityLimit.md
 docs/InstanceDiscoveryMode.md
 docs/InstanceDiscoveryPlatform.md
 docs/InstanceDiscoveryWorldPool.md
+docs/InstanceOptions.md
 docs/InstancePlatforms.md
 docs/InstanceRegion.md
 docs/InstanceShortNameResponse.md
@@ -567,6 +571,7 @@ docs/UpdateInviteMessageRequest.md
 docs/UpdateListingRequest.md
 docs/UpdateProductRequest.md
 docs/UpdateProfileRequest.md
+docs/UpdateProfileThemeRequest.md
 docs/UpdatePropRequest.md
 docs/UpdateTiliaTosRequest.md
 docs/UpdateUserBadgeRequest.md
@@ -764,6 +769,7 @@ src/models/calendar_event_user_interest.rs
 src/models/change_user_tags_request.rs
 src/models/change_world_tags_request.rs
 src/models/check_device_code_request.rs
+src/models/color_or_empty.rs
 src/models/content_filter.rs
 src/models/cosmetic_item_type.rs
 src/models/create_avatar_moderation_request.rs
@@ -779,6 +785,7 @@ src/models/create_group_invite_request.rs
 src/models/create_group_post_request.rs
 src/models/create_group_request.rs
 src/models/create_group_role_request.rs
+src/models/create_instance_announcement_request.rs
 src/models/create_instance_request.rs
 src/models/create_instance_request_minimum_avatar_performance.rs
 src/models/create_instance_request_region.rs
@@ -786,6 +793,7 @@ src/models/create_jam_submission_request.rs
 src/models/create_listing_request.rs
 src/models/create_product_request.rs
 src/models/create_product_request_type.rs
+src/models/create_profile_theme_request.rs
 src/models/create_prop_request.rs
 src/models/create_user_moderation_request.rs
 src/models/create_user_moderation_request_type.rs
@@ -1029,6 +1037,7 @@ src/models/instance_discovery_capacity_limit.rs
 src/models/instance_discovery_mode.rs
 src/models/instance_discovery_platform.rs
 src/models/instance_discovery_world_pool.rs
+src/models/instance_options.rs
 src/models/instance_platforms.rs
 src/models/instance_region.rs
 src/models/instance_short_name_response.rs
@@ -1245,6 +1254,7 @@ src/models/update_invite_message_request.rs
 src/models/update_listing_request.rs
 src/models/update_product_request.rs
 src/models/update_profile_request.rs
+src/models/update_profile_theme_request.rs
 src/models/update_prop_request.rs
 src/models/update_tilia_tos_request.rs
 src/models/update_user_badge_request.rs

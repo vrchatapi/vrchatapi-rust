@@ -4,13 +4,13 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct UpdateProfileRequest {
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(
         rename = "backgroundGradientBottom",
         skip_serializing_if = "Option::is_none"
     )]
     pub background_gradient_bottom: Option<String>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(
         rename = "backgroundGradientTop",
         skip_serializing_if = "Option::is_none"
@@ -23,7 +23,7 @@ pub struct UpdateProfileRequest {
     pub background_texture_id: Option<String>,
     #[serde(rename = "backgroundType", skip_serializing_if = "Option::is_none")]
     pub background_type: Option<models::ProfileBackgroundType>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
     pub banner_color: Option<String>,
     #[serde(rename = "bannerCustomUrl", skip_serializing_if = "Option::is_none")]

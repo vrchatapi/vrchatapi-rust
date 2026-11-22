@@ -41,11 +41,30 @@ pub enum CompleteUserTutorialError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`create_profile_theme`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum CreateProfileThemeError {
+    Status400(models::Error),
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`delete_all_user_persistence_data`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
 pub enum DeleteAllUserPersistenceDataError {
     Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`delete_profile_theme`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum DeleteProfileThemeError {
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -266,6 +285,16 @@ pub enum UpdateBadgeError {
 pub enum UpdateProfileError {
     Status400(models::Error),
     Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
+/// struct for typed errors of method [`update_profile_theme`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum UpdateProfileThemeError {
+    Status400(models::Error),
+    Status401(models::Error),
+    Status404(models::Error),
     UnknownValue(serde_json::Value),
 }
 
@@ -529,6 +558,59 @@ pub async fn complete_user_tutorial(
     }
 }
 
+/// Creates a profile theme owned by the current user. `updateProfile` selects it by `themeId`, and its response lists the user's themes.
+pub async fn create_profile_theme(
+    configuration: &configuration::Configuration,
+    create_profile_theme_request: models::CreateProfileThemeRequest,
+) -> Result<models::ProfileTheme, Error<CreateProfileThemeError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_body_create_profile_theme_request = create_profile_theme_request;
+
+    let uri_str = format!("{}/profile/theme", configuration.base_path);
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::POST, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_create_profile_theme_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("create_profile_theme returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ProfileTheme`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ProfileTheme`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("create_profile_theme returned: {content}");
+        }
+        let entity: Option<CreateProfileThemeError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
 /// Deletes all of the user's persistence data for every world.
 pub async fn delete_all_user_persistence_data(
     configuration: &configuration::Configuration,
@@ -563,6 +645,62 @@ pub async fn delete_all_user_persistence_data(
             log::debug!("delete_all_user_persistence_data returned: {content}");
         }
         let entity: Option<DeleteAllUserPersistenceDataError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Deletes a profile theme owned by the current user.
+pub async fn delete_profile_theme(
+    configuration: &configuration::Configuration,
+    theme_id: &str,
+) -> Result<String, Error<DeleteProfileThemeError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_theme_id = theme_id;
+
+    let uri_str = format!(
+        "{}/profile/theme/{themeId}",
+        configuration.base_path,
+        themeId = crate::apis::urlencode(p_path_theme_id)
+    );
+    let mut req_builder = configuration
+        .client
+        .request(reqwest::Method::DELETE, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("delete_profile_theme returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Ok(content),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `String`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("delete_profile_theme returned: {content}");
+        }
+        let entity: Option<DeleteProfileThemeError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,
@@ -2052,6 +2190,63 @@ pub async fn update_profile(
             log::debug!("update_profile returned: {content}");
         }
         let entity: Option<UpdateProfileError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Updates a profile theme owned by the current user. Properties left out keep their value.
+pub async fn update_profile_theme(
+    configuration: &configuration::Configuration,
+    theme_id: &str,
+    update_profile_theme_request: Option<models::UpdateProfileThemeRequest>,
+) -> Result<String, Error<UpdateProfileThemeError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_path_theme_id = theme_id;
+    let p_body_update_profile_theme_request = update_profile_theme_request;
+
+    let uri_str = format!(
+        "{}/profile/theme/{themeId}",
+        configuration.base_path,
+        themeId = crate::apis::urlencode(p_path_theme_id)
+    );
+    let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
+
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+    req_builder = req_builder.json(&p_body_update_profile_theme_request);
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("update_profile_theme returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Ok(content),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `String`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("update_profile_theme returned: {content}");
+        }
+        let entity: Option<UpdateProfileThemeError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

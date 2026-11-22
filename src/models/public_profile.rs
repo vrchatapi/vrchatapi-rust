@@ -12,18 +12,16 @@ pub struct PublicProfile {
     /// `true` if, user is age verified (not 18+).
     #[serde(rename = "ageVerified", skip_serializing_if = "Option::is_none")]
     pub age_verified: Option<bool>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(
         rename = "backgroundGradientBottom",
         skip_serializing_if = "Option::is_none"
     )]
-    pub background_gradient_bottom: Option<String>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    pub background_gradient_bottom: Option<models::ColorOrEmpty>,
     #[serde(
         rename = "backgroundGradientTop",
         skip_serializing_if = "Option::is_none"
     )]
-    pub background_gradient_top: Option<String>,
+    pub background_gradient_top: Option<models::ColorOrEmpty>,
     #[serde(
         rename = "backgroundTemplateId",
         skip_serializing_if = "Option::is_none"
@@ -38,9 +36,8 @@ pub struct PublicProfile {
     pub background_type: Option<models::ProfileBackgroundType>,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
     pub badges: Option<Vec<models::Badge>>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
-    pub banner_color: Option<String>,
+    pub banner_color: Option<models::ColorOrEmpty>,
     #[serde(rename = "bannerCustomUrl", skip_serializing_if = "Option::is_none")]
     pub banner_custom_url: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
@@ -112,15 +109,15 @@ pub struct PublicProfile {
     pub status: Option<models::UserStatus>,
     #[serde(rename = "statusDescription", skip_serializing_if = "Option::is_none")]
     pub status_description: Option<String>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(rename = "themeButtonColor", skip_serializing_if = "Option::is_none")]
     pub theme_button_color: Option<String>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(rename = "themeIconColor", skip_serializing_if = "Option::is_none")]
     pub theme_icon_color: Option<String>,
     #[serde(rename = "themeId", skip_serializing_if = "Option::is_none")]
     pub theme_id: Option<models::PublicProfileThemeId>,
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
+    /// Six hexadecimal digits, without a leading `#`.
     #[serde(rename = "themeSubtextColor", skip_serializing_if = "Option::is_none")]
     pub theme_subtext_color: Option<String>,
     #[serde(rename = "themes", skip_serializing_if = "Option::is_none")]

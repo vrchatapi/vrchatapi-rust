@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**button_color** | **String** | Six hexadecimal digits, without a leading `#`. May be empty. | 
-**icon_color** | **String** | Six hexadecimal digits, without a leading `#`. May be empty. | 
+**button_color** | **String** | Six hexadecimal digits, without a leading `#`. | 
+**icon_color** | **String** | Six hexadecimal digits, without a leading `#`. | 
 **id** | **String** |  | 
 **name** | **String** |  | 
-**subtext_color** | **String** | Six hexadecimal digits, without a leading `#`. May be empty. | 
+**subtext_color** | **String** | Six hexadecimal digits, without a leading `#`. | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

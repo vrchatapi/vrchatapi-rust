@@ -439,6 +439,15 @@ pub enum SearchGroupsError {
     UnknownValue(serde_json::Value),
 }
 
+/// struct for typed errors of method [`search_groups_strict`]
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(untagged)]
+pub enum SearchGroupsStrictError {
+    Status400(models::Error),
+    Status401(models::Error),
+    UnknownValue(serde_json::Value),
+}
+
 /// struct for typed errors of method [`unban_group_member`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(untagged)]
@@ -3125,6 +3134,67 @@ pub async fn search_groups(
             log::debug!("search_groups returned: {content}");
         }
         let entity: Option<SearchGroupsError> = serde_json::from_str(&content).ok();
+        Err(Error::ResponseError(ResponseContent {
+            status,
+            content,
+            entity,
+        }))
+    }
+}
+
+/// Returns the groups whose short code matches the query. A query of the form `shortCode.discriminator` matches the one group carrying both.
+pub async fn search_groups_strict(
+    configuration: &configuration::Configuration,
+    query: &str,
+    n: Option<i32>,
+    offset: Option<i32>,
+) -> Result<Vec<models::LimitedGroup>, Error<SearchGroupsStrictError>> {
+    // add a prefix to parameters to efficiently prevent name collisions
+    let p_query_query = query;
+    let p_query_n = n;
+    let p_query_offset = offset;
+
+    let uri_str = format!("{}/groups/strictsearch", configuration.base_path);
+    let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
+
+    req_builder = req_builder.query(&[("query", &p_query_query.to_string())]);
+    if let Some(ref param_value) = p_query_n {
+        req_builder = req_builder.query(&[("n", &param_value.to_string())]);
+    }
+    if let Some(ref param_value) = p_query_offset {
+        req_builder = req_builder.query(&[("offset", &param_value.to_string())]);
+    }
+    if let Some(ref user_agent) = configuration.user_agent {
+        req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
+    }
+
+    let req = req_builder.build()?;
+    let resp = configuration.client.execute(req).await?;
+
+    let status = resp.status();
+    let content_type = resp
+        .headers()
+        .get("content-type")
+        .and_then(|v| v.to_str().ok())
+        .unwrap_or("application/octet-stream");
+    let content_type = super::ContentType::from(content_type);
+
+    if !status.is_client_error() && !status.is_server_error() {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("search_groups_strict returned: {content}");
+        }
+        match content_type {
+            ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `Vec&lt;models::LimitedGroup&gt;`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `Vec&lt;models::LimitedGroup&gt;`")))),
+        }
+    } else {
+        let content = resp.text().await?;
+        if configuration.debug {
+            log::debug!("search_groups_strict returned: {content}");
+        }
+        let entity: Option<SearchGroupsStrictError> = serde_json::from_str(&content).ok();
         Err(Error::ResponseError(ResponseContent {
             status,
             content,

@@ -48,6 +48,7 @@ Method | HTTP request | Description
 [**respond_group_join_request**](GroupsApi.md#respond_group_join_request) | **PUT** /groups/{groupId}/requests/{userId} | Respond Group Join request
 [**search_group_members**](GroupsApi.md#search_group_members) | **GET** /groups/{groupId}/members/search | Search Group Members
 [**search_groups**](GroupsApi.md#search_groups) | **GET** /groups | Search Group
+[**search_groups_strict**](GroupsApi.md#search_groups_strict) | **GET** /groups/strictsearch | Search Groups Strictly
 [**unban_group_member**](GroupsApi.md#unban_group_member) | **DELETE** /groups/{groupId}/bans/{userId} | Unban Group Member
 [**update_group**](GroupsApi.md#update_group) | **PUT** /groups/{groupId} | Update Group
 [**update_group_gallery**](GroupsApi.md#update_group_gallery) | **PUT** /groups/{groupId}/galleries/{groupGalleryId} | Update Group Gallery
@@ -1419,6 +1420,38 @@ Name | Type | Description  | Required | Notes
 **query** | Option<**String**> | Query to search for, can be either Group Name or Group shortCode |  |
 **offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 **n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+
+### Return type
+
+[**Vec<models::LimitedGroup>**](LimitedGroup.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## search_groups_strict
+
+> Vec<models::LimitedGroup> search_groups_strict(query, n, offset)
+Search Groups Strictly
+
+Returns the groups whose short code matches the query. A query of the form `shortCode.discriminator` matches the one group carrying both.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**query** | **String** | A group short code, optionally followed by a full stop and a discriminator. | [required] |
+**n** | Option<**i32**> | The number of objects to return. |  |[default to 60]
+**offset** | Option<**i32**> | A zero-based offset from the default object sorting from where search results start. |  |
 
 ### Return type
 

@@ -66,6 +66,8 @@ pub struct LimitedGroup {
         skip_serializing_if = "Option::is_none"
     )]
     pub nameplate_url: Option<Option<serde_json::Value>>,
+    #[serde(rename = "onlineMemberCount", skip_serializing_if = "Option::is_none")]
+    pub online_member_count: Option<i32>,
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "ownerId", skip_serializing_if = "Option::is_none")]
     pub owner_id: Option<String>,
@@ -100,6 +102,7 @@ impl LimitedGroup {
             name: None,
             nameplate_id: None,
             nameplate_url: None,
+            online_member_count: None,
             owner_id: None,
             rules: None,
             short_code: None,

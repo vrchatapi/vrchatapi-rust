@@ -5,9 +5,8 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedUserSearch {
-    /// Six hexadecimal digits, without a leading `#`. May be empty.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
-    pub banner_color: Option<String>,
+    pub banner_color: Option<models::ColorOrEmpty>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
     pub banner_type: Option<models::BannerType>,
     #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]

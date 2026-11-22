@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**background_gradient_bottom** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
-**background_gradient_top** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
+**background_gradient_bottom** | Option<**String**> | Six hexadecimal digits, without a leading `#`. | [optional]
+**background_gradient_top** | Option<**String**> | Six hexadecimal digits, without a leading `#`. | [optional]
 **background_texture_id** | Option<**String**> |  | [optional]
 **background_type** | Option<[**models::ProfileBackgroundType**](ProfileBackgroundType.md)> |  | [optional]
-**banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. May be empty. | [optional]
+**banner_color** | Option<**String**> | Six hexadecimal digits, without a leading `#`. | [optional]
 **banner_custom_url** | Option<**String**> |  | [optional]
 **banner_type** | Option<[**models::BannerType**](BannerType.md)> |  | [optional]
 **bio** | Option<**String**> |  | [optional]

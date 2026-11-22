@@ -8,7 +8,9 @@ Method | HTTP request | Description
 [**check_user_persistence_exists**](UsersApi.md#check_user_persistence_exists) | **GET** /users/{userId}/{worldId}/persist/exists | Check User Persistence Exists
 [**clear_user_tutorials**](UsersApi.md#clear_user_tutorials) | **DELETE** /users/{userId}/tutorial | Clear User Tutorials
 [**complete_user_tutorial**](UsersApi.md#complete_user_tutorial) | **POST** /users/{userId}/tutorial | Complete User Tutorial
+[**create_profile_theme**](UsersApi.md#create_profile_theme) | **POST** /profile/theme | Create Profile Theme
 [**delete_all_user_persistence_data**](UsersApi.md#delete_all_user_persistence_data) | **DELETE** /users/{userId}/persist | Delete All User Persistence Data
+[**delete_profile_theme**](UsersApi.md#delete_profile_theme) | **DELETE** /profile/theme/{themeId} | Delete Profile Theme
 [**delete_user_persistence**](UsersApi.md#delete_user_persistence) | **DELETE** /users/{userId}/{worldId}/persist | Delete User Persistence
 [**get_age_verification_status**](UsersApi.md#get_age_verification_status) | **GET** /ageVerification/status | Get Age Verification Status
 [**get_blocked_groups**](UsersApi.md#get_blocked_groups) | **GET** /users/{userId}/groups/userblocked | Get User Group Blocks
@@ -35,6 +37,7 @@ Method | HTTP request | Description
 [**search_users**](UsersApi.md#search_users) | **GET** /users | Search All Users
 [**update_badge**](UsersApi.md#update_badge) | **PUT** /users/{userId}/badges/{badgeId} | Update User Badge
 [**update_profile**](UsersApi.md#update_profile) | **PUT** /profile/{userId} | Update Profile
+[**update_profile_theme**](UsersApi.md#update_profile_theme) | **PUT** /profile/theme/{themeId} | Update Profile Theme
 [**update_user**](UsersApi.md#update_user) | **PUT** /users/{userId} | Update User Info
 [**update_user_client_config**](UsersApi.md#update_user_client_config) | **PUT** /users/{userId}/clientConfig | Update User Client Config
 [**update_user_note**](UsersApi.md#update_user_note) | **POST** /userNotes | Update User Note
@@ -167,6 +170,36 @@ Name | Type | Description  | Required | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 
+## create_profile_theme
+
+> models::ProfileTheme create_profile_theme(create_profile_theme_request)
+Create Profile Theme
+
+Creates a profile theme owned by the current user. `updateProfile` selects it by `themeId`, and its response lists the user's themes.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**create_profile_theme_request** | [**CreateProfileThemeRequest**](CreateProfileThemeRequest.md) |  | [required] |
+
+### Return type
+
+[**models::ProfileTheme**](ProfileTheme.md)
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
 ## delete_all_user_persistence_data
 
 > delete_all_user_persistence_data(user_id)
@@ -193,6 +226,36 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: Not defined
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## delete_profile_theme
+
+> String delete_profile_theme(theme_id)
+Delete Profile Theme
+
+Deletes a profile theme owned by the current user.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**theme_id** | **String** | Must be a valid profile theme ID. | [required] |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: text/plain, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -995,6 +1058,37 @@ Name | Type | Description  | Required | Notes
 
 - **Content-Type**: application/json
 - **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+
+## update_profile_theme
+
+> String update_profile_theme(theme_id, update_profile_theme_request)
+Update Profile Theme
+
+Updates a profile theme owned by the current user. Properties left out keep their value.
+
+### Parameters
+
+
+Name | Type | Description  | Required | Notes
+------------- | ------------- | ------------- | ------------- | -------------
+**theme_id** | **String** | Must be a valid profile theme ID. | [required] |
+**update_profile_theme_request** | Option<[**UpdateProfileThemeRequest**](UpdateProfileThemeRequest.md)> |  |  |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[authCookie](../README.md#authCookie)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: text/plain, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
