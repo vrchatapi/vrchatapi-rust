@@ -35,8 +35,9 @@ pub struct User {
     /// Details of an account on another service linked to this one.
     #[serde(rename = "appleDetails", skip_serializing_if = "Option::is_none")]
     pub apple_details: Option<serde_json::Value>,
+    /// A `Color`, or an empty string.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
-    pub banner_color: Option<models::ColorOrEmpty>,
+    pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
     pub banner_type: Option<models::BannerType>,
     #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]

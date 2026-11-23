@@ -73,7 +73,6 @@ docs/CalendarEventUserInterest.md
 docs/ChangeUserTagsRequest.md
 docs/ChangeWorldTagsRequest.md
 docs/CheckDeviceCodeRequest.md
-docs/ColorOrEmpty.md
 docs/ContentFilter.md
 docs/CosmeticItemType.md
 docs/CreateAvatarModerationRequest.md
@@ -769,7 +768,6 @@ src/models/calendar_event_user_interest.rs
 src/models/change_user_tags_request.rs
 src/models/change_world_tags_request.rs
 src/models/check_device_code_request.rs
-src/models/color_or_empty.rs
 src/models/content_filter.rs
 src/models/cosmetic_item_type.rs
 src/models/create_avatar_moderation_request.rs

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **age_verified** | **bool** | `true` if, user is age verified (not 18+). | 
 **allow_avatar_copying** | **bool** |  | [default to true]
 **apple_details** | Option<**serde_json::Value**> | Details of an account on another service linked to this one. | [optional]
-**banner_color** | Option<[**models::ColorOrEmpty**](ColorOrEmpty.md)> |  | [optional]
+**banner_color** | Option<**String**> | A `Color`, or an empty string. | [optional]
 **banner_type** | Option<[**models::BannerType**](BannerType.md)> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
 **date_joined** | **chrono::NaiveDate** |  | 

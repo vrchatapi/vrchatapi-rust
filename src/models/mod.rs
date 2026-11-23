@@ -138,8 +138,6 @@ pub mod change_world_tags_request;
 pub use self::change_world_tags_request::ChangeWorldTagsRequest;
 pub mod check_device_code_request;
 pub use self::check_device_code_request::CheckDeviceCodeRequest;
-pub mod color_or_empty;
-pub use self::color_or_empty::ColorOrEmpty;
 pub mod content_filter;
 pub use self::content_filter::ContentFilter;
 pub mod cosmetic_item_type;

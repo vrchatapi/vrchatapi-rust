@@ -5,8 +5,9 @@ use serde::{Deserialize, Serialize};
 #[serde_with::serde_as]
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
 pub struct LimitedUserSearch {
+    /// A `Color`, or an empty string.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
-    pub banner_color: Option<models::ColorOrEmpty>,
+    pub banner_color: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
     pub banner_type: Option<models::BannerType>,
     #[serde(rename = "bannerUrl", skip_serializing_if = "Option::is_none")]

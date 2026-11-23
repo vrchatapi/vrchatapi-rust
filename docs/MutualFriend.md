@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**banner_color** | Option<[**models::ColorOrEmpty**](ColorOrEmpty.md)> |  | [optional]
+**banner_color** | Option<**String**> | A `Color`, or an empty string. | [optional]
 **banner_type** | Option<[**models::BannerType**](BannerType.md)> |  | [optional]
 **banner_url** | Option<**String**> |  | [optional]
 **display_name** | **String** |  | 

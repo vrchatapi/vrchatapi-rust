@@ -12,16 +12,18 @@ pub struct PublicProfile {
     /// `true` if, user is age verified (not 18+).
     #[serde(rename = "ageVerified", skip_serializing_if = "Option::is_none")]
     pub age_verified: Option<bool>,
+    /// A `Color`, or an empty string.
     #[serde(
         rename = "backgroundGradientBottom",
         skip_serializing_if = "Option::is_none"
     )]
-    pub background_gradient_bottom: Option<models::ColorOrEmpty>,
+    pub background_gradient_bottom: Option<String>,
+    /// A `Color`, or an empty string.
     #[serde(
         rename = "backgroundGradientTop",
         skip_serializing_if = "Option::is_none"
     )]
-    pub background_gradient_top: Option<models::ColorOrEmpty>,
+    pub background_gradient_top: Option<String>,
     #[serde(
         rename = "backgroundTemplateId",
         skip_serializing_if = "Option::is_none"
@@ -36,8 +38,9 @@ pub struct PublicProfile {
     pub background_type: Option<models::ProfileBackgroundType>,
     #[serde(rename = "badges", skip_serializing_if = "Option::is_none")]
     pub badges: Option<Vec<models::Badge>>,
+    /// A `Color`, or an empty string.
     #[serde(rename = "bannerColor", skip_serializing_if = "Option::is_none")]
-    pub banner_color: Option<models::ColorOrEmpty>,
+    pub banner_color: Option<String>,
     #[serde(rename = "bannerCustomUrl", skip_serializing_if = "Option::is_none")]
     pub banner_custom_url: Option<String>,
     #[serde(rename = "bannerType", skip_serializing_if = "Option::is_none")]
