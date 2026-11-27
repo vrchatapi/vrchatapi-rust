@@ -118,6 +118,8 @@ pub struct Instance {
     /// A users unique ID, usually in the form of `usr_c1644b5b-3ca4-45b4-97c6-a2a0de70d469`. Legacy players can have old IDs in the form of `8JoV9XEdpo`. The ID can never be changed.
     #[serde(rename = "hidden", skip_serializing_if = "Option::is_none")]
     pub hidden: Option<String>,
+    #[serde(rename = "hypeTrain", skip_serializing_if = "Option::is_none")]
+    pub hype_train: Option<models::InstanceHypeTrain>,
     /// InstanceID can be \"offline\" on User profiles if you are not friends with that user and \"private\" if you are friends and user is in private instance.
     #[serde(rename = "id")]
     pub id: String,
@@ -271,6 +273,7 @@ impl Instance {
             hard_close: None,
             has_capacity_for_you: None,
             hidden: None,
+            hype_train: None,
             id,
             instance_id,
             instance_persistence_enabled: None,

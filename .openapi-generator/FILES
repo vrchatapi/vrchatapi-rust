@@ -276,6 +276,8 @@ docs/GroupTransferable.md
 docs/GroupTransferableRequirements.md
 docs/GroupUserVisibility.md
 docs/GroupsApi.md
+docs/HypeTrain.md
+docs/HypeTrainLevel.md
 docs/ImageAnimationStyle.md
 docs/ImageLoopStyle.md
 docs/ImageMask.md
@@ -345,6 +347,7 @@ docs/InstanceDiscoveryCapacityLimit.md
 docs/InstanceDiscoveryMode.md
 docs/InstanceDiscoveryPlatform.md
 docs/InstanceDiscoveryWorldPool.md
+docs/InstanceHypeTrain.md
 docs/InstanceOptions.md
 docs/InstancePlatforms.md
 docs/InstanceRegion.md
@@ -966,6 +969,8 @@ src/models/group_search_sort.rs
 src/models/group_transferable.rs
 src/models/group_transferable_requirements.rs
 src/models/group_user_visibility.rs
+src/models/hype_train.rs
+src/models/hype_train_level.rs
 src/models/image_animation_style.rs
 src/models/image_loop_style.rs
 src/models/image_mask.rs
@@ -1035,6 +1040,7 @@ src/models/instance_discovery_capacity_limit.rs
 src/models/instance_discovery_mode.rs
 src/models/instance_discovery_platform.rs
 src/models/instance_discovery_world_pool.rs
+src/models/instance_hype_train.rs
 src/models/instance_options.rs
 src/models/instance_platforms.rs
 src/models/instance_region.rs

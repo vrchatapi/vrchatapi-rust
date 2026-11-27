@@ -10,8 +10,8 @@ pub struct InfoPushDataPromotionNotification {
     pub command: String,
     #[serde(rename = "imageUrl")]
     pub image_url: String,
-    #[serde(rename = "parameter")]
-    pub parameter: String,
+    #[serde(rename = "parameter", skip_serializing_if = "Option::is_none")]
+    pub parameter: Option<String>,
     #[serde(rename = "title")]
     pub title: String,
 }
@@ -21,14 +21,13 @@ impl InfoPushDataPromotionNotification {
         body: String,
         command: String,
         image_url: String,
-        parameter: String,
         title: String,
     ) -> InfoPushDataPromotionNotification {
         InfoPushDataPromotionNotification {
             body,
             command,
             image_url,
-            parameter,
+            parameter: None,
             title,
         }
     }
